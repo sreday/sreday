@@ -2,7 +2,8 @@
 
 import datetime
 import re
-import os
+import csv
+import textwrap
 import string
 import yaml
 from jinja2 import Environment, FileSystemLoader
@@ -15,6 +16,19 @@ def generate_short_url(url):
     url = re.sub('[^a-zA-Z0-9]', '-', url)
     url = re.sub('[-]+', '-', url)
     return url[:100]
+
+def read_csv(path):
+    """ Read the pre-process the CSV """
+    items = []
+    with open(path, 'r') as f:
+        reader = csv.DictReader(f)
+        for item in reader:
+            item = dict(item)
+            if "abstract" in item:
+                item["abstract_s"] = textwrap.shorten(item.get("abstract",""), 200-len(item.get("title","")), placeholder="...")
+                item["abstract_m"] = textwrap.shorten(item.get("abstract",""), 400-len(item.get("title","")), placeholder="...")
+            items.append(item)
+    return items
 
 
 DIVIDER = "#"*80
@@ -32,6 +46,29 @@ print("Loading context")
 with open('metadata.yml') as f:
     context = yaml.load(f, Loader=yaml.FullLoader)
     BASE_FOLDER = "./" + context.get("base_folder")
+
+
+try:
+    talks = [
+        talk
+        for talk in read_csv("./_db/talks_2023.csv")
+        if "confirmed" in talk["status"].lower()
+    ]
+    tracks_ordered = []
+    tracks = dict()
+    for talk in talks:
+        track = talk.get("track")
+        if track not in tracks:
+            tracks[track] = []
+            tracks_ordered.append(track)
+        tracks[track].append(talk)
+    context["talks"] = talks
+    context["tracks"] = tracks_ordered
+    context["talks_by_tracks"] = tracks
+    print("Loaded %d confirmed talks in %d tracks: %s" % (len(context["talks"]), len(tracks), tracks.keys()))
+
+except Exception as e:
+    print("Couldn't read talks", e)
 
 
 # MAIN PAGES
