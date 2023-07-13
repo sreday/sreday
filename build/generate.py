@@ -6,6 +6,9 @@ import csv
 import textwrap
 import string
 import yaml
+import datetime
+from datetime import timedelta
+
 from jinja2 import Environment, FileSystemLoader
 from jinja_markdown import MarkdownExtension
 
@@ -25,8 +28,8 @@ def read_csv(path):
         for item in reader:
             item = dict(item)
             if "abstract" in item:
-                item["abstract_s"] = textwrap.shorten(item.get("abstract",""), 200-len(item.get("title","")), placeholder="...")
-                item["abstract_m"] = textwrap.shorten(item.get("abstract",""), 400-len(item.get("title","")), placeholder="...")
+                item["abstract_s"] = textwrap.shorten(item.get("abstract",""), 200, placeholder="...")
+                item["abstract_m"] = textwrap.shorten(item.get("abstract",""), 500, placeholder="...")
             items.append(item)
     return items
 
@@ -49,26 +52,49 @@ with open('metadata.yml') as f:
 
 
 try:
+    # read the csv
     talks = [
         talk
         for talk in read_csv("./_db/talks_2023.csv")
         if "confirmed" in talk["status"].lower()
     ]
-    tracks_ordered = []
-    tracks = dict()
-    for talk in talks:
-        track = talk.get("track")
-        if track not in tracks:
-            tracks[track] = []
-            tracks_ordered.append(track)
-        tracks[track].append(talk)
-    context["talks"] = talks
-    context["tracks"] = tracks_ordered
-    context["talks_by_tracks"] = tracks
-    print("Loaded %d confirmed talks in %d tracks: %s" % (len(context["talks"]), len(tracks), tracks.keys()))
 
 except Exception as e:
     print("Couldn't read talks", e)
+
+# sort by track
+tracks_ordered = []
+tracks = dict()
+id = 0
+for talk in talks:
+    talk["id"] = str(id)
+    id += 1
+    track = talk.get("track")
+    if track not in tracks:
+        tracks[track] = []
+        tracks_ordered.append(track)
+    tracks[track].append(talk)
+
+# generate times
+for track, talks in tracks.items():
+    current_time = datetime.datetime(
+        hour=9,
+        minute=0,
+        year=2023,
+        month=9,
+        day=14,
+    )
+    for talk in talks:
+        talk["time_start"] = str(current_time.hour) + ":" + str(current_time.minute)
+        current_time = current_time + timedelta(minutes=30)
+        talk["time_end"] = str(current_time.hour) + ":" + str(current_time.minute)
+
+# add to the context
+context["talks"] = talks
+context["tracks"] = tracks_ordered
+context["talks_by_tracks"] = tracks
+print("Loaded %d confirmed talks in %d tracks: %s" % (len(context["talks"]), len(tracks), tracks.keys()))
+
 
 
 # MAIN PAGES
