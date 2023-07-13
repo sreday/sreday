@@ -65,7 +65,7 @@ except Exception as e:
 # pick up the photos
 for talk in talks:
     photo = talk.get("photo")
-    if photo is not None:
+    if photo:
         talk["photo_url"] = "./assets/images/profiles/" + photo
     else:
         talk["photo_url"] = talk.get("avatar")
