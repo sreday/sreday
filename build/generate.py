@@ -28,8 +28,8 @@ def read_csv(path):
         for item in reader:
             item = dict(item)
             if "abstract" in item:
-                item["abstract_s"] = textwrap.shorten(item.get("abstract",""), 200, placeholder="...")
-                item["abstract_m"] = textwrap.shorten(item.get("abstract",""), 500, placeholder="...")
+                item["abstract_s"] = textwrap.shorten(item.get("abstract",""), 300, placeholder="...")
+                item["abstract_m"] = textwrap.shorten(item.get("abstract",""), 1000, placeholder="...")
             items.append(item)
     return items
 
