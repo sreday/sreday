@@ -72,7 +72,7 @@
           </div><!--//meta-->
           <div class="content">
             <h3 class="title mb-3">{{ talk.title }}</h3>
-            <div class="location mb-3"><i class="fas fa-map-marker-alt me-2"></i>Conference Room A</div>
+            <div class="location mb-3"></i>{{ talk.organization }}</div>
             <div class="desc">{{ talk.abstract_s }}<br /><br /></div>
           </div><!--//content-->
         </div><!--//item-->
@@ -394,5 +394,42 @@
     <div class="sponsors-cta text-center pt-5"><a class="btn-primary btn btn-lg" href="mailto:mark@sreday.com">Become A Sponsor</a></div>
   </div><!--//container-->
 </section><!--//sponsors-section-->
+
+
+{% for talk in talks %}
+<!-- Modal Speaker {{ talk.id }} -->
+<div class="modal modal-speaker modal-speaker-{{ talk.id }}" id="modal-speaker-{{ talk.id }}" tabindex="-1" role="dialog" aria-labelledby="speaker-{{ talk.id }}-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-{{ talk.id }}-ModalLabel" class="modal-title sr-only"
+>{{ talk.name }}</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="assets/images/speakers/speaker-1.jpg" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">{{ talk.name }}</h2>
+                          <div class="meta mb-2">{{ talk.organization }}</div>
+                          <ul class="social-list list-inline mb-0">
+                              <li class="list-inline-item"><a  href="https://twitter.com/{{ talk.twitter }}"><i class="fab fa-twitter fa-fw"></i></a></li>
+                              <li class="list-inline-item"><a  href="{{ talk.linkedin }}"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-4 p-lg-5">
+                  <p>{{ talk.bio }}</p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+{% endfor %}
 
 {% endblock %}

@@ -74,6 +74,8 @@ for talk in talks:
         tracks[track] = []
         tracks_ordered.append(track)
     tracks[track].append(talk)
+context["talks"] = talks
+context["tracks"] = tracks_ordered
 
 # generate times
 for track, talks in tracks.items():
@@ -89,9 +91,6 @@ for track, talks in tracks.items():
         current_time = current_time + timedelta(minutes=30)
         talk["time_end"] = str(current_time.hour) + ":" + str(current_time.minute)
 
-# add to the context
-context["talks"] = talks
-context["tracks"] = tracks_ordered
 context["talks_by_tracks"] = tracks
 print("Loaded %d confirmed talks in %d tracks: %s" % (len(context["talks"]), len(tracks), tracks.keys()))
 
