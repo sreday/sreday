@@ -56,11 +56,20 @@ try:
     talks = [
         talk
         for talk in read_csv("./_db/talks_2023.csv")
-        if "confirmed" in talk["status"].lower()
+        if "confirmed" in talk["status"].lower() or "keynote" in talk["status"].lower()
     ]
 
 except Exception as e:
     print("Couldn't read talks", e)
+
+# pick up the photos
+for talk in talks:
+    photo = talk.get("photo")
+    if photo is not None:
+        talk["photo_url"] = "./assets/images/profiles/" + photo
+    else:
+        talk["photo_url"] = talk.get("avatar")
+
 
 # sort by track
 tracks_ordered = []
