@@ -205,6 +205,41 @@
 </section><!--//tickets-section-->
 
 
+<section id="speakers-section" class="speakers-section section">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Speakers</h3>
+    <div class="row">
+
+      {% for talk in (talks + keynotes)|sort(attribute='name') %}
+      <!-- Modal Speaker {{ talk.id }} -->
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded-0">
+          <a href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}"><img src="{{ talk.photo_url }}" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">{{ talk.name }}</h5>
+            <div class="card-text mb-3">
+              <div class="meta">{{ talk.organization }}</div>
+            </div><!--//card-text-->
+            <a href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              {% if talk.twitter %}<li class="list-inline-item"><a  href="https://twitter.com/{{ talk.twitter }}"><i class="fab fa-twitter fa-fw"></i></a></li>{% endif %}
+              {% if talk.linkedin %}<li class="list-inline-item"><a  href="{{ talk.linkedin }}"><i class="fab fa-linkedin-in fa-fw"></i></a></li>{% endif %}
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      {% endfor %}
+
+    </div><!--//row-->
+    <div class="speakers-cta text-center py-3"><a class="btn btn-primary btn-lg" href="https://themes.3rdwavemedia.com/bootstrap-templates/startup/devconf-free-bootstrap-4-conference-template-for-tech-conferences-and-events/" target="_blank">Get Tickets</a></div>
+  </div><!--//container-->
+
+</section><!--//speakers-section-->
+
 <section id="venue-section" class="venue-section section  theme-bg-primary text-white">
   <div class="container">
     <h3 class="section-heading text-center mb-5 text-white">Venue</h3>
