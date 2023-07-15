@@ -53,23 +53,31 @@ with open('metadata.yml') as f:
 
 try:
     # read the csv
-    talks = [
-        talk
-        for talk in read_csv("./_db/talks_2023.csv")
-        if "confirmed" in talk["status"].lower() or "keynote" in talk["status"].lower()
-    ]
-
+    talks_raw = read_csv("./_db/talks_2023.csv")
 except Exception as e:
     print("Couldn't read talks", e)
 
 # pick up the photos
-for talk in talks:
+for talk in talks_raw:
     photo = talk.get("photo")
     if photo:
         talk["photo_url"] = "./assets/images/profiles/" + photo
     else:
         talk["photo_url"] = talk.get("avatar")
 
+# sort into talks and keynotes
+talks = [
+    talk
+    for talk in talks_raw
+    if "confirmed" in talk["status"].lower()
+]
+context["talks"] = talks
+keynotes = [
+    talk
+    for talk in talks_raw
+    if "keynote" in talk["status"].lower()
+]
+context["keynotes"] = keynotes
 
 # sort by track
 tracks_ordered = []
@@ -83,22 +91,38 @@ for talk in talks:
         tracks[track] = []
         tracks_ordered.append(track)
     tracks[track].append(talk)
-context["talks"] = talks
 context["tracks"] = tracks_ordered
 
 # generate times
-for track, talks in tracks.items():
-    current_time = datetime.datetime(
+def start_time():
+    return datetime.datetime(
         hour=9,
         minute=0,
         year=2023,
         month=9,
         day=14,
     )
-    for talk in talks:
-        talk["time_start"] = str(current_time.hour) + ":" + str(current_time.minute)
-        current_time = current_time + timedelta(minutes=30)
-        talk["time_end"] = str(current_time.hour) + ":" + str(current_time.minute)
+
+# prepend the first track each day with the keynotes
+# offset other tracks with that duration
+DEFAULT_DURATION = 30
+for i, track in enumerate(tracks_ordered):
+    current_day = (i // 3) + 1
+    current_time = start_time()
+    prepend = []
+    for talk in keynotes:
+        if talk.get("day") == str(current_day):
+            talk["start_time"] = current_time
+            talk["duration"] = int(talk.get("duration") or DEFAULT_DURATION)
+            current_time += timedelta(minutes=talk["duration"])
+            # for the first track of the day, actually prepend
+            if i == 0 or i == 3:
+                prepend.append(talk)
+    tracks[track] = prepend + tracks[track]
+    for talk in tracks[track]:
+        talk["start_time"] = current_time
+        talk["duration"] = int(talk.get("duration") or DEFAULT_DURATION)
+        current_time += timedelta(minutes=talk["duration"])
 
 context["talks_by_tracks"] = tracks
 print("Loaded %d confirmed talks in %d tracks: %s" % (len(context["talks"]), len(tracks), tracks.keys()))
