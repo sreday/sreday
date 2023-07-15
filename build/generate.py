@@ -102,6 +102,34 @@ def start_time():
         month=9,
         day=14,
     )
+def close_time():
+    return datetime.datetime(
+        hour=17,
+        minute=0,
+        year=2023,
+        month=9,
+        day=14,
+    )
+
+# insert breaks
+for track in tracks_ordered:
+    coffee = dict(
+        title="Coffee break",
+        duration=30,
+        comment="Main lobby",
+    )
+    lunch = dict(
+        title="Lunch & networking",
+        duration=60,
+        comment="Main lobby",
+    )
+    closing = dict(
+        title="Networking & sponsor crawl",
+        duration=30,
+        comment="Main lobby",
+    )
+    talks = tracks[track]
+    tracks[track] = [coffee] + talks[:4] + [lunch] + talks[4:] + [closing]
 
 # prepend the first track each day with the keynotes
 # offset other tracks with that duration
@@ -118,11 +146,15 @@ for i, track in enumerate(tracks_ordered):
             # for the first track of the day, actually prepend
             if i == 0 or i == 3:
                 prepend.append(talk)
-    tracks[track] = prepend + tracks[track]
     for talk in tracks[track]:
         talk["start_time"] = current_time
         talk["duration"] = int(talk.get("duration") or DEFAULT_DURATION)
         current_time += timedelta(minutes=talk["duration"])
+    close = dict(
+        title="Venue closes & pub",
+        start_time=close_time(),
+    )
+    tracks[track] = prepend + tracks[track] + [close]
 
 context["talks_by_tracks"] = tracks
 print("Loaded %d confirmed talks in %d tracks: %s" % (len(context["talks"]), len(tracks), tracks.keys()))
