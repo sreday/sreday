@@ -221,7 +221,7 @@
 </section><!--//sponsors-section-->
 
 
-{% for talk in talks %}
+{% for talk in talks + keynotes %}
 <!-- Modal Speaker {{ talk.id }} -->
 <div class="modal modal-speaker modal-speaker-{{ talk.id }}" id="modal-speaker-{{ talk.id }}" tabindex="-1" role="dialog" aria-labelledby="speaker-{{ talk.id }}-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
