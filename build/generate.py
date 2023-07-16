@@ -57,8 +57,9 @@ try:
 except Exception as e:
     print("Couldn't read talks", e)
 
-# pick up the photos
-for talk in talks_raw:
+# pick up the ids & photos
+for i, talk in enumerate(talks_raw):
+    talk["id"] = str(i)
     photo = talk.get("photo")
     if photo:
         talk["photo_url"] = "./assets/images/profiles/" + photo
@@ -82,10 +83,7 @@ context["keynotes"] = keynotes
 # sort by track
 tracks_ordered = []
 tracks = dict()
-id = 0
 for talk in talks:
-    talk["id"] = str(id)
-    id += 1
     track = talk.get("track")
     if track not in tracks:
         tracks[track] = []
