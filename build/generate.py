@@ -8,6 +8,7 @@ import string
 import yaml
 import datetime
 from datetime import timedelta
+import markdown
 
 from jinja2 import Environment, FileSystemLoader
 from jinja_markdown import MarkdownExtension
@@ -42,6 +43,7 @@ file_loader = FileSystemLoader("_templates")
 env = Environment(loader=file_loader)
 env.add_extension(MarkdownExtension)
 env.filters["short_url"] = generate_short_url
+env.filters["markdown"] = lambda x: markdown.markdown(x)
 
 # load the context from the metadata file
 print(DIVIDER)

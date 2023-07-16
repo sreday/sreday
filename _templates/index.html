@@ -325,13 +325,13 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
-                <p>{{ talk.abstract }}</p>
+                <p>{{ talk.abstract | markdown }}</p>
               </div>
               <div class="desc p-2 p-lg-3">
-                <p>{{ talk.description }}</p>
+                <p>{{ talk.description | markdown }}</p>
               </div>
               <div class="desc p-2 p-lg-3">
-                <p>{{ talk.bio }}</p>
+                <p>{{ talk.bio | markdown }}</p>
               </div>
           </div><!--//modal-body-->
       </div><!--//modal-content-->
