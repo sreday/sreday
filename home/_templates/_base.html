@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+	<title>SREday - Site Reliability Engineering conferences</title>
+	
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Flagship conference for SREs, DevOps and Platform engineers">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+	<link rel="manifest" href="./assets/site.webmanifest">
+	
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:600,700,800|Roboto:300,400,700&display=swap" rel="stylesheet">
+	
+	<!-- FontAwesome JS-->
+	<script defer src="assets/fontawesome/js/all.min.js"></script>
+
+	<!-- Theme CSS -->  
+	<link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
+
+    <meta name="image" property="og:image" content="{{ base_path }}/assets/images/hero-1.jpg">
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="SREday - London, 14-15 Sep 2023"/>
+    <meta property="og:description" content="SREs, assemble for the most awesome SRE conference in the UK!"/>
+
+<!-- Twitter conversion tracking base code -->
+<script>
+	!function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+	},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',
+	a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+	twq('config','ofo1h');
+	</script>
+	<!-- End Twitter conversion tracking base code -->
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ2KV6LK8G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CQ2KV6LK8G');
+</script>
+
+<body>    
+	<header id="header" class="header fixed-top">	    
+		<div class="branding">
+			<div class="container-fluid">
+				<nav class="main-nav navbar navbar-expand-lg">
+					<div class="site-logo"><a class="scrollto" href="#home">
+                        <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
+                    </div>
+					
+					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="{{ tickets_url }}" target="_blank">Tickets</a></div>
+					
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					
+					<div id="navigation" class="navbar-collapse collapse  justify-content-lg-end me-lg-3">
+						<ul class="nav navbar-nav">
+							
+							<li class="nav-item"><a class="nav-link scrollto" href="#home">Home</a></li>                                              
+							<li class="nav-item"><a class="nav-link scrollto" href="#events">Upcoming events</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="#testimonials">Testimonials</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="#past-events">Past events</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="#sponsor">Sponsor</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="#partner">Partner</a></li>
+						</ul><!--//nav-->
+					</div><!--//navabr-collapse-->
+
+				</nav><!--//main-nav-->
+				
+			</div><!--//container-->
+		</div><!--//branding-->
+	</header><!--//header-->
+	
+	<div id="home" class="hero-block">
+		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item-1 carousel-item active">
+				</div>
+				<div class="carousel-item-2 carousel-item">
+				</div>
+				<div class="carousel-item-3 carousel-item">
+				</div>
+			</div>
+		</div>
+		<div class="hero-block-mask"></div>
+		<div class="container">
+			<div class="hero-text-block">
+				<h1 class="hero-heading mb-2">SREday</h1>
+				<div class="hero-intro mb-4">Site Reliability Engineering conferences</div>
+			</div><!--//hero-text-block-->
+		</div><!--//container-->
+
+	</div><!--//hero-block-->
+	
+	<div class="stats-block theme-bg-primary text-white py-4 text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">4</div>
+						<div class="unit">Events</div>
+					</div><!--//item-->
+				</div><!--//col-->
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">100+</div>
+						<div class="unit">Speakers</div>
+					</div><!--//item-->
+				</div><!--//col-->
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">6</div>
+						<div class="unit">Tracks</div>
+					</div><!--//item-->
+				</div><!--//col-->
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">300+</div>
+						<div class="unit">Attendees</div>
+					</div><!--//item-->
+				</div><!--//col-->
+			</div>
+		</div><!--//container-->
+	</div><!--//stats-block-->
+
+
+<!-- CONTENT -->
+{% block content %}{% endblock %}
+
+
+
+<footer class="footer py-5 theme-bg-primary">
+    <div class="container text-center">
+        
+        <ul class="social-list list-inline mb-4"> 
+            <li class="list-inline-item me-3"><a href="{{ mailto }}"><i class="fas fa-envelope"></i></a></li>
+            <li class="list-inline-item me-3"><a href="{{ twitter_url }}"><i class="fab fa-twitter fa-fw"></i></a></li>
+            <li class="list-inline-item me-0"><a href="{{ youtube_url }}"><i class="fab fa-youtube fa-fw"></i></a></li>
+        </ul><!--//social-list-->
+        
+         <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+        <small class="copyright">Designed with <i class="fas fa-heart" style="color: #EC645E;"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+        
+    </div><!--//container-->	    
+</footer>
+
+
+<!-- Javascript -->          
+<script src="assets/plugins/popper.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+<script src="assets/plugins/smoothscroll.min.js"></script>
+<script src="assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+<script src="assets/js/main.js"></script>  
+
+</body>
+</html> 
+
