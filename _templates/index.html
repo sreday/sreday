@@ -3,12 +3,17 @@
 {% block content %}
 
 <section id="about-section" class="about-section section theme-bg-light">
+
   <div class="container">
-    <div class="event-countdown text-center mb-3">		   
+    <div class="event-countdown text-center mb-3">
+    {% if event_active %}
       <h4 class="countdown-intro mb-2 text-center mb-3">Event Starts In:</h4>
       <div id="countdown-box" class="countdown-box"></div>
-    </div><!--//event-countdown-->
     <div class="about-cta text-center mb-5"><a class="btn btn-secondary btn-lg  mb-5" href="{{ tickets_url }}" target="_blank">Get Your Ticket Today</a></div>
+    {% else %}
+      <h4 class="countdown-intro mb-2 text-center mb-3">Event finished</h4>
+    {% endif %}
+    </div><!--//event-countdown-->
   </div><!--//container-->
 
   <div class="media-block theme-bg-primary py-5">
@@ -242,7 +247,7 @@
       {% endfor %}
 
     </div><!--//row-->
-    <div class="speakers-cta text-center py-3"><a class="btn btn-primary btn-lg" href="https://themes.3rdwavemedia.com/bootstrap-templates/startup/devconf-free-bootstrap-4-conference-template-for-tech-conferences-and-events/" target="_blank">Get Tickets</a></div>
+    <div class="speakers-cta text-center py-3"><a class="btn btn-primary btn-lg" href="{{ tickets_url }}" target="_blank">Get Tickets</a></div>
   </div><!--//container-->
 
 </section><!--//speakers-section-->
