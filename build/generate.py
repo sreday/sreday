@@ -21,6 +21,17 @@ def generate_short_url(url):
     url = re.sub('[-]+', '-', url)
     return url[:100]
 
+def generate_talk_url(talk):
+    url = "{name1}{name2}{company}{title}".format(
+        name1=talk.get("name", "").replace(" ", "_"),
+        name2=("_" + talk.get("co-speaker", "").replace(" ", "_")) if talk.get("co-speaker") else "",
+        company=("_" + talk.get("organization", "").replace(" ", "_")) if talk.get("organization") else "",
+        title=("_" + talk.get("title", "").replace(",", "_").replace(" ", "_")) if talk.get("title") else "",
+    )
+    url = ''.join(filter(lambda x: x in string.printable, url))
+    url = re.sub('[\W]+', '', url)
+    return url[:100]
+
 def read_csv(path):
     """ Read the pre-process the CSV """
     items = []
@@ -67,6 +78,8 @@ for i, talk in enumerate(talks_raw):
         talk["photo_url"] = "./assets/images/profiles/" + photo
     else:
         talk["photo_url"] = talk.get("avatar")
+    print(generate_talk_url(talk))
+    talk["short_url"] = generate_talk_url(talk)
 
 # sort into talks and keynotes
 talks = [
@@ -172,6 +185,14 @@ for page in pages:
         f.write(template.render(page=page, **context))
         if page != "index.html":
             SITEMAP_URLS.append((page.replace(".html",""), 0.75))
+
+# template each talk page for the event
+for talk in talks_raw:
+    print("Generating talk subpage %s" % (talk.get("short_url")))
+    with open(BASE_FOLDER + "/" + talk.get("short_url").replace(".html","")  + ".html", "w") as f:
+        template = env.get_template("talk.html")
+        f.write(template.render(talk=talk, **context))
+        SITEMAP_URLS.append((talk.get("short_url").replace(".html",""), 0.75))
 
 # SITEMAP
 print(DIVIDER)
