@@ -1,29 +1,22 @@
-env:
-	python3 -m venv env
+generate: theme
+	python build/generate.py
 
-assets:
-	rm -rf static
-	mkdir static
-
-	cp -r template/assets static/assets
-	cp -r template/favicon.ico static
-
-	cp -r assets/ static/assets/
-
-# source env/bin/activate
 deps:
 	pip install -r build/requirements.txt
 	mkdir -p static
 
-generate: assets
-	python build/generate.py
-
-serve:
-	python build/serve.py
-
+env:
+	python3 -m virtualenv env
 
 clean:
 	rm -rf ./static/*
 
+theme:
+	cp -r template/assets static/assets
+	cp -r template/favicon.ico static
+	cp -r assets static
 
-.PHONY: deps assets generate serve clean
+serve:
+	python build/serve.py
+
+.PHONY: deps generate clean serve theme
