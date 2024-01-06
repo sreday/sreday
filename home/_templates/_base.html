@@ -48,6 +48,12 @@
   gtag('config', 'G-CQ2KV6LK8G');
 </script>
 
+<style>
+	.tinted {
+		box-shadow: 0 3000px rgba(0, 0, 0, 0.7) inset;
+	}
+</style>
+
 <body>    
 	<header id="header" class="header fixed-top">	    
 		<div class="branding">
@@ -82,17 +88,28 @@
 	</header><!--//header-->
 	
 	<div id="home" class="hero-block">
-		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-ride="carousel">
+		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
-				<div class="carousel-item-1 carousel-item active">
-				</div>
-				<div class="carousel-item-2 carousel-item">
-				</div>
-				<div class="carousel-item-3 carousel-item">
-				</div>
+				<div class="carousel-item tinted active" style="background:url('./assets/images/hero-0.jpg') no-repeat center"></div>
+				<div class="carousel-item tinted" style="background:url('./assets/images/hero-1.jpg') no-repeat center"></div>
+				<div class="carousel-item tinted" style="background:url('./assets/images/hero-2.jpg') no-repeat center"></div>
+				<div class="carousel-item tinted" style="background:url('./assets/images/hero-3.jpg') no-repeat center"></div>
+				<div class="carousel-item tinted" style="background:url('./assets/images/hero-4.jpg') no-repeat center"></div>
+				<div class="carousel-item tinted" style="background:url('./assets/images/hero-5.jpg') no-repeat center"></div>
+				<div class="carousel-item tinted" style="background:url('./assets/images/hero-6.jpg') no-repeat center"></div>
+				<div class="carousel-item tinted" style="background:url('./assets/images/hero-7.jpg') no-repeat center"></div>
+				<div class="carousel-item tinted" style="background:url('./assets/images/hero-8.jpg') no-repeat center"></div>
+				<div class="carousel-item tinted" style="background:url('./assets/images/hero-9.jpg') no-repeat center"></div>
 			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			  </button>
+			  <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			  </button>
 		</div>
-		<div class="hero-block-mask"></div>
 		<div class="container">
 			<div class="hero-text-block">
 				<h1 class="hero-heading mb-2">SREday</h1>
@@ -157,7 +174,7 @@
 
 <!-- Javascript -->          
 <script src="assets/plugins/popper.min.js"></script>
-<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+<script src="assets/plugins/bootstrap/js/bootstrap.bundle.js"></script>  
 <script src="assets/plugins/smoothscroll.min.js"></script>
 <script src="assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
 <script src="assets/js/main.js"></script>  
