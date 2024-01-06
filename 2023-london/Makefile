@@ -9,7 +9,7 @@ env:
 	python3 -m venv env
 
 clean:
-	rm -rf ./static
+	rm -rf ./static/*
 
 theme:
 	cp -r template/assets static/assets
