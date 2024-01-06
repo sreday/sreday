@@ -11,20 +11,18 @@
 
       <div class="col-12 col-lg-6 mb-4">
         <div class="card rounded-0">
-          <a href="#">
+          <a href="{{ event.url }}">
             <img src="{{ event.photo_url }}" class="card-img-top rounded-0" alt="">
           </a>
           <div class="card-body">
             <h5 class="card-title mb-2">{{ event.name }}</h5>
             <div class="card-text mb-3">
               <div class="meta">{{ event.date }}</div>
-            </div><!--//card-text-->
+            </div>
             <a href="{{ event.url }}">Read more &rarr;</a>
-          </div><!--//card-->
-          <div class="card-footer text-muted">
           </div>
-        </div><!--//card-->
-      </div><!--//col-->
+        </div>
+      </div>
 
       {% endfor %}
     </div>
@@ -40,20 +38,18 @@
 
       <div class="col-12 col-lg-6 mb-4">
         <div class="card rounded-0">
-          <a href="#">
+          <a href="{{ event.url }}">
             <img src="{{ event.photo_url }}" class="card-img-top rounded-0" alt="">
           </a>
           <div class="card-body">
             <h5 class="card-title mb-2">{{ event.name }}</h5>
             <div class="card-text mb-3">
               <div class="meta">{{ event.date }}</div>
-            </div><!--//card-text-->
+            </div>
             <a href="{{ event.url }}">Read more &rarr;</a>
-          </div><!--//card-->
-          <div class="card-footer text-muted">
           </div>
-        </div><!--//card-->
-      </div><!--//col-->
+        </div>
+      </div>
 
       {% endfor %}
     </div>
