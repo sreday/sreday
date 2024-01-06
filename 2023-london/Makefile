@@ -1,12 +1,8 @@
-generate: theme
+generate: deps theme
 	python _build/generate.py
 
-deps:
-	pip install -r _build/requirements.txt
+deps: static
 	mkdir -p static
-
-env:
-	python3 -m venv env
 
 clean:
 	rm -rf ./static/*
@@ -19,4 +15,7 @@ theme:
 serve:
 	python _build/serve.py
 
-.PHONY: deps generate clean serve theme
+env:
+	python3 -m venv env
+
+.PHONY: generate serve theme clean
