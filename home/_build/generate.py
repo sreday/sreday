@@ -33,7 +33,7 @@ with open('metadata.yml') as f:
     BASE_FOLDER = "./" + context.get("base_folder")
 
 # read the csv
-testimonials = read_csv("./_db/testimonials.csv")
+context["testimonials"] = read_csv("./_db/testimonials.csv")
 
 # MAIN PAGES
 print(DIVIDER)

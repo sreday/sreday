@@ -61,12 +61,40 @@
 </section>
 
 
-<section id="testimonials" class="sponsors-section section theme-bg-light text-white">
-  <div class="container">
-    <div class="row gx-md-5">
-      <div class="col-12 mb-3">
-        <h3 class="section-heading text-center mb-3">Testimonials</h3>
+<section id="testimonials" class="sponsors-section section">
+  <div class="container speakers-section">
+    <h3 class="section-heading text-center mb-3">What others say about SREday</h3>
+    <div class="row">
+
+      {% for testimonial in testimonials %}
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded-0">
+          <img src="{{ testimonial.Headshot }}" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">{{ testimonial.Name }}</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">{{ testimonial.Job }}</div>
+              {% if testimonial.Company %}
+              <div class="meta">{{ testimonial.Company }}</div>
+              {% endif %}
+            </div>
+            <div class="card-text mb-3">
+              {{ testimonial.Testimonial }}
+            </div>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              {% if testimonial.Twitter %}<li class="list-inline-item"><a target="_blank" href="https://twitter.com/{{ testimonial.Twitter }}"><i class="fab fa-twitter fa-fw"></i></a></li>{% endif %}
+              {% if testimonial.Linkedin %}<li class="list-inline-item"><a target="_blank" href="{{ testimonial.Linkedin }}"><i class="fab fa-linkedin-in fa-fw"></i></a></li>{% endif %}
+              {% if testimonial.Twitter2 %}<li class="list-inline-item"><a target="_blank" href="https://twitter.com/{{ testimonial.Twitter2 }}"><i class="fab fa-twitter fa-fw"></i></a></li>{% endif %}
+              {% if testimonial.Linkedin2 %}<li class="list-inline-item"><a target="_blank" href="{{ testimonial.Linkedin2 }}"><i class="fab fa-linkedin-in fa-fw"></i></a></li>{% endif %}
+            </ul>
+          </div>
+        </div>
       </div>
+
+      {% endfor %}
     </div>
   </div>
 </section>
