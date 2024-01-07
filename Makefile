@@ -16,7 +16,7 @@ landing:
 	cd home && \
 		make clean && \
 		make generate && \
-		cp -vr static/ ../static
+		cp -vr static/* ../static
 
 env:
 	python3 -m venv env
