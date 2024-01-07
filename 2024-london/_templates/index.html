@@ -2,55 +2,93 @@
 
 {% block content %}
 
-<section id="about" class="about-section section theme-bg-light">
+<section id="about" class="about-section section">
 
   <div class="container">
     <div class="event-countdown text-center mb-3">
-    {% if event_active %}
+    {% if event_state == 'before' %}
       <h4 class="countdown-intro mb-2 text-center mb-3">Event Starts In:</h4>
       <div id="countdown-box" class="countdown-box"></div>
-    <div class="about-cta text-center mb-5"><a class="btn btn-secondary btn-lg  mb-5" href="#tickets">Get Your Ticket Today</a></div>
     {% else %}
       <h4 class="countdown-intro mb-2 text-center mb-3">Event finished</h4>
     {% endif %}
-    </div><!--//event-countdown-->
-  </div><!--//container-->
+    </div>
+  </div>
+  <script>
+    /* ======= Countdown ========= */
+    // set the date we're counting down to
+    var target_date = new Date("{{ start_date }}").getTime();
+     
+    // variables for time units
+    var days, hours, minutes, seconds;
+     
+    // get tag element
+    var countdown =  document.getElementById("countdown-box");
+    var days_span = document.createElement("SPAN");
+    days_span.className = 'days';
+    countdown.appendChild(days_span);
+    var hours_span = document.createElement("SPAN");
+    hours_span.className = 'hours';
+    countdown.appendChild(hours_span);
+    var minutes_span = document.createElement("SPAN");
+    minutes_span.className = 'minutes';
+    countdown.appendChild(minutes_span);
+    var secs_span = document.createElement("SPAN");
+    secs_span.className = 'secs';
+    countdown.appendChild(secs_span);
+     
+    // update the tag with id "countdown" every 1 second
+    setInterval(function () {
+     
+        // find the amount of "seconds" between now and target
+        var current_date = new Date().getTime();
+        var seconds_left = (target_date - current_date) / 1000;
+     
+        // do some time calculations
+        days = parseInt(seconds_left / 86400);
+        seconds_left = seconds_left % 86400;
+         
+        hours = parseInt(seconds_left / 3600);
+        seconds_left = seconds_left % 3600;
+         
+        minutes = parseInt(seconds_left / 60);
+        seconds = parseInt(seconds_left % 60);
+         
+        // format countdown string + set tag value.
+        days_span.innerHTML = '<span class="number">' + days + '</span>' + '<span class="unit">Days</span>';
+        hours_span.innerHTML = '<span class="number">' + hours + '</span>' + '<span class="unit">Hrs</span>';
+        minutes_span.innerHTML = '<span class="number">' + minutes + '</span>' + '<span class="unit">Mins</span>';
+        secs_span.innerHTML = '<span class="number">' + seconds + '</span>' + '<span class="unit">Secs</span>'; 
+     
+    }, 1000);
+    </script>
+</section>
 
-  <div class="media-block theme-bg-primary py-5">
-    <div class="container">
-      <h4 class="text-white text-center mb-3">2022 throwback</h4>
-      <div class="section-intro text-center single-col-max mx-auto text-white mb-5"></div>
-      <div class="row gx-md-5">
-        <div class="col-12 col-md-6 mb-3">
-          <div class="ratio ratio-16x9">
-            
-            <iframe src="https://www.youtube.com/embed/RabwW3zUFds" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div><!--//embed-responsive -->
-        </div><!--//col-->
-        <div class="col-12 col-md-6 mb-md-5">
-          <div class="ratio ratio-16x9">
-            <iframe src="https://www.youtube.com/embed/9oqkBVxYPZc" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div><!--//embed-responsive -->
-        </div><!--//col-->
+<section id="tickets" class="tickets-section section">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Tickets</h3>
 
-        <div class="about-cta text-center mb-5">
-          <a class="btn btn-primary btn-lg" href="{{ playlist_2022_url }}" target="_blank">2022 talks</a>
-          <a class="btn btn-primary btn-lg" href="{{ photobook_2022_url }}" target="_blank">2022 photobook</a>
-        </div>
-      </div><!--//row-->
-    </div><!--//container-->
-  </div><!--//media-block-->
-</section><!--//about-section-->
+    <div class="row pricing mb-5">
+      <div class="col-12">
+        <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+        <stripe-pricing-table pricing-table-id="prctbl_1OVy6nJtBTQTETX6hlbQxJo7"
+        publishable-key="pk_live_51O6dr8JtBTQTETX6CFtamSDbTOOYiRaScJ7OAyrplt8Ii75MjRWN8MqJsQjNBwS9ogbKXMmh4BDbPqhRqeiTpUsf00Oi0jL56F">
+        </stripe-pricing-table>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 {% if event_state == 'before' %}
-<section id="schedule" class="schedule-section section">
+<section id="schedule" class="schedule-section section theme-bg-light">
   <div class="container">
     <h2 class="section-heading text-center mb-5">Schedule</h2>
     <h4 class="section-heading text-center mb-5">Coming soon</h4>
   </div>
 </section>
 {% else %}
-<section id="schedule" class="schedule-section section">
+<section id="schedule" class="schedule-section section theme-bg-light">
   <div class="container">
     <h2 class="section-heading text-center mb-5">Schedule</h2>
 
@@ -158,22 +196,6 @@
 </section>
 {% endif %}
 
-<section id="tickets" class="tickets-section section theme-bg-light">
-  <div class="container">
-    <h3 class="section-heading text-center mb-3">Tickets</h3>
-
-    <div class="row pricing mb-5">
-      <div class="col-12">
-        <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
-        <stripe-pricing-table pricing-table-id="prctbl_1OVy6nJtBTQTETX6hlbQxJo7"
-        publishable-key="pk_live_51O6dr8JtBTQTETX6CFtamSDbTOOYiRaScJ7OAyrplt8Ii75MjRWN8MqJsQjNBwS9ogbKXMmh4BDbPqhRqeiTpUsf00Oi0jL56F">
-        </stripe-pricing-table>
-      </div>
-    </div>
-
-  </div>
-</section>
-
 
 <section id="speakers" class="speakers-section section">
   <div class="container">
@@ -181,7 +203,6 @@
     <div class="row">
 
       {% for talk in (talks + keynotes)|sort(attribute='name') %}
-      <!-- Modal Speaker {{ talk.id }} -->
 
       <div class="col-6 col-lg-3 mb-4">
         <div class="card rounded-0">
