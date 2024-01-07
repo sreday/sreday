@@ -42,11 +42,19 @@
   </div><!--//media-block-->
 </section><!--//about-section-->
 
+{% if event_state == 'before' %}
+<section id="schedule" class="schedule-section section">
+  <div class="container">
+    <h2 class="section-heading text-center mb-5">Schedule</h2>
+    <h4 class="section-heading text-center mb-5">Coming soon</h4>
+  </div>
+</section>
+{% else %}
 <section id="schedule" class="schedule-section section">
   <div class="container">
     <h2 class="section-heading text-center mb-5">Schedule</h2>
 
-    <h4 class="section-heading text-center mb-5">Day 1 - Sep 14</h4>
+    <h4 class="section-heading text-center mb-5">Day 1</h4>
 
     
     <!-- Nav tabs -->
@@ -95,7 +103,7 @@
     </div><!--//schedule-tab-content-->
 
 
-    <h4 class="section-heading text-center mb-5">Day 2 - Sep 15</h4>
+    <h4 class="section-heading text-center mb-5">Day 2</h4>
 
 
     <!-- Nav tabs -->
@@ -146,9 +154,9 @@
 
 
     <div class="schedule-cta text-center mx-auto"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
-  </div><!--//container-->
-</section><!--//schedule-section-->
-
+  </div>
+</section>
+{% endif %}
 
 <section id="tickets" class="tickets-section section theme-bg-light">
   <div class="container">
