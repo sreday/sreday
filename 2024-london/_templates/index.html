@@ -9,7 +9,7 @@
     {% if event_active %}
       <h4 class="countdown-intro mb-2 text-center mb-3">Event Starts In:</h4>
       <div id="countdown-box" class="countdown-box"></div>
-    <div class="about-cta text-center mb-5"><a class="btn btn-secondary btn-lg  mb-5" href="{{ tickets_url }}" target="_blank">Get Your Ticket Today</a></div>
+    <div class="about-cta text-center mb-5"><a class="btn btn-secondary btn-lg  mb-5" href="#tickets">Get Your Ticket Today</a></div>
     {% else %}
       <h4 class="countdown-intro mb-2 text-center mb-3">Event finished</h4>
     {% endif %}
@@ -145,7 +145,7 @@
 
 
 
-    <div class="schedule-cta text-center mx-auto"><a href="{{ tickets_url }}" class="btn btn-secondary btn-lg d-block d-md-inline-block" target="_blank">Buy Tickets</a></div>
+    <div class="schedule-cta text-center mx-auto"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
   </div><!--//container-->
 </section><!--//schedule-section-->
 
@@ -155,64 +155,16 @@
     <h3 class="section-heading text-center mb-3">Tickets</h3>
 
     <div class="row pricing mb-5">
-      <div class="col-12 col-md-4 p-2 p-lg-4">
-        <div class="card rounded-0 border-0">
-          <div class="card-body p-0">
-            <div class="heading  text-center p-3">
-              <h4 class="text-white mb-0">General Admission</h4>
-            </div>
-            <div class="info p-3">
-              <div class="price-figure text-center mb-3"><span class="currency">£</span><span class="number">799</span></div>
-              <div class="desc px-3">
-                If your company is paying for you to attend, please pick this option!
-              </div>
-            </div><!--//info-->
-          </div><!--//card-body-->
-          <div class="card-footer text-center">
-            <a href="{{ tickets_url }}" class="btn btn-primary">Buy Now</a>
-          </div>
-        </div><!--//card-->
-      </div><!--//col-->
-      <div class="col-12 col-md-4 p-2 p-lg-4">
-        <div class="card card-special rounded-0 border-0">
-          <div class="card-body p-0">
-            <div class="heading  text-center p-3">
-              <h4 class="text-white mb-0">Self-Funding</h4>
-            </div>
-            <div class="info p-3">
-              <div class="price-figure text-center"><span class="currency">£</span><span class="number">149</span></div>
-              <div class="desc px-3">
-                If you're paying from your own pocket to gain new skills for a better job, pick this!
-              </div>
-            </div><!--//info-->
-          </div><!--//card-body-->
-          <div class="card-footer text-center">
-            <a href="{{ tickets_url }}" class="btn btn-primary">Buy Now</a>
-          </div>
-        </div><!--//card-->
-      </div><!--//col-->
-      <div class="col-12 col-md-4 p-2 p-lg-4">
-        <div class="card rounded-0 border-0">
-          <div class="card-body p-0">
-            <div class="heading  text-center p-3">
-              <h4 class="text-white mb-0">Student</h4>
-            </div>
-            <div class="info p-3">
-              <div class="price-figure text-center mb-3"><span class="currency">£</span><span class="number">49</span></div>
-              <div class="desc px-3">
-                All students are welcome!
-              </div>
-            </div><!--//info-->
-          </div><!--//card-body-->
-          <div class="card-footer text-center">
-            <a href="{{ tickets_url }}" class="btn btn-primary">Buy Now</a>
-          </div>
-        </div><!--//card-->
-      </div><!--//col-->
-    </div><!--//pricing-->
+      <div class="col-12">
+        <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+        <stripe-pricing-table pricing-table-id="prctbl_1OVy6nJtBTQTETX6hlbQxJo7"
+        publishable-key="pk_live_51O6dr8JtBTQTETX6CFtamSDbTOOYiRaScJ7OAyrplt8Ii75MjRWN8MqJsQjNBwS9ogbKXMmh4BDbPqhRqeiTpUsf00Oi0jL56F">
+        </stripe-pricing-table>
+      </div>
+    </div>
 
-  </div><!--//container-->
-</section><!--//tickets-section-->
+  </div>
+</section>
 
 
 <section id="speakers" class="speakers-section section">
@@ -247,7 +199,7 @@
       {% endfor %}
 
     </div><!--//row-->
-    <div class="speakers-cta text-center py-3"><a class="btn btn-primary btn-lg" href="{{ tickets_url }}" target="_blank">Get Tickets</a></div>
+    <div class="speakers-cta text-center py-3"><a class="btn btn-primary btn-lg" href="#tickets">Get Tickets</a></div>
   </div><!--//container-->
 
 </section><!--//speakers-section-->
