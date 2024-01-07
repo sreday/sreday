@@ -10,7 +10,7 @@ home:
 	cd home && \
 		make clean && \
 		make generate && \
-		cp -r static ../static
+		cp -r static/ ../static
 
 env:
 	python3 -m venv env
@@ -25,4 +25,4 @@ clean:
 serve:
 	python _build/serve.py
 
-.PHONY: generate 2023 env deps clean serve
+.PHONY: generate 2023 home env deps clean serve
