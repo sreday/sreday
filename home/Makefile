@@ -1,7 +1,7 @@
 generate: deps theme
 	python _build/generate.py
 
-deps: static
+deps:
 	mkdir -p static
 
 clean:

@@ -1,10 +1,16 @@
-generate: 2023 home
+generate: 2023 2024 home
 
 2023:
 	cd 2023-london && \
 		make clean && \
 		make generate && \
-		cp -r static ../static/2023-london
+		cp -r static/ ../static/2023-london
+
+2024:
+	cd 2024-london && \
+		make clean && \
+		make generate && \
+		cp -r static/ ../static/2024-london
 
 home:
 	cd home && \
@@ -25,4 +31,4 @@ clean:
 serve:
 	python _build/serve.py
 
-.PHONY: generate 2023 home env deps clean serve
+.PHONY: generate 2023 2024 home env deps clean serve

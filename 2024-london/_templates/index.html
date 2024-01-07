@@ -1,0 +1,346 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<section id="about" class="about-section section theme-bg-light">
+
+  <div class="container">
+    <div class="event-countdown text-center mb-3">
+    {% if event_active %}
+      <h4 class="countdown-intro mb-2 text-center mb-3">Event Starts In:</h4>
+      <div id="countdown-box" class="countdown-box"></div>
+    <div class="about-cta text-center mb-5"><a class="btn btn-secondary btn-lg  mb-5" href="{{ tickets_url }}" target="_blank">Get Your Ticket Today</a></div>
+    {% else %}
+      <h4 class="countdown-intro mb-2 text-center mb-3">Event finished</h4>
+    {% endif %}
+    </div><!--//event-countdown-->
+  </div><!--//container-->
+
+  <div class="media-block theme-bg-primary py-5">
+    <div class="container">
+      <h4 class="text-white text-center mb-3">2022 throwback</h4>
+      <div class="section-intro text-center single-col-max mx-auto text-white mb-5"></div>
+      <div class="row gx-md-5">
+        <div class="col-12 col-md-6 mb-3">
+          <div class="ratio ratio-16x9">
+            
+            <iframe src="https://www.youtube.com/embed/RabwW3zUFds" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div><!--//embed-responsive -->
+        </div><!--//col-->
+        <div class="col-12 col-md-6 mb-md-5">
+          <div class="ratio ratio-16x9">
+            <iframe src="https://www.youtube.com/embed/9oqkBVxYPZc" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div><!--//embed-responsive -->
+        </div><!--//col-->
+
+        <div class="about-cta text-center mb-5">
+          <a class="btn btn-primary btn-lg" href="{{ playlist_2022_url }}" target="_blank">2022 talks</a>
+          <a class="btn btn-primary btn-lg" href="{{ photobook_2022_url }}" target="_blank">2022 photobook</a>
+        </div>
+      </div><!--//row-->
+    </div><!--//container-->
+  </div><!--//media-block-->
+</section><!--//about-section-->
+
+<section id="schedule" class="schedule-section section">
+  <div class="container">
+    <h2 class="section-heading text-center mb-5">Schedule</h2>
+
+    <h4 class="section-heading text-center mb-5">Day 1 - Sep 14</h4>
+
+    
+    <!-- Nav tabs -->
+    <ul class="schedule-nav nav nav-pills nav-fill" id="myTab" role="tablist">
+{% for track in tracks[:3] %}
+      <li class="nav-item me-2">
+        <a class="nav-link {% if loop.index==1 %}active{% endif %}" id="tab-{{ loop.index }}" data-bs-toggle="tab" href="#tab-{{ loop.index }}-content" role="tab" aria-controls="tab-{{ loop.index }}-content"
+          aria-selected={% if loop.index==1 %}"true"{% else %}"false"{% endif %}
+        >
+          <span class="heading">Screen {{ loop.index }}</span>
+          <span class="meta">{{ track }}</span>
+        </a>
+      </li>
+{% endfor %}
+    </ul>
+    
+    <!-- Tab panes -->
+    <div class="schedule-tab-content tab-content">
+
+{% for track in tracks[:3] %}
+      <div class="tab-pane {% if loop.index==1 %}active{% endif %}" id="tab-{{ loop.index }}-content" role="tabpanel" aria-labelledby="tab-{{ loop.index }}">
+
+{% for talk in talks_by_tracks[track] %}
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">{{ talk.start_time.strftime('%H:%M') }}</h4>
+            <div class="profile">
+              <a href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}"><img class="profile-image rounded-circle  mb-2" src="{{ talk.photo_url }}" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}">{{ talk.name }}</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}">{{ talk.title }}</a>
+            </h3>
+            <div class="location mb-3"></i>{{ talk.comment }}{{ talk.organization }}</div>
+            <div class="desc">{{ talk.abstract_s }}<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+{% endfor %}
+
+      </div><!--//tab-{{ loop.index }}-content-->
+
+{% endfor %}
+    </div><!--//schedule-tab-content-->
+
+
+    <h4 class="section-heading text-center mb-5">Day 2 - Sep 15</h4>
+
+
+    <!-- Nav tabs -->
+    <ul class="schedule-nav nav nav-pills nav-fill" id="myTab" role="tablist">
+{% for track in tracks[3:] %}
+      <li class="nav-item me-2">
+        <a class="nav-link {% if loop.index==1 %}active{% endif %}" id="tab-{{ loop.index + 3 }}" data-bs-toggle="tab" href="#tab-{{ loop.index + 3 }}-content" role="tab" aria-controls="tab-{{ loop.index + 3 }}-content"
+          aria-selected={% if loop.index==1 %}"true"{% else %}"false"{% endif %}
+        >
+          <span class="heading">Screen {{ loop.index }}</span>
+          <span class="meta">{{ track }}</span>
+        </a>
+      </li>
+{% endfor %}
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="schedule-tab-content tab-content">
+
+{% for track in tracks[3:] %}
+      <div class="tab-pane {% if loop.index==1 %}active{% endif %}" id="tab-{{ loop.index + 3 }}-content" role="tabpanel" aria-labelledby="tab-{{ loop.index + 3 }}">
+
+{% for talk in talks_by_tracks[track] %}
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">{{ talk.start_time.strftime('%H:%M') }}</h4>
+            <div class="profile">
+              <a href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}"><img class="profile-image rounded-circle  mb-2" src="{{ talk.photo_url }}" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}">{{ talk.name }}</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}">{{ talk.title }}</a>
+            </h3>
+            <div class="location mb-3"></i>{{ talk.comment }}{{ talk.organization }}</div>
+            <div class="desc">{{ talk.abstract_s }}<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+{% endfor %}
+
+      </div><!--//tab-{{ loop.index + 3 }}-content-->
+
+{% endfor %}
+    </div><!--//schedule-tab-content-->
+
+
+
+    <div class="schedule-cta text-center mx-auto"><a href="{{ tickets_url }}" class="btn btn-secondary btn-lg d-block d-md-inline-block" target="_blank">Buy Tickets</a></div>
+  </div><!--//container-->
+</section><!--//schedule-section-->
+
+
+<section id="tickets" class="tickets-section section theme-bg-light">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Tickets</h3>
+
+    <div class="row pricing mb-5">
+      <div class="col-12 col-md-4 p-2 p-lg-4">
+        <div class="card rounded-0 border-0">
+          <div class="card-body p-0">
+            <div class="heading  text-center p-3">
+              <h4 class="text-white mb-0">General Admission</h4>
+            </div>
+            <div class="info p-3">
+              <div class="price-figure text-center mb-3"><span class="currency">£</span><span class="number">799</span></div>
+              <div class="desc px-3">
+                If your company is paying for you to attend, please pick this option!
+              </div>
+            </div><!--//info-->
+          </div><!--//card-body-->
+          <div class="card-footer text-center">
+            <a href="{{ tickets_url }}" class="btn btn-primary">Buy Now</a>
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+      <div class="col-12 col-md-4 p-2 p-lg-4">
+        <div class="card card-special rounded-0 border-0">
+          <div class="card-body p-0">
+            <div class="heading  text-center p-3">
+              <h4 class="text-white mb-0">Self-Funding</h4>
+            </div>
+            <div class="info p-3">
+              <div class="price-figure text-center"><span class="currency">£</span><span class="number">149</span></div>
+              <div class="desc px-3">
+                If you're paying from your own pocket to gain new skills for a better job, pick this!
+              </div>
+            </div><!--//info-->
+          </div><!--//card-body-->
+          <div class="card-footer text-center">
+            <a href="{{ tickets_url }}" class="btn btn-primary">Buy Now</a>
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+      <div class="col-12 col-md-4 p-2 p-lg-4">
+        <div class="card rounded-0 border-0">
+          <div class="card-body p-0">
+            <div class="heading  text-center p-3">
+              <h4 class="text-white mb-0">Student</h4>
+            </div>
+            <div class="info p-3">
+              <div class="price-figure text-center mb-3"><span class="currency">£</span><span class="number">49</span></div>
+              <div class="desc px-3">
+                All students are welcome!
+              </div>
+            </div><!--//info-->
+          </div><!--//card-body-->
+          <div class="card-footer text-center">
+            <a href="{{ tickets_url }}" class="btn btn-primary">Buy Now</a>
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+    </div><!--//pricing-->
+
+  </div><!--//container-->
+</section><!--//tickets-section-->
+
+
+<section id="speakers" class="speakers-section section">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Speakers</h3>
+    <div class="row">
+
+      {% for talk in (talks + keynotes)|sort(attribute='name') %}
+      <!-- Modal Speaker {{ talk.id }} -->
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded-0">
+          <a href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}"><img src="{{ talk.photo_url }}" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">{{ talk.name }}</h5>
+            <div class="card-text mb-3">
+              <div class="meta">{{ talk.organization }}</div>
+            </div><!--//card-text-->
+            <a href="./{{ talk.short_url }}">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              {% if talk.twitter %}<li class="list-inline-item"><a  href="https://twitter.com/{{ talk.twitter }}"><i class="fab fa-twitter fa-fw"></i></a></li>{% endif %}
+              {% if talk.linkedin %}<li class="list-inline-item"><a  href="{{ talk.linkedin }}"><i class="fab fa-linkedin-in fa-fw"></i></a></li>{% endif %}
+              {% if talk.twitter2 %}<li class="list-inline-item"><a  href="https://twitter.com/{{ talk.twitter2 }}"><i class="fab fa-twitter fa-fw"></i></a></li>{% endif %}
+              {% if talk.linkedin2 %}<li class="list-inline-item"><a  href="{{ talk.linkedin2 }}"><i class="fab fa-linkedin-in fa-fw"></i></a></li>{% endif %}
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      {% endfor %}
+
+    </div><!--//row-->
+    <div class="speakers-cta text-center py-3"><a class="btn btn-primary btn-lg" href="{{ tickets_url }}" target="_blank">Get Tickets</a></div>
+  </div><!--//container-->
+
+</section><!--//speakers-section-->
+
+<section id="venue" class="venue-section section  theme-bg-primary text-white">
+  <div class="container">
+    <h3 class="section-heading text-center mb-5 text-white">Venue</h3>
+    <div class="row gx-5 py-lg-5">
+      <div class="col-12 col-lg-7 h-100">
+        <div class="desc">
+          <h4 class="text-white mb-3">Everyman Canary Wharf</h4>
+          <p>
+            Crossrail Place,<br />
+            Canary Wharf,<br />
+            E14 5AR, London, UK<br />
+            Level -2<br />
+             <br />
+            Tube access<br />
+            Jubilee, Elizabeth and DLR lines: Canary Wharf station<br />
+          </p>
+
+          <div class="row pt-3">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.3841988883164!2d-0.020629122093954937!3d51.50616707181291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487602b73a00cddb%3A0x8a0668cd288be896!2sEveryman%20Canary%20Wharf!5e0!3m2!1sen!2suk!4v1689427207813!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div><!--//row-->
+        </div><!--//desc-->
+      </div><!--//col-->
+      <div class="col-12 col-xl-3 col-lg-4 offset-lg-1 position-relative h-100 mt-5 mt-lg-0">
+        <div class="figures-holder">
+          <div class="figure figure-1"><img class="shadow" src="assets/images/venue/venue-1.jpg" alt=""></div>
+          <div class="figure figure-2"><img class="shadow" src="assets/images/venue/venue-2.jpg" alt=""></div>
+          <div class="figure figure-3"><img class="shadow" src="assets/images/venue/venue-3.jpg" alt=""></div>
+        </div><!--//figures-holder-->
+      </div><!--//col-->
+    </div><!--//row-->
+  </div><!--//container-->
+</section><!--//venue-section-->
+
+<section id="sponsors" class="sponsors-section section">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Sponsors &amp; Partners</h3>
+    <div class="section-intro text-center single-col-max mx-auto mb-5">Want to become a sponsor? Get in touch!</div>
+    <div class="row logos justify-content-center">
+      {% for sponsor in sponsors %}
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="{{sponsor.url}}" target="_blank"><img src="./assets/images/sponsors/{{ sponsor.logo }}" alt=""></a></div>
+      {% endfor %}
+    </div><!--//row-->
+    <div class="sponsors-cta text-center pt-5"><a class="btn-primary btn btn-lg" href="mailto:mark@sreday.com">Become A Sponsor</a></div>
+  </div><!--//container-->
+</section><!--//sponsors-section-->
+
+
+{% for talk in talks + keynotes %}
+<!-- Modal Speaker {{ talk.id }} -->
+<div class="modal modal-speaker modal-speaker-{{ talk.id }}" id="modal-speaker-{{ talk.id }}" tabindex="-1" role="dialog" aria-labelledby="speaker-{{ talk.id }}-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-{{ talk.id }}-ModalLabel" class="modal-title sr-only"
+>{{ talk.name }}</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="{{ talk.photo_url }}" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">{{ talk.name }}</h2>
+                          <div class="meta mb-2">{{ talk.organization }}</div>
+                          <ul class="social-list list-inline mb-0">
+                            {% if talk.twitter %}<li class="list-inline-item"><a  href="https://twitter.com/{{ talk.twitter }}"><i class="fab fa-twitter fa-fw"></i></a></li>{% endif %}
+                            {% if talk.linkedin %}<li class="list-inline-item"><a  href="{{ talk.linkedin }}"><i class="fab fa-linkedin-in fa-fw"></i></a></li>{% endif %}
+                            {% if talk.twitter2 %}<li class="list-inline-item"><a  href="https://twitter.com/{{ talk.twitter2 }}"><i class="fab fa-twitter fa-fw"></i></a></li>{% endif %}
+                            {% if talk.linkedin2 %}<li class="list-inline-item"><a  href="{{ talk.linkedin2 }}"><i class="fab fa-linkedin-in fa-fw"></i></a></li>{% endif %}
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p>{{ talk.abstract | markdown }}</p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p>{{ talk.description | markdown }}</p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p>{{ talk.bio | markdown }}</p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+{% endfor %}
+
+{% endblock %}
