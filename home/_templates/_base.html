@@ -76,7 +76,7 @@
 					<div class="site-logo"><a class="scrollto" href="#home">
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
-					
+
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
@@ -102,25 +102,16 @@
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
-				<div class="carousel-item tinted active" style="background:url('./assets/images/hero-0.jpg') no-repeat center"></div>
-				<div class="carousel-item tinted" style="background:url('./assets/images/hero-1.jpg') no-repeat center"></div>
-				<div class="carousel-item tinted" style="background:url('./assets/images/hero-2.jpg') no-repeat center"></div>
-				<div class="carousel-item tinted" style="background:url('./assets/images/hero-3.jpg') no-repeat center"></div>
-				<div class="carousel-item tinted" style="background:url('./assets/images/hero-4.jpg') no-repeat center"></div>
-				<div class="carousel-item tinted" style="background:url('./assets/images/hero-5.jpg') no-repeat center"></div>
-				<div class="carousel-item tinted" style="background:url('./assets/images/hero-6.jpg') no-repeat center"></div>
-				<div class="carousel-item tinted" style="background:url('./assets/images/hero-7.jpg') no-repeat center"></div>
-				<div class="carousel-item tinted" style="background:url('./assets/images/hero-8.jpg') no-repeat center"></div>
-				<div class="carousel-item tinted" style="background:url('./assets/images/hero-9.jpg') no-repeat center"></div>
+				{% for pic in hero_pictures %}
+				<div class="carousel-item tinted {{ 'active' if loop.index == 1 else ''}}" style="background:url('{{ pic }}') no-repeat center"></div>
+				{% endfor %}
 			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			  </button>
-			  <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			  </button>
+
+			<div class="carousel-indicators">
+				{% for pic in hero_pictures %}
+				<button type="button" data-bs-target="#hero-carousel" class="{{ 'active' if loop.index == 1 else ''}}" data-bs-slide-to="{{loop.index0}}"></button>
+				{% endfor %}
+			</div>
 		</div>
 		<div class="container">
 			<div class="hero-text-block text-center" style="max-width: 100%;">
