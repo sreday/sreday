@@ -19,7 +19,11 @@
             <div class="card-text mb-3">
               <div class="meta">{{ event.date }}</div>
             </div>
+            {% if event.url %}
             <a href="{{ event.url }}">Read more &rarr;</a>
+            {% else %}
+            Details coming soon...
+            {% endif %}
           </div>
         </div>
       </div>
@@ -46,7 +50,11 @@
             <div class="card-text mb-3">
               <div class="meta">{{ event.date }}</div>
             </div>
+            {% if event.url %}
             <a href="{{ event.url }}">Read more &rarr;</a>
+            {% else %}
+            Details coming soon...
+            {% endif %}
           </div>
         </div>
       </div>
