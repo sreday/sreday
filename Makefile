@@ -4,19 +4,19 @@ generate: 2023 2024 landing
 	cd 2023-london && \
 		make clean && \
 		make generate && \
-		cp -r static/ ../static/2023-london
+		cp -vr static/ ../static/2023-london
 
 2024:
 	cd 2024-london && \
 		make clean && \
 		make generate && \
-		cp -r static/ ../static/2024-london
+		cp -vr static/ ../static/2024-london
 
 landing:
 	cd home && \
 		make clean && \
 		make generate && \
-		cp -r static/ ../static
+		cp -vr static/ ../static
 
 env:
 	python3 -m venv env
