@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-	<title>SREday 2024 - London, 19-20 Sep</title>
+	<title>SREday - {{ location_string }}, {{ date_string }}</title>
 	
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -25,8 +25,8 @@
 
     <meta name="image" property="og:image" content="{{ base_path }}/assets/images/hero-1.jpg">
     <meta property="og:type" content="article"/>
-    <meta property="og:title" content="SREday - London, 19-20 Sep 2023"/>
-    <meta property="og:description" content="SREs, assemble for the most awesome SRE conference in the UK!"/>
+    <meta property="og:title" content="SREday - {{ location_string }}, {{ date_string }}"/>
+    <meta property="og:description" content="SREs, assemble for the most awesome SRE conference!"/>
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -122,7 +122,7 @@
 			<div class="hero-text-block text-center" style="max-width: 100%;">
 				<h1 class="logo retro">SREDAY</h1>
 				<h2 class="text-white">Site Reliability, DevOps and Cloud</h2>
-				<h3 class="text-white"><i class="far fa-calendar-alt me-2"></i>14 - 15 Sep <i class="fas fa-map-marker-alt mx-2"></i>London, UK</h3>
+				<h3 class="text-white"><i class="far fa-calendar-alt me-2"></i>{{ date_string }} <i class="fas fa-map-marker-alt mx-2"></i>{{ location_string }}</h3>
 				<div class="hero-cta mt-5"><a class="btn btn-primary btn-lg" href="#tickets">Get Tickets</a></div>
 			</div><!--//hero-text-block-->
 		</div><!--//container-->
