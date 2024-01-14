@@ -124,7 +124,9 @@
 				<h2 class="text-white">Site Reliability, DevOps and Cloud</h2>
 				<h3 class="text-white"><i class="far fa-calendar-alt me-2"></i>{{ date_string }} <i class="fas fa-map-marker-alt mx-2"></i>{{ location_string }}</h3>
 				<div class="hero-cta mt-5"><a class="btn btn-secondary btn-lg" href="#tickets">Get Tickets</a></div>
+				{% if event_state == 'before' %}
 				<div class="hero-cta mt-2"><a class="btn btn-primary btn-lg" href="https://www.papercall.io/sreday-2024-london" target="_blank">CFP</a></div>
+				{% endif %}
 			</div><!--//hero-text-block-->
 		</div><!--//container-->
 
