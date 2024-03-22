@@ -66,7 +66,7 @@ with open('metadata.yml') as f:
 
 try:
     # read the csv
-    talks_raw = read_csv("./_db/talks_2023.csv")
+    talks_raw = read_csv("./_db/talks.csv")
 except Exception as e:
     print("Couldn't read talks", e)
 
