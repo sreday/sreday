@@ -17,6 +17,10 @@ generate: 2022 2023 2024 landing
 		make clean && \
 		make generate && \
 		cp -vr static/ ../static/2024-london
+	cd 2024-amsterdam && \
+		make clean && \
+		make generate && \
+		cp -vr static/ ../static/2024-amsterdam
 
 landing:
 	cd home && \
@@ -35,6 +39,6 @@ clean:
 	rm -rf ./static/*
 
 serve:
-	python _build/serve.py
+	python3 _build/serve.py
 
 .PHONY: generate 2022 2023 2024 landing env deps clean serve
