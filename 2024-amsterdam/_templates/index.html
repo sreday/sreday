@@ -70,6 +70,27 @@
 
     <div class="row pricing mb-5">
       <div class="col-12 text-center">
+        
+        <div id="eventbrite-widget-container-815159422777"></div>
+
+        <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
+
+        <script type="text/javascript">
+            var exampleCallback = function() {
+                console.log('Order complete!');
+            };
+
+            window.EBWidgets.createWidget({
+                // Required
+                widgetType: 'checkout',
+                eventId: '815159422777',
+                iframeContainerId: 'eventbrite-widget-container-815159422777',
+
+                // Optional
+                iframeContainerHeight: 425,  // Widget height in pixels. Defaults to a minimum of 425px if not provided
+                onOrderComplete: exampleCallback  // Method called when an order has successfully completed
+            });
+        </script>
 
 				<a class="btn btn-secondary btn-lg" href="{{ tickets_url }}" target="_blank">Get Tickets on Eventbrite</a>
 
