@@ -110,7 +110,7 @@
 {% else %}
 <section id="schedule" class="schedule-section section theme-bg-light">
   <div class="container">
-    <h2 class="section-heading text-center mb-5">Schedule</h2>
+    <h2 class="section-heading text-center mb-5">Schedule (WIP)</h2>
 
 {% for day in days %}
     <h4 class="section-heading text-center mb-5">Day {{ day }}</h4>
@@ -173,7 +173,36 @@
 
 <section id="speakers" class="speakers-section section">
   <div class="container">
-    <h3 class="section-heading text-center mb-3">People alphabetically</h3>
+    <h3 class="section-heading text-center mb-3">MCs</h3>
+    <div class="row">
+
+      {% for talk in (mcs)|sort(attribute='name') %}
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}"><img src="{{ talk.photo_url }}" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">{{ talk.name }}</h5>
+            <div class="card-text mb-3">
+              <div class="meta">{{ talk.organization }}</div>
+            </div><!--//card-text-->
+            <a href="./{{ talk.short_url }}">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              {% if talk.twitter %}<li class="list-inline-item"><a  href="https://twitter.com/{{ talk.twitter }}"><i class="fab fa-twitter fa-fw"></i></a></li>{% endif %}
+              {% if talk.linkedin %}<li class="list-inline-item"><a  href="{{ talk.linkedin }}"><i class="fab fa-linkedin-in fa-fw"></i></a></li>{% endif %}
+              {% if talk.twitter2 %}<li class="list-inline-item"><a  href="https://twitter.com/{{ talk.twitter2 }}"><i class="fab fa-twitter fa-fw"></i></a></li>{% endif %}
+              {% if talk.linkedin2 %}<li class="list-inline-item"><a  href="{{ talk.linkedin2 }}"><i class="fab fa-linkedin-in fa-fw"></i></a></li>{% endif %}
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      {% endfor %}
+
+    </div><!--//row-->
+    <h3 class="section-heading text-center mb-3 mt-5">People alphabetically</h3>
     <div class="row">
 
       {% for talk in (talks + keynotes)|sort(attribute='name') %}
@@ -200,6 +229,7 @@
       </div><!--//col-->
 
       {% endfor %}
+
 
       {% if event_state == 'before' %}
 
@@ -265,7 +295,7 @@
 </section><!--//sponsors-section-->
 
 
-{% for talk in talks + keynotes %}
+{% for talk in mcs + talks + keynotes %}
 <!-- Modal Speaker {{ talk.id }} -->
 <div class="modal modal-speaker modal-speaker-{{ talk.id }}" id="modal-speaker-{{ talk.id }}" tabindex="-1" role="dialog" aria-labelledby="speaker-{{ talk.id }}-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
