@@ -85,7 +85,7 @@ for i, talk in enumerate(talks_raw):
 talks = [
     talk
     for talk in talks_raw
-    if "confirmed" in talk["status"].lower()
+    if "talk" in talk["status"].lower()
 ]
 context["talks"] = talks
 keynotes = [
@@ -94,6 +94,12 @@ keynotes = [
     if "keynote" in talk["status"].lower()
 ]
 context["keynotes"] = keynotes
+mcs = [
+    talk
+    for talk in talks_raw
+    if "mc" in talk["status"].lower()
+]
+context["mcs"] = mcs
 
 # sort by track
 tracks_ordered = []
