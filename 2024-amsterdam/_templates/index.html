@@ -6,7 +6,7 @@
 
   <div class="container">
     <div class="event-countdown text-center mb-3">
-    {% if event_state == 'before' %}
+    {% if event_state != 'after' %}
       <h4 class="countdown-intro mb-2 text-center mb-3">Event Starts In:</h4>
       <div id="countdown-box" class="countdown-box"></div>
     {% else %}
