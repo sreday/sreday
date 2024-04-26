@@ -21,6 +21,10 @@ generate: 2022 2023 2024 landing
 		make clean && \
 		make generate && \
 		cp -vr static/ ../static/2024-amsterdam
+	cd 2024-san-francisco && \
+		make clean && \
+		make generate && \
+		cp -vr static/ ../static/2024-san-francisco
 
 landing:
 	cd home && \
