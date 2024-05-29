@@ -137,7 +137,7 @@ for track in tracks_ordered:
         comment="Main lobby",
     )
     closing = dict(
-        title="Networking & sponsor crawl",
+        title="Networking",
         duration=30,
         comment="Main lobby",
     )
@@ -164,7 +164,7 @@ for i, track in enumerate(tracks_ordered):
         talk["duration"] = int(talk.get("duration") or DEFAULT_DURATION)
         current_time += timedelta(minutes=talk["duration"])
     close = dict(
-        title="Venue closes & pub",
+        title="Venue closes & we find some drinks",
         start_time=close_time(),
     )
     tracks[track] = prepend + tracks[track] + [close]
