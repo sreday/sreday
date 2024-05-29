@@ -109,19 +109,19 @@ context["tracks"] = tracks_ordered
 # generate times
 def start_time():
     return datetime.datetime(
-        hour=9,
+        hour=10,
         minute=0,
-        year=2023,
-        month=9,
-        day=14,
+        year=2024,
+        month=6,
+        day=22,
     )
 def close_time():
     return datetime.datetime(
         hour=17,
         minute=0,
-        year=2023,
-        month=9,
-        day=14,
+        year=2024,
+        month=6,
+        day=22,
     )
 
 # insert breaks
