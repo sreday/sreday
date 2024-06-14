@@ -118,7 +118,7 @@ def start_time():
 def close_time():
     return datetime.datetime(
         hour=17,
-        minute=0,
+        minute=45,
         year=2024,
         month=6,
         day=22,
@@ -129,17 +129,17 @@ for track in tracks_ordered:
     coffee = dict(
         title="Coffee break",
         duration=30,
-        comment="Main lobby",
+        comment="Main space",
     )
     lunch = dict(
         title="Lunch & networking",
         duration=60,
-        comment="Main lobby",
+        comment="Main space",
     )
     closing = dict(
         title="Networking",
         duration=30,
-        comment="Main lobby",
+        comment="Main space",
     )
     talks = tracks[track]
     tracks[track] = [coffee] + talks[:4] + [lunch] + talks[4:] + [closing]
