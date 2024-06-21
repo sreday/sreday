@@ -136,13 +136,13 @@ for track in tracks_ordered:
         duration=60,
         comment="Main space",
     )
-    closing = dict(
-        title="Networking",
-        duration=30,
-        comment="Main space",
-    )
+    # closing = dict(
+    #     title="Networking",
+    #     duration=30,
+    #     comment="Main space",
+    # )
     talks = tracks[track]
-    tracks[track] = [coffee] + talks[:4] + [lunch] + talks[4:] + [closing]
+    tracks[track] = [coffee] + talks[:4] + [lunch] + talks[4:]# + [closing]
 
 # prepend the first track each day with the keynotes
 # offset other tracks with that duration
