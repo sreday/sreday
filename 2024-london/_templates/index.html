@@ -68,6 +68,7 @@
   <div class="container">
     <h3 class="section-heading text-center mb-3">Tickets</h3>
 
+    {% if event_state != 'after' %}
     <div class="row pricing mb-5">
       <div class="col-12">
         <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
@@ -76,6 +77,7 @@
         </stripe-pricing-table>
       </div>
     </div>
+    {% endif %}
     <div class="row mb-5">
       <div class="col-12 text-center">
         <h2 class="section-heading text-center mb-5">+FREE colocated event</h2>
@@ -99,7 +101,7 @@
 {% else %}
 <section id="schedule" class="schedule-section section theme-bg-light">
   <div class="container">
-    <h2 class="section-heading text-center mb-5">Schedule (WIP - subject to change)</h2>
+    <h2 class="section-heading text-center mb-5">Schedule</h2>
 
     <h4 class="section-heading text-center mb-5">Day 1</h4>
 
