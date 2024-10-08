@@ -71,16 +71,7 @@
     {% if event_state != 'after' %}
     <div class="row pricing mb-5 mt-10">
       <div class="col-12 text-center">
-        <a
-        href="https://lu.ma/event/evt-MzJ7cEINSwgJ3eQ"
-        class="luma-checkout--button"
-        data-luma-action="checkout"
-        data-luma-event-id="evt-MzJ7cEINSwgJ3eQ"
-      >
-        Buy tickets (lu.ma)
-      </a>
-      
-      <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
+        {% include 'tickets.html' %} 
       </div>
     </div>
     {% endif %}
