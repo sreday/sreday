@@ -103,7 +103,7 @@
         <a class="nav-link {% if loop.index==1 %}active{% endif %}" id="tab-{{ day }}-{{ loop.index }}" data-bs-toggle="tab" href="#tab-{{ day }}-{{ loop.index }}-content" role="tab" aria-controls="tab-{{ loop.index }}-content"
           aria-selected={% if loop.index==1 %}"true"{% else %}"false"{% endif %}
         >
-          <span class="heading">Screen {{ loop.index }}</span>
+          <span class="heading">{{ rooms[loop.index0] }}</span>
           <span class="meta">{{ track }}</span>
         </a>
       </li>
