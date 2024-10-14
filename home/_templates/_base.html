@@ -23,10 +23,17 @@
 	<!-- Theme CSS -->  
 	<link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
 
-    <meta name="image" property="og:image" content="{{ base_path }}/assets/images/hero-1.jpg">
+    <meta name="image" property="og:image" content="https://sreday.com/photos/{{ hero_pictures[0].split('/')[-1] }}">
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="SREday in-person conference"/>
-    <meta property="og:description" content="SREs, assemble for the most awesome SRE conference in the UK!"/>
+    <meta property="og:description" content="Conference on Site Reliability Engineering, Cloud and DevOps. Probably the most awesome SRE conference!"/>
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@sreday_com">
+	<meta name="twitter:creator" content="@sreday_com">
+    <meta name="twitter:title" content="SREday - {{ location_string }} - {{ date_string }}"/>
+    <meta name="twitter:description" content="Conference on Site Reliability Engineering, Cloud and DevOps. Probably the most awesome SRE conference in {{ location_string }}!"/>
+    <meta name="twitter:image" content="https://sreday.com/photos/{{ hero_pictures[0].split('/')[-1] }}">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
