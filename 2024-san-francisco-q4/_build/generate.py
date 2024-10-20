@@ -6,7 +6,6 @@ import csv
 import textwrap
 import string
 import yaml
-import datetime
 from datetime import timedelta
 import markdown
 
@@ -109,7 +108,7 @@ context["tracks"] = tracks_ordered
 # generate times
 def start_time():
     return datetime.datetime(
-        hour=9,
+        hour=10,
         minute=0,
         year=2023,
         month=9,
@@ -125,6 +124,7 @@ def close_time():
     )
 
 # insert breaks
+first_block = context.get("block_sizes")[0]
 for track in tracks_ordered:
     coffee = dict(
         title="Coffee break",
@@ -142,7 +142,7 @@ for track in tracks_ordered:
         comment="Main lobby",
     )
     talks = tracks[track]
-    tracks[track] = [coffee] + talks[:4] + [lunch] + talks[4:] + [closing]
+    tracks[track] = [coffee] + talks[:first_block] + [lunch] + talks[first_block:] + [closing]
 
 # prepend the first track each day with the keynotes
 # offset other tracks with that duration
