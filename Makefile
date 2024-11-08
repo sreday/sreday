@@ -1,4 +1,4 @@
-generate: 2022 2023 2024 landing
+generate: 2022 2023 2024 2025 landing
 
 2022:
 	cd 2022-london && \
@@ -29,6 +29,16 @@ generate: 2022 2023 2024 landing
 		make clean && \
 		make generate && \
 		cp -vr static/ ../static/2024-san-francisco-q4
+
+2025:
+	cd 2025-nyc-q1 && \
+		make clean && \
+		make generate && \
+		cp -vr static/ ../static/2025-nyc-q1
+	cd 2025-london-q1 && \
+		make clean && \
+		make generate && \
+		cp -vr static/ ../static/2025-london-q1
 
 landing:
 	cd home && \
