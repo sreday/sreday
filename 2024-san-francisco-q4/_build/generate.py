@@ -74,7 +74,7 @@ for i, talk in enumerate(talks_raw):
     talk["id"] = str(i)
     photo = talk.get("photo")
     if photo:
-        talk["photo_url"] = "./assets/images/profiles/" + photo
+        talk["photo_url"] = "../speakers/" + photo
     else:
         talk["photo_url"] = talk.get("avatar")
     print(generate_talk_url(talk))

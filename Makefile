@@ -50,6 +50,7 @@ landing:
 		make generate && \
 		cp -vr static/* ../static
 	cp -vr photos ./static
+	cp -vr speakers ./static
 
 env:
 	python3 -m venv env
