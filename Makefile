@@ -43,6 +43,10 @@ generate: 2022 2023 2024 2025 landing
 		make clean && \
 		make generate && \
 		cp -vr static/ ../static/2025-san-francisco-q2
+	cd 2025-cologne-q2 && \
+		make clean && \
+		make generate && \
+		cp -vr static/ ../static/2025-cologne-q2
 
 landing:
 	cd home && \
