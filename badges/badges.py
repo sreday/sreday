@@ -10,6 +10,7 @@ import requests
 
 HOST = os.getenv("HOST", "0.0.0.0")
 PORT = os.getenv("PORT", "8080")
+FONT = os.getenv("FONT", "Monaco.ttf")
 CSV_LIST = os.getenv("CSV_LIST", "attendees.csv")
 API_KEY = os.getenv("API_KEY")
 EVENT_ID = os.getenv("EVENT_ID")
@@ -38,13 +39,11 @@ def find_font_size(text, font, image, target_width_ratio):
     estimated_font_size = tested_font_size / (observed_width / image.width) * target_width_ratio
     return round(estimated_font_size)
 
-def generate_badge(data, template_path="./template.png"):
+def generate_badge(data, template_path="./template.png", font=FONT):
     badge = Image.open(template_path)
     draw = ImageDraw.Draw(badge)
     width, height = badge.size
 
-    font= "Monaco.ttf"
-    
     for pos, txt, maxsize, ratio in [
         ((100, 100), data['name'], 60, 0.5),
         ((100, 200), data['company'], 40, 0.6),
@@ -175,7 +174,7 @@ def make_badge(email):
         db.update(download_all_guests(API_KEY, EVENT_ID))
     data = db.get(email)
     if not data:
-        return Flask.abort(404)
+        return "not found", 404
     image = generate_badge(data)
     return serve_image(image)
 
@@ -184,7 +183,7 @@ def dwmake_badge(email):
     db.update(download_all_guests(API_KEY, EVENT_ID))
     data = db.get(email)
     if not data:
-        return Flask.abort(404)
+        return "not found", 404
     image = generate_badge(data)
     return serve_image(image)
 
