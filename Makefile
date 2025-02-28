@@ -56,7 +56,7 @@ landing:
 	cd home && \
 		make clean && \
 		make generate && \
-		cp -vr static/* ../static
+		cp -rv static/* ../static
 	cp -vr photos ./static
 	cp -vr speakers ./static
 
