@@ -57,7 +57,7 @@ def generate_badge(data, template_path="./template.png"):
         qr_w, qr_h = qr.size
         badge.paste(qr.get_image(), (width - qr_w - 5, 5))
     
-    if WIFI_ID and WIFI_PASSWORD:
+    if WIFI_ID:
         qrwifi = wifi_qrcode_generator.generator.wifi_qrcode(
             ssid=WIFI_ID, 
             hidden=False,
@@ -67,8 +67,8 @@ def generate_badge(data, template_path="./template.png"):
         qr = qrwifi.make_image().get_image()
         qr = qr.resize((175,175))
         qr_w, qr_h = qr.size
-        badge.paste(qr, (width - qr_w - 5, height - qr_h - 5))
-        draw.text((width - qr_w, height - qr_h - 30), "wifi:", font=ImageFont.truetype(font, 20), fill="white")
+        badge.paste(qr, (5, height - qr_h - 5))
+        draw.text((5, height - qr_h - 30), "wifi:", font=ImageFont.truetype(font, 20), fill="white")
 
     return badge
 
