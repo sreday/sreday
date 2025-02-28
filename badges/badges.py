@@ -16,6 +16,7 @@ EVENT_ID = os.getenv("EVENT_ID")
 WIFI_ID = os.getenv("WIFI_ID")
 WIFI_PASSWORD = os.getenv("WIFI_PASSWORD")
 WIFI_AUTH = os.getenv("WIFI_AUTH", "WPA")
+DEBUG = os.getenv("DEBUG")
 
 
 def make_qrcode(url):
@@ -96,7 +97,8 @@ def extract_linkedin(data):
     return linkedin
 
 
-def generate_all_badges(csv_path, iqrwifi=None, output_path="./badges"):
+def generate_all_badges(csv_path, output_path="./badges"):
+    print(f">> Generating badges from {csv_path}")
     counter = 0
     db = {}
     with open(csv_path, 'r') as file:
@@ -112,8 +114,9 @@ def generate_all_badges(csv_path, iqrwifi=None, output_path="./badges"):
                 "linkedin": extract_linkedin(row),
             }
             db[data["email"]] = data
-            print(data)
-            output_filename = f"./badges/{row['name'].replace(' ', '_').lower()}.png"
+            if DEBUG:
+                print(data)
+            output_filename = f"{output_path}/{row['name'].replace(' ', '_').lower()}.png"
             bg = generate_badge(data)
             bg.save(output_filename)
             counter += 1
@@ -121,6 +124,7 @@ def generate_all_badges(csv_path, iqrwifi=None, output_path="./badges"):
     return db
 
 def download_all_guests(api_key, event_id):
+    print(f">> Downloading all guests for event {event_id}")
     next_cursor = None
     headers = {
         "accept": "application/json",
@@ -146,11 +150,13 @@ def download_all_guests(api_key, event_id):
                 "linkedin": extract_linkedin(transpose),
             }
             db[data["email"]] = data
-            print(data)
+            if DEBUG:
+                print(data)
         print(f"Downloaded {len(db)} users from {url}")
         next_cursor = response.get("next_cursor")
         if not next_cursor:
             break
+    print(f"Done downloading guests")
     return db
 
 app = Flask(__name__)
