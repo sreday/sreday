@@ -54,6 +54,16 @@ env = Environment(loader=file_loader)
 env.add_extension(MarkdownExtension)
 env.filters["short_url"] = generate_short_url
 env.filters["markdown"] = lambda x: markdown.markdown(x)
+def dedupe(items):
+    present = set()
+    output = []
+    for item in items:
+        name = item.get("name")
+        if name not in present:
+            output.append(item)
+            present.add(name)
+    return output
+env.filters["dedupe"] = dedupe
 
 # load the context from the metadata file
 print(DIVIDER)
