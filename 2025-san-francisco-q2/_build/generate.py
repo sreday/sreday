@@ -108,7 +108,7 @@ context["tracks"] = tracks_ordered
 # generate times
 def start_time():
     return datetime.datetime(
-        hour=10,
+        hour=9,
         minute=0,
         year=2023,
         month=9,
