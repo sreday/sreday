@@ -19,3 +19,28 @@ The badges are generated like this:
 * try to fit the name, company and job title
 * place the QR code for LinkedIn in top right corner
 * place the QR code for Wifi in the bottom right corner
+
+
+## MVP
+
+1. Export the attendees info to csv from luma to `attendees.csv`
+1. Prep the script
+
+```sh
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+1. Generate the badges
+
+```sh
+# set any env vars like above
+python badges.py
+```
+
+1. Print all the badges
+
+```sh
+bash print-all.sh
+```
