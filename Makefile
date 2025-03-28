@@ -10,55 +10,55 @@ generate: 2022 2023 2024 2025 landing
 	cd 2023-london && \
 		make clean && \
 		make generate && \
-		cp -vr static/ ../static/2023-london
+		cp -r static/ ../static/2023-london
 
 2024:
 	cd 2024-london && \
 		make clean && \
 		make generate && \
-		cp -vr static/ ../static/2024-london
+		cp -r static/ ../static/2024-london
 	cd 2024-amsterdam && \
 		make clean && \
 		make generate && \
-		cp -vr static/ ../static/2024-amsterdam
+		cp -r static/ ../static/2024-amsterdam
 	cd 2024-san-francisco && \
 		make clean && \
 		make generate && \
-		cp -vr static/ ../static/2024-san-francisco
+		cp -r static/ ../static/2024-san-francisco
 	cd 2024-san-francisco-q4 && \
 		make clean && \
 		make generate && \
-		cp -vr static/ ../static/2024-san-francisco-q4
+		cp -r static/ ../static/2024-san-francisco-q4
 
 2025:
 	cd 2025-nyc-q1 && \
 		make clean && \
 		make generate && \
-		cp -vr static/ ../static/2025-nyc-q1
+		cp -r static/ ../static/2025-nyc-q1
 	cd 2025-london-q1 && \
 		make clean && \
 		make generate && \
-		cp -vr static/ ../static/2025-london-q1
+		cp -r static/ ../static/2025-london-q1
 	cd 2025-san-francisco-q2 && \
 		make clean && \
 		make generate && \
-		cp -vr static/ ../static/2025-san-francisco-q2
+		cp -r static/ ../static/2025-san-francisco-q2
 	cd 2025-redmond-q2 && \
 		make clean && \
 		make generate && \
-		cp -vr static/ ../static/2025-redmond-q2
+		cp -r static/ ../static/2025-redmond-q2
 	cd 2025-cologne-q2 && \
 		make clean && \
 		make generate && \
-		cp -vr static/ ../static/2025-cologne-q2
+		cp -r static/ ../static/2025-cologne-q2
 
 landing:
 	cd home && \
 		make clean && \
 		make generate && \
-		cp -rv static/* ../static
-	cp -vr photos ./static
-	cp -vr speakers ./static
+		cp -r static/* ../static
+	cp -r photos ./static
+	cp -r speakers ./static
 
 env:
 	python3 -m venv env
