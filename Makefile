@@ -1,18 +1,17 @@
 years := $(wildcard 20*)
 
-generate: $(years) static/index.html
-	@echo ">>>" ${years}
+generate: $(addprefix static/,$(addsuffix /index.html,$(years))) static/index.html
 
-20%: static/20%/index.html
-	@echo ">>>" $@
-
-.PRECIOUS: static/20%/index.html # don't mark as intermediary
-static/20%/index.html: 20%/**/*
+.PRECIOUS: 20%/static/index.html
+20%/static/index.html: 20%/_build/* 20%/_templates/**/* 20%/_db/**/* 20%/*
 	$(eval LOCATION := 20$*)
 	cd ${LOCATION} && \
 		make clean && \
-		make generate && \
-		cp -r static/ ../static/${LOCATION}
+		make generate
+
+static/20%/index.html: 20%/static/index.html
+	@echo ">>>" $@
+	cp -r 20$*/static/ static/20$*
 
 static/index.html: home/**/*
 	cd home && \
