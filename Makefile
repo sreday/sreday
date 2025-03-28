@@ -1,58 +1,20 @@
-generate: 2022 2023 2024 2025 landing
+years := $(wildcard 20*)
 
-2022:
-	cd 2022-london && \
-		make clean && \
-		make generate && \
-		cp -r static/ ../static/2022-london
+generate: $(years) static/index.html
+	@echo ">>>" ${years}
 
-2023:
-	cd 2023-london && \
-		make clean && \
-		make generate && \
-		cp -r static/ ../static/2023-london
+20%: static/20%/index.html
+	@echo ">>>" $@
 
-2024:
-	cd 2024-london && \
+.PRECIOUS: static/20%/index.html # don't mark as intermediary
+static/20%/index.html: 20%/**/*
+	$(eval LOCATION := 20$*)
+	cd ${LOCATION} && \
 		make clean && \
 		make generate && \
-		cp -r static/ ../static/2024-london
-	cd 2024-amsterdam && \
-		make clean && \
-		make generate && \
-		cp -r static/ ../static/2024-amsterdam
-	cd 2024-san-francisco && \
-		make clean && \
-		make generate && \
-		cp -r static/ ../static/2024-san-francisco
-	cd 2024-san-francisco-q4 && \
-		make clean && \
-		make generate && \
-		cp -r static/ ../static/2024-san-francisco-q4
+		cp -r static/ ../static/${LOCATION}
 
-2025:
-	cd 2025-nyc-q1 && \
-		make clean && \
-		make generate && \
-		cp -r static/ ../static/2025-nyc-q1
-	cd 2025-london-q1 && \
-		make clean && \
-		make generate && \
-		cp -r static/ ../static/2025-london-q1
-	cd 2025-san-francisco-q2 && \
-		make clean && \
-		make generate && \
-		cp -r static/ ../static/2025-san-francisco-q2
-	cd 2025-redmond-q2 && \
-		make clean && \
-		make generate && \
-		cp -r static/ ../static/2025-redmond-q2
-	cd 2025-cologne-q2 && \
-		make clean && \
-		make generate && \
-		cp -r static/ ../static/2025-cologne-q2
-
-landing:
+static/index.html: home/**/*
 	cd home && \
 		make clean && \
 		make generate && \
@@ -73,4 +35,4 @@ clean:
 serve:
 	python3 _build/serve.py
 
-.PHONY: generate 2022 2023 2024 landing env deps clean serve
+.PHONY: env deps clean serve
