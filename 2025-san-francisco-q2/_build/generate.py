@@ -58,21 +58,10 @@ env.filters["markdown"] = lambda x: markdown.markdown(x)
 # load the context from the metadata file
 print(DIVIDER)
 print("Loading context")
+talks_raw = read_csv("./_db/talks.csv")
 with open('metadata.yml') as f:
     context = yaml.load(f, Loader=yaml.FullLoader)
     BASE_FOLDER = "./" + context.get("base_folder")
-
-def start_time():
-    return datetime.datetime.fromisoformat(context.get("start_time"))
-def end_time():
-    return datetime.datetime.fromisoformat(context.get("end_time"))
-
-
-try:
-    # read the csv
-    talks_raw = read_csv("./_db/talks.csv")
-except Exception as e:
-    print("Couldn't read talks", e)
 
 # pick up the ids & photos
 for i, talk in enumerate(talks_raw):
@@ -114,14 +103,23 @@ first_block = context.get("block_sizes")[0]
 breaks = context.get("breaks")
 for track in tracks_ordered:
     talks = tracks[track]
-    tracks[track] = [breaks[0]] + talks[:first_block] + [breaks[1]] + talks[first_block:] + [breaks[2]]
+    offset = 0
+    tracks[track] = []
+    for brk in context.get("breaks"):
+        for i in range(brk.get("talks_before")):
+            tracks[track].append(talks[offset])
+            offset += 1
+        tracks[track].append(brk)
+    while offset < len(talks):
+        tracks[track].append(talks[offset])
+        offset += 1
 
 # prepend the first track each day with the keynotes
 # offset other tracks with that duration
 DEFAULT_DURATION = 30
 for i, track in enumerate(tracks_ordered):
-    current_day = (i // 3) + 1
-    current_time = start_time()
+    current_day = (i // len(context.get("rooms"))) + 1
+    current_time = datetime.datetime.fromisoformat(context.get("start_time"))
     prepend = []
     for talk in keynotes:
         if talk.get("day") == str(current_day):
@@ -136,8 +134,9 @@ for i, track in enumerate(tracks_ordered):
         talk["duration"] = int(talk.get("duration") or DEFAULT_DURATION)
         current_time += timedelta(minutes=talk["duration"])
     close = dict(
-        title="Venue closes & pub",
-        start_time=end_time(),
+        title="Wrap up",
+        start_time=current_time,
+        comment="Scan each other's QR codes & head to a nearby pub!"
     )
     tracks[track] = prepend + tracks[track] + [close]
 
