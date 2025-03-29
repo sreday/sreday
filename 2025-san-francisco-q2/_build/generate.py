@@ -28,7 +28,7 @@ def generate_talk_url(talk):
         title=("_" + talk.get("title", "").replace(",", "_").replace(" ", "_")) if talk.get("title") else "",
     )
     url = ''.join(filter(lambda x: x in string.printable, url))
-    url = re.sub('[\W]+', '', url)
+    url = re.sub('[\\W]+', '', url)
     return url[:100]
 
 def read_csv(path):
@@ -77,7 +77,6 @@ for i, talk in enumerate(talks_raw):
         talk["photo_url"] = "../speakers/" + photo
     else:
         talk["photo_url"] = talk.get("avatar")
-    print(generate_talk_url(talk))
     talk["short_url"] = generate_talk_url(talk)
 
 # sort into talks and keynotes
@@ -197,7 +196,7 @@ for talk in talks_raw:
 # SITEMAP
 print(DIVIDER)
 print("Generating sitemap.xml with %d items" % len(SITEMAP_URLS))
-now = datetime.datetime.utcnow().replace(tzinfo=datetime.timezone.utc).isoformat()
+now = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=datetime.timezone.utc).isoformat()
 with open(BASE_FOLDER + "/sitemap.xml", "w") as f:
     template = env.get_template("sitemap.xml")
     f.write(template.render(urls=SITEMAP_URLS, now=now))
