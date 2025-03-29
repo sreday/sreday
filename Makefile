@@ -2,8 +2,9 @@ years := $(wildcard 20*)
 
 generate: $(addprefix static/,$(addsuffix /index.html,$(years))) static/index.html
 
-.PRECIOUS: 20%/static/index.html
-20%/static/index.html: 20%/_build/* 20%/_templates/**/* 20%/_db/**/* 20%/*
+20%/static/index.html: 20%/_build/* 20%/_templates/* 20%/_db/* 20%/Makefile 20%/metadata.*
+	@echo $@
+	@echo $^
 	$(eval LOCATION := 20$*)
 	cd ${LOCATION} && \
 		make clean && \
@@ -29,7 +30,7 @@ deps:
 	mkdir -p static
 
 clean:
-	rm -rf ./static/*
+	rm -rf ./static/* ./20*/static/*
 
 serve:
 	python3 _build/serve.py
