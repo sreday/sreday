@@ -33,6 +33,9 @@ make serve
 1. Update the luma event
     1. Don't change the embeds in `2026-tokyo-q1/_templates/tickets.html`
     1. Change the `luma_evt` field in `home/metadata.yaml`
+1. Update the hero pictures
+    1. Add the pictures to `photos`
+    1. List the relevant ones in `2026-tokyo-q1/metadata.yaml`
 1. Add the conference to the home page
     1. Upload the splash screen
         1. Put it in `assets/images/events/sreday-2026-tokyo-q1.jpeg`
