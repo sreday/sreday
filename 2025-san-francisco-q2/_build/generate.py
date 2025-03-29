@@ -99,7 +99,6 @@ for talk in talks:
 context["tracks"] = tracks_ordered
 
 # insert breaks
-first_block = context.get("block_sizes")[0]
 breaks = context.get("breaks")
 for track in tracks_ordered:
     talks = tracks[track]
