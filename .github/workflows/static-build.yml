@@ -14,12 +14,9 @@ jobs:
 
       - name: Make
         run: |
+          sudo apt-get install -y make="3.81*"
           make --version
-          make -p
-
-      - name: Deps
-        run: |
-          make deps
+          make -p deps
 
       - name: Build 🔧
         run: |
