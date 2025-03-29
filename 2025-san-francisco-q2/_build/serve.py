@@ -8,7 +8,7 @@ class GithubPagesHandler(http.server.SimpleHTTPRequestHandler):
             self.path += ".html"
         return http.server.SimpleHTTPRequestHandler.do_GET(self)
 
-port = 8081
+port = 8080
 url = "http://localhost:" + str(port) + "/static/"
 webbrowser.open(url)
 my_server = socketserver.TCPServer(("", port), GithubPagesHandler)

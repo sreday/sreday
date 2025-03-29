@@ -34,5 +34,6 @@ clean:
 
 serve:
 	python3 _build/serve.py
+	open http://localhost:8080
 
 .PHONY: env deps clean serve
