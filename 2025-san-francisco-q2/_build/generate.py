@@ -62,6 +62,11 @@ with open('metadata.yml') as f:
     context = yaml.load(f, Loader=yaml.FullLoader)
     BASE_FOLDER = "./" + context.get("base_folder")
 
+def start_time():
+    return datetime.datetime.fromisoformat(context.get("start_time"))
+def end_time():
+    return datetime.datetime.fromisoformat(context.get("end_time"))
+
 
 try:
     # read the csv
@@ -104,44 +109,12 @@ for talk in talks:
     tracks[track].append(talk)
 context["tracks"] = tracks_ordered
 
-# generate times
-def start_time():
-    return datetime.datetime(
-        hour=9,
-        minute=0,
-        year=2023,
-        month=9,
-        day=14,
-    )
-def close_time():
-    return datetime.datetime(
-        hour=17,
-        minute=0,
-        year=2023,
-        month=9,
-        day=14,
-    )
-
 # insert breaks
 first_block = context.get("block_sizes")[0]
+breaks = context.get("breaks")
 for track in tracks_ordered:
-    coffee = dict(
-        title="Coffee break",
-        duration=30,
-        comment="Main lobby",
-    )
-    lunch = dict(
-        title="Lunch & networking",
-        duration=60,
-        comment="Main lobby",
-    )
-    closing = dict(
-        title="Networking & sponsor crawl",
-        duration=30,
-        comment="Main lobby",
-    )
     talks = tracks[track]
-    tracks[track] = [coffee] + talks[:first_block] + [lunch] + talks[first_block:] + [closing]
+    tracks[track] = [breaks[0]] + talks[:first_block] + [breaks[1]] + talks[first_block:] + [breaks[2]]
 
 # prepend the first track each day with the keynotes
 # offset other tracks with that duration
@@ -164,14 +137,12 @@ for i, track in enumerate(tracks_ordered):
         current_time += timedelta(minutes=talk["duration"])
     close = dict(
         title="Venue closes & pub",
-        start_time=close_time(),
+        start_time=end_time(),
     )
     tracks[track] = prepend + tracks[track] + [close]
 
 context["talks_by_tracks"] = tracks
 print("Loaded %d confirmed talks in %d tracks: %s" % (len(context["talks"]), len(tracks), tracks.keys()))
-
-
 
 # MAIN PAGES
 print(DIVIDER)
