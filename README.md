@@ -27,6 +27,12 @@ make serve
 1. Modify the `2026-tokyo-q1/metadata.yaml` file:
     1. Update the location, time, date
     1. Update the `2026-tokyo-q1/_db/talks.csv` file
+1. Update the venue info
+    1. Modify the address in `2026-tokyo-q1/_templates/venue.html`
+    1. Upload/copy the 3 venue photos to `2026-tokyo-q1/assets/images/venue`
+1. Update the luma event
+    1. Don't change the embeds in `2026-tokyo-q1/_templates/tickets.html`
+    1. Change the `luma_evt` field in `home/metadata.yaml`
 1. Add the conference to the home page
     1. Upload the splash screen
         1. Put it in `assets/images/events/sreday-2026-tokyo-q1.jpeg`
