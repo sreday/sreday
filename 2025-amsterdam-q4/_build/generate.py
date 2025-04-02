@@ -106,8 +106,9 @@ for track in tracks_ordered:
     tracks[track] = []
     for brk in context.get("breaks"):
         for i in range(brk.get("talks_before")):
-            tracks[track].append(talks[offset])
-            offset += 1
+            if offset < len(talks):
+                tracks[track].append(talks[offset])
+                offset += 1
         tracks[track].append(brk)
     while offset < len(talks):
         tracks[track].append(talks[offset])
