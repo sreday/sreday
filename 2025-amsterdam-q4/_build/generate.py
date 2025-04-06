@@ -12,6 +12,8 @@ import markdown
 from jinja2 import Environment, FileSystemLoader
 from jinja_markdown import MarkdownExtension
 
+DIVIDER = "#"*80
+SITEMAP_URLS = []
 
 def generate_short_url(url):
     url = url.replace(" ", "-").replace("_", "-")
@@ -45,10 +47,7 @@ def read_csv(path):
     return items
 
 
-DIVIDER = "#"*80
-SITEMAP_URLS = []
-
-# init the jinja stuff
+# Jinja init
 file_loader = FileSystemLoader("_templates")
 env = Environment(loader=file_loader)
 env.add_extension(MarkdownExtension)
@@ -75,20 +74,19 @@ for i, talk in enumerate(talks_raw):
 
 # sort into talks and keynotes
 talks = [
-    talk
-    for talk in talks_raw
+    talk for talk in talks_raw
     if "confirmed" in talk["status"].lower()
 ]
-context["talks"] = talks
 keynotes = [
-    talk
-    for talk in talks_raw
+    talk for talk in talks_raw
     if "keynote" in talk["status"].lower()
 ]
+context["talks"] = talks
 context["keynotes"] = keynotes
 
-# sort by track
+# we order the tracks in how they appear in the CSV file
 tracks_ordered = []
+# all talks sorted in tracks
 tracks = dict()
 for talk in talks:
     track = talk.get("track")
@@ -98,47 +96,47 @@ for talk in talks:
     tracks[track].append(talk)
 context["tracks"] = tracks_ordered
 
-# insert breaks
+# insert breaks & wrap up into each track
 breaks = context.get("breaks")
 for track in tracks_ordered:
-    talks = tracks[track]
+    old_order = tracks[track]
+    new_order = []
     offset = 0
-    tracks[track] = []
     for brk in context.get("breaks"):
         for i in range(brk.get("talks_before")):
-            if offset < len(talks):
-                tracks[track].append(talks[offset])
+            if offset < len(old_order):
+                new_order.append(old_order[offset])
                 offset += 1
-        tracks[track].append(brk)
-    while offset < len(talks):
-        tracks[track].append(talks[offset])
+        new_order.append(brk)
+    while offset < len(old_order):
+        new_order.append(old_order[offset])
         offset += 1
+    new_order.append(dict(
+        title="Wrap up",
+        comment="Scan each other's QR codes & head to a nearby pub!"
+    ))
+    tracks[track] = new_order
 
-# prepend the first track each day with the keynotes
-# offset other tracks with that duration
-DEFAULT_DURATION = 30
+# insert keynotes to the first track of each day
 for i, track in enumerate(tracks_ordered):
     current_day = (i // len(context.get("rooms"))) + 1
-    current_time = datetime.datetime.fromisoformat(context.get("start_time"))
     prepend = []
     for talk in keynotes:
         if talk.get("day") == str(current_day):
-            talk["start_time"] = current_time
-            talk["duration"] = int(talk.get("duration") or DEFAULT_DURATION)
-            current_time += timedelta(minutes=talk["duration"])
             # for the first track of the day, actually prepend
-            if i == 0 or i == 3:
+            if i % len(context.get("rooms")) == 0:
                 prepend.append(talk)
+    tracks[track] = prepend + tracks[track]
+
+# insert times & durations
+DEFAULT_DURATION = 30
+for track in tracks:
+    current_time = datetime.datetime.fromisoformat(context.get("start_time"))
     for talk in tracks[track]:
-        talk["start_time"] = current_time
         talk["duration"] = int(talk.get("duration") or DEFAULT_DURATION)
+        talk["start_time"] = current_time
         current_time += timedelta(minutes=talk["duration"])
-    close = dict(
-        title="Wrap up",
-        start_time=current_time,
-        comment="Scan each other's QR codes & head to a nearby pub!"
-    )
-    tracks[track] = prepend + tracks[track] + [close]
+
 
 context["talks_by_tracks"] = tracks
 print("Loaded %d confirmed talks in %d tracks: %s" % (len(context["talks"]), len(tracks), tracks.keys()))
