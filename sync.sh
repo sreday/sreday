@@ -6,7 +6,7 @@ set -o xtrace
 
 rsync -var \
     --exclude "_db/*" \
-    --exclude "_assets/*" \
+    --exclude "assets/*" \
     --exclude "_templates/venue.html" \
     --exclude "metadata.yml" \
     _event_template/ $1 $2
