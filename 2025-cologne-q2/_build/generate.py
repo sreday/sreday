@@ -12,6 +12,8 @@ import markdown
 from jinja2 import Environment, FileSystemLoader
 from jinja_markdown import MarkdownExtension
 
+DIVIDER = "#"*80
+SITEMAP_URLS = []
 
 def generate_short_url(url):
     url = url.replace(" ", "-").replace("_", "-")
@@ -28,7 +30,7 @@ def generate_talk_url(talk):
         title=("_" + talk.get("title", "").replace(",", "_").replace(" ", "_")) if talk.get("title") else "",
     )
     url = ''.join(filter(lambda x: x in string.printable, url))
-    url = re.sub('[\W]+', '', url)
+    url = re.sub('[\\W]+', '', url)
     return url[:100]
 
 def read_csv(path):
@@ -45,10 +47,7 @@ def read_csv(path):
     return items
 
 
-DIVIDER = "#"*80
-SITEMAP_URLS = []
-
-# init the jinja stuff
+# Jinja init
 file_loader = FileSystemLoader("_templates")
 env = Environment(loader=file_loader)
 env.add_extension(MarkdownExtension)
@@ -58,16 +57,10 @@ env.filters["markdown"] = lambda x: markdown.markdown(x)
 # load the context from the metadata file
 print(DIVIDER)
 print("Loading context")
+talks_raw = read_csv("./_db/talks.csv")
 with open('metadata.yml') as f:
     context = yaml.load(f, Loader=yaml.FullLoader)
     BASE_FOLDER = "./" + context.get("base_folder")
-
-
-try:
-    # read the csv
-    talks_raw = read_csv("./_db/talks.csv")
-except Exception as e:
-    print("Couldn't read talks", e)
 
 # pick up the ids & photos
 for i, talk in enumerate(talks_raw):
@@ -77,25 +70,23 @@ for i, talk in enumerate(talks_raw):
         talk["photo_url"] = "../speakers/" + photo
     else:
         talk["photo_url"] = talk.get("avatar")
-    print(generate_talk_url(talk))
     talk["short_url"] = generate_talk_url(talk)
 
 # sort into talks and keynotes
 talks = [
-    talk
-    for talk in talks_raw
+    talk for talk in talks_raw
     if "confirmed" in talk["status"].lower()
 ]
-context["talks"] = talks
 keynotes = [
-    talk
-    for talk in talks_raw
+    talk for talk in talks_raw
     if "keynote" in talk["status"].lower()
 ]
+context["talks"] = talks
 context["keynotes"] = keynotes
 
-# sort by track
+# we order the tracks in how they appear in the CSV file
 tracks_ordered = []
+# all talks sorted in tracks
 tracks = dict()
 for talk in talks:
     track = talk.get("track")
@@ -105,74 +96,50 @@ for talk in talks:
     tracks[track].append(talk)
 context["tracks"] = tracks_ordered
 
-# generate times
-def start_time():
-    return datetime.datetime(
-        hour=10,
-        minute=0,
-        year=2023,
-        month=9,
-        day=14,
-    )
-def close_time():
-    return datetime.datetime(
-        hour=17,
-        minute=0,
-        year=2023,
-        month=9,
-        day=14,
-    )
-
-# insert breaks
-first_block = context.get("block_sizes")[0]
+# insert breaks & wrap up into each track
+breaks = context.get("breaks")
 for track in tracks_ordered:
-    coffee = dict(
-        title="Coffee break",
-        duration=30,
-        comment="Main lobby",
-    )
-    lunch = dict(
-        title="Lunch & networking",
-        duration=60,
-        comment="Main lobby",
-    )
-    closing = dict(
-        title="Networking & sponsor crawl",
-        duration=30,
-        comment="Main lobby",
-    )
-    talks = tracks[track]
-    tracks[track] = [coffee] + talks[:first_block] + [lunch] + talks[first_block:] + [closing]
+    old_order = tracks[track]
+    new_order = []
+    offset = 0
+    for brk in context.get("breaks"):
+        for i in range(brk.get("talks_before")):
+            if offset < len(old_order):
+                new_order.append(old_order[offset])
+                offset += 1
+        new_order.append(brk)
+    while offset < len(old_order):
+        new_order.append(old_order[offset])
+        offset += 1
+    new_order.append(dict(
+        title="Wrap up",
+        comment="Scan each other's QR codes & head to a nearby pub!"
+    ))
+    tracks[track] = new_order
 
-# prepend the first track each day with the keynotes
-# offset other tracks with that duration
-DEFAULT_DURATION = 30
+# insert keynotes to the first track of each day
 for i, track in enumerate(tracks_ordered):
-    current_day = (i // 3) + 1
-    current_time = start_time()
+    current_day = (i // len(context.get("rooms"))) + 1
     prepend = []
     for talk in keynotes:
         if talk.get("day") == str(current_day):
-            talk["start_time"] = current_time
-            talk["duration"] = int(talk.get("duration") or DEFAULT_DURATION)
-            current_time += timedelta(minutes=talk["duration"])
             # for the first track of the day, actually prepend
-            if i == 0 or i == 3:
+            if i % len(context.get("rooms")) == 0:
                 prepend.append(talk)
+    tracks[track] = prepend + tracks[track]
+
+# insert times & durations
+DEFAULT_DURATION = 30
+for track in tracks:
+    current_time = datetime.datetime.fromisoformat(context.get("start_time"))
     for talk in tracks[track]:
-        talk["start_time"] = current_time
         talk["duration"] = int(talk.get("duration") or DEFAULT_DURATION)
+        talk["start_time"] = current_time
         current_time += timedelta(minutes=talk["duration"])
-    close = dict(
-        title="Venue closes & pub",
-        start_time=close_time(),
-    )
-    tracks[track] = prepend + tracks[track] + [close]
+
 
 context["talks_by_tracks"] = tracks
 print("Loaded %d confirmed talks in %d tracks: %s" % (len(context["talks"]), len(tracks), tracks.keys()))
-
-
 
 # MAIN PAGES
 print(DIVIDER)
@@ -197,7 +164,7 @@ for talk in talks_raw:
 # SITEMAP
 print(DIVIDER)
 print("Generating sitemap.xml with %d items" % len(SITEMAP_URLS))
-now = datetime.datetime.utcnow().replace(tzinfo=datetime.timezone.utc).isoformat()
+now = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=datetime.timezone.utc).isoformat()
 with open(BASE_FOLDER + "/sitemap.xml", "w") as f:
     template = env.get_template("sitemap.xml")
     f.write(template.render(urls=SITEMAP_URLS, now=now))
