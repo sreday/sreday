@@ -21,7 +21,7 @@ make serve
 
 ## Adding a new conference
 
-1. Copy over the template to a new folder
+1. Copy over the template (`_event_template`) to a new folder
     1. The name needs to follow the pattern `YYYY-location-qX`
     1. Let's say we add `2026-tokyo-q1`
 1. Modify the `2026-tokyo-q1/metadata.yaml` file:
