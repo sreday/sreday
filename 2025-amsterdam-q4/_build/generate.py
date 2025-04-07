@@ -13,6 +13,7 @@ from jinja2 import Environment, FileSystemLoader
 from jinja_markdown import MarkdownExtension
 
 DIVIDER = "#"*80
+DEFAULT_TALK_DURATION = 30
 SITEMAP_URLS = []
 
 def generate_short_url(url):
@@ -117,7 +118,8 @@ for track in tracks_ordered:
             if offset < len(old_order):
                 new_order.append(old_order[offset])
                 offset += 1
-        new_order.append(brk)
+        # copy because we'll be modifying times on these
+        new_order.append(brk.copy())
     while offset < len(old_order):
         new_order.append(old_order[offset])
         offset += 1
@@ -127,25 +129,32 @@ for track in tracks_ordered:
     ))
     tracks[track] = new_order
 
-# insert keynotes to the first track of each day
+# insert keynotes or placeholders
 for i, track in enumerate(tracks_ordered):
     current_day = (i // len(context.get("rooms"))) + 1
     prepend = []
     for talk in keynotes:
         if talk.get("day") == str(current_day):
-            # for the first track of the day, actually prepend
             if i % len(context.get("rooms")) == 0:
                 prepend.append(talk)
+            else:
+                prepend.append(dict(
+                    placeholder=True,
+                    duration=talk.get("duration"),
+                ))
     tracks[track] = prepend + tracks[track]
 
 # insert times & durations
-DEFAULT_DURATION = 30
 for track in tracks:
     current_time = datetime.datetime.fromisoformat(context.get("start_time"))
     for talk in tracks[track]:
-        talk["duration"] = int(talk.get("duration") or DEFAULT_DURATION)
+        talk["duration"] = int(talk.get("duration") or DEFAULT_TALK_DURATION)
         talk["start_time"] = current_time
         current_time += timedelta(minutes=talk["duration"])
+
+# remove placeholders
+for track in tracks:
+    tracks[track] = [t for t in tracks[track] if not t.get("placeholder")]
 
 
 context["talks_by_tracks"] = tracks
