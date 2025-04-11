@@ -207,7 +207,7 @@ def luma_check():
     print(key)
     events = download_all_events(key)
     session["key"] = key
-    return render_template('events.html', events=events)
+    return redirect("/")
 
 @app.route('/logout')
 def logout():
