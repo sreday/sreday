@@ -180,7 +180,9 @@ def download_all_events(api_key):
 
 app = Flask(__name__)
 app.secret_key = "badgerbadgerbadgermushroommushroom"
-app.db = dict()
+app.db = dict(
+    __events = dict(),
+)
 
 def serve_image(image):
     img_io = io.BytesIO()
