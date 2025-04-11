@@ -7,7 +7,6 @@ import os
 import io
 import requests
 import json
-import uuid
 import random
 
 
@@ -184,8 +183,8 @@ def download_all_events(api_key):
 with open("config.json", "r") as file:
     config = json.loads(file.read())
 
-def execute_badge_print(badge):
-    tmp_path = "./badges/badge-" + str(uuid.uuid4()) + ".png"
+def execute_badge_print(badge, path, name):
+    tmp_path = f"{path}{name.replace(' ', '_').lower()}.png"
     printer = random.choice(config.get("printers"))
     cmd = config.get("print_cmd").format(
         path=tmp_path,
@@ -253,7 +252,7 @@ def print_event(event):
         guests = download_all_guests(event, key)
         for guest in guests.values():
             image = generate_badge(guest)
-            execute_badge_print(image)
+            execute_badge_print(image, path=f"./badges/{event}-", name=guest.get("name"))
         return f"OK: {len(guests)} badges printing", 200
     return redirect("/")
 
@@ -271,7 +270,7 @@ def print_badge(event, email):
     if not data:
         return redirect("/")
     image = generate_badge(data)
-    execute_badge_print(image)
+    execute_badge_print(image, path=f"./badges/{event}-", name=data.get("name"))
     return serve_image(image)
 
 @app.route('/submit', methods=['POST'])
