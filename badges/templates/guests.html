@@ -10,7 +10,7 @@
     <h3><a href="{{ event.event.url }}" target="_blank">{{ event.event.url }}</a></h3>
     <h3><a href="/event/{{ event_id }}/print-all" target="_blank">print all</a></h3>
     <ul>
-        {% for guest in db.values() %}
+        {% for guest in db.values()|sort(attribute='name') %}
         <li>
             {{ guest.name }}
             <a href="/view/{{ event_id }}/{{ guest.email }}">preview</a>

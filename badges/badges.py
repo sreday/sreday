@@ -250,7 +250,7 @@ def print_event(event):
     key = session.get("key")
     if key:
         guests = download_all_guests(event, key)
-        for guest in guests.values():
+        for guest in sorted(guests.values(), key=lambda x: x.get("name")):
             image = generate_badge(guest)
             execute_badge_print(image, path=f"./badges/{event}-", name=guest.get("name"))
         return f"OK: {len(guests)} badges printing", 200
