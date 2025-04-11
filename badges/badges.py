@@ -254,7 +254,7 @@ def print_event(event):
         for guest in guests.values():
             image = generate_badge(guest)
             execute_badge_print(image)
-        return "OK", 200
+        return f"OK: {len(guests)} badges printing", 200
     return redirect("/")
 
 @app.route('/view/<event>/<email>')
