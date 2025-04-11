@@ -240,24 +240,36 @@ def list_event(event):
     key = session.get("key")
     if key:
         event_data = app.db["__events"].get(event)
+        if not event_data:
+            return redirect("/")
         app.db[event] = download_all_guests(event, key)
         return render_template('guests.html', db=app.db[event], event=event_data, event_id=event)
+    return redirect("/")
+
+@app.route('/event/<event>/print-all')
+def print_event(event):
+    key = session.get("key")
+    if key:
+        guests = download_all_guests(event, key)
+        for guest in guests.values():
+            image = generate_badge(guest)
+            execute_badge_print(image)
+        return "OK", 200
     return redirect("/")
 
 @app.route('/view/<event>/<email>')
 def view_badge(event, email):
     data = app.db.get(event, {}).get(email)
     if not data:
-        return "not found", 404
+        return redirect("/")
     image = generate_badge(data)
     return serve_image(image)
-
 
 @app.route('/print/<event>/<email>')
 def print_badge(event, email):
     data = app.db.get(event, {}).get(email)
     if not data:
-        return "not found", 404
+        return redirect("/")
     image = generate_badge(data)
     execute_badge_print(image)
     return serve_image(image)

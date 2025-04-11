@@ -8,6 +8,7 @@
     <h1>{{ event.event.name }}</h1>
     <h3>{{ event.event.start_at }}</h3>
     <h3><a href="{{ event.event.url }}" target="_blank">{{ event.event.url }}</a></h3>
+    <h3><a href="/event/{{ event_id }}/print-all" target="_blank">print all</a></h3>
     <ul>
         {% for guest in db.values() %}
         <li>
