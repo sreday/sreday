@@ -6,6 +6,9 @@ import csv
 import os
 import io
 import requests
+import json
+import uuid
+import random
 
 
 HOST = os.getenv("HOST", "0.0.0.0")
@@ -178,10 +181,26 @@ def download_all_events(api_key):
     rows = luma_get_all(path, api_key)
     return rows
 
+with open("config.json", "r") as file:
+    config = json.loads(file.read())
+
+def execute_badge_print(badge):
+    tmp_path = "./badges/badge-" + str(uuid.uuid4()) + ".png"
+    printer = random.choice(config.get("printers"))
+    cmd = config.get("print_cmd").format(
+        path=tmp_path,
+        printer=printer,
+    )
+    badge.save(tmp_path)
+    print(cmd)
+    os.system(cmd)
+
+
 app = Flask(__name__)
 app.secret_key = "badgerbadgerbadgermushroommushroom"
 app.db = dict(
     __events = dict(),
+    __config = config,
 )
 
 def serve_image(image):
@@ -225,12 +244,22 @@ def list_event(event):
         return render_template('guests.html', db=app.db[event], event=event_data, event_id=event)
     return redirect("/")
 
-@app.route('/<event>/<email>')
-def make_badge(event, email):
+@app.route('/view/<event>/<email>')
+def view_badge(event, email):
     data = app.db.get(event, {}).get(email)
     if not data:
         return "not found", 404
     image = generate_badge(data)
+    return serve_image(image)
+
+
+@app.route('/print/<event>/<email>')
+def print_badge(event, email):
+    data = app.db.get(event, {}).get(email)
+    if not data:
+        return "not found", 404
+    image = generate_badge(data)
+    execute_badge_print(image)
     return serve_image(image)
 
 @app.route('/submit', methods=['POST'])
@@ -243,6 +272,7 @@ def submit():
         'linkedin': request.form.get('linkedin')
     }
     image = generate_badge(data)
+    execute_badge_print(image)
     return serve_image(image)
 
 if __name__ == '__main__':
