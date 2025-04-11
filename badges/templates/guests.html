@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Badger</title>
+</head>
+<body>
+
+    <h1>{{ event.event.name }}</h1>
+    <h3>{{ event.event.start_at }}</h3>
+    <h3><a href="{{ event.event.url }}" target="_blank">{{ event.event.url }}</a></h3>
+    <ul>
+        {% for guest in db.values() %}
+        <li>
+            {{ guest.name }}
+            <a href="/{{ event }}/{{ guest.email }}">print</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Ad-hoc</h2>
+    
+    <form action="/submit" method="POST">
+
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="company">Company:</label><br>
+        <input type="text" id="company" name="company" required><br><br>
+
+        <label for="linkedin">LinkedIn URL:</label><br>
+        <input type="url" id="linkedin" name="linkedin"><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

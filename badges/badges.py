@@ -1,5 +1,5 @@
 from PIL import Image, ImageDraw, ImageFont
-from flask import Flask, Response
+from flask import Flask, Response, render_template, request, session, redirect, url_for
 import wifi_qrcode_generator.generator
 import qrcode
 import csv
@@ -95,11 +95,17 @@ def extract_linkedin(data):
             linkedin = "https://www.linkedin.com/in/" + linkedin
     return linkedin
 
+def generate_all_badges(db, output_path="./badges"):
+    print(f">> Generating badges from database")
+    for data in db.values():
+        output_filename = f"{output_path}/{data['name'].replace(' ', '_').lower()}.png"
+        badge = generate_badge(data)
+        badge.save(output_filename)
+    print(f"Generated {len(db)} badges")
 
-def generate_all_badges(csv_path, output_path="./badges"):
-    print(f">> Generating badges from {csv_path}")
-    counter = 0
-    db = {}
+def read_guests_csv(csv_path):
+    print(f">> Reading csv from {csv_path}")
+    output = {}
     with open(csv_path, 'r') as file:
         reader = csv.DictReader(file)
         for row in reader:
@@ -112,54 +118,69 @@ def generate_all_badges(csv_path, output_path="./badges"):
                 "company": row["Company"],
                 "linkedin": extract_linkedin(row),
             }
-            db[data["email"]] = data
+            output[data["email"]] = data
             if DEBUG:
                 print(data)
-            output_filename = f"{output_path}/{row['name'].replace(' ', '_').lower()}.png"
-            bg = generate_badge(data)
-            bg.save(output_filename)
-            counter += 1
-    print(f"Generated {counter} badges")
-    return db
+    print(f"Read {len(output)} attendees")
+    return output
 
-def download_all_guests(api_key, event_id):
-    print(f">> Downloading all guests for event {event_id}")
+def luma_get_all(path, api_key):
+    print(f">> Downloading all for {path}")
     next_cursor = None
     headers = {
         "accept": "application/json",
         "x-luma-api-key": api_key,
     }
-    db = {}
+    output = []
     while True:
-        url = f"https://api.lu.ma/public/v1/event/get-guests?event_api_id={event_id}&approval_status=approved"
+        url = f"https://api.lu.ma/{path}"
         if next_cursor:
             url += f"&pagination_cursor={next_cursor}"
         response = requests.get(url, headers=headers).json()
         for row in response["entries"]:
-            row = row["guest"] # blah
-            transpose = {
-                entry["label"]: entry["answer"]
-                for entry in row["registration_answers"]
-            }
-            data = {
-                "name": caps(row["name"]),
-                "email": row["email"],
-                "title": transpose["Job Title"],
-                "company": transpose["Company"],
-                "linkedin": extract_linkedin(transpose),
-            }
-            db[data["email"]] = data
+            output.append(row)
             if DEBUG:
-                print(data)
-        print(f"Downloaded {len(db)} users from {url}")
+                print(row)
+        print(f"Downloaded {len(output)} items from {url}")
         next_cursor = response.get("next_cursor")
         if not next_cursor:
             break
     print(f"Done downloading guests")
+    return output
+
+def download_all_guests(event_id, api_key):
+    print(f">> Downloading all guests for event {event_id}")
+    db = {}
+    path = f"public/v1/event/get-guests?event_api_id={event_id}&approval_status=approved"
+    rows = luma_get_all(path, api_key)
+    for row in rows:
+        row = row["guest"] # blah
+        transpose = {
+            entry["label"]: entry["answer"]
+            for entry in row["registration_answers"]
+        }
+        data = {
+            "name": caps(row["name"]),
+            "email": row["email"],
+            "title": transpose["Job Title"],
+            "company": transpose["Company"],
+            "linkedin": extract_linkedin(transpose),
+        }
+        db[data["email"]] = data
+        if DEBUG:
+            print(data)
     return db
 
+def download_all_events(api_key):
+    print(f">> Downloading all events")
+    db = {}
+    path = f"public/v1/calendar/list-events?sort_direction=desc&sort_column=start_at"
+    rows = luma_get_all(path, api_key)
+    return rows
+
 app = Flask(__name__)
-db = {}
+app.secret_key = "badgerbadgerbadgermushroommushroom"
+app.db = dict()
 
 def serve_image(image):
     img_io = io.BytesIO()
@@ -167,30 +188,60 @@ def serve_image(image):
     img_io.seek(0)
     return Response(img_io.read(), mimetype='image/png')
 
-@app.route('/<email>')
-def make_badge(email):
-    data = db.get(email)
-    if not data and API_KEY and EVENT_ID:
-        db.update(download_all_guests(API_KEY, EVENT_ID))
-    data = db.get(email)
+@app.route('/')
+def index():
+    key = session.get("key")
+    if key:
+        events = download_all_events(key)
+        app.db["__events"] = {
+            event.get("api_id") : event
+            for event in events
+        }
+        return render_template('events.html', events=events)
+    else:
+        return render_template('login.html')
+
+@app.route('/luma', methods=['POST'])
+def luma_check():
+    key = request.form.get('key')
+    print(key)
+    events = download_all_events(key)
+    session["key"] = key
+    return render_template('events.html', events=events)
+
+@app.route('/logout')
+def logout():
+    session["key"] = None
+    return redirect("/")
+
+@app.route('/event/<event>')
+def list_event(event):
+    key = session.get("key")
+    if key:
+        event_data = app.db["__events"].get(event)
+        app.db[event] = download_all_guests(event, key)
+        return render_template('guests.html', db=app.db[event], event=event_data, event_id=event)
+    return redirect("/")
+
+@app.route('/<event>/<email>')
+def make_badge(event, email):
+    data = app.db.get(event, {}).get(email)
     if not data:
         return "not found", 404
     image = generate_badge(data)
     return serve_image(image)
 
-@app.route('/refresh/<email>')
-def dwmake_badge(email):
-    db.update(download_all_guests(API_KEY, EVENT_ID))
-    data = db.get(email)
-    if not data:
-        return "not found", 404
+@app.route('/submit', methods=['POST'])
+def submit():
+    data = {
+        'name': request.form.get('name'),
+        'email': request.form.get('email'),
+        'title': request.form.get('title'),
+        'company': request.form.get('company'),
+        'linkedin': request.form.get('linkedin')
+    }
     image = generate_badge(data)
     return serve_image(image)
-
 
 if __name__ == '__main__':
-    if CSV_LIST and os.path.exists(CSV_LIST):
-        db = generate_all_badges(CSV_LIST)
-    if API_KEY and EVENT_ID: 
-        db.update(download_all_guests(API_KEY, EVENT_ID))
     app.run(host=HOST, port=int(PORT))
