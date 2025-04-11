@@ -10,7 +10,7 @@ import requests
 
 HOST = os.getenv("HOST", "0.0.0.0")
 PORT = os.getenv("PORT", "8080")
-FONT = os.getenv("FONT", "Monaco.ttf")
+FONT = os.getenv("FONT", "Monaco")
 CSV_LIST = os.getenv("CSV_LIST", "attendees.csv")
 API_KEY = os.getenv("API_KEY")
 EVENT_ID = os.getenv("EVENT_ID")
