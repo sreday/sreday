@@ -12,7 +12,7 @@
         {% for guest in db.values() %}
         <li>
             {{ guest.name }}
-            <a href="/{{ event }}/{{ guest.email }}">print</a>
+            <a href="/{{ event_id }}/{{ guest.email }}">print</a>
         </li>
         {% endfor %}
     </ul>
