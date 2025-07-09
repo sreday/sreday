@@ -156,4 +156,63 @@ Using a hands-on example, I’ll share how I teamed up with my 8-year-old daught
 Along the way, I’ll explain key observability concepts like metrics, monitoring, and dashboards, and break down technical jargon with gardening analogies that make it easier to grasp.
 
 This session requires no prior experience, just curiosity and a love of learning. By the end, you’ll see how observing your systems (or your plants!) through data can be both empowering and fun, and how Grafana makes it easy to bring data to life visually.",,"Marie Cruz is a Software Tester with over 10 years of experience and currently works as a Senior Developer Advocate for Grafana Labs. She is also the co-author of Contract Testing in Action, the first book dedicated solely to contract testing, and an international speaker. She has previously worked as an engineering manager responsible for driving continuous testing and quality improvements, and as a principal engineer, she focused on introducing recommended practices for testing and test automation frameworks."
-,confirmed,Michael Cote,1,1,Tanzu,Michael Cote.png,https://www.linkedin.com/in/michaelcote/,,@cote,,Platform Engineering and AI - Two Buzzwords Finally Meet!,"Two Buzzwords Finally Meet! How should we manage AI in large organizations? What are the ""services"" developers need to add AI to enterprise apps, and what role do platform engineers take? Where do data scientists fit in? How does MCP, A2A, and whatever the latest AI API is fit in? There are so many questions because the field of managing AI in enterprises barely exists. We need to figure it out quickly however, before we see a repeat of a past patterns, like shadow AI and unmanageable apps in production. Based on real-world examples, this talk will go over what we currently know about using platform engineering to help developers use AI.",,"[Michael Cote](https://cote.io/) studies how large organizations get better at building software to run better and grow their business. His [books](https://cote.io/books/) [_Changing Mindsets_](https://www.oreilly.com/library/view/changing-mindsets-the/9781098105839/?utm_source=cote&utm_campaign=devrel&utm_content=bioblock), [_Monolithic Transformation_](https://tanzu.vmware.com/content/ebooks/monolithic-transformation?utm_source=cote&utm_campaign=devrel&utm_content=bioblock), and [_The Business Bottleneck_](https://content.pivotal.io/ebooks/the-business-bottleneck?utm_source=cote&utm_campaign=devrel&utm_content=bioblock)_ cover these topics. He's been an industry analyst at RedMonk and 451 Research, done corporate strategy and M&A, and was a programmer. He also co-hosts several podcasts, including [Software Defined Talk](https://www.softwaredefinedtalk.com/). His daily-ish newsletter is at [newsletter.cote.io](https://newsletter.cote.io/)."
+,confirmed,Michael Cote,1,1,Tanzu,Michael Cote.png,https://www.linkedin.com/in/michaelcote/,,cote,,Platform Engineering and AI - Two Buzzwords Finally Meet!,"Two Buzzwords Finally Meet! How should we manage AI in large organizations? What are the ""services"" developers need to add AI to enterprise apps, and what role do platform engineers take? Where do data scientists fit in? How does MCP, A2A, and whatever the latest AI API is fit in? There are so many questions because the field of managing AI in enterprises barely exists. We need to figure it out quickly however, before we see a repeat of a past patterns, like shadow AI and unmanageable apps in production. Based on real-world examples, this talk will go over what we currently know about using platform engineering to help developers use AI.",,"[Michael Cote](https://cote.io/) studies how large organizations get better at building software to run better and grow their business. His [books](https://cote.io/books/) [_Changing Mindsets_](https://www.oreilly.com/library/view/changing-mindsets-the/9781098105839/?utm_source=cote&utm_campaign=devrel&utm_content=bioblock), [_Monolithic Transformation_](https://tanzu.vmware.com/content/ebooks/monolithic-transformation?utm_source=cote&utm_campaign=devrel&utm_content=bioblock), and [_The Business Bottleneck_](https://content.pivotal.io/ebooks/the-business-bottleneck?utm_source=cote&utm_campaign=devrel&utm_content=bioblock)_ cover these topics. He's been an industry analyst at RedMonk and 451 Research, done corporate strategy and M&A, and was a programmer. He also co-hosts several podcasts, including [Software Defined Talk](https://www.softwaredefinedtalk.com/). His daily-ish newsletter is at [newsletter.cote.io](https://newsletter.cote.io/)."
+,confirmed,Stratos Kourtzanidis,1,1,Microsoft,Stratos Kourtzanidis.png,https://www.linkedin.com/in/skourtzanidis/,,,,Making AI Accountable: Evaluators in Action with Azure AI Foundry,"As AI systems scale in complexity and impact, observability becomes essential—not just for performance monitoring, but for ensuring quality, safety, and trust. In Azure AI Foundry, evaluators are the backbone of this observability layer, enabling continuous, automated assessments across the AI lifecycle.
+
+This session provides a deep technical dive into the evaluator framework in Azure AI Foundry, covering:
+
+🔍 Evaluator Categories and Use Cases
+
+RAG Evaluators (Retrieval-Augmented Generation) Retrieval: Measures relevance of retrieved documents. Groundedness / Groundedness Pro: Assesses factual alignment with context. Relevance & Completeness: Evaluates how well the response answers the query and covers all necessary information.
+
+Agent Evaluators Intent Resolution: Accuracy in understanding user intent. Task Adherence: Measures how well the agent completes assigned tasks. Tool Call Accuracy: Validates correct tool invocation and usage.
+
+General Purpose Evaluators Fluency: Natural language quality and readability. Coherence: Logical consistency and flow. QA: Comprehensive quality checks for question-answering tasks.
+
+📊 Operational Observability Real-time metrics: latency, token usage, error rates. Visualizing evaluator outputs in the Foundry Observability Dashboard. Connecting evaluations to traces for root cause analysis.
+
+By the end of this session, attendees will understand how to design, implement, and scale evaluator-driven observability in AI Foundry to build robust, transparent, and production-grade AI systems.",,Senior Azure Cloud & AI Consultant at Microsoft
+,confirmed,Stuart Clark,1,1,Spotify,Stuart Clark.png,https://www.linkedin.com/in/stuarteclark/,,bigevilbeard,,Scale or Fail as Spotify's Growth Exposed the Abstraction Paradox,"When Spotify scaled from millions to hundreds of millions of users, we discovered that our carefully crafted abstractions—designed to simplify our systems—had become our biggest operational liability. New engineers could ship features but couldn't debug failures. Our beautiful, clean interfaces masked the very complexity that seasoned engineers needed to understand during critical incidents.
+
+This talk chronicles how internal fragmentation during hyper-growth exposed a fundamental paradox in software engineering: the tension between helpful abstraction and dangerous oversimplification. Through real examples from Spotify's infrastructure evolution, you'll discover why traditional approaches to hiding complexity often backfire at scale.
+
+---
+
+### What You'll Learn
+
+- **The Abstraction Trap**  
+  How well-intentioned design decisions can create cognitive bottlenecks during incidents
+
+- **Graduated Disclosure**  
+  A practical framework for building abstractions that reveal complexity progressively
+
+- **The Teaching Principle**  
+  Why the best abstractions educate rather than obscure
+
+- **Scaling Operational Knowledge**  
+  Concrete strategies for maintaining system understanding as teams grow
+
+---
+
+### Who Should Attend
+
+This session is valuable for:
+
+- Software engineers
+- Platform teams
+- Site Reliability Engineers (SREs)
+- Engineering leaders
+
+Especially those who struggle with:
+
+- Onboarding engineers to complex systems  
+- Maintaining operational excellence during rapid growth  
+- Balancing developer productivity with system transparency  
+- Building abstractions that enhance rather than hinder incident response
+
+---
+
+### Key Takeaways
+
+You'll leave with actionable insights for designing systems and tooling that scale both technically and cognitively—ensuring your abstractions become force multipliers rather than barriers to understanding.
+",,"Stuart is a sought-after speaker, TEDx presenter, and champion for sustainable software. He's passionate about the impact of software and AI on the climate and empowers developers to build a more sustainable future. As a leading expert in programmability and DevOps, he frequently graces industry stages worldwide, sharing his knowledge and inspiring others. He lives in Lincoln, England, with his wife, Natalie, and their son, Maddox. He plays guitar and rocks an impressive two-foot beard while drinking coffee."
