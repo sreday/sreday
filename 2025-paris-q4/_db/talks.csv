@@ -1,5 +1,4 @@
 YouTube,status,name,track,day,organization,photo,linkedin,linkedin2,twitter,twitter2,title,abstract,description,bio
-,keynote,Miko Pawlikowski,1,1,SRE Author,Miko Pawlikowski.png,https://www.linkedin.com/in/mikolajpawlikowski/,,@mikopawlikowski,,Keynote: The Evolution of Ops,Let's explore how the Ops landscape has evolved in recent years and examine key trends shaping its future.,,
 ,keynote,Matthieu Blumberg,1,1,Criteo,Matthieu Blumberg.png,https://www.linkedin.com/in/matthieublumberg/,,,,Keynote: TBC,Coming soon...,,"Matthieu Blumberg is Senior Vice President of Engineering at Criteo, where he leads Infrastructure, Security, and Internal IT initiatives to drive business transformation and empower teams with a world-class digital workplace. With over 14 years at Criteo and a strong background in engineering leadership and cybersecurity, Matthieu plays a key role in scaling technology platforms and ensuring the integrity and efficiency of global operations.
 "
 ,keynote,Poone Mokari,1,1,Ewake.ai,Poone Mokari.png,https://www.linkedin.com/in/pmokari/,,,,Keynote: Listen to Production the Way It Deserves,"Production today is messy. There’s noise, complexity, and a constant stream of change. And while we’ve come a long way with observability, it still leans heavily on human foresight. Logs, metrics, alerts, they’re all things we had to think of ahead of time. But when we don’t? That’s where blind spots are born.
@@ -92,3 +91,30 @@ For example, model training is more efficient with a managed service that automa
 
 We’ll cover all parts of the ML process, including development, hypertuning, deployment for inference, experiments, model management, monitoring, performance, and operating the entire pipeline.",,"Joshua Fox has 20 years experience as a software architect in software product companies, and now advises tech companies on their gnarliest cloud challenges as a senior cloud architect at DoiT International. See more at [joshuafox.com/publications](joshuafox.com/publications)"
 ,confirmed,Emmanuel Guérin,1,1,Criteo,Emmanuel Guérin.png,https://www.linkedin.com/in/emmanuelguerin/,,,,Dependencies galore: Behind the scenes of large-scale multi-repository CI,"Setting up continuous integration is now a common practice in the industry. However, there are still only few effective solutions for doing so across hundreds of repositories encompassing thousands of projects. How do we manage dependencies between projects? How do we assess the quality of each one? How do we automate the validation of a project's clients even before merging a pull request? In this session, we’ll quickly revisit the fundamentals of the problem. Then, we’ll share Criteo's own journey on this topic, along with the pros and cons of the different approaches we explored.",,"Emmanuel Guérin is a Staff Site Reliability Engineer at Criteo. Over the past 25 years, he has been a strong advocate for automation, working with a number of small French startups. Frustrated by the lack of progress as an individual contributor, he continued to champion better practices wherever he could. At Criteo, he has helped scale the primary build system used by the R&D organization. He now focuses on the company’s main scheduler for data jobs."
+,confirmed,Laurent Godet,1,1,Happening,Laurent Godet.png,https://www.linkedin.com/in/lgodet/,,,,Orchestrating the Edge: A Hybrid Kubernetes Journey,"This session explores how Happening completely revamped their edge Kubernetes infrastructure by implementing EKS Hybrid to centrally manage all their on-premise clusters across different markets. Faced with regulatory requirements to store data locally at the edge while maintaining operational efficiency, we designed a sophisticated hybrid architecture with a centralized AWS control plane to manage edge data planes. We'll dive deep into our technical implementation including our mixed-mode CNI setup with VPC-CNI and Cilium, multi-pool IPAM to handle cross-cloud networking, and how we leverage Kyverno policies to ensure workload placement across markets. Learn how we established seamless connectivity between AWS and on-premise environments through Wireguard VPN tunnels, coupled with BGP routing policies to efficiently route edge workloads. By centralizing management of geographically distributed Kubernetes clusters, we've reduced our on-premise management burden by 40%, resulting in substantial cost savings and dramatically decreased the team operational toil. Cluster upgrades which we were always tedious is now done in just a few hours across all environments simultaneously, significantly improving our maintenance windows and capacity management.",,"Laurent Godet is a seasoned Site Reliability Engineer with nearly a decade of experience building and scaling cloud-native infrastructure for high-growth companies. Currently at Happening, he focuses on reliability, automation, and scalable systems design.
+
+Previously, Laurent led SRE initiatives at LiveRamp, where he managed the company’s largest Kubernetes cluster on GKE, introduced GitOps best practices, and built the award-winning Tenant Factory service that reduced onboarding time from a full day to just one hour.
+
+His career spans pivotal DevOps and SRE roles at Earnd (Greensill), iov42, and Babylon Health, where he drove cloud migrations, built high-availability platforms, and implemented modern observability and CI/CD pipelines. Laurent’s expertise lies in Kubernetes, AWS, serverless architectures, and data-intensive systems, always with a focus on reliability, scalability, and developer productivity."
+,confirmed,Bence Csati,1,1,Axoflow,Bence Csati.png,https://www.linkedin.com/in/csatib02/,,,,Telemetry as Code: Declarative Observability with OpenTelemetry,"This talk introduces telemetry as code**: bringing the same declarative principles that transformed infrastructure to your observability stack.  
+
+Using **OpenTelemetry Collector Custom Resources** and the **Telemetry Controller**, we'll demonstrate how to eliminate configuration drift, enable true multi-tenancy, and make observability as reliable and repeatable as your deployments.  
+
+---
+
+**What You'll Learn**  
+
+**Transform Your Telemetry Pipeline**  
+- Replace brittle YAML with declarative Kubernetes CRDs that abstract complexity while maintaining flexibility  
+- Build tenant-aware routing that scales from single teams to enterprise-wide deployments  
+
+**Master Production Patterns**  
+- Design secure, multi-tenant Prometheus integration using Remote Write protocols  
+- Leverage automated configuration validation and testing strategies that catch issues before production  
+- Navigate the hidden complexities of cross-namespace telemetry routing and security  
+
+**Avoid Costly Mistakes**  
+- Learn battle-tested approaches for managing collector configurations across diverse environments  
+",,"Passionate Software Engineer who loves building reliable systems and actively engages with the cloud-native community to advance Kubernetes security and observability. Maintainer of multiple CNCF sandbox projects, including Bank-Vaults, which is a project dedicated to simplifying the complex world of secret management. The Logging operator, which solves logging-related problems in Kubernetes environments.
+
+Currently, working on the Logging operator and the new Telemetry controller at Axoflow."
