@@ -36,3 +36,16 @@ After describing the basics, Jose will also share an example he built to monitor
 His expertise has been built from previous gigs as a Software Architect, Tech Lead and Product Owner in the Telecommunications industry, all the way from the software programming trenches where agile ways of working where a sound CI, testing and observability best practices have presented themselves as the main principles that drive every successful project.
 
 With a scientific background in Physics and a PhD in Computational Materials Engineering, curiosity, openness and a pragmatic view are always expected. Beyond the boardroom, he is a C++ enthusiast and a creative force: contributing symphonic touches as a keyboardist in metal bands, when he is not playing video games or lowering lap times at the simracing cockpit. He also loves to spend time teaching Physics to Vet students in the Complutense University of Madrid, as an Associate Professor."
+,confirmed,Ricard Bejarano,1,1,Cisco,Ricard Bejarano.png,https://www.linkedin.com/in/ricardbejarano/,,,,Speeding up Terraform caching with OverlayFS,"The Terraform plugin cache, unfortunately, does not support concurrent Terraform inits. This is a massive efficiency and performance loss for those who use Terraform at a big enough scale, since we're left with the following choices: - (A) Disable caching, and download gigabytes of providers off the Terraform Registry on every single init. - (B) Serialize all terraform init runs so they can safely share the cache, reducing the Terraform pipeline's throughput (and infuriating developers, been there, done that).
+
+We didn't like our options here, so we got creative.
+
+One day, everything clicked: OverlayFS!
+
+OverlayFS is a Linux filesystem which combines the contents of multiple read-only directories and one writable layer on top, into a single volume, effectively implementing a sort of read-through cache within your filesystem. If you've ever used a live linux distribution, this is what those use. Containers use OverlayFS. CoreOS used OverlayFS to provide ephemeral /etc directories.
+
+You rarely see such a low-level tool this high up the stack, so what is doing here?
+
+We tweaked our workflow so that our plugin cache is mounted once per init using OverlayFS, which makes the centralized cache read-only (and thus, concurrent-safe) and gives Terraform a writable overlay where it can write whatever providers were missing. We then added a final, non-blocking step to feed back those new providers to the central cache (in a serial fashion using filesystem locking), effectively implementing a write-back cache.
+
+After testing it on the lab, we promoted it to our production pipeline. After a couple rounds of plans to fill up the cache, we saw stunning results. Plan times dropped by -61%. Our concurrent plan capacity 10x'd because we were no longer saturating both the network (pulling) and the disk (writing providers). And after all, we didn't add much complexity to the setup anyway. We're using long-standing, reliable, kernel tech (overlayfs and flock) to address a shortcoming of a higher level tool like Terraform.",,"Ricard is a Lead Site Reliability Engineer at Cisco ThousandEyes' SRE team. Ricard is responsible for the Terraform pipeline of 600+ developers, managing over 110k cloud resources."
