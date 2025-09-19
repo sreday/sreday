@@ -100,7 +100,13 @@
     <ul class="schedule-nav nav nav-pills nav-fill" id="myTab" role="tablist">
 {% for track in tracks[(tracks|length)//days*(day):(tracks|length)//days*(day+1)] %}
       <li class="nav-item me-2">
-        <a class="nav-link {% if loop.index==1 %}active{% endif %}" id="tab-{{ day }}-{{ loop.index }}" data-bs-toggle="tab" href="#tab-{{ day }}-{{ loop.index }}-content" role="tab" aria-controls="tab-{{ loop.index }}-content"
+        <a
+          id="tab-{{ day }}-{{ loop.index }}"
+          role="tab"
+          data-bs-toggle="tab"
+          class="nav-link {% if loop.index==1 %}active{% endif %}"
+          href="#tab-{{ day }}-{{ loop.index }}-content"
+          aria-controls="tab-{{ loop.index }}-content"
           aria-selected={% if loop.index==1 %}"true"{% else %}"false"{% endif %}
         >
           <span class="heading">{{ rooms[loop.index0] }}</span>
