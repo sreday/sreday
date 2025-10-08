@@ -1,0 +1,66 @@
+# TODO - change these
+
+# start time includes timezone at the end relative to UTC
+start_time: "2025-09-18T10:00:00+00:00"
+# before - no schedule
+# active - schedule
+# after  - hide ticket sales
+event_state: after
+date_string: "September 18-19, 2025"
+location_string: "London, UK"
+# get this from the event url
+luma_evt: evt-pZLPeEgj0FjAN86
+cfp_url: https://www.papercall.io/sreday-2025-london-q3
+
+# the number of tracks needs to be the same per day
+# the tracks will be taken in the order they appear in the CSV file
+days: 2
+attendees: 200
+speakers: 50+
+
+rooms:
+- screen 1
+- screen 2
+- screen 3
+
+breaks:
+- title: Coffee break
+  duration: 30
+  comment: Main lobby
+  # this decides how many talks in-between this and previous section
+  talks_before: 0
+- title: Lunch & networking
+  duration: 60
+  comment: Main lobby
+  talks_before: 3
+- title: Happy Hour by Imply - grab a beer!
+  duration: 30
+  comment: Main lobby
+  talks_before: 5
+
+sponsors:
+  - logo: cast_ai.png
+    url: https://cast.ai/
+  - logo: imply.png
+    url: https://imply.io/
+  - logo: komodor.png
+    url: https://komodor.com/
+  - logo: shipfox.png
+    url: https://www.shipfox.io/
+  - logo: hockeystick.png
+    url: https://www.hockeystick.show
+
+# these get displayed at the top
+hero_pictures:
+- ../photos/london-2023-0.jpg
+- ../photos/london-2023-1.jpg
+- ../photos/london-2023-2.jpg
+- ../photos/london-2023-3.jpg
+
+# probably don't need changing
+base_path: "https://www.sreday.com/"
+base_folder: "static"
+twitter_url: https://twitter.com/sreday_com
+linkedin_url: https://www.linkedin.com/company/sreday/
+youtube_url: https://www.youtube.com/@sreday
+mailto: "mailto:mark@sreday.com"
