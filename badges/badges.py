@@ -158,14 +158,14 @@ def download_all_guests(event_id, api_key):
     for row in rows:
         row = row["guest"] # blah
         transpose = {
-            entry["label"]: entry["answer"]
+            entry["label"].lower(): entry["answer"].lower()
             for entry in row["registration_answers"]
         }
         data = {
             "name": caps(row["name"]),
             "email": row["email"],
-            "title": transpose["Job Title"],
-            "company": transpose["Company"],
+            "title": transpose["job title"],
+            "company": transpose["company"],
             "linkedin": extract_linkedin(transpose),
         }
         db[data["email"]] = data
