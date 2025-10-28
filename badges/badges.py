@@ -89,6 +89,7 @@ def extract_linkedin(data):
         linkedin = ""
     else:
         for prefix in [
+            "https://www.linkedin.com/",
             "https://",
         ]:
             if not linkedin.startswith(prefix):
