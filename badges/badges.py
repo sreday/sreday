@@ -158,7 +158,7 @@ def download_all_guests(event_id, api_key):
     for row in rows:
         row = row["guest"] # blah
         transpose = {
-            entry["label"].lower(): entry["answer"].lower()
+            entry["label"].lower(): entry["answer"]
             for entry in row["registration_answers"]
         }
         data = {
