@@ -163,12 +163,20 @@ def download_all_guests(event_id, api_key):
             for entry in row["registration_answers"]
         }
         PLACEHOLDER = "403 not found"
+        flag = False
+        def default_and_flag(d, field):
+            v = d.get(field)
+            if not v:
+                flag = True
+                return PLACEHOLDER
+            return v
         data = {
-            "name": caps(row.get("name", PLACEHOLDER)),
-            "email": row.get("email", PLACEHOLDER),
-            "title": transpose.get("job title", PLACEHOLDER),
-            "company": transpose.get("company", PLACEHOLDER),
+            "name": caps(default_and_flag(row, "name")),
+            "email": default_and_flag(row, "email"),
+            "title": default_and_flag(transpose, "job title"),
+            "company": default_and_flag(transpose, "company"),
             "linkedin": extract_linkedin(transpose),
+            "flagged": flag,
         }
         db[data["email"]] = data
         if DEBUG:
