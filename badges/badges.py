@@ -162,11 +162,12 @@ def download_all_guests(event_id, api_key):
             entry["label"].lower(): entry["answer"]
             for entry in row["registration_answers"]
         }
+        PLACEHOLDER = "403 not found"
         data = {
-            "name": caps(row["name"]),
-            "email": row["email"],
-            "title": transpose["job title"],
-            "company": transpose["company"],
+            "name": caps(row.get("name", PLACEHOLDER)),
+            "email": row.get("email", PLACEHOLDER),
+            "title": transpose.get("job title", PLACEHOLDER),
+            "company": transpose.get("company", PLACEHOLDER),
             "linkedin": extract_linkedin(transpose),
         }
         db[data["email"]] = data
