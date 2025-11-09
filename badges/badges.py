@@ -293,7 +293,7 @@ def submit():
         'linkedin': request.form.get('linkedin')
     }
     image = generate_badge(data)
-    execute_badge_print(image)
+    execute_badge_print(image, path=f"./badges/adhoc-", name=data.get("name"))
     return serve_image(image)
 
 if __name__ == '__main__':
