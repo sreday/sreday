@@ -41,7 +41,7 @@ def find_font_size(text, font, image, target_width_ratio):
     estimated_font_size = tested_font_size / (observed_width / image.width) * target_width_ratio
     return round(estimated_font_size)
 
-def generate_badge(data, template_path="./template.png", font=FONT):
+def generate_badge(data, template_path="./template.png", font=FONT, native_linked_url=True):
     badge = Image.open(template_path)
     draw = ImageDraw.Draw(badge)
     width, height = badge.size
@@ -54,7 +54,10 @@ def generate_badge(data, template_path="./template.png", font=FONT):
         draw.text(pos, txt, font=ImageFont.truetype(font, min(maxsize, find_font_size(txt, font, badge, ratio))), fill="white")
     
     if data["linkedin"]:
-        qr = make_qrcode(data["linkedin"])
+        url = data["linkedin"]
+        if native_linked_url:
+            url = url.replace("https://www.linkedin.com/", "linkedin://")
+        qr = make_qrcode(url)
         qr_w, qr_h = qr.size
         badge.paste(qr.get_image(), (width - qr_w - 5, 5))
     
