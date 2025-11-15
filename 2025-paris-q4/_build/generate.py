@@ -124,8 +124,8 @@ for track in tracks_ordered:
         new_order.append(old_order[offset])
         offset += 1
     new_order.append(dict(
-        title="Wrap up",
-        comment="Scan each other's QR codes & head to a nearby pub!"
+        title="Happy Hour by Imply!",
+        comment="Grab a beer and network at the venue!"
     ))
     tracks[track] = new_order
 
