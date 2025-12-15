@@ -98,7 +98,7 @@
     
     <!-- Nav tabs -->
     <ul class="schedule-nav nav nav-pills nav-fill" id="myTab" role="tablist">
-
+{% if rooms|length > 1 %}
     <!-- Grid view -->
     <li class="nav-item me-2">
       <a
@@ -114,7 +114,7 @@
         <span class="meta">all tracks</span>
       </a>
     </li>
-
+{% endif %}
     <!-- Track view -->
 {% for track in tracks[(tracks|length)//days*(day):(tracks|length)//days*(day+1)] %}
       <li class="nav-item me-2">
@@ -122,10 +122,10 @@
           id="tab-{{ day }}-{{ loop.index }}"
           role="tab"
           data-bs-toggle="tab"
-          class="nav-link"
+          class="nav-link {% if rooms|length <= 1 and loop.index==1 %}active{% endif %}"
           href="#tab-{{ day }}-{{ loop.index }}-content"
           aria-controls="tab-{{ loop.index }}-content"
-          aria-selected={% if loop.index==1 %}"true"{% else %}"false"{% endif %}
+          aria-selected={% if rooms|length <= 1 and loop.index==1 %}"true"{% else %}"false"{% endif %}
         >
           <span class="heading">{{ rooms[loop.index0] }}</span>
           <span class="meta">{{ track }}</span>
@@ -186,23 +186,8 @@
           <div class="meta">
             <h4 class="time mb-3">{{ talk.start_time.strftime('%H:%M') }}</h4>
             <div class="profile">
-              <a
-                href="#modal-speaker-{{ talk.id }}"
-                data-bs-toggle="modal"
-                data-bs-target="#modal-speaker-{{ talk.id }}"
-              >
-                <img class="profile-image rounded-circle mb-2" src="{{ talk.photo_url }}" alt="">
-              </a>
-              <div class="name">
-                <a
-                  href="#modal-speaker-{{ talk.id }}"
-                  class="theme-link"
-                  data-bs-toggle="modal"
-                  data-bs-target="#modal-speaker-{{ talk.id }}"
-                >
-                  {{ talk.name }}
-                </a>
-              </div>
+              <a href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}"><img class="profile-image rounded-circle  mb-2" src="{{ talk.photo_url }}" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}">{{ talk.name }}</a></div>
             </div><!--//profile-->
           </div><!--//meta-->
           <div class="content">

@@ -188,7 +188,6 @@ for j, track in enumerate(tracks_ordered):
 
 context["talks_by_time"] = talks_by_time
 
-
 # remove placeholders
 for track in tracks:
     tracks[track] = [t for t in tracks[track] if not t.get("placeholder")]
