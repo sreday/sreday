@@ -110,12 +110,13 @@
 					<div id="navigation" class="navbar-collapse collapse  justify-content-lg-end me-lg-3">
 						<ul class="nav navbar-nav">
 							
-							<li class="nav-item"><a class="nav-link scrollto" href="#home">Home</a></li>                                              
-							<li class="nav-item"><a class="nav-link scrollto" href="#events">Upcoming events</a></li>
-							<li class="nav-item"><a class="nav-link scrollto" href="#past-events">Past events</a></li>
-							<li class="nav-item"><a class="nav-link scrollto" href="#testimonials">Testimonials</a></li>
-							<li class="nav-item"><a class="nav-link scrollto" href="#sponsor">Sponsor</a></li>
-							<li class="nav-item"><a class="nav-link scrollto" href="#partner">Partner</a></li>
+							<li class="nav-item"><a class="nav-link {{ 'scrollto' if page == 'index.html' else '' }}" href="{{ 'index.html' if page != 'index.html' else '' }}#home">Home</a></li>                                              
+							<li class="nav-item"><a class="nav-link {{ 'scrollto' if page == 'index.html' else '' }}" href="{{ 'index.html' if page != 'index.html' else '' }}#events">Upcoming events</a></li>
+							<li class="nav-item"><a class="nav-link {{ 'scrollto' if page == 'index.html' else '' }}" href="{{ 'index.html' if page != 'index.html' else '' }}#past-events">Past events</a></li>
+							<li class="nav-item"><a class="nav-link {{ 'scrollto' if page == 'index.html' else '' }}" href="{{ 'index.html' if page != 'index.html' else '' }}#testimonials">Testimonials</a></li>
+							<li class="nav-item"><a class="nav-link" href="ambassadors.html">Ambassadors</a></li>
+							<li class="nav-item"><a class="nav-link {{ 'scrollto' if page == 'index.html' else '' }}" href="{{ 'index.html' if page != 'index.html' else '' }}#sponsor">Sponsor</a></li>
+							<li class="nav-item"><a class="nav-link {{ 'scrollto' if page == 'index.html' else '' }}" href="{{ 'index.html' if page != 'index.html' else '' }}#partner">Partner</a></li>
 							<li class="nav-item"><a class="nav-link" target="_blank" href="./assets/tnc.pdf">Terms & Conditions</a></li>
 						</ul><!--//nav-->
 					</div><!--//navabr-collapse-->
