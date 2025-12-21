@@ -39,10 +39,11 @@ with open('metadata.yml') as f:
 
 # read the csv
 context["testimonials"] = read_csv("./_db/testimonials.csv")
+context["ambassadors"] = read_csv("./_db/ambassadors.csv")
 
 # MAIN PAGES
 print(DIVIDER)
-pages = ["index.html"]
+pages = ["index.html", "ambassadors.html"]
 print(f"Generating main pages: {pages}")
 for page in pages:
     with open(BASE_FOLDER + "/" + page, "w") as f:
