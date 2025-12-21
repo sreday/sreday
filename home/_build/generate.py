@@ -22,7 +22,7 @@ def read_csv(path):
 
 
 DIVIDER = "#"*80
-SITEMAP_URLS = []   
+SITEMAP_URLS = []
 
 # init the jinja stuff
 file_loader = FileSystemLoader("_templates")
@@ -43,7 +43,7 @@ context["ambassadors"] = read_csv("./_db/ambassadors.csv")
 
 # MAIN PAGES
 print(DIVIDER)
-pages = ["index.html", "ambassadors.html"]
+pages = ["index.html"]
 print(f"Generating main pages: {pages}")
 for page in pages:
     with open(BASE_FOLDER + "/" + page, "w") as f:
