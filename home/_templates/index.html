@@ -80,7 +80,12 @@
                                  style="width: 150px; height: 150px; object-fit: cover;"
                                  alt="{{ ambassador.Name }}">
                         </div>
-                        <h4 class="card-title mb-1">{{ ambassador.Name }}</h4>
+                        <h4 class="card-title mb-1">
+                            {{ ambassador.Name }}
+                            {% if ambassador.Linkedin %}
+                            <a target="_blank" href="{{ ambassador.Linkedin }}" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            {% endif %}
+                        </h4>
                         <div class="text-muted mb-3">
                             <div class="fw-bold">{{ ambassador.Job }}</div>
                             {% if ambassador.Company %}
@@ -101,13 +106,6 @@
                             {% endif %}
                         </div>
                     </div>
-                    {% if ambassador.Twitter %}
-                    <div class="card-footer bg-white border-0 text-center pb-3">
-                        <ul class="social-list list-inline mb-0">
-                            <li class="list-inline-item"><a target="_blank" href="https://twitter.com/{{ ambassador.Twitter }}" class="text-primary"><i class="fab fa-twitter fa-fw"></i></a></li>
-                        </ul>
-                    </div>
-                    {% endif %}
                 </div>
             </div>
             {% endfor %}
