@@ -14,6 +14,7 @@ static/20%/index.html: 20%/static/index.html
 	@echo ">>>" $@
 	cp -r 20$*/static/ static/20$*
 	cp 20$*/metadata.yml static/20$*
+	cp 20$*/_db/talks.csv static/20$*
 
 static/index.html: home/**/*
 	cd home && \
