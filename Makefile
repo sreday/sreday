@@ -19,7 +19,7 @@ static/index.html: home/**/*
 	cd home && \
 		make clean && \
 		make generate && \
-		cp -r static/* ../static
+		cp -r static/* ../static && \
 		cp metadata.yml ../static
 	cp -r photos ./static
 	cp -r speakers ./static
