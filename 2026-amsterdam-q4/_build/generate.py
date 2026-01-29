@@ -124,8 +124,8 @@ for track in tracks_ordered:
         new_order.append(old_order[offset])
         offset += 1
     new_order.append(dict(
-        title="Happy Hour and Snacks by Imply!",
-        comment="Grab a beer and network with your new friends, open until 9PM!"
+        title="Wrap up",
+        comment="Scan each other's QR codes & head to a nearby pub!"
     ))
     tracks[track] = new_order
 
@@ -151,6 +151,42 @@ for track in tracks:
         talk["duration"] = int(talk.get("duration") or DEFAULT_TALK_DURATION)
         talk["start_time"] = current_time
         current_time += timedelta(minutes=talk["duration"])
+
+# sort for the grid view
+talks_by_time = []
+slots_map = []
+for day in range(context.get("days")):
+    talks_by_time.append([])
+    slots_map.append(dict())
+
+# prepare all slots for all days
+for i, track in enumerate(tracks_ordered):
+    current_day = (i // len(context.get("rooms")))
+    for talk in tracks[track]:
+        current_time = talk.get("start_time")
+        if slots_map[current_day].get(current_time):
+            continue
+        slot = dict(
+            start_time=current_time,
+            talks=[],
+            is_break=(talk.get("name") == None),
+        )
+        slots_map[current_day][current_time] = slot
+        talks_by_time[current_day].append(slot)
+
+# put talks in slots in tracks
+for j, track in enumerate(tracks_ordered):
+    for talk in tracks[track]:
+        if talk.get("placeholder"):
+            continue
+        current_day = (j // len(context.get("rooms")))
+        slot = slots_map[current_day].get(talk.get("start_time"))
+        if slot.get("is_break"):
+            slot["talks"] = [talk]
+        else:
+            slot["talks"].append(talk)
+
+context["talks_by_time"] = talks_by_time
 
 # remove placeholders
 for track in tracks:
@@ -186,4 +222,4 @@ print("Generating sitemap.xml with %d items" % len(SITEMAP_URLS))
 now = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=datetime.timezone.utc).isoformat()
 with open(BASE_FOLDER + "/sitemap.xml", "w") as f:
     template = env.get_template("sitemap.xml")
-    f.write(template.render(urls=SITEMAP_URLS, now=now))
+    f.write(template.render(urls=SITEMAP_URLS, now=now, **context))
