@@ -179,6 +179,8 @@
 				<div class="hero-cta mt-5">
 					<a class="btn btn-secondary btn-lg" href="#tickets">Get Tickets</a>
 					
+					<a class="btn btn-primary btn-lg" href="https://www.cfp.ninja/sreday-2026-cologne-q2" target="_blank">CFP</a>
+					
 			    </div>
 			</div><!--//hero-text-block-->
 		</div><!--//container-->
@@ -202,7 +204,7 @@
 				</div><!--//col-->
 				<div class="col-6 col-md-3">
 					<div class="item">
-						<div class="number">1</div>
+						<div class="number">0</div>
 						<div class="unit">Tracks</div>
 					</div><!--//item-->
 				</div><!--//col-->
@@ -222,22 +224,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">Speeding up Terraform caching with OverlayFS</h1>
+    <h1 class="section-heading text-center mb-3">Keynote: 7 Deadly Traps of SRE</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4">
         <div class="card rounded-0">
-          <img src="../speakers/Ricard Bejarano.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Miko Pawlikowski.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Ricard Bejarano</h5>
+            <h5 class="card-title mb-2">Miko Pawlikowski</h5>
             <div class="card-text mb-3">
-              <div class="meta">Cisco</div>
+              <div class="meta">SRE Author</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
-              
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/ricardbejarano/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://twitter.com/@mikopawlikowski"><i class="fab fa-twitter fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/mikolajpawlikowski/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -250,19 +252,15 @@
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
-                <p><p>The Terraform plugin cache, unfortunately, does not support concurrent Terraform inits. This is a massive efficiency and performance loss for those who use Terraform at a big enough scale, since we're left with the following choices: - (A) Disable caching, and download gigabytes of providers off the Terraform Registry on every single init. - (B) Serialize all terraform init runs so they can safely share the cache, reducing the Terraform pipeline's throughput (and infuriating developers, been there, done that).</p>
-<p>We didn't like our options here, so we got creative.</p>
-<p>One day, everything clicked: OverlayFS!</p>
-<p>OverlayFS is a Linux filesystem which combines the contents of multiple read-only directories and one writable layer on top, into a single volume, effectively implementing a sort of read-through cache within your filesystem. If you've ever used a live linux distribution, this is what those use. Containers use OverlayFS. CoreOS used OverlayFS to provide ephemeral /etc directories.</p>
-<p>You rarely see such a low-level tool this high up the stack, so what is doing here?</p>
-<p>We tweaked our workflow so that our plugin cache is mounted once per init using OverlayFS, which makes the centralized cache read-only (and thus, concurrent-safe) and gives Terraform a writable overlay where it can write whatever providers were missing. We then added a final, non-blocking step to feed back those new providers to the central cache (in a serial fashion using filesystem locking), effectively implementing a write-back cache.</p>
-<p>After testing it on the lab, we promoted it to our production pipeline. After a couple rounds of plans to fill up the cache, we saw stunning results. Plan times dropped by -61%. Our concurrent plan capacity 10x'd because we were no longer saturating both the network (pulling) and the disk (writing providers). And after all, we didn't add much complexity to the setup anyway. We're using long-standing, reliable, kernel tech (overlayfs and flock) to address a shortcoming of a higher level tool like Terraform.</p></p>
+                <p><p>Site Reliability Engineering was never meant to be about firefighting, yet too many teams find themselves stuck in an endless cycle of pages, postmortems, and quick fixes. Why? Because SRE is full of hidden traps — patterns that look like best practices on the surface but slowly erode reliability, burn out engineers, and stall progress.</p>
+<p>In this talk, we’ll expose the 7 Deadly Traps of SRE, from the obsession with chasing “five nines,” to the cult of on-call heroism, to the false comfort of tooling and checklists. For each trap, we’ll unpack why it’s so seductive, how it quietly sabotages your team, and what to do instead.</p>
+<p>You’ll walk away with a clearer lens on the pitfalls holding SRE organizations back, and a practical playbook to help your team escape firefighting mode and reclaim the true purpose of SRE: building systems - and cultures - that are resilient, scalable, and human-friendly.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
-                <p><p>Ricard is a Lead Site Reliability Engineer at Cisco ThousandEyes' SRE team. Ricard is responsible for the Terraform pipeline of 600+ developers, managing over 110k cloud resources.</p></p>
+                <p><p>Miko Pawlikowski is an SRE Author and a platform engineer at Quadrature. He has led large-scale infrastructure and SRE initiatives at Citadel and Bloomberg, with deep expertise in Kubernetes, cloud computing, and chaos engineering. Passionate about building resilient systems and communities, he brings together engineers worldwide through conferences and media projects.</p></p>
               </div>
 
           </div><!--//card-->
