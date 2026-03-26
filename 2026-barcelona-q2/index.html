@@ -348,7 +348,7 @@
 
       <div class="col-6 col-lg-3 mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Andreas Grabner.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Andreas Grabner.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Andreas Grabner</h5>
             <div class="card-text mb-3">
@@ -394,7 +394,7 @@
 
       <div class="col-6 col-lg-3 mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Daniel Afonso.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Daniel Afonso.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Daniel Afonso</h5>
             <div class="card-text mb-3">
@@ -417,7 +417,7 @@
 
       <div class="col-6 col-lg-3 mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/David Jacovkis.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/David Jacovkis.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">David Jacovkis</h5>
             <div class="card-text mb-3">
@@ -440,7 +440,7 @@
 
       <div class="col-6 col-lg-3 mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Heather Thacker & Daniel Coll Leal.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Heather Thacker & Daniel Coll Leal.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Heather Thacker & Daniel Coll Leal</h5>
             <div class="card-text mb-3">
@@ -521,6 +521,29 @@
             <ul class="social-list list-inline mb-0">
               
               <li class="list-inline-item"><a  href="https://www.linkedin.com/in/ricardbejarano"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Wellyson Freitas.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Wellyson Freitas</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Revolut</div>
+            </div><!--//card-text-->
+            <a href="./Wellyson_Freitas_Revolut_Reliable_Systems_Beyond_Your_Control">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/wellyfrs/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -690,6 +713,48 @@
           <div class="modal-header">
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
               <h4 id="speaker-4-ModalLabel" class="modal-title sr-only"
+>Wellyson Freitas</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Wellyson Freitas.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Wellyson Freitas</h2>
+                          <div class="meta mb-2">Revolut</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/wellyfrs/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Reliability engineering often assumes that systems can be observed, debugged, and modified when things go wrong. In practice, many systems depend on components that sit outside a team's control: vendor systems, regulatory integrations, third-party APIs, and internal platforms owned by other teams. In these environments, some standard practices become harder to apply. Observability may be limited, testing environments may be incomplete or unavailable, and incident resolution can involve external teams or vendor support. In certain cases, critical pipelines rely on batch processes that run for hours, while other integrations directly impact user-facing flows, making failures harder to isolate and recover from. This talk explores how dependencies outside a team's control shape architecture, observability, and incident response. Drawing from experience operating compliance and regulatory systems in large-scale fintech environments, it focuses on the practical constraints these systems introduce. The session presents a mental model for reasoning about these dependencies and discusses patterns that proved useful in real scenarios, such as isolating fragile integrations, monitoring system outcomes instead of internals, and handling incidents that cross organizational boundaries. The goal is to provide a realistic view of reliability in systems that extend beyond a single team's control, relevant not only to SREs but also to engineers and roles working with external or cross-team dependencies.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Software Engineer focused on distributed systems and reliability, with experience operating large-scale fintech platforms at companies such as Revolut and N26. Worked on compliance and regulatory integrations, including high-volume data pipelines, event-driven systems, and reliability-critical workflows under strict operational and regulatory constraints. Experience includes designing systems that depend on external vendors, third-party APIs, and internal platforms outside the team's direct control. Interested in reliability engineering, system design, and the practical challenges of operating complex systems across organizational and technical boundaries.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 5 -->
+<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-5-ModalLabel" class="modal-title sr-only"
 >Andreas Grabner</h4>
           </div>
           <div class="modal-body p-0">
@@ -731,13 +796,13 @@ In his spare time you can most likely find him on one of the salsa dancefloors o
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 5 -->
-<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 6 -->
+<div class="modal modal-speaker modal-speaker-6" id="modal-speaker-6" tabindex="-1" role="dialog" aria-labelledby="speaker-6-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 id="speaker-5-ModalLabel" class="modal-title sr-only"
+              <h4 id="speaker-6-ModalLabel" class="modal-title sr-only"
 >Daniel Afonso</h4>
           </div>
           <div class="modal-body p-0">
@@ -773,13 +838,13 @@ In his spare time you can most likely find him on one of the salsa dancefloors o
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 6 -->
-<div class="modal modal-speaker modal-speaker-6" id="modal-speaker-6" tabindex="-1" role="dialog" aria-labelledby="speaker-6-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 7 -->
+<div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 id="speaker-6-ModalLabel" class="modal-title sr-only"
+              <h4 id="speaker-7-ModalLabel" class="modal-title sr-only"
 >Heather Thacker & Daniel Coll Leal</h4>
           </div>
           <div class="modal-body p-0">
@@ -816,13 +881,13 @@ In his spare time you can most likely find him on one of the salsa dancefloors o
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 7 -->
-<div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 8 -->
+<div class="modal modal-speaker modal-speaker-8" id="modal-speaker-8" tabindex="-1" role="dialog" aria-labelledby="speaker-8-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 id="speaker-7-ModalLabel" class="modal-title sr-only"
+              <h4 id="speaker-8-ModalLabel" class="modal-title sr-only"
 >David Jacovkis</h4>
           </div>
           <div class="modal-body p-0">
