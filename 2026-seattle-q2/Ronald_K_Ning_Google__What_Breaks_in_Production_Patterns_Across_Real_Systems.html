@@ -209,22 +209,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">Watch It Heal Itself: Live Incident Automation with Confidence-Gated AI</h1>
+    <h1 class="section-heading text-center mb-3">What Breaks in Production: Patterns Across Real Systems</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4">
         <div class="card rounded-0">
-          <img src="../speakers/Andrew Espira.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Ronald K. Ning.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Andrew Espira</h5>
+            <h5 class="card-title mb-2">Ronald K. Ning</h5>
             <div class="card-text mb-3">
-              <div class="meta">Kustode</div>
+              <div class="meta">Google </div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/andrew-espira/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/loudest/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -237,13 +237,13 @@
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
-                <p><p>Most talks about AI in incident response show you architecture diagrams. This one shows you a production Kubernetes-native platform deciding — in real time — whether to fix the problem itself or wake a human. We built an incident automation platform that sits on top of your existing Prometheus/Grafana/Loki stack and automates the full incident lifecycle: alert ingestion, observability enrichment, runbook execution, and escalation — with a confidence-gated AI layer determining what gets auto-remediated and what gets a human in the loop. We'll fire three live incidents and watch what happens: <strong>Demo 1 — Ingest to auto-remediation (2 minutes)</strong> AlertManager fires a webhook. The platform fingerprints and deduplicates the alert, asynchronously pulls 5-minute error rate, p95 latency, and the last 15 minutes of Loki error logs — all within 5 seconds of the alert firing. Confidence: 91%. The runbook engine executes: Kubernetes restart, Slack notification with full enrichment snapshot, incident closed. No human touched it. <strong>Demo 2 — Enrichment reveals something worse (2 minutes)</strong> Same alert signature. But the Prometheus enrichment shows p95 latency at 4x baseline and the Loki logs surface an unfamiliar error pattern. Confidence drops to 58%. The platform does not guess. It pages the on-call engineer via PagerDuty with the full enrichment context, a ranked list of likely causes, and a pre-drafted Jira incident ticket — ready for a human decision in seconds, not minutes. <strong>Demo 3 — SENTINEL audits the agent's reasoning chain (3 minutes)</strong> We open SENTINEL, our AI reasoning observatory, and replay both decisions side by side. You'll see exactly where the model's certainty collapsed, which Prometheus signals it weighted, and what runbook step it would have taken if it had proceeded. This is observability for your incident responder, not just the systems it watches. The demos take under 10 minutes. The rest of the talk covers the architecture: fingerprint-based deduplication, async Celery enrichment pipelines that keep webhook response under 100ms, the policy engine that validates safety before any destructive runbook step, and why feature-flagging your ML classification layer is the decision that saved us at 2am. <strong>You'll leave with:</strong> - A concrete pattern for enrichment-first incident response on any Prometheus/Loki stack - The confidence-gating framework that separates auto-remediation from escalation - An honest accounting of where the runbook engine still needs a human — and why that's fine No slides that could have been an email. Just a system doing its job — and one moment where it knows it can't.</p></p>
+                <p><p>Un-Chaos Engineering - Patterns to Handle Production Issues and making support, on-call, or life easier when your the one tasked to deal with things on fire</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
-                <p><p>Andrew Espira is a Founding Engineer at Kustode. Over 8+ years he has built distributed systems on Kubernetes and AWS, designed observability stacks with Prometheus, Grafana, and OpenTelemetry, and established SLO frameworks that reduced MTTR by 60%. He works primarily in Python and Go. Speaker at Google NY SRE Tech Talks, Data Streaming Summit, and KCD NYC.</p></p>
+                <p><p>As a Technical Solutions Engineer and Gemini SME at Google Cloud, Ronald K. Ning acts as a digital therapist for customers tangled up in Kubernetes, AI Hypercompute, and Serverless tech. Previously, he was a Software Engineer for Microsoft Azure, where he worked on IcM, the internal incident paging system famously responsible for waking up on-call engineers at 3:00 AM. Long before Big Tech, Ronald was an African startup founder where he built Travel apps and Agrotech across 20+ countries—proving he can debug infrastructure whether it’s in a server rack or on a literal farm</p></p>
               </div>
 
           </div><!--//card-->
