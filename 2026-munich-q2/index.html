@@ -348,7 +348,7 @@
 
       <div class="col-6 col-lg-3 mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Arnaud Jean.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Arnaud Jean.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Arnaud Jean</h5>
             <div class="card-text mb-3">
@@ -417,13 +417,13 @@
 
       <div class="col-6 col-lg-3 mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Marcel Koert.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Marcel Koert.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Marcel Koert</h5>
             <div class="card-text mb-3">
               <div class="meta">MeloMar IT</div>
             </div><!--//card-text-->
-            <a href="./Marcel_Koert_MeloMar_IT_Its_not_the_tools__it_is_us">Read more &rarr;</a>
+            <a href="./Marcel_Koert_MeloMar_IT_Its_not_the_tools_it_is_us">Read more &rarr;</a>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -463,7 +463,7 @@
 
       <div class="col-6 col-lg-3 mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Renato Losio.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Renato Losio.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Renato Losio</h5>
             <div class="card-text mb-3">
@@ -475,6 +475,29 @@
             <ul class="social-list list-inline mb-0">
               
               <li class="list-inline-item"><a  href="https://www.linkedin.com/in/rlosio/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Vasil Kulakov.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Vasil Kulakov</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Team Lead, SRE</div>
+            </div><!--//card-text-->
+            <a href="./Vasil_Kulakov_Team_Lead_SRE_One_Bot__One_Pod__One_Problem_at_a_Time">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/vasiliy-kulakov/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -559,6 +582,50 @@
           <div class="modal-header">
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
               <h4 id="speaker-3-ModalLabel" class="modal-title sr-only"
+>Vasil Kulakov</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Vasil Kulakov.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Vasil Kulakov</h2>
+                          <div class="meta mb-2">Team Lead, SRE</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/vasiliy-kulakov/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Running a Telegram bot as a single pod is easy. Scaling it to multiple replicas is where things get interesting.
+This talk follows the real evolution of a production bot for a language-learning platform. Each step was driven by a concrete problem: polling breaks when two instances race for the same update, so you switch to webhooks and introduce an ingress. In-memory sessions disappear between replicas, so Redis shows up. Reminder workers block the webhook handler, so they become separate binaries running as CronJobs. You add a second language pair and suddenly the same Helm chart needs to deploy two isolated bots — and a subtle bug surfaces where one bot answers for the other.
+We'll also cover how LLM calls made cost invisible (and how a small in-cluster usage-tracking service fixed that), plus encrypted secrets in git with SOPS across a multi-chart monorepo.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Vasil Kulakov is a Staff Engineer in Site Reliability Engineering with a strong focus on building and scaling production infrastructure. Currently at snappyloop.work, he has helped establish the backbone for an AI-driven language learning platform, supporting rapid user growth. Previously, he led SRE teams at CHECK24, combining hands-on engineering with leadership across high-performance systems. His work spans Go, PHP, and modern cloud-native tooling, with a practical, execution-first approach to reliability and scale.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 4 -->
+<div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-4-ModalLabel" class="modal-title sr-only"
 >Marcel Koert</h4>
           </div>
           <div class="modal-body p-0">
@@ -594,13 +661,13 @@
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 4 -->
-<div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 5 -->
+<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 id="speaker-4-ModalLabel" class="modal-title sr-only"
+              <h4 id="speaker-5-ModalLabel" class="modal-title sr-only"
 >Arnaud Jean</h4>
           </div>
           <div class="modal-body p-0">
@@ -623,29 +690,29 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
-                <p><p>Come discover how to code a Game Master that will orchestrate multiple AI agents, each specialized in a particular task.</p>
-<p>We'll explore concepts like agent tools, the MCP (Model Context Protocol), A2A (Agent to Agent), and RAG (Retrieval-augmented generation) to create agents and/or MCP servers that roll dice, verify DnD rules, and generate the story as it unfolds.</p>
-<p>Whether you're a role-playing game fan or not, there will be things to learn during this workshop :)</p></p>
+                <p><p>Come discover how to code a Game Master that will orchestrate multiple AI agents, each specialized in a particular task.
+We'll explore concepts like agent tools, the MCP (Model Context Protocol), A2A (Agent to Agent), and RAG (Retrieval-augmented generation) to create agents and/or MCP servers that roll dice, verify DnD rules, and generate the story as it unfolds.
+Whether you're a role-playing game fan or not, there will be things to learn during this workshop :)</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
-                <p><p>Helping Devs build cool stuff, learn faster, and laugh along the way — one bug at a time.</p>
-<p>𝘈𝘭𝘭 𝘷𝘪𝘦𝘸𝘴 𝘦𝘹𝘱𝘳𝘦𝘴𝘴𝘦𝘥 𝘢𝘳𝘦 𝘮𝘺 𝘰𝘸𝘯.</p></p>
+                <p><p>Helping Devs build cool stuff, learn faster, and laugh along the way — one bug at a time.
+𝘈𝘭𝘭 𝘷𝘪𝘦𝘸𝘴 𝘦𝘹𝘱𝘳𝘦𝘴𝘴𝘦𝘥 𝘢𝘳𝘦 𝘮𝘺 𝘰𝘸𝘯.</p></p>
               </div>
           </div><!--//modal-body-->
       </div><!--//modal-content-->
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 5 -->
-<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 6 -->
+<div class="modal modal-speaker modal-speaker-6" id="modal-speaker-6" tabindex="-1" role="dialog" aria-labelledby="speaker-6-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 id="speaker-5-ModalLabel" class="modal-title sr-only"
+              <h4 id="speaker-6-ModalLabel" class="modal-title sr-only"
 >Renato Losio</h4>
           </div>
           <div class="modal-body p-0">
@@ -674,7 +741,7 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
-                <p><p>Renato has extensive experience as a cloud architect, tech lead, and cloud services specialist. He lives in Berlin and works remotely as a principal cloud architect. His primary areas of interest include cloud services and relational databases. He is an editor at InfoQ and a recognized AWS Data Hero. </p></p>
+                <p><p>Renato has extensive experience as a cloud architect, tech lead, and cloud services specialist. He lives in Berlin and works remotely as a principal cloud architect. His primary areas of interest include cloud services and relational databases. He is an editor at InfoQ and a recognized AWS Data Hero.</p></p>
               </div>
           </div><!--//modal-body-->
       </div><!--//modal-content-->
@@ -752,9 +819,9 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
-                <p><p>Site Reliability Engineering was never meant to be about firefighting, yet too many teams find themselves stuck in an endless cycle of pages, postmortems, and quick fixes. Why? Because SRE is full of hidden traps — patterns that look like best practices on the surface but slowly erode reliability, burn out engineers, and stall progress.</p>
-<p>In this talk, we’ll expose the 7 Deadly Traps of SRE, from the obsession with chasing “five nines,” to the cult of on-call heroism, to the false comfort of tooling and checklists. For each trap, we’ll unpack why it’s so seductive, how it quietly sabotages your team, and what to do instead.</p>
-<p>You’ll walk away with a clearer lens on the pitfalls holding SRE organizations back, and a practical playbook to help your team escape firefighting mode and reclaim the true purpose of SRE: building systems - and cultures - that are resilient, scalable, and human-friendly.</p></p>
+                <p><p>Site Reliability Engineering was never meant to be about firefighting, yet too many teams find themselves stuck in an endless cycle of pages, postmortems, and quick fixes. Why? Because SRE is full of hidden traps — patterns that look like best practices on the surface but slowly erode reliability, burn out engineers, and stall progress.
+In this talk, we’ll expose the 7 Deadly Traps of SRE, from the obsession with chasing “five nines,” to the cult of on-call heroism, to the false comfort of tooling and checklists. For each trap, we’ll unpack why it’s so seductive, how it quietly sabotages your team, and what to do instead.
+You’ll walk away with a clearer lens on the pitfalls holding SRE organizations back, and a practical playbook to help your team escape firefighting mode and reclaim the true purpose of SRE: building systems - and cultures - that are resilient, scalable, and human-friendly.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
