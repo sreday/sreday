@@ -289,19 +289,16 @@
     
     <div class="row pricing mb-5 mt-10">
       <div class="col-12 text-center">
-        <div class="ratio ratio-16x9">
-  <iframe
-    class=""
-    src="https://lu.ma/embed/event/evt-dHQ8lpmHntEBkXv/simple"
-    width="800"
-    height="690"
-    frameborder="0"
-    style="border: 1px solid #bfcbda88; border-radius: 4px;"
-    allowfullscreen=""
-    aria-hidden="false"
-    tabindex="0"
-  ></iframe>
-</div>
+        <iframe
+  id="luma-tickets-iframe"
+  src="https://lu.ma/embed/event/evt-dHQ8lpmHntEBkXv/simple"
+  width="100%"
+  frameborder="0"
+  style="border: 1px solid #bfcbda88; border-radius: 4px; display: block; min-height: 200px;"
+  allowfullscreen=""
+  aria-hidden="false"
+  tabindex="0"
+></iframe>
 
 <a
   href="https://lu.ma/event/evt-dHQ8lpmHntEBkXv"
@@ -312,7 +309,39 @@
   Register on luma
 </a>
 
-<script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script> 
+<script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
+<script>
+  (function() {
+    var params = window.location.search;
+    var iframe = document.getElementById('luma-tickets-iframe');
+
+    // Append query params to iframe src
+    if (iframe && params) {
+      var src = iframe.getAttribute('src');
+      var sep = src.indexOf('?') > -1 ? '&' : '?';
+      iframe.setAttribute('src', src + sep + params.substring(1));
+    }
+
+    // Append query params to button
+    if (params) {
+      var btn = document.querySelector('.luma-checkout--button');
+      if (btn) {
+        var href = btn.getAttribute('href');
+        var sep = href.indexOf('?') > -1 ? '&' : '?';
+        btn.setAttribute('href', href + sep + params.substring(1));
+      }
+    }
+
+    // Auto-resize iframe via Luma postMessage
+    window.addEventListener('message', function(e) {
+      if (e.origin !== 'https://lu.ma') return;
+      var d = e.data;
+      if (d && typeof d.height === 'number') {
+        iframe.style.height = d.height + 'px';
+      }
+    });
+  })();
+</script> 
       </div>
     </div>
     

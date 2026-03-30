@@ -289,28 +289,59 @@
     
     <div class="row pricing mb-5 mt-10">
       <div class="col-12 text-center">
-        <div id="eventbrite-widget-container-815159422777"></div>
+        <iframe
+  id="luma-tickets-iframe"
+  src="https://lu.ma/embed/event//simple"
+  width="100%"
+  frameborder="0"
+  style="border: 1px solid #bfcbda88; border-radius: 4px; display: block; min-height: 200px;"
+  allowfullscreen=""
+  aria-hidden="false"
+  tabindex="0"
+></iframe>
 
-<script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
+<a
+  href="https://lu.ma/event/"
+  class="luma-checkout--button"
+  data-luma-action="checkout"
+  data-luma-event-id=""
+>
+  Register on luma
+</a>
 
-<script type="text/javascript">
-    var exampleCallback = function() {
-        console.log('Order complete!');
-    };
+<script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
+<script>
+  (function() {
+    var params = window.location.search;
+    var iframe = document.getElementById('luma-tickets-iframe');
 
-    window.EBWidgets.createWidget({
-        // Required
-        widgetType: 'checkout',
-        eventId: '815159422777',
-        iframeContainerId: 'eventbrite-widget-container-815159422777',
+    // Append query params to iframe src
+    if (iframe && params) {
+      var src = iframe.getAttribute('src');
+      var sep = src.indexOf('?') > -1 ? '&' : '?';
+      iframe.setAttribute('src', src + sep + params.substring(1));
+    }
 
-        // Optional
-        iframeContainerHeight: 500,  // Widget height in pixels. Defaults to a minimum of 425px if not provided
-        onOrderComplete: exampleCallback  // Method called when an order has successfully completed
+    // Append query params to button
+    if (params) {
+      var btn = document.querySelector('.luma-checkout--button');
+      if (btn) {
+        var href = btn.getAttribute('href');
+        var sep = href.indexOf('?') > -1 ? '&' : '?';
+        btn.setAttribute('href', href + sep + params.substring(1));
+      }
+    }
+
+    // Auto-resize iframe via Luma postMessage
+    window.addEventListener('message', function(e) {
+      if (e.origin !== 'https://lu.ma') return;
+      var d = e.data;
+      if (d && typeof d.height === 'number') {
+        iframe.style.height = d.height + 'px';
+      }
     });
-</script>
-
-<a class="btn btn-primary" href="https://www.eventbrite.com/e/sreday-amsterdam-2024-tickets-815159422777" target="_blank">Get Tickets on Eventbrite</a> 
+  })();
+</script> 
       </div>
     </div>
     
