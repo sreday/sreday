@@ -2817,15 +2817,19 @@ function toggleNote(id) {
     </div>
     
     <div class="text-center mt-3">
-      <a href="javascript:void(0);" id="show-more-testimonials" class="btn btn-outline-secondary" onclick="showMoreTestimonials()">Show 19 more</a>
+      <a href="javascript:void(0);" id="show-more-testimonials" class="btn btn-brand-primary" onclick="showMoreTestimonials()">Show 19 more</a>
     </div>
     
   </div>
 </section>
-<style>.testimonial-extra { display: none; }</style>
+<style>
+.testimonial-extra { display: none; }
+.btn-brand-primary { background: #713660; color: #fff; border: none; }
+.btn-brand-primary:hover, .btn-brand-primary:focus { background: #8a4175; color: #fff; }
+</style>
 <script>
 function showMoreTestimonials() {
-  document.querySelectorAll('.testimonial-extra').forEach(function(el) { el.style.display = ''; });
+  document.querySelectorAll('.testimonial-extra').forEach(function(el) { el.classList.remove('testimonial-extra'); });
   document.getElementById('show-more-testimonials').style.display = 'none';
 }
 </script>
