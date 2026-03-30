@@ -1749,7 +1749,7 @@ function toggleNote(id) {
 
       
 
-      <div class="col-12 col-lg-6 mb-4">
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
         <div class="card rounded">
           <a href="./2025-amsterdam-q2/">
             <img src="./assets/images/events/sreday-2025-amsterdam-q2.png" class="card-img-top rounded-top" alt="">
@@ -1768,7 +1768,7 @@ function toggleNote(id) {
 
       
 
-      <div class="col-12 col-lg-6 mb-4">
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
         <div class="card rounded">
           <a href="./2025-cologne-q2/">
             <img src="./assets/images/events/sreday-2025-cologne-q2.jpeg" class="card-img-top rounded-top" alt="">
@@ -1787,7 +1787,7 @@ function toggleNote(id) {
 
       
 
-      <div class="col-12 col-lg-6 mb-4">
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
         <div class="card rounded">
           <a href="./2025-san-francisco-q2/">
             <img src="./assets/images/events/sreday-2025-sanfrancisco-q2.jpeg" class="card-img-top rounded-top" alt="">
@@ -1806,7 +1806,7 @@ function toggleNote(id) {
 
       
 
-      <div class="col-12 col-lg-6 mb-4">
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
         <div class="card rounded">
           <a href="./2025-redmond-q2/">
             <img src="./assets/images/events/sreday-2025-redmond-q2.jpeg" class="card-img-top rounded-top" alt="">
@@ -1825,7 +1825,7 @@ function toggleNote(id) {
 
       
 
-      <div class="col-12 col-lg-6 mb-4">
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
         <div class="card rounded">
           <a href="./2025-london-q1/">
             <img src="./assets/images/events/sreday-2025-london-q1.jpeg" class="card-img-top rounded-top" alt="">
@@ -1844,7 +1844,7 @@ function toggleNote(id) {
 
       
 
-      <div class="col-12 col-lg-6 mb-4">
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
         <div class="card rounded">
           <a href="./2025-nyc-q1/">
             <img src="./assets/images/events/sreday-2025-nyc-q1.jpeg" class="card-img-top rounded-top" alt="">
@@ -1863,7 +1863,7 @@ function toggleNote(id) {
 
       
 
-      <div class="col-12 col-lg-6 mb-4">
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
         <div class="card rounded">
           <a href="./2024-amsterdam/">
             <img src="./assets/images/events/sreday-2024-amsterdam.jpeg" class="card-img-top rounded-top" alt="">
@@ -1882,7 +1882,7 @@ function toggleNote(id) {
 
       
 
-      <div class="col-12 col-lg-6 mb-4">
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
         <div class="card rounded">
           <a href="./2024-san-francisco-q4/">
             <img src="./assets/images/events/sreday-2024-sanfrancisco-q4.jpeg" class="card-img-top rounded-top" alt="">
@@ -1901,7 +1901,7 @@ function toggleNote(id) {
 
       
 
-      <div class="col-12 col-lg-6 mb-4">
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
         <div class="card rounded">
           <a href="./2024-london/">
             <img src="./assets/images/events/sreday-2024-london.jpeg" class="card-img-top rounded-top" alt="">
@@ -1920,7 +1920,7 @@ function toggleNote(id) {
 
       
 
-      <div class="col-12 col-lg-6 mb-4">
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
         <div class="card rounded">
           <a href="./2024-san-francisco/">
             <img src="./assets/images/events/sreday-2024-sanfrancisco.jpeg" class="card-img-top rounded-top" alt="">
@@ -1939,7 +1939,7 @@ function toggleNote(id) {
 
       
 
-      <div class="col-12 col-lg-6 mb-4">
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
         <div class="card rounded">
           <a href="./2023-london/">
             <img src="./assets/images/events/sreday-2023-london.jpeg" class="card-img-top rounded-top" alt="">
@@ -1958,7 +1958,7 @@ function toggleNote(id) {
 
       
 
-      <div class="col-12 col-lg-6 mb-4">
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
         <div class="card rounded">
           <a href="./2022-london/">
             <img src="./assets/images/events/sreday-2022-london.jpeg" class="card-img-top rounded-top" alt="">
@@ -1977,6 +1977,11 @@ function toggleNote(id) {
 
       
     </div>
+    
+    <div class="text-center mt-2 mb-4">
+      <a href="javascript:void(0);" id="show-more-past-conf" class="btn btn-past-more" onclick="showMorePastConf()">Show 12 more</a>
+    </div>
+    
     
     
     <h3 class="section-heading text-center mb-3 text-white">Past meetups</h3>
@@ -2048,8 +2053,24 @@ function toggleNote(id) {
       
     </div>
     
+    
   </div>
 </section>
+<style>
+.past-conf-extra, .past-meetup-extra { display: none; }
+.btn-past-more { color: #fff; background: transparent; border: 2px solid #713660; }
+.btn-past-more:hover, .btn-past-more:focus { background: #713660; color: #fff; }
+</style>
+<script>
+function showMorePastConf() {
+  document.querySelectorAll('.past-conf-extra').forEach(function(el) { el.classList.remove('past-conf-extra'); });
+  document.getElementById('show-more-past-conf').style.display = 'none';
+}
+function showMorePastMeetup() {
+  document.querySelectorAll('.past-meetup-extra').forEach(function(el) { el.classList.remove('past-meetup-extra'); });
+  document.getElementById('show-more-past-meetup').style.display = 'none';
+}
+</script>
 
 
 
