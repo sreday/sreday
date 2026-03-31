@@ -277,7 +277,17 @@ for _s in _past_sponsors_raw:
 
 _talk_count = len(talks) + len(keynotes)
 _past_editions = len(_same_city)
+# Read size from home/metadata.yml (single source of truth), fall back to event metadata
 _event_size = context.get('event_size', 'medium')
+_home_meta_path = '../home/metadata.yml'
+if _os.path.exists(_home_meta_path):
+    with open(_home_meta_path, encoding='utf-8') as _hf:
+        _home_meta = yaml.load(_hf, Loader=yaml.FullLoader)
+    for _he in (_home_meta.get('events') or []):
+        _he_url = _he.get('url', '').strip('./').rstrip('/')
+        if _he_url == _current_folder:
+            _event_size = _he.get('size', _event_size)
+            break
 _sponsorship_tiers = _sponsorship_config.get('tiers', [])
 _additional_options = _sponsorship_config.get('additional_options', [])
 
