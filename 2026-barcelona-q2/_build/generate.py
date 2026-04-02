@@ -124,8 +124,8 @@ for track in tracks_ordered:
         new_order.append(old_order[offset])
         offset += 1
     new_order.append(dict(
-        title="Happy Hour by Imply!",
-        comment="Grab a beer and network at the venue!"
+        title="Wrap up",
+        comment="Scan each other's QR codes & head to a nearby pub!"
     ))
     tracks[track] = new_order
 
@@ -188,4 +188,4 @@ print("Generating sitemap.xml with %d items" % len(SITEMAP_URLS))
 now = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=datetime.timezone.utc).isoformat()
 with open(BASE_FOLDER + "/sitemap.xml", "w", encoding="utf-8") as f:
     template = env.get_template("sitemap.xml")
-    f.write(template.render(urls=SITEMAP_URLS, now=now))
+    f.write(template.render(urls=SITEMAP_URLS, now=now, **context))
