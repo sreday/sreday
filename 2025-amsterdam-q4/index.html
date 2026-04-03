@@ -1,0 +1,2399 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+	<title>SREday - ING Cedar, Amsterdam, Netherlands, November 7, 2025</title>
+	
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="SREday conference">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+	<link rel="manifest" href="./assets/site.webmanifest">
+	
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:600,700,800|Roboto:300,400,700&display=swap" rel="stylesheet">
+	
+	<!-- FontAwesome JS-->
+	<script defer src="assets/fontawesome/js/all.min.js"></script>
+
+	<!-- Theme CSS -->  
+	<link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
+
+    <meta name="image" property="og:image" content="https://sreday.com/photos/sreday-amsterdam-2024-0.jpeg">
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="SREday - ING Cedar, Amsterdam, Netherlands - November 7, 2025"/>
+    <meta property="og:description" content="Conference on Site Reliability Engineering, Cloud and DevOps. Probably the most awesome SRE conference in ING Cedar, Amsterdam, Netherlands!"/>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@sreday_com">
+	<meta name="twitter:creator" content="@sreday_com">
+    <meta name="twitter:title" content="SREday - ING Cedar, Amsterdam, Netherlands - November 7, 2025"/>
+    <meta name="twitter:description" content="Conference on Site Reliability Engineering, Cloud and DevOps. Probably the most awesome SRE conference in ING Cedar, Amsterdam, Netherlands!"/>
+    <meta name="twitter:image" content="https://sreday.com/photos/sreday-amsterdam-2024-0.jpeg">
+
+
+<!-- Twitter conversion tracking base code -->
+<script>
+	!function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+	},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',
+	a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+	twq('config','ofo1h');
+	</script>
+	<!-- End Twitter conversion tracking base code -->
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ2KV6LK8G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CQ2KV6LK8G');
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17496979257"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17496979257');
+</script>
+
+<style>
+	.tinted {
+		box-shadow: 0 3000px rgba(0, 0, 0, 0.5) inset;
+	}
+	.retro {
+		font-family: 'Monoton', sans-serif;
+	}
+	.logo {
+		font-size: 5rem;
+		color: white;
+		font-weight: 400;
+	}
+	.theme-bg-primary {
+		background: #713660;
+	}
+</style>
+	
+
+<body>    
+	<header id="header" class="header fixed-top">	    
+		<div class="branding">
+			<div class="container-fluid">
+				<nav class="main-nav navbar navbar-expand-lg">
+					<div class="site-logo"><a class="scrollto" href="#hero-block">
+                        <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
+                    </div>
+					
+					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					
+					<div id="navigation" class="navbar-collapse collapse  justify-content-lg-end me-lg-3">
+						<ul class="nav navbar-nav">
+							
+							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>                                              
+							<li class="nav-item"><a class="nav-link scrollto" href="#tickets">Tickets</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="#schedule">Schedule</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="#speakers">Speakers</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="#venue">Venue</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="#sponsors">Sponsors</a></li>
+						</ul><!--//nav-->
+					</div><!--//navabr-collapse-->
+
+				</nav><!--//main-nav-->
+				
+			</div><!--//container-->
+		</div><!--//branding-->
+	</header><!--//header-->
+	
+	<div id="home" class="hero-block">
+		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+			<div class="carousel-inner">
+				
+				<div class="carousel-item tinted active" style="background:url('../photos/sreday-amsterdam-2024-0.jpeg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-amsterdam-2024-1.jpeg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-amsterdam-2024-2.jpeg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-amsterdam-2024-3.jpeg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-amsterdam-2024-4.jpeg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-0.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-1.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-2.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-3.jpg') no-repeat center; background-size: cover;"></div>
+				
+			</div>
+
+			<div class="carousel-indicators">
+				
+				<button type="button" data-bs-target="#hero-carousel" class="active" data-bs-slide-to="0"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="1"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="2"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="3"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="4"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="5"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="6"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="7"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="8"></button>
+				
+			</div>
+		</div>
+		<div class="container">
+			<div class="hero-text-block text-center" style="max-width: 100%;">
+				<h1 class="logo retro"><img src="/assets/images/sreday_sticker.png" alt="SREday" style="height: 200px;"></h1>
+				<h2 class="text-white">Site Reliability, DevOps and Cloud</h2>
+				<h3 class="text-white"><i class="far fa-calendar-alt me-2"></i>November 7, 2025 <i class="fas fa-map-marker-alt mx-2"></i>ING Cedar, Amsterdam, Netherlands</h3>
+				<div class="hero-cta mt-5">
+					<a class="btn btn-secondary btn-lg" href="#tickets">Get Tickets</a>
+					
+			    </div>
+			</div><!--//hero-text-block-->
+		</div><!--//container-->
+
+	</div><!--//hero-block-->
+	
+	<div class="stats-block theme-bg-primary text-white py-4 text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">1</div>
+						<div class="unit">Day</div>
+					</div><!--//item-->
+				</div><!--//col-->
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">25+</div>
+						<div class="unit">Speakers</div>
+					</div><!--//item-->
+				</div><!--//col-->
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">2</div>
+						<div class="unit">Tracks</div>
+					</div><!--//item-->
+				</div><!--//col-->
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">200</div>
+						<div class="unit">Attendees</div>
+					</div><!--//item-->
+				</div><!--//col-->
+			</div>
+		</div><!--//container-->
+	</div><!--//stats-block-->
+
+
+<!-- CONTENT -->
+
+
+<section id="about" class="about-section section">
+
+  <div class="container">
+    <div class="event-countdown text-center mb-3">
+    
+      <h4 class="countdown-intro mb-2 text-center mb-3">Event finished</h4>
+    
+    </div>
+  </div>
+  <script>
+    /* ======= Countdown ========= */
+    // set the date we're counting down to
+    var target_date = new Date("2025-11-07T09:30:00+01:00").getTime();
+     
+    // variables for time units
+    var days, hours, minutes, seconds;
+     
+    // get tag element
+    var countdown =  document.getElementById("countdown-box");
+    var days_span = document.createElement("SPAN");
+    days_span.className = 'days';
+    countdown.appendChild(days_span);
+    var hours_span = document.createElement("SPAN");
+    hours_span.className = 'hours';
+    countdown.appendChild(hours_span);
+    var minutes_span = document.createElement("SPAN");
+    minutes_span.className = 'minutes';
+    countdown.appendChild(minutes_span);
+    var secs_span = document.createElement("SPAN");
+    secs_span.className = 'secs';
+    countdown.appendChild(secs_span);
+     
+    // update the tag with id "countdown" every 1 second
+    setInterval(function () {
+     
+        // find the amount of "seconds" between now and target
+        var current_date = new Date().getTime();
+        var seconds_left = (target_date - current_date) / 1000;
+     
+        // do some time calculations
+        days = parseInt(seconds_left / 86400);
+        seconds_left = seconds_left % 86400;
+         
+        hours = parseInt(seconds_left / 3600);
+        seconds_left = seconds_left % 3600;
+         
+        minutes = parseInt(seconds_left / 60);
+        seconds = parseInt(seconds_left % 60);
+         
+        // format countdown string + set tag value.
+        days_span.innerHTML = '<span class="number">' + days + '</span>' + '<span class="unit">Days</span>';
+        hours_span.innerHTML = '<span class="number">' + hours + '</span>' + '<span class="unit">Hrs</span>';
+        minutes_span.innerHTML = '<span class="number">' + minutes + '</span>' + '<span class="unit">Mins</span>';
+        secs_span.innerHTML = '<span class="number">' + seconds + '</span>' + '<span class="unit">Secs</span>'; 
+     
+    }, 1000);
+    </script>
+</section>
+
+<section id="tickets" class="tickets-section section">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Tickets</h3>
+
+    
+
+  </div>
+</section>
+
+
+<section id="schedule" class="schedule-section section theme-bg-light">
+  <div class="container">
+    <h2 class="section-heading text-center mb-5">Schedule</h2>
+
+
+
+    
+
+    
+    <!-- Nav tabs -->
+    <ul class="schedule-nav nav nav-pills nav-fill" id="myTab" role="tablist">
+
+      <li class="nav-item me-2">
+        <a class="nav-link active" id="tab-0-1" data-bs-toggle="tab" href="#tab-0-1-content" role="tab" aria-controls="tab-1-content"
+          aria-selected="true"
+        >
+          <span class="heading">main room</span>
+          <span class="meta">1</span>
+        </a>
+      </li>
+
+      <li class="nav-item me-2">
+        <a class="nav-link " id="tab-0-2" data-bs-toggle="tab" href="#tab-0-2-content" role="tab" aria-controls="tab-2-content"
+          aria-selected="false"
+        >
+          <span class="heading">UPSTAIRS room</span>
+          <span class="meta">2</span>
+        </a>
+      </li>
+
+    </ul>
+    
+    <!-- Tab panes -->
+    <div class="schedule-tab-content tab-content">
+
+
+      <div class="tab-pane active" id="tab-0-1-content" role="tabpanel" aria-labelledby="tab-0-1">
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">09:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle  mb-2" src="../speakers/Guido Smit.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Guido Smit</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: The accountability problem</a>
+            </h3>
+            <div class="location mb-3"></i>ING</div>
+            <div class="desc">When everyone owns reliability, does anyone truly feel accountable? Lets explore why extreme ownership is the cornerstone of resilient systems.<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">10:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle  mb-2" src="../speakers/Peter Marshall.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Peter Marshall</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Keynote: What Observability Can Learn From BI: Decoupling for Speed, Scale, and Flexibility</a>
+            </h3>
+            <div class="location mb-3"></i>Imply</div>
+            <div class="desc">Today’s observability platforms are often vertically integrated—binding data storage, query, and visualization layers into a single stack. This tight coupling drives up costs, makes integrations painful, and slows teams down. But it doesn’t have to be this way. In this talk, we’ll explore how SRE...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">10:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle  mb-2" src="../speakers/Tasmia Niazi, Ehsan Khodadadi, Roheel I & Bas van Alphen.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Tasmia Niazi, Ehsan Khodadadi, Roheel I & Bas van Alphen</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Panel Discussion</a>
+            </h3>
+            <div class="location mb-3"></i></div>
+            <div class="desc">Discover the reliability tech stack and practices behind top European institutions.<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">11:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
+            </h3>
+            <div class="location mb-3"></i>Main lobby</div>
+            <div class="desc"><br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">11:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle  mb-2" src="../speakers/Lukasz Groszkowski.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Lukasz Groszkowski</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">SRE at Scale: Keeping e‑Commerce Alive Across 20+ Countries</a>
+            </h3>
+            <div class="location mb-3"></i>Inter Cars</div>
+            <div class="desc">A deep dive into how we ensure reliability and availability in a complex distributed environment, with lessons learned from real-world incidents and rollouts.<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">12:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle  mb-2" src="../speakers/Diana Todea.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Diana Todea</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Cutting Through Metrics Cardinality Noise with VictoriaMetrics</a>
+            </h3>
+            <div class="location mb-3"></i>VictoriaMetrics</div>
+            <div class="desc">In high-scale environments, metrics cardinality isn’t just a resource concern, it’s an architectural challenge. Left unchecked, it can impact performance, query latency, and even system stability. This talk takes a deep technical dive into how VictoriaMetrics enables advanced observability...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">12:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle  mb-2" src="../speakers/Yishai Beeri.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Yishai Beeri</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Your AI Code Reviews Are Missing the Point (And How to Fix It)</a>
+            </h3>
+            <div class="location mb-3"></i>LinearB</div>
+            <div class="desc">Most AI code review implementations focus on the wrong metrics—counting comments generated or code accepted rather than measuring developer velocity and code quality improvements. The real value lies in intelligent context integration and organizational learning at scale. This talk examines...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">13:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
+            </h3>
+            <div class="location mb-3"></i>Main lobby</div>
+            <div class="desc"><br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">14:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle  mb-2" src="../speakers/Dale McDiarmid.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Dale McDiarmid</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">How We Built ClickStack - an open source, open telemetry native Observability stack</a>
+            </h3>
+            <div class="location mb-3"></i>ClickHouse</div>
+            <div class="desc">Modern observability is built on a flawed foundation: three siloed pillars - logs, metrics, and traces - each powered by different engines with separate query models, storage formats, and operational costs. Users are forced to manually correlate across systems, accept duplication, or pay high...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">14:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle  mb-2" src="../speakers/Michael Cote.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Michael Cote</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Platform Engineering and AI - Two Buzzwords Finally Meet!</a>
+            </h3>
+            <div class="location mb-3"></i>Tanzu</div>
+            <div class="desc">Two Buzzwords Finally Meet! How should we manage AI in large organizations? What are the "services" developers need to add AI to enterprise apps, and what role do platform engineers take? Where do data scientists fit in? How does MCP, A2A, and whatever the latest AI API is fit in? There are so...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">15:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle  mb-2" src="../speakers/Alessandro Vozza.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Alessandro Vozza</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">The USB-c for your Copilot: Securing MCP Servers with API Management</a>
+            </h3>
+            <div class="location mb-3"></i>Microsoft</div>
+            <div class="desc">The Model Context Protocol (MCP) has seen a meteoric rise to become the de-facto connecting mycelium for GenAI models and applications. In this session, we will explore the critical role of API management in securing MCP servers. Learn how to leverage API management as the "USB-c" connector for...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">15:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Networking & sponsor crawl</a>
+            </h3>
+            <div class="location mb-3"></i>Main lobby</div>
+            <div class="desc"><br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">16:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle  mb-2" src="../speakers/Kevin van der Vlist.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Kevin van der Vlist</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">From Incident Response to Preventive Mitigation: Leveraging CodeQL and LLMs at Scale</a>
+            </h3>
+            <div class="location mb-3"></i>ING</div>
+            <div class="desc">After recovering from incidents, we must ensure that effective mitigation measures are in place to prevent similar issues in the future. However, clearly expressing the characteristics of past problems and identifying similar occurrences across large codebases is a significant challenge,...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">16:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle  mb-2" src="../speakers/Daniel Afonso.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Daniel Afonso</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Full Service Ownership & The Lifecycle of a Service</a>
+            </h3>
+            <div class="location mb-3"></i>PagerDuty</div>
+            <div class="desc">Services are the backbone of our systems. They are the pieces that make up our businesses—whether they are literal microservices or functional components of a traditional application, we can’t do the computer thing without services. When it comes to a service in your company or organization,...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">17:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img class="profile-image rounded-circle  mb-2" src="../speakers/Marius Kimmina.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Marius Kimmina</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">From Spot Ocean to Karpenter - One Year Later</a>
+            </h3>
+            <div class="location mb-3"></i>adjoe</div>
+            <div class="desc">Over One year of operating Karpenter in production across multiple Kubernetes Clusters has taught us at adjoe many valuable lessons that we want to share in this talk. We will talk about how we handled the migration process, why we build a custom controller to handle broken nodes as well as how...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">17:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img class="profile-image rounded-circle  mb-2" src="../speakers/Leo Visser.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Leo Visser</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Secure your cloud automation</a>
+            </h3>
+            <div class="location mb-3"></i>OGD ict-diensten</div>
+            <div class="desc">So you decided to automate tasks in your Azure cloud platform? Are you sure this automation is secured properly and not causing any more attack surfaces for malicious actors? In this talk I will cover different ways of automating your cloud platform and risks involved with these techniques. I...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">18:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Happy Hour and Snacks by Imply!</a>
+            </h3>
+            <div class="location mb-3"></i>Grab a beer and network with your new friends, open until 9PM!</div>
+            <div class="desc"><br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+
+      </div><!--//tab-1-content-->
+
+
+      <div class="tab-pane " id="tab-0-2-content" role="tabpanel" aria-labelledby="tab-0-2">
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">11:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
+            </h3>
+            <div class="location mb-3"></i>Main lobby</div>
+            <div class="desc"><br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">11:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img class="profile-image rounded-circle  mb-2" src="../speakers/Leon Adato.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">Leon Adato</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">Observability tools don't suck, you just have too many</a>
+            </h3>
+            <div class="location mb-3"></i>Catchpoint</div>
+            <div class="desc">Does your organization collect observability solutions like they're pokemon cards? You're not alone. This happens teams think it's easier to buy their own tool than share. In this talk, we'll cover both WHY it's bad, and WHAT you can do.<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">12:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14"><img class="profile-image rounded-circle  mb-2" src="../speakers/Joris Bonnefoy.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">Joris Bonnefoy</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">From experimentation to continuous verification: how to benefit from the entire spectrum of Chaos Engineering</a>
+            </h3>
+            <div class="location mb-3"></i>Datadog</div>
+            <div class="desc">Chaos Engineering is often misunderstood as simply “breaking things on purpose.” This talk challenges that perception and repositions Chaos Engineering as a critical pillar of reliability and resilience engineering. Rather than focusing on failure injection alone, we explore how to leverage...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">12:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15"><img class="profile-image rounded-circle  mb-2" src="../speakers/Maxim Schepelin.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Maxim Schepelin</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">How to set SLOs, drive improvements, and make friends with business stakeholders</a>
+            </h3>
+            <div class="location mb-3"></i>Booking.com</div>
+            <div class="desc">We, tech people, have internalized the concept of reliability so deeply that we don't need an explanation for why it's bad to have services failing in production. It doesn't matter what your software is doing — whether it controls train schedules, allows people to make money transfers, or serves...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">13:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
+            </h3>
+            <div class="location mb-3"></i>Main lobby</div>
+            <div class="desc"><br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">14:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img class="profile-image rounded-circle  mb-2" src="../speakers/Marcel Koert.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Marcel Koert</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">It’s Not the Tools - It’s Us: How Human Biases Undermine Reliability</a>
+            </h3>
+            <div class="location mb-3"></i>MeloMar IT</div>
+            <div class="desc">In the world of DevOps and SRE, we pride ourselves on automation, observability, and engineering excellence. But even the most sophisticated infrastructure can be derailed by something far more human: our own brains. This talk explores the invisible enemies of reliability — cognitive biases that...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">14:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17"><img class="profile-image rounded-circle  mb-2" src="../speakers/Renato Losio.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Renato Losio</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Nobody Ever Got Fired for Implementing Multi-AZ</a>
+            </h3>
+            <div class="location mb-3"></i>Funambol</div>
+            <div class="desc">Using multiple Availability Zones (AZs) is often seen as essential for building resilient and highly available cloud systems. This is true, until it is not. While Multi-AZ is a proven architectural choice, there are important drawbacks to consider and common assumptions that don’t always hold up....<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">15:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18"><img class="profile-image rounded-circle  mb-2" src="../speakers/Yan Cui.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">Yan Cui</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">Patterns and Practices for Building Resilient AWS Serverless Applications</a>
+            </h3>
+            <div class="location mb-3"></i>Lumigo</div>
+            <div class="desc">Lambda provides multi-AZ support out of the box, but even then, things can still go wrong in production. Region-wide outages and performance degradations can render your applications non-responsive. And what if you're dealing with downstream systems that aren't as scalable as your system and...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">15:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Networking & sponsor crawl</a>
+            </h3>
+            <div class="location mb-3"></i>Main lobby</div>
+            <div class="desc"><br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">16:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19"><img class="profile-image rounded-circle  mb-2" src="../speakers/Simone Romani.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">Simone Romani</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">Gain confidence in your code with mutation testing</a>
+            </h3>
+            <div class="location mb-3"></i>ING</div>
+            <div class="desc">One of the best ways to assess if code is resilient against bugs is to break it on purpose and see how it reacts. The reaction should be a failure in the tests. If there is no reaction, it means that the tests are not effective enough, meaning their assertions are broad and imprecise. Mutation...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">16:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20"><img class="profile-image rounded-circle  mb-2" src="../speakers/Moustafa Aboelnaga.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">Moustafa Aboelnaga</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">Strategic Observability, How to Design the Right Stack for Your Organization.</a>
+            </h3>
+            <div class="location mb-3"></i>SolarWinds</div>
+            <div class="desc">Designing your observability stack the right way requires clarity of purpose and organizational alignment. This session will introduce a strategic framework for setting your observability direction: defining goals, identifying data priorities, and choosing technologies that serve your reliability...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">17:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Happy Hour and Snacks by Imply!</a>
+            </h3>
+            <div class="location mb-3"></i>Grab a beer and network with your new friends, open until 9PM!</div>
+            <div class="desc"><br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+
+      </div><!--//tab-2-content-->
+
+
+    </div><!--//schedule-tab-content-->
+
+
+
+    <div class="schedule-cta text-center mx-auto"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+  </div>
+</section>
+
+
+
+
+<section id="speakers" class="speakers-section section">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Speakers</h3>
+    <div class="row">
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Alessandro Vozza.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Alessandro Vozza</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Microsoft</div>
+            </div><!--//card-text-->
+            <a href="./Alessandro_Vozza_Microsoft_The_USBc_for_your_Copilot_Securing_MCP_Servers_with_API_Management">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              <li class="list-inline-item"><a  href="https://twitter.com/bongo"><i class="fab fa-twitter fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/alessandrovozza/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Dale McDiarmid.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Dale McDiarmid</h5>
+            <div class="card-text mb-3">
+              <div class="meta">ClickHouse</div>
+            </div><!--//card-text-->
+            <a href="./Dale_McDiarmid_ClickHouse_How_We_Built_ClickStack__an_open_source__open_telemetry_native_Observabili">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/dalemcdiarmid/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Daniel Afonso.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Daniel Afonso</h5>
+            <div class="card-text mb-3">
+              <div class="meta">PagerDuty</div>
+            </div><!--//card-text-->
+            <a href="./Daniel_Afonso_PagerDuty_Full_Service_Ownership__The_Lifecycle_of_a_Service">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              <li class="list-inline-item"><a  href="https://twitter.com/danieljcafonso"><i class="fab fa-twitter fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/danieljcafonso/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Diana Todea.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Diana Todea</h5>
+            <div class="card-text mb-3">
+              <div class="meta">VictoriaMetrics</div>
+            </div><!--//card-text-->
+            <a href="./Diana_Todea_VictoriaMetrics_Cutting_Through_Metrics_Cardinality_Noise_with_VictoriaMetrics">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/diana-todea-b2a79968/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Guido Smit.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Guido Smit</h5>
+            <div class="card-text mb-3">
+              <div class="meta">ING</div>
+            </div><!--//card-text-->
+            <a href="./Guido_Smit_ING_Keynote_The_accountability_problem">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/guido-r-smit/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14"><img src="../speakers/Joris Bonnefoy.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Joris Bonnefoy</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Datadog</div>
+            </div><!--//card-text-->
+            <a href="./Joris_Bonnefoy_Datadog_From_experimentation_to_continuous_verification_how_to_benefit_from_the_entir">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/joris-bonnefoy/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Kevin van der Vlist.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Kevin van der Vlist</h5>
+            <div class="card-text mb-3">
+              <div class="meta">ING</div>
+            </div><!--//card-text-->
+            <a href="./Kevin_van_der_Vlist_ING_From_Incident_Response_to_Preventive_Mitigation_Leveraging_CodeQL_and_LLMs_a">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/kevinvandervlist/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img src="../speakers/Leo Visser.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Leo Visser</h5>
+            <div class="card-text mb-3">
+              <div class="meta">OGD ict-diensten</div>
+            </div><!--//card-text-->
+            <a href="./Leo_Visser_OGD_ictdiensten_Secure_your_cloud_automation">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/leo-visser-4894a8227/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img src="../speakers/Leon Adato.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Leon Adato</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Catchpoint</div>
+            </div><!--//card-text-->
+            <a href="./Leon_Adato_Catchpoint_Observability_tools_dont_suck__you_just_have_too_many">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/leonadato/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Lukasz Groszkowski.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Lukasz Groszkowski</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Inter Cars</div>
+            </div><!--//card-text-->
+            <a href="./Lukasz_Groszkowski_Inter_Cars_SRE_at_Scale_Keeping_eCommerce_Alive_Across_20_Countries">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/%C5%82ukasz-groszkowski-092b25173/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img src="../speakers/Marcel Koert.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Marcel Koert</h5>
+            <div class="card-text mb-3">
+              <div class="meta">MeloMar IT</div>
+            </div><!--//card-text-->
+            <a href="./Marcel_Koert_MeloMar_IT_Its_Not_the_Tools__Its_Us_How_Human_Biases_Undermine_Reliability">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/melomar/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img src="../speakers/Marius Kimmina.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Marius Kimmina</h5>
+            <div class="card-text mb-3">
+              <div class="meta">adjoe</div>
+            </div><!--//card-text-->
+            <a href="./Marius_Kimmina_adjoe_From_Spot_Ocean_to_Karpenter__One_Year_Later">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/marius-kimmina/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15"><img src="../speakers/Maxim Schepelin.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Maxim Schepelin</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Booking.com</div>
+            </div><!--//card-text-->
+            <a href="./Maxim_Schepelin_Bookingcom_How_to_set_SLOs__drive_improvements__and_make_friends_with_business_stake">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              <li class="list-inline-item"><a  href="https://twitter.com/schepelin"><i class="fab fa-twitter fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/schepelin/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Michael Cote.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Michael Cote</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Tanzu</div>
+            </div><!--//card-text-->
+            <a href="./Michael_Cote_Tanzu_Platform_Engineering_and_AI__Two_Buzzwords_Finally_Meet">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              <li class="list-inline-item"><a  href="https://twitter.com/cote"><i class="fab fa-twitter fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/michaelcote/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20"><img src="../speakers/Moustafa Aboelnaga.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Moustafa Aboelnaga</h5>
+            <div class="card-text mb-3">
+              <div class="meta">SolarWinds</div>
+            </div><!--//card-text-->
+            <a href="./Moustafa_Aboelnaga_SolarWinds_Strategic_Observability__How_to_Design_the_Right_Stack_for_Your_Organi">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/moustafa-aboelnaga/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img src="../speakers/Peter Marshall.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Peter Marshall</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Imply</div>
+            </div><!--//card-text-->
+            <a href="./Peter_Marshall_Imply_Keynote_What_Observability_Can_Learn_From_BI_Decoupling_for_Speed__Scale__and_F">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/petermarshallio/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17"><img src="../speakers/Renato Losio.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Renato Losio</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Funambol</div>
+            </div><!--//card-text-->
+            <a href="./Renato_Losio_Funambol_Nobody_Ever_Got_Fired_for_Implementing_MultiAZ">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/rlosio/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19"><img src="../speakers/Simone Romani.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Simone Romani</h5>
+            <div class="card-text mb-3">
+              <div class="meta">ING</div>
+            </div><!--//card-text-->
+            <a href="./Simone_Romani_ING_Gain_confidence_in_your_code_with_mutation_testing">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/simone-romani-671527bb/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Tasmia Niazi, Ehsan Khodadadi, Roheel I & Bas van Alphen.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Tasmia Niazi, Ehsan Khodadadi, Roheel I & Bas van Alphen</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div><!--//card-text-->
+            <a href="./Tasmia_Niazi_Ehsan_Khodadadi_Roheel_I__Bas_van_Alphen_Panel_Discussion">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/tasmia-niazi/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/ehsankhodadadi/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18"><img src="../speakers/Yan Cui.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Yan Cui</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Lumigo</div>
+            </div><!--//card-text-->
+            <a href="./Yan_Cui_Lumigo_Patterns_and_Practices_for_Building_Resilient_AWS_Serverless_Applications">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/theburningmonk/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Yishai Beeri.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Yishai Beeri</h5>
+            <div class="card-text mb-3">
+              <div class="meta">LinearB</div>
+            </div><!--//card-text-->
+            <a href="./Yishai_Beeri_LinearB_Your_AI_Code_Reviews_Are_Missing_the_Point_And_How_to_Fix_It">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/yishaibeeri/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      
+
+    </div><!--//row-->
+    <div class="speakers-cta text-center py-3"><a class="btn btn-primary btn-lg" href="#tickets">Get Tickets</a></div>
+  </div><!--//container-->
+
+</section><!--//speakers-section-->
+
+
+<section id="venue" class="venue-section section  theme-bg-primary text-white">
+    <div class="container">
+      <h3 class="section-heading text-center mb-5 text-white">Venue</h3>
+      <div class="row gx-5 py-lg-5">
+        <div class="col-12 col-lg-7 h-100">
+          <div class="desc">
+            <h4 class="text-white mb-3">ING Cedar - Hosting Sponsor</h4>
+            <p>
+              Bijlmerdreef 106 <br />
+              1102 CT Amsterdam, Netherlands <br />
+            </p>
+  
+            <div class="row pt-3">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2439.04308666577!2d4.947301077806605!3d52.31522065136921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c60bec0779b835%3A0x64ee767a91985a24!2sING%20Cedar!5e0!3m2!1sen!2suk!4v1743619501435!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div><!--//row-->
+          </div><!--//desc-->
+        </div><!--//col-->
+        <div class="col-12 col-xl-3 col-lg-4 offset-lg-1 position-relative h-100 mt-5 mt-lg-0">
+          <div class="figures-holder">
+            <div class="figure figure-1"><img class="shadow" src="assets/images/venue/venue-1.jpg" alt=""></div>
+            <div class="figure figure-2"><img class="shadow" src="assets/images/venue/venue-2.jpg" alt=""></div>
+            <div class="figure figure-3"><img class="shadow" src="assets/images/venue/venue-3.jpg" alt=""></div>
+          </div><!--//figures-holder-->
+        </div><!--//col-->
+      </div><!--//row-->
+    </div><!--//container-->
+  </section><!--//venue-section-->
+  
+
+
+<section id="sponsors" class="sponsors-section section">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Sponsors &amp; Partners</h3>
+    <div class="section-intro text-center single-col-max mx-auto mb-5">Want to become a sponsor? Get in touch!</div>
+    <div class="row logos justify-content-center">
+      
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.ing.com/Home.htm" target="_blank"><img src="./assets/images/sponsors/ing.png" alt=""></a></div>
+      
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://harness.io/" target="_blank"><img src="./assets/images/sponsors/harness.png" alt=""></a></div>
+      
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://imply.io/" target="_blank"><img src="./assets/images/sponsors/imply.png" alt=""></a></div>
+      
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.meetup.com/amsterdam-java-user-group/" target="_blank"><img src="./assets/images/sponsors/jug-amsterdam.png" alt=""></a></div>
+      
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.hockeystick.show" target="_blank"><img src="./assets/images/sponsors/hockeystick.png" alt=""></a></div>
+      
+    </div><!--//row-->
+    <div class="sponsors-cta text-center pt-5"><a class="btn-primary btn btn-lg" href="mailto:hello@sreday.com">Become A Sponsor</a></div>
+  </div><!--//container-->
+</section><!--//sponsors-section-->
+
+
+
+
+<!-- Modal Speaker 3 -->
+<div class="modal modal-speaker modal-speaker-3" id="modal-speaker-3" tabindex="-1" role="dialog" aria-labelledby="speaker-3-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-3-ModalLabel" class="modal-title sr-only"
+>Lukasz Groszkowski</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Lukasz Groszkowski.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Lukasz Groszkowski</h2>
+                          <div class="meta mb-2">Inter Cars</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/%C5%82ukasz-groszkowski-092b25173/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>A deep dive into how we ensure reliability and availability in a complex distributed environment, with lessons learned from real-world incidents and rollouts.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Lukasz Groszkowski is a seasoned IT professional with over 8 years of experience at Inter Cars S.A., where he currently serves as Software Engineering Manager / Site Reliability Engineering (SRE) Manager. Specializing in the stability, scalability, and high availability of IT systems, he leads efforts to optimize infrastructure, automate operations, and promote SRE culture across the organization. Łukasz has a strong background in E-Commerce platform management (including SAP Hybris), monitoring with ELK stack and Dynatrace, and cross-functional collaboration with DevOps and development teams. His career path includes roles such as Team Leader, Senior System Analyst, Implementation Analyst, and ERP Systems Analyst, reflecting a deep technical and operational understanding of enterprise IT environments.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 4 -->
+<div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-4-ModalLabel" class="modal-title sr-only"
+>Diana Todea</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Diana Todea.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Diana Todea</h2>
+                          <div class="meta mb-2">VictoriaMetrics</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/diana-todea-b2a79968/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>In high-scale environments, metrics cardinality isn’t just a resource concern, it’s an architectural challenge. Left unchecked, it can impact performance, query latency, and even system stability. This talk takes a deep technical dive into how VictoriaMetrics enables advanced observability practices with a strong focus on cardinality management. I’ll explore how to design efficient and scalable scrape configurations using Prometheus-compatible jobs and exporters, optimize your label strategies, and use built-in cardinality analysis tools within VictoriaMetrics to identify and mitigate high-cardinality patterns early. The session also covers integration with Grafana open source for visualizing metrics in a way that supports signal clarity and operational response, as well as setting up practical alerting strategies that minimize noise while ensuring fast issue detection. By the end of the talk, the audience will understand the engineering trade-offs of high-cardinality metrics and how to detect them, how VictoriaMetrics handles storage and querying at scale, how to build resilient and low-overhead scrape configs with Prometheus compatibility and how to use Grafana open source to highlight cardinality hot spots and improve alert signal quality.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Diana is a DX Engineer at VictoriaMetrics. She is passionate about Observability, machine learning. She is an active contributor to the OpenTelemetry CNCF open source project and supports women in tech.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 5 -->
+<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-5-ModalLabel" class="modal-title sr-only"
+>Yishai Beeri</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Yishai Beeri.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Yishai Beeri</h2>
+                          <div class="meta mb-2">LinearB</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/yishaibeeri/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Most AI code review implementations focus on the wrong metrics—counting comments generated or code accepted rather than measuring developer velocity and code quality improvements. The real value lies in intelligent context integration and organizational learning at scale.
+This talk examines successful AI code review deployments across engineering organizations, revealing four critical success factors: seamless integration with your existing development context (codebase, tickets,  architectural decisions), specialized review guidelines that scale from 5 to 50,000 repositories, comprehensive observability to understand where AI adds value versus where it creates noise, and strategic human-AI collaboration patterns.
+We'll explore real case studies of teams who've moved beyond basic linting to utilizing AI code review that understands business logic, catches architectural anti-patterns, and actually accelerates PR cycles. You'll learn when AI reviews shine, when they don't, and how to measure the difference.
+This isn't about replacing human reviewers—it's about building an intelligent system that amplifies human expertise and reduces cognitive load where it matters most.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 6 -->
+<div class="modal modal-speaker modal-speaker-6" id="modal-speaker-6" tabindex="-1" role="dialog" aria-labelledby="speaker-6-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-6-ModalLabel" class="modal-title sr-only"
+>Dale McDiarmid</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Dale McDiarmid.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Dale McDiarmid</h2>
+                          <div class="meta mb-2">ClickHouse</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/dalemcdiarmid/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Modern observability is built on a flawed foundation: three siloed pillars - logs, metrics, and traces - each powered by different engines with separate query models, storage formats, and operational costs. Users are forced to manually correlate across systems, accept duplication, or pay high SaaS bills. But what if observability is just a data problem? One that needs a general-purpose solution instead of purpose-built compromises? This talk argues that true observability requires fast, high-cardinality queries over unsampled data at scale and at low cost. Traditional search and metrics engines were not designed for this, but column-oriented databases are. We introduce ClickStack, a fully open source, OpenTelemetry-native observability stack built around ClickHouse. It provides fast, flexible querying and efficient storage, enabling real-time visibility without compromise.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Dale McDiarmid is a Senior Principal Technologist at ClickHouse with over a decade of experience in data infrastructure, performance engineering, and product strategy. Based in Lisbon, he has held key roles at Grafana Labs, Elastic, and Attivio, specializing in database optimization, observability, and technical marketing.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 7 -->
+<div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-7-ModalLabel" class="modal-title sr-only"
+>Michael Cote</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Michael Cote.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Michael Cote</h2>
+                          <div class="meta mb-2">Tanzu</div>
+                          <ul class="social-list list-inline mb-0">
+                            <li class="list-inline-item"><a  href="https://twitter.com/cote"><i class="fab fa-twitter fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/michaelcote/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Two Buzzwords Finally Meet! How should we manage AI in large organizations? What are the "services" developers need to add AI to enterprise apps, and what role do platform engineers take? Where do data scientists fit in? How does MCP, A2A, and whatever the latest AI API is fit in? There are so many questions because the field of managing AI in enterprises barely exists. We need to figure it out quickly however, before we see a repeat of a past patterns, like shadow AI and unmanageable apps in production. Based on real-world examples, this talk will go over what we currently know about using platform engineering to help developers use AI.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p><a href="https://cote.io/">Michael Cote</a> studies how large organizations get better at building software to run better and grow their business. His <a href="https://cote.io/books/">books</a> <a href="https://www.oreilly.com/library/view/changing-mindsets-the/9781098105839/?utm_source=cote&amp;utm_campaign=devrel&amp;utm_content=bioblock"><em>Changing Mindsets</em></a>, <a href="https://tanzu.vmware.com/content/ebooks/monolithic-transformation?utm_source=cote&amp;utm_campaign=devrel&amp;utm_content=bioblock"><em>Monolithic Transformation</em></a>, and <a href="https://content.pivotal.io/ebooks/the-business-bottleneck?utm_source=cote&amp;utm_campaign=devrel&amp;utm_content=bioblock"><em>The Business Bottleneck</em></a>_ cover these topics. He's been an industry analyst at RedMonk and 451 Research, done corporate strategy and M&amp;A, and was a programmer. He also co-hosts several podcasts, including <a href="https://www.softwaredefinedtalk.com/">Software Defined Talk</a>. His daily-ish newsletter is at <a href="https://newsletter.cote.io/">newsletter.cote.io</a>.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 8 -->
+<div class="modal modal-speaker modal-speaker-8" id="modal-speaker-8" tabindex="-1" role="dialog" aria-labelledby="speaker-8-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-8-ModalLabel" class="modal-title sr-only"
+>Alessandro Vozza</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Alessandro Vozza.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Alessandro Vozza</h2>
+                          <div class="meta mb-2">Microsoft</div>
+                          <ul class="social-list list-inline mb-0">
+                            <li class="list-inline-item"><a  href="https://twitter.com/bongo"><i class="fab fa-twitter fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/alessandrovozza/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>The Model Context Protocol (MCP) has seen a meteoric rise to become the de-facto connecting mycelium for GenAI models and applications. In this session, we will explore the critical role of API management in securing MCP servers. Learn how to leverage API management as the "USB-c" connector for your Copilot, ensuring seamless and secure integration. We will cover best practices, real-world examples, and practical tips to enhance your server security and streamline operations. Join us to discover how API management can be the key to unlocking robust security for your MCP servers.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Alessandro, a seasoned community leader, has spent the last few years architecting cloud-native infrastructures for Microsoft customers, energizing the Dutch tech community, and helping professionals achieve CKx certification. With over 25 years immersed in open-source technologies, Alessandro is deeply passionate about the cloud-native ecosystem. He's now back at Microsoft as a Senior Technical Specialist in Application Innovation &amp; AI.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 9 -->
+<div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-9-ModalLabel" class="modal-title sr-only"
+>Kevin van der Vlist</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Kevin van der Vlist.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Kevin van der Vlist</h2>
+                          <div class="meta mb-2">ING</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/kevinvandervlist/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>After recovering from incidents, we must ensure that effective mitigation measures are in place to prevent similar issues in the future.</p>
+<p>However, clearly expressing the characteristics of past problems and identifying similar occurrences across large codebases is a significant challenge, especially at the scale of ING.</p>
+<p>We present our approach to encoding known and ING-specific (anti)patterns as CodeQL queries. These queries are used to assess both individual and multiple repositories, enabling us to pinpoint risks and reach out directly to the responsible teams, rather than broadcasting generic warnings to everyone.</p>
+<p>A key challenge is the volume of findings: a single query can yield hundreds of results, overwhelming engineering teams if not managed carefully. To address this, we define a process that not only assesses findings but also generates actionable patches and contextual advice. By integrating Large Language Models (LLMs), we combine the specific context of each code finding with the surrounding source code and high-level problem descriptions, resulting in tailored, practical recommendations for engineers.</p>
+<p>We translate incident learnings and ING-specific anti-patterns into CodeQL queries, making them reusable and scalable. For each finding, we use LLMs to generate context-aware advice and, where possible, code patches. This ensures recommendations are both actionable and relevant to the code owner.</p>
+<p>By combining static analysis with LLM-driven advice, we turn past mistakes into valuable lessons, foster professional growth, and continuously improve our engineering community. We believe this approach is broadly applicable to other large organizations seeking to scale preventive mitigation.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Kevin van der Vlist is a software engineer at ING, focused on improving reliability and analyzing code across 75.000+ repositories. With an MSc from the University of Amsterdam and an Engineering Doctorate from the University of Twente, he specializes in software analysis to identify patterns and enhance code quality and security. The objective is to elevate code quality and security by offering developers guardrails, ensuring the reliability of INGs software systems. </p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 10 -->
+<div class="modal modal-speaker modal-speaker-10" id="modal-speaker-10" tabindex="-1" role="dialog" aria-labelledby="speaker-10-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-10-ModalLabel" class="modal-title sr-only"
+>Daniel Afonso</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Daniel Afonso.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Daniel Afonso</h2>
+                          <div class="meta mb-2">PagerDuty</div>
+                          <ul class="social-list list-inline mb-0">
+                            <li class="list-inline-item"><a  href="https://twitter.com/danieljcafonso"><i class="fab fa-twitter fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/danieljcafonso/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Services are the backbone of our systems. They are the pieces that make up our businesses—whether they are literal microservices or functional components of a traditional application, we can’t do the computer thing without services.</p>
+<p>When it comes to a service in your company or organization, who’s responsible for it? The cast of characters involved in the lifecycle of a service is more than just software engineers. It can include program managers, product owners, sustainability teams (SREs/operations engineers), and business stakeholders, just to name a few.</p>
+<p>Topics covered in this talk include: – Defining what a service means to you and your organization – Roles in service ownership – What are you observing about your service? – How you want a team to respond to a service outage or incident – Managing your service in production – Tuning your service – Understanding how the service impacts the business</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Daniel Afonso is a Senior Developer Advocate at PagerDuty, SolidJS DX team member, Instructor at Egghead.io, and Author of State Management with React Query. Daniel has a full-stack background, having worked with different languages and frameworks on various projects from IoT to Fraud Detection. He is passionate about learning and teaching and has spoken at multiple conferences around the world about topics he loves. In his free time, when he's not learning new technologies or writing about them, he's probably reading comics or watching superhero movies and shows.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 11 -->
+<div class="modal modal-speaker modal-speaker-11" id="modal-speaker-11" tabindex="-1" role="dialog" aria-labelledby="speaker-11-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-11-ModalLabel" class="modal-title sr-only"
+>Marius Kimmina</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Marius Kimmina.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Marius Kimmina</h2>
+                          <div class="meta mb-2">adjoe</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/marius-kimmina/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Over One year of operating Karpenter in production across multiple Kubernetes Clusters has taught us at adjoe many valuable lessons that we want to share in this talk. We will talk about how we handled the migration process, why we build a custom controller to handle broken nodes as well as how we have optimized our nodepools to avoid too frequent disruptions and much more</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Marius, a dedicated DevOps Engineer at Hamburg’s fast-growing adtech company, adjoe. Since joining over three years ago, Marius has been on a mission to enhance the reliability and scalability of our backend — an event-driven microservice architecture written in Go and powered by Kubernetes. His passion for coding and Kubernetes doesn’t stop here. Marius also actively contributes to open-source projects, including CoreDNS and Karpenter, constantly pushing his skills and knowledge forward. When he’s not scaling systems or optimizing code, you’ll find him hosting board game nights, tackling bouldering walls, or setting off on adventures across Asia.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 12 -->
+<div class="modal modal-speaker modal-speaker-12" id="modal-speaker-12" tabindex="-1" role="dialog" aria-labelledby="speaker-12-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-12-ModalLabel" class="modal-title sr-only"
+>Leo Visser</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Leo Visser.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Leo Visser</h2>
+                          <div class="meta mb-2">OGD ict-diensten</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/leo-visser-4894a8227/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>So you decided to automate tasks in your Azure cloud platform? Are you sure this automation is secured properly and not causing any more attack surfaces for malicious actors?</p>
+<p>In this talk I will cover different ways of automating your cloud platform and risks involved with these techniques. I will go over topics like authentication, secrets, auditability and more. I’ll also show situation I encountered in the field and how these were fixed to provide more confidentiality, integrity and availability.</p>
+<p>So if you want to learn to automate your could platform with a zero trust policy, then join this talk! Afterward you will know common mistakes and how to avoid them while also being capable of setting up proper automation in the cloud!</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Since 2012 I’ve been working in the field of IT in different positions. Now I am the product lead Automation + AI for the transformation department of OGD ict-diensten. I’m responsible for the propositions regarding Power Platform, AI and Automation. Besides that I also consult a multitude of customers about these topics and their cloud platforms. Due to this broad range of topics I work with on a daily basis, I’ve developed a passion for connecting them all together. When I’m not working on improving specific systems I’m looking into how the systems can work together to create even more value. I also write on my blog https://www.autosysops.com about the solutions I find.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 13 -->
+<div class="modal modal-speaker modal-speaker-13" id="modal-speaker-13" tabindex="-1" role="dialog" aria-labelledby="speaker-13-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-13-ModalLabel" class="modal-title sr-only"
+>Leon Adato</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Leon Adato.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Leon Adato</h2>
+                          <div class="meta mb-2">Catchpoint</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/leonadato/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Does your organization collect observability solutions like they're pokemon cards? You're not alone. This happens teams think it's easier to buy their own tool than share. In this talk, we'll cover both WHY it's bad, and WHAT you can do.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p><em>A full speaker profile is available on <a href="adatosystems.com/speaking/">adatosystems.com</a></em></p>
+<p>In my sordid career, I have been an actor, bug exterminator and wild-animal remover (nothing crazy like pumas or wildebeests. Just skunks, snakes, and raccoons.), electrician, carpenter, stage-combat instructor, ASL interpreter, and Sunday school teacher. Oh, yeah, I've also worked with computers.</p>
+<p>While my first keyboard was an IBM selectric, and my first digital experience was on an Atari 400, my professional work in tech started in 1989 (when you got Windows 286 for free on twelve 5¼” when you bought Excel 1.0). Since then I've worked as a classroom instructor, courseware designer, helpdesk operator, desktop support staff, sysadmin, network engineer, and software distribution technician.</p>
+<p>Then, about 25 years ago, I got involved with monitoring. I've worked with a wide range of tools: Tivoli, BMC, OpenView, janky perl scripts, Nagios, SolarWinds,  DOS batch files, Zabbix, Grafana, New Relic, and other assorted nightmare fuel. I've designed solutions for companies that were modest (~10 systems), significant (5,000 systems), and ludicrous (250,000 systems). In that time, I've learned a lot about monitoring and observability in all it's many and splendid forms.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 14 -->
+<div class="modal modal-speaker modal-speaker-14" id="modal-speaker-14" tabindex="-1" role="dialog" aria-labelledby="speaker-14-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-14-ModalLabel" class="modal-title sr-only"
+>Joris Bonnefoy</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Joris Bonnefoy.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Joris Bonnefoy</h2>
+                          <div class="meta mb-2">Datadog</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/joris-bonnefoy/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Chaos Engineering is often misunderstood as simply “breaking things on purpose.” This talk challenges that perception and repositions Chaos Engineering as a critical pillar of reliability and resilience engineering. Rather than focusing on failure injection alone, we explore how to leverage existing knowledge, validate known truths, and foster confidence in complex systems.</p>
+<p>In the first part, we deconstruct common myths around Chaos Engineering and reframe its core principles. Learn how aligning chaos practices with reliability goals can transform the way your organization perceives and applies these techniques—by emphasizing structured validation over blind experimentation.</p>
+<p>The second part brings theory into practice with a hands-on framework that reimagines chaos experiments as self-feeding, iterative loops—mirroring the scientific method. We introduce the concept of continuous verification, drawing parallels with integration testing, and show how Chaos Engineering can seamlessly integrate into the Software Development Lifecycle (SDLC) through a shift-left approach.</p>
+<p>The session wraps up with a visual framework for implementing a sustainable Chaos Engineering strategy, including how to evolve gamedays into repeatable, hypothesis-driven validations that scale with system changes.</p>
+<p>Whether you're just exploring Chaos Engineering or looking to mature your reliability strategy, this talk will leave you with actionable insights, a modernized mindset, and a clear path to operational resilience.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>I am a software engineer with an attrition for low-level and Linux internals who joined Datadog 7 years ago in the SRE group. After developing the now open-source Chaos Controller project meant to provide large-scale fault injection to engineering teams, I built the Security Chaos Engineering group now made of 3 teams and 20 people for which I act as the Engineering Manager. I am also part of the Core Incident Commanders group involved in all high severity outages to help with internal coordination and external communication.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 15 -->
+<div class="modal modal-speaker modal-speaker-15" id="modal-speaker-15" tabindex="-1" role="dialog" aria-labelledby="speaker-15-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-15-ModalLabel" class="modal-title sr-only"
+>Maxim Schepelin</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Maxim Schepelin.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Maxim Schepelin</h2>
+                          <div class="meta mb-2">Booking.com</div>
+                          <ul class="social-list list-inline mb-0">
+                            <li class="list-inline-item"><a  href="https://twitter.com/schepelin"><i class="fab fa-twitter fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/schepelin/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>We, tech people, have internalized the concept of reliability so deeply that we don't need an explanation for why it's bad to have services failing in production. It doesn't matter what your software is doing — whether it controls train schedules, allows people to make money transfers, or serves funny pictures online.</p>
+<p>We have invented an entire language to talk about reliability. We say things like, "This service runs with three nines availability," "Mean-Time-To-Repair for the website is 25 minutes," or "This month, we consumed 80% of our error budget."</p>
+<p>And yet, it's a common struggle to convince business stakeholders to prioritize technical improvements.</p>
+<p>In the past seven years, I've been responsible for products and services used by millions of people. I have been on call for years and have spent many nights resolving production incidents. From that experience, I learned how to make reliability a shared priority and prove, with data, the value of technical improvements.</p>
+<p>In this session, I'll share techniques you can use to improve the reliability of your services, convince business stakeholders of the importance of reliability, and drive positive change in your organization.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Maxim Schepelin has been an engineering leader in various industries including game dev, e-commerce, and travel building teams capable of launching products from idea to world-scale. With over a decade of experience leading engineering teams, Maxim has mastered the art and science of management, as well as how to exit both Vim and Emacs. Maxim continues exploring ways to build effective engineering teams that deliver value at a sustainable pace.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 16 -->
+<div class="modal modal-speaker modal-speaker-16" id="modal-speaker-16" tabindex="-1" role="dialog" aria-labelledby="speaker-16-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-16-ModalLabel" class="modal-title sr-only"
+>Marcel Koert</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Marcel Koert.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Marcel Koert</h2>
+                          <div class="meta mb-2">MeloMar IT</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/melomar/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>In the world of DevOps and SRE, we pride ourselves on automation, observability, and engineering excellence. But even the most sophisticated infrastructure can be derailed by something far more human: our own brains.</p>
+<p>This talk explores the invisible enemies of reliability — cognitive biases that affect how engineers make decisions, solve problems, and respond to incidents. From confirmation bias during outages to groupthink in postmortems, we’ll unpack six specific mental shortcuts that silently undermine your systems.</p>
+<p>Each bias is brought to life with real-world engineering examples, memorable visuals, and practical strategies you can apply immediately. You’ll hear relatable war stories — like how anchoring on a bad hypothesis prolonged a major incident, or how optimism bias led to a Friday deployment that ended in disaster.</p>
+<p>More than a lecture, this is a wake-up call. We don’t need more YAML linters or dashboards. We need to debug ourselves.</p>
+<p>By the end of the session, attendees will: • Understand how specific biases impact reliability and team performance • Recognize symptoms of biased thinking in real-world DevOps workflows • Learn actionable techniques to create more resilient, self-aware engineering cultures</p>
+<p>This talk is ideal for DevOps engineers, SREs, team leads, and reliability advocates looking to take their incident management and system design to the next level — not by adding more tools, but by thinking more clearly.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>As the founder of Melomar-IT, I am dedicated to demystifying complex IT concepts and providing clear, actionable insights to professionals and enthusiasts alike. With a robust background in Platform Engineering, DevOps, and Site Reliability Engineering (SRE), I specialize in creating content that bridges the gap between intricate technical subjects and practical understanding.
+Professional Expertise: • Platform Engineering: Designing and managing scalable, efficient, and secure IT infrastructures that support seamless application development and deployment. • DevOps Engineering: Implementing and promoting DevOps best practices to enhance collaboration, automate workflows, and accelerate software delivery. • Site Reliability Engineering (SRE): Ensuring system reliability, performance, and scalability through proactive monitoring, automation, and incident response strategies. • IT Education and Content Creation: Developing comprehensive IT explainers and tutorials that empower individuals to enhance their technical skills and stay abreast of industry trends.
+Melomar-IT on YouTube: Through Melomar-IT, I produce and share content focused on: • In-Depth Tutorials: Step-by-step guides on Platform Engineering, DevOps tools, and SRE practices. • Industry Insights: Analysis of current trends and emerging technologies in the IT sector. • Practical IT Explainers: Simplifying complex concepts for better understanding and application.
+Mission: My goal is to equip IT professionals and enthusiasts with the knowledge and tools necessary to excel in the rapidly evolving tech landscape. By fostering a community centered on continuous learning and growth, I aim to inspire innovation and excellence in the field of Information Technology.
+Connect with Me: I am always eager to connect with fellow professionals, share insights, and explore collaborative opportunities. Feel free to reach out to discuss all things IT, from Platform Engineering and DevOps to the latest industry developments.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 17 -->
+<div class="modal modal-speaker modal-speaker-17" id="modal-speaker-17" tabindex="-1" role="dialog" aria-labelledby="speaker-17-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-17-ModalLabel" class="modal-title sr-only"
+>Renato Losio</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Renato Losio.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Renato Losio</h2>
+                          <div class="meta mb-2">Funambol</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/rlosio/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Using multiple Availability Zones (AZs) is often seen as essential for building resilient and highly available cloud systems. This is true, until it is not. While Multi-AZ is a proven architectural choice, there are important drawbacks to consider and common assumptions that don’t always hold up. There are also different ways to implement it, each with its own trade-offs.</p>
+<p>In this session, we will explore the Multi-AZ journey, separating fact from fiction. We will discuss when Multi-AZ truly helps, the costs involved, and some surprising side effects that are often overlooked.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Renato has extensive experience as a cloud architect, tech lead, and cloud services specialist. He lives in Berlin and works remotely as a principal cloud architect. His primary areas of interest include cloud services and relational databases. He is an editor at InfoQ and a recognized AWS Data Hero. </p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 18 -->
+<div class="modal modal-speaker modal-speaker-18" id="modal-speaker-18" tabindex="-1" role="dialog" aria-labelledby="speaker-18-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-18-ModalLabel" class="modal-title sr-only"
+>Yan Cui</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Yan Cui.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Yan Cui</h2>
+                          <div class="meta mb-2">Lumigo</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/theburningmonk/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Lambda provides multi-AZ support out of the box, but even then, things can still go wrong in production.</p>
+<p>Region-wide outages and performance degradations can render your applications non-responsive. And what if you're dealing with downstream systems that aren't as scalable as your system and can't handle the load you put on them?</p>
+<p>The bottom line is that many things can go wrong, and they often do at the worst of times. The goal of building resilient systems is not to prevent failures, but to design systems that can withstand them.</p>
+<p>In this talk, we will examine several practices and architectural patterns that can help you build more resilient serverless architectures, such as multi-region design, employing DLQs and surge queues and cell-based architectures.</p>
+<p>We'll also explore how chaos experiments can help us identify failure modes before they happen in production.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Yan is an experienced engineer who has run production workload at scale on AWS since 2010. He has been an architect and principal engineer in a variety of industries ranging from banking, e-commerce, sports streaming to mobile gaming. He has worked extensively with AWS Lambda in production since 2015. Nowadays, he splits his time between advancing the state of serverless observability as a Developer Advocate at lumigo.io and helping companies around the world adopt serverless as an independent consultant.</p>
+<p>Yan is also an AWS Serverless Hero and a regular speaker at user groups and conferences internationally. He is the author of Production-Ready Serverless and co-author of Serverless Architectures on AWS, 2nd Edition. And he keeps an active blog at theburningmonk.com and hosts a serverless-focused podcast at realworldserverless.com.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 19 -->
+<div class="modal modal-speaker modal-speaker-19" id="modal-speaker-19" tabindex="-1" role="dialog" aria-labelledby="speaker-19-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-19-ModalLabel" class="modal-title sr-only"
+>Simone Romani</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Simone Romani.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Simone Romani</h2>
+                          <div class="meta mb-2">ING</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/simone-romani-671527bb/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>One of the best ways to assess if code is resilient against bugs is to break it on purpose and see how it reacts.</p>
+<p>The reaction should be a failure in the tests. If there is no reaction, it means that the tests are not effective enough, meaning their assertions are broad and imprecise.</p>
+<p>Mutation testing comes to the rescue for this specific challenge. This methodology changes the source code and then runs the unit tests against the mutated codebase. The generated report helps the engineer find where the weak spots in the tests are.</p>
+<p>In this talk we will cover the theory behind this methodology, followed by a live demo where code which could be described as "100% tested" would still be subject to bugs and how its related tests can be improved.</p>
+<p>This approach will offer a way for engineers to gain confidence in their code and especially in their tests. With a high test strength, source code will not only be strong but also malleable to modifications, with the safe guardrails of unit tests protecting them from introducing bugs.</p>
+<p>The audience will learn how to write more efficient and resilient tests due to the mutation tests giving them a different perspective on their code quality, compared to the normal tests. Mutation testing will also drive better production code, following the principle of Test Driven Design.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Simone Romani is an IT Chapter Lead at ING Nederland, leading a team of engineers focused on strengthening the performance and reliability of mobile backend services. With experience spanning backend development, blockchain, and R&amp;D roles at ING, IBM, and Ericsson, he brings a strong focus on code quality, testing, and customer trust.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 20 -->
+<div class="modal modal-speaker modal-speaker-20" id="modal-speaker-20" tabindex="-1" role="dialog" aria-labelledby="speaker-20-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-20-ModalLabel" class="modal-title sr-only"
+>Moustafa Aboelnaga</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Moustafa Aboelnaga.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Moustafa Aboelnaga</h2>
+                          <div class="meta mb-2">SolarWinds</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/moustafa-aboelnaga/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Designing your observability stack the right way requires clarity of purpose and organizational alignment. This session will introduce a strategic framework for setting your observability direction: defining goals, identifying data priorities, and choosing technologies that serve your reliability vision. We’ll explore maturity stages, integration strategies, and the cultural shifts needed to make observability a shared responsibility.</p>
+<p>It will be a theoretical, high-level session for SRE and DevOps leaders who want to think before they build more than a practical one.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Experienced leader and mentor in Site Reliability Engineering and Back-End Development, with over 11 years of experience leading multinational teams across four countries. Skilled in building reliable systems, fostering engineering excellence, and driving collaboration in diverse organizations.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 0 -->
+<div class="modal modal-speaker modal-speaker-0" id="modal-speaker-0" tabindex="-1" role="dialog" aria-labelledby="speaker-0-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-0-ModalLabel" class="modal-title sr-only"
+>Guido Smit</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Guido Smit.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Guido Smit</h2>
+                          <div class="meta mb-2">ING</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/guido-r-smit/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>When everyone owns reliability, does anyone truly feel accountable? Lets explore why extreme ownership is the cornerstone of resilient systems.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Guido Smit is the IT Lead (Head of IT) for Engineering &amp; Reliability NL at ING, where he oversees large-scale engineering teams driving reliability and innovation across the bank’s technology landscape. Over his eight years at ING, he has led IT organizations spanning Current and Savings Accounts, Loyalty, Pricing, and Consumer Loans. With a foundation in software engineering and embedded systems, Guido combines deep technical expertise with strategic leadership — shaping resilient systems and empowering teams to deliver at scale.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 1 -->
+<div class="modal modal-speaker modal-speaker-1" id="modal-speaker-1" tabindex="-1" role="dialog" aria-labelledby="speaker-1-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-1-ModalLabel" class="modal-title sr-only"
+>Peter Marshall</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Peter Marshall.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Peter Marshall</h2>
+                          <div class="meta mb-2">Imply</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/petermarshallio/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Today’s observability platforms are often vertically integrated—binding data storage, query, and visualization layers into a single stack. This tight coupling drives up costs, makes integrations painful, and slows teams down. But it doesn’t have to be this way.
+In this talk, we’ll explore how SRE teams can benefit from a more modular approach to observability—one inspired by the evolution of Business Intelligence. Just as BI stacks evolved to separate ETL, data warehouses, and dashboards, observability stacks can be designed around clear boundaries: interoperable tools, technology-neutral query layers, and plug-and-play storage.
+You’ll learn why decoupled observability architecture is essential for cost control, agility, and tool flexibility—and how to move toward a stack that meets the real-world needs of today’s SRE teams.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Peter Marshall is a technology leader and community builder with a background in developer relations, data architecture, and digital transformation. As Director of Developer Relations at Imply, he leads programs that grow and engage the global Apache Druid community through education, support, and events. With experience across startups, enterprises, and the public sector, Peter brings a blend of technical expertise and strategic vision to help organizations connect with developers and drive impact through open source.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 2 -->
+<div class="modal modal-speaker modal-speaker-2" id="modal-speaker-2" tabindex="-1" role="dialog" aria-labelledby="speaker-2-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-2-ModalLabel" class="modal-title sr-only"
+>Tasmia Niazi, Ehsan Khodadadi, Roheel I & Bas van Alphen</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Tasmia Niazi, Ehsan Khodadadi, Roheel I & Bas van Alphen.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Tasmia Niazi, Ehsan Khodadadi, Roheel I & Bas van Alphen</h2>
+                          <div class="meta mb-2"></div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/tasmia-niazi/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/ehsankhodadadi/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Discover the reliability tech stack and practices behind top European institutions.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p><a href="https://www.linkedin.com/in/tasmia-niazi/"><strong>Tasmia Niazi</strong></a> is a passionate and dedicated professional with a background in technology and managing projects from initiation to post implementation support. Tasmia has successfully navigated her career while pursuing higher education, mentoring and managing family life. She recently completed her Masters Apprenticeship in Software Engineering all while balancing the challenges of pregnancy raising a toddler and working. With a keen interest in innovation, Tasmia thrives in fast paced environments contributing to the tech community, speaking at Hackathons, mentoring juniors to arranging platform away days. She is a strong advocate for the empowerment of women in technology and continuously inspires those around her with resilience and passion. Mentoring, raising awareness for women in technology and being an Ambassador are the most aspiring roles Tasmia plays.</p>
+<p><a href="https://www.linkedin.com/in/ehsankhodadadi/"><strong>Ehsan Khodadadi</strong></a> is a Senior Site Reliability Engineer at ING, with extensive experience leading and building reliability practices across large-scale systems. Before rejoining ING, he led the Site Reliability Engineering team at LeasePlan, where he focused on system stability, team management, and operational excellence. His background includes roles at Techspire and BMW Group, where he combined deep technical expertise in DevOps and Linux systems with a pragmatic, hands-on approach to problem solving. Ehsan is known for creating strong engineering teams and improving service reliability through thoughtful automation and collaboration.</p>
+<p><a href="https://www.linkedin.com/in/roheel-islam/"><strong>Roheel I</strong></a> is a Senior Engineer specialising in building resilient systems and optimising development pipelines. His work has reduced deployment errors, strengthened monitoring, and improved uptime across large-scale services. With prior experience at UBS and the Medicines and Healthcare products Regulatory Agency, Roheel blends technical depth in full-stack development with a pragmatic approach to reliability and business alignment.</p>
+<p><a href="https://www.linkedin.com/in/basvanalphen/"><strong>Bas van Alphen</strong></a> is the IT Chapter Lead for Site Reliability Engineering at ING, with more than 15 years of experience ensuring the stability of complex financial systems. He oversees teams managing service continuity, monitoring, and incident response across ING’s digital platforms. With a background that spans testing, engineering, and leadership, Bas is recognised for his calm, systematic approach to reliability and his ability to keep critical systems running seamlessly.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+
+
+
+
+
+<footer class="footer py-5 theme-bg-primary">
+    <div class="container text-center">
+        
+        <ul class="social-list list-inline mb-4"> 
+            <li class="list-inline-item me-3"><a target="_blank" href="https://luma.com/sre" style="text-decoration:none;">✦</a></li>
+            <li class="list-inline-item me-3"><a target="_blank" href="https://chat.whatsapp.com/KS1ce0jAHmNGAiOAoZG6zo"><i class="fab fa-whatsapp fa-fw"></i></a></li>
+            <li class="list-inline-item me-3"><a target="_blank" href="https://www.linkedin.com/company/sreday/"><i class="fab fa-linkedin fa-fw"></i></a></li>
+            <li class="list-inline-item me-3"><a href="mailto:hello@sreday.com"><i class="fas fa-envelope fa-fw"></i></a></li>
+            <li class="list-inline-item me-0"><a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/@sreday"><i class="fab fa-youtube fa-fw"></i></a></li>
+        </ul>
+        
+        <!-- <ul class="footer-links list-inline mx-auto mb-4">
+            <li class="list-inline-item"><a href="#">Code of Conduct</a></li>
+            <li class="list-inline-item">|</li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item">|</li>
+            <li class="list-inline-item me-0"><a href="#">Privacy</a></li>
+        </ul> -->
+
+        
+        
+        <!--//footer-link-->
+
+        <div class="py-4 text-center">
+            <img src="/assets/maupa GIF.gif" alt="SREday Maupa" style="height:400px;">
+        </div>
+
+    </div><!--//container-->	    
+</footer>
+
+
+<!-- Javascript -->          
+<script src="assets/plugins/popper.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.bundle.js"></script>  
+<script src="assets/plugins/smoothscroll.min.js"></script>
+<script src="assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+<script src="assets/js/main.js"></script>  
+
+</body>
+</html> 

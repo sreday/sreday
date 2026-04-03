@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+	<title>SREday - Cologne, Germany, June 12, 2025</title>
+	
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="SREday conference">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+	<link rel="manifest" href="./assets/site.webmanifest">
+	
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:600,700,800|Roboto:300,400,700&display=swap" rel="stylesheet">
+	
+	<!-- FontAwesome JS-->
+	<script defer src="assets/fontawesome/js/all.min.js"></script>
+
+	<!-- Theme CSS -->  
+	<link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
+
+    <meta name="image" property="og:image" content="https://sreday.com/photos/sreday-san-francisco-2024-0.jpg">
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="SREday - Cologne, Germany - June 12, 2025"/>
+    <meta property="og:description" content="Conference on Site Reliability Engineering, Cloud and DevOps. Probably the most awesome SRE conference in Cologne, Germany!"/>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@sreday_com">
+	<meta name="twitter:creator" content="@sreday_com">
+    <meta name="twitter:title" content="SREday - Cologne, Germany - June 12, 2025"/>
+    <meta name="twitter:description" content="Conference on Site Reliability Engineering, Cloud and DevOps. Probably the most awesome SRE conference in Cologne, Germany!"/>
+    <meta name="twitter:image" content="https://sreday.com/photos/sreday-san-francisco-2024-0.jpg">
+
+
+<!-- Twitter conversion tracking base code -->
+<script>
+	!function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+	},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',
+	a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+	twq('config','ofo1h');
+	</script>
+	<!-- End Twitter conversion tracking base code -->
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ2KV6LK8G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CQ2KV6LK8G');
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17496979257"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17496979257');
+</script>
+
+<style>
+	.tinted {
+		box-shadow: 0 3000px rgba(0, 0, 0, 0.5) inset;
+	}
+	.retro {
+		font-family: 'Monoton', sans-serif;
+	}
+	.logo {
+		font-size: 5rem;
+		color: white;
+		font-weight: 400;
+	}
+	.theme-bg-primary {
+		background: #713660;
+	}
+</style>
+	
+
+<body>    
+	<header id="header" class="header fixed-top">	    
+		<div class="branding">
+			<div class="container-fluid">
+				<nav class="main-nav navbar navbar-expand-lg">
+					<div class="site-logo"><a class="scrollto" href="#hero-block">
+                        <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
+                    </div>
+					
+					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					
+					<div id="navigation" class="navbar-collapse collapse  justify-content-lg-end me-lg-3">
+						<ul class="nav navbar-nav">
+							
+							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>                                              
+							<li class="nav-item"><a class="nav-link scrollto" href="#tickets">Tickets</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="#schedule">Schedule</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="#speakers">Speakers</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="#venue">Venue</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="#sponsors">Sponsors</a></li>
+						</ul><!--//nav-->
+					</div><!--//navabr-collapse-->
+
+				</nav><!--//main-nav-->
+				
+			</div><!--//container-->
+		</div><!--//branding-->
+	</header><!--//header-->
+	
+	<div id="home" class="hero-block">
+		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+			<div class="carousel-inner">
+				
+				<div class="carousel-item tinted active" style="background:url('../photos/sreday-san-francisco-2024-0.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-san-francisco-2024-1.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-san-francisco-2024-2.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-san-francisco-2024-3.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-san-francisco-2024-4.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-san-francisco-2024-5.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-0.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-1.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-2.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-3.jpg') no-repeat center; background-size: cover;"></div>
+				
+			</div>
+
+			<div class="carousel-indicators">
+				
+				<button type="button" data-bs-target="#hero-carousel" class="active" data-bs-slide-to="0"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="1"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="2"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="3"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="4"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="5"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="6"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="7"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="8"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="9"></button>
+				
+			</div>
+		</div>
+		<div class="container">
+			<div class="hero-text-block text-center" style="max-width: 100%;">
+				<h1 class="logo retro"><img src="/assets/images/sreday_sticker.png" alt="SREday" style="height: 200px;"></h1>
+				<h2 class="text-white">Site Reliability, DevOps and Cloud</h2>
+				<h3 class="text-white"><i class="far fa-calendar-alt me-2"></i>June 12, 2025 <i class="fas fa-map-marker-alt mx-2"></i>Cologne, Germany</h3>
+				<div class="hero-cta mt-5">
+					<a class="btn btn-secondary btn-lg" href="#tickets">Get Tickets</a>
+					
+			    </div>
+			</div><!--//hero-text-block-->
+		</div><!--//container-->
+
+	</div><!--//hero-block-->
+	
+	<div class="stats-block theme-bg-primary text-white py-4 text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">1</div>
+						<div class="unit">Day</div>
+					</div><!--//item-->
+				</div><!--//col-->
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">12+</div>
+						<div class="unit">Speakers</div>
+					</div><!--//item-->
+				</div><!--//col-->
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">1</div>
+						<div class="unit">Track</div>
+					</div><!--//item-->
+				</div><!--//col-->
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">50</div>
+						<div class="unit">Attendees</div>
+					</div><!--//item-->
+				</div><!--//col-->
+			</div>
+		</div><!--//container-->
+	</div><!--//stats-block-->
+
+
+<!-- CONTENT -->
+
+
+<section id="about" class="about-section section">
+
+  <div class="container">
+    <div class="event-countdown text-center mb-3">
+    
+      <h4 class="countdown-intro mb-2 text-center mb-3">Event finished</h4>
+    
+    </div>
+  </div>
+  <script>
+    /* ======= Countdown ========= */
+    // set the date we're counting down to
+    var target_date = new Date("2025-06-12T10:00:00+01:00").getTime();
+     
+    // variables for time units
+    var days, hours, minutes, seconds;
+     
+    // get tag element
+    var countdown =  document.getElementById("countdown-box");
+    var days_span = document.createElement("SPAN");
+    days_span.className = 'days';
+    countdown.appendChild(days_span);
+    var hours_span = document.createElement("SPAN");
+    hours_span.className = 'hours';
+    countdown.appendChild(hours_span);
+    var minutes_span = document.createElement("SPAN");
+    minutes_span.className = 'minutes';
+    countdown.appendChild(minutes_span);
+    var secs_span = document.createElement("SPAN");
+    secs_span.className = 'secs';
+    countdown.appendChild(secs_span);
+     
+    // update the tag with id "countdown" every 1 second
+    setInterval(function () {
+     
+        // find the amount of "seconds" between now and target
+        var current_date = new Date().getTime();
+        var seconds_left = (target_date - current_date) / 1000;
+     
+        // do some time calculations
+        days = parseInt(seconds_left / 86400);
+        seconds_left = seconds_left % 86400;
+         
+        hours = parseInt(seconds_left / 3600);
+        seconds_left = seconds_left % 3600;
+         
+        minutes = parseInt(seconds_left / 60);
+        seconds = parseInt(seconds_left % 60);
+         
+        // format countdown string + set tag value.
+        days_span.innerHTML = '<span class="number">' + days + '</span>' + '<span class="unit">Days</span>';
+        hours_span.innerHTML = '<span class="number">' + hours + '</span>' + '<span class="unit">Hrs</span>';
+        minutes_span.innerHTML = '<span class="number">' + minutes + '</span>' + '<span class="unit">Mins</span>';
+        secs_span.innerHTML = '<span class="number">' + seconds + '</span>' + '<span class="unit">Secs</span>'; 
+     
+    }, 1000);
+    </script>
+</section>
+
+<section id="tickets" class="tickets-section section">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Tickets</h3>
+
+    
+
+  </div>
+</section>
+
+
+<section id="schedule" class="schedule-section section theme-bg-light">
+  <div class="container">
+    <h2 class="section-heading text-center mb-5">Schedule</h2>
+
+
+
+    
+
+    
+    <!-- Nav tabs -->
+    <ul class="schedule-nav nav nav-pills nav-fill" id="myTab" role="tablist">
+
+      <li class="nav-item me-2">
+        <a class="nav-link active" id="tab-0-1" data-bs-toggle="tab" href="#tab-0-1-content" role="tab" aria-controls="tab-1-content"
+          aria-selected="true"
+        >
+          <span class="heading">main room</span>
+          <span class="meta">1</span>
+        </a>
+      </li>
+
+    </ul>
+    
+    <!-- Tab panes -->
+    <div class="schedule-tab-content tab-content">
+
+
+      <div class="tab-pane active" id="tab-0-1-content" role="tabpanel" aria-labelledby="tab-0-1">
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">10:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle  mb-2" src="../speakers/Birol Yildiz.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Birol Yildiz</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote:  AI Agents for Incident Management</a>
+            </h3>
+            <div class="location mb-3"></i>ilert</div>
+            <div class="desc">AI agents are transforming incident management by automating detection, diagnosis, and response. This keynote explores how intelligent systems can reduce downtime, enhance decision-making, and streamline operations, offering a glimpse into the future of autonomous incident resolution.<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">10:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
+            </h3>
+            <div class="location mb-3"></i>Main lobby</div>
+            <div class="desc"><br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">11:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle  mb-2" src="../speakers/Kat Gaines.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Kat Gaines</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Staying in your lane: incident response for leaders</a>
+            </h3>
+            <div class="location mb-3"></i>PagerDuty</div>
+            <div class="desc">During incident response, every second counts. As a leader, you're expected to have all the answers, and that pressure can make it very tempting to play the hero and take control of the response process. While "I'll just do it myself" may seem faster on occasion, this instinct can hinder your...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">11:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle  mb-2" src="../speakers/Michael Cote.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Michael Cote</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Platform Engineering for Private Cloud</a>
+            </h3>
+            <div class="location mb-3"></i>VMware / Pivotal</div>
+            <div class="desc">_Platform engineering_ is the art of building and managing the infrastructure that powers your applications: a mix of cloud, a handful of DevOps, a pinch of SRE, and a thick glaze of product management. While it’s “nothing new,” many organizations are just starting to practice it—and for good...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">12:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle  mb-2" src="../speakers/Michael Huttermann.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Dr. Michael Hüttermann</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">DevOps XXL: How to Scale-up in Large Setups with SRE?</a>
+            </h3>
+            <div class="location mb-3"></i>huettermann.net</div>
+            <div class="desc">This session derives Dos and Donts from very large setups. It aims to draw a thin line between DevOps and SRE, defines those two concepts and offers practical guidance how to leverage both. We discuss how to bring together the communities of DevOps and SRE. This interactive session is based on...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">12:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle  mb-2" src="../speakers/Alina Astapovich.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Alina Astapovich</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Automating SRE Operations with Multi-Agent AI: InfraAssistant Approach</a>
+            </h3>
+            <div class="location mb-3"></i>Electrolux Group</div>
+            <div class="desc">SRE teams often face challenges with a high volume of routine tasks and requests, making it difficult to focus on critical, high-priority issues. At Electrolux, we faced the same challenge, which led us to develop InfraAssistant —a multi-agent AI-powered solution designed to automate key...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">13:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
+            </h3>
+            <div class="location mb-3"></i>Main lobby</div>
+            <div class="desc"><br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">14:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle  mb-2" src="../speakers/Andrada Raducanu.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Andrada Raducanu</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">From Code to Cluster: Orchestrating 10,000+ Kubernetes deployments with 1 pipeline</a>
+            </h3>
+            <div class="location mb-3"></i>ING Hubs Romania</div>
+            <div class="desc">There is a sea of tools one can use for the critical phase of Deployment during your SDLC. To keep our environment secure and reliable, ING chose to work with Kubernetes and Azure DevOps. In this talk, we will share the success story of how 1200 in-house developed APIs reached 10 000+ Production...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">14:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle  mb-2" src="../speakers/Agnieszka Welian.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Agnieszka Welian</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">How to tame chaos effectively?</a>
+            </h3>
+            <div class="location mb-3"></i>Pegasystems</div>
+            <div class="desc">Imagine a self-healing system that handles surprises, letting you sleep peacefully. If that sounds appealing, chaos engineering could be the answer. Trusted by Netflix, LinkedIn, Google, and Facebook, it's key for business resilience. In this session, we'll explore its history, learn how to apply...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">15:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle  mb-2" src="../speakers/Bohdan Pohorilets.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Bohdan Pohorilets</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Cloud infrastructure with AWS Cloud Development Kit</a>
+            </h3>
+            <div class="location mb-3"></i>Freelance SRE</div>
+            <div class="desc">This hands-on workshop guides engineers in developing cloud infrastructure using AWS CDK to make a web application public. Participants will learn how to spin up, deploy, and tear down cloud resources with a few console commands. Key technologies include AWS (CDK, S3, Lambda, RDS) and Ruby on...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">15:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle  mb-2" src="../speakers/Renato Losio.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Renato Losio</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Things Fall Apart: Navigating Managed Databases for Over a Decade as a Non-DBA</a>
+            </h3>
+            <div class="location mb-3"></i>Funambol</div>
+            <div class="desc">Learn to navigate database benchmarks wisely! From crashing managed instances to skyrocketing storage costs, I'll share hard-earned lessons from a decade of managing production databases on the cloud without DBA expertise.<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">16:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle  mb-2" src="../speakers/Michele Dodic.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Michele Dodic</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">From Firefighting to Zero-Touch: How AIOps Empowers SREs to Build Resilient, Business-Driven Platforms
+ </a>
+            </h3>
+            <div class="location mb-3"></i>Accenture</div>
+            <div class="desc">Explore how AIOps, combined with Observability and Chaos Engineering, is empowering SREs to transform IT operations into a strategic driver of business value. This session delves into strategies for achieving end-to-end visibility and resilience—from infrastructure and applications to business...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">16:30</h4>
+            <div class="profile">
+              <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle  mb-2" src="../speakers/Syed Usman Ahmad.png" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Syed Usman Ahmad</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">From Text to Visuals: Observe your GitHub repos efficiently</a>
+            </h3>
+            <div class="location mb-3"></i>Grafana Labs</div>
+            <div class="desc">Whether you are just starting your journey as a DevOps Engineer or already an expert SRE, you need to use Git (e.g. GitHub, GtlLab) to maintain your code and track issues, PRs, commits, etc. You start with a few repositories but then it becomes difficult to get visibility into what's going on in...<br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3">17:00</h4>
+            <div class="profile">
+              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
+            </h3>
+            <div class="location mb-3"></i>Scan each other's QR codes & head to a nearby pub!</div>
+            <div class="desc"><br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+
+      </div><!--//tab-1-content-->
+
+
+    </div><!--//schedule-tab-content-->
+
+
+
+    <div class="schedule-cta text-center mx-auto"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+  </div>
+</section>
+
+
+
+
+<section id="speakers" class="speakers-section section">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Speakers</h3>
+    <div class="row">
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Agnieszka Welian.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Agnieszka Welian</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Pegasystems</div>
+            </div><!--//card-text-->
+            <a href="./Agnieszka_Welian_Pegasystems_How_to_tame_chaos_effectively">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/agnieszka-welian/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Alina Astapovich.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Alina Astapovich</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Electrolux Group</div>
+            </div><!--//card-text-->
+            <a href="./Alina_Astapovich_Electrolux_Group_Automating_SRE_Operations_with_MultiAgent_AI_InfraAssistant_Approa">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/alina-astapovich/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Andrada Raducanu.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Andrada Raducanu</h5>
+            <div class="card-text mb-3">
+              <div class="meta">ING Hubs Romania</div>
+            </div><!--//card-text-->
+            <a href="./Andrada_Raducanu_ING_Hubs_Romania_From_Code_to_Cluster_Orchestrating_10_000_Kubernetes_deployments_w">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/andrada-raducanu-518122115/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Birol Yildiz.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Birol Yildiz</h5>
+            <div class="card-text mb-3">
+              <div class="meta">ilert</div>
+            </div><!--//card-text-->
+            <a href="./Birol_Yildiz_ilert_Keynote__AI_Agents_for_Incident_Management">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              <li class="list-inline-item"><a  href="https://twitter.com/@birol_yildiz"><i class="fab fa-twitter fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/birolyildiz/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Bohdan Pohorilets.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Bohdan Pohorilets</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Freelance SRE</div>
+            </div><!--//card-text-->
+            <a href="./Bohdan_Pohorilets_Freelance_SRE_Cloud_infrastructure_with_AWS_Cloud_Development_Kit">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/bohdan-pohorilets-3b349325/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Michael Huttermann.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Dr. Michael Hüttermann</h5>
+            <div class="card-text mb-3">
+              <div class="meta">huettermann.net</div>
+            </div><!--//card-text-->
+            <a href="./Dr_Michael_Httermann_huettermannnet_DevOps_XXL_How_to_Scaleup_in_Large_Setups_with_SRE">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              <li class="list-inline-item"><a  href="https://twitter.com/@huettermann"><i class="fab fa-twitter fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/huettermann/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img src="../speakers/Kat Gaines.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Kat Gaines</h5>
+            <div class="card-text mb-3">
+              <div class="meta">PagerDuty</div>
+            </div><!--//card-text-->
+            <a href="./Kat_Gaines_PagerDuty_Staying_in_your_lane_incident_response_for_leaders">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/katgaines/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Michael Cote.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Michael Cote</h5>
+            <div class="card-text mb-3">
+              <div class="meta">VMware / Pivotal</div>
+            </div><!--//card-text-->
+            <a href="./Michael_Cote_VMware__Pivotal_Platform_Engineering_for_Private_Cloud">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              <li class="list-inline-item"><a  href="https://twitter.com/@cote"><i class="fab fa-twitter fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/michaelcote/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Michele Dodic.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Michele Dodic</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Accenture</div>
+            </div><!--//card-text-->
+            <a href="./Michele_Dodic_Accenture_From_Firefighting_to_ZeroTouch_How_AIOps_Empowers_SREs_to_Build_Resilient__B">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/michele-dodic/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Renato Losio.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Renato Losio</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Funambol</div>
+            </div><!--//card-text-->
+            <a href="./Renato_Losio_Funambol_Things_Fall_Apart_Navigating_Managed_Databases_for_Over_a_Decade_as_a_NonDBA">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/rlosio/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Syed Usman Ahmad.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Syed Usman Ahmad</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Grafana Labs</div>
+            </div><!--//card-text-->
+            <a href="./Syed_Usman_Ahmad_Grafana_Labs_From_Text_to_Visuals_Observe_your_GitHub_repos_efficiently">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              <li class="list-inline-item"><a  href="https://twitter.com/@usahmad87"><i class="fab fa-twitter fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/usmanlinux/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      
+
+    </div><!--//row-->
+    <div class="speakers-cta text-center py-3"><a class="btn btn-primary btn-lg" href="#tickets">Get Tickets</a></div>
+  </div><!--//container-->
+
+</section><!--//speakers-section-->
+
+
+<section id="venue" class="venue-section section  theme-bg-primary text-white">
+    <div class="container">
+      <h3 class="section-heading text-center mb-5 text-white">Venue</h3>
+      <div class="row gx-5 py-lg-5">
+        <div class="col-12 col-lg-7 h-100">
+          <div class="desc">
+            <h4 class="text-white mb-3">The offices of Ilert.com</h4>
+            <p>
+              Bayenstraße 65, <br />
+              50678 Köln, Germany <br />
+            </p>
+  
+            <div class="row pt-3">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2514.80762409319!2d6.9602635126036185!3d50.92727557156912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bee744cf34a299%3A0x6ed56c6f2183c8ca!2silert%20GmbH!5e0!3m2!1sen!2suk!4v1734122995514!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div><!--//row-->
+          </div><!--//desc-->
+        </div><!--//col-->
+        <div class="col-12 col-xl-3 col-lg-4 offset-lg-1 position-relative h-100 mt-5 mt-lg-0">
+          <div class="figures-holder">
+            <div class="figure figure-1"><img class="shadow" src="assets/images/venue/venue-1.jpg" alt=""></div>
+            <div class="figure figure-2"><img class="shadow" src="assets/images/venue/venue-2.jpg" alt=""></div>
+            <div class="figure figure-3"><img class="shadow" src="assets/images/venue/venue-3.jpg" alt=""></div>
+          </div><!--//figures-holder-->
+        </div><!--//col-->
+      </div><!--//row-->
+    </div><!--//container-->
+  </section><!--//venue-section-->
+  
+
+
+<section id="sponsors" class="sponsors-section section">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Sponsors &amp; Partners</h3>
+    <div class="section-intro text-center single-col-max mx-auto mb-5">Want to become a sponsor? Get in touch!</div>
+    <div class="row logos justify-content-center">
+      
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.ilert.com/" target="_blank"><img src="./assets/images/sponsors/ilert.png" alt=""></a></div>
+      
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.hockeystick.show/" target="_blank"><img src="./assets/images/sponsors/hockeystick.png" alt=""></a></div>
+      
+    </div><!--//row-->
+    <div class="sponsors-cta text-center pt-5"><a class="btn-primary btn btn-lg" href="mailto:hello@sreday.com">Become A Sponsor</a></div>
+  </div><!--//container-->
+</section><!--//sponsors-section-->
+
+
+
+
+<!-- Modal Speaker 1 -->
+<div class="modal modal-speaker modal-speaker-1" id="modal-speaker-1" tabindex="-1" role="dialog" aria-labelledby="speaker-1-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-1-ModalLabel" class="modal-title sr-only"
+>Kat Gaines</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Kat Gaines.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Kat Gaines</h2>
+                          <div class="meta mb-2">PagerDuty</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/katgaines/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>During incident response, every second counts. As a leader, you're expected to have all the answers, and that pressure can make it very tempting to play the hero and take control of the response process. While "I'll just do it myself" may seem faster on occasion, this instinct can hinder your team's effectiveness and actually slow down resolution.</p>
+<p>We'll explore how you can evolve from a command-and-control manager into a genuinely empowering leader. You'll learn how to maintain composure under pressure while creating space for your team to shine. We'll cover essential frameworks, usable by new managers and individual contributors building incident response processes from scratch as well as experienced leaders looking to level up their approach.</p>
+<p>Key takeaways will include:</p>
+<ul>
+<li>How to recognize when you may be over-managing during an incident… and how to empower your team to help you recognize these moments.  </li>
+<li>Building team confidence and ownership in crisis situations.  </li>
+<li>Clear guidelines for when to step in versus step back.  </li>
+<li>Establishing and maintaining clear communication channels.  </li>
+</ul>
+<p>Whether you're establishing your first incident response playbook, fine-tuning an existing process, or managing up to help your leaders help you do your best work, you'll leave equipped to help your team handle incidents more effectively – and help you sleep better at night knowing they've got this.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Kat leads the Developer Advocacy and Community team at PagerDuty. She enjoys talking and thinking about incident response, customer support, and automating the creation of a delightful end-user and employee experience. She previously ran Global Customer Support at PagerDuty, and as a result, it’s hard to get her to stop talking about the potential career paths for tech support professionals. In her spare time, Kat is a mediocre plant parent and a slightly less mediocre pet parent to her two rabbits, Lupin and Ginny.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 2 -->
+<div class="modal modal-speaker modal-speaker-2" id="modal-speaker-2" tabindex="-1" role="dialog" aria-labelledby="speaker-2-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-2-ModalLabel" class="modal-title sr-only"
+>Michael Cote</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Michael Cote.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Michael Cote</h2>
+                          <div class="meta mb-2">VMware / Pivotal</div>
+                          <ul class="social-list list-inline mb-0">
+                            <li class="list-inline-item"><a  href="https://twitter.com/@cote"><i class="fab fa-twitter fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/michaelcote/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p><em>Platform engineering</em> is the art of building and managing the infrastructure that powers your applications: a mix of cloud, a handful of DevOps, a pinch of SRE, and a thick glaze of product management. While it’s “nothing new,” many organizations are just starting to practice it—and for good reason. But what happens when your platform is running on private cloud?</p>
+<p>With around 50% of enterprise apps still running on private clouds, platform engineering for private platforms is surprisingly under-discussed. This talk dives into real-world examples and stories from large organizations tackling this challenge. The hurdles often lie in adapting platform engineering to existing IT stacks and processes—most organizations can’t simply start from scratch, nor would they want to abandon what’s currently driving revenue.</p>
+<p>If you support your organization’s apps, platform engineering is something you’ll probably be doing soon. Come learn how your peers are navigating these challenges and share your own experiences.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p><a href="https://cote.io/">Michael Cote</a> studies how large organizations get better at building software to run better and grow their business. His <a href="https://cote.io/books/">books</a> <a href="https://www.oreilly.com/library/view/changing-mindsets-the/9781098105839/?utm_source=cote&amp;utm_campaign=devrel&amp;utm_content=bioblock"><em>Changing Mindsets</em></a>, <a href="https://tanzu.vmware.com/content/ebooks/monolithic-transformation?utm_source=cote&amp;utm_campaign=devrel&amp;utm_content=bioblock"><em>Monolithic Transformation</em></a>, and <a href="https://content.pivotal.io/ebooks/the-business-bottleneck?utm_source=cote&amp;utm_campaign=devrel&amp;utm_content=bioblock"><em>The Business Bottleneck</em></a>_ cover these topics. He's been an industry analyst at RedMonk and 451 Research, done corporate strategy and M&amp;A, and was a programmer. He also co-hosts several podcasts, including <a href="https://www.softwaredefinedtalk.com/">Software Defined Talk</a>. His daily-ish newsletter is at <a href="https://newsletter.cote.io/">newsletter.cote.io</a>.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 3 -->
+<div class="modal modal-speaker modal-speaker-3" id="modal-speaker-3" tabindex="-1" role="dialog" aria-labelledby="speaker-3-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-3-ModalLabel" class="modal-title sr-only"
+>Dr. Michael Hüttermann</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Michael Huttermann.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Dr. Michael Hüttermann</h2>
+                          <div class="meta mb-2">huettermann.net</div>
+                          <ul class="social-list list-inline mb-0">
+                            <li class="list-inline-item"><a  href="https://twitter.com/@huettermann"><i class="fab fa-twitter fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/huettermann/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>This session derives Dos and Donts from very large setups. It aims to
+draw a thin line between DevOps and SRE, defines those two concepts and
+offers practical guidance how to leverage both. We discuss how to bring
+together the communities of DevOps and SRE. This interactive session is
+based on both, good practices from the field and insights from academic
+research.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Dr. Michael Hüttermann is a Principal Delivery Engineer. Michael supports large enterprises implementing DevOps. He has written a couple of books including "DevOps for Developers" and "Agile ALM" and has given talks at leading conferences (e.g., JavaOne, Devoxx) since the early years of this millennium. Michael is "Java Champion" since 2006. More details here: http://huettermann.net.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 4 -->
+<div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-4-ModalLabel" class="modal-title sr-only"
+>Alina Astapovich</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Alina Astapovich.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Alina Astapovich</h2>
+                          <div class="meta mb-2">Electrolux Group</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/alina-astapovich/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>SRE teams often face challenges with a high volume of routine tasks and requests, making it difficult to focus on critical, high-priority issues. At Electrolux, we faced the same challenge, which led us to develop InfraAssistant —a multi-agent AI-powered solution designed to automate key operational tasks such as infrastructure management, user onboarding, and responding to internal requests.</p>
+<p>This shift reduced our manual workload and significantly improved operational efficiency.</p>
+<p>InfraAssistant is built on specialized agents that coordinate to autonomously manage complex tasks, reducing the need for continuous manual involvement. This session will cover the design and orchestration of these agents, showcasing how InfraAssistant helps SRE teams by automating day-to-day operations, minimizing repetitive tasks, and enhancing the management of complex infrastructure.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Alina Astapovich is a Site Reliability Engineer with a strong background in IoT development. Holding a master's degree in 'Neurotechnologies and Software Engineering,' she excels in designing and architecting backend platforms and microservices. Her experience goes beyond, she has a strong background in building scalable and robust solutions. With a Solutions Architect certification, Alina leverages her expertise in cloud technologies to optimize system performance and reliability. She is dedicated to continuous professional growth, always exploring the latest innovations and trends in technology. As a skilled public speaker, Alina regularly shares her insights at industry events and conferences, contributing to the broader tech community.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 5 -->
+<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-5-ModalLabel" class="modal-title sr-only"
+>Andrada Raducanu</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Andrada Raducanu.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Andrada Raducanu</h2>
+                          <div class="meta mb-2">ING Hubs Romania</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/andrada-raducanu-518122115/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>There is a sea of tools one can use for the critical phase of Deployment during your SDLC. To keep our environment secure and reliable, ING chose to work with Kubernetes and Azure DevOps. In this talk, we will share the success story of how 1200 in-house developed APIs reached 10 000+ Production deployments in half a year, using one single pipeline. In order to stay in control, we use Open Policy Agent. To ensure the reliability and the resilience of the APIs, we use tools like: QuotaAutoscaler (ING open source CRD) and HorizontalPodAustoscaler, native rollback mechanisms with Helm, automatic certificates using CertManager and Prometheus monitoring. The pipeline deploys code in Azure Kubernetes Service and on-prem Kubernetes clusters. This solution was built as a platform, designed to be agnostic to the target system, reducing the cognitive load on the teams and allowing them to focus on the application development. We call this The Kingsroad.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Andrada Răducanu is an Operations Engineer, with 7+ years of experience in IT infrastructure and cloud operations. Previously, she worked at VOIS as a System Engineer Specialist and taught programming to children at Edusfera Association. She combines technical expertise with a passion for IT education.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 6 -->
+<div class="modal modal-speaker modal-speaker-6" id="modal-speaker-6" tabindex="-1" role="dialog" aria-labelledby="speaker-6-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-6-ModalLabel" class="modal-title sr-only"
+>Agnieszka Welian</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Agnieszka Welian.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Agnieszka Welian</h2>
+                          <div class="meta mb-2">Pegasystems</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/agnieszka-welian/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Imagine a self-healing system that handles surprises, letting you sleep peacefully. If that sounds appealing, chaos engineering could be the answer. Trusted by Netflix, LinkedIn, Google, and Facebook, it's key for business resilience. In this session, we'll explore its history, learn how to apply its principles to stress-test applications, and review tools for fault injection in real-world scenarios.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Agnieszka is a dedicated engineer specializing in cloud solutions, with expertise in cutting-edge technologies such as Kubernetes and Terraform. She also brings valuable insights from her experience in testing activities. Agnieszka is passionate about enhancing people’s wellbeing and promoting a healthy work-life balance. Outside of her professional endeavors, she is a sports freak, board game lover and owner of two adorable cats.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 7 -->
+<div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-7-ModalLabel" class="modal-title sr-only"
+>Bohdan Pohorilets</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Bohdan Pohorilets.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Bohdan Pohorilets</h2>
+                          <div class="meta mb-2">Freelance SRE</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/bohdan-pohorilets-3b349325/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>This hands-on workshop guides engineers in developing cloud infrastructure using AWS CDK to make a web application public. Participants will learn how to spin up, deploy, and tear down cloud resources with a few console commands. Key technologies include AWS (CDK, S3, Lambda, RDS) and Ruby on Rails with PostgreSQL. Attendees need AWS and GitHub accounts, CLI tools, and specific runtime environments. The session balances interactive deployments with insights into cloud architecture and best practices.</p>
+<p><em><a href="https://github.com/bpohoriletz/prototype">The Github Repo is available here</a></em></p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>I'm Bohdan from Lviv, Ukraine and I love to learn new things. In my carrer I've had a chance to wear different hats - from an Engineer up to C-level and to work in different companies - from a startup to an enterprize. My solutions aren't perfect, but I'll give you something to work with.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 8 -->
+<div class="modal modal-speaker modal-speaker-8" id="modal-speaker-8" tabindex="-1" role="dialog" aria-labelledby="speaker-8-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-8-ModalLabel" class="modal-title sr-only"
+>Renato Losio</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Renato Losio.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Renato Losio</h2>
+                          <div class="meta mb-2">Funambol</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/rlosio/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Learn to navigate database benchmarks wisely! From crashing managed instances to skyrocketing storage costs, I'll share hard-earned lessons from a decade of managing production databases on the cloud without DBA expertise.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>I triggered storage autoscaling during maintenance, crashed my first managed instance on ARM due to a suboptimal configuration, and ran out of IOPS multiple times. While attempting to autosmart the automated backups, my storage costs skyrocketed, surpassing any other expenses associated with the instance. Sometimes things fall apart, and sometimes I succeed. I experimented with various methods to optimize the storage of fragmented tables. Here are a few lessons from managing dozens of production databases for over a decade, without DBA expertise.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Renato has extensive experience as a cloud architect, tech lead, and cloud services specialist. He lives in Berlin and works remotely as a principal cloud architect. His primary areas of interest include cloud services and relational databases. He is an editor at InfoQ and a recognized AWS Data Hero. </p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 9 -->
+<div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-9-ModalLabel" class="modal-title sr-only"
+>Michele Dodic</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Michele Dodic.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Michele Dodic</h2>
+                          <div class="meta mb-2">Accenture</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/michele-dodic/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Explore how AIOps, combined with Observability and Chaos Engineering, is empowering SREs to transform IT operations into a strategic driver of business value. This session delves into strategies for achieving end-to-end visibility and resilience—from infrastructure and applications to business processes. Learn how advanced analytics, AI and automation can optimize the user journey, enhance customer experiences, and drive measurable business impact. Through real-world case studies and a zero-touch AIOps demo powered by GenAI, gain actionable insights to predict failures, address vulnerabilities, and ensure seamless system performance across the entire operational stack.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Michele is an SRE Solution Architect at Accenture, where he helps large enterprises integrate Observability and AIOps into complex, hybrid environments. In addition to designing technical solutions, Michele is an active member of several SRE and DevOps communities. His focus is on promoting SRE principles, practices, and culture to support organizations in improving reliability and operational efficiency. Michele also shares his insights as a public speaker at conferences like All Day DevOps, Conf42, Splunk .conf, Dynatrace Perform, DevOpsCon, ChaosCarnival, and others.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 10 -->
+<div class="modal modal-speaker modal-speaker-10" id="modal-speaker-10" tabindex="-1" role="dialog" aria-labelledby="speaker-10-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-10-ModalLabel" class="modal-title sr-only"
+>Syed Usman Ahmad</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Syed Usman Ahmad.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Syed Usman Ahmad</h2>
+                          <div class="meta mb-2">Grafana Labs</div>
+                          <ul class="social-list list-inline mb-0">
+                            <li class="list-inline-item"><a  href="https://twitter.com/@usahmad87"><i class="fab fa-twitter fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/usmanlinux/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Whether you are just starting your journey as a DevOps Engineer or already an expert SRE, you need to use Git (e.g. GitHub, GtlLab) to maintain your code and track issues, PRs, commits, etc. You start with a few repositories but then it becomes difficult to get visibility into what's going on in a complex app when it's scattered across 20 different GitHub repos.</p>
+<p>In this talk, we will demonstrate an example of how to monitor your GitHub repo using the GitHub Data source plugin that allows you to represent data e.g. open/close issues, Pull n Merge requests, and other various statuses visually in Grafana dashboards and gives a dynamic and interactive view to monitoring for a more adaptable and user-centric dashboard experience either for your personal projects or for the entire team. Later, we see more advanced features to get better observability.</p>
+<p>It will be an introduction to the Grafana Dashboards, and also an excellent opportunity to learn more about utilizing advanced visualization options to effectively represent complex data.</p>
+<p>Join us to learn more about Grafana dashboards, community contributions and share your feedback and suggestions!</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Usman is a Staff Developer Advocate at Grafana Labs from Nuremberg, Germany. He works with the Open Source community on the community forum, GitHub and Slack.</p>
+<p>He has over 15 years of experience in IT and Cloud Support where he served multiple customers all over Europe, US, Japan, etc.</p>
+<p>He is an active international public speaker participating in multiple conferences and events.</p>
+<p>In his free time, Usman likes to spend time with his family, go out on occasional traveling and play games or read comics.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 0 -->
+<div class="modal modal-speaker modal-speaker-0" id="modal-speaker-0" tabindex="-1" role="dialog" aria-labelledby="speaker-0-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-0-ModalLabel" class="modal-title sr-only"
+>Birol Yildiz</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Birol Yildiz.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Birol Yildiz</h2>
+                          <div class="meta mb-2">ilert</div>
+                          <ul class="social-list list-inline mb-0">
+                            <li class="list-inline-item"><a  href="https://twitter.com/@birol_yildiz"><i class="fab fa-twitter fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/birolyildiz/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>AI agents are transforming incident management by automating detection, diagnosis, and response. This keynote explores how intelligent systems can reduce downtime, enhance decision-making, and streamline operations, offering a glimpse into the future of autonomous incident resolution.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Birol Yildiz is the Co-founder and CEO of ilert, adeptly steering the company with a rare combination of technical and product expertise. His prior experience includes a significant role as Chief Product Owner for Big Data products at REWE Digital. With a strong foundation in computer science, Birol bridges the gap between developer and product strategist, constantly striving to innovate and provide customer-centric solutions at ilert.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+
+
+
+
+
+<footer class="footer py-5 theme-bg-primary">
+    <div class="container text-center">
+        
+        <ul class="social-list list-inline mb-4"> 
+            <li class="list-inline-item me-3"><a target="_blank" href="https://luma.com/sre" style="text-decoration:none;">✦</a></li>
+            <li class="list-inline-item me-3"><a target="_blank" href="https://chat.whatsapp.com/KS1ce0jAHmNGAiOAoZG6zo"><i class="fab fa-whatsapp fa-fw"></i></a></li>
+            <li class="list-inline-item me-3"><a target="_blank" href="https://www.linkedin.com/company/sreday/"><i class="fab fa-linkedin fa-fw"></i></a></li>
+            <li class="list-inline-item me-3"><a href="mailto:hello@sreday.com"><i class="fas fa-envelope fa-fw"></i></a></li>
+            <li class="list-inline-item me-0"><a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/@sreday"><i class="fab fa-youtube fa-fw"></i></a></li>
+        </ul>
+        
+        <!-- <ul class="footer-links list-inline mx-auto mb-4">
+            <li class="list-inline-item"><a href="#">Code of Conduct</a></li>
+            <li class="list-inline-item">|</li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item">|</li>
+            <li class="list-inline-item me-0"><a href="#">Privacy</a></li>
+        </ul> -->
+
+        
+        
+        <!--//footer-link-->
+
+        <div class="py-4 text-center">
+            <img src="/assets/maupa GIF.gif" alt="SREday Maupa" style="height:400px;">
+        </div>
+
+    </div><!--//container-->	    
+</footer>
+
+
+<!-- Javascript -->          
+<script src="assets/plugins/popper.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.bundle.js"></script>  
+<script src="assets/plugins/smoothscroll.min.js"></script>
+<script src="assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+<script src="assets/js/main.js"></script>  
+
+</body>
+</html> 
