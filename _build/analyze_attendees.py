@@ -472,6 +472,40 @@ def top_n(counts, total, exclude_other=True):
     return [{"label": k, "pct": pct(v, total)} for k, v in items]
 
 
+TOP_COMPANIES_MAX = 10
+
+# Keep in sync with _event_template/_build/generate.py
+COMPANY_DISPLAY_NAMES = {
+    # Acronyms / all-caps
+    'aws': 'AWS', 'ibm': 'IBM', 'ing': 'ING', 'sap': 'SAP', 'hp': 'HP',
+    'hcltech': 'HCLTech',
+    # Brand casing
+    'cast ai': 'CAST AI', 'pagerduty': 'PagerDuty', 'clickhouse': 'ClickHouse',
+    'datadog': 'Datadog', 'openobserve': 'OpenObserve',
+    'posthog': 'PostHog', 'ilert': 'iLert', 'rootly': 'Rootly',
+    'spacelift': 'Spacelift', 'new relic': 'New Relic',
+    'monday.com': 'Monday.com', 'victoriametrics': 'VictoriaMetrics',
+    'linearb': 'LinearB',
+    # Attendee-specific
+    'pwc': 'PwC', 'ey': 'EY', 'n26': 'N26', 'lg': 'LG',
+}
+
+
+def extract_top_companies(rows):
+    """Return top attendee companies by headcount, excluding solo/empty."""
+    counts = Counter()
+    for r in rows:
+        company = r.get('Company', '').strip()
+        c_lower = company.lower()
+        if not c_lower or c_lower in NO_COMPANY_VALUES or c_lower.startswith('looking for'):
+            continue
+        if any(x in c_lower for x in SOLO_SIGNALS):
+            continue
+        display = COMPANY_DISPLAY_NAMES.get(c_lower, company)
+        counts[display] += 1
+    return [name for name, _ in counts.most_common(TOP_COMPANIES_MAX)]
+
+
 def print_section(title, items):
     print(f"\n{'='*52}")
     print(title)
@@ -485,7 +519,7 @@ def print_section(title, items):
 # SPONSORSHIP TEMPLATE PATCHER
 # ══════════════════════════════════════════════════════════════
 
-def render_attendee_profile_block(tldr, role_stats, size_stats, senior_stats, topic_pills):
+def render_attendee_profile_block(tldr, role_stats, size_stats, senior_stats, topic_pills, top_companies):
     """Render the static attendee profile HTML block."""
 
     def bar_item(label, p):
@@ -509,6 +543,11 @@ def render_attendee_profile_block(tldr, role_stats, size_stats, senior_stats, to
     size_bars   = '\n'.join(bar_item(r['label'], r['pct']) for r in size_stats)
     senior_bars = '\n'.join(bar_item(r['label'], r['pct']) for r in senior_stats)
     topic_tags  = '\n'.join(tag(p['label'], p['highlight']) for p in topic_pills)
+
+    company_pills = '\n'.join(
+        f'            <span class="sp-stats-pill">{name}</span>'
+        for name in top_companies
+    )
 
     return (
         '{# ── ATTENDEE PROFILE (static - update by running _build/analyze_attendees.py) ── #}\n'
@@ -554,16 +593,7 @@ def render_attendee_profile_block(tldr, role_stats, size_stats, senior_stats, to
         '        <div class="sp-stats-card" style="margin-bottom:32px">\n'
         '          <div class="sp-stats-card-title">Top attendee companies</div>\n'
         '          <div class="sp-stats-pill-grid" style="margin-bottom:0">\n'
-        '            <span class="sp-stats-pill">Kyndryl</span>\n'
-        '            <span class="sp-stats-pill">Criteo</span>\n'
-        '            <span class="sp-stats-pill">Coralogix</span>\n'
-        '            <span class="sp-stats-pill">Cribl</span>\n'
-        '            <span class="sp-stats-pill">ING</span>\n'
-        '            <span class="sp-stats-pill">PagerDuty</span>\n'
-        '            <span class="sp-stats-pill">Harness</span>\n'
-        '            <span class="sp-stats-pill">Sky</span>\n'
-        '            <span class="sp-stats-pill">AWS</span>\n'
-        '            <span class="sp-stats-pill">Google</span>\n'
+        f'{company_pills}\n'
         '          </div>\n'
         '        </div>\n'
         '\n'
@@ -573,7 +603,7 @@ def render_attendee_profile_block(tldr, role_stats, size_stats, senior_stats, to
     )
 
 
-def patch_sponsorship_template(repo_root, tldr, role_stats, size_stats, senior_stats, topic_pills):
+def patch_sponsorship_template(repo_root, tldr, role_stats, size_stats, senior_stats, topic_pills, top_companies):
     """
     Patch the static attendee profile block in
     _event_template/_templates/sponsorship.html in place.
@@ -604,7 +634,7 @@ def patch_sponsorship_template(repo_root, tldr, role_stats, size_stats, senior_s
         return
 
     new_block = render_attendee_profile_block(
-        tldr, role_stats, size_stats, senior_stats, topic_pills
+        tldr, role_stats, size_stats, senior_stats, topic_pills, top_companies
     )
 
     patched = original[:start_idx] + new_block + original[end_idx:]
@@ -695,6 +725,9 @@ def main():
     size_stats   = top_n(size_counts,   total)
     senior_stats = top_n(senior_counts, total)
 
+    # ── Top attendee companies ────────────────────────────────
+    top_companies = extract_top_companies(rows)
+
     # ── Topics from talks.csv ─────────────────────────────────
     repo_root = Path(__file__).parent.parent
     topic_pills, talks_files = extract_topics(repo_root)
@@ -711,6 +744,7 @@ def main():
         "company_size":   size_stats,
         "seniority":      senior_stats,
         "working_on":     topic_pills,
+        "top_companies":  top_companies,
     }
 
     # ── Print summary ─────────────────────────────────────────
@@ -740,9 +774,15 @@ def main():
 
     print(f"\n  Stats written to {out_path}")
 
+    print(f"\n{'='*52}")
+    print("TOP ATTENDEE COMPANIES")
+    print('='*52)
+    for i, name in enumerate(top_companies, 1):
+        print(f"  {i:>2}. {name}")
+
     # ── Patch sponsorship template in place ───────────────────
     patch_sponsorship_template(
-        repo_root, TLDR, role_stats, size_stats, senior_stats, topic_pills
+        repo_root, TLDR, role_stats, size_stats, senior_stats, topic_pills, top_companies
     )
     print("  Done. Commit and push to deploy.\n")
 
