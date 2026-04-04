@@ -82,7 +82,7 @@
 
         <div class="row">
             {% for ambassador in ambassadors %}
-            <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="col-12 col-md-6 col-lg-4 mb-4{% if loop.index > 9 %} amb-extra{% endif %}">
                 <div class="card rounded h-100 shadow-sm border-0">
                     <div class="card-body text-center">
                         <div class="mb-3">
@@ -121,6 +121,11 @@
             </div>
             {% endfor %}
         </div>
+        {% if ambassadors|length > 9 %}
+        <div class="text-center mt-2 mb-4">
+          <a href="javascript:void(0);" id="show-more-amb" class="btn btn-outline-secondary" onclick="showMoreAmb()">Show {{ ambassadors|length - 9 }} more</a>
+        </div>
+        {% endif %}
     </div>
 </section>
 
@@ -222,7 +227,7 @@ function toggleNote(id) {
   </div>
 </section>
 <style>
-.past-conf-extra, .past-meetup-extra { display: none; }
+.past-conf-extra, .past-meetup-extra, .amb-extra { display: none; }
 .btn-past-more { color: #000; background: #fff; border: 2px solid #fff; }
 .btn-past-more:hover, .btn-past-more:focus { background: #f0f0f0; color: #000; border-color: #f0f0f0; }
 .event-read-more-btn { display: inline-block; padding: 8px 18px; background: #713660; color: #fff; border-radius: 6px; text-decoration: none; transition: background 0.2s ease; font-family: 'Montserrat', sans-serif; font-weight: 700; }
@@ -231,6 +236,10 @@ function toggleNote(id) {
 .yt-playlist-btn:hover, .yt-playlist-btn:focus { background: #f08580; color: #fff; text-decoration: none; }
 </style>
 <script>
+function showMoreAmb() {
+  document.querySelectorAll('.amb-extra').forEach(function(el) { el.classList.remove('amb-extra'); });
+  document.getElementById('show-more-amb').style.display = 'none';
+}
 function showMorePastConf() {
   document.querySelectorAll('.past-conf-extra').forEach(function(el) { el.classList.remove('past-conf-extra'); });
   document.getElementById('show-more-past-conf').style.display = 'none';
