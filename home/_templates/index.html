@@ -22,9 +22,12 @@
               <div class="meta">{{ event.date }}</div>
             </div>
             {% if event.url %}
-            <a href="{{ event.url }}">Read more &rarr;</a>
+            <a href="{{ event.url }}" class="event-read-more-btn">Read more &rarr;</a>
             {% else %}
             Details coming soon...
+            {% endif %}
+            {% if event.youtube_playlist %}
+            <a href="{{ event.youtube_playlist }}" class="yt-playlist-btn" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="white" style="vertical-align:middle;margin-right:5px"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>Playlist</a>
             {% endif %}
           </div>
         </div>
@@ -160,7 +163,14 @@ function toggleNote(id) {
               <div class="meta">{{ event.date }}</div>
             </div>
             {% if event.url %}
+            {% if '/2025-' in event.url or '/2026-' in event.url or './2025-' in event.url or './2026-' in event.url %}
+            <a href="{{ event.url }}" class="event-read-more-btn">Read more &rarr;</a>
+            {% if event.youtube_playlist %}
+            <a href="{{ event.youtube_playlist }}" class="yt-playlist-btn" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="white" style="vertical-align:middle;margin-right:5px"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>Playlist</a>
+            {% endif %}
+            {% else %}
             <a href="{{ event.url }}">Read more &rarr;</a>
+            {% endif %}
             {% else %}
             Details coming soon...
             {% endif %}
@@ -215,6 +225,10 @@ function toggleNote(id) {
 .past-conf-extra, .past-meetup-extra { display: none; }
 .btn-past-more { color: #000; background: #fff; border: 2px solid #fff; }
 .btn-past-more:hover, .btn-past-more:focus { background: #f0f0f0; color: #000; border-color: #f0f0f0; }
+.event-read-more-btn { display: inline-block; padding: 8px 18px; background: #862f6e; color: #fff; border-radius: 6px; text-decoration: none; transition: background 0.2s ease; font-family: 'Montserrat', sans-serif; font-weight: 700; }
+.event-read-more-btn:hover, .event-read-more-btn:focus { background: #6e2459; color: #fff; text-decoration: none; }
+.yt-playlist-btn { display: inline-block; margin-left: 12px; padding: 8px 18px; background: #EC645E; color: #fff; border-radius: 6px; text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 700; transition: background 0.2s ease; }
+.yt-playlist-btn:hover, .yt-playlist-btn:focus { background: #D24A44; color: #fff; text-decoration: none; }
 </style>
 <script>
 function showMorePastConf() {
