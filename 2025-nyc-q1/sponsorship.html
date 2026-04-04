@@ -52,7 +52,7 @@
 <meta name="robots" content="noindex, nofollow">
 <style>
 /* ── Sponsorship page styles ─────────────────────────── */
-:root { --sp-accent: #713660; }
+:root { --sp-accent: #862f6e; }
 
 .sp-hero {
   background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
@@ -180,9 +180,9 @@
 
 /* ── New stats panel styles ──────────────────────────── */
 .sp-stats-inner {
-  --spi-green:       #713660;
-  --spi-green-light: #f5edf2;
-  --spi-green-mid:   #c9a3bc;
+  --spi-green:       #862f6e;
+  --spi-green-light: #f5e6f1;
+  --spi-green-mid:   #c48fb8;
   --spi-border:      #efefef;
   --spi-faint:       #f5f5f5;
 }
@@ -241,8 +241,8 @@
 /* timeline */
 .sp-stats-timeline { position: relative; padding: 20px 0 8px; margin-bottom: 8px; }
 .sp-stats-tl-line {
-  position: absolute; top: 32px; left: 0; right: 0; height: 2px;
-  background: var(--spi-green-mid);
+  position: absolute; top: 26px; left: 0; right: 0; height: 2px;
+  background: var(--spi-green-mid); z-index: 0;
 }
 .sp-stats-tl-events { display: flex; justify-content: space-between; position: relative; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
 .sp-stats-tl-event  { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 0; }
@@ -262,7 +262,7 @@
   border-radius: 8px; padding: 8px 10px; text-align: center;
   text-decoration: none; width: 100%; transition: background .15s;
 }
-.sp-stats-tl-chip:hover { background: #ecdae6; text-decoration: none; }
+.sp-stats-tl-chip:hover { background: #ebd0e4; text-decoration: none; }
 .sp-stats-tl-prospectus {
   display: block;
   margin-top: 6px;
@@ -271,20 +271,20 @@
   border-radius: 6px;
   padding: 4px 10px;
   font-size: .75rem;
-  color: #4a1f3a;
+  color: #551845;
   text-align: center;
   text-decoration: none;
   transition: background .15s;
 }
-.sp-stats-tl-prospectus:hover { background: #ecdae6; text-decoration: none; color: #4a1f3a; }
+.sp-stats-tl-prospectus:hover { background: #ebd0e4; text-decoration: none; color: #551845; }
 .sp-stats-tl-prospectus.past { background: #e8e8e8; border-color: #ccc; color: #555; }
 .sp-stats-tl-prospectus.past:hover { background: #d8d8d8; text-decoration: none; color: #555; }
-.sp-stats-tl-city  { font-family: 'Montserrat', sans-serif; font-size: .8rem; font-weight: 700; color: #4a1f3a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.sp-stats-tl-date  { font-size: .75rem; color: #8a4a72; margin-top: 2px; }
-.sp-stats-tl-seats { font-size: .75rem; color: #8a4a72; }
+.sp-stats-tl-city  { font-family: 'Montserrat', sans-serif; font-size: .8rem; font-weight: 700; color: #551845; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sp-stats-tl-date  { font-size: .75rem; color: #9b3f7a; margin-top: 2px; }
+.sp-stats-tl-seats { font-size: .75rem; color: #9b3f7a; }
 .sp-stats-tl-past  { font-size: .7rem; color: #c49abc; font-style: italic; }
 .sp-stats-tl-pin-event { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 0; }
-.sp-stats-tl-pin { font-size: 1.25rem; line-height: 1; color: #4a1f3a; margin-bottom: 10px; position: relative; top: -4px; }
+.sp-stats-tl-pin { font-size: 1.25rem; line-height: 1; color: #551845; margin-bottom: 10px; position: relative; top: -4px; }
 
 /* GIF */
 .sp-stats-gif-wrap { margin-top: 32px; border-radius: 12px; overflow: hidden; width: 90%; margin-left: auto; margin-right: auto; }
@@ -421,8 +421,6 @@
 }
 .btn-whatsapp:hover { background: #1daa52; color: #fff; text-decoration: none; }
 .sp-cta-btn { font-size: 1.26rem !important; padding: .5rem 1rem !important; }
-.sp-stats-tl-show-more { display: inline-block; font-size: 1.0rem; padding: .4rem .8rem; border: 1px solid #ccc; border-radius: 6px; color: #999; background: transparent; text-decoration: none; cursor: pointer; }
-.sp-stats-tl-show-more:hover { background: #f0f0f0; text-decoration: none; }
 .btn-stats-close {
   display: inline-flex;
   align-items: center;
@@ -931,7 +929,7 @@
               </div>
             </div>
           </div>
-          <img src="/assets/maupa GIF.gif" alt="SREday" class="sp-stats-header-gif-img" style="width:490px; border-radius:12px; flex-shrink:0; align-self:stretch; object-fit:cover; display:none;">
+          <img src="/assets/monkeys GIF.gif" alt="SREday" class="sp-stats-header-gif-img" style="width:490px; border-radius:12px; flex-shrink:0; align-self:stretch; object-fit:cover; display:none;">
         </div>
 
         <hr class="sp-stats-sep">
@@ -1134,13 +1132,10 @@
 
         
         <div class="sp-stats-s-title">Where we meet</div>
-        <div class="sp-stats-s-sub">33 events across 9 countries</div>
+        <div class="sp-stats-s-sub">4 past and 4 upcoming SREday conferences</div>
 
         <div class="sp-stats-timeline">
           <div class="sp-stats-tl-line"></div>
-          
-          <div style="margin-bottom:10px;"><a href="https://sreday.com/#past-events" class="sp-stats-tl-show-more" target="_blank">14 more past</a></div>
-          
           <div class="sp-stats-tl-events">
             
             
@@ -1200,18 +1195,6 @@
             
             <div class="sp-stats-tl-event">
               <div class="sp-stats-tl-dot "></div>
-              <a href="../2024-amsterdam/" class="sp-stats-tl-chip">
-                <div class="sp-stats-tl-city"></div>
-                <div class="sp-stats-tl-date" style="font-style:normal;">Netherlands</div>
-                <div class="sp-stats-tl-date">Nov 21, 2024</div>
-                <div class="sp-stats-tl-seats">100+ seats</div>
-              </a>
-              <a href="../2024-amsterdam/sponsorship" class="sp-stats-tl-prospectus">Prospectus</a>
-            </div>
-            
-            
-            <div class="sp-stats-tl-event">
-              <div class="sp-stats-tl-dot "></div>
               <a href="../2023-london/" class="sp-stats-tl-chip">
                 <div class="sp-stats-tl-city"></div>
                 <div class="sp-stats-tl-date" style="font-style:normal;">United States</div>
@@ -1224,31 +1207,40 @@
             
             <div class="sp-stats-tl-event">
               <div class="sp-stats-tl-dot "></div>
-              <a href="../2025-san-francisco-q2/" class="sp-stats-tl-chip">
+              <a href="../2026-san-francisco-q2/" class="sp-stats-tl-chip">
                 <div class="sp-stats-tl-city">San Francisco</div>
                 <div class="sp-stats-tl-date" style="font-style:normal;">United States</div>
-                <div class="sp-stats-tl-date">April 11, 2025</div>
+                <div class="sp-stats-tl-date">April 17, 2026</div>
                 <div class="sp-stats-tl-seats">100+ seats</div>
               </a>
-              <a href="../2025-san-francisco-q2/sponsorship" class="sp-stats-tl-prospectus">Prospectus</a>
+              <a href="../2026-san-francisco-q2/sponsorship" class="sp-stats-tl-prospectus">Prospectus</a>
             </div>
             
             
             <div class="sp-stats-tl-event">
               <div class="sp-stats-tl-dot "></div>
-              <a href="../2025-redmond-q2/" class="sp-stats-tl-chip">
-                <div class="sp-stats-tl-city">Redmond</div>
+              <a href="../2026-seattle-q2/" class="sp-stats-tl-chip">
+                <div class="sp-stats-tl-city">Seattle</div>
                 <div class="sp-stats-tl-date" style="font-style:normal;">United States</div>
-                <div class="sp-stats-tl-date">April 14, 2025</div>
-                <div class="sp-stats-tl-seats">150+ seats</div>
+                <div class="sp-stats-tl-date">April 21, 2026</div>
+                <div class="sp-stats-tl-seats">100+ seats</div>
               </a>
-              <a href="../2025-redmond-q2/sponsorship" class="sp-stats-tl-prospectus">Prospectus</a>
+              <a href="../2026-seattle-q2/sponsorship" class="sp-stats-tl-prospectus">Prospectus</a>
+            </div>
+            
+            
+            <div class="sp-stats-tl-event">
+              <div class="sp-stats-tl-dot "></div>
+              <a href="../2026-barcelona-q2/" class="sp-stats-tl-chip">
+                <div class="sp-stats-tl-city">Barcelona</div>
+                <div class="sp-stats-tl-date" style="font-style:normal;">Spain</div>
+                <div class="sp-stats-tl-date">May 8, 2026</div>
+                <div class="sp-stats-tl-seats">90+ seats</div>
+              </a>
+              <a href="../2026-barcelona-q2/sponsorship" class="sp-stats-tl-prospectus">Prospectus</a>
             </div>
             
           </div>
-          
-          <div style="margin-top:10px;"><a href="https://sreday.com/#events" class="sp-stats-tl-show-more" target="_blank">11 more planned</a></div>
-          
         </div>
 
         <div class="text-center" style="margin-top:32px;">
