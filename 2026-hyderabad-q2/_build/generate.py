@@ -275,6 +275,7 @@ _global_top_companies = sorted(_global_org_counts.items(), key=lambda x: x[1], r
 _sp_exclude_logos = {
     # Non-sponsor orgs
     'hockeystick.png', 'arf.png', 'ksug.ai.png', 'filmforum.png', 'uhub.png',
+    'starterai.png',
     # Community partners / meetup groups
     'jug-amsterdam.png', 'k8sug.png',
     'kube-events.png', 'kube_events.png', 'kube_careers.png', 'kubespaces.png',
@@ -323,7 +324,6 @@ _flag_map = {
     'paris': ('\U0001f1eb\U0001f1f7', 'FR', 'France'),
     'bangalore': ('\U0001f1ee\U0001f1f3', 'IN', 'India'),
     'chennai': ('\U0001f1ee\U0001f1f3', 'IN', 'India'),
-    'hyderabad': ('\U0001f1ee\U0001f1f3', 'IN', 'India'),
     'amsterdam': ('\U0001f1f3\U0001f1f1', 'NL', 'Netherlands'),
     'warsaw': ('\U0001f1f5\U0001f1f1', 'PL', 'Poland'),
     'campinas': ('\U0001f1e7\U0001f1f7', 'BR', 'Brazil'),
