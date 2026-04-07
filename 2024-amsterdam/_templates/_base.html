@@ -125,7 +125,7 @@
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
 				{% for pic in hero_pictures %}
-				<div class="carousel-item tinted {{ 'active' if loop.index == 1 else ''}}" style="background:url('{{ pic }}') no-repeat center"></div>
+				<div class="carousel-item tinted {{ 'active' if loop.index == 1 else ''}}" style="background:url('{{ pic }}') no-repeat center; background-size: cover;"></div>
 				{% endfor %}
 			</div>
 
@@ -137,7 +137,7 @@
 		</div>
 		<div class="container">
 			<div class="hero-text-block text-center" style="max-width: 100%;">
-				<h1 class="logo retro">SREDAY</h1>
+				<h1 class="logo retro"><img src="/assets/images/sreday_sticker.png" alt="SREday" style="height: 200px;"></h1>
 				<h2 class="text-white">Site Reliability, DevOps and Cloud</h2>
 				<h3 class="text-white"><i class="far fa-calendar-alt me-2"></i>{{ date_string }} <i class="fas fa-map-marker-alt mx-2"></i>{{ location_string }}</h3>
 				<div class="hero-cta mt-5">
@@ -157,25 +157,25 @@
 				<div class="col-6 col-md-3">
 					<div class="item">
 						<div class="number">{{ days }}</div>
-						<div class="unit">Days</div>
+						<div class="unit">{{ "Day" if days == 1 else "Days" }}</div>
 					</div><!--//item-->
 				</div><!--//col-->
 				<div class="col-6 col-md-3">
 					<div class="item">
 						<div class="number">{{ speakers }}</div>
-						<div class="unit">Speakers</div>
+						<div class="unit">{{ "Speaker" if speakers == 1 else "Speakers" }}</div>
 					</div><!--//item-->
 				</div><!--//col-->
 				<div class="col-6 col-md-3">
 					<div class="item">
 						<div class="number">{{ tracks | length }}</div>
-						<div class="unit">Tracks</div>
+						<div class="unit">{{ "Track" if tracks | length == 1 else "Tracks" }}</div>
 					</div><!--//item-->
 				</div><!--//col-->
 				<div class="col-6 col-md-3">
 					<div class="item">
 						<div class="number">{{ attendees }}</div>
-						<div class="unit">Attendees</div>
+						<div class="unit">{{ "Attendee" if attendees == 1 else "Attendees" }}</div>
 					</div><!--//item-->
 				</div><!--//col-->
 			</div>
@@ -192,10 +192,11 @@
     <div class="container text-center">
         
         <ul class="social-list list-inline mb-4"> 
-            <li class="list-inline-item me-3"><a target="_blank" href="{{ mailto }}"><i class="fas fa-envelope"></i></a></li>
+            <li class="list-inline-item me-3"><a target="_blank" href="https://luma.com/sre" style="text-decoration:none;">✦</a></li>
+            <li class="list-inline-item me-3"><a target="_blank" href="https://chat.whatsapp.com/KS1ce0jAHmNGAiOAoZG6zo"><i class="fab fa-whatsapp fa-fw"></i></a></li>
             <li class="list-inline-item me-3"><a target="_blank" href="{{ linkedin_url }}"><i class="fab fa-linkedin fa-fw"></i></a></li>
-            <li class="list-inline-item me-3"><a target="_blank" href="{{ twitter_url  }}"><i class="fab fa-twitter fa-fw"></i></a></li>
-            <li class="list-inline-item me-0"><a target="_blank" href="{{ youtube_url  }}"><i class="fab fa-youtube fa-fw"></i></a></li>
+            <li class="list-inline-item me-3"><a href="{{ mailto }}"><i class="fas fa-envelope fa-fw"></i></a></li>
+            <li class="list-inline-item me-0"><a target="_blank" rel="noopener noreferrer" href="{{ youtube_url }}"><i class="fab fa-youtube fa-fw"></i></a></li>
         </ul>
         
         <!-- <ul class="footer-links list-inline mx-auto mb-4">
@@ -205,11 +206,15 @@
             <li class="list-inline-item">|</li>
             <li class="list-inline-item me-0"><a href="#">Privacy</a></li>
         </ul> -->
+
+        
+        
         <!--//footer-link-->
-        
-         <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
-        <small class="copyright">Designed with <i class="fas fa-heart" style="color: #EC645E;"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
-        
+
+        <div class="py-4 text-center">
+            <img src="/assets/maupa GIF.gif" alt="SREday Maupa" style="height:400px;">
+        </div>
+
     </div><!--//container-->	    
 </footer>
 

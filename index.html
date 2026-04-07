@@ -1,0 +1,3295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>SREday - Site Reliability Engineering conferences</title>
+
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Flagship conference for SREs, DevOps and Platform engineers">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+	<link rel="manifest" href="./assets/site.webmanifest">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:600,700,800|Roboto:300,400,700&display=swap" rel="stylesheet">
+
+	<!-- FontAwesome JS-->
+	<script defer src="assets/fontawesome/js/all.min.js"></script>
+
+	<!-- Theme CSS -->
+	<link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
+
+    <meta name="image" property="og:image" content="https://sreday.com/photos/london-2022-0.jpg">
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="SREday - London, San Francisco, New York, Tokyo, Amsterdam"/>
+    <meta property="og:description" content="Conference on Site Reliability Engineering, Cloud and DevOps. Probably the most awesome SRE conference!"/>
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@sreday_com">
+	<meta name="twitter:creator" content="@sreday_com">
+    <meta name="twitter:title" content="SREday - London, San Francisco, New York, Tokyo, Amsterdam"/>
+    <meta name="twitter:description" content="Conference on Site Reliability Engineering, Cloud and DevOps. Probably the most awesome SRE conference in !"/>
+    <meta name="twitter:image" content="https://sreday.com/photos/london-2022-0.jpg">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+
+<!-- Twitter conversion tracking base code -->
+<script>
+	!function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+	},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',
+	a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+	twq('config','ofo1h');
+	</script>
+	<!-- End Twitter conversion tracking base code -->
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CQ2KV6LK8G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CQ2KV6LK8G');
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17496979257"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17496979257');
+</script>
+
+<style>
+.tinted {
+	box-shadow: 0 3000px rgba(0, 0, 0, 0.5) inset;
+}
+.retro {
+	font-family: 'Monoton', sans-serif;
+}
+.logo {
+	font-size: 5rem;
+	color: white;
+	font-weight: 400;
+}
+.theme-bg-primary {
+	background: #713660;
+}
+.social-list li{
+	font-size: 1.75rem;
+}
+.social-list li a{
+	color: white;
+}
+html {
+	scroll-behavior: smooth;
+}
+section[id] {
+	scroll-margin-top: 70px;
+}
+#home {
+	scroll-margin-top: 70px;
+}
+</style>
+
+
+
+<body>
+	<header id="header" class="header fixed-top">
+		<div class="branding">
+			<div class="container-fluid">
+				<nav class="main-nav navbar navbar-expand-lg">
+					<div class="site-logo"><a href="/">
+                        <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
+                    </div>
+
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div id="navigation" class="navbar-collapse collapse  justify-content-lg-end me-lg-3">
+						<ul class="nav navbar-nav">
+
+							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+							<li class="nav-item"><a class="nav-link" href="#events">Upcoming events</a></li>
+							<li class="nav-item"><a class="nav-link" href="#ambassadors">Ambassadors</a></li>
+							<li class="nav-item"><a class="nav-link" href="#past-events">Past events</a></li>
+							<li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+							<li class="nav-item"><a class="nav-link" href="#sponsor">Sponsor</a></li>
+							<li class="nav-item"><a class="nav-link" href="#partner">Partner</a></li>
+							<li class="nav-item"><a class="nav-link" target="_blank" href="./assets/tnc.pdf">Terms & Conditions</a></li>
+						</ul><!--//nav-->
+					</div><!--//navabr-collapse-->
+
+				</nav><!--//main-nav-->
+
+			</div><!--//container-->
+		</div><!--//branding-->
+	</header><!--//header-->
+
+	<div id="home" class="hero-block">
+		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+			<div class="carousel-inner">
+				
+				<div class="carousel-item tinted active" style="background:url('../photos/london-2022-0.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2022-1.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-san-francisco-2024-0.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-san-francisco-2024-1.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2022-2.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2022-3.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2022-4.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2022-5.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-0.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-1.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-2.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-3.jpg') no-repeat center; background-size: cover;"></div>
+				
+			</div>
+
+			<div class="carousel-indicators">
+				
+				<button type="button" data-bs-target="#hero-carousel" class="active" data-bs-slide-to="0"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="1"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="2"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="3"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="4"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="5"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="6"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="7"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="8"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="9"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="10"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="11"></button>
+				
+			</div>
+		</div>
+		<div class="container">
+			<div class="hero-text-block text-center" style="max-width: 100%;">
+				<h1 class="logo retro"><img src="/assets/images/sreday_sticker.png" alt="SREday" style="height: 200px;"></h1>
+				<h2 class="text-white">Site Reliability, DevOps and Cloud</h2>
+				<h3 class="text-white">In-person conferences</h3>
+				<h4 class="text-white mt-5">Worldwide - Europe, Americas and Asia</h4>
+				<ul class="social-list list-inline mt-4">
+					<li class="list-inline-item me-3"><a target="_blank" href="https://luma.com/sre" style="text-decoration:none;">✦</a></li>
+					<li class="list-inline-item me-3"><a target="_blank" href="https://chat.whatsapp.com/KS1ce0jAHmNGAiOAoZG6zo"><i class="fab fa-whatsapp fa-fw"></i></a></li>
+					<li class="list-inline-item me-3"><a target="_blank" href="https://www.linkedin.com/company/sreday/"><i class="fab fa-linkedin fa-fw"></i></a></li>
+					<li class="list-inline-item me-3"><a href="mailto:hello@sreday.com"><i class="fas fa-envelope fa-fw"></i></a></li>
+					<li class="list-inline-item me-0"><a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/@sreday"><i class="fab fa-youtube fa-fw"></i></a></li>
+				</ul>
+			</div><!--//hero-text-block-->
+		</div><!--//container-->
+
+	</div><!--//hero-block-->
+
+	<div class="stats-block theme-bg-primary text-white py-4 text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">9+</div>
+						<div class="unit">Countries</div>
+					</div><!--//item-->
+				</div><!--//col-->
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">36+</div>
+						<div class="unit">Events</div>
+					</div><!--//item-->
+				</div><!--//col-->
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">470+</div>
+						<div class="unit">Speakers</div>
+					</div><!--//item-->
+				</div><!--//col-->
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">3800+</div>
+						<div class="unit">Attendees</div>
+					</div><!--//item-->
+				</div><!--//col-->
+			</div>
+		</div><!--//container-->
+	</div><!--//stats-block-->
+
+
+<!-- CONTENT -->
+
+
+
+<section id="events" class="sponsors-section section theme-bg-light text-white">
+  <div class="container">
+    
+    <h3 class="section-heading text-center mb-3">Upcoming conferences</h3>
+    <div class="row gx-md-5">
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2026-san-francisco-q2/">
+            <img src="./assets/images/events/sreday-2026-sanfrancisco-q2.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday San Francisco 2026 Q2</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2026-san-francisco-q2/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2026-seattle-q2/">
+            <img src="./assets/images/events/sreday-2026-seattle-q2.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Seattle 2026 Q2</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2026-seattle-q2/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2026-barcelona-q2/">
+            <img src="./assets/images/events/sreday-2026-barcelona-q2.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Barcelona 2026 Q2</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2026-barcelona-q2/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2026-austin-q2/">
+            <img src="./assets/images/events/sreday-2026-austin-q2.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Austin 2026 Q2</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2026-austin-q2/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2026-munich-q2/">
+            <img src="./assets/images/events/sreday-2026-munich-q2.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Munich 2026 Q2</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2026-munich-q2/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2026-nyc-q2/">
+            <img src="./assets/images/events/sreday-2026-nyc-q2.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday NYC 2026 Q2</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2026-nyc-q2/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2026-cologne-q2/">
+            <img src="./assets/images/events/sreday-2026-cologne-q2.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Cologne 2026 Q2</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2026-cologne-q2/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2026-paris-q2/">
+            <img src="./assets/images/events/sreday-2026-paris-q2.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Paris 2026 Q2</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2026-paris-q2/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2026-bangalore-q2/">
+            <img src="./assets/images/events/sreday-2026-bangalore-q2.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Bangalore 2026 Q2</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2026-bangalore-q2/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2026-london-q3/">
+            <img src="./assets/images/events/sreday-2026-london-q3.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday London 2026 Q3</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2026-london-q3/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2026-amsterdam-q4/">
+            <img src="./assets/images/events/sreday-2026-amsterdam-q4.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Amsterdam 2026 Q4</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2026-amsterdam-q4/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+    <div class="text-center mt-4">
+      <a class="btn-secondary btn btn-lg" href="https://luma.com/sre" target="_blank">Subscribe to our LUMA calendar</a>
+    </div>
+    
+    
+  </div>
+</section>
+
+
+
+<section id="ambassadors" class="section theme-bg-light">
+    <div class="container">
+        <h2 class="section-heading text-center mb-3">SREday Ambassadors</h2>
+        <div class="section-intro text-center single-col-max mx-auto mb-5">
+            Our ambassadors are key community members who help us bring SREday to cities around the world.
+            Know someone who should be an ambassador? <a href="mailto:hello@sreday.com?subject=Ambassador%20nomination">Nominate them here!</a>
+        </div>
+
+        <div class="row">
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Kat Gaines.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Kat Gaines">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Kat Gaines
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/katgaines/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Senior Manager, Developer Relations</div>
+                            
+                            <div class="small">PagerDuty</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">United States - West</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-1">I was glad to be part of starting the PagerDuty and SREday partnership and to support events that st...</span>
+                                <span id="long-note-1" style="display: none;">I was glad to be part of starting the PagerDuty and SREday partnership and to support events that stay thoughtful and well scoped. These conferences create space for focused discussions without losing their sense of warmth. Having spoken at many events over the years, it’s been meaningful to watch SREday reach more places around the world. I’m grateful for the care that goes into it and look forward to what comes next.</span>
+                                <a href="javascript:void(0);" id="link-1" class="ms-1 fw-bold" onclick="toggleNote(1)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Matt Schillerstrom.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Matt Schillerstrom">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Matt Schillerstrom
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/matt-schillerstrom-722b5559/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Director Product Management and Product Marketing</div>
+                            
+                            <div class="small">Harness</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">United States - West</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-2">One of the very first SREday Ambassadors, I helped bring the conference to San Francisco and kick th...</span>
+                                <span id="long-note-2" style="display: none;">One of the very first SREday Ambassadors, I helped bring the conference to San Francisco and kick things off on the West Coast. I have been friends with Miko and Mark since way back, so being part of this from the early days felt natural and exciting. I am genuinely happy to help kick off the SREday + Harness partnership and see where this community keeps growing next.</span>
+                                <a href="javascript:void(0);" id="link-2" class="ms-1 fw-bold" onclick="toggleNote(2)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Peter De Tender.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Peter De Tender">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Peter De Tender
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/pdtit/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Business Program Manager - Lead Technical Trainer</div>
+                            
+                            <div class="small">Microsoft</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">United States - West</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-3">I’ve been following the Conf42 and SREday journey for a while, both as a technical trainer and as so...</span>
+                                <span id="long-note-3" style="display: none;">I’ve been following the Conf42 and SREday journey for a while, both as a technical trainer and as someone who cares about practical learning platforms. What Mark and Miko build consistently delivers real value, not just content for content’s sake. Helping organize SREday Redmond and Seattle was a natural extension of that, and it reinforced how much thought goes into making these events genuinely useful.</span>
+                                <a href="javascript:void(0);" id="link-3" class="ms-1 fw-bold" onclick="toggleNote(3)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Mandi Walls.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Mandi Walls">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Mandi Walls
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/mandiwalls/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">DevOps Advocate</div>
+                            
+                            <div class="small">PagerDuty</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">United States - East</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-4">I’ve been following SREday since the early days and have had a front row seat to how it keeps evolvi...</span>
+                                <span id="long-note-4" style="display: none;">I’ve been following SREday since the early days and have had a front row seat to how it keeps evolving. Helping get the PagerDuty partnership off the ground and speaking at events organized by Miko and Mark since 2021, including conf42, has shown me how intentional this community really is. There’s a clear focus on substance and real conversations. I’m genuinely excited about what’s ahead.</span>
+                                <a href="javascript:void(0);" id="link-4" class="ms-1 fw-bold" onclick="toggleNote(4)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Leon Adato.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Leon Adato">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Leon Adato
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/leonadato/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Principal Technical Marketing Engineer</div>
+                            
+                            <div class="small">Cribl</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">United States - East</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-5">I have been following SREday closely for years and have watched it grow from a small, focused event ...</span>
+                                <span id="long-note-5" style="display: none;">I have been following SREday closely for years and have watched it grow from a small, focused event into something with real momentum. I have spoken at most of the locations along the way, which gave me a front row seat to how the conversations and the community keep evolving. I am here because I care about helping the developer community grow in a way that stays practical, curious, and human.</span>
+                                <a href="javascript:void(0);" id="link-5" class="ms-1 fw-bold" onclick="toggleNote(5)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Patricia Lee.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Patricia Lee">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Patricia Lee
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/patriciaminglee/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Principal Consultant</div>
+                            
+                            <div class="small">Leap Trace Consulting LLC</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">United States - East</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-6">I had the chance to attend SREday in NYC in early 2026, and it was such a cool experience. The energ...</span>
+                                <span id="long-note-6" style="display: none;">I had the chance to attend SREday in NYC in early 2026, and it was such a cool experience. The energy in the room made it clear there’s real potential for growth in the city. I’m excited to support Miko and Mark in fostering the developer community here and helping it thrive.</span>
+                                <a href="javascript:void(0);" id="link-6" class="ms-1 fw-bold" onclick="toggleNote(6)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Ben Pearce.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Ben Pearce">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Ben Pearce
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/benpthoughts/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Founder</div>
+                            
+                            <div class="small">Elevated You</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">United Kingdom</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-7">I’ve been following DevOps Not Dead and SREday for a while, and I’ve always respected how you’re mak...</span>
+                                <span id="long-note-7" style="display: none;">I’ve been following DevOps Not Dead and SREday for a while, and I’ve always respected how you’re making conferences feel more human and less performative. After 20 years at Microsoft, I’ve seen how often great technical ideas get lost without the right storytelling, which is why I focus on helping experts communicate with real impact. Joining as an ambassador felt like a natural step, a chance to help make conferences cooler, more honest, and actually useful for the people in the room. I’m excited to be part of something that values both the tech and the humans behind it.</span>
+                                <a href="javascript:void(0);" id="link-7" class="ms-1 fw-bold" onclick="toggleNote(7)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Kyle Forster.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Kyle Forster">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Kyle Forster
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/kyforster/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Founder & CEO</div>
+                            
+                            <div class="small">RunWhen</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">United Kingdom</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-8">What started as RunWhen sponsoring a handful of SREdays quickly grew into a long term partnership, a...</span>
+                                <span id="long-note-8" style="display: none;">What started as RunWhen sponsoring a handful of SREdays quickly grew into a long term partnership, and it’s been genuinely fun to watch SREday expand into multiple cities across Europe and the US while keeping the same thoughtful, practitioner driven feel. I’ve known Mark and Miko for a while, and working with people who truly care about the community they’re building makes this even better. We’re excited to keep tightening the partnership between RunWhen and SREday and to see what this community evolves into next.</span>
+                                <a href="javascript:void(0);" id="link-8" class="ms-1 fw-bold" onclick="toggleNote(8)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Pawel Hajdan.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Pawel Hajdan">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Pawel Hajdan
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/pawelhajdan/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Startup Mentor</div>
+                            
+                            <div class="small">Pygma</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">United Kingdom</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-9">I love the for-engineers, by-engineers formula. Lots of healthy sharing and learning. Each time I no...</span>
+                                <span id="long-note-9" style="display: none;">I love the for-engineers, by-engineers formula. Lots of healthy sharing and learning. Each time I notice new, cool tools; and real conversations among practitioners. The journey continues - SREDay continues to expand, and I continue to champion simplicity in system design, and rational and productive culture. Here's to growth!</span>
+                                <a href="javascript:void(0);" id="link-9" class="ms-1 fw-bold" onclick="toggleNote(9)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Rob Charlwood.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Rob Charlwood">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Rob Charlwood
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/robcharlwood/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">CEO</div>
+                            
+                            <div class="small">Supercharged Ltd</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">United Kingdom</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-10">I’ve been part of the chaos engineering space for many years, so I’ve seen a lot of different events...</span>
+                                <span id="long-note-10" style="display: none;">I’ve been part of the chaos engineering space for many years, so I’ve seen a lot of different events and communities come and go. SREday London has always stood out to me. I’ve been involved since the early days, and what kept me coming back was the genuine community vibe that Mark and Miko created. It’s the kind of event where the conversations feel real, the learning feels practical, and people actually want to connect with each other. I’m really glad to have been part of the journey so far, and I’m looking forward to seeing where SREday goes next.</span>
+                                <a href="javascript:void(0);" id="link-10" class="ms-1 fw-bold" onclick="toggleNote(10)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Ross Stretton.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Ross Stretton">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Ross Stretton
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/rossstretton/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Client Practice Lead</div>
+                            
+                            <div class="small">Venquis</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">United Kingdom</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-11">I had the pleasure of meeting Miko and Mark a couple of years ago, and I’ve been genuinely impressed...</span>
+                                <span id="long-note-11" style="display: none;">I had the pleasure of meeting Miko and Mark a couple of years ago, and I’ve been genuinely impressed by the work they’ve done to grow and nurture the SRE community in London. Building a strong technical community takes consistency and care, and they’ve shown both.I’m excited to join them on the adventure of growing the British SREday community. Community really does rule, and I’m glad to be part of it.</span>
+                                <a href="javascript:void(0);" id="link-11" class="ms-1 fw-bold" onclick="toggleNote(11)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Heather Thacker.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Heather Thacker">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Heather Thacker
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/hhthacker/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Developer Advocate</div>
+                            
+                            <div class="small">Gatling</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">Spain</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-12">I first crossed paths with Mark and at a few European events back in 2025, and the connection felt e...</span>
+                                <span id="long-note-12" style="display: none;">I first crossed paths with Mark and at a few European events back in 2025, and the connection felt easy and real from the start. As a developer advocate, I spend a lot of time working with communities, and SREday stands out for how intentional it is. Helping organize SREday Spain feels like contributing to something that respects both people and the work they do.</span>
+                                <a href="javascript:void(0);" id="link-12" class="ms-1 fw-bold" onclick="toggleNote(12)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Daniel Afonso.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Daniel Afonso">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Daniel Afonso
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/danieljcafonso/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Senior Developer Advocate</div>
+                            
+                            <div class="small">PagerDuty</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">Portugal</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-13">I met Mark and Miko at SREday London in 2025, which somehow led to us packing out the PagerDuty offi...</span>
+                                <span id="long-note-13" style="display: none;">I met Mark and Miko at SREday London in 2025, which somehow led to us packing out the PagerDuty office in Lisbon not long after. We had so much interest that we sold out very fast, which is a pretty good problem to have. The whole thing was loud, fun, and slightly chaotic in the best way. I’m very curious to see how much bigger SREday gets.</span>
+                                <a href="javascript:void(0);" id="link-13" class="ms-1 fw-bold" onclick="toggleNote(13)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Jake Page.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Jake Page">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Jake Page
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/jake-page-aws/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">DevRel</div>
+                            
+                            <div class="small">MetalBear</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">Portugal</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-14">I first met the SREday team in Lisbon in 2025 and had an absolute blast speaking at the event. From ...</span>
+                                <span id="long-note-14" style="display: none;">I first met the SREday team in Lisbon in 2025 and had an absolute blast speaking at the event. From the moment I arrived, it was clear this community had something special going on. The conversations were thoughtful, the people were welcoming, and there was a lot of creativity in how everyone approached the work we do. I’m really excited to help organize and support the Portuguese SREday community moving forward. If the past events are any indication, we’re going to have a lot of fun building this together.</span>
+                                <a href="javascript:void(0);" id="link-14" class="ms-1 fw-bold" onclick="toggleNote(14)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Xenda Amici.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Xenda Amici">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Xenda Amici
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/xendaamici/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Community Program Manager</div>
+                            
+                            <div class="small">PagerDuty</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">Portugal</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-15">Helping organize the first SREday Portugal at the PagerDuty office in Lisbon was a great experience....</span>
+                                <span id="long-note-15" style="display: none;">Helping organize the first SREday Portugal at the PagerDuty office in Lisbon was a great experience. The energy was open, welcoming, and very much driven by the community in the room. It felt like the start of something, and I’m genuinely looking forward to whatever adventures we end up sharing next.</span>
+                                <a href="javascript:void(0);" id="link-15" class="ms-1 fw-bold" onclick="toggleNote(15)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Bas van Alphen.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Bas van Alphen">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Bas van Alphen
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/basvanalphen/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">IT Chapterlead SRE</div>
+                            
+                            <div class="small">ING</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">Netherlands</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-16">I am involved in organizing SREday Amsterdam at ING, mainly focusing on the practical side of making...</span>
+                                <span id="long-note-16" style="display: none;">I am involved in organizing SREday Amsterdam at ING, mainly focusing on the practical side of making it all run smoothly. That meant logistics, speaker coordination, and yes, making sure everyone was well fed and caffeinated. I also joined a panel discussion on the state of reliability practices and tooling in banks, which sparked some honest and interesting conversations about where we are, what still hurts, and what is slowly getting better.</span>
+                                <a href="javascript:void(0);" id="link-16" class="ms-1 fw-bold" onclick="toggleNote(16)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Samantha Burattini.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Samantha Burattini">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Samantha Burattini
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/samantha-burattini/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Customer Journey Expert</div>
+                            
+                            <div class="small">ING</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">Netherlands</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-17">I helped run the inaugural SREday at ING Amsterdam, focusing on the behind-the-scenes work that make...</span>
+                                <span id="long-note-17" style="display: none;">I helped run the inaugural SREday at ING Amsterdam, focusing on the behind-the-scenes work that makes an event actually function. From schedules and coordination to the thousand small details people never see, my role was about creating a smooth, calm experience for speakers and attendees alike. It was rewarding to support an event built for practitioners, and I’m proud to contribute in ways that make community spaces feel thoughtful, organized, and human.</span>
+                                <a href="javascript:void(0);" id="link-17" class="ms-1 fw-bold" onclick="toggleNote(17)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Stephan Mousset.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Stephan Mousset">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Stephan Mousset
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/stephanmousset/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Global Product Manager Performance & Resilience Engineering Platform</div>
+                            
+                            <div class="small">ING</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">Netherlands</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-18">I met the SREday team a couple of years ago at SREday London, and the quality of the event stuck wit...</span>
+                                <span id="long-note-18" style="display: none;">I met the SREday team a couple of years ago at SREday London, and the quality of the event stuck with me. Later, helping organize SREday Amsterdam at the ING office confirmed that the same community focused spirit carries through everywhere. It’s a solid group of people doing things for the right reasons.</span>
+                                <a href="javascript:void(0);" id="link-18" class="ms-1 fw-bold" onclick="toggleNote(18)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/William Ravensbergen.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="William Ravensbergen">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            William Ravensbergen
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/william-ravensbergen/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Developer Advocate</div>
+                            
+                            <div class="small">ING</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">Netherlands</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-19">I co-organized the very first SREday hosted at ING Amsterdam. I worked closely with the SREday team ...</span>
+                                <span id="long-note-19" style="display: none;">I co-organized the very first SREday hosted at ING Amsterdam. I worked closely with the SREday team to shape a speaker lineup that felt thoughtful, practical, and genuinely useful for people doing the work day to day. Being part of this from the inside was energizing, and I am genuinely happy to keep showing up and helping the SRE community grow in ways that feel grounded and welcoming.</span>
+                                <a href="javascript:void(0);" id="link-19" class="ms-1 fw-bold" onclick="toggleNote(19)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Levi (Levinux) Leopoldino Alves.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Levi (Levinux) Leopoldino Alves">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Levi (Levinux) Leopoldino Alves
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/levinux/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Founder</div>
+                            
+                            <div class="small">DOUGBR - DevOps User Group Brazil</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">Latin America</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-20">I helped support and promote the first SREday in Latin America, contributing to the growth of the ev...</span>
+                                <span id="long-note-20" style="display: none;">I helped support and promote the first SREday in Latin America, contributing to the growth of the event and its community. As a HashiCorp Latin America Ambassador and co-organizer of CNCF Campinas SP, my involvement in various community initiatives reinforced my belief that strong technical communities are built through collaboration and shared purpose. I am grateful to everyone who helped make this first edition possible.</span>
+                                <a href="javascript:void(0);" id="link-20" class="ms-1 fw-bold" onclick="toggleNote(20)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Marcos Novelli Harispe.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Marcos Novelli Harispe">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Marcos Novelli Harispe
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/marcos-novelli-harispe-a6339a129/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Software Engineer</div>
+                            
+                            <div class="small">LoopStudio</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">Latin America</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-21">After attending both the San Francisco and Campinas editions of SREday, I saw firsthand how strong a...</span>
+                                <span id="long-note-21" style="display: none;">After attending both the San Francisco and Campinas editions of SREday, I saw firsthand how strong and genuine this community is. That experience pushed me to step up and support Miko, Mark, and the other Latin American ambassadors in expanding SREday’s presence across the region. I’m excited to help grow something that already feels so impactful.</span>
+                                <a href="javascript:void(0);" id="link-21" class="ms-1 fw-bold" onclick="toggleNote(21)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Rod Anami.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Rod Anami">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Rod Anami
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/rodanami/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Lead SRE</div>
+                            
+                            <div class="small">Kyndryl</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">Latin America</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-22">I've co-organized SREday Campinas, the first conference of the series in Latin America. Being part o...</span>
+                                <span id="long-note-22" style="display: none;">I've co-organized SREday Campinas, the first conference of the series in Latin America. Being part of an event of this magnitude reinforced my belief that strong communities are built by trust, collaboration, and an amazing team working towards a shared goal. I am grateful to everyone who helped make SREday Campinas possible and truly memorable!</span>
+                                <a href="javascript:void(0);" id="link-22" class="ms-1 fw-bold" onclick="toggleNote(22)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Sharone Zitzman.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Sharone Zitzman">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Sharone Zitzman
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/sharonez/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Founder</div>
+                            
+                            <div class="small">RTFM Please</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">Israel</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-23">I first met Mark back in 2020 and started connecting speakers from my community with both online and...</span>
+                                <span id="long-note-23" style="display: none;">I first met Mark back in 2020 and started connecting speakers from my community with both online and in person events. I’ve been following SREday ever since and have enjoyed watching it grow while staying true to itself. I’m excited to keep working together and see where this collaboration continues to lead.</span>
+                                <a href="javascript:void(0);" id="link-23" class="ms-1 fw-bold" onclick="toggleNote(23)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Balaji Venkatesan.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Balaji Venkatesan">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Balaji Venkatesan
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/balajivenkatesan2212/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Co-Founder / Senior SRE Architect</div>
+                            
+                            <div class="small">GuhaTek</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">India</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-24">I co-organized the first SREday India! Through my work at GuhaTek, I help organizations operationali...</span>
+                                <span id="long-note-24" style="display: none;">I co-organized the first SREday India! Through my work at GuhaTek, I help organizations operationalize reliability by connecting SRE principles, observability, and chaos engineering to real business outcomes, not just tooling. For me, SRE is about engineering discipline, shared responsibility, and continuous improvement, and communities like SREday help make that real at scale. We’re proud to support this initiative and committed to growing the SREday community across cities in India!</span>
+                                <a href="javascript:void(0);" id="link-24" class="ms-1 fw-bold" onclick="toggleNote(24)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Clarence Selestin.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Clarence Selestin">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Clarence Selestin
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/clarence1982/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">SRE Manager</div>
+                            
+                            <div class="small">Ford Motor Company</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">India</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-25">Reliability at scale only matters when it shows up for real users, and that’s why SREday India reson...</span>
+                                <span id="long-note-25" style="display: none;">Reliability at scale only matters when it shows up for real users, and that’s why SREday India resonates with me. Leading global SRE for Ford’s eCommerce platforms has reinforced that resilience is built through strong engineering fundamentals, operational discipline, and shared ownership across teams. Events like SREday create the space to move beyond theory, talk honestly about failures, and learn what actually works in production.Excited to see the community grow across cities as more practitioners come together to raise the bar on reliability.</span>
+                                <a href="javascript:void(0);" id="link-25" class="ms-1 fw-bold" onclick="toggleNote(25)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Siva Bagavathi.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Siva Bagavathi">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Siva Bagavathi
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/kbsivacse/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">SRE Leader</div>
+                            
+                            <div class="small">GuhaTek</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">India</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-26">I’m happy to be partnering with SREday to bring the series of conferences to India. As Co-Founder of...</span>
+                                <span id="long-note-26" style="display: none;">I’m happy to be partnering with SREday to bring the series of conferences to India. As Co-Founder of GuhaTek, I work closely with engineering teams on SRE, SLO-driven reliability, chaos engineering, and observability, with a strong focus on learning from real incidents and building resilient systems. I believe meaningful engineering communities are built on trust, openness, and shared learning, not just tools or frameworks. We’re excited to support SREday India and look forward to growing this community across cities in India!</span>
+                                <a href="javascript:void(0);" id="link-26" class="ms-1 fw-bold" onclick="toggleNote(26)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Birol Yildiz.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Birol Yildiz">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Birol Yildiz
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/birolyildiz/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">CEO & Co-Founder</div>
+                            
+                            <div class="small">Ilert</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">Germany</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-27">What started as a casual conversation at SREday Amsterdam turned into a brand new adventure in Germa...</span>
+                                <span id="long-note-27" style="display: none;">What started as a casual conversation at SREday Amsterdam turned into a brand new adventure in Germany. From that moment on, supporting SREday through ilert as both sponsor and host felt like a natural next step. I’m excited to see how this grows and what it evolves into over time.</span>
+                                <a href="javascript:void(0);" id="link-27" class="ms-1 fw-bold" onclick="toggleNote(27)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Poone Mokari.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Poone Mokari">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Poone Mokari
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/pmokari/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Co-founder</div>
+                            
+                            <div class="small">Ewake</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">France</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-28">I attended SREday London and left inspired by the energy and openness of the community. That momentu...</span>
+                                <span id="long-note-28" style="display: none;">I attended SREday London and left inspired by the energy and openness of the community. That momentum led me to work on bringing the brand to France, where we hosted our first successful edition in November 2025. I’m excited to keep building and to see how the community continues to evolve.</span>
+                                <a href="javascript:void(0);" id="link-28" class="ms-1 fw-bold" onclick="toggleNote(28)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card rounded h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="./ambassadors/Dewan Ahmed.png"
+                                 class="rounded-circle img-fluid shadow-sm"
+                                 style="width: 150px; height: 150px; object-fit: cover;"
+                                 alt="Dewan Ahmed">
+                        </div>
+                        <h4 class="card-title mb-1">
+                            Dewan Ahmed
+                            
+                            <a target="_blank" href="https://www.linkedin.com/in/diahmed/" class="text-primary ms-1" style="font-size: 0.9rem;"><i class="fab fa-linkedin-in fa-fw"></i></a>
+                            
+                        </h4>
+                        <div class="text-muted mb-3">
+                            <div class="fw-bold">Principal Developer Advocate</div>
+                            
+                            <div class="small">Harness</div>
+                            
+                            
+                            <div class="badge bg-primary mt-2">Canada</div>
+                            
+                        </div>
+
+                        <div class="card-text text-start">
+                            
+                                <span id="short-note-29">I first met Mark virtually in 2021 at Conf42 SRE, and since then I’ve watched him and Miko build som...</span>
+                                <span id="long-note-29" style="display: none;">I first met Mark virtually in 2021 at Conf42 SRE, and since then I’ve watched him and Miko build something truly meaningful. Their commitment to community building over the past few years has brought practitioners from all walks of life together, both online and in person. I’m excited to be part of what comes next.</span>
+                                <a href="javascript:void(0);" id="link-29" class="ms-1 fw-bold" onclick="toggleNote(29)">Read more</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<script>
+function toggleNote(id) {
+    var short = document.getElementById('short-note-' + id);
+    var long = document.getElementById('long-note-' + id);
+    var link = document.getElementById('link-' + id);
+
+    if (short.style.display === 'none') {
+        short.style.display = 'inline';
+        long.style.display = 'none';
+        link.innerText = 'Read more';
+    } else {
+        short.style.display = 'none';
+        long.style.display = 'inline';
+        link.innerText = 'Show less';
+    }
+}
+</script>
+
+
+
+<section id="past-events" class="sponsors-section section theme-bg-primary text-white">
+  <div class="container">
+    
+    <h3 class="section-heading text-center mb-3 text-white">Past conferences</h3>
+    <div class="row gx-md-5">
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2026-london-q1/">
+            <img src="./assets/images/events/sreday-2026-london-q1.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday London 2026 Q1</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2026-london-q1/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2026-nyc-q1/">
+            <img src="./assets/images/events/sreday-2026-nyc-q1.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday NYC 2026 Q1</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2026-nyc-q1/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2025-campinas-q4/">
+            <img src="./assets/images/events/sreday-2025-campinas-q4.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Campinas 2025 Q4</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2025-campinas-q4/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2025-lisbon-q4/">
+            <img src="./assets/images/events/sreday-2025-lisbon-q4.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Lisbon 2025 Q4</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2025-lisbon-q4/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2025-paris-q4/">
+            <img src="./assets/images/events/sreday-2025-paris-q4.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Paris 2025 Q4</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2025-paris-q4/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2025-amsterdam-q4/">
+            <img src="./assets/images/events/sreday-2025-amsterdam-q4.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Amsterdam 2025 Q4</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2025-amsterdam-q4/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2025-cologne-q4/">
+            <img src="./assets/images/events/sreday-2025-cologne-q4.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Cologne 2025 Q4</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2025-cologne-q4/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2025-chennai-q4/">
+            <img src="./assets/images/events/sreday-2025-chennai-q4.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Chennai 2025 Q4</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2025-chennai-q4/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2025-san-francisco-q4/">
+            <img src="./assets/images/events/sreday-2025-sanfrancisco-q4.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday San Francisco 2025 Q4</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2025-san-francisco-q4/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./2025-london-q3/">
+            <img src="./assets/images/events/sreday-2025-london-q3.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday London 2025 Q3</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2025-london-q3/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
+        <div class="card rounded">
+          <a href="./2025-amsterdam-q2/">
+            <img src="./assets/images/events/sreday-2025-amsterdam-q2.png" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Amsterdam 2025 Q2</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2025-amsterdam-q2/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
+        <div class="card rounded">
+          <a href="./2025-cologne-q2/">
+            <img src="./assets/images/events/sreday-2025-cologne-q2.jpeg" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Cologne 2025 Q2</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2025-cologne-q2/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
+        <div class="card rounded">
+          <a href="./2025-san-francisco-q2/">
+            <img src="./assets/images/events/sreday-2025-sanfrancisco-q2.jpeg" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday San Francisco 2025 Q2</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2025-san-francisco-q2/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
+        <div class="card rounded">
+          <a href="./2025-redmond-q2/">
+            <img src="./assets/images/events/sreday-2025-redmond-q2.jpeg" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Redmond 2025 Q2</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2025-redmond-q2/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
+        <div class="card rounded">
+          <a href="./2025-london-q1/">
+            <img src="./assets/images/events/sreday-2025-london-q1.jpeg" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday London 2025 Q1</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2025-london-q1/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
+        <div class="card rounded">
+          <a href="./2025-nyc-q1/">
+            <img src="./assets/images/events/sreday-2025-nyc-q1.jpeg" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday NYC 2025 Q1</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2025-nyc-q1/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
+        <div class="card rounded">
+          <a href="./2024-amsterdam/">
+            <img src="./assets/images/events/sreday-2024-amsterdam.jpeg" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday Amsterdam 2024</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2024-amsterdam/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
+        <div class="card rounded">
+          <a href="./2024-san-francisco-q4/">
+            <img src="./assets/images/events/sreday-2024-sanfrancisco-q4.jpeg" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday San Francisco 2024 Q4</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2024-san-francisco-q4/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
+        <div class="card rounded">
+          <a href="./2024-london/">
+            <img src="./assets/images/events/sreday-2024-london.jpeg" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday London 2024</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2024-london/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
+        <div class="card rounded">
+          <a href="./2024-san-francisco/">
+            <img src="./assets/images/events/sreday-2024-sanfrancisco.jpeg" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday San Francisco 2024 Q2</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2024-san-francisco/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
+        <div class="card rounded">
+          <a href="./2023-london/">
+            <img src="./assets/images/events/sreday-2023-london.jpeg" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday London 2023</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2023-london/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4 past-conf-extra">
+        <div class="card rounded">
+          <a href="./2022-london/">
+            <img src="./assets/images/events/sreday-2022-london.jpeg" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">SREday London 2022</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div>
+            
+            <a href="./2022-london/">Read more &rarr;</a>
+            
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+    
+    <div class="text-center mt-2 mb-4">
+      <a href="javascript:void(0);" id="show-more-past-conf" class="btn btn-past-more" onclick="showMorePastConf()">Show 12 more</a>
+    </div>
+    
+    
+    
+    <h3 class="section-heading text-center mb-3 text-white">Past meetups</h3>
+    <div class="row gx-md-5">
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./meetup-london-2025-feb">
+            <img src="" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">
+              <a href="meetup-london-2025-feb">
+              SREday meetup - beers & talks
+              </a>
+            </h5>
+            <div class="card-text mb-3">
+              <div class="meta">London, UK</div>
+              <div class="meta">Wednesday, February 5 2025 @ 6pm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./meetup-london-2024-nov">
+            <img src="" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">
+              <a href="meetup-london-2024-nov">
+              SREday & K8SUG meetup
+              </a>
+            </h5>
+            <div class="card-text mb-3">
+              <div class="meta">London, UK</div>
+              <div class="meta">Wednesday, November 20 2024 @ 6pm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-12 col-lg-6 mb-4">
+        <div class="card rounded">
+          <a href="./meetup-london-2024-oct">
+            <img src="" class="card-img-top rounded-top" alt="">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">
+              <a href="meetup-london-2024-oct">
+              SREday meetup - beers & talks
+              </a>
+            </h5>
+            <div class="card-text mb-3">
+              <div class="meta">London, UK</div>
+              <div class="meta">Thursday, October 24 2024 @ 6pm</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+    
+    
+  </div>
+</section>
+<style>
+.past-conf-extra, .past-meetup-extra { display: none; }
+.btn-past-more { color: #000; background: #fff; border: 2px solid #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; }
+.btn-past-more:hover, .btn-past-more:focus { background: #f0f0f0; color: #000; border-color: #f0f0f0; text-decoration: none; }
+</style>
+<script>
+function showMorePastConf() {
+  document.querySelectorAll('.past-conf-extra').forEach(function(el) { el.classList.remove('past-conf-extra'); });
+  document.getElementById('show-more-past-conf').style.display = 'none';
+}
+function showMorePastMeetup() {
+  document.querySelectorAll('.past-meetup-extra').forEach(function(el) { el.classList.remove('past-meetup-extra'); });
+  document.getElementById('show-more-past-meetup').style.display = 'none';
+}
+</script>
+
+
+
+
+<section id="testimonials" class="sponsors-section section">
+  <div class="container speakers-section">
+    <h3 class="section-heading text-center mb-3">What others say about SREday</h3>
+    <div class="row">
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Alayshia Knighten.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Alayshia Knighten</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Freelance</div>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-0">
+              SREday 2023 is the perfect conference to spark the minds of those who are looking to understand what new technology exists and a framework for networking. The movie theater provided a chill spot to meet folks.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(0, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Alessandro Vozza.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Alessandro Vozza</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Developer Relations</div>
+              
+              <b class="meta">Solo.io</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-1">
+              A cozy group of people shared their stories about SRE and Platform Engineering, forming a growing community.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(1, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              <li class="list-inline-item"><a target="_blank" href="https://twitter.com/bongo"><i class="fab fa-twitter fa-fw"></i></a></li>
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Alex Palcuie.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Alex Palcuie</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Engineering Manager, SRE</div>
+              
+              <b class="meta">Google</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-2">
+              Probably the best conference venue I've been to in my life. Some good talks, and lots of nice people all around.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(2, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              <li class="list-inline-item"><a target="_blank" href="https://twitter.com/AlexPalcuie"><i class="fab fa-twitter fa-fw"></i></a></li>
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Andrew Kirkpatrick.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Andrew Kirkpatrick</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Staff DevOps Engineer</div>
+              
+              <b class="meta">StackAdapt</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-3">
+              Compared to other conferences, it was a great balance of community and knowledge—not so large that it felt overwhelming or corporate, and not so small that there was plenty of opportunity to tailor the experience to individual interests. I met lots of diverse interesting people, and everyone was very approachable and friendly. I would recommend it for any skill level or specialization.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(3, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              <li class="list-inline-item"><a target="_blank" href="https://twitter.com/magickatt"><i class="fab fa-twitter fa-fw"></i></a></li>
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Andrew Pruski.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Andrew Pruski</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Field Solutions Architec</div>
+              
+              <b class="meta">Pure Storage</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-4">
+              Really enjoyed the event. The venue was great, and it was really cool to have the big screen to present on. Attendees were engaging and asked lots of questions. Organizers were helpful and friendly.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(4, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              <li class="list-inline-item"><a target="_blank" href="https://twitter.com/dbafromthecold"><i class="fab fa-twitter fa-fw"></i></a></li>
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Antonio Cobo Cuenca.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Antonio Cobo Cuenca</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Manager</div>
+              
+              <b class="meta">Contino</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-5">
+              Good atmosphere, good conversations, and a nice venue. In-person conferences like this one are the ones I prefer to be able to learn from others.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(5, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              <li class="list-inline-item"><a target="_blank" href="https://twitter.com/Mind_of_AC"><i class="fab fa-twitter fa-fw"></i></a></li>
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Brian Murphy.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Brian Murphy</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Technical Staff, SRE</div>
+              
+              <b class="meta">Dell Technologies</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-6">
+              I thought the presenters were all wonderful and well-spoken. The venue was splendid as well.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(6, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              <li class="list-inline-item"><a target="_blank" href="https://twitter.com/isitvegan"><i class="fab fa-twitter fa-fw"></i></a></li>
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Carly Richmond.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Carly Richmond</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Senior Developer Advocate</div>
+              
+              <b class="meta">Elastic</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-7">
+              I really enjoyed the diverse topics and tracks at the conference this year. It was pretty cool to speak in a cinema and enjoy the other talks from comfy couches. Thanks so much, SREday!
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(7, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              <li class="list-inline-item"><a target="_blank" href="https://twitter.com/CarlyLRichmond"><i class="fab fa-twitter fa-fw"></i></a></li>
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Christian Simon.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Christian Simon</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Principal Software Engineer</div>
+              
+              <b class="meta">Grafana Labs</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-8">
+              You could clearly notice the effort the conference put towards giving speakers from all backgrounds a chance to share their knowledge. Also, I loved the wide scope of topics. I particularly liked the post-incident learnings, and it is one of the easiest ways to learn something for my day-to-day job.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(8, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Dave McAllister.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Dave McAllister</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Senior OSS Technologist</div>
+              
+              <b class="meta">NGINX</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-9">
+              Amazing talks from a number of the speakers. The venue was cool, but I would have liked a quiet space for 1-1 discussions. It was really hard to find. I was surprised by the quality of the food. Hope to make it back next year.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(9, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/David Hirsch.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">David Hirsch</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">OSPO Program Manager</div>
+              
+              <b class="meta">Dynatrace</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-10">
+              The location was lovely and easy to reach. A lot of great people open to discussion and networking. The food was delicious too.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(10, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Diana Todea.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Diana Todea</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Senior SRE - Cloud Observability</div>
+              
+              <b class="meta">Elastic</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-11">
+              It was a well-mixed event with tech talks, agile talks, devrel talks, networking, sponsors' events. Overall, it was a great conference to witness new trends in tech projects. The networking was great. The organization was beyond my expectations. Definitely an event that you wouldn't want to miss.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(11, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Fabio Alessandro Locati.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Fabio Alessandro Locati</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Associate Principal Specialist Solutions Architect, Ansible</div>
+              
+              <b class="meta">Red Hat</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-12">
+              I enjoyed my experience at SREday 2023 in London. The event's content (both speakers and hallway conversations) was very engaging.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(12, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Fawaz Ghali.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Fawaz Ghali</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Principal Data Science Architect and Head of Developer Relations</div>
+              
+              <b class="meta">Hazelcast</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-13">
+              Great event with lots of useful discussions and an amazing team.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(13, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Henrik Rexed.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Henrik Rexed</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Cloud Native Advocate</div>
+              
+              <b class="meta">Dynatrace</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-14">
+              I loved it. Great selection of talks in a wonderful venue.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(14, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Joy Chatterjee.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Joy Chatterjee</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Founder</div>
+              
+              <b class="meta">The Joy of Data</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-15">
+              It was such a great experience! So glad I had the opportunity to attend and speak. Will definitely be re-applying to speak next year. The talks covered both critical aspects of SRE as well as other tools and data-related topics. Everything was super well-organized, including speaker dinners and the event venue! Mark and Mikolaj were such amazing hosts; seriously, thank you for a wonderful conference!
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(15, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Kat Gaines.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Kat Gaines</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Developer Advocate</div>
+              
+              <b class="meta">PagerDuty</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-16">
+              SREday was a really fantastic event driven by a community-minded approach to content and networking! As a speaker, I not only felt that I had an audience who was really participating with my content, but that I also learned a ton from the other speakers.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(16, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Krishna Pomar.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Krishna Pomar</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Lead SRE</div>
+              
+              <b class="meta">Smarsh</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-17">
+              It was a great experience for me presenting to the audience, and at the same time, it was a really good learning experience from other presenters too.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(17, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Ludovic Farine.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Ludovic Farine</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">VP of Operations</div>
+              
+              <b class="meta">Cloudsoft</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-18">
+              Loved the energy, loved the attendees, and the range of speakers and industries. It was very cool to network with many great minds and discuss challenges and solutions of other SREs.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(18, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Madhu Kumar Reddy.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Madhu Kumar Reddy</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Architect</div>
+              
+              <b class="meta">Samsung</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-19">
+              I thoroughly enjoyed participating in SREday 2023 as a speaker. The conference was rich with insightful topics, and the networking opportunities were invaluable. My presentation on "Chaos Engineering with Game Theory Principles" was received with great enthusiasm, and I am truly grateful for the platform to share and exchange knowledge. Thank you for organizing such a productive and enlightening event.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(19, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Mahesh Venkataraman.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Mahesh Venkataraman</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Managing Director - Advisory services enterprise architecture process and technology transformation</div>
+              
+              <b class="meta">Accenture</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-20">
+              Right-sized conference designed to maximize audience and speaker interactions.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(20, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Mandi Walls.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Mandi Walls</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">DevOps Advocate</div>
+              
+              <b class="meta">PagerDuty</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-21">
+              Great content and a nice variety of speakers, and plenty of interesting folks in the audience as well. An excellent event for folks in the SRE space!
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(21, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Michael Cote.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Michael Cote</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Senior Member Of Technical Staff</div>
+              
+              <b class="meta">VMware/Pivotal</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-22">
+              I like smaller, regional conferences so that I can see more people, especially those who can't travel to the massive industry events.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(22, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Rod Anami.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Rod Anami</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Lead SRE</div>
+              
+              <b class="meta">Kyndryl</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-23">
+              Participating in the SREday San Francisco 2025 made me realize how large the SRE community is. I was able to strike up great conversations with other thought-leader SREs and the SREday producers, and at the end, we brought SREday to my hometown!
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(23, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Sarjeel Yusuf.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Sarjeel Yusuf</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Product Manager</div>
+              
+              <b class="meta">Datadog</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-24">
+              It was a great experience, and this was the first time I had ever presented a talk in a movie theater, and the level of the talks was amazing. The audience was very engaged in the talks, as was evident from the type of questions that were asked after the talk.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(24, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Simon Copsey.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Simon Copsey</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Founder & Coach</div>
+              
+              <b class="meta">Curious Coffee Club</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-25">
+              SREday offered a wonderful venue for a welcoming community to learn about important topics. The buzz and variety of talks are unlike any other conference I've attended. Thank you, SREday!
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(25, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="col-6 col-lg-3 mb-4 testimonial-extra">
+        <div class="card rounded">
+          <img src="./assets/images/profiles/Temitope Faro.png" class="card-img-top rounded-0" alt="">
+          <div class="card-body">
+            <h5 class="card-title mb-2">Temitope Faro</h5>
+            <div class="card-text mb-3 text-muted">
+              <div class="meta">Staff Engineer</div>
+              
+              <b class="meta">Depop</b>
+              
+            </div>
+            <div class="card-text mb-3 testimonial-body" id="tbody-26">
+              It was a good opportunity to join other professionals of similar interest working to bring improvements and innovation in the field of SRE and related.
+            </div>
+            <a href="javascript:void(0);" class="testimonial-readmore" onclick="toggleTestimonialBody(26, this)">Show more</a>
+          </div>
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+    
+    <div class="text-center mt-3">
+      <a href="javascript:void(0);" id="show-more-testimonials" class="btn btn-brand-primary" onclick="showMoreTestimonials()">Show 19 more</a>
+    </div>
+    
+  </div>
+</section>
+<style>
+.testimonial-extra { display: none; }
+.btn-brand-primary { background: #713660; color: #fff; border: none; font-family: 'Montserrat', sans-serif; font-weight: 700; }
+.btn-brand-primary:hover, .btn-brand-primary:focus { background: #8a4175; color: #fff; text-decoration: none; }
+.testimonial-body { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.testimonial-body.expanded { display: block; }
+.testimonial-readmore { font-size: 0.85em; }
+</style>
+<script>
+function showMoreTestimonials() {
+  document.querySelectorAll('.testimonial-extra').forEach(function(el) { el.classList.remove('testimonial-extra'); });
+  document.getElementById('show-more-testimonials').style.display = 'none';
+}
+function toggleTestimonialBody(idx, link) {
+  var el = document.getElementById('tbody-' + idx);
+  if (el.classList.contains('expanded')) {
+    el.classList.remove('expanded');
+    link.innerText = 'Show more';
+  } else {
+    el.classList.add('expanded');
+    link.innerText = 'Show less';
+  }
+}
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.testimonial-readmore').forEach(function(link, i) {
+    var el = document.getElementById('tbody-' + i);
+    if (el && el.scrollHeight <= el.clientHeight) { link.style.display = 'none'; }
+  });
+});
+</script>
+
+
+
+<section id="sponsor" class="sponsors-section section theme-bg-primary text-white">
+  <div class="container">
+    <div class="row gx-md-5">
+      <div class="col-12 mb-3">
+        <h3 class="section-heading text-center text-white">Sponsor</h3>
+
+        
+        <div class="sponsor-carousel-wrap" style="background:#fff;border-radius:8px;padding:2rem 0;margin:1.95rem auto 1.5rem;overflow:hidden;width:60%;">
+          <div class="sponsor-carousel-track">
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/aigeeks.png" alt="aigeeks"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/aliengiraffe.png" alt="aliengiraffe"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/atlas.png" alt="atlas"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/aws porto.png" alt="aws porto"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/bluebricks.png" alt="bluebricks"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/cardinal.png" alt="cardinal"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/cast_ai.png" alt="cast_ai"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/catawiki.png" alt="catawiki"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/chennaisre.png" alt="chennaisre"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/clickhouse.png" alt="clickhouse"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/cloud native lisbon.png" alt="cloud native lisbon"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/cloud native porto.png" alt="cloud native porto"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/codejet.png" alt="codejet"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/codiac.png" alt="codiac"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/coralogix.png" alt="coralogix"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/criteo.png" alt="criteo"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/densify.png" alt="densify"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/devit.png" alt="devit"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/devitjobs.png" alt="devitjobs"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/devops braga.png" alt="devops braga"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/devops lisbon.png" alt="devops lisbon"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/dougbr.png" alt="dougbr"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/env0.png" alt="env0"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/ewake.png" alt="ewake"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/ford.png" alt="ford"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/guhatek.png" alt="guhatek"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/harness.png" alt="harness"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/hcltech.png" alt="hcltech"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/hockeystick.png" alt="hockeystick"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/ilert.png" alt="ilert"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/imply.png" alt="imply"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/ing.png" alt="ing"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/jug-amsterdam.png" alt="jug-amsterdam"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/k8sug.png" alt="k8sug"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/kcd porto.png" alt="kcd porto"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/kerno.png" alt="kerno"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/komodor.png" alt="komodor"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/kube_careers.png" alt="kube_careers"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/kube_events.png" alt="kube_events"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/kubespaces.png" alt="kubespaces"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/kyndryl.png" alt="kyndryl"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/leiria tech talks.png" alt="leiria tech talks"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/lisbon genai community.png" alt="lisbon genai community"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/mezmo.png" alt="mezmo"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/netdata.png" alt="netdata"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/neubird.png" alt="neubird"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/new relic.png" alt="new relic"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/NL_MEETUP.png" alt="NL_MEETUP"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/openobserve.png" alt="openobserve"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/oxfordknight.png" alt="oxfordknight"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/pagerduty.png" alt="pagerduty"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/pomerium.png" alt="pomerium"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/port.png" alt="port"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/qubit.png" alt="qubit"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/riversafe.png" alt="riversafe"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/rootly.png" alt="rootly"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/runwhen.png" alt="runwhen"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/senser-tech.png" alt="senser-tech"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/shipfox.png" alt="shipfox"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/sidero.png" alt="sidero"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/spacelift.png" alt="spacelift"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/srecommunitycoimbatore.png" alt="srecommunitycoimbatore"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/starterai.png" alt="starterai"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/stormforge.png" alt="stormforge"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/synvert xgeeks.png" alt="synvert xgeeks"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/ttthinking.png" alt="ttthinking"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/unpack.png" alt="unpack"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/viam.png" alt="viam"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/viseu tech talks.png" alt="viseu tech talks"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/xurrent.png" alt="xurrent"></div>
+            
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/aigeeks.png" alt="aigeeks"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/aliengiraffe.png" alt="aliengiraffe"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/atlas.png" alt="atlas"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/aws porto.png" alt="aws porto"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/bluebricks.png" alt="bluebricks"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/cardinal.png" alt="cardinal"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/cast_ai.png" alt="cast_ai"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/catawiki.png" alt="catawiki"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/chennaisre.png" alt="chennaisre"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/clickhouse.png" alt="clickhouse"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/cloud native lisbon.png" alt="cloud native lisbon"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/cloud native porto.png" alt="cloud native porto"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/codejet.png" alt="codejet"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/codiac.png" alt="codiac"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/coralogix.png" alt="coralogix"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/criteo.png" alt="criteo"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/densify.png" alt="densify"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/devit.png" alt="devit"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/devitjobs.png" alt="devitjobs"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/devops braga.png" alt="devops braga"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/devops lisbon.png" alt="devops lisbon"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/dougbr.png" alt="dougbr"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/env0.png" alt="env0"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/ewake.png" alt="ewake"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/ford.png" alt="ford"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/guhatek.png" alt="guhatek"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/harness.png" alt="harness"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/hcltech.png" alt="hcltech"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/hockeystick.png" alt="hockeystick"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/ilert.png" alt="ilert"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/imply.png" alt="imply"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/ing.png" alt="ing"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/jug-amsterdam.png" alt="jug-amsterdam"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/k8sug.png" alt="k8sug"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/kcd porto.png" alt="kcd porto"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/kerno.png" alt="kerno"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/komodor.png" alt="komodor"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/kube_careers.png" alt="kube_careers"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/kube_events.png" alt="kube_events"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/kubespaces.png" alt="kubespaces"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/kyndryl.png" alt="kyndryl"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/leiria tech talks.png" alt="leiria tech talks"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/lisbon genai community.png" alt="lisbon genai community"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/mezmo.png" alt="mezmo"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/netdata.png" alt="netdata"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/neubird.png" alt="neubird"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/new relic.png" alt="new relic"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/NL_MEETUP.png" alt="NL_MEETUP"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/openobserve.png" alt="openobserve"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/oxfordknight.png" alt="oxfordknight"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/pagerduty.png" alt="pagerduty"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/pomerium.png" alt="pomerium"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/port.png" alt="port"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/qubit.png" alt="qubit"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/riversafe.png" alt="riversafe"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/rootly.png" alt="rootly"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/runwhen.png" alt="runwhen"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/senser-tech.png" alt="senser-tech"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/shipfox.png" alt="shipfox"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/sidero.png" alt="sidero"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/spacelift.png" alt="spacelift"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/srecommunitycoimbatore.png" alt="srecommunitycoimbatore"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/starterai.png" alt="starterai"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/stormforge.png" alt="stormforge"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/synvert xgeeks.png" alt="synvert xgeeks"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/ttthinking.png" alt="ttthinking"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/unpack.png" alt="unpack"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/viam.png" alt="viam"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/viseu tech talks.png" alt="viseu tech talks"></div>
+            
+            <div class="sponsor-carousel-item"><img src="./sponsors/xurrent.png" alt="xurrent"></div>
+            
+          </div>
+        </div>
+        <style>
+        .sponsor-carousel-wrap { position: relative; }
+        .sponsor-carousel-track {
+          display: flex;
+          align-items: center;
+          gap: 3rem;
+          width: max-content;
+          animation: sponsor-scroll 40s linear infinite;
+        }
+        .sponsor-carousel-wrap:hover .sponsor-carousel-track { animation-play-state: paused; }
+        .sponsor-carousel-item img {
+          height: 120px;
+          width: auto;
+          max-width: 288px;
+          object-fit: contain;
+          filter: grayscale(20%);
+          transition: filter 0.2s ease;
+        }
+        .sponsor-carousel-item img:hover { filter: grayscale(0%); }
+        @keyframes sponsor-scroll {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        </style>
+        <script>
+        (function() {
+          var track = document.querySelector('.sponsor-carousel-track');
+          if (track) {
+            var SPEED = 25; // pixels per second
+            var totalWidth = track.scrollWidth / 2;
+            track.style.animationDuration = (totalWidth / SPEED) + 's';
+          }
+        })();
+        </script>
+        
+
+        <div class="sponsors-cta text-center">
+<!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget" data-url="https://calendly.com/sreday/30min" style="min-width:320px;height:700px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget end -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="partner" class="sponsors-section section theme-bg-light">
+  <div class="container">
+    <div class="row gx-md-5">
+      <div class="col-12 mb-3">
+        <h3 class="section-heading text-center mb-3">Partner</h3>
+        <div class="section-intro text-center single-col-max mx-auto">
+          Interested in bringing SREday to your city?
+        </div>
+        <div class="sponsors-cta text-center pt-5">
+          <a class="btn-secondary btn btn-lg" href="mailto:hello@sreday.com">Become A Partner</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<footer class="footer py-5 theme-bg-primary">
+    <div class="container text-center">
+
+        <ul class="social-list list-inline mb-4">
+            <li class="list-inline-item me-3"><a target="_blank" href="https://luma.com/sre" style="text-decoration:none;">✦</a></li>
+            <li class="list-inline-item me-3"><a target="_blank" href="https://chat.whatsapp.com/KS1ce0jAHmNGAiOAoZG6zo"><i class="fab fa-whatsapp fa-fw"></i></a></li>
+            <li class="list-inline-item me-3"><a target="_blank" href="https://www.linkedin.com/company/sreday/"><i class="fab fa-linkedin fa-fw"></i></a></li>
+            <li class="list-inline-item me-3"><a href="mailto:hello@sreday.com"><i class="fas fa-envelope fa-fw"></i></a></li>
+            <li class="list-inline-item me-0"><a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/@sreday"><i class="fab fa-youtube fa-fw"></i></a></li>
+        </ul>
+
+        <div class="py-4 text-center">
+            <img src="/assets/maupa GIF.gif" alt="SREday Maupa" style="height:400px;">
+        </div>
+
+    </div><!--//container-->
+</footer>
+
+
+<!-- Javascript -->
+<script src="assets/plugins/popper.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="assets/plugins/smoothscroll.min.js"></script>
+<script src="assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
