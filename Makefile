@@ -25,6 +25,7 @@ static/index.html: home/**/*
 	cp -r photos ./static
 	cp -r speakers ./static
 	cp -r ambassadors ./static
+	cp -r sponsors ./static
 
 env:
 	python3 -m venv env
@@ -40,4 +41,7 @@ serve:
 	python3 _build/serve.py
 	open http://localhost:8080
 
-.PHONY: env deps clean serve
+optimize:
+	python _build/optimize_images.py
+
+.PHONY: env deps clean serve optimize

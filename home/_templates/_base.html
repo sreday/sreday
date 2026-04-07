@@ -108,7 +108,7 @@ section[id] {
 		<div class="branding">
 			<div class="container-fluid">
 				<nav class="main-nav navbar navbar-expand-lg">
-					<div class="site-logo"><a href="{{ 'index.html' if page != 'index.html' else '' }}#home">
+					<div class="site-logo"><a href="{{ 'index.html' if page != 'index.html' else '/' }}">
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
@@ -119,7 +119,7 @@ section[id] {
 					<div id="navigation" class="navbar-collapse collapse  justify-content-lg-end me-lg-3">
 						<ul class="nav navbar-nav">
 
-							<li class="nav-item"><a class="nav-link" href="{{ 'index.html' if page != 'index.html' else '' }}#home">Home</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{ 'index.html' if page != 'index.html' else '/' }}">Home</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ 'index.html' if page != 'index.html' else '' }}#events">Upcoming events</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ 'index.html' if page != 'index.html' else '' }}#ambassadors">Ambassadors</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ 'index.html' if page != 'index.html' else '' }}#past-events">Past events</a></li>
@@ -140,7 +140,7 @@ section[id] {
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
 				{% for pic in hero_pictures %}
-				<div class="carousel-item tinted {{ 'active' if loop.index == 1 else ''}}" style="background:url('{{ pic }}') no-repeat center"></div>
+				<div class="carousel-item tinted {{ 'active' if loop.index == 1 else ''}}" style="background:url('{{ pic }}') no-repeat center; background-size: cover;"></div>
 				{% endfor %}
 			</div>
 
@@ -152,14 +152,16 @@ section[id] {
 		</div>
 		<div class="container">
 			<div class="hero-text-block text-center" style="max-width: 100%;">
-				<h1 class="logo retro">SREDAY</h1>
+				<h1 class="logo retro"><img src="/assets/images/sreday_sticker.png" alt="SREday" style="height: 200px;"></h1>
 				<h2 class="text-white">Site Reliability, DevOps and Cloud</h2>
 				<h3 class="text-white">In-person conferences</h3>
 				<h4 class="text-white mt-5">Worldwide - Europe, Americas and Asia</h4>
 				<ul class="social-list list-inline mt-4">
+					<li class="list-inline-item me-3"><a target="_blank" href="https://luma.com/sre" style="text-decoration:none;">✦</a></li>
+					<li class="list-inline-item me-3"><a target="_blank" href="https://chat.whatsapp.com/KS1ce0jAHmNGAiOAoZG6zo"><i class="fab fa-whatsapp fa-fw"></i></a></li>
 					<li class="list-inline-item me-3"><a target="_blank" href="{{ linkedin_url }}"><i class="fab fa-linkedin fa-fw"></i></a></li>
-					<li class="list-inline-item me-3"><a target="_blank" href="{{ youtube_url  }}"><i class="fab fa-youtube fa-fw"></i></a></li>
-					<li class="list-inline-item me-0"><a target="_blank" href="{{ twitter_url  }}"><i class="fab fa-twitter fa-fw"></i></a></li>
+					<li class="list-inline-item me-3"><a href="{{ mailto }}"><i class="fas fa-envelope fa-fw"></i></a></li>
+					<li class="list-inline-item me-0"><a target="_blank" rel="noopener noreferrer" href="{{ youtube_url }}"><i class="fab fa-youtube fa-fw"></i></a></li>
 				</ul>
 			</div><!--//hero-text-block-->
 		</div><!--//container-->
@@ -172,25 +174,25 @@ section[id] {
 				<div class="col-6 col-md-3">
 					<div class="item">
 						<div class="number">{{ counts.countries }}</div>
-						<div class="unit">Countries</div>
+						<div class="unit">{{ "Country" if counts.countries == 1 else "Countries" }}</div>
 					</div><!--//item-->
 				</div><!--//col-->
 				<div class="col-6 col-md-3">
 					<div class="item">
 						<div class="number">{{ counts.events }}</div>
-						<div class="unit">Events</div>
+						<div class="unit">{{ "Event" if counts.events == 1 else "Events" }}</div>
 					</div><!--//item-->
 				</div><!--//col-->
 				<div class="col-6 col-md-3">
 					<div class="item">
 						<div class="number">{{ counts.speakers }}</div>
-						<div class="unit">Speakers</div>
+						<div class="unit">{{ "Speaker" if counts.speakers == 1 else "Speakers" }}</div>
 					</div><!--//item-->
 				</div><!--//col-->
 				<div class="col-6 col-md-3">
 					<div class="item">
 						<div class="number">{{ counts.attendees }}</div>
-						<div class="unit">Attendees</div>
+						<div class="unit">{{ "Attendee" if counts.attendees == 1 else "Attendees" }}</div>
 					</div><!--//item-->
 				</div><!--//col-->
 			</div>
@@ -207,14 +209,16 @@ section[id] {
     <div class="container text-center">
 
         <ul class="social-list list-inline mb-4">
-            <li class="list-inline-item me-3"><a target="_blank" href="{{ mailto }}"><i class="fas fa-envelope"></i></a></li>
+            <li class="list-inline-item me-3"><a target="_blank" href="https://luma.com/sre" style="text-decoration:none;">✦</a></li>
+            <li class="list-inline-item me-3"><a target="_blank" href="https://chat.whatsapp.com/KS1ce0jAHmNGAiOAoZG6zo"><i class="fab fa-whatsapp fa-fw"></i></a></li>
             <li class="list-inline-item me-3"><a target="_blank" href="{{ linkedin_url }}"><i class="fab fa-linkedin fa-fw"></i></a></li>
-            <li class="list-inline-item me-3"><a target="_blank" href="{{ twitter_url  }}"><i class="fab fa-twitter fa-fw"></i></a></li>
-            <li class="list-inline-item me-0"><a target="_blank" href="{{ youtube_url  }}"><i class="fab fa-youtube fa-fw"></i></a></li>
+            <li class="list-inline-item me-3"><a href="{{ mailto }}"><i class="fas fa-envelope fa-fw"></i></a></li>
+            <li class="list-inline-item me-0"><a target="_blank" rel="noopener noreferrer" href="{{ youtube_url }}"><i class="fab fa-youtube fa-fw"></i></a></li>
         </ul>
 
-         <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
-        <small class="copyright">Designed with <i class="fas fa-heart" style="color: #EC645E;"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+        <div class="py-4 text-center">
+            <img src="/assets/maupa GIF.gif" alt="SREday Maupa" style="height:400px;">
+        </div>
 
     </div><!--//container-->
 </footer>
