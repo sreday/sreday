@@ -52,7 +52,7 @@
 <meta name="robots" content="noindex, nofollow">
 <style>
 /* ── Sponsorship page styles ─────────────────────────── */
-:root { --sp-accent: #26986A; }
+:root { --sp-accent: #862f6e; }
 
 .sp-hero {
   background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
@@ -92,9 +92,9 @@
 /* ── Sponsor pills ───────────────────────────────────── */
 .sp-pill {
   display: inline-block;
-  background: #1a2e24;
+  background: #2d1727;
   color: var(--sp-accent);
-  border: 1px solid rgba(38,152,106,.35);
+  border: 1px solid rgba(113,54,96,.35);
   border-radius: 999px;
   padding: 4px 14px;
   font-size: .82rem;
@@ -119,7 +119,7 @@
   letter-spacing: .01em;
   transition: background .2s, box-shadow .2s;
 }
-.btn-stats:hover  { background: #1e7a55; box-shadow: 0 4px 18px rgba(38,152,106,.4); }
+.btn-stats:hover  { background: #5c2a4e; box-shadow: 0 4px 18px rgba(113,54,96,.4); }
 .btn-stats:active { transform: scale(.97); }
 .btn-stats-icon { display: flex; align-items: center; flex-shrink: 0; }
 .btn-stats-chevron { transition: transform .3s ease; }
@@ -173,16 +173,16 @@
 .sp-stats-empty    { color: #999; font-size: .9rem; margin: 0; }
 /* Pills inside white panel override the dark pill rule */
 #sp-dark-body .sp-stats-inner .sp-pill {
-  background: #f0faf5;
+  background: #f8f0f5;
   color: var(--sp-accent);
-  border-color: #a7d9bf;
+  border-color: #c9a3bc;
 }
 
 /* ── New stats panel styles ──────────────────────────── */
 .sp-stats-inner {
-  --spi-green:       #26986A;
-  --spi-green-light: #e8f7ef;
-  --spi-green-mid:   #b6dfc9;
+  --spi-green:       #862f6e;
+  --spi-green-light: #f5e6f1;
+  --spi-green-mid:   #c48fb8;
   --spi-border:      #efefef;
   --spi-faint:       #f5f5f5;
 }
@@ -196,14 +196,14 @@
   padding: 14px 24px; border: 1px solid var(--spi-green-mid);
   border-radius: 999px; background: var(--spi-green-light); text-align: center;
 }
-.sp-stats-big-num-value { font-family: 'Montserrat', sans-serif; font-size: 1.9rem; font-weight: 700; color: #1a5c3a; line-height: 1; letter-spacing: -.01em; }
+.sp-stats-big-num-value { font-family: 'Montserrat', sans-serif; font-size: 1.9rem; font-weight: 700; color: #4a1f3a; line-height: 1; letter-spacing: -.01em; }
 .sp-stats-big-num-value sup { font-size: .9rem; color: var(--spi-green); vertical-align: super; font-weight: 700; }
-.sp-stats-big-num-label { font-size: .72rem; color: #3a8a60; text-transform: uppercase; letter-spacing: .07em; margin-top: 5px; }
+.sp-stats-big-num-label { font-size: .72rem; color: #8a4a72; text-transform: uppercase; letter-spacing: .07em; margin-top: 5px; }
 
 /* TLDR pill */
 .sp-stats-tldr {
   display: inline-block; background: var(--spi-green-light); border: 1px solid var(--spi-green-mid);
-  border-radius: 999px; padding: 8px 18px; font-size: .9rem; color: #1a5c3a; margin-bottom: 22px;
+  border-radius: 999px; padding: 8px 18px; font-size: .9rem; color: #4a1f3a; margin-bottom: 22px;
 }
 
 /* 2-col grid + cards */
@@ -227,16 +227,16 @@
 .sp-stats-tag     { background: var(--spi-faint); border: 1px solid #e8e8e8; border-radius: 999px; padding: 4px 12px; font-size: .85rem; color: #111; }
 .sp-stats-tag.hot { background: var(--spi-green-light); border-color: var(--spi-green-mid); color: var(--spi-green); font-weight: 700; }
 
-/* pastel green pill grid (white panel version) */
+/* pastel pill grid (white panel version) */
 .sp-stats-pill-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
 .sp-stats-pill {
   display: inline-flex; align-items: center;
   border-radius: 999px; padding: 6px 16px;
   font-size: .9rem; border: 1px solid var(--spi-green-mid);
-  background: var(--spi-green-light); color: #1a5c3a;
+  background: var(--spi-green-light); color: #4a1f3a;
   text-decoration: none; transition: background .15s, border-color .15s;
 }
-.sp-stats-pill:hover { background: var(--spi-green-light); border-color: var(--spi-green-mid); color: #1a5c3a; cursor: default; }
+.sp-stats-pill:hover { background: var(--spi-green-light); border-color: var(--spi-green-mid); color: #4a1f3a; cursor: default; }
 
 /* timeline */
 .sp-stats-timeline { position: relative; padding: 20px 0 8px; margin-bottom: 8px; }
@@ -262,7 +262,7 @@
   border-radius: 8px; padding: 8px 10px; text-align: center;
   text-decoration: none; width: 100%; transition: background .15s;
 }
-.sp-stats-tl-chip:hover { background: #d4f0e2; text-decoration: none; }
+.sp-stats-tl-chip:hover { background: #ebd0e4; text-decoration: none; }
 .sp-stats-tl-prospectus {
   display: block;
   margin-top: 6px;
@@ -271,20 +271,20 @@
   border-radius: 6px;
   padding: 4px 10px;
   font-size: .75rem;
-  color: #1a5c3a;
+  color: #551845;
   text-align: center;
   text-decoration: none;
   transition: background .15s;
 }
-.sp-stats-tl-prospectus:hover { background: #d4f0e2; text-decoration: none; color: #1a5c3a; }
+.sp-stats-tl-prospectus:hover { background: #ebd0e4; text-decoration: none; color: #551845; }
 .sp-stats-tl-prospectus.past { background: #e8e8e8; border-color: #ccc; color: #555; }
 .sp-stats-tl-prospectus.past:hover { background: #d8d8d8; text-decoration: none; color: #555; }
-.sp-stats-tl-city  { font-family: 'Montserrat', sans-serif; font-size: .8rem; font-weight: 700; color: #1a5c3a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.sp-stats-tl-date  { font-size: .75rem; color: #3a8a60; margin-top: 2px; }
-.sp-stats-tl-seats { font-size: .75rem; color: #3a8a60; }
-.sp-stats-tl-past  { font-size: .7rem; color: #8fcfb0; font-style: italic; }
+.sp-stats-tl-city  { font-family: 'Montserrat', sans-serif; font-size: .8rem; font-weight: 700; color: #551845; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sp-stats-tl-date  { font-size: .75rem; color: #9b3f7a; margin-top: 2px; }
+.sp-stats-tl-seats { font-size: .75rem; color: #9b3f7a; }
+.sp-stats-tl-past  { font-size: .7rem; color: #c49abc; font-style: italic; }
 .sp-stats-tl-pin-event { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 0; }
-.sp-stats-tl-pin { font-size: 2.25rem; line-height: 1; color: #1a6b4a; margin-bottom: 10px; position: relative; top: -4px; }
+.sp-stats-tl-pin { font-size: 2.25rem; line-height: 1; color: #551845; margin-bottom: 10px; position: relative; top: -4px; }
 
 /* GIF */
 .sp-stats-gif-wrap { margin-top: 32px; border-radius: 12px; overflow: hidden; width: 90%; margin-left: auto; margin-right: auto; }
@@ -302,8 +302,8 @@
 .sp-custom-card {
   border-radius: 12px;
   padding: 36px 32px;
-  background: #1c2a22;
-  border: 1px solid rgba(38,152,106,.3);
+  background: #2d1727;
+  border: 1px solid rgba(113,54,96,.3);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0;
@@ -311,7 +311,7 @@
 }
 .sp-custom-card-left {
   padding-right: 32px;
-  border-right: 1px solid rgba(38,152,106,.3);
+  border-right: 1px solid rgba(113,54,96,.3);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -325,7 +325,7 @@
 }
 .sp-custom-card-left .sp-custom-subtitle {
   font-size: 1rem;
-  color: #7bc49a;
+  color: #c49abc;
   margin-bottom: 0;
 }
 .sp-custom-divider { display: none; }
@@ -341,7 +341,7 @@
 .sp-custom-ideas li::before { content: "✓ "; color: #26986A; font-weight: 700; }
 @media (max-width: 640px) {
   .sp-custom-card { grid-template-columns: 1fr; }
-  .sp-custom-card-left { border-right: none; border-bottom: 1px solid rgba(38,152,106,.3); padding-right: 0; padding-bottom: 20px; margin-bottom: 20px; }
+  .sp-custom-card-left { border-right: none; border-bottom: 1px solid rgba(113,54,96,.3); padding-right: 0; padding-bottom: 20px; margin-bottom: 20px; }
   .sp-custom-ideas { padding-left: 0; }
   .sp-stats-tl-events { display: grid; grid-template-columns: 1fr 1fr; overflow-x: visible; }
   .sp-stats-tl-pin-event { grid-column: 1 / -1; }
@@ -363,6 +363,28 @@
 .sp-tier-card:hover {
   border-color: rgba(180, 130, 20, .5);
   box-shadow: 0 0 22px rgba(180, 130, 20, .22), 0 0 50px rgba(180, 130, 20, .08);
+}
+.sp-tier-card.sp-tier-highlight {
+  border-color: var(--sp-accent);
+  box-shadow: 0 4px 24px rgba(113,54,96,.2);
+}
+.sp-tier-card.sp-tier-highlight:hover {
+  border-color: rgba(180, 130, 20, .7);
+  box-shadow: 0 0 30px rgba(180, 130, 20, .30), 0 0 70px rgba(180, 130, 20, .10);
+}
+.sp-popular-badge {
+  position: absolute;
+  top: -13px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--sp-accent);
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 3px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
 }
 .sp-tier-name     { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; color: #fff; }
 .sp-tier-price    { font-size: 2.2rem; font-weight: 800; color: #fff; }
@@ -443,7 +465,7 @@
 }
 .sp-faq-q {
   font-weight: 700;
-  color: #1a6e4a;
+  color: #4a1f3a;
   margin-bottom: 6px;
   font-size: .95rem;
 }
@@ -622,7 +644,8 @@
     <div class="row justify-content-center g-4 mt-2">
       
       <div class="col-12 col-md-4">
-        <div class="sp-tier-card">
+        <div class="sp-tier-card ">
+          
           <div class="sp-tier-name">Conference Leads</div>
           <div class="sp-tier-price">
             £500
@@ -643,7 +666,8 @@
       </div>
       
       <div class="col-12 col-md-4">
-        <div class="sp-tier-card">
+        <div class="sp-tier-card ">
+          
           <div class="sp-tier-name">Keynote Session</div>
           <div class="sp-tier-price">
             £1000
@@ -664,7 +688,8 @@
       </div>
       
       <div class="col-12 col-md-4">
-        <div class="sp-tier-card">
+        <div class="sp-tier-card ">
+          
           <div class="sp-tier-name">Regular Session Slot</div>
           <div class="sp-tier-price">
             £500
@@ -685,7 +710,8 @@
       </div>
       
       <div class="col-12 col-md-4">
-        <div class="sp-tier-card">
+        <div class="sp-tier-card ">
+          
           <div class="sp-tier-name">Booth / Table</div>
           <div class="sp-tier-price">
             £1000
@@ -706,7 +732,8 @@
       </div>
       
       <div class="col-12 col-md-4">
-        <div class="sp-tier-card">
+        <div class="sp-tier-card ">
+          
           <div class="sp-tier-name">Logo Sponsor + Swag Distribution</div>
           <div class="sp-tier-price">
             £500
@@ -727,7 +754,8 @@
       </div>
       
       <div class="col-12 col-md-4">
-        <div class="sp-tier-card">
+        <div class="sp-tier-card ">
+          
           <div class="sp-tier-name">Coffee Break / Lunch / Happy Hour</div>
           <div class="sp-tier-price">
             £500 + £10pp
@@ -748,7 +776,8 @@
       </div>
       
       <div class="col-12 col-md-4">
-        <div class="sp-tier-card">
+        <div class="sp-tier-card ">
+          
           <div class="sp-tier-name">Branded Wearables</div>
           <div class="sp-tier-price">
             £500 + variable
@@ -769,7 +798,8 @@
       </div>
       
       <div class="col-12 col-md-4">
-        <div class="sp-tier-card">
+        <div class="sp-tier-card ">
+          
           <div class="sp-tier-name">Discounted Ticket Pack</div>
           <div class="sp-tier-price">
             20% off 5+ tickets
@@ -790,7 +820,8 @@
       </div>
       
       <div class="col-12 col-md-4">
-        <div class="sp-tier-card">
+        <div class="sp-tier-card ">
+          
           <div class="sp-tier-name">Startup Discount</div>
           <div class="sp-tier-price">
             20% off anything
@@ -894,32 +925,32 @@
               </div>
             </div>
           </div>
-          <video src="assets/images/llm conspiracy.mp4" autoplay loop muted playsinline class="sp-stats-header-gif-img" style="width:588px; border-radius:12px; flex-shrink:0; aspect-ratio:16/9; object-fit:contain; display:none;"></video>
+          <video src="/assets/sre monkeys.mp4" autoplay loop muted playsinline class="sp-stats-header-gif-img" style="width:588px; border-radius:12px; flex-shrink:0; aspect-ratio:16/9; object-fit:contain; display:none;"></video>
         </div>
 
         <hr class="sp-stats-sep">
 
         
         <div class="sp-stats-s-title">Attendee profile</div>
-        <div class="sp-stats-s-sub">Based on anonymized past attendee stats</div>
+        <div class="sp-stats-s-sub">Based on past attendee information across sampled events</div>
 
         <div class="sp-stats-tldr">
-          <strong>TLDR:</strong> A hands-on crowd of engineers, ML practitioners, and technical leaders from startups and enterprises — actively shipping AI products into production. Senior practitioners who care about architecture, reliability, and cost, figuring out how to make agents work at scale.
+          <strong>TLDR:</strong> A hands-on crowd of SREs, platform engineers, and DevOps practitioners from startups and enterprises — actively building and running production systems. Senior practitioners who care about reliability, observability, and incident management, figuring out how to make SRE work at scale.
         </div>
 
         <div class="sp-stats-card" style="margin-bottom:32px">
           <div class="sp-stats-card-title">Top attendee companies</div>
           <div class="sp-stats-pill-grid" style="margin-bottom:0">
-            <span class="sp-stats-pill">AWS</span>
-            <span class="sp-stats-pill">Google</span>
-            <span class="sp-stats-pill">Roche</span>
-            <span class="sp-stats-pill">Adobe</span>
-            <span class="sp-stats-pill">Thoughtworks</span>
-            <span class="sp-stats-pill">Snowflake</span>
-            <span class="sp-stats-pill">Monday.com</span>
-            <span class="sp-stats-pill">N26</span>
-            <span class="sp-stats-pill">Harness</span>
-            <span class="sp-stats-pill">OpenX</span>
+            <span class="sp-stats-pill">Kyndryl</span>
+            <span class="sp-stats-pill">Criteo</span>
+            <span class="sp-stats-pill">Imply</span>
+            <span class="sp-stats-pill">PagerDuty</span>
+            <span class="sp-stats-pill">Sky Portugal</span>
+            <span class="sp-stats-pill">Bradesco</span>
+            <span class="sp-stats-pill">CAST AI</span>
+            <span class="sp-stats-pill">Cribl</span>
+            <span class="sp-stats-pill">Chainguard</span>
+            <span class="sp-stats-pill">Banco Bradesco</span>
           </div>
         </div>
 
@@ -929,50 +960,24 @@
             <div class="sp-stats-card-title">Role breakdown</div>
             <ul class="sp-stats-bar-list">
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Software / Platform / DevOps</span><span class="sp-stats-bar-count">29%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:29%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Software / Platform / DevOps</span><span class="sp-stats-bar-count">51%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:51%"></div></div>
               </li>
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Executive / Founder / Leadership</span><span class="sp-stats-bar-count">23%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:23%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Executive / Founder / Leadership</span><span class="sp-stats-bar-count">20%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:20%"></div></div>
               </li>
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">ML / AI / Data</span><span class="sp-stats-bar-count">18%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:18%"></div></div>
-              </li>
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Business / Consulting / Product</span><span class="sp-stats-bar-count">17%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:17%"></div></div>
-              </li>
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Independent / Job Seeker</span><span class="sp-stats-bar-count">13%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:13%"></div></div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="sp-stats-card">
-            <div class="sp-stats-card-title">Attendee seniority</div>
-            <ul class="sp-stats-bar-list">
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Mid-Level</span><span class="sp-stats-bar-count">43%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:43%"></div></div>
-              </li>
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Executive</span><span class="sp-stats-bar-count">22%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:22%"></div></div>
-              </li>
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Junior</span><span class="sp-stats-bar-count">14%</span></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Independent / Job Seeker</span><span class="sp-stats-bar-count">14%</span></div>
                 <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:14%"></div></div>
               </li>
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Senior</span><span class="sp-stats-bar-count">11%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:11%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Business / Consulting / Product</span><span class="sp-stats-bar-count">12%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:12%"></div></div>
               </li>
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Lead / Manager</span><span class="sp-stats-bar-count">10%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:10%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">ML / AI / Data</span><span class="sp-stats-bar-count">2%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:2%"></div></div>
               </li>
             </ul>
           </div>
@@ -981,20 +986,16 @@
             <div class="sp-stats-card-title">Company size</div>
             <ul class="sp-stats-bar-list">
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Startup (&lt;50)</span><span class="sp-stats-bar-count">59%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:59%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Startup (&lt;50)</span><span class="sp-stats-bar-count">77%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:77%"></div></div>
               </li>
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Enterprise (500+)</span><span class="sp-stats-bar-count">30%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:30%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Enterprise (500+)</span><span class="sp-stats-bar-count">15%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:15%"></div></div>
               </li>
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Solo Founder / Independent</span><span class="sp-stats-bar-count">6%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:6%"></div></div>
-              </li>
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Scale-up (50-500)</span><span class="sp-stats-bar-count">5%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:5%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Solo Founder / Independent</span><span class="sp-stats-bar-count">8%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:8%"></div></div>
               </li>
             </ul>
           </div>
@@ -1002,17 +1003,43 @@
           <div class="sp-stats-card">
             <div class="sp-stats-card-title">What they are working on</div>
             <div class="sp-stats-tag-cloud">
-              <span class="sp-stats-tag hot">Agents &amp; Automation</span>
-              <span class="sp-stats-tag hot">Applied / Product AI</span>
-              <span class="sp-stats-tag hot">Production &amp; Reliability</span>
-              <span class="sp-stats-tag">LLM Infrastructure &amp; Cost</span>
-              <span class="sp-stats-tag">LLM Evaluation &amp; Testing</span>
-              <span class="sp-stats-tag">Open Source &amp; Edge</span>
-              <span class="sp-stats-tag">RAG &amp; Retrieval</span>
-              <span class="sp-stats-tag">Prompt &amp; Context Engineering</span>
-              <span class="sp-stats-tag">Multimodal &amp; Specialized AI</span>
-              <span class="sp-stats-tag">AI Ethics &amp; Governance</span>
+              <span class="sp-stats-tag hot">AI for Ops</span>
+              <span class="sp-stats-tag hot">SRE &amp; Reliability</span>
+              <span class="sp-stats-tag hot">Observability &amp; Monitoring</span>
+              <span class="sp-stats-tag">CI/CD &amp; Delivery</span>
+              <span class="sp-stats-tag">Cloud &amp; Infrastructure</span>
+              <span class="sp-stats-tag">Incident Management</span>
+              <span class="sp-stats-tag">FinOps &amp; Cost</span>
+              <span class="sp-stats-tag">Kubernetes &amp; Containers</span>
+              <span class="sp-stats-tag">Security &amp; DevSecOps</span>
+              <span class="sp-stats-tag">Chaos Engineering</span>
             </div>
+          </div>
+
+          <div class="sp-stats-card">
+            <div class="sp-stats-card-title">Attendee seniority</div>
+            <ul class="sp-stats-bar-list">
+              <li class="sp-stats-bar-item">
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Mid-Level</span><span class="sp-stats-bar-count">59%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:59%"></div></div>
+              </li>
+              <li class="sp-stats-bar-item">
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Executive</span><span class="sp-stats-bar-count">14%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:14%"></div></div>
+              </li>
+              <li class="sp-stats-bar-item">
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Senior</span><span class="sp-stats-bar-count">12%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:12%"></div></div>
+              </li>
+              <li class="sp-stats-bar-item">
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Lead / Manager</span><span class="sp-stats-bar-count">11%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:11%"></div></div>
+              </li>
+              <li class="sp-stats-bar-item">
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Junior</span><span class="sp-stats-bar-count">3%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:3%"></div></div>
+              </li>
+            </ul>
           </div>
 
         </div>
@@ -1240,8 +1267,8 @@ function spToggleStats() {
 
 <section class="sp-section sp-section-alt" id="buy">
   <div class="container">
-    <h2 class="sp-section-title text-center">Ready to give LLMday a try?</h2>
-    <p class="text-center" style="color:#aaa;margin-top:-.6rem;margin-bottom:1.5rem;">Secure your sponsorship with <a href="https://www.linkedin.com/in/marek-pawlikowski/" target="_blank" rel="noopener noreferrer" style="color:#7bc49a;">Mark Pawlikowski</a></p>
+    <h2 class="sp-section-title text-center">Ready to give SREday a try?</h2>
+    <p class="text-center" style="color:#aaa;margin-top:-.6rem;margin-bottom:1.5rem;">Secure your sponsorship with <a href="https://www.linkedin.com/in/marek-pawlikowski/" target="_blank" rel="noopener noreferrer" style="color:#c49abc;">Mark Pawlikowski</a></p>
     <div class="row justify-content-center">
       <div class="col-12 col-lg-10 d-flex flex-wrap justify-content-center gap-3">
         <a href="https://calendly.com/sreday/30min" target="_blank" rel="noopener noreferrer" class="btn btn-secondary sp-cta-btn">Hop on a call</a>
@@ -1325,7 +1352,15 @@ function spToggleFaq() {
     <h2 class="sp-section-title text-center">Sister brands</h2>
     <p class="text-center" style="color:#aaa;margin-top:-.6rem;margin-bottom:1.5rem;">Other conferences we organize: in-person & online</p>
     <div class="sp-sisters">
-      
+      <a href="https://devopsnotdead.com" target="_blank" rel="noopener noreferrer">
+        <img src="/assets/images/devopsnotdead_sticker.png" alt="DevOpsNotDead">
+      </a>
+      <a href="https://llmday.com" target="_blank" rel="noopener noreferrer">
+        <img src="/assets/images/llmday_sticker.png" alt="LLMday">
+      </a>
+      <a href="https://conf42.com" target="_blank" rel="noopener noreferrer">
+        <img src="/assets/images/conf42_sticker.png" alt="Conf42">
+      </a>
     </div>
   </div>
 </section>
@@ -1335,7 +1370,12 @@ function spToggleFaq() {
     <h2 class="sp-section-title text-center">Our Open Source Tools</h2>
     <p class="text-center" style="color:#aaa;margin-top:-.6rem;margin-bottom:1.5rem;">To help fellow community builders</p>
     <div class="sp-sisters">
-      
+      <a href="https://cfp.ninja/" target="_blank" rel="noopener noreferrer">
+        <img src="/assets/images/cfpninja sticker.png" alt="CFP Ninja">
+      </a>
+      <a href="https://certified.fyi/" target="_blank" rel="noopener noreferrer">
+        <img src="/assets/images/certified fyi sticker.png" alt="Certified FYI">
+      </a>
     </div>
   </div>
 </section>
