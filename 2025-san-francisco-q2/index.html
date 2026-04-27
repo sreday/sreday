@@ -305,547 +305,1290 @@
 </section>
 
 
+<style>
+  /* Track navigation */
+  .track-nav {
+    padding: 0.75rem 0;
+    margin-bottom: 1.5rem;
+  }
+  .track-nav-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .track-nav-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .track-nav-links a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #713660;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+  }
+  .track-nav-links a:hover {
+    background: #5e2c50;
+    color: white;
+  }
+  .view-toggle-link {
+    color: #713660;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #713660;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .view-toggle-link:hover {
+    background: #713660;
+    color: white;
+  }
+  .view-toggle-link.active {
+    background: #713660;
+    color: white;
+  }
+  /* Table view */
+  .schedule-table-view { display: none; }
+  .schedule-table-view.active { display: block; }
+  .schedule-timeline-view { display: block; }
+  .schedule-timeline-view.hidden { display: none; }
+  .schedule-grid-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+    table-layout: fixed;
+  }
+  .schedule-grid-table th {
+    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    color: white;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .schedule-grid-table th:first-child {
+    width: 60px;
+  }
+  .schedule-grid-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #ede5eb;
+    vertical-align: top;
+  }
+  .schedule-grid-table td.merged-cell {
+    text-align: center;
+    font-weight: 500;
+    color: #555;
+    background: #fcf8fb;
+  }
+  .schedule-grid-table .time-cell {
+    color: #713660;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .schedule-grid-table .talk-cell a {
+    color: #222;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .schedule-grid-table .talk-cell a:hover {
+    color: #713660;
+  }
+  .schedule-grid-table .speaker-info {
+    color: #444;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+  .schedule-grid-table .speaker-info .affiliation {
+    color: #666;
+  }
+  .schedule-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  .schedule-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.8rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .schedule-meta-divider {
+    color: #ccc;
+    font-weight: 300;
+  }
+  /* Track section header */
+  .track-section-header {
+    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    margin: 2rem 0 0 0;
+    border-radius: 4px 4px 0 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  .track-section-header:first-of-type {
+    margin-top: 0;
+  }
+
+  .schedule-section.theme-bg-light { background-color: #f8f0f6 !important; }
+</style>
+
 <section id="schedule" class="schedule-section section theme-bg-light">
   <div class="container">
-    <h2 class="section-heading text-center mb-5">Schedule</h2>
+    <h2 class="section-heading text-center mb-4">Schedule</h2>
 
+    <!-- Schedule meta info -->
+    <div class="schedule-meta">
+      <span class="schedule-meta-item">April 11, 2025</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">2 parallel tracks</span>
+    </div>
 
 
     
 
-    
-    <!-- Nav tabs -->
-    <ul class="schedule-nav nav nav-pills nav-fill" id="myTab" role="tablist">
-
-      <li class="nav-item me-2">
-        <a class="nav-link active" id="tab-0-1" data-bs-toggle="tab" href="#tab-0-1-content" role="tab" aria-controls="tab-1-content"
-          aria-selected="true"
-        >
-          <span class="heading">main room</span>
-          <span class="meta">track 1</span>
-        </a>
-      </li>
-
-      <li class="nav-item me-2">
-        <a class="nav-link " id="tab-0-2" data-bs-toggle="tab" href="#tab-0-2-content" role="tab" aria-controls="tab-2-content"
-          aria-selected="false"
-        >
-          <span class="heading">mini room</span>
-          <span class="meta">track 2</span>
-        </a>
-      </li>
-
-    </ul>
-    
-    <!-- Tab panes -->
-    <div class="schedule-tab-content tab-content">
-
-
-      <div class="tab-pane active" id="tab-0-1-content" role="tabpanel" aria-labelledby="tab-0-1">
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">10:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle  mb-2" src="../speakers/Puneet Saraswat.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Puneet Saraswat</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: From Growing Pains to Enterprise Scale: How Harness Transformed Its Infrastructure</a>
-            </h3>
-            <div class="location mb-3"></i>Harness</div>
-            <div class="desc">Scaling infrastructure is never just about adding more machines—it’s about evolving architecture, managing complexity, and maintaining reliability while growing rapidly. In this session, we’ll take you through the journey of how Harness scaled its infrastructure to support growing customer...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">10:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
-            </h3>
-            <div class="location mb-3"></i>Main lobby</div>
-            <div class="desc"><br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">11:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle  mb-2" src="../speakers/Francois Martel.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Francois Martel</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">AI Teammates for SREs: How will they impact SRE Teams?</a>
-            </h3>
-            <div class="location mb-3"></i>Neubird AI</div>
-            <div class="desc">Explore how AI teammates are revolutionizing SRE work by handling routine investigations, providing context-aware analysis, and enabling teams to focus on engineering. Learn about real implementation challenges and how to prepare your team for this transformation.<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">11:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle  mb-2" src="../speakers/Gunnar Grosch.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Gunnar Grosch</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">A proactive approach to resilience in modern applications</a>
-            </h3>
-            <div class="location mb-3"></i>AWS</div>
-            <div class="desc">Discover how adopting a proactive resilience strategy can help modern applications withstand failures and maintain performance. This talk explores key techniques for identifying vulnerabilities, implementing fault tolerance, and ensuring continuous availability in dynamic environments.<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">12:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle  mb-2" src="../speakers/John Shin.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">John Shin</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Awareness Security in the age of A.I.</a>
-            </h3>
-            <div class="location mb-3"></i>RSI Security</div>
-            <div class="desc">In an increasingly digital world, where technology and data have become integral parts of our daily lives, the importance of cybersecurity cannot be overstated. This topic on **"Awareness Security"** is an exciting opportunity to enlighten your mind about the significance of this subject, the...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">12:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle  mb-2" src="../speakers/Scott Davis.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Scott Davis</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Visibility, Insight, and Action with Cast AI, Prometheus, and Grafana</a>
-            </h3>
-            <div class="location mb-3"></i>CAST AI</div>
-            <div class="desc">Achieving full-stack observability requires seamless integration of monitoring, analysis, and automation. In this session, we’ll explore how Cast AI, Prometheus, and Grafana work together to provide real-time visibility, actionable insights, and automated optimizations for cloud-native...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">13:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
-            </h3>
-            <div class="location mb-3"></i>Main lobby</div>
-            <div class="desc"><br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">14:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle  mb-2" src="../speakers/Tucker Callaway.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Tucker Callaway</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Streamlining Telemetry Data: Building a Telemetry Pipeline to Handle High-Cardinality Metrics</a>
-            </h3>
-            <div class="location mb-3"></i>Mezmo</div>
-            <div class="desc">Handling high-cardinality telemetry data efficiently is crucial for modern observability systems. In this session, we will explore strategies for designing a scalable telemetry pipeline that can process large volumes of diverse metrics without performance bottlenecks. We’ll cover best practices...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">14:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle  mb-2" src="../speakers/Matan Nataf.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Matan Nataf</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Managing Databases in the Cloud in Broken</a>
-            </h3>
-            <div class="location mb-3"></i>Rapydo</div>
-            <div class="desc">In this talk, Matan Nataf, co-founder, and CEO of Rapydo, addresses the complexities of managing relational databases in the cloud era. Focusing on the challenges brought by microservices and multi-tenant architectures, he underscores the limitations of current tools in achieving scalability and...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">15:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle  mb-2" src="../speakers/Nick Taylor.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Nick Taylor</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Zero Trust: From Airports to Identity-Aware Proxies</a>
-            </h3>
-            <div class="location mb-3"></i>Pomerium</div>
-            <div class="desc">Zero Trust doesn't have to be intimidating. Learn how Identity-Aware Proxies transform service access from perimeter-based to continuous verification, explained through the universal experience of airport security.<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">15:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle  mb-2" src="../speakers/Robert Hodges.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Robert Hodges</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Fast, Cheap, DIY Observability with Open Source Analytics and Visualization</a>
-            </h3>
-            <div class="location mb-3"></i>Altinity</div>
-            <div class="desc">Commercial observability tools are expensive and complex - but you can build a fast, cost-effective solution yourself! This talk shows how to use ClickHouse, OpenTelemetry, and Grafana to create scalable, DIY monitoring with open source tools.<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">16:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle  mb-2" src="../speakers/David Argent.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">David Argent</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">A Tale of Two Outages</a>
-            </h3>
-            <div class="location mb-3"></i>Salesforce</div>
-            <div class="desc">Having been at ground zero for two outages that you can still look up on Google, this talk is designed to give an oral history of the causes, reactions, solutions, and aftermath to the Danger Sidekick outage and another major outage whose company I cannot mention by name. The first is a story...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">16:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle  mb-2" src="../speakers/Himank Chaudhary.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Himank Chaudhary</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Building a distributed persistent queue on FoundationDB</a>
-            </h3>
-            <div class="location mb-3"></i>Tigris Data</div>
-            <div class="desc">Tigris is a globally distributed object storage system where objects are stored all over the world. The system needs to have asynchronous tasks to keep objects cached, redundantly stored, and moved around in response to changes in access patterns. To solve this, we built an asynchronous task...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">17:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img class="profile-image rounded-circle  mb-2" src="../speakers/Rod Anami & Gregory Pruett.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Rod Anami & Gregory Pruett</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">The duality of adopting AI: Can SREs become AI/ML engineers?</a>
-            </h3>
-            <div class="location mb-3"></i>Kyndryl</div>
-            <div class="desc">AI/ML is not new in the business world. It has been used for some time, but Generative AI (GenAI) initiated a new disruptive force in recent years. Many businesses and technical processes are taking advantage of embedded GenAI capabilities. However, companies must put more effort into leveraging...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">17:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
-            </h3>
-            <div class="location mb-3"></i>Scan each other's QR codes & head to a nearby pub!</div>
-            <div class="desc"><br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-
-      </div><!--//tab-1-content-->
-
-
-      <div class="tab-pane " id="tab-0-2-content" role="tabpanel" aria-labelledby="tab-0-2">
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">10:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
-            </h3>
-            <div class="location mb-3"></i>Main lobby</div>
-            <div class="desc"><br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">11:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img class="profile-image rounded-circle  mb-2" src="../speakers/Andrew Suderman.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Andrew Suderman</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Case Study: Re-Thinking Our Infrastructure Tooling</a>
-            </h3>
-            <div class="location mb-3"></i>Fairwinds</div>
-            <div class="desc">When you're managing dozens of Kubernetes clusters, across three different clouds, for dozens of individual companies in their own accounts, the challenge of (re)designing tooling is complex. Come hear how we worked through all the many possible options (centralized IaC vs templating, whether to...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">11:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img class="profile-image rounded-circle  mb-2" src="../speakers/Shubhanshu Surana.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">Shubhanshu Surana</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">CAP Theorem Reloaded- AKA How to Optimize Distribution of Telemetry Data</a>
-            </h3>
-            <div class="location mb-3"></i>Sawmills</div>
-            <div class="desc">The backbone of SRE - like all engineering, is monitoring and observability. When designing and implementing platforms, understanding how monitoring and observability telemetry data impacts your systems is critical to scale.<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">12:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14"><img class="profile-image rounded-circle  mb-2" src="../speakers/Anca Ghenade.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">Anca Ghenade</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">Cloud Integration Testing Made Easy for Your AWS Cloud Apps</a>
-            </h3>
-            <div class="location mb-3"></i>Postman</div>
-            <div class="desc">Integration testing for cloud-native AWS applications is complex due to service dependencies, deployment intricacies, and high costs. To make integration testing faster and easier, this presentation shows you how to emulate AWS environments locally using Testcontainers and LocalStack. By...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">12:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15"><img class="profile-image rounded-circle  mb-2" src="../speakers/Riley Scheid.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Riley Scheid</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Reliable Serverless Needs Distributed Transactions</a>
-            </h3>
-            <div class="location mb-3"></i>reboot.dev</div>
-            <div class="desc">Cloud native and serverless application platforms give teams encapsulation, flexibility, and reduced deployment dependencies. But the movement onto the cloud has so far trained us to accept that decomposing your application into multiple loosely coupled functions or services requires eventual...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">13:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
-            </h3>
-            <div class="location mb-3"></i>Main lobby</div>
-            <div class="desc"><br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">14:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img class="profile-image rounded-circle  mb-2" src="../speakers/Ren Lee.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Ren Lee</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Fearless SREs</a>
-            </h3>
-            <div class="location mb-3"></i>Arista Networks</div>
-            <div class="desc">In this talk, we'll explore both the technical but human and very emotional side of what makes mythical SREs perform at their best in an incident – but also how we not only find such engineers but help others grow into one. Together, we will explore the following: - **Fearless ≠...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">14:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17"><img class="profile-image rounded-circle  mb-2" src="../speakers/Mohit Menghnani.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Mohit Menghnani</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Unlocking Observability with React & Node.js</a>
-            </h3>
-            <div class="location mb-3"></i>Twilio</div>
-            <div class="desc">This talk shares the secrets of observability with React and Node.js! We will discuss practical strategies for debugging, monitoring performance, and delivering seamless user experiences. The session will end with tips for reforming your dev workflow and ensuring your apps run flawlessly.<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">15:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18"><img class="profile-image rounded-circle  mb-2" src="../speakers/Anam Hira.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">Anam Hira</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">DragonCrawl: Revolutionizing Mobile Testing with Generative AI</a>
-            </h3>
-            <div class="location mb-3"></i>Revyl.ai</div>
-            <div class="desc">The challenges of traditional mobile testing at scale (3,000+ simultaneous experiments) Architecture and implementation of DragonCrawl using MPNet and embedding techniques Real-world examples of DragonCrawl's adaptive behavior and problem-solving capabilities Practical strategies for handling LLM...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">15:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19"><img class="profile-image rounded-circle  mb-2" src="../speakers/Robin Sarkar.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">Robin Sarkar</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">Driving Solar Energy Efficiency with Predictive Analytics and AI: The Role of Site Reliability in Renewable Energy</a>
-            </h3>
-            <div class="location mb-3"></i>Ironridge</div>
-            <div class="desc">The solar energy sector is at the forefront of innovation, leveraging predictive analytics and artificial intelligence (AI) to tackle the operational complexities of large-scale solar farms. As global solar capacity surpasses 760 GW, these advanced technologies are transforming site reliability,...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">16:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20"><img class="profile-image rounded-circle  mb-2" src="../speakers/Rajith Muditha Attapattu.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">Rajith Muditha Attapattu</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">Mastering Kubernetes Cost Optimization for Sustainable Cloud Operations</a>
-            </h3>
-            <div class="location mb-3"></i>Randoli</div>
-            <div class="desc">Cloud-native platforms like Kubernetes offer unparalleled flexibility and scalability, but they often come with a hidden price tag. Without intentional cost management, organizations risk overspending due to inefficient resource utilization, over-provisioning, and lack of visibility into cloud...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">16:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
-            </h3>
-            <div class="location mb-3"></i>Scan each other's QR codes & head to a nearby pub!</div>
-            <div class="desc"><br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-
-      </div><!--//tab-2-content-->
-
-
-    </div><!--//schedule-tab-content-->
-
-
-
-    <div class="schedule-cta text-center mx-auto"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+    <!-- Track navigation -->
+    <div class="track-nav">
+      <div class="track-nav-inner">
+        <div class="track-nav-links" id="track-links-0">
+
+          <a href="#track-0-1">main room</a>
+
+          <a href="#track-0-2">mini room</a>
+
+        </div>
+        <span class="view-toggle-link" id="view-toggle-0" onclick="toggleView(0)">view as table</span>
+      </div>
+    </div>
+
+    <!-- Timeline View (default) -->
+    <div id="timeline-view-0" class="schedule-timeline-view">
+
+      <div class="track-section-header" id="track-0-1">main room &bull; Track track 1</div>
+      <div class="schedule-tab-content">
+        <div class="tab-pane active">
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle mb-2" src="../speakers/Puneet Saraswat.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Puneet Saraswat</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: From Growing Pains to Enterprise Scale: How Harness Transformed Its Infrastructure</a>
+              </h3>
+              <div class="location mb-3">Harness</div>
+              <div class="desc">Scaling infrastructure is never just about adding more machines—it’s about evolving architecture, managing complexity, and maintaining reliability while growing rapidly. In this session, we’ll take you through the journey of how Harness scaled its infrastructure to support growing customer...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
+              </h3>
+              <div class="location mb-3">Main lobby</div>
+              <div class="desc"><br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle mb-2" src="../speakers/Francois Martel.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Francois Martel</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">AI Teammates for SREs: How will they impact SRE Teams?</a>
+              </h3>
+              <div class="location mb-3">Neubird AI</div>
+              <div class="desc">Explore how AI teammates are revolutionizing SRE work by handling routine investigations, providing context-aware analysis, and enabling teams to focus on engineering. Learn about real implementation challenges and how to prepare your team for this transformation.<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Gunnar Grosch.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Gunnar Grosch</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">A proactive approach to resilience in modern applications</a>
+              </h3>
+              <div class="location mb-3">AWS</div>
+              <div class="desc">Discover how adopting a proactive resilience strategy can help modern applications withstand failures and maintain performance. This talk explores key techniques for identifying vulnerabilities, implementing fault tolerance, and ensuring continuous availability in dynamic environments.<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">12:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/John Shin.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">John Shin</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Awareness Security in the age of A.I.</a>
+              </h3>
+              <div class="location mb-3">RSI Security</div>
+              <div class="desc">In an increasingly digital world, where technology and data have become integral parts of our daily lives, the importance of cybersecurity cannot be overstated. This topic on **"Awareness Security"** is an exciting opportunity to enlighten your mind about the significance of this subject, the...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">12:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Scott Davis.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Scott Davis</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Visibility, Insight, and Action with Cast AI, Prometheus, and Grafana</a>
+              </h3>
+              <div class="location mb-3">CAST AI</div>
+              <div class="desc">Achieving full-stack observability requires seamless integration of monitoring, analysis, and automation. In this session, we’ll explore how Cast AI, Prometheus, and Grafana work together to provide real-time visibility, actionable insights, and automated optimizations for cloud-native...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
+              </h3>
+              <div class="location mb-3">Main lobby</div>
+              <div class="desc"><br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Tucker Callaway.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Tucker Callaway</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Streamlining Telemetry Data: Building a Telemetry Pipeline to Handle High-Cardinality Metrics</a>
+              </h3>
+              <div class="location mb-3">Mezmo</div>
+              <div class="desc">Handling high-cardinality telemetry data efficiently is crucial for modern observability systems. In this session, we will explore strategies for designing a scalable telemetry pipeline that can process large volumes of diverse metrics without performance bottlenecks. We’ll cover best practices...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Matan Nataf.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Matan Nataf</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Managing Databases in the Cloud in Broken</a>
+              </h3>
+              <div class="location mb-3">Rapydo</div>
+              <div class="desc">In this talk, Matan Nataf, co-founder, and CEO of Rapydo, addresses the complexities of managing relational databases in the cloud era. Focusing on the challenges brought by microservices and multi-tenant architectures, he underscores the limitations of current tools in achieving scalability and...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Nick Taylor.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Nick Taylor</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Zero Trust: From Airports to Identity-Aware Proxies</a>
+              </h3>
+              <div class="location mb-3">Pomerium</div>
+              <div class="desc">Zero Trust doesn't have to be intimidating. Learn how Identity-Aware Proxies transform service access from perimeter-based to continuous verification, explained through the universal experience of airport security.<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Robert Hodges.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Robert Hodges</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Fast, Cheap, DIY Observability with Open Source Analytics and Visualization</a>
+              </h3>
+              <div class="location mb-3">Altinity</div>
+              <div class="desc">Commercial observability tools are expensive and complex - but you can build a fast, cost-effective solution yourself! This talk shows how to use ClickHouse, OpenTelemetry, and Grafana to create scalable, DIY monitoring with open source tools.<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/David Argent.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">David Argent</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">A Tale of Two Outages</a>
+              </h3>
+              <div class="location mb-3">Salesforce</div>
+              <div class="desc">Having been at ground zero for two outages that you can still look up on Google, this talk is designed to give an oral history of the causes, reactions, solutions, and aftermath to the Danger Sidekick outage and another major outage whose company I cannot mention by name. The first is a story...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Himank Chaudhary.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Himank Chaudhary</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Building a distributed persistent queue on FoundationDB</a>
+              </h3>
+              <div class="location mb-3">Tigris Data</div>
+              <div class="desc">Tigris is a globally distributed object storage system where objects are stored all over the world. The system needs to have asynchronous tasks to keep objects cached, redundantly stored, and moved around in response to changes in access patterns. To solve this, we built an asynchronous task...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">17:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img class="profile-image rounded-circle mb-2" src="../speakers/Rod Anami & Gregory Pruett.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Rod Anami & Gregory Pruett</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">The duality of adopting AI: Can SREs become AI/ML engineers?</a>
+              </h3>
+              <div class="location mb-3">Kyndryl</div>
+              <div class="desc">AI/ML is not new in the business world. It has been used for some time, but Generative AI (GenAI) initiated a new disruptive force in recent years. Many businesses and technical processes are taking advantage of embedded GenAI capabilities. However, companies must put more effort into leveraging...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">17:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
+              </h3>
+              <div class="location mb-3">Scan each other's QR codes & head to a nearby pub!</div>
+              <div class="desc"><br /><br /></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="track-section-header" id="track-0-2">mini room &bull; Track track 2</div>
+      <div class="schedule-tab-content">
+        <div class="tab-pane active">
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
+              </h3>
+              <div class="location mb-3">Main lobby</div>
+              <div class="desc"><br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img class="profile-image rounded-circle mb-2" src="../speakers/Andrew Suderman.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Andrew Suderman</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Case Study: Re-Thinking Our Infrastructure Tooling</a>
+              </h3>
+              <div class="location mb-3">Fairwinds</div>
+              <div class="desc">When you're managing dozens of Kubernetes clusters, across three different clouds, for dozens of individual companies in their own accounts, the challenge of (re)designing tooling is complex. Come hear how we worked through all the many possible options (centralized IaC vs templating, whether to...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img class="profile-image rounded-circle mb-2" src="../speakers/Shubhanshu Surana.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">Shubhanshu Surana</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">CAP Theorem Reloaded- AKA How to Optimize Distribution of Telemetry Data</a>
+              </h3>
+              <div class="location mb-3">Sawmills</div>
+              <div class="desc">The backbone of SRE - like all engineering, is monitoring and observability. When designing and implementing platforms, understanding how monitoring and observability telemetry data impacts your systems is critical to scale.<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">12:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14"><img class="profile-image rounded-circle mb-2" src="../speakers/Anca Ghenade.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">Anca Ghenade</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">Cloud Integration Testing Made Easy for Your AWS Cloud Apps</a>
+              </h3>
+              <div class="location mb-3">Postman</div>
+              <div class="desc">Integration testing for cloud-native AWS applications is complex due to service dependencies, deployment intricacies, and high costs. To make integration testing faster and easier, this presentation shows you how to emulate AWS environments locally using Testcontainers and LocalStack. By...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">12:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15"><img class="profile-image rounded-circle mb-2" src="../speakers/Riley Scheid.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Riley Scheid</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Reliable Serverless Needs Distributed Transactions</a>
+              </h3>
+              <div class="location mb-3">reboot.dev</div>
+              <div class="desc">Cloud native and serverless application platforms give teams encapsulation, flexibility, and reduced deployment dependencies. But the movement onto the cloud has so far trained us to accept that decomposing your application into multiple loosely coupled functions or services requires eventual...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
+              </h3>
+              <div class="location mb-3">Main lobby</div>
+              <div class="desc"><br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img class="profile-image rounded-circle mb-2" src="../speakers/Ren Lee.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Ren Lee</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Fearless SREs</a>
+              </h3>
+              <div class="location mb-3">Arista Networks</div>
+              <div class="desc">In this talk, we'll explore both the technical but human and very emotional side of what makes mythical SREs perform at their best in an incident – but also how we not only find such engineers but help others grow into one. Together, we will explore the following: - **Fearless ≠...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17"><img class="profile-image rounded-circle mb-2" src="../speakers/Mohit Menghnani.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Mohit Menghnani</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Unlocking Observability with React & Node.js</a>
+              </h3>
+              <div class="location mb-3">Twilio</div>
+              <div class="desc">This talk shares the secrets of observability with React and Node.js! We will discuss practical strategies for debugging, monitoring performance, and delivering seamless user experiences. The session will end with tips for reforming your dev workflow and ensuring your apps run flawlessly.<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18"><img class="profile-image rounded-circle mb-2" src="../speakers/Anam Hira.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">Anam Hira</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">DragonCrawl: Revolutionizing Mobile Testing with Generative AI</a>
+              </h3>
+              <div class="location mb-3">Revyl.ai</div>
+              <div class="desc">The challenges of traditional mobile testing at scale (3,000+ simultaneous experiments) Architecture and implementation of DragonCrawl using MPNet and embedding techniques Real-world examples of DragonCrawl's adaptive behavior and problem-solving capabilities Practical strategies for handling LLM...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19"><img class="profile-image rounded-circle mb-2" src="../speakers/Robin Sarkar.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">Robin Sarkar</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">Driving Solar Energy Efficiency with Predictive Analytics and AI: The Role of Site Reliability in Renewable Energy</a>
+              </h3>
+              <div class="location mb-3">Ironridge</div>
+              <div class="desc">The solar energy sector is at the forefront of innovation, leveraging predictive analytics and artificial intelligence (AI) to tackle the operational complexities of large-scale solar farms. As global solar capacity surpasses 760 GW, these advanced technologies are transforming site reliability,...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20"><img class="profile-image rounded-circle mb-2" src="../speakers/Rajith Muditha Attapattu.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">Rajith Muditha Attapattu</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">Mastering Kubernetes Cost Optimization for Sustainable Cloud Operations</a>
+              </h3>
+              <div class="location mb-3">Randoli</div>
+              <div class="desc">Cloud-native platforms like Kubernetes offer unparalleled flexibility and scalability, but they often come with a hidden price tag. Without intentional cost management, organizations risk overspending due to inefficient resource utilization, over-provisioning, and lack of visibility into cloud...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
+              </h3>
+              <div class="location mb-3">Scan each other's QR codes & head to a nearby pub!</div>
+              <div class="desc"><br /><br /></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Table View -->
+    <div id="table-view-0" class="schedule-table-view">
+      <table class="schedule-grid-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+
+            <th style="width: calc((100% - 60px) / 2)">main room</th>
+
+            <th style="width: calc((100% - 60px) / 2)">mini room</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">10:00</td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: From Growing Pains to Enterprise Scale: How Harness Transformed Its Infrastructure</a>
+              <div class="speaker-info">Puneet Saraswat <span class="affiliation">• Harness</span></div>
+
+            </td>
+
+            <td class="talk-cell">
+
+            </td>
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">10:30</td>
+            <td class="talk-cell merged-cell" colspan="2">
+
+              Coffee break
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">11:00</td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">AI Teammates for SREs: How will they impact SRE Teams?</a>
+              <div class="speaker-info">Francois Martel <span class="affiliation">• Neubird AI</span></div>
+
+            </td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Case Study: Re-Thinking Our Infrastructure Tooling</a>
+              <div class="speaker-info">Andrew Suderman <span class="affiliation">• Fairwinds</span></div>
+
+            </td>
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">11:30</td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">A proactive approach to resilience in modern applications</a>
+              <div class="speaker-info">Gunnar Grosch <span class="affiliation">• AWS</span></div>
+
+            </td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">CAP Theorem Reloaded- AKA How to Optimize Distribution of Telemetry Data</a>
+              <div class="speaker-info">Shubhanshu Surana <span class="affiliation">• Sawmills</span></div>
+
+            </td>
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">12:00</td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Awareness Security in the age of A.I.</a>
+              <div class="speaker-info">John Shin <span class="affiliation">• RSI Security</span></div>
+
+            </td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">Cloud Integration Testing Made Easy for Your AWS Cloud Apps</a>
+              <div class="speaker-info">Anca Ghenade <span class="affiliation">• Postman</span></div>
+
+            </td>
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">12:30</td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Visibility, Insight, and Action with Cast AI, Prometheus, and Grafana</a>
+              <div class="speaker-info">Scott Davis <span class="affiliation">• CAST AI</span></div>
+
+            </td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Reliable Serverless Needs Distributed Transactions</a>
+              <div class="speaker-info">Riley Scheid <span class="affiliation">• reboot.dev</span></div>
+
+            </td>
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">13:00</td>
+            <td class="talk-cell merged-cell" colspan="2">
+
+              Lunch & networking
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">14:00</td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Streamlining Telemetry Data: Building a Telemetry Pipeline to Handle High-Cardinality Metrics</a>
+              <div class="speaker-info">Tucker Callaway <span class="affiliation">• Mezmo</span></div>
+
+            </td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Fearless SREs</a>
+              <div class="speaker-info">Ren Lee <span class="affiliation">• Arista Networks</span></div>
+
+            </td>
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">14:30</td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Managing Databases in the Cloud in Broken</a>
+              <div class="speaker-info">Matan Nataf <span class="affiliation">• Rapydo</span></div>
+
+            </td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Unlocking Observability with React & Node.js</a>
+              <div class="speaker-info">Mohit Menghnani <span class="affiliation">• Twilio</span></div>
+
+            </td>
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">15:00</td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Zero Trust: From Airports to Identity-Aware Proxies</a>
+              <div class="speaker-info">Nick Taylor <span class="affiliation">• Pomerium</span></div>
+
+            </td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">DragonCrawl: Revolutionizing Mobile Testing with Generative AI</a>
+              <div class="speaker-info">Anam Hira <span class="affiliation">• Revyl.ai</span></div>
+
+            </td>
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">15:30</td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Fast, Cheap, DIY Observability with Open Source Analytics and Visualization</a>
+              <div class="speaker-info">Robert Hodges <span class="affiliation">• Altinity</span></div>
+
+            </td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">Driving Solar Energy Efficiency with Predictive Analytics and AI: The Role of Site Reliability in Renewable Energy</a>
+              <div class="speaker-info">Robin Sarkar <span class="affiliation">• Ironridge</span></div>
+
+            </td>
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">16:00</td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">A Tale of Two Outages</a>
+              <div class="speaker-info">David Argent <span class="affiliation">• Salesforce</span></div>
+
+            </td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">Mastering Kubernetes Cost Optimization for Sustainable Cloud Operations</a>
+              <div class="speaker-info">Rajith Muditha Attapattu <span class="affiliation">• Randoli</span></div>
+
+            </td>
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">16:30</td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Building a distributed persistent queue on FoundationDB</a>
+              <div class="speaker-info">Himank Chaudhary <span class="affiliation">• Tigris Data</span></div>
+
+            </td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
+              <div class="speaker-info"></div>
+
+            </td>
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">17:00</td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">The duality of adopting AI: Can SREs become AI/ML engineers?</a>
+              <div class="speaker-info">Rod Anami & Gregory Pruett <span class="affiliation">• Kyndryl</span></div>
+
+            </td>
+
+            <td class="talk-cell">
+
+            </td>
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">17:30</td>
+
+            <td class="talk-cell">
+
+              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
+              <div class="speaker-info"></div>
+
+            </td>
+
+            <td class="talk-cell">
+
+            </td>
+
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+    <script>
+    function toggleView(day) {
+      const timelineView = document.getElementById('timeline-view-' + day);
+      const tableView = document.getElementById('table-view-' + day);
+      const toggleBtn = document.getElementById('view-toggle-' + day);
+      const trackLinks = document.getElementById('track-links-' + day);
+
+      if (tableView.classList.contains('active')) {
+        tableView.classList.remove('active');
+        timelineView.classList.remove('hidden');
+        toggleBtn.textContent = 'view as table';
+        toggleBtn.classList.remove('active');
+        trackLinks.style.display = 'flex';
+      } else {
+        tableView.classList.add('active');
+        timelineView.classList.add('hidden');
+        toggleBtn.textContent = 'view as timeline';
+        toggleBtn.classList.add('active');
+        trackLinks.style.display = 'none';
+      }
+    }
+    </script>
+
+    <div class="schedule-cta text-center mx-auto mt-4"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
   </div>
 </section>
 
@@ -1387,21 +2130,21 @@
     <div class="section-intro text-center single-col-max mx-auto mb-5">Want to become a sponsor? Get in touch!</div>
     <div class="row logos justify-content-center">
       
-      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.harness.io/" target="_blank"><img src="./assets/images/sponsors/harness.png" alt=""></a></div>
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.harness.io/" target="_blank"><img src="../sponsors/harness.png" alt=""></a></div>
       
-      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://cast.ai/" target="_blank"><img src="./assets/images/sponsors/cast_ai.png" alt=""></a></div>
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://cast.ai/" target="_blank"><img src="../sponsors/cast_ai.png" alt=""></a></div>
       
-      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.kerno.io/" target="_blank"><img src="./assets/images/sponsors/kerno.png" alt=""></a></div>
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.kerno.io/" target="_blank"><img src="../sponsors/kerno.png" alt=""></a></div>
       
-      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://komodor.com/" target="_blank"><img src="./assets/images/sponsors/komodor.png" alt=""></a></div>
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://komodor.com/" target="_blank"><img src="../sponsors/komodor.png" alt=""></a></div>
       
-      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.mezmo.com/" target="_blank"><img src="./assets/images/sponsors/mezmo.png" alt=""></a></div>
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.mezmo.com/" target="_blank"><img src="../sponsors/mezmo.png" alt=""></a></div>
       
-      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.pomerium.com/" target="_blank"><img src="./assets/images/sponsors/pomerium.png" alt=""></a></div>
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.pomerium.com/" target="_blank"><img src="../sponsors/pomerium.png" alt=""></a></div>
       
-      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://neubird.ai/" target="_blank"><img src="./assets/images/sponsors/neubird.png" alt=""></a></div>
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://neubird.ai/" target="_blank"><img src="../sponsors/neubird.png" alt=""></a></div>
       
-      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.hockeystick.show/" target="_blank"><img src="./assets/images/sponsors/hockeystick.png" alt=""></a></div>
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.hockeystick.show/" target="_blank"><img src="../sponsors/hockeystick.png" alt=""></a></div>
       
     </div><!--//row-->
     <div class="sponsors-cta text-center pt-5"><a class="btn-primary btn btn-lg" href="mailto:hello@sreday.com">Become A Sponsor</a></div>

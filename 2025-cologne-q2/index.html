@@ -305,298 +305,811 @@
 </section>
 
 
+<style>
+  /* Track navigation */
+  .track-nav {
+    padding: 0.75rem 0;
+    margin-bottom: 1.5rem;
+  }
+  .track-nav-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .track-nav-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .track-nav-links a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #713660;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+  }
+  .track-nav-links a:hover {
+    background: #5e2c50;
+    color: white;
+  }
+  .view-toggle-link {
+    color: #713660;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #713660;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .view-toggle-link:hover {
+    background: #713660;
+    color: white;
+  }
+  .view-toggle-link.active {
+    background: #713660;
+    color: white;
+  }
+  /* Table view */
+  .schedule-table-view { display: none; }
+  .schedule-table-view.active { display: block; }
+  .schedule-timeline-view { display: block; }
+  .schedule-timeline-view.hidden { display: none; }
+  .schedule-grid-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+    table-layout: fixed;
+  }
+  .schedule-grid-table th {
+    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    color: white;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .schedule-grid-table th:first-child {
+    width: 60px;
+  }
+  .schedule-grid-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #ede5eb;
+    vertical-align: top;
+  }
+  .schedule-grid-table td.merged-cell {
+    text-align: center;
+    font-weight: 500;
+    color: #555;
+    background: #fcf8fb;
+  }
+  .schedule-grid-table .time-cell {
+    color: #713660;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .schedule-grid-table .talk-cell a {
+    color: #222;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .schedule-grid-table .talk-cell a:hover {
+    color: #713660;
+  }
+  .schedule-grid-table .speaker-info {
+    color: #444;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+  .schedule-grid-table .speaker-info .affiliation {
+    color: #666;
+  }
+  .schedule-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  .schedule-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.8rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .schedule-meta-divider {
+    color: #ccc;
+    font-weight: 300;
+  }
+  /* Track section header */
+  .track-section-header {
+    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    margin: 2rem 0 0 0;
+    border-radius: 4px 4px 0 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  .track-section-header:first-of-type {
+    margin-top: 0;
+  }
+
+  .schedule-section.theme-bg-light { background-color: #f8f0f6 !important; }
+</style>
+
 <section id="schedule" class="schedule-section section theme-bg-light">
   <div class="container">
-    <h2 class="section-heading text-center mb-5">Schedule</h2>
+    <h2 class="section-heading text-center mb-4">Schedule</h2>
 
+    <!-- Schedule meta info -->
+    <div class="schedule-meta">
+      <span class="schedule-meta-item">June 12, 2025</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">1 parallel tracks</span>
+    </div>
 
 
     
 
-    
-    <!-- Nav tabs -->
-    <ul class="schedule-nav nav nav-pills nav-fill" id="myTab" role="tablist">
+    <!-- Track navigation -->
+    <div class="track-nav">
+      <div class="track-nav-inner">
+        <div class="track-nav-links" id="track-links-0">
 
-      <li class="nav-item me-2">
-        <a class="nav-link active" id="tab-0-1" data-bs-toggle="tab" href="#tab-0-1-content" role="tab" aria-controls="tab-1-content"
-          aria-selected="true"
-        >
-          <span class="heading">main room</span>
-          <span class="meta">1</span>
-        </a>
-      </li>
+          <a href="#track-0-1">main room</a>
 
-    </ul>
-    
-    <!-- Tab panes -->
-    <div class="schedule-tab-content tab-content">
+        </div>
+        <span class="view-toggle-link" id="view-toggle-0" onclick="toggleView(0)">view as table</span>
+      </div>
+    </div>
 
+    <!-- Timeline View (default) -->
+    <div id="timeline-view-0" class="schedule-timeline-view">
 
-      <div class="tab-pane active" id="tab-0-1-content" role="tabpanel" aria-labelledby="tab-0-1">
+      <div class="track-section-header" id="track-0-1">main room &bull; Track 1</div>
+      <div class="schedule-tab-content">
+        <div class="tab-pane active">
 
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle mb-2" src="../speakers/Birol Yildiz.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Birol Yildiz</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote:  AI Agents for Incident Management</a>
+              </h3>
+              <div class="location mb-3">ilert</div>
+              <div class="desc">AI agents are transforming incident management by automating detection, diagnosis, and response. This keynote explores how intelligent systems can reduce downtime, enhance decision-making, and streamline operations, offering a glimpse into the future of autonomous incident resolution.<br /><br /></div>
+            </div>
+          </div>
 
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">10:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle  mb-2" src="../speakers/Birol Yildiz.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Birol Yildiz</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote:  AI Agents for Incident Management</a>
-            </h3>
-            <div class="location mb-3"></i>ilert</div>
-            <div class="desc">AI agents are transforming incident management by automating detection, diagnosis, and response. This keynote explores how intelligent systems can reduce downtime, enhance decision-making, and streamline operations, offering a glimpse into the future of autonomous incident resolution.<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
+              </h3>
+              <div class="location mb-3">Main lobby</div>
+              <div class="desc"><br /><br /></div>
+            </div>
+          </div>
 
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle mb-2" src="../speakers/Kat Gaines.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Kat Gaines</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Staying in your lane: incident response for leaders</a>
+              </h3>
+              <div class="location mb-3">PagerDuty</div>
+              <div class="desc">During incident response, every second counts. As a leader, you're expected to have all the answers, and that pressure can make it very tempting to play the hero and take control of the response process. While "I'll just do it myself" may seem faster on occasion, this instinct can hinder your...<br /><br /></div>
+            </div>
+          </div>
 
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">10:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
-            </h3>
-            <div class="location mb-3"></i>Main lobby</div>
-            <div class="desc"><br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Michael Cote.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Michael Cote</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Platform Engineering for Private Cloud</a>
+              </h3>
+              <div class="location mb-3">VMware / Pivotal</div>
+              <div class="desc">_Platform engineering_ is the art of building and managing the infrastructure that powers your applications: a mix of cloud, a handful of DevOps, a pinch of SRE, and a thick glaze of product management. While it’s “nothing new,” many organizations are just starting to practice it—and for good...<br /><br /></div>
+            </div>
+          </div>
 
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">12:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Michael Huttermann.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Dr. Michael Hüttermann</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">DevOps XXL: How to Scale-up in Large Setups with SRE?</a>
+              </h3>
+              <div class="location mb-3">huettermann.net</div>
+              <div class="desc">This session derives Dos and Donts from very large setups. It aims to draw a thin line between DevOps and SRE, defines those two concepts and offers practical guidance how to leverage both. We discuss how to bring together the communities of DevOps and SRE. This interactive session is based on...<br /><br /></div>
+            </div>
+          </div>
 
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">11:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle  mb-2" src="../speakers/Kat Gaines.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Kat Gaines</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Staying in your lane: incident response for leaders</a>
-            </h3>
-            <div class="location mb-3"></i>PagerDuty</div>
-            <div class="desc">During incident response, every second counts. As a leader, you're expected to have all the answers, and that pressure can make it very tempting to play the hero and take control of the response process. While "I'll just do it myself" may seem faster on occasion, this instinct can hinder your...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">12:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Alina Astapovich.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Alina Astapovich</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Automating SRE Operations with Multi-Agent AI: InfraAssistant Approach</a>
+              </h3>
+              <div class="location mb-3">Electrolux Group</div>
+              <div class="desc">SRE teams often face challenges with a high volume of routine tasks and requests, making it difficult to focus on critical, high-priority issues. At Electrolux, we faced the same challenge, which led us to develop InfraAssistant —a multi-agent AI-powered solution designed to automate key...<br /><br /></div>
+            </div>
+          </div>
 
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
+              </h3>
+              <div class="location mb-3">Main lobby</div>
+              <div class="desc"><br /><br /></div>
+            </div>
+          </div>
 
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">11:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle  mb-2" src="../speakers/Michael Cote.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Michael Cote</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Platform Engineering for Private Cloud</a>
-            </h3>
-            <div class="location mb-3"></i>VMware / Pivotal</div>
-            <div class="desc">_Platform engineering_ is the art of building and managing the infrastructure that powers your applications: a mix of cloud, a handful of DevOps, a pinch of SRE, and a thick glaze of product management. While it’s “nothing new,” many organizations are just starting to practice it—and for good...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Andrada Raducanu.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Andrada Raducanu</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">From Code to Cluster: Orchestrating 10,000+ Kubernetes deployments with 1 pipeline</a>
+              </h3>
+              <div class="location mb-3">ING Hubs Romania</div>
+              <div class="desc">There is a sea of tools one can use for the critical phase of Deployment during your SDLC. To keep our environment secure and reliable, ING chose to work with Kubernetes and Azure DevOps. In this talk, we will share the success story of how 1200 in-house developed APIs reached 10 000+ Production...<br /><br /></div>
+            </div>
+          </div>
 
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Agnieszka Welian.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Agnieszka Welian</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">How to tame chaos effectively?</a>
+              </h3>
+              <div class="location mb-3">Pegasystems</div>
+              <div class="desc">Imagine a self-healing system that handles surprises, letting you sleep peacefully. If that sounds appealing, chaos engineering could be the answer. Trusted by Netflix, LinkedIn, Google, and Facebook, it's key for business resilience. In this session, we'll explore its history, learn how to apply...<br /><br /></div>
+            </div>
+          </div>
 
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">12:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle  mb-2" src="../speakers/Michael Huttermann.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Dr. Michael Hüttermann</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">DevOps XXL: How to Scale-up in Large Setups with SRE?</a>
-            </h3>
-            <div class="location mb-3"></i>huettermann.net</div>
-            <div class="desc">This session derives Dos and Donts from very large setups. It aims to draw a thin line between DevOps and SRE, defines those two concepts and offers practical guidance how to leverage both. We discuss how to bring together the communities of DevOps and SRE. This interactive session is based on...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Bohdan Pohorilets.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Bohdan Pohorilets</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Cloud infrastructure with AWS Cloud Development Kit</a>
+              </h3>
+              <div class="location mb-3">Freelance SRE</div>
+              <div class="desc">This hands-on workshop guides engineers in developing cloud infrastructure using AWS CDK to make a web application public. Participants will learn how to spin up, deploy, and tear down cloud resources with a few console commands. Key technologies include AWS (CDK, S3, Lambda, RDS) and Ruby on...<br /><br /></div>
+            </div>
+          </div>
 
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Renato Losio.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Renato Losio</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Things Fall Apart: Navigating Managed Databases for Over a Decade as a Non-DBA</a>
+              </h3>
+              <div class="location mb-3">Funambol</div>
+              <div class="desc">Learn to navigate database benchmarks wisely! From crashing managed instances to skyrocketing storage costs, I'll share hard-earned lessons from a decade of managing production databases on the cloud without DBA expertise.<br /><br /></div>
+            </div>
+          </div>
 
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">12:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle  mb-2" src="../speakers/Alina Astapovich.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Alina Astapovich</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Automating SRE Operations with Multi-Agent AI: InfraAssistant Approach</a>
-            </h3>
-            <div class="location mb-3"></i>Electrolux Group</div>
-            <div class="desc">SRE teams often face challenges with a high volume of routine tasks and requests, making it difficult to focus on critical, high-priority issues. At Electrolux, we faced the same challenge, which led us to develop InfraAssistant —a multi-agent AI-powered solution designed to automate key...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">13:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
-            </h3>
-            <div class="location mb-3"></i>Main lobby</div>
-            <div class="desc"><br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">14:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle  mb-2" src="../speakers/Andrada Raducanu.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Andrada Raducanu</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">From Code to Cluster: Orchestrating 10,000+ Kubernetes deployments with 1 pipeline</a>
-            </h3>
-            <div class="location mb-3"></i>ING Hubs Romania</div>
-            <div class="desc">There is a sea of tools one can use for the critical phase of Deployment during your SDLC. To keep our environment secure and reliable, ING chose to work with Kubernetes and Azure DevOps. In this talk, we will share the success story of how 1200 in-house developed APIs reached 10 000+ Production...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">14:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle  mb-2" src="../speakers/Agnieszka Welian.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Agnieszka Welian</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">How to tame chaos effectively?</a>
-            </h3>
-            <div class="location mb-3"></i>Pegasystems</div>
-            <div class="desc">Imagine a self-healing system that handles surprises, letting you sleep peacefully. If that sounds appealing, chaos engineering could be the answer. Trusted by Netflix, LinkedIn, Google, and Facebook, it's key for business resilience. In this session, we'll explore its history, learn how to apply...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">15:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle  mb-2" src="../speakers/Bohdan Pohorilets.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Bohdan Pohorilets</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Cloud infrastructure with AWS Cloud Development Kit</a>
-            </h3>
-            <div class="location mb-3"></i>Freelance SRE</div>
-            <div class="desc">This hands-on workshop guides engineers in developing cloud infrastructure using AWS CDK to make a web application public. Participants will learn how to spin up, deploy, and tear down cloud resources with a few console commands. Key technologies include AWS (CDK, S3, Lambda, RDS) and Ruby on...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">15:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle  mb-2" src="../speakers/Renato Losio.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Renato Losio</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Things Fall Apart: Navigating Managed Databases for Over a Decade as a Non-DBA</a>
-            </h3>
-            <div class="location mb-3"></i>Funambol</div>
-            <div class="desc">Learn to navigate database benchmarks wisely! From crashing managed instances to skyrocketing storage costs, I'll share hard-earned lessons from a decade of managing production databases on the cloud without DBA expertise.<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">16:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle  mb-2" src="../speakers/Michele Dodic.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Michele Dodic</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">From Firefighting to Zero-Touch: How AIOps Empowers SREs to Build Resilient, Business-Driven Platforms
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Michele Dodic.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Michele Dodic</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">From Firefighting to Zero-Touch: How AIOps Empowers SREs to Build Resilient, Business-Driven Platforms
  </a>
-            </h3>
-            <div class="location mb-3"></i>Accenture</div>
-            <div class="desc">Explore how AIOps, combined with Observability and Chaos Engineering, is empowering SREs to transform IT operations into a strategic driver of business value. This session delves into strategies for achieving end-to-end visibility and resilience—from infrastructure and applications to business...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
+              </h3>
+              <div class="location mb-3">Accenture</div>
+              <div class="desc">Explore how AIOps, combined with Observability and Chaos Engineering, is empowering SREs to transform IT operations into a strategic driver of business value. This session delves into strategies for achieving end-to-end visibility and resilience—from infrastructure and applications to business...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Syed Usman Ahmad.png" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Syed Usman Ahmad</a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">From Text to Visuals: Observe your GitHub repos efficiently</a>
+              </h3>
+              <div class="location mb-3">Grafana Labs</div>
+              <div class="desc">Whether you are just starting your journey as a DevOps Engineer or already an expert SRE, you need to use Git (e.g. GitHub, GtlLab) to maintain your code and track issues, PRs, commits, etc. You start with a few repositories but then it becomes difficult to get visibility into what's going on in...<br /><br /></div>
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">17:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+              </div>
+            </div>
+            <div class="content">
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
+              </h3>
+              <div class="location mb-3">Scan each other's QR codes & head to a nearby pub!</div>
+              <div class="desc"><br /><br /></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Table View -->
+    <div id="table-view-0" class="schedule-table-view">
+      <table class="schedule-grid-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+
+            <th style="width: calc((100% - 60px) / 1)">main room</th>
+
+          </tr>
+        </thead>
+        <tbody>
 
 
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">16:30</h4>
-            <div class="profile">
-              <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle  mb-2" src="../speakers/Syed Usman Ahmad.png" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Syed Usman Ahmad</a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">From Text to Visuals: Observe your GitHub repos efficiently</a>
-            </h3>
-            <div class="location mb-3"></i>Grafana Labs</div>
-            <div class="desc">Whether you are just starting your journey as a DevOps Engineer or already an expert SRE, you need to use Git (e.g. GitHub, GtlLab) to maintain your code and track issues, PRs, commits, etc. You start with a few repositories but then it becomes difficult to get visibility into what's going on in...<br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
-
-
-        <div class="item item-talk">
-          <div class="meta">
-            <h4 class="time mb-3">17:00</h4>
-            <div class="profile">
-              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle  mb-2" src="" alt=""></a>
-              <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
-            </div><!--//profile-->
-          </div><!--//meta-->
-          <div class="content">
-            <h3 class="title mb-3">
-              <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
-            </h3>
-            <div class="location mb-3"></i>Scan each other's QR codes & head to a nearby pub!</div>
-            <div class="desc"><br /><br /></div>
-          </div><!--//content-->
-        </div><!--//item-->
 
 
 
-      </div><!--//tab-1-content-->
-
-
-    </div><!--//schedule-tab-content-->
 
 
 
-    <div class="schedule-cta text-center mx-auto"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">10:00</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote:  AI Agents for Incident Management</a>
+              <div class="speaker-info">Birol Yildiz <span class="affiliation">• ilert</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">10:30</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Coffee break
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">11:00</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Staying in your lane: incident response for leaders</a>
+              <div class="speaker-info">Kat Gaines <span class="affiliation">• PagerDuty</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">11:30</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Platform Engineering for Private Cloud</a>
+              <div class="speaker-info">Michael Cote <span class="affiliation">• VMware / Pivotal</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">12:00</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">DevOps XXL: How to Scale-up in Large Setups with SRE?</a>
+              <div class="speaker-info">Dr. Michael Hüttermann <span class="affiliation">• huettermann.net</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">12:30</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Automating SRE Operations with Multi-Agent AI: InfraAssistant Approach</a>
+              <div class="speaker-info">Alina Astapovich <span class="affiliation">• Electrolux Group</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">13:00</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Lunch & networking
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">14:00</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">From Code to Cluster: Orchestrating 10,000+ Kubernetes deployments with 1 pipeline</a>
+              <div class="speaker-info">Andrada Raducanu <span class="affiliation">• ING Hubs Romania</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">14:30</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">How to tame chaos effectively?</a>
+              <div class="speaker-info">Agnieszka Welian <span class="affiliation">• Pegasystems</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">15:00</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Cloud infrastructure with AWS Cloud Development Kit</a>
+              <div class="speaker-info">Bohdan Pohorilets <span class="affiliation">• Freelance SRE</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">15:30</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Things Fall Apart: Navigating Managed Databases for Over a Decade as a Non-DBA</a>
+              <div class="speaker-info">Renato Losio <span class="affiliation">• Funambol</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">16:00</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">From Firefighting to Zero-Touch: How AIOps Empowers SREs to Build Resilient, Business-Driven Platforms
+ </a>
+              <div class="speaker-info">Michele Dodic <span class="affiliation">• Accenture</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">16:30</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">From Text to Visuals: Observe your GitHub repos efficiently</a>
+              <div class="speaker-info">Syed Usman Ahmad <span class="affiliation">• Grafana Labs</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">17:00</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Wrap up
+
+            </td>
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+    <script>
+    function toggleView(day) {
+      const timelineView = document.getElementById('timeline-view-' + day);
+      const tableView = document.getElementById('table-view-' + day);
+      const toggleBtn = document.getElementById('view-toggle-' + day);
+      const trackLinks = document.getElementById('track-links-' + day);
+
+      if (tableView.classList.contains('active')) {
+        tableView.classList.remove('active');
+        timelineView.classList.remove('hidden');
+        toggleBtn.textContent = 'view as table';
+        toggleBtn.classList.remove('active');
+        trackLinks.style.display = 'flex';
+      } else {
+        tableView.classList.add('active');
+        timelineView.classList.add('hidden');
+        toggleBtn.textContent = 'view as timeline';
+        toggleBtn.classList.add('active');
+        trackLinks.style.display = 'none';
+      }
+    }
+    </script>
+
+    <div class="schedule-cta text-center mx-auto mt-4"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
   </div>
 </section>
 
@@ -908,9 +1421,9 @@
     <div class="section-intro text-center single-col-max mx-auto mb-5">Want to become a sponsor? Get in touch!</div>
     <div class="row logos justify-content-center">
       
-      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.ilert.com/" target="_blank"><img src="./assets/images/sponsors/ilert.png" alt=""></a></div>
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.ilert.com/" target="_blank"><img src="../sponsors/ilert.png" alt=""></a></div>
       
-      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.hockeystick.show/" target="_blank"><img src="./assets/images/sponsors/hockeystick.png" alt=""></a></div>
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.hockeystick.show/" target="_blank"><img src="../sponsors/hockeystick.png" alt=""></a></div>
       
     </div><!--//row-->
     <div class="sponsors-cta text-center pt-5"><a class="btn-primary btn btn-lg" href="mailto:hello@sreday.com">Become A Sponsor</a></div>
