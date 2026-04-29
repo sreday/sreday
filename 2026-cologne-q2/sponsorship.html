@@ -55,22 +55,10 @@
 :root { --sp-accent: #862f6e; }
 
 .sp-hero {
-  position: relative;
-  height: 620px;
-  padding-top: 125px;
-  overflow: hidden;
-  background: url('../photos/sreday-paint.png') center/cover no-repeat;
-}
-.sp-hero-overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,.45);
-  z-index: 1;
-}
-.sp-hero .container {
-  position: relative;
-  z-index: 2;
+  background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+              url('../photos/sreday-san-francisco-2024-0.jpg') center/cover no-repeat;
+  padding: 80px 0 60px;
+  color: #fff;
 }
 .sp-badge-noindex {
   display: inline-block;
@@ -572,20 +560,71 @@
 	</header><!--//header-->
 
 	
-<div id="home" class="hero-block sp-hero">
-	<div class="sp-hero-overlay"></div>
-	<div class="container">
-		<div class="hero-text-block text-center" style="max-width: 100%;">
-			<h1 class="logo retro"><img src="/assets/images/sreday_sticker.png" alt="SREday" style="height: 200px;"></h1>
-			<h2 class="text-white">Sponsorship Prospectus - SREday Cologne</h2>
-			<h3 class="text-white"><i class="far fa-calendar-alt me-2"></i>June 11, 2026 <i class="fas fa-map-marker-alt mx-2"></i>Ilert, Cologne, Germany</h3>
-			<div class="hero-cta mt-5">
-				<a class="btn btn-danger btn-lg" href="#buy" style="text-decoration:none;">Secure your Sponsorship</a>
+	<div id="home" class="hero-block">
+		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+			<div class="carousel-inner">
+				
+				<div class="carousel-item tinted active" style="background:url('../photos/sreday-san-francisco-2024-0.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-san-francisco-2024-1.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-san-francisco-2024-2.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-san-francisco-2024-3.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-san-francisco-2024-4.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-san-francisco-2024-5.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-0.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-1.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-2.jpg') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-3.jpg') no-repeat center; background-size: cover;"></div>
+				
+			</div>
+
+			<div class="carousel-indicators">
+				
+				<button type="button" data-bs-target="#hero-carousel" class="active" data-bs-slide-to="0"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="1"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="2"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="3"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="4"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="5"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="6"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="7"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="8"></button>
+				
+				<button type="button" data-bs-target="#hero-carousel" class="" data-bs-slide-to="9"></button>
+				
 			</div>
 		</div>
-	</div>
-</div>
+		<div class="container">
+			<div class="hero-text-block text-center" style="max-width: 100%;">
+				<h1 class="logo retro"><img src="/assets/images/sreday_sticker.png" alt="SREday" style="height: 200px;"></h1>
+				
+				<h2 class="text-white">Sponsorship Prospectus - SREday Cologne</h2>
+				<h3 class="text-white"><i class="far fa-calendar-alt me-2"></i>June 11, 2026 <i class="fas fa-map-marker-alt mx-2"></i>Ilert, Cologne, Germany</h3>
+				<div class="hero-cta mt-5">
+					<a class="btn btn-danger btn-lg" href="#buy" style="text-decoration:none;">Secure your Sponsorship</a>
+				</div>
+				
+			</div><!--//hero-text-block-->
+		</div><!--//container-->
 
+	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -1271,13 +1310,13 @@ function spToggleStats() {
 <section class="sp-section sp-section-alt" id="already-sponsoring" style="padding-top:0;">
   <div class="container">
     <h2 class="sp-section-title text-center">Already sponsoring</h2>
-    <div class="row logos justify-content-center">
+    <div class="d-flex flex-wrap justify-content-center gap-3">
       
-      <div class="logo-item col-4 col-md-3 col-lg-2" style="transform:scale(0.7);"><a href="https://www.ilert.com/" target="_blank"><img src="./assets/images/sponsors/ilert.png" alt="" style="max-width:100%;"></a></div>
+      <a href="https://www.ilert.com/" target="_blank" style="display:inline-block;background:#fff;border-radius:12px;padding:10px 18px;transform:scale(0.7);"><img src="./assets/images/sponsors/ilert.png" alt="" style="height:40px;width:auto;"></a>
       
-      <div class="logo-item col-4 col-md-3 col-lg-2" style="transform:scale(0.7);"><a href="https://imply.io/" target="_blank"><img src="./assets/images/sponsors/imply.png" alt="" style="max-width:100%;"></a></div>
+      <a href="https://imply.io/" target="_blank" style="display:inline-block;background:#fff;border-radius:12px;padding:10px 18px;transform:scale(0.7);"><img src="./assets/images/sponsors/imply.png" alt="" style="height:40px;width:auto;"></a>
       
-      <div class="logo-item col-4 col-md-3 col-lg-2" style="transform:scale(0.7);"><a href="https://www.hockeystick.show/" target="_blank"><img src="./assets/images/sponsors/hockeystick.png" alt="" style="max-width:100%;"></a></div>
+      <a href="https://www.hockeystick.show/" target="_blank" style="display:inline-block;background:#fff;border-radius:12px;padding:10px 18px;transform:scale(0.7);"><img src="./assets/images/sponsors/hockeystick.png" alt="" style="height:40px;width:auto;"></a>
       
     </div>
   </div>
