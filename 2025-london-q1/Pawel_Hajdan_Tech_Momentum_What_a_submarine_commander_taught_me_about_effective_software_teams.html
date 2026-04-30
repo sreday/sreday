@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -133,6 +143,7 @@
 		</div><!--//branding-->
 	</header><!--//header-->
 
+	
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
@@ -200,6 +211,7 @@
 		</div><!--//container-->
 
 	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -236,12 +248,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">What a submarine commander taught me about effective software teams</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Pawel Hajdan.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -262,24 +287,25 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>My colleagues were right to recommend L. David Marquet's <em>"Turn the Ship Around"</em> as a good read for software team leaders. I encourage you to read it too, with my key takeaways and how they apply to software.</p>
 <hr />
-<h4>1) Fix the environment, not the people</h4>
+<p><strong>1) Fix the environment, not the people</strong></p>
 <p>We've got a lot to learn from other engineering fields like aviation (when is the last time you've heard them blame the pilots?). Software teams struggle with burnout and disengagement. Should people pay more attention to self-care, like sleep, exercise, nutrition, and different types of rest? Absolutely. But we also have work to do on the <strong>"management by fear"</strong> front, clarity of expectations, recognizing consistent incremental improvements over time, and encouraging initiative but not heroics.</p>
 <blockquote>
 <p>“The way you see people is the way you treat them, and the way you treat them is what they become.”</p>
 </blockquote>
 <hr />
-<h4>2) Move authority to information</h4>
+<p><strong>2) Move authority to information</strong></p>
 <p>I used to dread status reports, until I ended up the one asking for them. However, I prefer to work at a higher level of abstraction—give people clear goals, autonomy, and support—not just tasks and deadlines. I wonder how many people played strategy games like <em>Civilization</em> and try to centrally manage teams the same way. For me, that level of micromanagement is frankly boring.</p>
 <p>I know I can accomplish more when capable people make their own decisions based on their experience, and we work on honing those systems—diving into details as necessary—rather than reacting to problems, jumping from one crisis to another.</p>
 <p>The book offers numerous insights on how to <strong>safely</strong> and <strong>gradually delegate</strong>—and I'll share my experiences with that in software.</p>
 <hr />
-<h4>3) Focus on pursuing excellence rather than avoiding mistakes</h4>
+<p><strong>3) Focus on pursuing excellence rather than avoiding mistakes</strong></p>
 <p>Action needs a positive goal to pursue, while avoidance leads to inaction, apathy, and perfectionism. A team in survival mode is not going to perform well. And the best way not to make a mistake is not to do anything or make any decisions. Although latent defects and demands from the business don't really make that a viable option either.</p>
 <p>How often do we neglect to celebrate success, see a problem with any solution, or denigrate incremental improvements even though they do add up over time? How often do leaders themselves have overwhelming workloads trying to keep things from falling apart? A capable team proud of their work solves these issues and more. I'll show you how the positivity, drive, and attention to quality in Chrome shaped my thinking and results.</p>
 <blockquote>
@@ -291,8 +317,11 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Pawel Hajdan is an Ex-Google Tech Lead, with over a decade of experience in the industry. Developed key dev infrastructure pieces during rapid growth of Chrome, from a small team to thousands of engineers and hundreds patches per day. Launched services from a proof-of-concept to production at Google Cloud's scale, exceeding rigorous security and scalability requirements, making those services easy to operate. Pawel champions the principles of straightforward, reliable engineering, and fosters a rational and productive culture.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

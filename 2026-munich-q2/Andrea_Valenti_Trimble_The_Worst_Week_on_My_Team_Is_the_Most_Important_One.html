@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -216,12 +226,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">The Worst Week on My Team Is the Most Important One</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Andrea Valenti.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -242,18 +265,22 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Every week, one engineer on my SRE team takes the gatekeeping shift. They handle everything that arrives — every interrupt, every ad-hoc request, every ticket without context or priority. Everyone else gets to think. It is, as we still say internally, a horrible week. Triage under pressure is not a new idea. Emergency rooms do it. ITIL codified it. Kanban made it visual. The principle is the same: not everything that arrives is equal, and treating it as equal is how teams drown. We did the same thing for SRE. We got very good at it. That was the first problem. By the time the gatekeeper role was mature, it was fast, accurate, and resolving things in hours that used to take days. And then we stepped back and looked at what it was resolving. A significant portion of the work flowing through that seat shouldn't have been fixed by SRE at all. It should have been automated. Or it should have been rejected as a requirements problem — something that needed to be addressed upstream, not patched downstream on a weekly basis. We had built a perfect team for doing the wrong things quickly. The role shifted. Not triage-and-resolve. Triage-and-surface. The gatekeeper's job became identifying where the real problem lived — automation candidate, requirements gap, architecture debt — and routing accordingly rather than absorbing it. TOIL peaked at 83.9% in 2023 during three simultaneous acquisitions. By 2025 it was 44.7%, inside Google SRE's benchmark. The gatekeeping rotation was the practice that moved that number — not by going faster, but by going to the right place. Rotating who sits there is what stops it becoming one person's problem. Engineers who've done the horrible week know exactly which ticket types need to stop existing. Practices cross-pollinate. Stakeholders get exposed to different people asking different questions. The P&amp;L context shifts as ownership spreads. In 30 minutes: how we implemented it, how we almost ruined it by optimizing the wrong thing, and what the data looked like when we corrected course. You can start this next sprint. No budget, no organizational permission required — just one week, one person, and the willingness to ask why it keeps coming back.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Andrea Valenti is Senior Director of SRE leading 38 engineers across multiple geographies. Over six years, three mergers and a couple of divestments, he developed a framework for building engineering organizations that absorb disruption rather than accumulate it. Before technology, he worked as an educator in psychiatric care in Bologna — which taught him more about teams under pressure than any management book. He plays saxophone badly, builds electronic instruments in his spare time, and developed most of this framework between Brussels, Miami, and Mexico City before settling in Barcelona.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

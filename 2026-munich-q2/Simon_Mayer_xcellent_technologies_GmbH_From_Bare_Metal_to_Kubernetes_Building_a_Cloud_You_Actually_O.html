@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -216,12 +226,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">From Bare Metal to Kubernetes: Building a Cloud You Actually Own</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Simon Mayer.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -242,10 +265,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Public cloud providers offer convenience — but at the cost of control, transparency, and increasingly, budget. What if you could have the same self-service Kubernetes experience, on your own hardware, built entirely on open source technology?
 This talk walks through the full stack of building your own cloud platform to offer Kubernetes — layer by layer. We start at the bottom with Networking and Compute. From there, we move up to Metal-as-a-Service with <a href="http://metal-stack.io/">metal-stack.io</a>, which turns bare-metal servers into programmable, API-driven cloud infrastructure — with on-demand provisioning, physical tenant isolation, and no hypervisor overhead. On top of that, we explore how Gardener and ClusterAPI handle Kubernetes cluster orchestration at scale: self-service cluster provisioning, automated lifecycle management — delivering the public cloud feeling, without the public cloud dependency.
 We will also touch on what owning the complete stack means for SRE teams: from observability across every layer, to the ability to see exactly what happens during debugging — because there are no black boxes, only open source code you can read, trace, and understand.</p></p>
@@ -254,8 +278,11 @@ We will also touch on what owning the complete stack means for SRE teams: from o
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Simon Mayer is working as a Cloud Native Engineer at x-cellent technologies GmbH. The company is focused on building sovereign cloud and Kubernetes platforms built entirely on open source technology — for organisations with the highest demands on security, compliance, and control.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

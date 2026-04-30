@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -133,6 +143,7 @@
 		</div><!--//branding-->
 	</header><!--//header-->
 
+	
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
@@ -176,6 +187,7 @@
 		</div><!--//container-->
 
 	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -212,12 +224,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Who Owns Your SRE Stack? The Rise of AI Agents</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Cynthia Akiotu.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -238,10 +263,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>SREs are the guardians of reliability — we build for failover, redundancy, and scale. But in today’s AI-native systems, there’s a quiet shift happening: automation scripts, AI-driven agents, and machine identities are running critical operations with increasing autonomy.</p>
 <p>They auto-remediate incidents, make scaling decisions, deploy configurations, and even patch systems — often with elevated permissions and little human oversight.</p>
 <p><strong>But here’s the problem:</strong></p>
@@ -265,8 +291,11 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Cynthia Akiotu is a Cybersecurity Architect and Identity Specialist with deep expertise in Identity &amp; Access Management (IAM), data governance, and Zero Trust implementation. She focuses on securing environments where AI agents, autonomous models, and machine identities are rapidly expanding the attack surface. With experience across diverse sectors, Cynthia has led projects on secure cloud adoption, privileged access management, insider risk mitigation, and identity governance for AI-driven environments. She holds several industry certifications, including Microsoft Certified: Identity &amp; Access Administrator and Microsoft Certified: Information Security Administrator. Her thought leadership extends to academic and industry publications, contributing to works on AI-enabled regulatory compliance and digital skills development in security. Beyond her professional work, she volunteers as Cyberhero Coach Cynthia, promoting cybersecurity awareness and safe digital habits among children and communities. Driven by a commitment to secure innovation, she champions identity governance as a foundation for trust in AI-native ecosystems.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

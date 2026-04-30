@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="#venue">Venue</a></li>
@@ -133,6 +143,7 @@
 		</div><!--//branding-->
 	</header><!--//header-->
 
+	
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
@@ -200,6 +211,7 @@
 		</div><!--//container-->
 
 	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -241,7 +253,117 @@
   <div class="container">
     <div class="event-countdown text-center mb-3">
     
-      <h4 class="countdown-intro mb-2 text-center mb-3">Event finished</h4>
+      <h4 class="countdown-intro mb-2 text-center mb-3">Event finished, what's next?</h4>
+      
+      <style>
+        .idx-tl { position: relative; padding: 20px 0 8px; margin-bottom: 8px; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .idx-tl-line { position: absolute; top: 26px; left: 0; right: 0; height: 2px; background: var(--brand-lighter); z-index: 0; }
+        .idx-tl-events { display: flex; justify-content: space-between; position: relative; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
+        .idx-tl-event { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 0; }
+        .idx-tl-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--brand); border: 2px solid #fff; outline: 2px solid var(--brand); margin-bottom: 10px; flex-shrink: 0; z-index: 1; }
+        .idx-tl-dot.past { background: #999; outline-color: #999; }
+        .idx-tl-chip { background: var(--brand-lightest); border: 1px solid var(--brand-lighter); border-radius: 8px; padding: 8px 10px; text-align: center; text-decoration: none; width: 100%; transition: background .15s; min-height: 80px; display: flex; flex-direction: column; justify-content: center; }
+        .idx-tl-chip:hover { background: var(--brand-pale); text-decoration: none; }
+        .idx-tl-chip.past { background: #e8e8e8; border-color: #ccc; }
+        .idx-tl-chip.past:hover { background: #d8d8d8; }
+        .idx-tl-city { font-family: 'Montserrat', sans-serif; font-size: .8rem; font-weight: 700; color: var(--brand-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .idx-tl-chip.past .idx-tl-city { color: #555; }
+        .idx-tl-date { font-size: .75rem; color: var(--brand-light); margin-top: 2px; }
+        .idx-tl-chip.past .idx-tl-date { color: #777; }
+        .idx-tl-pin-event { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+        .idx-tl-pin { font-size: 2.25rem; line-height: 1; color: var(--brand-dark); margin-bottom: 10px; position: relative; top: -4px; }
+      </style>
+      <div class="idx-tl">
+        <div class="idx-tl-line"></div>
+        <div class="idx-tl-events">
+          
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-nyc-q1/" class="idx-tl-chip past">
+              <div class="idx-tl-city">NYC</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">February 26, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-london-q1/" class="idx-tl-chip past">
+              <div class="idx-tl-city">London</div>
+              <div class="idx-tl-date" style="font-style:normal;">United Kingdom</div>
+              <div class="idx-tl-date">March 12, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-san-francisco-q2/" class="idx-tl-chip past">
+              <div class="idx-tl-city">San Francisco</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">April 17, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-seattle-q2/" class="idx-tl-chip past">
+              <div class="idx-tl-city">Seattle</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">April 21, 2026</div>
+            </a>
+          </div>
+          
+          
+          
+          <div class="idx-tl-pin-event"><div class="idx-tl-pin">▼</div></div>
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-barcelona-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Barcelona</div>
+              <div class="idx-tl-date" style="font-style:normal;">Spain</div>
+              <div class="idx-tl-date">May 8, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-austin-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Austin</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">May 11, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-munich-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Munich</div>
+              <div class="idx-tl-date" style="font-style:normal;">Germany</div>
+              <div class="idx-tl-date">May 21, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-nyc-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">NYC</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">June 6, 2026</div>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+      
     
     </div>
   </div>
@@ -295,14 +417,7 @@
     </script>
 </section>
 
-<section id="tickets" class="tickets-section section">
-  <div class="container">
-    <h3 class="section-heading text-center mb-3">Tickets</h3>
 
-    
-
-  </div>
-</section>
 
 <style>
   .speakers-section .card {
@@ -315,24 +430,82 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    font-size: 0.9rem;
+  }
+  .speakers-section .card-title {
+    font-size: 1.1rem;
+  }
+  .event-card-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-top: auto;
+    width: 100%;
+  }
+  .speakers-section .event-card-buttons a {
+    flex: 0 1 50%;
+    text-align: center;
+    min-width: 0;
+    display: block;
   }
   .event-read-more-btn {
     display: inline-block;
-    padding: 8px 18px;
-    background: #8D5E80;
+    padding: 6px 12px;
+    background: var(--brand-light);
     color: #fff;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
+    font-size: 0.8rem;
     transition: background 0.2s ease;
-    margin-top: auto;
-    align-self: flex-start;
   }
   .event-read-more-btn:hover,
   .event-read-more-btn:focus {
-    background: #9C7290;
+    background: var(--brand-lighter);
     color: #fff;
     text-decoration: none;
+  }
+  .event-watch-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #EC645E;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    transition: background 0.2s ease;
+  }
+  .event-watch-btn:hover,
+  .event-watch-btn:focus {
+    background: #F28B87;
+    color: #fff;
+    text-decoration: none;
+  }
+  .event-watch-btn-sm {
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    margin-left: 12px;
+  }
+  .schedule-abstract {
+    position: relative;
+    max-height: 3.2em;
+    line-height: 1.6;
+    overflow: hidden;
+    text-align: justify;
+  }
+  .schedule-abstract-read-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-left: 3em;
+    background: linear-gradient(to right, transparent, #e8f8f0 30%);
+    font-weight: 700;
+    color: var(--brand);
+    text-decoration: underline;
+  }
+  .schedule-section .item {
+    margin-bottom: 4.5rem;
   }
 </style>
 
@@ -359,7 +532,7 @@
   .track-nav-links a {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: #713660;
+    background: var(--brand);
     color: white;
     text-decoration: none;
     border-radius: 4px;
@@ -368,25 +541,25 @@
     transition: background 0.2s;
   }
   .track-nav-links a:hover {
-    background: #5e2c50;
+    background: var(--brand-dark);
     color: white;
   }
   .view-toggle-link {
-    color: #713660;
+    color: var(--brand);
     text-decoration: none;
     font-size: 0.9rem;
     cursor: pointer;
     padding: 0.5rem 0.75rem;
-    border: 1px solid #713660;
+    border: 1px solid var(--brand);
     border-radius: 4px;
     transition: all 0.2s;
   }
   .view-toggle-link:hover {
-    background: #713660;
+    background: var(--brand);
     color: white;
   }
   .view-toggle-link.active {
-    background: #713660;
+    background: var(--brand);
     color: white;
   }
   /* Table view */
@@ -403,7 +576,7 @@
     table-layout: fixed;
   }
   .schedule-grid-table th {
-    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
     color: white;
     padding: 0.75rem 1rem;
     text-align: left;
@@ -415,17 +588,17 @@
   }
   .schedule-grid-table td {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid #ede5eb;
+    border-bottom: 1px solid var(--brand-lightest);
     vertical-align: top;
   }
   .schedule-grid-table td.merged-cell {
     text-align: center;
     font-weight: 500;
     color: #555;
-    background: #ede5eb;
+    background: var(--brand-lightest);
   }
   .schedule-grid-table .time-cell {
-    color: #713660;
+    color: var(--brand);
     font-weight: 600;
     white-space: nowrap;
   }
@@ -435,7 +608,7 @@
     font-weight: 500;
   }
   .schedule-grid-table .talk-cell a:hover {
-    color: #713660;
+    color: var(--brand);
   }
   .schedule-grid-table .speaker-info {
     color: #444;
@@ -444,6 +617,13 @@
   }
   .schedule-grid-table .speaker-info .affiliation {
     color: #666;
+  }
+  .speaker-linkedin-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .speaker-linkedin-link:hover {
+    color: #098dcf;
   }
   .schedule-meta {
     display: flex;
@@ -469,7 +649,7 @@
   }
   /* Track section header */
   .track-section-header {
-    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
     color: white;
     padding: 1rem 1.5rem;
     margin: 2rem 0 0 0;
@@ -481,7 +661,7 @@
     margin-top: 0;
   }
 
-  .schedule-section.theme-bg-light { background-color: #f8f0f6 !important; }
+  .schedule-section.theme-bg-light { background-color: #f0faf5 !important; }
 </style>
 
 <section id="schedule" class="schedule-section section theme-bg-light">
@@ -495,6 +675,8 @@
       <span class="schedule-meta-item">single track</span>
       <span class="schedule-meta-divider">•</span>
       <span class="schedule-meta-item">10AM - 3:30PM</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">Redmond, in-person</span>
     </div>
 
 
@@ -524,15 +706,17 @@
               <h4 class="time mb-3">10:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle mb-2" src="../speakers/Miko Pawlikowski.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Miko Pawlikowski</a></div>
+                <div class="name">Miko Pawlikowski</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: SRE’s worst nightmare</a>
               </h3>
               <div class="location mb-3">SRE Author</div>
-              <div class="desc">What's the worst that can happen? Join me for a story about reliability, secrecy and potential 200k fatalities.<br /><br /></div>
+              <div class="desc schedule-abstract">What's the worst that can happen? Join me for a story about reliability, secrecy and potential 200k fatalities.<a class="schedule-abstract-read-more" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -541,15 +725,14 @@
               <h4 class="time mb-3">10:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Coffee break</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -558,15 +741,19 @@
               <h4 class="time mb-3">11:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle mb-2" src="../speakers/Andrew Suderman.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Andrew Suderman</a></div>
+                <div class="name">Andrew Suderman</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Case Study: Re-Thinking Our Infrastructure Tooling</a>
               </h3>
               <div class="location mb-3">Fairwinds</div>
-              <div class="desc">When you're managing dozens of Kubernetes clusters, across three different clouds, for dozens of individual companies in their own accounts, the challenge of (re)designing tooling is complex. Come hear how we worked through all the many possible options (centralized IaC vs templating, whether to...<br /><br /></div>
+              <div class="desc schedule-abstract">When you're managing dozens of Kubernetes clusters, across three different clouds, for dozens of individual companies in their own accounts, the challenge of (re)designing tooling is complex. Come hear how we worked through all the many possible options (centralized IaC vs templating, whether to use cluster managers like Rancher, etc.), what high-level tradeoffs were made (i.e. ease-of-use vs speed of changes vs centralized control), and the tangible outcomes of this process. The focus here will be on the process and decision making, given all the different drivers such as technology, business, people, process, etc. This talk will cover how we undertook the process, while giving you tangible next steps to take back to your desk.
+
+From this talk, you'll take away: - Some reasons why you should or should not attempt a rewrite of your Infrastructure-as-Code process. - An overview of the inputs that you should consider when designing an Infrastructure-as-Code tooling stack. - Some idea of how to be successful with a tooling rewrite.<a class="schedule-abstract-read-more" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -575,15 +762,17 @@
               <h4 class="time mb-3">11:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Nick Taylor.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Nick Taylor</a></div>
+                <div class="name">Nick Taylor</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Zero Trust: From Airports to Identity-Aware Proxies</a>
               </h3>
               <div class="location mb-3">Pomerium</div>
-              <div class="desc">Zero Trust doesn't have to be intimidating. Learn how Identity-Aware Proxies transform service access from perimeter-based to continuous verification, explained through the universal experience of airport security.<br /><br /></div>
+              <div class="desc schedule-abstract">Zero Trust doesn't have to be intimidating. Learn how Identity-Aware Proxies transform service access from perimeter-based to continuous verification, explained through the universal experience of airport security.<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -592,15 +781,17 @@
               <h4 class="time mb-3">12:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Sangeetha Rajkumar.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Sangeetha Rajkumar</a></div>
+                <div class="name">Sangeetha Rajkumar</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Urgent Cloud Deployment Practices and Insights</a>
               </h3>
               <div class="location mb-3">Microsoft</div>
-              <div class="desc">In today's fast-paced world, Agile & security is paramount. Urgent Cloud Services Deployment Practices ensure seamless and secure cloud deployments under tight timelines. Gain actionable insights, maintain robust security, and enhance team coordination for efficient, reliable cloud infrastructure.<br /><br /></div>
+              <div class="desc schedule-abstract">In today's fast-paced world, Agile & security is paramount. Urgent Cloud Services Deployment Practices ensure seamless and secure cloud deployments under tight timelines. Gain actionable insights, maintain robust security, and enhance team coordination for efficient, reliable cloud infrastructure.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -609,15 +800,14 @@
               <h4 class="time mb-3">12:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -626,15 +816,17 @@
               <h4 class="time mb-3">13:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Gary Edgar.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Gary Edgar</a></div>
+                <div class="name">Gary Edgar</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Hidden Signals in K8s Clusters: What Your Systems are Trying to Tell You</a>
               </h3>
               <div class="location mb-3">Komodor</div>
-              <div class="desc">Learn how to identify hidden patterns in cluster behavior that impact reliability. Discover methods to detect issues like pod delays and service dependencies, using clustering algorithms and proactive strategies for improved resilience and resource optimization.<br /><br /></div>
+              <div class="desc schedule-abstract">Learn how to identify hidden patterns in cluster behavior that impact reliability. Discover methods to detect issues like pod delays and service dependencies, using clustering algorithms and proactive strategies for improved resilience and resource optimization.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -643,15 +835,21 @@
               <h4 class="time mb-3">14:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Peter De Tender.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Peter De Tender</a></div>
+                <div class="name">Peter De Tender</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Stress-Testing tools in Azure to optimize your workload reliability</a>
               </h3>
               <div class="location mb-3">Microsoft</div>
-              <div class="desc">For years, you've hopefully been relying on the Microsoft Well-Architected Framework (WAF) as a starting point to have your workloads set up in a highly available, redundant architecture. Following those guidelines is key to get reliably running business critical applications for your users or...<br /><br /></div>
+              <div class="desc schedule-abstract">For years, you've hopefully been relying on the Microsoft Well-Architected Framework (WAF) as a starting point to have your workloads set up in a highly available, redundant architecture.  Following those guidelines is key to get reliably running business critical applications for your users or customers. 
+
+But even after following all the guidelines, did you really know your applications would run as expected? With this session, I'm going to take the guesswork out of that question, and walk you through different tools in Azure, Azure Load Testing and Azure Chaos Studio, which help by stress-testing your critical workloads, running in App Services, Containers, CosmosDB or traditional Virtual Machines.
+
+As usual in Peter's sessions, this will be packed with live demos and only a bare minimum of slides. <a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -660,15 +858,29 @@
               <h4 class="time mb-3">14:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Leonid Yankulin.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Leonid Yankulin</a></div>
+                <div class="name">Leonid Yankulin</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">SLOs that Delight: Mastering Multi-Service SLO Calculations</a>
               </h3>
               <div class="location mb-3">Google</div>
-              <div class="desc">This talk is for DevOps and SRE engineers who are looking to optimize the number of SLOs in their system and find methods to manage a large number of various SLIs for their complex, multi-level service architecture. The talk covers practical methods for calculating SLOs based on multiple SLIs and...<br /><br /></div>
+              <div class="desc schedule-abstract">This talk is for DevOps and SRE engineers who are looking to optimize the number of SLOs in their system and find methods to manage a large number of various SLIs for their complex, multi-level service architecture. The talk covers practical methods for calculating SLOs based on multiple SLIs and dependencies, including the reliability of third-party service providers and unknowns. Attendees are expected to be familiar with basic SRE principles and terminology. The talk includes some probability math.  
+
+Overwhelmed by the complexity of managing SLOs across your microservices architecture? This talk provides DevOps and SRE engineers with actionable strategies for defining, calculating, and optimizing SLOs in systems with a large number of SLIs.  
+
+We’ll explore practical techniques for:  
+
+- **SLO Targets:** Right-guessing and improving your SLO goals.  
+- **SLO Optimization:** Right-sizing the number of SLOs to ensure effective monitoring without unnecessary overhead.  
+- **SLO Composition:** Mastering aggregation and other methods to derive meaningful SLOs from diverse SLIs.  
+- **Dependency Management:** Incorporating the reliability of third-party services and unknowns into your SLO calculations.  
+
+The talk will include some probability math to illustrate key concepts.  
+<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -677,15 +889,14 @@
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">More Pizza Time!</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">More Pizza Time!</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -694,15 +905,14 @@
               <h4 class="time mb-3">15:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
-              </h3>
-              <div class="location mb-3">Scan each other's QR codes & head to a nearby pub!</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Wrap up</h3>
+              <div class="location mb-3" style="color:#098dcf;">Scan each other's QR codes & head to a nearby pub!</div>
+              
             </div>
           </div>
 
@@ -1017,7 +1227,9 @@
     }
     </script>
 
-    <div class="schedule-cta text-center mx-auto mt-4"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+    
+    <div class="schedule-cta text-center mx-auto mt-4"><a href="https://luma.com/sre" target="_blank" rel="noopener" class="btn btn-secondary btn-lg d-block d-md-inline-block">Upcoming conferences on LUMA</a></div>
+    
   </div>
 </section>
 
@@ -1027,11 +1239,11 @@
 <section id="speakers" class="speakers-section section">
   <div class="container">
     <h3 class="section-heading text-center mb-3">Speakers</h3>
-    <div class="row">
+    <div class="row row-cols-2 row-cols-lg-5">
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img src="../speakers/Andrew Suderman.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1039,7 +1251,10 @@
             <div class="card-text mb-3">
               <div class="meta">Fairwinds</div>
             </div><!--//card-text-->
-            <a href="./Andrew_Suderman_Fairwinds_Case_Study_ReThinking_Our_Infrastructure_Tooling#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Andrew_Suderman_Fairwinds_Case_Study_ReThinking_Our_Infrastructure_Tooling#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1054,7 +1269,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Gary Edgar.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1062,7 +1277,10 @@
             <div class="card-text mb-3">
               <div class="meta">Komodor</div>
             </div><!--//card-text-->
-            <a href="./Gary_Edgar_Komodor_Hidden_Signals_in_K8s_Clusters_What_Your_Systems_are_Trying_to_Tell_You#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Gary_Edgar_Komodor_Hidden_Signals_in_K8s_Clusters_What_Your_Systems_are_Trying_to_Tell_You#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1077,7 +1295,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Leonid Yankulin.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1085,7 +1303,10 @@
             <div class="card-text mb-3">
               <div class="meta">Google</div>
             </div><!--//card-text-->
-            <a href="./Leonid_Yankulin_Google_SLOs_that_Delight_Mastering_MultiService_SLO_Calculations#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Leonid_Yankulin_Google_SLOs_that_Delight_Mastering_MultiService_SLO_Calculations#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1100,7 +1321,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Miko Pawlikowski.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1108,7 +1329,10 @@
             <div class="card-text mb-3">
               <div class="meta">SRE Author</div>
             </div><!--//card-text-->
-            <a href="./Miko_Pawlikowski_SRE_Author_Keynote_SREs_worst_nightmare#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Miko_Pawlikowski_SRE_Author_Keynote_SREs_worst_nightmare#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1123,7 +1347,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Nick Taylor.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1131,7 +1355,10 @@
             <div class="card-text mb-3">
               <div class="meta">Pomerium</div>
             </div><!--//card-text-->
-            <a href="./Nick_Taylor_Pomerium_Zero_Trust_From_Airports_to_IdentityAware_Proxies#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Nick_Taylor_Pomerium_Zero_Trust_From_Airports_to_IdentityAware_Proxies#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1146,7 +1373,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Peter De Tender.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1154,7 +1381,10 @@
             <div class="card-text mb-3">
               <div class="meta">Microsoft</div>
             </div><!--//card-text-->
-            <a href="./Peter_De_Tender_Microsoft_StressTesting_tools_in_Azure_to_optimize_your_workload_reliability#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Peter_De_Tender_Microsoft_StressTesting_tools_in_Azure_to_optimize_your_workload_reliability#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1169,7 +1399,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Sangeetha Rajkumar.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1177,7 +1407,10 @@
             <div class="card-text mb-3">
               <div class="meta">Microsoft</div>
             </div><!--//card-text-->
-            <a href="./Sangeetha_Rajkumar_Microsoft_Urgent_Cloud_Deployment_Practices_and_Insights#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Sangeetha_Rajkumar_Microsoft_Urgent_Cloud_Deployment_Practices_and_Insights#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1195,7 +1428,7 @@
       
 
     </div><!--//row-->
-    <div class="speakers-cta text-center py-3"><a class="btn btn-primary btn-lg" href="#tickets">Get Tickets</a></div>
+    
   </div><!--//container-->
 
 </section><!--//speakers-section-->
@@ -1247,6 +1480,21 @@
 
 
 
+<style>
+  .modal-speaker .desc p,
+  .modal-speaker .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .modal-speaker .desc {
+    padding-bottom: 0.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+</style>
+
 
 <!-- Modal Speaker 1 -->
 <div class="modal modal-speaker modal-speaker-1" id="modal-speaker-1" tabindex="-1" role="dialog" aria-labelledby="speaker-1-ModalLabel" aria-hidden="true">
@@ -1277,6 +1525,7 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>When you're managing dozens of Kubernetes clusters, across three different clouds, for dozens of individual companies in their own accounts, the challenge of (re)designing tooling is complex. Come hear how we worked through all the many possible options (centralized IaC vs templating, whether to use cluster managers like Rancher, etc.), what high-level tradeoffs were made (i.e. ease-of-use vs speed of changes vs centralized control), and the tangible outcomes of this process. The focus here will be on the process and decision making, given all the different drivers such as technology, business, people, process, etc. This talk will cover how we undertook the process, while giving you tangible next steps to take back to your desk.</p>
 <p>From this talk, you'll take away: - Some reasons why you should or should not attempt a rewrite of your Infrastructure-as-Code process. - An overview of the inputs that you should consider when designing an Infrastructure-as-Code tooling stack. - Some idea of how to be successful with a tooling rewrite.</p></p>
               </div>
@@ -1284,6 +1533,7 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Andrew Suderman has had a lifelong obsession with technology that currently fuels his passion for Kubernetes. He enjoys designing and building new systems that make life easier for developers. Currently he pursues that passion at ReactiveOps, where he maintains dozens of clusters and works on internal tooling.</p>
 <p>In his spare time he enjoys off-roading, camping, quadcopters, motorcycles, and far too many other hobbies to afford.</p></p>
               </div>
@@ -1321,12 +1571,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Zero Trust doesn't have to be intimidating. Learn how Identity-Aware Proxies transform service access from perimeter-based to continuous verification, explained through the universal experience of airport security.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p><p>Imagine if showing your ID once at airport security meant you could then board any plane, enter the cockpit, or walk into customs. Sounds absurd? Yet this is how perimeter-based security works - one check, then complete trust.  Based on Google's BeyondCorp papers, this talk breaks down Zero Trust and Identity-Aware Proxies, where every access request is verified based on identity, device, and context - just as airports verify your credentials at every secure checkpoint, from airport security to boarding gates to airline lounges. Through technical concepts and the analogy of airport security, we'll explore how to implement these principles in real-world applications.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Nick is a developer advocate at Pomerium, a zero trust, identity-aware proxy platform that enables secure, clientless connections to web applications and services without a corporate VPN.</p>
 <p>With over a decade of open source contributions and five years of professional open source experience at companies like OpenSauced, dev.to, and Netlify, he brings deep community knowledge to his work. You’ll often find him live streaming tech content, either solo or with friends from the community.</p></p>
               </div>
@@ -1364,12 +1616,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In today's fast-paced world, Agile &amp; security is paramount. Urgent Cloud Services Deployment Practices ensure seamless and secure cloud deployments under tight timelines. Gain actionable insights, maintain robust security, and enhance team coordination for efficient, reliable cloud infrastructure.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Sangeetha Rajkumar is a seasoned technologist and product manager with over 9 years of experience in software product development. As a Senior Technical Program Manager at Microsoft, she leads the development of innovative cloud products for Microsoft customers. Sangeetha has spearheaded numerous automation projects in Deployment and DevOps, showcasing her technical expertise, strong product &amp; program management skills.</p>
 <p>She holds a master's degree in engineering management with a specialization in Product Management from Cornell University. With nearly a decade of experience in the IT industry, Sangeetha has worked across various sectors, including Consulting, Fintech, and Enterprise Solutions. Additionally, she mentors early-career professionals at Microsoft, ADPList, and Topmate.io.</p></p>
               </div>
@@ -1407,12 +1661,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Learn how to identify hidden patterns in cluster behavior that impact reliability. Discover methods to detect issues like pod delays and service dependencies, using clustering algorithms and proactive strategies for improved resilience and resource optimization.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p><p>Join us for a deep dive session that extracts data-driven observations and insights from heavily utilized clusters to find unique patterns that impact reliability.  We'll share how to implement the right signals to detect common challenges such as delays in pod spin-ups, pod termination data to identify workloads most affected by these terminations, or closely occurring failures that indicate hidden service dependencies. We'll then cover methods to preemptively address these to improve resilience using clustering algorithms like DBSCAN, for dependency mapping, and other good practices.  We'll walk through a typical journey from experimental setups using scripts and command-line outputs to production-ready practices––from quick prototyping, to refining data pipelines and optimizing performance for operational environments. By uncovering these hidden patterns &amp; signals you can achieve proactive reliability improvements, for improved cluster health &amp; optimization of resource allocation.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Gary Edgar is a seasoned technical support and customer engineer with 15+ years of experience across cloud infrastructure, databases, and monitoring systems. Currently at Komodor, he helps teams streamline Kubernetes troubleshooting.</p>
 <p>Previously, Gary was a key early hire at PlanetScale, supporting major clients like Stripe and Twitter with performance tuning, architecture, and hands-on support. He also delivered impactful solutions during his time at SevOne (IBM), working onsite with Microsoft and eBay to improve system reliability and monitoring at scale.</p></p>
               </div>
@@ -1450,6 +1706,7 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>For years, you've hopefully been relying on the Microsoft Well-Architected Framework (WAF) as a starting point to have your workloads set up in a highly available, redundant architecture.  Following those guidelines is key to get reliably running business critical applications for your users or customers. </p>
 <p>But even after following all the guidelines, did you really know your applications would run as expected? With this session, I'm going to take the guesswork out of that question, and walk you through different tools in Azure, Azure Load Testing and Azure Chaos Studio, which help by stress-testing your critical workloads, running in App Services, Containers, CosmosDB or traditional Virtual Machines.</p>
 <p>As usual in Peter's sessions, this will be packed with live demos and only a bare minimum of slides. </p></p>
@@ -1458,6 +1715,7 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Peter has an extensive background in architecting, deploying, managing and training on Microsoft technologies, dating back to Windows NT4 Server in 1996, all the way to the latest and modern cloud solutions available in Azure today. With a passion for cloud Architecture, Devops and App Modernization, Peter always has a story to share on how to optimize your Enterprise-ready cloud workloads. When he's not providing a technical Azure workshop out of his role as Microsoft Technical Trainer at Microsoft Corp, for which he relocated from Belgium to Seattle early 2022, he's developing some new apps in .NET Blazor, or trying another bread baking recipe in his home kitchen.
 Peter was an Azure MVP for 5 years, is a Microsoft Certified Trainer (MCT) for +15 years and still actively involved in Tech Communities as public speaker, keynote presenter, technical writer and mentor.</p></p>
               </div>
@@ -1495,6 +1753,7 @@ Peter was an Azure MVP for 5 years, is a Microsoft Certified Trainer (MCT) for +
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This talk is for DevOps and SRE engineers who are looking to optimize the number of SLOs in their system and find methods to manage a large number of various SLIs for their complex, multi-level service architecture. The talk covers practical methods for calculating SLOs based on multiple SLIs and dependencies, including the reliability of third-party service providers and unknowns. Attendees are expected to be familiar with basic SRE principles and terminology. The talk includes some probability math.  </p>
 <p>Overwhelmed by the complexity of managing SLOs across your microservices architecture? This talk provides DevOps and SRE engineers with actionable strategies for defining, calculating, and optimizing SLOs in systems with a large number of SLIs.  </p>
 <p>We’ll explore practical techniques for:  </p>
@@ -1510,6 +1769,7 @@ Peter was an Azure MVP for 5 years, is a Microsoft Certified Trainer (MCT) for +
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>In my work at Google as a Developer Relations Engineer, I help cloud practitioners to solve a wide range of technical and architectural problems related to running workloads in Google Cloud and hybrid environments. Jump start to Google Cloud. Reach 99.99 SLO. Troubleshoot a problem in real time. Or, evaluate a security posture of your application. All these and many other problems that engineers and architects meet every day. Before Google, I worked in healthcare, interactive TV and gaming industries in many engineering roles including SWE, TL and Cloud Architect. In my free time I enjoy swimming, hiking and horseback riding.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -1546,12 +1806,14 @@ Peter was an Azure MVP for 5 years, is a Microsoft Certified Trainer (MCT) for +
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>What's the worst that can happen? Join me for a story about reliability, secrecy and potential 200k fatalities.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p></p>
               </div>
           </div><!--//modal-body-->

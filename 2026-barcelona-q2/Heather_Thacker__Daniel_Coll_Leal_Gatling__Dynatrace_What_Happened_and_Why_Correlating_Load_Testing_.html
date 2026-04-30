@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -216,12 +226,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">What Happened and Why: Correlating Load Testing with Observability</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Heather Thacker & Daniel Coll Leal.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -242,19 +265,23 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Load testing tells you what happened. Observability tells you why. But too often these disciplines operate independently, leaving teams manually piecing together performance regressions with server-side telemetry after the fact. This talk introduces the key concepts behind correlating load testing metrics with infrastructure and application observability data, and why automating that correlation is a force multiplier for reliability and informed decision-making.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p><strong><a href="https://www.linkedin.com/in/hhthacker/">Heather Thacker</a></strong> is a Developer Advocate at Gatling where she enjoys building content and community around making performance testing approachable and essential to teams. Her perspective is shaped by five years as a software developer followed by three years advocating for DevOps best practices. She’s an international speaker that enjoys comparing theory with reality of software development lifecycles, using practical examples and analogies. Her goal is to give engineers different perspectives that will build the confidence they need to make performance a core part of their workflow.</p>
 <p><strong><a href="https://www.linkedin.com/in/daniel-coll-leal/">Daniel Coll Leal</a></strong> began his tech journey at a startup 10 years ago as a mobile developer. Over the years, he worked at several consulting companies, gaining some experience across multiple stacks. Eventually, he specialized in web development and observability and is now focused on advocating for the field by creating technical content, conducting workshops and giving talks.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

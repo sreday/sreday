@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -240,12 +250,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Killing the Cloud Sandbox: Secure AI Agents on WebAssembly</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Maxwell Myers.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -266,18 +289,22 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Are your AI agents generating untrusted code, forcing you to spin up slow, expensive Docker containers or microVMs just to safely execute it? Have you looked at your AWS compute bill and realized that scaling agentic coding loops in the cloud is financially unsustainable? At LILO, we bypassed the cloud tax entirely by building a zero-cost execution engine using WebAssembly. In this talk, we will pop the hood on this architecture, showing you how to push compute to the edge for microsecond cold starts, mathematically proven memory isolation, and a zero-dollar infrastructure bill.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Maxwell Myers is the CEO and Co-Founder of Pathion, an EdTech startup powered by a proprietary WebAssembly Execution-as-a-Service infrastructure, and a Software Engineer on the Microsoft Edge team. Drawing on his expertise in browser infrastructure and developer-facing APIs, he built Pathion's zero-cost, zero-latency edge execution environments. He specializes in cloud architecture, telemetry, and scaling secure, on-device sandboxes.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

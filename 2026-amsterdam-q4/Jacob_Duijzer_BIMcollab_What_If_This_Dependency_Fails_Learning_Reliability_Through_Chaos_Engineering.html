@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -220,12 +230,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">What If This Dependency Fails? Learning Reliability Through Chaos Engineering</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Jacob Duijzer.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -246,18 +269,22 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Teams spend a lot of time defining functional and non-functional requirements, writing acceptance criteria, and verifying behavior in controlled environments. That work matters, but it can also lead teams to optimize for test environments while real incidents emerge in production. Production is where systems meet latency, dependency failures, retries, partial outages, and degraded behavior. Most incidents do not come from one obviously broken service. They happen in the gaps between services, where assumptions were never made explicit and failure modes were never explored. In this talk, we give a practical introduction to chaos engineering as a way to close that gap. Not as a dramatic exercise in breaking everything, but as a disciplined way to learn how systems behave under stress. By running small, intentional experiments, teams can test assumptions, uncover weak spots before they become incidents, and better understand how their systems really behave in production. One of the biggest lessons is that reliability often improves before the first experiment even runs. As soon as teams start asking “what if?” questions together, they surface hidden assumptions and identify practical changes worth making immediately. Attendees will leave with a better understanding of why incidents emerge between systems, how chaos engineering connects to a Site Reliability Engineering (SRE) mindset, and how to start with safe, small experiments in their own environment.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Jacob is a leader who inspires others through his commitment to learning, sharing knowledge, and fostering growth. With a strong foundation as a software developer, team lead, and technical consultant, he brings real-world experience to every role he takes on. Jacob actively guides organizations through changes, such as adopting Team Topologies, and supports teams by mentoring developers, creating development teams, and leading workshops. His hands-on approach ensures that his ideas are practical and grounded in experience. Driven by a passion for helping people and teams succeed, Jacob focuses on building strong, collaborative environments. He combines technical expertise with leadership to advocate for better ways of working and continuous improvement.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

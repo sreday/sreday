@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -214,12 +224,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Demo: Let any engineer on any team handle any issue anywhere in your stack</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Kyle Forster, Lydia Thomas, Anusha Gundala, Sravan E & Sonu Kumar Singh.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -240,10 +263,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Production incidents and operational toil have been steadily rising for years, but the worst is ahead.  The drivers are clear - i) growing complexity of modern tech stacks, ii) shrinking ratios of SRE/DevOps/QA engineers per developer, and iii) the freight train of ultra-fast AI coding.</p>
 <p>Before weekly releases with tens of thousands of lines of code become the new normal, SRE leaders need to think differently about how issues and incidents are handled through their software development lifecyle.</p>
 <p>In today's session, Kyle will show the PR that broke his team's traditional SDLC, and talk about ways teams are transitioning from legacy models of SRE to modern models.  Hint: get any engineer on any team ready to handle any issue anywhere in the tech stack in any environment.  In parallel, Lydia will drop in to a production environment she has never seen before and prioritize issues, drive to root cause, file detailed tickets and resolve incidents in &lt;30 minutes using tools built with RunWhen's AI SRE platform.</p></p>
@@ -252,12 +276,15 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p><strong><a href="https://www.linkedin.com/in/kyforster/">Kyle Forster</a></strong> is the Founder of RunWhen, a company pioneering the use of AI for troubleshooting mission critical applications in dev, test and production environments.  Prior to RunWhen, Kyle was the Senior Director for Product Management in Google's Kubernetes team.  He is a second time founder, having previously started Big Switch Networks, a pioneer in Software Defined Networking (acquired by Arista Networks).  Kyle started his career at Cisco after doing an MBA and MS in Computer Science from Stanford University and an MSE in Electrical Engineering from Princeton University.  He currently holds six patents in wireless and software defined networking technologies lives with his wife, three children and two dogs in the greater London area where he recently settled after relocating from Silicon Valley.</p>
 <p><strong><a href="https://www.linkedin.com/in/lydiaraynethomas/">Lydia Thomas</a></strong> is a London-based entrepreneur and technology founder. She is the founder of Smash Hit Technologies Ltd and The Keep Us Company Ltd, and previously worked at Google. Lydia is also a member of the Associates’ Committee of The Worshipful Company of International Bankers. Her work sits at the intersection of technology, business, and innovation, with a focus on building and scaling impactful companies.</p>
 <p><strong><a href="https://www.linkedin.com/in/anusha-g-1a768839/">Anusha Gundala</a></strong> is a Senior Site Reliability Engineer at Sky and a TechWomen100 Awards 2025 winner. She specializes in cloud, Kubernetes, and observability, with a focus on improving reliability, security, and standardization across large scale distributed systems. Her work centers on Google Cloud Platform and modern monitoring stacks including Grafana, where she leads initiatives to enhance system visibility and operational performance. Prior to Sky, she held roles at iomart and Wipro, building experience across cloud infrastructure, monitoring, and operations engineering.</p>
 <p><strong><a href="https://www.linkedin.com/in/sravan-e-b7935515/">Sravan E</a></strong> is a Solutions Architect specializing in observability, site reliability engineering, and operational resilience with over 18 years of experience. He focuses on designing and implementing systems that improve performance and ensure stability across complex environments. His work includes developing observability architectures, defining SLIs and SLOs, and leveraging tools such as Splunk ITSI, Dynatrace, Datadog, and Elastic. Sravan has held roles across organizations including Schain Technologies, dunnhumby, HSBC, Fiserv, and Accenture, delivering resilient data platforms and advancing AIOps driven automation strategies.</p>
 <p><strong><a href="https://www.linkedin.com/in/sonu-kumar-singh-0842a22a/">Sonu Kumar Singh</a></strong> is a Cloud Engineering Specialist and Senior Site Reliability Engineer at Lloyds Banking Group with over 15 years of experience designing scalable, secure, and self healing cloud systems. He specializes in Kubernetes, Terraform, and multi cloud environments across Azure and Google Cloud Platform, with a focus on building reliable and automated infrastructure. His work emphasizes applying software engineering principles to solve operational challenges and improve system performance. Prior to Lloyds, he held roles across engineering and DevOps functions, contributing to cloud architecture, CI/CD pipelines, and distributed system resilience.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

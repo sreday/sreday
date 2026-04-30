@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -220,12 +230,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">No 0-day required, just target the AI coding assistant!</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Leo Visser.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -246,18 +269,22 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Do you trust your AI coding assistant? What if I told you that attackers have found ways to manipulate it and attack your code? With everyone now using AI coding assistants it’s time to look at the risks! During this talk I’ll show you several new techniques attackers are already using. This will range from hidden messages (ASCII smuggling) to abusing mistyping and characters that look the same (typosquatting). I will also show how an LLM can make mistakes when generating code (hallucinations). Did you know that a smart attacker can abuse this too? When you join this talk, you’ll learn how to spot hidden text in your instruction file and prompts. I will also explain how to set up a trusted dependency repository to prevent the malicious code from entering your production environment!</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Active in the IT industry since 2012, Leo Visser is a Subject Matter Expert for Azure and AI Foundry at OGD. He advises organizations on AI, automation, and cloud architecture, combining tools like PowerShell, Power Platform, Azure Logic Apps, and native Azure services. His work strongly focuses on security, sustainability, and long-term value. Leo is a Microsoft PowerShell MVP.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

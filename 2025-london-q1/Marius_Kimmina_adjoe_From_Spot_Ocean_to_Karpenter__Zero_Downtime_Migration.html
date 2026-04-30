@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -133,6 +143,7 @@
 		</div><!--//branding-->
 	</header><!--//header-->
 
+	
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
@@ -200,6 +211,7 @@
 		</div><!--//container-->
 
 	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -236,12 +248,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">From Spot Ocean to Karpenter - Zero Downtime Migration</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Marius Kimmina.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -262,18 +287,22 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>From Spot Ocean to Karpenter: adjoe's zero-downtime migration story. Learn how we switched autoscalers in production, the challenges we faced along the way, and why we built a custom controller to fix broken nodes.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p><p>Is it possible to seamlessly hand over your Kubernetes cluster from one node-autoscaler to another without causing downtime — and, more importantly, should you? In this talk, we’ll dive into how adjoe accomplished this transition, tackling challenges such as scaling test environments outside working hours, navigating the release of Karpenter V1 mid-migration, and even creating a custom controller to manage broken nodes. Join to learn about the obstacles we faced and the valuable benefits we gained along the way.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Marius, a dedicated DevOps Engineer at Hamburg’s fast-growing adtech company, adjoe. Since joining over three years ago, Marius has been on a mission to enhance the reliability and scalability of our backend — an event-driven microservice architecture written in Go and powered by Kubernetes. His passion for coding and Kubernetes doesn’t stop here. Marius also actively contributes to open-source projects, including CoreDNS and Karpenter, constantly pushing his skills and knowledge forward. When he’s not scaling systems or optimizing code, you’ll find him hosting board game nights, tackling bouldering walls, or setting off on adventures across Asia.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

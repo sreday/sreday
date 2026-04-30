@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -216,12 +226,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Free Software Isn't Gratis: why companies should treat Open Source as part of your Infrastructure</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Christopher Tineo.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -242,18 +265,22 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Maintaining an open source project is hard. It requires managing a group of people who are largely working for free to build something that other people profit off of, usually distributed across the globe, with limited resources. The whole time you’re doing this, you’re receiving demands from users and businesses alike for features or bug fixes on a timeline that works for them, not you and your (possibly very limited) group of contributors that you can’t exactly order around, since they aren’t being paid. It’s stressful, and it can be overwhelming. When one of these projects is the victim of an attack that takes advantage of the fact that there are only one or two maintainers, or eventually has to shut down due to rising technical debt and falling contributor numbers, the public blame falls on us, not on the businesses that didn’t offer contributors in time.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>I'm passionate about everything related to the Open Source and Cloud Native ecosystem. I'm results-driven and passionate about this industry. I truly believe in the value of giving back to others, so when I'm not working or studying, you will see me volunteering for the communities around my area or Latin America.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

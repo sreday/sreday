@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -280,11 +290,11 @@
     </script>
 </section>
 
+
 <section id="tickets" class="tickets-section section">
   <div class="container">
     <h3 class="section-heading text-center mb-3">Tickets</h3>
 
-    
     <div class="row pricing mb-5 mt-10">
       <div class="col-12 text-center">
         <iframe
@@ -346,13 +356,13 @@
       }
     });
   })();
-</script> 
+</script>
       </div>
     </div>
-    
 
   </div>
 </section>
+
 
 <style>
   .speakers-section .card {
@@ -365,24 +375,82 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    font-size: 0.9rem;
+  }
+  .speakers-section .card-title {
+    font-size: 1.1rem;
+  }
+  .event-card-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-top: auto;
+    width: 100%;
+  }
+  .speakers-section .event-card-buttons a {
+    flex: 0 1 50%;
+    text-align: center;
+    min-width: 0;
+    display: block;
   }
   .event-read-more-btn {
     display: inline-block;
-    padding: 8px 18px;
-    background: #8D5E80;
+    padding: 6px 12px;
+    background: var(--brand-light);
     color: #fff;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
+    font-size: 0.8rem;
     transition: background 0.2s ease;
-    margin-top: auto;
-    align-self: flex-start;
   }
   .event-read-more-btn:hover,
   .event-read-more-btn:focus {
-    background: #9C7290;
+    background: var(--brand-lighter);
     color: #fff;
     text-decoration: none;
+  }
+  .event-watch-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #EC645E;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    transition: background 0.2s ease;
+  }
+  .event-watch-btn:hover,
+  .event-watch-btn:focus {
+    background: #F28B87;
+    color: #fff;
+    text-decoration: none;
+  }
+  .event-watch-btn-sm {
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    margin-left: 12px;
+  }
+  .schedule-abstract {
+    position: relative;
+    max-height: 3.2em;
+    line-height: 1.6;
+    overflow: hidden;
+    text-align: justify;
+  }
+  .schedule-abstract-read-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-left: 3em;
+    background: linear-gradient(to right, transparent, #e8f8f0 30%);
+    font-weight: 700;
+    color: var(--brand);
+    text-decoration: underline;
+  }
+  .schedule-section .item {
+    margin-bottom: 4.5rem;
   }
 </style>
 
@@ -400,11 +468,11 @@
 <section id="speakers" class="speakers-section section">
   <div class="container">
     <h3 class="section-heading text-center mb-3">Speakers</h3>
-    <div class="row">
+    <div class="row row-cols-2 row-cols-lg-5">
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Ankit Asthana.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -412,7 +480,10 @@
             <div class="card-text mb-3">
               <div class="meta">SQUER</div>
             </div><!--//card-text-->
-            <a href="./Ankit_Asthana_SQUER_Beyond_API_Keys_FineGrained_Authorization_with_OpenFGA#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Ankit_Asthana_SQUER_Beyond_API_Keys_FineGrained_Authorization_with_OpenFGA#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -427,7 +498,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Jacob Duijzer.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -435,7 +506,10 @@
             <div class="card-text mb-3">
               <div class="meta">BIMcollab</div>
             </div><!--//card-text-->
-            <a href="./Jacob_Duijzer_BIMcollab_What_If_This_Dependency_Fails_Learning_Reliability_Through_Chaos_Engineering#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Jacob_Duijzer_BIMcollab_What_If_This_Dependency_Fails_Learning_Reliability_Through_Chaos_Engineering#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -450,7 +524,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img src="../speakers/Leo Visser.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -458,7 +532,10 @@
             <div class="card-text mb-3">
               <div class="meta">OGD ICT-diensten</div>
             </div><!--//card-text-->
-            <a href="./Leo_Visser_OGD_ICTdiensten_No_0day_required__just_target_the_AI_coding_assistant#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Leo_Visser_OGD_ICTdiensten_No_0day_required__just_target_the_AI_coding_assistant#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -473,7 +550,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Miko Pawlikowski.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -481,7 +558,10 @@
             <div class="card-text mb-3">
               <div class="meta">SRE Author</div>
             </div><!--//card-text-->
-            <a href="./Miko_Pawlikowski_SRE_Author_Keynote_7_Deadly_Traps_ofSRE#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Miko_Pawlikowski_SRE_Author_Keynote_7_Deadly_Traps_ofSRE#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -496,7 +576,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Nati Cohen.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -504,7 +584,10 @@
             <div class="card-text mb-3">
               <div class="meta">AWS</div>
             </div><!--//card-text-->
-            <a href="./Nati_Cohen_AWS_Understanding_Performance_Regression_With_APerf#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Nati_Cohen_AWS_Understanding_Performance_Regression_With_APerf#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -519,7 +602,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Renato Losio.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -527,7 +610,10 @@
             <div class="card-text mb-3">
               <div class="meta">Funambol</div>
             </div><!--//card-text-->
-            <a href="./Renato_Losio_Funambol_Five_Hard_Lessons_from_Five_Years_of_SoCalled_Serverless_Databases#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Renato_Losio_Funambol_Five_Hard_Lessons_from_Five_Years_of_SoCalled_Serverless_Databases#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -542,7 +628,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Thijs Feryn.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -550,7 +636,10 @@
             <div class="card-text mb-3">
               <div class="meta">Varnish Software</div>
             </div><!--//card-text-->
-            <a href="./Thijs_Feryn_Varnish_Software_Whats_new_in_Varnish_new_features_in_the_highperformance_caching_proxy#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Thijs_Feryn_Varnish_Software_Whats_new_in_Varnish_new_features_in_the_highperformance_caching_proxy#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -567,7 +656,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card">
           <div class="card-body">
             <h4>More coming soon</h4>
@@ -643,6 +732,21 @@
 
 
 
+<style>
+  .modal-speaker .desc p,
+  .modal-speaker .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .modal-speaker .desc {
+    padding-bottom: 0.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+</style>
+
 
 <!-- Modal Speaker 1 -->
 <div class="modal modal-speaker modal-speaker-1" id="modal-speaker-1" tabindex="-1" role="dialog" aria-labelledby="speaker-1-ModalLabel" aria-hidden="true">
@@ -673,12 +777,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Do you trust your AI coding assistant? What if I told you that attackers have found ways to manipulate it and attack your code? With everyone now using AI coding assistants it’s time to look at the risks! During this talk I’ll show you several new techniques attackers are already using. This will range from hidden messages (ASCII smuggling) to abusing mistyping and characters that look the same (typosquatting). I will also show how an LLM can make mistakes when generating code (hallucinations). Did you know that a smart attacker can abuse this too? When you join this talk, you’ll learn how to spot hidden text in your instruction file and prompts. I will also explain how to set up a trusted dependency repository to prevent the malicious code from entering your production environment!</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Active in the IT industry since 2012, Leo Visser is a Subject Matter Expert for Azure and AI Foundry at OGD. He advises organizations on AI, automation, and cloud architecture, combining tools like PowerShell, Power Platform, Azure Logic Apps, and native Azure services. His work strongly focuses on security, sustainability, and long-term value. Leo is a Microsoft PowerShell MVP.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -715,6 +821,7 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Modern applications often outgrow simple API key or role-based access models, especially in multi-tenant and microservice environments. This talk explores how OpenFGA enables fine-grained, relationship-based authorization to model complex access patterns such as “user X can access resource Y because they belong to team Z.”
 We’ll walk through real-world scenarios where traditional RBAC breaks down, demonstrate how OpenFGA implements Google Zanzibar–inspired authorization, and show how to integrate it into cloud-native platforms and APIs. Attendees will leave with practical patterns, architecture guidance, and lessons learned from implementing authorization as a standalone service in modern platform architectures.</p></p>
               </div>
@@ -722,6 +829,7 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Ankit Asthana is a Senior Cloud &amp; Platform Architect Engineer at SQUER, with over 13 years of experience across AI infrastructure, DevOps, SRE, and platform engineering. He specializes in building secure, scalable cloud-native systems on Kubernetes and AWS, and works at the intersection of platform engineering and AI-driven workloads. Ankit is an active community contributor and regularly speaks at meetups on topics such as developer platforms, policy-as-code, and modern authorization systems.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -758,12 +866,14 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Varnish is a well-known reverse open source HTTP caching proxy that accelerates websites, applications, files, and any other HTTP-base type of workload. The technology has been around for more than 15 years and powers millions of active websites. While Varnish is considered a stable and reliable piece of acceleration software, there hasn't been a lot of hype surrounding the project. The recent release of Varnish version 9 deserves a bit of hype. In this presentation, Thijs will explain the major new features of Varnish 9, which include TLS support, dynamic backends, OTEL support, and a wide range of exciting modules. He’ll show you how to use them to apply a more intelligent caching layer to your web stack. Thijs will also explain some major changes in the way the open source project is run, and will present some cloud-native additions to the project like Docker images, Helm Charts, and even a Varnish-powered Kubernetes Gateway Controller.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>As the Technical Evangelist at <a href="https://www.varnish-software.com/">Varnish Software</a>, <a href="https://feryn.eu/">Thijs Feryn</a> focuses on web performance, software scalability, and content delivery. He demonstrates content-driven and technical messaging through presentations, videos, books, blog posts, social media posts, podcasts, and other media. Thijs is a published author and wrote <a href="https://learning.oreilly.com/library/view/getting-started-with/9781491972212/">Getting Started with Varnish Cache</a> and <a href="https://info.varnish-software.com/resources/varnish-6-by-example-book">Varnish 6 by Example</a>. As a public speaker, he has a track record of over 380 presentations in 26 different countries, where he is often praised for his energetic and engaging presentation style. As an evangelist, Thijs is also active in many open-source communities, most notably the Varnish and PHP community. He has contributed to various communities for over 15 years both technically and as an organizer and facilitator. Prior to joining Varnish Software, Thijs Feryn spent 15 years in the web hosting industry, tackling web performance and scalability issues on a daily basis and evangelizing these topics. For more information about Thijs’ past &amp; upcoming presentations, please visit <a href="https://feryn.eu/speaking">https://feryn.eu/speaking</a>.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -800,12 +910,14 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Teams spend a lot of time defining functional and non-functional requirements, writing acceptance criteria, and verifying behavior in controlled environments. That work matters, but it can also lead teams to optimize for test environments while real incidents emerge in production. Production is where systems meet latency, dependency failures, retries, partial outages, and degraded behavior. Most incidents do not come from one obviously broken service. They happen in the gaps between services, where assumptions were never made explicit and failure modes were never explored. In this talk, we give a practical introduction to chaos engineering as a way to close that gap. Not as a dramatic exercise in breaking everything, but as a disciplined way to learn how systems behave under stress. By running small, intentional experiments, teams can test assumptions, uncover weak spots before they become incidents, and better understand how their systems really behave in production. One of the biggest lessons is that reliability often improves before the first experiment even runs. As soon as teams start asking “what if?” questions together, they surface hidden assumptions and identify practical changes worth making immediately. Attendees will leave with a better understanding of why incidents emerge between systems, how chaos engineering connects to a Site Reliability Engineering (SRE) mindset, and how to start with safe, small experiments in their own environment.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Jacob is a leader who inspires others through his commitment to learning, sharing knowledge, and fostering growth. With a strong foundation as a software developer, team lead, and technical consultant, he brings real-world experience to every role he takes on. Jacob actively guides organizations through changes, such as adopting Team Topologies, and supports teams by mentoring developers, creating development teams, and leading workshops. His hands-on approach ensures that his ideas are practical and grounded in experience. Driven by a passion for helping people and teams succeed, Jacob focuses on building strong, collaborative environments. He combines technical expertise with leadership to advocate for better ways of working and continuous improvement.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -842,12 +954,14 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>After five years of managing serverless databases, I have learned that my rollercoaster journey is very similar to the CPU usage you dream of seeing in the console. This session shares five hard-earned lessons learned while working with so-called serverless databases.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Renato has extensive experience as a cloud architect, tech lead, and cloud services specialist. Currently, he lives in Berlin and works remotely as a principal cloud architect. His primary areas of interest include cloud services and relational databases. He is an editor at InfoQ and a recognized AWS Data Hero.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -884,12 +998,14 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Finding performance issues in modern software is like finding a needle in a haystack and intuition on where to look first is often wrong. APerf is an open source tool we have used many times to help with performance debugging by looking “wide” before going “deep”. This session will present the tool along with an performance regression example</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Nati is a Solutions Architect with AWS. He delights in helping customers simplify complex systems, teaching them about the inner workings of cloud services and debugging annoying technical oddities. When he is not at his computer he is soldering electronic kits, tinkering with smaller computers and drumming on a Taiko.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -926,6 +1042,7 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Site Reliability Engineering was never meant to be about firefighting, yet too many teams find themselves stuck in an endless cycle of pages, postmortems, and quick fixes. Why? Because SRE is full of hidden traps — patterns that look like best practices on the surface but slowly erode reliability, burn out engineers, and stall progress.</p>
 <p>In this talk, we’ll expose the 7 Deadly Traps of SRE, from the obsession with chasing “five nines,” to the cult of on-call heroism, to the false comfort of tooling and checklists. For each trap, we’ll unpack why it’s so seductive, how it quietly sabotages your team, and what to do instead.</p>
 <p>You’ll walk away with a clearer lens on the pitfalls holding SRE organizations back, and a practical playbook to help your team escape firefighting mode and reclaim the true purpose of SRE: building systems - and cultures - that are resilient, scalable, and human-friendly.</p></p>
@@ -934,6 +1051,7 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Miko Pawlikowski is an SRE Author and a platform engineer at Quadrature. He has led large-scale infrastructure and SRE initiatives at Citadel and Bloomberg, with deep expertise in Kubernetes, cloud computing, and chaos engineering. Passionate about building resilient systems and communities, he brings together engineers worldwide through conferences and media projects.</p></p>
               </div>
           </div><!--//modal-body-->

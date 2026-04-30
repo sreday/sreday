@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -133,6 +143,7 @@
 		</div><!--//branding-->
 	</header><!--//header-->
 
+	
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
@@ -200,6 +211,7 @@
 		</div><!--//container-->
 
 	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -236,12 +248,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">A Tale of Two Outages</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/David Argent.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -262,10 +287,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Having been at ground zero for two outages that you can still look up on Google, this talk is designed to give an oral history of the causes, reactions, solutions, and aftermath to the Danger Sidekick outage and another major outage whose company I cannot mention by name.</p>
 <p>The first is a story about how a single individual decision cascaded into a massive failure that took six weeks to clean up and was deemed an impossible recovery by both Oracle and the SAN Vendor. It was arguably one of the largest cases of putting Humpty Dumpty back together again, as a 15TB Oracle DB was reassembled, one 4K page at a time, to provide 99.9% data recovery on what was deemed “impossible”. We called it the Lazarus Project for a reason. We had PC desktop tower units littering the aisles of our otherwise Unix datacenter, as they were the recovery fleet. The third-party data recovery team that helped achieve the impossible built their recovery tools on Windows.</p>
 <p>The second is a story about how several choices and design flaws can all come together in a perfect storm. We had poor designs involving infinite retries on a non-caching interface. We had no testing of content posted minutes after the start of a major sale which led to back-end loads from one internal service hitting the main NoSQL DB being larger than the entire service was designed to handle. There were design constraints in the NoSQL platform making it unable to shed “dead” transactions in queue, lengthening the time to recover. We had an overall rendering engine requiring hundreds to thousands of calls to all succeed in order to render a single retail page, and a need to retry all calls in the event of a single failure. The human decision to start the major sale globally at the same time, rather than staggering it according to time zones was the capstone in a Taj Mahal of an outage. While you couldn’t see it from the outside, over 98% of all transactions were successful against the NoSQL DB even at the worst part of the outage, though the design decisions elsewhere led to a much lower observed availability than that.</p></p>
@@ -274,8 +300,11 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>I'm a former chemist who wandered away from his science degree and found a home in the tech industry where I've spent better than the last two decades working to design, implement, deploy, and support highly scalable, reliable online services in a wide variety of roles. I grew up in New Jersey, where they teach sarcasm as your first language, and I've never been able to do the accent no matter how many times I watch The Sopranos. During my free time I used to be a competitive bridge player (competed in the World Junior Pairs and the Reisinger), but now I occupy myself more with bowling (still haven't thrown a perfect game), and playing tabletop RPGs with my friends, both in person and online.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -216,12 +226,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">DevOps in Space: Lessons from Low Earth Orbit</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/David Jacovkis.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -242,18 +265,22 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Remember when you knew all your servers by name and deployed changes with a single SSH command? Now imagine doing that when your link comes in 10-minute windows every few hours, and bandwidth is a precious commodity measured in kbps. Welcome to DevOps in Space. At Sateliot, our Infrastructure &amp; Software Engineering team works at the intersection of aerospace, telecommunications and software. We build modern distributed systems and then send them to an environment where normal expectations -low latency, immediate feedback, up-to-date systems- simply don’t apply. In this talk I’ll give a high-level tour of the challenges that make space and telco different: intermittent and low-bandwidth connectivity, long feedback loops, constrained devices, and the cultural gaps between aerospace, telco and software teams. I'll also share some adaptations that allow us to apply some of the DevOps processes and tools that have become industry standards.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>I started as a sysadmin when workloads ran on bare metal and Devs were the enemies of Ops. The industry changed and we changed with it, but at the end of the day we're still the ones that receive an alert when things stop working.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

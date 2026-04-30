@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="#venue">Venue</a></li>
@@ -133,6 +143,7 @@
 		</div><!--//branding-->
 	</header><!--//header-->
 
+	
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
@@ -176,6 +187,7 @@
 		</div><!--//container-->
 
 	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -217,7 +229,117 @@
   <div class="container">
     <div class="event-countdown text-center mb-3">
     
-      <h4 class="countdown-intro mb-2 text-center mb-3">Event finished</h4>
+      <h4 class="countdown-intro mb-2 text-center mb-3">Event finished, what's next?</h4>
+      
+      <style>
+        .idx-tl { position: relative; padding: 20px 0 8px; margin-bottom: 8px; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .idx-tl-line { position: absolute; top: 26px; left: 0; right: 0; height: 2px; background: var(--brand-lighter); z-index: 0; }
+        .idx-tl-events { display: flex; justify-content: space-between; position: relative; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
+        .idx-tl-event { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 0; }
+        .idx-tl-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--brand); border: 2px solid #fff; outline: 2px solid var(--brand); margin-bottom: 10px; flex-shrink: 0; z-index: 1; }
+        .idx-tl-dot.past { background: #999; outline-color: #999; }
+        .idx-tl-chip { background: var(--brand-lightest); border: 1px solid var(--brand-lighter); border-radius: 8px; padding: 8px 10px; text-align: center; text-decoration: none; width: 100%; transition: background .15s; min-height: 80px; display: flex; flex-direction: column; justify-content: center; }
+        .idx-tl-chip:hover { background: var(--brand-pale); text-decoration: none; }
+        .idx-tl-chip.past { background: #e8e8e8; border-color: #ccc; }
+        .idx-tl-chip.past:hover { background: #d8d8d8; }
+        .idx-tl-city { font-family: 'Montserrat', sans-serif; font-size: .8rem; font-weight: 700; color: var(--brand-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .idx-tl-chip.past .idx-tl-city { color: #555; }
+        .idx-tl-date { font-size: .75rem; color: var(--brand-light); margin-top: 2px; }
+        .idx-tl-chip.past .idx-tl-date { color: #777; }
+        .idx-tl-pin-event { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+        .idx-tl-pin { font-size: 2.25rem; line-height: 1; color: var(--brand-dark); margin-bottom: 10px; position: relative; top: -4px; }
+      </style>
+      <div class="idx-tl">
+        <div class="idx-tl-line"></div>
+        <div class="idx-tl-events">
+          
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-nyc-q1/" class="idx-tl-chip past">
+              <div class="idx-tl-city">NYC</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">February 26, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-london-q1/" class="idx-tl-chip past">
+              <div class="idx-tl-city">London</div>
+              <div class="idx-tl-date" style="font-style:normal;">United Kingdom</div>
+              <div class="idx-tl-date">March 12, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-san-francisco-q2/" class="idx-tl-chip past">
+              <div class="idx-tl-city">San Francisco</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">April 17, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-seattle-q2/" class="idx-tl-chip past">
+              <div class="idx-tl-city">Seattle</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">April 21, 2026</div>
+            </a>
+          </div>
+          
+          
+          
+          <div class="idx-tl-pin-event"><div class="idx-tl-pin">▼</div></div>
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-barcelona-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Barcelona</div>
+              <div class="idx-tl-date" style="font-style:normal;">Spain</div>
+              <div class="idx-tl-date">May 8, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-austin-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Austin</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">May 11, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-munich-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Munich</div>
+              <div class="idx-tl-date" style="font-style:normal;">Germany</div>
+              <div class="idx-tl-date">May 21, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-nyc-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">NYC</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">June 6, 2026</div>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+      
     
     </div>
   </div>
@@ -271,14 +393,7 @@
     </script>
 </section>
 
-<section id="tickets" class="tickets-section section">
-  <div class="container">
-    <h3 class="section-heading text-center mb-3">Tickets</h3>
 
-    
-
-  </div>
-</section>
 
 <style>
   .speakers-section .card {
@@ -291,24 +406,82 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    font-size: 0.9rem;
+  }
+  .speakers-section .card-title {
+    font-size: 1.1rem;
+  }
+  .event-card-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-top: auto;
+    width: 100%;
+  }
+  .speakers-section .event-card-buttons a {
+    flex: 0 1 50%;
+    text-align: center;
+    min-width: 0;
+    display: block;
   }
   .event-read-more-btn {
     display: inline-block;
-    padding: 8px 18px;
-    background: #8D5E80;
+    padding: 6px 12px;
+    background: var(--brand-light);
     color: #fff;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
+    font-size: 0.8rem;
     transition: background 0.2s ease;
-    margin-top: auto;
-    align-self: flex-start;
   }
   .event-read-more-btn:hover,
   .event-read-more-btn:focus {
-    background: #9C7290;
+    background: var(--brand-lighter);
     color: #fff;
     text-decoration: none;
+  }
+  .event-watch-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #EC645E;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    transition: background 0.2s ease;
+  }
+  .event-watch-btn:hover,
+  .event-watch-btn:focus {
+    background: #F28B87;
+    color: #fff;
+    text-decoration: none;
+  }
+  .event-watch-btn-sm {
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    margin-left: 12px;
+  }
+  .schedule-abstract {
+    position: relative;
+    max-height: 3.2em;
+    line-height: 1.6;
+    overflow: hidden;
+    text-align: justify;
+  }
+  .schedule-abstract-read-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-left: 3em;
+    background: linear-gradient(to right, transparent, #e8f8f0 30%);
+    font-weight: 700;
+    color: var(--brand);
+    text-decoration: underline;
+  }
+  .schedule-section .item {
+    margin-bottom: 4.5rem;
   }
 </style>
 
@@ -335,7 +508,7 @@
   .track-nav-links a {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: #713660;
+    background: var(--brand);
     color: white;
     text-decoration: none;
     border-radius: 4px;
@@ -344,25 +517,25 @@
     transition: background 0.2s;
   }
   .track-nav-links a:hover {
-    background: #5e2c50;
+    background: var(--brand-dark);
     color: white;
   }
   .view-toggle-link {
-    color: #713660;
+    color: var(--brand);
     text-decoration: none;
     font-size: 0.9rem;
     cursor: pointer;
     padding: 0.5rem 0.75rem;
-    border: 1px solid #713660;
+    border: 1px solid var(--brand);
     border-radius: 4px;
     transition: all 0.2s;
   }
   .view-toggle-link:hover {
-    background: #713660;
+    background: var(--brand);
     color: white;
   }
   .view-toggle-link.active {
-    background: #713660;
+    background: var(--brand);
     color: white;
   }
   /* Table view */
@@ -379,7 +552,7 @@
     table-layout: fixed;
   }
   .schedule-grid-table th {
-    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
     color: white;
     padding: 0.75rem 1rem;
     text-align: left;
@@ -391,17 +564,17 @@
   }
   .schedule-grid-table td {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid #ede5eb;
+    border-bottom: 1px solid var(--brand-lightest);
     vertical-align: top;
   }
   .schedule-grid-table td.merged-cell {
     text-align: center;
     font-weight: 500;
     color: #555;
-    background: #ede5eb;
+    background: var(--brand-lightest);
   }
   .schedule-grid-table .time-cell {
-    color: #713660;
+    color: var(--brand);
     font-weight: 600;
     white-space: nowrap;
   }
@@ -411,7 +584,7 @@
     font-weight: 500;
   }
   .schedule-grid-table .talk-cell a:hover {
-    color: #713660;
+    color: var(--brand);
   }
   .schedule-grid-table .speaker-info {
     color: #444;
@@ -420,6 +593,13 @@
   }
   .schedule-grid-table .speaker-info .affiliation {
     color: #666;
+  }
+  .speaker-linkedin-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .speaker-linkedin-link:hover {
+    color: #098dcf;
   }
   .schedule-meta {
     display: flex;
@@ -445,7 +625,7 @@
   }
   /* Track section header */
   .track-section-header {
-    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
     color: white;
     padding: 1rem 1.5rem;
     margin: 2rem 0 0 0;
@@ -457,7 +637,7 @@
     margin-top: 0;
   }
 
-  .schedule-section.theme-bg-light { background-color: #f8f0f6 !important; }
+  .schedule-section.theme-bg-light { background-color: #f0faf5 !important; }
 </style>
 
 <section id="schedule" class="schedule-section section theme-bg-light">
@@ -471,6 +651,8 @@
       <span class="schedule-meta-item">single track</span>
       <span class="schedule-meta-divider">•</span>
       <span class="schedule-meta-item">9AM - 5PM</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">Amsterdam, in-person</span>
     </div>
 
 
@@ -500,15 +682,18 @@
               <h4 class="time mb-3">09:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle mb-2" src="../speakers/Pablo Martin Guijo.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Pablo Martin Guijo</a></div>
+                <div class="name">Pablo Martin Guijo</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">From Local to Cloud-Based Development: Our Migration Story</a>
               </h3>
               <div class="location mb-3">Catawiki</div>
-              <div class="desc">What does it take to move an entire engineering organization from traditional local development setups to developing directly in the cloud? At Catawiki, this shift was more than just swapping tools—it was a cultural and technical transformation aimed at improving reliability, feedback loops, and...<br /><br /></div>
+              <div class="desc schedule-abstract">What does it take to move an entire engineering organization from traditional local development setups to developing directly in the cloud? At Catawiki, this shift was more than just swapping tools—it was a cultural and technical transformation aimed at improving reliability, feedback loops, and developer velocity.
+This talk walks through the highlights of our journey: from the early signs that local development was holding us back, to the decisions, challenges, and breakthroughs that shaped our move to a cloud-based development workflow.<a class="schedule-abstract-read-more" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -517,15 +702,14 @@
               <h4 class="time mb-3">09:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Coffee break</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -534,15 +718,18 @@
               <h4 class="time mb-3">10:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle mb-2" src="../speakers/Sohan Maheshwar.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Sohan Maheshwar</a></div>
+                <div class="name">Sohan Maheshwar</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">How Google built a Consistent, Global Authorization System (and you can too!)</a>
               </h3>
               <div class="location mb-3">AuthZed</div>
-              <div class="desc">Google Zanzibar is the singular authorization service that powers permissions and sharing across all Google properties, including Docs, YouTube, and Cloud IAM. Creating a consistent, global-scale authorization system that can process "more than 10 million client queries per second” is not a...<br /><br /></div>
+              <div class="desc schedule-abstract">Google Zanzibar is the singular authorization service that powers permissions and sharing across all Google properties, including Docs, YouTube, and Cloud IAM. Creating a consistent, global-scale authorization system that can process "more than 10 million client queries per second” is not a trivial task. The talk will cover how the paper lays out an engineer-friendly blueprint for building a highly scalable distributed system with flexible consistency guarantees.
+This talk will start with foundational knowledge of Relationship Based Access Control (ReBAC) and then cover the technical implementations behind Zanzibar - How Google solved for correctness, scale and speed. The presentation will cover the different APIs for interacting with the system and also a deep-dive into how the “New Enemy” problem was solved. The talk will conclude with how you can use open source tools to build authZ into your application.K<a class="schedule-abstract-read-more" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -551,15 +738,22 @@
               <h4 class="time mb-3">10:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Wouter Lagerweij & Krijn Mossel.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Wouter Lagerweij & Krijn Mossel</a></div>
+                <div class="name">Wouter Lagerweij & Krijn Mossel</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Governing the Cloud: A Guide to Data Sovereignty</a>
               </h3>
               <div class="location mb-3">Independent & DR. Insight</div>
-              <div class="desc">With changing political relations and deteriorating trust in the large cloud providers, Data Sovereignty is on everyone’s mind. In this session, we will show you that the hard work you’ve already done on the road to DevOps and SRE will serve you just as well to make your systems sovereign by...<br /><br /></div>
+              <div class="desc schedule-abstract">With changing political relations and deteriorating trust in the large cloud providers, Data Sovereignty is on everyone’s mind. In this session, we will show you that the hard work you’ve already done on the road to DevOps and SRE will serve you just as well to make your systems sovereign by design. Join us to learn how to:
+- Apply architectural patterns like hybrid cloud and edge computing to enforce data locality and control.
+- Use IaaS software engineering principles to enhance the portability of your infrastructure.
+- Challenge the hyperscaler default by "right-sizing" infrastructure,
+- Make compliance and governance the default by automating reporting and transparency.
+You’ll come away from this talk with a set of tweaks and changes to your current approach to your infrastructure that will give you the flexibility to deal with the challenges of data sovereignty in a world of shifting alliances.<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -568,15 +762,24 @@
               <h4 class="time mb-3">11:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Frederic G. Marand.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Frederic G. Marand</a></div>
+                <div class="name">Frederic G. Marand</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">TLA+: Your Secret Weapon Against Concurrency Hell</a>
               </h3>
               <div class="location mb-3">OSInet</div>
-              <div class="desc">Let's be honest: writing correct concurrent and distributed code is hard. Race conditions? Deadlocks? They're the bane of modern software development, especially with tools like Kafka, Kubernetes, and microservices. Testing helps, but it rarely finds all the subtle, timing-dependent bugs. Imagine...<br /><br /></div>
+              <div class="desc schedule-abstract">Let's be honest: writing correct concurrent and distributed code is hard. Race conditions? Deadlocks? They're the bane of modern software development, especially with tools like Kafka, Kubernetes, and microservices. Testing helps, but it rarely finds all the subtle, timing-dependent bugs.
+Imagine having a way to mathematically verify your design's logic before you code it. That's TLA+. Developed by Turing Award winner Leslie Lamport, it's a language for specifying and checking algorithms, especially concurrent ones. The catch? Most intros are dense and theoretical.
+This session is different. It's TLA+ for the rest of us – the software engineers in the trenches. We'll skip the deep math and focus on practical application. You'll learn what TLA+ is, how to model simple concurrent interactions, and how it can save you from deployment disasters by catching design flaws early. Walk away ready to explore how formal methods can become your secret weapon for building bulletproof systems.
+Key Takeaways:
+- Recognize the inherent difficulties in validating concurrent designs.
+- Get a practical, hands-on feel for TLA+ concepts and syntax.
+- Understand how TLA+ helps prevent race conditions and deadlocks at the design stage.
+- Be inspired to apply formal verification techniques to real-world problems.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -585,15 +788,19 @@
               <h4 class="time mb-3">11:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Martin McLarnon.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Martin McLarnon</a></div>
+                <div class="name">Martin McLarnon</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Using OpenTelemetry to Improve Service Level Objectives</a>
               </h3>
               <div class="location mb-3">Coralogix</div>
-              <div class="desc">As systems grow more complex, engineering teams must move beyond guesswork when resolving production issues and instead focus on delivering consistent, measurable user value. This talk explores how OpenTelemetry empowers teams to define, measure and improve Service Level Objectives with precision...<br /><br /></div>
+              <div class="desc schedule-abstract">As systems grow more complex, engineering teams must move beyond guesswork when resolving production issues and instead focus on delivering consistent, measurable user value. This talk explores how OpenTelemetry empowers teams to define, measure and improve Service Level Objectives with precision and confidence.
+Drawing on real-world experiences of a software team navigating the challenges of legacy code, cloud migration and production instability, this session demonstrates how OpenTelemetry helps teams gain the insights they need to reduce Mean Time To Resolution, understand root causes and proactively improve system reliability.
+We’ll dive into hands-on examples using the OpenTelemetry Demo Application and show how to help turn technical metrics into business-aligned SLOs that actually mean something. Whether you're an SRE, developer, or engineering leader, this talk will give you the clarity—and tools—to move from reactive firefighting to proactive service reliability.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -602,15 +809,17 @@
               <h4 class="time mb-3">12:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Daniel Bojczuk.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Daniel Bojczuk</a></div>
+                <div class="name">Daniel Bojczuk</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">DevOps: Why do we keep messing up?</a>
               </h3>
               <div class="location mb-3">Jumbo</div>
-              <div class="desc">Summary: DevOps isn't a new concept, but a lot of companies still struggle to get it right. Even when they think they've nailed it, they often run into some not-so-fun side effects, like unhappy developers or unexpected costs that sneak up on them. In this presentation, we'll see why this can...<br /><br /></div>
+              <div class="desc schedule-abstract">Summary: DevOps isn't a new concept, but a lot of companies still struggle to get it right. Even when they think they've nailed it, they often run into some not-so-fun side effects, like unhappy developers or unexpected costs that sneak up on them. In this presentation, we'll see why this can happen and how to dodge these pitfalls.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -619,15 +828,18 @@
               <h4 class="time mb-3">12:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Mike Kotsur.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Mike Kotsur</a></div>
+                <div class="name">Mike Kotsur</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Platform as a Product: Drive Adoption for Your Internal Tools</a>
               </h3>
               <div class="location mb-3">Absolute Value</div>
-              <div class="desc">Are your platform team's brilliant ideas struggling for adoption and meeting resistance? Why do some internal platform tools thrive while others flop? Many technically sound SRE/DevOps initiatives fall short because they aren't treated as products with real users. This session cuts through the...<br /><br /></div>
+              <div class="desc schedule-abstract">Are your platform team's brilliant ideas struggling for adoption and meeting resistance? Why do some internal platform tools thrive while others flop? Many technically sound SRE/DevOps initiatives fall short because they aren't treated as products with real users. This session cuts through the noise, revealing why a product mindset is crucial for platform success.
+The best SREs walk a mile in developers’ shoes! I’ll share with you a potent blend of Lean, User Journey, and Story Mapping principles to uncover genuine user needs (your fellow engineers!) and business goals. Learn how to define impactful MVPs for your internal tools that actually reduce cognitive load and boost productivity. I'll share a practical framework, refined across diverse projects, to ensure your platform work delivers real value, gets adopted quickly, and fosters collaboration. Leave with actionable strategies and a board template to start small, validate assumptions, and build platforms your developers will love.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -636,15 +848,14 @@
               <h4 class="time mb-3">13:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -653,15 +864,17 @@
               <h4 class="time mb-3">14:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Devrim Demiroz.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Devrim Demiroz</a></div>
+                <div class="name">Devrim Demiroz</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Lightning Thoughts: Charting the AlphaEvolve → OTel Journey</a>
               </h3>
               <div class="location mb-3">Swisscom</div>
-              <div class="desc">In this session, I invite you to join a thought experiment I conducted just after DeepMind AlphaEvolve reached the event horizon. I’ll explore how evolutionary AI usage architectures might weave into the OpenTelemetry‑powered observability landscape of the CNCF, turning runtime traces and static...<br /><br /></div>
+              <div class="desc schedule-abstract">In this session, I invite you to join a thought experiment I conducted just after DeepMind AlphaEvolve reached the event horizon. I’ll explore how evolutionary AI usage architectures might weave into the OpenTelemetry‑powered observability landscape of the CNCF, turning runtime traces and static code into a self‑optimizing loop. No deep dives—just sparks of ideas to inspire the next steps in agent‑driven software evolution. I hope this quick sketch encourages questions and collaboration.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -670,15 +883,18 @@
               <h4 class="time mb-3">14:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Roosevelt Elias.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Roosevelt Elias</a></div>
+                <div class="name">Roosevelt Elias</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Reliability at the Edge: Building SRE Culture in Resource-Constrained Environments</a>
               </h3>
               <div class="location mb-3">Payble Technologies</div>
-              <div class="desc">How do you build reliable systems where downtime is not just an inconvenience, but a threat to trust, income, and even safety? In this talk, Roosevelt Elias, founder of Payble, explores how to establish SRE principles in markets where infrastructure is unreliable, cloud access is intermittent,...<br /><br /></div>
+              <div class="desc schedule-abstract">How do you build reliable systems where downtime is not just an inconvenience, but a threat to trust, income, and even safety? In this talk, Roosevelt Elias, founder of Payble, explores how to establish SRE principles in markets where infrastructure is unreliable, cloud access is intermittent, and talent pipelines are still emerging. Drawing from real-world experience building financial infrastructure in Africa, we’ll discuss culturally aware incident management, lightweight observability stacks, distributed troubleshooting with limited tooling, and what it means to bake resilience into the DNA of both product and process even when the odds are stacked against you.
+This talk is ideal for SREs, platform engineers, and product leaders building for emerging markets or aiming to design more resilient systems globally.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -687,15 +903,24 @@
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Marcel Koert.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Marcel Koert</a></div>
+                <div class="name">Marcel Koert</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Why Your DevOps Isn’t Reliable (And It’s Not the Tools)</a>
               </h3>
               <div class="location mb-3">MeloMar IT</div>
-              <div class="desc">We blame tools. Kubernetes crashed. Terraform misfired. Alerts didn’t trigger. But what if the real reason your DevOps isn’t reliable… is Dave? In this engaging and eye-opening session, we flip the script on traditional DevOps blame. I’ll show you why the root cause of most outages isn’t...<br /><br /></div>
+              <div class="desc schedule-abstract">We blame tools. Kubernetes crashed. Terraform misfired. Alerts didn’t trigger. But what if the real reason your DevOps isn’t reliable… is Dave?
+In this engaging and eye-opening session, we flip the script on traditional DevOps blame. I’ll show you why the root cause of most outages isn’t technical—it’s human. From missed Slack messages to rushed hotfixes and undocumented changes, it’s behavior—not infrastructure—that most often undermines reliability.
+This talk dives deep into the eight behavioral pillars of reliability. You’ll hear real-world examples of how poor communication, lack of ownership, and overreliance on tools have taken down multi-million-euro systems. We’ll explore how strong team habits, collaborative culture, and psychological safety do more for uptime than your latest CI/CD upgrade ever could.
+Expect thought-provoking insights on: • Why communication is your first defense—not a soft skill. • How processes protect more than they restrict. • Why blameless postmortems aren’t about being nice—they’re essential for truth. • What it really means to build a learning culture in SRE and DevOps.
+You’ll walk away with practical strategies to strengthen your team’s human infrastructure and reshape how you think about reliability.
+Because here’s the kicker: Tools don’t build resilient systems—people do.
+If you’ve ever seen an outage sparked by a well-meaning engineer, or if you’re wondering why your metrics look fine but your reliability feels fragile, this talk is for you.
+Join me to explore the most overlooked layer of your stack: the human one.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -704,15 +929,20 @@
               <h4 class="time mb-3">15:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Michael Meelis.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Michael Meelis</a></div>
+                <div class="name">Michael Meelis</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Building Platforms breaking code: how your org chart wrecks everything</a>
               </h3>
               <div class="location mb-3">ITQ</div>
-              <div class="desc">Do you wonder why your developers are slow to deliver? Are you stuck in an ever-growing loop of Jira tickets? Does communication break down as you scale? If your company's org chart is more complex than your product architecture, this talk is for you. Business and software development are...<br /><br /></div>
+              <div class="desc schedule-abstract">Do you wonder why your developers are slow to deliver? Are you stuck in an ever-growing loop of Jira tickets? Does communication break down as you scale? If your company's org chart is more complex than your product architecture, this talk is for you.
+Business and software development are governed by principles like Brook's Law, Murphy’s Law and Conway’s Law. In this talk I will show that we can break Murphy's law! Let's think outside of the box and inverse the communication patterns. Showing that Conway was right all along.
+We’ll explore Conway’s Law and Domain-Driven Design (DDD) to bridge the gap between tech and business—and I’ll prove that we are not the problem, the org chart is.
+TL;DR; Sit back and relax and let me explain how we can use Conway's law and DDD to optimise the developer experience.<a class="schedule-abstract-read-more" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -721,15 +951,17 @@
               <h4 class="time mb-3">16:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img class="profile-image rounded-circle mb-2" src="../speakers/Birol Ertekin.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Birol Ertekin</a></div>
+                <div class="name">Birol Ertekin</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Reducing Blast Radius</a>
               </h3>
               <div class="location mb-3">Twingate</div>
-              <div class="desc">As site reliability / infrastructure engineers we do a lot of things for better reliability. Some of them are easy, especially if your cloud provider supports it, like adding HA to your database. And some of them require more thorough process and planning , for example reducing blast radius. You...<br /><br /></div>
+              <div class="desc schedule-abstract">As site reliability / infrastructure engineers we do a lot of things for better reliability. Some of them are easy, especially if your cloud provider supports it, like adding HA to your database. And some of them require more thorough process and planning , for example reducing blast radius. You can start small with multi-zone / multi-region setup for your compute, but then you will most likely still end up with SPOFs like database and load balancer. Sharding is not new and there are many ways to accomplish it. We'll go over what Twingate did for it's own sharding strategy in this talk that eliminated all single point of failures and reduced the impact of database migrations and infrastructure changes.<a class="schedule-abstract-read-more" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -738,15 +970,19 @@
               <h4 class="time mb-3">16:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img class="profile-image rounded-circle mb-2" src="../speakers/Joao Rosa.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Joao Rosa</a></div>
+                <div class="name">Joao Rosa</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Leveraging Team Topologies for Software Evolution</a>
               </h3>
               <div class="location mb-3">Independent Consultant</div>
-              <div class="desc">Have you ever encountered roadblocks in software development due to disjointed team structures or interactions? You’re not alone. Misalignments between software and the domain, siloed teams focusing on discrete tasks, or processes dictating software architecture often result in rigid software...<br /><br /></div>
+              <div class="desc schedule-abstract">Have you ever encountered roadblocks in software development due to disjointed team structures or interactions? You’re not alone. Misalignments between software and the domain, siloed teams focusing on discrete tasks, or processes dictating software architecture often result in rigid software that fails to meet the customer's needs.
+Enter Team Topologies, a pattern language, and a set of principles and practices to ensure a smooth flow of value while honoring human-centric aspects like trust boundaries and cognitive load. This perspective raises a question: What if we allow team interactions to evolve beyond the organization chart? What would happen to the reliability of the technical systems? What would such a world look like?
+Join me for this talk to explore real-world use cases, understand the Team Topologies principles, and the skills required in a digital world that is constantly changing.<a class="schedule-abstract-read-more" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -755,15 +991,14 @@
               <h4 class="time mb-3">17:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
-              </h3>
-              <div class="location mb-3">Scan each other's QR codes & head to a nearby pub!</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Wrap up</h3>
+              <div class="location mb-3" style="color:#098dcf;">Scan each other's QR codes & head to a nearby pub!</div>
+              
             </div>
           </div>
 
@@ -1199,7 +1434,9 @@
     }
     </script>
 
-    <div class="schedule-cta text-center mx-auto mt-4"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+    
+    <div class="schedule-cta text-center mx-auto mt-4"><a href="https://luma.com/sre" target="_blank" rel="noopener" class="btn btn-secondary btn-lg d-block d-md-inline-block">Upcoming conferences on LUMA</a></div>
+    
   </div>
 </section>
 
@@ -1209,11 +1446,11 @@
 <section id="speakers" class="speakers-section section">
   <div class="container">
     <h3 class="section-heading text-center mb-3">Speakers</h3>
-    <div class="row">
+    <div class="row row-cols-2 row-cols-lg-5">
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img src="../speakers/Birol Ertekin.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1221,7 +1458,10 @@
             <div class="card-text mb-3">
               <div class="meta">Twingate</div>
             </div><!--//card-text-->
-            <a href="./Birol_Ertekin_Twingate_Reducing_Blast_Radius#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Birol_Ertekin_Twingate_Reducing_Blast_Radius#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1236,7 +1476,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Daniel Bojczuk.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1244,7 +1484,10 @@
             <div class="card-text mb-3">
               <div class="meta">Jumbo</div>
             </div><!--//card-text-->
-            <a href="./Daniel_Bojczuk_Jumbo_DevOps_Why_do_we_keep_messing_up#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Daniel_Bojczuk_Jumbo_DevOps_Why_do_we_keep_messing_up#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1259,7 +1502,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Devrim Demiroz.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1267,7 +1510,10 @@
             <div class="card-text mb-3">
               <div class="meta">Swisscom</div>
             </div><!--//card-text-->
-            <a href="./Devrim_Demiroz_Swisscom_Lightning_Thoughts_Charting_the_AlphaEvolve__OTel_Journey#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Devrim_Demiroz_Swisscom_Lightning_Thoughts_Charting_the_AlphaEvolve__OTel_Journey#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1282,7 +1528,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Frederic G. Marand.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1290,7 +1536,10 @@
             <div class="card-text mb-3">
               <div class="meta">OSInet</div>
             </div><!--//card-text-->
-            <a href="./Frederic_G_Marand_OSInet_TLA_Your_Secret_Weapon_Against_Concurrency_Hell#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Frederic_G_Marand_OSInet_TLA_Your_Secret_Weapon_Against_Concurrency_Hell#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1305,7 +1554,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img src="../speakers/Joao Rosa.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1313,7 +1562,10 @@
             <div class="card-text mb-3">
               <div class="meta">Independent Consultant</div>
             </div><!--//card-text-->
-            <a href="./Joao_Rosa_Independent_Consultant_Leveraging_Team_Topologies_for_Software_Evolution#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Joao_Rosa_Independent_Consultant_Leveraging_Team_Topologies_for_Software_Evolution#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1328,7 +1580,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Marcel Koert.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1336,7 +1588,10 @@
             <div class="card-text mb-3">
               <div class="meta">MeloMar IT</div>
             </div><!--//card-text-->
-            <a href="./Marcel_Koert_MeloMar_IT_Why_Your_DevOps_Isnt_Reliable_And_Its_Not_the_Tools#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Marcel_Koert_MeloMar_IT_Why_Your_DevOps_Isnt_Reliable_And_Its_Not_the_Tools#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1351,7 +1606,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Martin McLarnon.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1359,7 +1614,10 @@
             <div class="card-text mb-3">
               <div class="meta">Coralogix</div>
             </div><!--//card-text-->
-            <a href="./Martin_McLarnon_Coralogix_Using_OpenTelemetry_to_Improve_Service_Level_Objectives#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Martin_McLarnon_Coralogix_Using_OpenTelemetry_to_Improve_Service_Level_Objectives#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1374,7 +1632,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Michael Meelis.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1382,7 +1640,10 @@
             <div class="card-text mb-3">
               <div class="meta">ITQ</div>
             </div><!--//card-text-->
-            <a href="./Michael_Meelis_ITQ_Building_Platforms_breaking_code_how_your_org_chart_wrecks_everything#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Michael_Meelis_ITQ_Building_Platforms_breaking_code_how_your_org_chart_wrecks_everything#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1397,7 +1658,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Mike Kotsur.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1405,7 +1666,10 @@
             <div class="card-text mb-3">
               <div class="meta">Absolute Value</div>
             </div><!--//card-text-->
-            <a href="./Mike_Kotsur_Absolute_Value_Platform_as_a_Product_Drive_Adoption_for_Your_Internal_Tools#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Mike_Kotsur_Absolute_Value_Platform_as_a_Product_Drive_Adoption_for_Your_Internal_Tools#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1420,7 +1684,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Pablo Martin Guijo.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1428,7 +1692,10 @@
             <div class="card-text mb-3">
               <div class="meta">Catawiki</div>
             </div><!--//card-text-->
-            <a href="./Pablo_Martin_Guijo_Catawiki_From_Local_to_CloudBased_Development_Our_Migration_Story#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Pablo_Martin_Guijo_Catawiki_From_Local_to_CloudBased_Development_Our_Migration_Story#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1443,7 +1710,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Roosevelt Elias.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1451,7 +1718,10 @@
             <div class="card-text mb-3">
               <div class="meta">Payble Technologies</div>
             </div><!--//card-text-->
-            <a href="./Roosevelt_Elias_Payble_Technologies_Reliability_at_the_Edge_Building_SRE_Culture_in_ResourceConstrai#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Roosevelt_Elias_Payble_Technologies_Reliability_at_the_Edge_Building_SRE_Culture_in_ResourceConstrai#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1466,7 +1736,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img src="../speakers/Sohan Maheshwar.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1474,7 +1744,10 @@
             <div class="card-text mb-3">
               <div class="meta">AuthZed</div>
             </div><!--//card-text-->
-            <a href="./Sohan_Maheshwar_AuthZed_How_Google_built_a_Consistent__Global_Authorization_System_and_you_can_too#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Sohan_Maheshwar_AuthZed_How_Google_built_a_Consistent__Global_Authorization_System_and_you_can_too#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1489,15 +1762,18 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Wouter Lagerweij & Krijn Mossel.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
-            <h5 class="card-title mb-2">Wouter Lagerweij & Krijn Mossel</h5>
+            <h5 class="card-title mb-2">Wouter Lagerweij<br>&amp; Krijn Mossel</h5>
             <div class="card-text mb-3">
               <div class="meta">Independent & DR. Insight</div>
             </div><!--//card-text-->
-            <a href="./Wouter_Lagerweij__Krijn_Mossel_Independent__DR_Insight_Governing_the_Cloud_A_Guide_to_Data_Sovereign#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Wouter_Lagerweij__Krijn_Mossel_Independent__DR_Insight_Governing_the_Cloud_A_Guide_to_Data_Sovereign#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1515,7 +1791,7 @@
       
 
     </div><!--//row-->
-    <div class="speakers-cta text-center py-3"><a class="btn btn-primary btn-lg" href="#tickets">Get Tickets</a></div>
+    
   </div><!--//container-->
 
 </section><!--//speakers-section-->
@@ -1570,6 +1846,21 @@
 
 
 
+<style>
+  .modal-speaker .desc p,
+  .modal-speaker .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .modal-speaker .desc {
+    padding-bottom: 0.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+</style>
+
 
 <!-- Modal Speaker 1 -->
 <div class="modal modal-speaker modal-speaker-1" id="modal-speaker-1" tabindex="-1" role="dialog" aria-labelledby="speaker-1-ModalLabel" aria-hidden="true">
@@ -1600,6 +1891,7 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Google Zanzibar is the singular authorization service that powers permissions and sharing across all Google properties, including Docs, YouTube, and Cloud IAM. Creating a consistent, global-scale authorization system that can process "more than 10 million client queries per second” is not a trivial task. The talk will cover how the paper lays out an engineer-friendly blueprint for building a highly scalable distributed system with flexible consistency guarantees.
 This talk will start with foundational knowledge of Relationship Based Access Control (ReBAC) and then cover the technical implementations behind Zanzibar - How Google solved for correctness, scale and speed. The presentation will cover the different APIs for interacting with the system and also a deep-dive into how the “New Enemy” problem was solved. The talk will conclude with how you can use open source tools to build authZ into your application.K</p></p>
               </div>
@@ -1607,6 +1899,7 @@ This talk will start with foundational knowledge of Relationship Based Access Co
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p></p>
               </div>
           </div><!--//modal-body-->
@@ -1643,6 +1936,7 @@ This talk will start with foundational knowledge of Relationship Based Access Co
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>With changing political relations and deteriorating trust in the large cloud providers, Data Sovereignty is on everyone’s mind. In this session, we will show you that the hard work you’ve already done on the road to DevOps and SRE will serve you just as well to make your systems sovereign by design. Join us to learn how to:
 - Apply architectural patterns like hybrid cloud and edge computing to enforce data locality and control.
 - Use IaaS software engineering principles to enhance the portability of your infrastructure.
@@ -1654,6 +1948,7 @@ You’ll come away from this talk with a set of tweaks and changes to your curre
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><h2><strong>Krijn Mossel</strong> is a technology leader with a focus on infrastructure, reliability and observability. In his 20+ years in the industry, he's been a Software Engineer, an Engineering Manager at firms like Lucent, Elastic, SurePay, Rackspace and Google, in both the US and The Netherlands, and a CTO/co-founder at his own startup. A firm believer in lifelong learning, he is currently obsessed with the interplay between modern IT infrastructure, politics, and the bleeding edge of tech.</h2>
 <p><strong>Wouter Lagerweij</strong> is a technology and product leader and coach who knows how to align the strategy, product management and execution of software development. Having worked in all the different roles, he knows how to build an organization so that the whole becomes greater than the parts. He’s also the author of a new book: “The Product Owner’s Guide To Escaping Legacy”, explaining how product, and management, can play a central role in dealing with technical debt.</p></p>
               </div>
@@ -1691,6 +1986,7 @@ You’ll come away from this talk with a set of tweaks and changes to your curre
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Let's be honest: writing correct concurrent and distributed code is hard. Race conditions? Deadlocks? They're the bane of modern software development, especially with tools like Kafka, Kubernetes, and microservices. Testing helps, but it rarely finds all the subtle, timing-dependent bugs.
 Imagine having a way to mathematically verify your design's logic before you code it. That's TLA+. Developed by Turing Award winner Leslie Lamport, it's a language for specifying and checking algorithms, especially concurrent ones. The catch? Most intros are dense and theoretical.
 This session is different. It's TLA+ for the rest of us – the software engineers in the trenches. We'll skip the deep math and focus on practical application. You'll learn what TLA+ is, how to model simple concurrent interactions, and how it can save you from deployment disasters by catching design flaws early. Walk away ready to explore how formal methods can become your secret weapon for building bulletproof systems.
@@ -1704,6 +2000,7 @@ Key Takeaways:
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Consulting software architect / lead dev. Specialized in backend performance optimization. Wrote THE French book on Go: https://osinet.fr/go/en/ - Main non-tech business interests: media and e-commerce.
 Also, playing bass guitar with lots of distortion when I get the chance.</p></p>
               </div>
@@ -1741,6 +2038,7 @@ Also, playing bass guitar with lots of distortion when I get the chance.</p></p>
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>As systems grow more complex, engineering teams must move beyond guesswork when resolving production issues and instead focus on delivering consistent, measurable user value. This talk explores how OpenTelemetry empowers teams to define, measure and improve Service Level Objectives with precision and confidence.
 Drawing on real-world experiences of a software team navigating the challenges of legacy code, cloud migration and production instability, this session demonstrates how OpenTelemetry helps teams gain the insights they need to reduce Mean Time To Resolution, understand root causes and proactively improve system reliability.
 We’ll dive into hands-on examples using the OpenTelemetry Demo Application and show how to help turn technical metrics into business-aligned SLOs that actually mean something. Whether you're an SRE, developer, or engineering leader, this talk will give you the clarity—and tools—to move from reactive firefighting to proactive service reliability.</p></p>
@@ -1749,6 +2047,7 @@ We’ll dive into hands-on examples using the OpenTelemetry Demo Application and
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Martin McLarnon is an engineer with almost 30 years experience working in many different roles within IT. He has worked as a Network Manager, Software engineer, Cloud Architect, Engineering lead and worked as an engineering consultant before joining Coralogix.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -1785,12 +2084,14 @@ We’ll dive into hands-on examples using the OpenTelemetry Demo Application and
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Summary: DevOps isn't a new concept, but a lot of companies still struggle to get it right. Even when they think they've nailed it, they often run into some not-so-fun side effects, like unhappy developers or unexpected costs that sneak up on them. In this presentation, we'll see why this can happen and how to dodge these pitfalls.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Daniel Bojczuk is an experienced Software Engineer and technical leader with over a decade of expertise across cloud platforms, DevOps, and modern software architecture. Currently at Jumbo Supermarkten, Daniel focuses on building an efficient developer platform to accelerate business feature delivery.
 Previously, he played key roles at Rabobank, Philips, Itaú Unibanco, and WAES, where he designed cloud-native solutions (Azure &amp; AWS), developed scalable APIs and microservices, and led teams through modernization and refactoring initiatives. With a strong background in .NET, TypeScript, serverless computing, and CI/CD, Daniel is also passionate about coaching, mentoring, and fostering knowledge-sharing communities to elevate engineering excellence.</p></p>
               </div>
@@ -1828,6 +2129,7 @@ Previously, he played key roles at Rabobank, Philips, Itaú Unibanco, and WAES, 
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Are your platform team's brilliant ideas struggling for adoption and meeting resistance? Why do some internal platform tools thrive while others flop? Many technically sound SRE/DevOps initiatives fall short because they aren't treated as products with real users. This session cuts through the noise, revealing why a product mindset is crucial for platform success.
 The best SREs walk a mile in developers’ shoes! I’ll share with you a potent blend of Lean, User Journey, and Story Mapping principles to uncover genuine user needs (your fellow engineers!) and business goals. Learn how to define impactful MVPs for your internal tools that actually reduce cognitive load and boost productivity. I'll share a practical framework, refined across diverse projects, to ensure your platform work delivers real value, gets adopted quickly, and fosters collaboration. Leave with actionable strategies and a board template to start small, validate assumptions, and build platforms your developers will love.</p></p>
               </div>
@@ -1835,6 +2137,7 @@ The best SREs walk a mile in developers’ shoes! I’ll share with you a potent
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Mike Kotsur is a visionary Technology Leader specializing in Data Platforms, Streaming, Analytics, and Cloud Solutions. With a passion for first-principles thinking and systems design, he transforms complex technical challenges into scalable, innovative solutions.
 As a consultant, architect, and coach, Mike bridges strategy and execution—whether guiding teams through critical projects, optimizing legacy systems, or designing cloud-native data platforms. His expertise spans Agile Leadership, Functional Programming (Scala), and Solution Architecture, with a track record of driving efficiency (e.g., halving cycle times via microservices) and launching impactful innovations (e.g., secure data-sharing platforms).
 Known for his structured problem-solving and collaborative mindset, Mike thrives in roles that demand technical depth, mentorship, and cross-functional alignment. Clients and peers praise his ability to "break down complexity" and foster data-driven decisions.</p></p>
@@ -1873,12 +2176,14 @@ Known for his structured problem-solving and collaborative mindset, Mike thrives
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In this session, I invite you to join a thought experiment I conducted just after DeepMind AlphaEvolve reached the event horizon. I’ll explore how evolutionary AI usage architectures might weave into the OpenTelemetry‑powered observability landscape of the CNCF, turning runtime traces and static code into a self‑optimizing loop. No deep dives—just sparks of ideas to inspire the next steps in agent‑driven software evolution. I hope this quick sketch encourages questions and collaboration.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Devrim is a software and system engineer with over 25 years of hands‑on experience, from commodore up to modern observability. He’s guided multiple APM and IAM implementations in production, and today focuses on open‑source systems and Opentelemetry. Always learning, he enjoys mapping complex systems into simple, actionable visualisations.</p>
 <p><a href="https://sdcrotterdam.swisscom.ch/">Swisscom DVX Engineer (DevOps Center Rotterdam)</a>
 <a href="https://opentelemetry.io">OpenTelemetry Member</a>
@@ -1918,6 +2223,7 @@ Known for his structured problem-solving and collaborative mindset, Mike thrives
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>How do you build reliable systems where downtime is not just an inconvenience, but a threat to trust, income, and even safety? In this talk, Roosevelt Elias, founder of Payble, explores how to establish SRE principles in markets where infrastructure is unreliable, cloud access is intermittent, and talent pipelines are still emerging. Drawing from real-world experience building financial infrastructure in Africa, we’ll discuss culturally aware incident management, lightweight observability stacks, distributed troubleshooting with limited tooling, and what it means to bake resilience into the DNA of both product and process even when the odds are stacked against you.
 This talk is ideal for SREs, platform engineers, and product leaders building for emerging markets or aiming to design more resilient systems globally.</p></p>
               </div>
@@ -1925,6 +2231,7 @@ This talk is ideal for SREs, platform engineers, and product leaders building fo
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Roosevelt Elias is a visionary solutions architect, product strategist, technology entrepreneur, and founder of Payble, a next-generation product technology company focused on solving complex economic and digital inclusion challenges for micro and small businesses across Africa and globally. With over a decade of experience spanning product design, payments, and creative technology, Roosevelt has built companies at the intersection of design, technology, and social impact. including a successful exit in the print media space and a thriving live-streaming SaaS business that has powered events for global artists and thought leaders.
 A trained computer scientist with a background in IT Security, Roosevelt is passionately committed to creating tools that enable underserved businesses to thrive with the same capabilities as Fortune 500 enterprises, through intelligent systems, AI-driven insights, and user-first design. Under his leadership, Payble is redefining the role of financial technology, not just as a utility, but as an ecosystem that transforms local businesses into global players.
 He is a bold thinker, deeply rooted in service, faith, and sustainable impact, building Payble to be a company that will outlive generations.</p></p>
@@ -1963,6 +2270,7 @@ He is a bold thinker, deeply rooted in service, faith, and sustainable impact, b
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>We blame tools. Kubernetes crashed. Terraform misfired. Alerts didn’t trigger. But what if the real reason your DevOps isn’t reliable… is Dave?
 In this engaging and eye-opening session, we flip the script on traditional DevOps blame. I’ll show you why the root cause of most outages isn’t technical—it’s human. From missed Slack messages to rushed hotfixes and undocumented changes, it’s behavior—not infrastructure—that most often undermines reliability.
 This talk dives deep into the eight behavioral pillars of reliability. You’ll hear real-world examples of how poor communication, lack of ownership, and overreliance on tools have taken down multi-million-euro systems. We’ll explore how strong team habits, collaborative culture, and psychological safety do more for uptime than your latest CI/CD upgrade ever could.
@@ -1976,6 +2284,7 @@ Join me to explore the most overlooked layer of your stack: the human one.</p></
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>As the founder of Melomar-IT, I am dedicated to demystifying complex IT concepts and providing clear, actionable insights to professionals and enthusiasts alike. With a robust background in Platform Engineering, DevOps, and Site Reliability Engineering (SRE), I specialize in creating content that bridges the gap between intricate technical subjects and practical understanding.
 Professional Expertise: • Platform Engineering: Designing and managing scalable, efficient, and secure IT infrastructures that support seamless application development and deployment. • DevOps Engineering: Implementing and promoting DevOps best practices to enhance collaboration, automate workflows, and accelerate software delivery. • Site Reliability Engineering (SRE): Ensuring system reliability, performance, and scalability through proactive monitoring, automation, and incident response strategies. • IT Education and Content Creation: Developing comprehensive IT explainers and tutorials that empower individuals to enhance their technical skills and stay abreast of industry trends.
 Melomar-IT on YouTube: Through Melomar-IT, I produce and share content focused on: • In-Depth Tutorials: Step-by-step guides on Platform Engineering, DevOps tools, and SRE practices. • Industry Insights: Analysis of current trends and emerging technologies in the IT sector. • Practical IT Explainers: Simplifying complex concepts for better understanding and application.
@@ -2016,6 +2325,7 @@ Connect with Me: I am always eager to connect with fellow professionals, share i
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Do you wonder why your developers are slow to deliver? Are you stuck in an ever-growing loop of Jira tickets? Does communication break down as you scale? If your company's org chart is more complex than your product architecture, this talk is for you.
 Business and software development are governed by principles like Brook's Law, Murphy’s Law and Conway’s Law. In this talk I will show that we can break Murphy's law! Let's think outside of the box and inverse the communication patterns. Showing that Conway was right all along.
 We’ll explore Conway’s Law and Domain-Driven Design (DDD) to bridge the gap between tech and business—and I’ll prove that we are not the problem, the org chart is.
@@ -2025,6 +2335,7 @@ TL;DR; Sit back and relax and let me explain how we can use Conway's law and DDD
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Michael Meelis is a Platform Specialist and DevOps consultant with deep expertise in cloud automation, platform architecture, and Kubernetes. Through ITQ, he supports organizations like Logius and Politie Nederland in building secure, scalable infrastructure. As founder of The Meta Programmer, he also trains teams to fully automate their platforms and accelerate delivery.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2061,12 +2372,14 @@ TL;DR; Sit back and relax and let me explain how we can use Conway's law and DDD
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>As site reliability / infrastructure engineers we do a lot of things for better reliability. Some of them are easy, especially if your cloud provider supports it, like adding HA to your database. And some of them require more thorough process and planning , for example reducing blast radius. You can start small with multi-zone / multi-region setup for your compute, but then you will most likely still end up with SPOFs like database and load balancer. Sharding is not new and there are many ways to accomplish it. We'll go over what Twingate did for it's own sharding strategy in this talk that eliminated all single point of failures and reduced the impact of database migrations and infrastructure changes.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Birol Ertekin is a Director of Engineering at Twingate, a new API-first security platform that helps companies manage how identities and devices access networks, applications, and data. Previously he has 20+ years of experience in the industry working for companies like Meta, Vudu - Movies &amp; TV, ign.com. Highly enthusiastic about uptime and sees everything in life as a learning experience including outages. Is not happy if root-cause(s) can not be identified after incidents/outages.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2103,6 +2416,7 @@ TL;DR; Sit back and relax and let me explain how we can use Conway's law and DDD
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Have you ever encountered roadblocks in software development due to disjointed team structures or interactions? You’re not alone. Misalignments between software and the domain, siloed teams focusing on discrete tasks, or processes dictating software architecture often result in rigid software that fails to meet the customer's needs.
 Enter Team Topologies, a pattern language, and a set of principles and practices to ensure a smooth flow of value while honoring human-centric aspects like trust boundaries and cognitive load. This perspective raises a question: What if we allow team interactions to evolve beyond the organization chart? What would happen to the reliability of the technical systems? What would such a world look like?
 Join me for this talk to explore real-world use cases, understand the Team Topologies principles, and the skills required in a digital world that is constantly changing.</p></p>
@@ -2111,6 +2425,7 @@ Join me for this talk to explore real-world use cases, understand the Team Topol
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Joao Rosa is an independent consultant and interim CTO who helps scaling organisations align their technology strategy with business goals. With over 15 years of experience across engineering, architecture, and leadership roles, João has guided digital transformations in sectors ranging from EdTech to e-commerce. He is a Team Topologies Valued Practitioner, a frequent collaborator with Conflux, and a published author with O’Reilly. Passionate about organisational design and engineering culture, João supports companies in building sustainable, adaptive tech teams.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2147,6 +2462,7 @@ Join me for this talk to explore real-world use cases, understand the Team Topol
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>What does it take to move an entire engineering organization from traditional local development setups to developing directly in the cloud? At Catawiki, this shift was more than just swapping tools—it was a cultural and technical transformation aimed at improving reliability, feedback loops, and developer velocity.
 This talk walks through the highlights of our journey: from the early signs that local development was holding us back, to the decisions, challenges, and breakthroughs that shaped our move to a cloud-based development workflow.</p></p>
               </div>
@@ -2154,6 +2470,7 @@ This talk walks through the highlights of our journey: from the early signs that
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p><strong>Pablo Martin Guijo</strong> is a seasoned software engineer with a strong background in DevOps, developer experience (DevEx), and platform engineering. He currently serves as a <strong>Senior Software Engineer</strong> on the <strong>Platform Team at Catawiki</strong>, where he focuses on systems design, capacity planning, and cloud infrastructure.
 With over eight years of professional experience, Pablo has held various roles at <strong>ING Nederland</strong>, including DevOps Engineer and IT Trainee, contributing to the Finance and Risk integration platform and gaining hands-on experience with CI/CD, cloud services, and enterprise architecture. Prior to ING, he worked at <strong>NXP Semiconductors</strong> as both a system engineer and a master thesis student, where he specialized in embedded systems and time synchronization in Automotive Ethernet networks.
 Pablo holds a <strong>cum laude Master's degree in Embedded Systems</strong> from the <strong>Eindhoven University of Technology</strong> and completed a semester abroad at <strong>Shandong University</strong> during his undergraduate studies in Electrical Engineering.

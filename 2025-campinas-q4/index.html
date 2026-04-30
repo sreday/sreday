@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="#venue">Venue</a></li>
@@ -133,6 +143,7 @@
 		</div><!--//branding-->
 	</header><!--//header-->
 
+	
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
@@ -176,6 +187,7 @@
 		</div><!--//container-->
 
 	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -217,7 +229,117 @@
   <div class="container">
     <div class="event-countdown text-center mb-3">
     
-      <h4 class="countdown-intro mb-2 text-center mb-3">Event finished</h4>
+      <h4 class="countdown-intro mb-2 text-center mb-3">Event finished, what's next?</h4>
+      
+      <style>
+        .idx-tl { position: relative; padding: 20px 0 8px; margin-bottom: 8px; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .idx-tl-line { position: absolute; top: 26px; left: 0; right: 0; height: 2px; background: var(--brand-lighter); z-index: 0; }
+        .idx-tl-events { display: flex; justify-content: space-between; position: relative; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
+        .idx-tl-event { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 0; }
+        .idx-tl-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--brand); border: 2px solid #fff; outline: 2px solid var(--brand); margin-bottom: 10px; flex-shrink: 0; z-index: 1; }
+        .idx-tl-dot.past { background: #999; outline-color: #999; }
+        .idx-tl-chip { background: var(--brand-lightest); border: 1px solid var(--brand-lighter); border-radius: 8px; padding: 8px 10px; text-align: center; text-decoration: none; width: 100%; transition: background .15s; min-height: 80px; display: flex; flex-direction: column; justify-content: center; }
+        .idx-tl-chip:hover { background: var(--brand-pale); text-decoration: none; }
+        .idx-tl-chip.past { background: #e8e8e8; border-color: #ccc; }
+        .idx-tl-chip.past:hover { background: #d8d8d8; }
+        .idx-tl-city { font-family: 'Montserrat', sans-serif; font-size: .8rem; font-weight: 700; color: var(--brand-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .idx-tl-chip.past .idx-tl-city { color: #555; }
+        .idx-tl-date { font-size: .75rem; color: var(--brand-light); margin-top: 2px; }
+        .idx-tl-chip.past .idx-tl-date { color: #777; }
+        .idx-tl-pin-event { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+        .idx-tl-pin { font-size: 2.25rem; line-height: 1; color: var(--brand-dark); margin-bottom: 10px; position: relative; top: -4px; }
+      </style>
+      <div class="idx-tl">
+        <div class="idx-tl-line"></div>
+        <div class="idx-tl-events">
+          
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-nyc-q1/" class="idx-tl-chip past">
+              <div class="idx-tl-city">NYC</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">February 26, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-london-q1/" class="idx-tl-chip past">
+              <div class="idx-tl-city">London</div>
+              <div class="idx-tl-date" style="font-style:normal;">United Kingdom</div>
+              <div class="idx-tl-date">March 12, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-san-francisco-q2/" class="idx-tl-chip past">
+              <div class="idx-tl-city">San Francisco</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">April 17, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-seattle-q2/" class="idx-tl-chip past">
+              <div class="idx-tl-city">Seattle</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">April 21, 2026</div>
+            </a>
+          </div>
+          
+          
+          
+          <div class="idx-tl-pin-event"><div class="idx-tl-pin">▼</div></div>
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-barcelona-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Barcelona</div>
+              <div class="idx-tl-date" style="font-style:normal;">Spain</div>
+              <div class="idx-tl-date">May 8, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-austin-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Austin</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">May 11, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-munich-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Munich</div>
+              <div class="idx-tl-date" style="font-style:normal;">Germany</div>
+              <div class="idx-tl-date">May 21, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-nyc-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">NYC</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">June 6, 2026</div>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+      
     
     </div>
   </div>
@@ -271,14 +393,7 @@
     </script>
 </section>
 
-<section id="tickets" class="tickets-section section">
-  <div class="container">
-    <h3 class="section-heading text-center mb-3">Tickets</h3>
 
-    
-
-  </div>
-</section>
 
 <style>
   .speakers-section .card {
@@ -291,24 +406,82 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    font-size: 0.9rem;
+  }
+  .speakers-section .card-title {
+    font-size: 1.1rem;
+  }
+  .event-card-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-top: auto;
+    width: 100%;
+  }
+  .speakers-section .event-card-buttons a {
+    flex: 0 1 50%;
+    text-align: center;
+    min-width: 0;
+    display: block;
   }
   .event-read-more-btn {
     display: inline-block;
-    padding: 8px 18px;
-    background: #8D5E80;
+    padding: 6px 12px;
+    background: var(--brand-light);
     color: #fff;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
+    font-size: 0.8rem;
     transition: background 0.2s ease;
-    margin-top: auto;
-    align-self: flex-start;
   }
   .event-read-more-btn:hover,
   .event-read-more-btn:focus {
-    background: #9C7290;
+    background: var(--brand-lighter);
     color: #fff;
     text-decoration: none;
+  }
+  .event-watch-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #EC645E;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    transition: background 0.2s ease;
+  }
+  .event-watch-btn:hover,
+  .event-watch-btn:focus {
+    background: #F28B87;
+    color: #fff;
+    text-decoration: none;
+  }
+  .event-watch-btn-sm {
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    margin-left: 12px;
+  }
+  .schedule-abstract {
+    position: relative;
+    max-height: 3.2em;
+    line-height: 1.6;
+    overflow: hidden;
+    text-align: justify;
+  }
+  .schedule-abstract-read-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-left: 3em;
+    background: linear-gradient(to right, transparent, #e8f8f0 30%);
+    font-weight: 700;
+    color: var(--brand);
+    text-decoration: underline;
+  }
+  .schedule-section .item {
+    margin-bottom: 4.5rem;
   }
 </style>
 
@@ -335,7 +508,7 @@
   .track-nav-links a {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: #713660;
+    background: var(--brand);
     color: white;
     text-decoration: none;
     border-radius: 4px;
@@ -344,25 +517,25 @@
     transition: background 0.2s;
   }
   .track-nav-links a:hover {
-    background: #5e2c50;
+    background: var(--brand-dark);
     color: white;
   }
   .view-toggle-link {
-    color: #713660;
+    color: var(--brand);
     text-decoration: none;
     font-size: 0.9rem;
     cursor: pointer;
     padding: 0.5rem 0.75rem;
-    border: 1px solid #713660;
+    border: 1px solid var(--brand);
     border-radius: 4px;
     transition: all 0.2s;
   }
   .view-toggle-link:hover {
-    background: #713660;
+    background: var(--brand);
     color: white;
   }
   .view-toggle-link.active {
-    background: #713660;
+    background: var(--brand);
     color: white;
   }
   /* Table view */
@@ -379,7 +552,7 @@
     table-layout: fixed;
   }
   .schedule-grid-table th {
-    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
     color: white;
     padding: 0.75rem 1rem;
     text-align: left;
@@ -391,17 +564,17 @@
   }
   .schedule-grid-table td {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid #ede5eb;
+    border-bottom: 1px solid var(--brand-lightest);
     vertical-align: top;
   }
   .schedule-grid-table td.merged-cell {
     text-align: center;
     font-weight: 500;
     color: #555;
-    background: #ede5eb;
+    background: var(--brand-lightest);
   }
   .schedule-grid-table .time-cell {
-    color: #713660;
+    color: var(--brand);
     font-weight: 600;
     white-space: nowrap;
   }
@@ -411,7 +584,7 @@
     font-weight: 500;
   }
   .schedule-grid-table .talk-cell a:hover {
-    color: #713660;
+    color: var(--brand);
   }
   .schedule-grid-table .speaker-info {
     color: #444;
@@ -420,6 +593,13 @@
   }
   .schedule-grid-table .speaker-info .affiliation {
     color: #666;
+  }
+  .speaker-linkedin-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .speaker-linkedin-link:hover {
+    color: #098dcf;
   }
   .schedule-meta {
     display: flex;
@@ -445,7 +625,7 @@
   }
   /* Track section header */
   .track-section-header {
-    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
     color: white;
     padding: 1rem 1.5rem;
     margin: 2rem 0 0 0;
@@ -457,7 +637,7 @@
     margin-top: 0;
   }
 
-  .schedule-section.theme-bg-light { background-color: #f8f0f6 !important; }
+  .schedule-section.theme-bg-light { background-color: #f0faf5 !important; }
 </style>
 
 <section id="schedule" class="schedule-section section theme-bg-light">
@@ -471,6 +651,8 @@
       <span class="schedule-meta-item">2 parallel tracks</span>
       <span class="schedule-meta-divider">•</span>
       <span class="schedule-meta-item">9:30AM - 6PM</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">Campinas, in-person</span>
     </div>
 
 
@@ -502,15 +684,17 @@
               <h4 class="time mb-3">09:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle mb-2" src="../speakers/Andre Murbach Maidl.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Andre Murbach Maidl</a></div>
+                <div class="name">Andre Murbach Maidl</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: How We Built ClickStack - an open source, open telemetry native Observability stack</a>
               </h3>
               <div class="location mb-3">ClickHouse</div>
-              <div class="desc">Observability was broken. How we built ClickStack - an open source, open telemetry native Observability stack.<br /><br /></div>
+              <div class="desc schedule-abstract">Observability was broken. How we built ClickStack - an open source, open telemetry native Observability stack.<a class="schedule-abstract-read-more" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -519,15 +703,14 @@
               <h4 class="time mb-3">10:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Coffee break</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -536,15 +719,17 @@
               <h4 class="time mb-3">10:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle mb-2" src="../speakers/Rod Anami.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Rod Anami</a></div>
+                <div class="name">Rod Anami</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Agentic AI for SREs: How I casually developed my first MCP server</a>
               </h3>
               <div class="location mb-3">Kyndryl</div>
-              <div class="desc">Agentic AI has become well-known in the world of hybrid cloud operations. Cloud, DevOps, Platform, and Site Reliability engineers are either currently utilizing it or plan to do so in the near future. A common question is the steepness of the learning curve for incorporating it into your utility...<br /><br /></div>
+              <div class="desc schedule-abstract">Agentic AI has become well-known in the world of hybrid cloud operations. Cloud, DevOps, Platform, and Site Reliability engineers are either currently utilizing it or plan to do so in the near future. A common question is the steepness of the learning curve for incorporating it into your utility belt. In this session, I will introduce Agentic AI and the widely adopted integration framework, the Model Context Protocol (MCP). I will also share my experience building my first MCP server, which integrates Generative AI (referred to as the brain for modern operations) with MCP tools for HashiCorp Vault Server. A secrets management platform plays a crucial role in securing modern workloads.<a class="schedule-abstract-read-more" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -553,15 +738,17 @@
               <h4 class="time mb-3">11:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Danne Aguiar.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Danne Aguiar</a></div>
+                <div class="name">Danne Aguiar</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Business Observability with Dynatrace</a>
               </h3>
               <div class="location mb-3">Kyndryl</div>
-              <div class="desc">Observabilty is well known for IT departments around the world. SRE relies over Observability data to ensure the systems are performing as it should be. Automations depends on Observability insights to accurately remediate events. What about bring the Observability to Business side of history?...<br /><br /></div>
+              <div class="desc schedule-abstract">Observabilty is well known for IT departments around the world. SRE relies over Observability data to ensure the systems are performing as it should be. Automations depends on Observability insights to accurately remediate events. What about bring the Observability to Business side of history? Application Performance Monitoring (APM) tools capture more than the only 4 Golden Signals, let's leverage this and provide insights to the Business. In this presentation, I will explain how the Business Events can be captured from monitored sytems, and how to handle them in order to be presented and monitored, providing a real time source of insights at Business level.<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -570,15 +757,19 @@
               <h4 class="time mb-3">11:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Tiago Dias Generoso.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Tiago Dias Generoso</a></div>
+                <div class="name">Tiago Dias Generoso</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Observability Strategy: From Metrics to Meaningful Reliability</a>
               </h3>
               <div class="location mb-3">Kyndryl</div>
-              <div class="desc">Observability isn’t about tools—it’s about strategy, people, and culture. Too often, organizations invest in “magic tools” expecting instant results, only to end up with dashboards no one uses, alerts no one trusts, and teams that feel more burdened than empowered. True observability must start...<br /><br /></div>
+              <div class="desc schedule-abstract">Observability isn’t about tools—it’s about strategy, people, and culture. Too often, organizations invest in “magic tools” expecting instant results, only to end up with dashboards no one uses, alerts no one trusts, and teams that feel more burdened than empowered. True observability must start with strategy: aligning telemetry with business outcomes, defining maturity models, and using benchmarks to guide the journey.
+
+This talk advocates for a shift in mindset: observability as the compass, not the destination. We’ll explore how maturity models and benchmarking frameworks can help organizations measure progress, identify gaps, and link engineering practices (like SLOs, automation, and postmortems) with business impact (resilience, reliability, customer trust). We’ll also cover challenges often amplified in enterprise contexts—such as tool-centric procurement, talent gaps, silos between Dev/Ops/Business, and uneven maturity across teams—and discuss how SREs can drive cultural alignment to overcome them.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -587,15 +778,17 @@
               <h4 class="time mb-3">12:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Joao Fernando Helena Filho & Gabriel Leite.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Joao Fernando Helena Filho & Gabriel Leite</a></div>
+                <div class="name">Joao Fernando Helena Filho & Gabriel Leite</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Enhancing SRE with AI Agents on AWS: Intelligent Automation for Incident Response and Operations</a>
               </h3>
               <div class="location mb-3">AWS</div>
-              <div class="desc">Transform your SRE with AWS GenAI solutions. From automated troubleshooting with Amazon Q to intelligent agents via Bedrock, we help teams automate tasks, detect anomalies, and streamline operations. Enhance efficiency with AI-powered assistance.<br /><br /></div>
+              <div class="desc schedule-abstract">Transform your SRE with AWS GenAI solutions. From automated troubleshooting with Amazon Q to intelligent agents via Bedrock, we help teams automate tasks, detect anomalies, and streamline operations. Enhance efficiency with AI-powered assistance.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -604,15 +797,14 @@
               <h4 class="time mb-3">12:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -621,15 +813,17 @@
               <h4 class="time mb-3">13:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Douglas Bussoli Mugnos.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Douglas Bussoli Mugnos</a></div>
+                <div class="name">Douglas Bussoli Mugnos</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Designing for Failure: Proven Techniques for Reliable Applications</a>
               </h3>
               <div class="location mb-3">Netskope</div>
-              <div class="desc">Failures are not a possibility — they are a certainty. What separates good systems from great ones is how they respond when things go wrong. In this talk, we’ll explore resilience at the heart of SRE: proven techniques such as load shedding, sharding, and deployment strategies that transform...<br /><br /></div>
+              <div class="desc schedule-abstract">Failures are not a possibility — they are a certainty. What separates good systems from great ones is how they respond when things go wrong. In this talk, we’ll explore resilience at the heart of SRE: proven techniques such as load shedding, sharding, and deployment strategies that transform outages into controlled, predictable events. Attendees will walk away with understanding of patterns to minimize failure impact, protect user experience, and strengthen the reliability of their applications. If you care about building systems that survive chaos, this is the session you can’t miss!<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -638,15 +832,17 @@
               <h4 class="time mb-3">14:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Miguel Di Ciurcio Filho.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Miguel Di Ciurcio Filho</a></div>
+                <div class="name">Miguel Di Ciurcio Filho</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Staging Is Dead: How Ephemeral Environments Redefine Platform Engineering</a>
               </h3>
               <div class="location mb-3">Cloud Programming Shell (CPS1)</div>
-              <div class="desc">Static staging slows everything down. Ephemeral environments flip the model by creating production-like sandboxes for every branch. Learn how they accelerate feedback, cut friction, and boost reliability across your platform and teams.<br /><br /></div>
+              <div class="desc schedule-abstract">Static staging slows everything down. Ephemeral environments flip the model by creating production-like sandboxes for every branch. Learn how they accelerate feedback, cut friction, and boost reliability across your platform and teams.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -655,15 +851,17 @@
               <h4 class="time mb-3">14:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Igor Eulalio Morgado Lopes.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Igor Eulalio Morgado Lopes</a></div>
+                <div class="name">Igor Eulalio Morgado Lopes</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">eBPF: Why is everyone talking about it and what does that mean to you?</a>
               </h3>
               <div class="location mb-3">Orca Security</div>
-              <div class="desc">In the rapidly evolving landscape of technology, a groundbreaking innovation has captured the attention of enthusiasts, developers, and industry pioneers. This presentation aims to demystify the buzz around eBPF, illustrating its potential in the realms of networking, security, and monitoring.<br /><br /></div>
+              <div class="desc schedule-abstract">In the rapidly evolving landscape of technology, a groundbreaking innovation has captured the attention of enthusiasts, developers, and industry pioneers. This presentation aims to demystify the buzz around eBPF, illustrating its potential in the realms of networking, security, and monitoring.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -672,15 +870,17 @@
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Bruno Paiuca.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Bruno Paiuca</a></div>
+                <div class="name">Bruno Paiuca</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">The Anatomy of a Secure Request: Ten Layers of Defense from DNS to Database</a>
               </h3>
               <div class="location mb-3">Opsteam</div>
-              <div class="desc">Every HTTPS request tells a security story. Dissect the anatomy of an HTTPS request across ten layers of defense — from DNSSEC, TLS, WAF, to Cedar-based authorization and beyond. Learn how Devs, DevOps, and SREs can weave security-by-design into every hop of modern, cloud-native systems.<br /><br /></div>
+              <div class="desc schedule-abstract">Every HTTPS request tells a security story. Dissect the anatomy of an HTTPS request across ten layers of defense — from DNSSEC, TLS, WAF,  to Cedar-based authorization and beyond. Learn how Devs, DevOps, and SREs can weave security-by-design into every hop of modern, cloud-native systems.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -689,15 +889,14 @@
               <h4 class="time mb-3">15:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Networking & sponsor crawl</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -706,15 +905,17 @@
               <h4 class="time mb-3">16:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Gustavo Martins T Borges.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Gustavo Martins T Borges</a></div>
+                <div class="name">Gustavo Martins T Borges</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Hello World in Production: Building Cloud-Native applications that survive the real world.</a>
               </h3>
               <div class="location mb-3">Advolve.ai </div>
-              <div class="desc">This talk you’ll see how small, practical steps can make your application resilient, scalable, and ready for production without overengineering. Perfect for developers, SREs, and DevOps engineers who want to understand what production-ready really means in cloud environments.<br /><br /></div>
+              <div class="desc schedule-abstract">This talk you’ll see how small, practical steps can make your application resilient, scalable, and ready for production without overengineering. Perfect for developers, SREs, and DevOps engineers who want to understand what production-ready really means in cloud environments.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -723,15 +924,17 @@
               <h4 class="time mb-3">16:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Rodrigo Candido Leme.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Rodrigo Candido Leme</a></div>
+                <div class="name">Rodrigo Candido Leme</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Supercharging SRE with Azure’s AI-Powered Age</a>
               </h3>
               <div class="location mb-3">Microsoft </div>
-              <div class="desc">AI transforms Site Reliability Engineering by automating incident detection, accelerating root cause analysis, and predicting outages before they happen—boosting uptime, reducing toil, and empowering SREs to focus on strategic improvements.<br /><br /></div>
+              <div class="desc schedule-abstract">AI transforms Site Reliability Engineering by automating incident detection, accelerating root cause analysis, and predicting outages before they happen—boosting uptime, reducing toil, and empowering SREs to focus on strategic improvements.<a class="schedule-abstract-read-more" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -740,15 +943,14 @@
               <h4 class="time mb-3">17:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
-              </h3>
-              <div class="location mb-3">Scan each other's QR codes & head to a nearby pub!</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Wrap up</h3>
+              <div class="location mb-3" style="color:#098dcf;">Scan each other's QR codes & head to a nearby pub!</div>
+              
             </div>
           </div>
 
@@ -764,15 +966,14 @@
               <h4 class="time mb-3">10:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Coffee break</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -781,15 +982,52 @@
               <h4 class="time mb-3">10:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img class="profile-image rounded-circle mb-2" src="../speakers/Levi Leopoldino Alves.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Levi Leopoldino Alves</a></div>
+                <div class="name">Levi Leopoldino Alves</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Comunidades de SRE e DevOps: conectando pessoas, processos e propósito no Brasil</a>
               </h3>
               <div class="location mb-3">Matera</div>
-              <div class="desc">Comunidades de SRE e DevOps: conectando pessoas, processos e propósito no Brasil **Principais lições de estar entre as maiores comunidades de tecnologia do país.** Esta sessão provoca uma reflexão: muitos engenheiros de SRE e DevOps possuem vasto conhecimento, mas acabam sendo reconhecidos apenas...<br /><br /></div>
+              <div class="desc schedule-abstract">Comunidades de SRE e DevOps: conectando pessoas, processos e propósito no Brasil  
+**Principais lições de estar entre as maiores comunidades de tecnologia do país.**
+
+Esta sessão provoca uma reflexão: muitos engenheiros de SRE e DevOps possuem vasto conhecimento, mas acabam sendo reconhecidos apenas dentro de suas empresas. Fora delas, ninguém os vê ou se inspira neles. Sabemos que quem não é visto é esquecido, e quem não compartilha não inspira.
+
+Queremos mostrar como a comunidade, especialmente no contexto brasileiro, pode se tornar a ponte entre conhecimento e reconhecimento, fortalecendo tanto os profissionais quanto as empresas. Também trazemos um ponto importante: precisamos falar não apenas sobre histórias de sucesso, mas principalmente sobre falhas, pois é nelas que mais aprendemos e crescemos como comunidade.
+
+Ao incentivar profissionais e empresas a se aproximarem ainda mais da comunidade no Brasil, transformando sua marca em algo memorável.
+
+Nesta sessão, vamos abordar os seguintes tópicos:
+
+**Conhecimento invisível não transforma**  
+“Quem não é visto é esquecido. Quem não é lembrado, não inspira.”  
+O problema do talento escondido
+
+**“A comunidade precisa saber o que você sabe, não apenas a sua empresa.”**  
+Visibilidade cria oportunidades
+
+**“A marca não é só da empresa, é também da comunidade.”**  
+O papel da comunidade no Brasil
+
+**“A sua marca é a comunidade. A sua comunidade é a sua marca.”**  
+O poder do fracasso
+
+**“Histórias de sucesso inspiram. Histórias de fracasso transformam.”**  
+O movimento de dentro para fora
+
+**“A sua empresa se destaca mais quando os seus profissionais se destacam mais.”**  
+Chamada para ação
+
+**“Quem não é visto é esquecido. Quem não compartilha não inspira. Quem não inspira não transforma.”**
+
+---
+
+**Esta sessão será apresentada em português**
+<a class="schedule-abstract-read-more" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -798,15 +1036,17 @@
               <h4 class="time mb-3">11:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img class="profile-image rounded-circle mb-2" src="../speakers/Alexandre Melo Ferreira.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Alexandre Melo Ferreira</a></div>
+                <div class="name">Alexandre Melo Ferreira</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Stack de Observabilidade com Grafana Cloud</a>
               </h3>
               <div class="location mb-3">Grafana Labs</div>
-              <div class="desc">Nessa talk, vamos configurar um cluster Kubernetes para enviar telemetria para Grafana Cloud e monitorar de ponta a ponta nosso ambiente utilizando Métricas de K8S com componentes padrão como node_exporter e cadvisor, Traces no formato Opentelemetry e correlação com Logs e como bônus,Assistant de AI<br /><br /></div>
+              <div class="desc schedule-abstract">Nessa talk, vamos configurar um cluster Kubernetes para enviar telemetria para Grafana Cloud e monitorar de ponta a ponta nosso ambiente utilizando Métricas de K8S com componentes padrão como node_exporter e cadvisor, Traces no formato Opentelemetry e correlação com Logs e como bônus,Assistant de AI<a class="schedule-abstract-read-more" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -815,15 +1055,17 @@
               <h4 class="time mb-3">11:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img class="profile-image rounded-circle mb-2" src="../speakers/Luiz Siqueira & Leonardo Marques.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">Luiz Siqueira & Leonardo Marques</a></div>
+                <div class="name">Luiz Siqueira & Leonardo Marques</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">Chaos Engineering: Como Usar o Dynatrace para Transformar Falhas em Aprendizado</a>
               </h3>
               <div class="location mb-3">Banco Bradesco</div>
-              <div class="desc">Como o Bradesco transformou o Chaos Engineering em uma prática contínua e automatizada de experimentos controlados, integrando Dynatrace, Ansible e Azure Chaos Studio para validar hipóteses, fortalecer padrões de resiliência e acelerar o aprendizado das squads em ambientes cloud native.<br /><br /></div>
+              <div class="desc schedule-abstract">Como o Bradesco transformou o Chaos Engineering em uma prática contínua e automatizada de experimentos controlados, integrando Dynatrace, Ansible e Azure Chaos Studio para validar hipóteses, fortalecer padrões de resiliência e acelerar o aprendizado das squads em ambientes cloud native.<a class="schedule-abstract-read-more" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -832,15 +1074,21 @@
               <h4 class="time mb-3">12:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14"><img class="profile-image rounded-circle mb-2" src="../speakers/Alexandre Tavares.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">Alexandre Tavares</a></div>
+                <div class="name">Alexandre Tavares</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">Diferencas entre DataOps e DevOps: Entendendo Práticas e Importancias na Era Digital</a>
               </h3>
               <div class="location mb-3">C6 Bank</div>
-              <div class="desc">Você está convidado para uma palestra imperdível que irá explorar as diferenças e similaridades entre DataOps e DevOps, duas práticas essenciais no desenvolvimento moderno de software e na gestão de dados. O que você vai aprender: A definição e os objetivos de DevOps e DataOps. As principais...<br /><br /></div>
+              <div class="desc schedule-abstract">Você está convidado para uma palestra imperdível que irá explorar as diferenças e similaridades entre DataOps e DevOps, duas práticas essenciais no desenvolvimento moderno de software e na gestão de dados.
+
+O que você vai aprender:
+
+A definição e os objetivos de DevOps e DataOps. As principais diferenças entre as duas práticas e como elas se complementam. A importância de cada uma no cenário atual das empresas voltadas para tecnologia. Exemplos de sucesso de organizações que implementaram essas práticas com eficiência. Público-alvo: Esta palestra é ideal para profissionais de tecnologia, cientistas de dados, desenvolvedores, gerentes de produto, e todos aqueles que desejam compreender melhor como as organizações podem alavancar suas operações de dados e software.<a class="schedule-abstract-read-more" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -849,15 +1097,14 @@
               <h4 class="time mb-3">12:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -866,15 +1113,17 @@
               <h4 class="time mb-3">13:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15"><img class="profile-image rounded-circle mb-2" src="../speakers/Andre Bonfa & Pedro Alex da Costa.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Andre Bonfa & Pedro Alex da Costa</a></div>
+                <div class="name">Andre Bonfa & Pedro Alex da Costa</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Preparar, Operar, Aprender: O Papel do PRR e do Postmortem na Engenharia de Confiabilidade</a>
               </h3>
               <div class="location mb-3">Vivo</div>
-              <div class="desc">O desafio de transformar falhas em combustível para a excelência! Nesta palestra, exploramos como o PRR e Postmortems fortalecem a cultura de confiabilidade, aceleram aprendizados e elevam a maturidade da operação.<br /><br /></div>
+              <div class="desc schedule-abstract">O desafio de transformar falhas em combustível para a excelência! Nesta palestra, exploramos como o PRR e Postmortems fortalecem a cultura de confiabilidade, aceleram aprendizados e elevam a maturidade da operação.<a class="schedule-abstract-read-more" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -883,15 +1132,17 @@
               <h4 class="time mb-3">14:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img class="profile-image rounded-circle mb-2" src="../speakers/Anderson Dorigao, Willian Yamashita & Mateus Rodrigues.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Anderson Dorigao, Willian Yamashita & Mateus Rodrigues</a></div>
+                <div class="name">Anderson Dorigao, Willian Yamashita & Mateus Rodrigues</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Continuous profiling e resiliencia: Aplicando boas práticas de SRE no desenvolvimento Java</a>
               </h3>
               <div class="location mb-3">Banco Bradesco</div>
-              <div class="desc">Descubra como práticas de SRE aliadas ao continuous profiling elevam a resiliência de aplicações Java. Veja exemplos práticos com Dynatrace e Grafana para detectar gargalos e fortalecer a estabilidade dos seus sistemas.<br /><br /></div>
+              <div class="desc schedule-abstract">Descubra como práticas de SRE aliadas ao continuous profiling elevam a resiliência de aplicações Java. Veja exemplos práticos com Dynatrace e Grafana para detectar gargalos e fortalecer a estabilidade dos seus sistemas.<a class="schedule-abstract-read-more" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -900,15 +1151,17 @@
               <h4 class="time mb-3">14:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17"><img class="profile-image rounded-circle mb-2" src="../speakers/Ademar Gregio Junior & Ramon Maia.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Ademar Gregio Junior & Ramon Maia</a></div>
+                <div class="name">Ademar Gregio Junior & Ramon Maia</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Conduzindo FinOps com Confiabilidade: Como os SREs Reduziram os Custos de Nuvem em 30% Sem Comprometer os SLAs</a>
               </h3>
               <div class="location mb-3">Accenture</div>
-              <div class="desc">Nossa equipe de SRE trabalhou em parceria com FinOps para automatizar otimizações de nuvem em tempo real no Kubernetes — redimensionando pods, reequilibrando clusters e ajustando dinamicamente os tipos de máquinas. Essa colaboração alcançou mais de 30% de redução de custos enquanto mantinha os...<br /><br /></div>
+              <div class="desc schedule-abstract">Nossa equipe de SRE trabalhou em parceria com FinOps para automatizar otimizações de nuvem em tempo real no Kubernetes — redimensionando pods, reequilibrando clusters e ajustando dinamicamente os tipos de máquinas. Essa colaboração alcançou mais de 30% de redução de custos enquanto mantinha os SLAs, provando que confiabilidade e eficiência financeira podem andar juntas.<a class="schedule-abstract-read-more" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -917,15 +1170,17 @@
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18"><img class="profile-image rounded-circle mb-2" src="../speakers/Felipe de Freitas Campos.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">Felipe de Freitas Campos</a></div>
+                <div class="name">Felipe de Freitas Campos</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">Microserviços serverless: diferentes designs, mesmas dores</a>
               </h3>
               <div class="location mb-3">GFT Technologies</div>
-              <div class="desc">A adoção de microserviços serverless promete maior agilidade e escalabilidade, mas, apesar das diferentes abordagens de design, as equipes enfrentam desafios semelhantes. Questões como observabilidade, latência, custos imprevisíveis e complexidade de integração continuam sendo pontos críticos....<br /><br /></div>
+              <div class="desc schedule-abstract">A adoção de microserviços serverless promete maior agilidade e escalabilidade, mas, apesar das diferentes abordagens de design, as equipes enfrentam desafios semelhantes. Questões como observabilidade, latência, custos imprevisíveis e complexidade de integração continuam sendo pontos críticos. Este trabalho discute como arquiteturas distintas convergem para os mesmos problemas e o que pode ser feito para mitigá-los.<a class="schedule-abstract-read-more" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -934,15 +1189,14 @@
               <h4 class="time mb-3">15:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Networking & sponsor crawl</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -951,15 +1205,17 @@
               <h4 class="time mb-3">16:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19"><img class="profile-image rounded-circle mb-2" src="../speakers/Emerson Silva.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">Emerson Silva</a></div>
+                <div class="name">Emerson Silva</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">Kubernetes além do deploy: automação inteligente com K8sGPT e AIOps</a>
               </h3>
               <div class="location mb-3">4Linux</div>
-              <div class="desc">Nesta palestra, vamos explorar como aplicar AIOps no dia a dia da operação de clusters Kubernetes utilizando o K8sGPT. Mostrarei como SREs podem transformar ruído em insight, utilizando IA para interpretar sinais e sugerir correções automaticamente.<br /><br /></div>
+              <div class="desc schedule-abstract">Nesta palestra, vamos explorar como aplicar AIOps no dia a dia da operação de clusters Kubernetes utilizando o K8sGPT. Mostrarei como SREs podem transformar ruído em insight, utilizando IA para interpretar sinais e sugerir correções automaticamente.<a class="schedule-abstract-read-more" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -968,15 +1224,17 @@
               <h4 class="time mb-3">16:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20"><img class="profile-image rounded-circle mb-2" src="../speakers/Alan Delcaro.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">Alan Delcaro</a></div>
+                <div class="name">Alan Delcaro</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">Platform Engineering with Dynatrace for SRE: Intelligent Automation and Observability</a>
               </h3>
               <div class="location mb-3">Dynatrace</div>
-              <div class="desc">Learn how Platform Engineering with Dynatrace empowers SRE teams to move beyond reactive dashboards. Discover practical ways to integrate observability and automation for proactive reliability, safe deployments, and continuous optimization.<br /><br /></div>
+              <div class="desc schedule-abstract">Learn how Platform Engineering with Dynatrace empowers SRE teams to move beyond reactive dashboards. Discover practical ways to integrate observability and automation for proactive reliability, safe deployments, and continuous optimization.<a class="schedule-abstract-read-more" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -985,15 +1243,17 @@
               <h4 class="time mb-3">17:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21"><img class="profile-image rounded-circle mb-2" src="../speakers/Amaury Borges Souza.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">Amaury Borges Souza</a></div>
+                <div class="name">Amaury Borges Souza</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">Proteja Pipelines de SRE Terraform e AWS: Aplicando o Shift Left na Confiabilidade</a>
               </h3>
               <div class="location mb-3">FIAP</div>
-              <div class="desc">Confiabilidade sem segurança é mera sorte. Nesta palestra, veja como as práticas do Shift Left capacitam SREs a automatizar a segurança, prevenir incidentes precocemente e entregar sistemas resilientes com confiança.<br /><br /></div>
+              <div class="desc schedule-abstract">Confiabilidade sem segurança é mera sorte. Nesta palestra, veja como as práticas do Shift Left capacitam SREs a automatizar a segurança, prevenir incidentes precocemente e entregar sistemas resilientes com confiança.<a class="schedule-abstract-read-more" href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -1002,15 +1262,17 @@
               <h4 class="time mb-3">17:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22"><img class="profile-image rounded-circle mb-2" src="../speakers/Marcelo da Silva Pires.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22">Marcelo da Silva Pires</a></div>
+                <div class="name">Marcelo da Silva Pires</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22">Construindo um Operator para o DevLake</a>
               </h3>
               <div class="location mb-3">Bosch</div>
-              <div class="desc">Nesta talk mostrarei as motivações para a construção de um Operator para o Apache DevLake, como começar, lições aprendidas e etc.<br /><br /></div>
+              <div class="desc schedule-abstract">Nesta talk mostrarei as motivações para a construção de um Operator para o Apache DevLake, como começar, lições aprendidas e etc.<a class="schedule-abstract-read-more" href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -1019,15 +1281,14 @@
               <h4 class="time mb-3">18:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
-              </h3>
-              <div class="location mb-3">Scan each other's QR codes & head to a nearby pub!</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Wrap up</h3>
+              <div class="location mb-3" style="color:#098dcf;">Scan each other's QR codes & head to a nearby pub!</div>
+              
             </div>
           </div>
 
@@ -1168,19 +1429,27 @@
 
 
 
+
+
           <tr>
             <td class="time-cell">09:30</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: How We Built ClickStack - an open source, open telemetry native Observability stack</a>
-              <div class="speaker-info">Andre Murbach Maidl <span class="affiliation">• ClickHouse</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/andremurbachmaidl/" target="_blank" rel="noopener" class="speaker-linkedin-link">Andre Murbach Maidl</a> <span class="affiliation">• ClickHouse</span></div>
             </td>
 
-            <td class="talk-cell">
 
-            </td>
+
+
+
+            <td class="talk-cell"></td>
+
 
           </tr>
 
@@ -1225,24 +1494,36 @@
 
 
 
+
+
           <tr>
             <td class="time-cell">10:30</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Agentic AI for SREs: How I casually developed my first MCP server</a>
-              <div class="speaker-info">Rod Anami <span class="affiliation">• Kyndryl</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/rodanami/" target="_blank" rel="noopener" class="speaker-linkedin-link">Rod Anami</a> <span class="affiliation">• Kyndryl</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Comunidades de SRE e DevOps: conectando pessoas, processos e propósito no Brasil</a>
-              <div class="speaker-info">Levi Leopoldino Alves <span class="affiliation">• Matera</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/levinux/" target="_blank" rel="noopener" class="speaker-linkedin-link">Levi Leopoldino Alves</a> <span class="affiliation">• Matera</span></div>
             </td>
+
 
           </tr>
+
+
 
 
 
@@ -1263,21 +1544,31 @@
           <tr>
             <td class="time-cell">11:00</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Business Observability with Dynatrace</a>
-              <div class="speaker-info">Danne Aguiar <span class="affiliation">• Kyndryl</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/dannemca/" target="_blank" rel="noopener" class="speaker-linkedin-link">Danne Aguiar</a> <span class="affiliation">• Kyndryl</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Stack de Observabilidade com Grafana Cloud</a>
-              <div class="speaker-info">Alexandre Melo Ferreira <span class="affiliation">• Grafana Labs</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/alexandremeloferreira/" target="_blank" rel="noopener" class="speaker-linkedin-link">Alexandre Melo Ferreira</a> <span class="affiliation">• Grafana Labs</span></div>
             </td>
+
 
           </tr>
+
+
 
 
 
@@ -1298,21 +1589,31 @@
           <tr>
             <td class="time-cell">11:30</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Observability Strategy: From Metrics to Meaningful Reliability</a>
-              <div class="speaker-info">Tiago Dias Generoso <span class="affiliation">• Kyndryl</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/tiago-dias-generoso/" target="_blank" rel="noopener" class="speaker-linkedin-link">Tiago Dias Generoso</a> <span class="affiliation">• Kyndryl</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">Chaos Engineering: Como Usar o Dynatrace para Transformar Falhas em Aprendizado</a>
-              <div class="speaker-info">Luiz Siqueira & Leonardo Marques <span class="affiliation">• Banco Bradesco</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/luizcgs/" target="_blank" rel="noopener" class="speaker-linkedin-link">Luiz Siqueira & Leonardo Marques</a> <span class="affiliation">• Banco Bradesco</span></div>
             </td>
+
 
           </tr>
+
+
 
 
 
@@ -1333,19 +1634,27 @@
           <tr>
             <td class="time-cell">12:00</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Enhancing SRE with AI Agents on AWS: Intelligent Automation for Incident Response and Operations</a>
-              <div class="speaker-info">Joao Fernando Helena Filho & Gabriel Leite <span class="affiliation">• AWS</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/joaofh/" target="_blank" rel="noopener" class="speaker-linkedin-link">Joao Fernando Helena Filho & Gabriel Leite</a> <span class="affiliation">• AWS</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">Diferencas entre DataOps e DevOps: Entendendo Práticas e Importancias na Era Digital</a>
-              <div class="speaker-info">Alexandre Tavares <span class="affiliation">• C6 Bank</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/alexandre-tavares/" target="_blank" rel="noopener" class="speaker-linkedin-link">Alexandre Tavares</a> <span class="affiliation">• C6 Bank</span></div>
             </td>
+
 
           </tr>
 
@@ -1390,24 +1699,36 @@
 
 
 
+
+
           <tr>
             <td class="time-cell">13:30</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Designing for Failure: Proven Techniques for Reliable Applications</a>
-              <div class="speaker-info">Douglas Bussoli Mugnos <span class="affiliation">• Netskope</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/douglasmugnos/" target="_blank" rel="noopener" class="speaker-linkedin-link">Douglas Bussoli Mugnos</a> <span class="affiliation">• Netskope</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Preparar, Operar, Aprender: O Papel do PRR e do Postmortem na Engenharia de Confiabilidade</a>
-              <div class="speaker-info">Andre Bonfa & Pedro Alex da Costa <span class="affiliation">• Vivo</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/andr%C3%A9-bonfa-673a483a/" target="_blank" rel="noopener" class="speaker-linkedin-link">Andre Bonfa & Pedro Alex da Costa</a> <span class="affiliation">• Vivo</span></div>
             </td>
+
 
           </tr>
+
+
 
 
 
@@ -1428,21 +1749,31 @@
           <tr>
             <td class="time-cell">14:00</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Staging Is Dead: How Ephemeral Environments Redefine Platform Engineering</a>
-              <div class="speaker-info">Miguel Di Ciurcio Filho <span class="affiliation">• Cloud Programming Shell (CPS1)</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/mciurcio/" target="_blank" rel="noopener" class="speaker-linkedin-link">Miguel Di Ciurcio Filho</a> <span class="affiliation">• Cloud Programming Shell (CPS1)</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Continuous profiling e resiliencia: Aplicando boas práticas de SRE no desenvolvimento Java</a>
-              <div class="speaker-info">Anderson Dorigao, Willian Yamashita & Mateus Rodrigues <span class="affiliation">• Banco Bradesco</span></div>
-
+              <div class="speaker-info"><a href="https://linkedin.com/in/andersondorigao" target="_blank" rel="noopener" class="speaker-linkedin-link">Anderson Dorigao, Willian Yamashita & Mateus Rodrigues</a> <span class="affiliation">• Banco Bradesco</span></div>
             </td>
+
 
           </tr>
+
+
 
 
 
@@ -1463,21 +1794,31 @@
           <tr>
             <td class="time-cell">14:30</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">eBPF: Why is everyone talking about it and what does that mean to you?</a>
-              <div class="speaker-info">Igor Eulalio Morgado Lopes <span class="affiliation">• Orca Security</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/igoreulalio/" target="_blank" rel="noopener" class="speaker-linkedin-link">Igor Eulalio Morgado Lopes</a> <span class="affiliation">• Orca Security</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Conduzindo FinOps com Confiabilidade: Como os SREs Reduziram os Custos de Nuvem em 30% Sem Comprometer os SLAs</a>
-              <div class="speaker-info">Ademar Gregio Junior & Ramon Maia <span class="affiliation">• Accenture</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/ademargrjr/" target="_blank" rel="noopener" class="speaker-linkedin-link">Ademar Gregio Junior & Ramon Maia</a> <span class="affiliation">• Accenture</span></div>
             </td>
+
 
           </tr>
+
+
 
 
 
@@ -1498,19 +1839,27 @@
           <tr>
             <td class="time-cell">15:00</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">The Anatomy of a Secure Request: Ten Layers of Defense from DNS to Database</a>
-              <div class="speaker-info">Bruno Paiuca <span class="affiliation">• Opsteam</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/brunopaiuca/" target="_blank" rel="noopener" class="speaker-linkedin-link">Bruno Paiuca</a> <span class="affiliation">• Opsteam</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">Microserviços serverless: diferentes designs, mesmas dores</a>
-              <div class="speaker-info">Felipe de Freitas Campos <span class="affiliation">• GFT Technologies</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/felipekiko/" target="_blank" rel="noopener" class="speaker-linkedin-link">Felipe de Freitas Campos</a> <span class="affiliation">• GFT Technologies</span></div>
             </td>
+
 
           </tr>
 
@@ -1555,24 +1904,36 @@
 
 
 
+
+
           <tr>
             <td class="time-cell">16:00</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Hello World in Production: Building Cloud-Native applications that survive the real world.</a>
-              <div class="speaker-info">Gustavo Martins T Borges <span class="affiliation">• Advolve.ai </span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/gmtborges/" target="_blank" rel="noopener" class="speaker-linkedin-link">Gustavo Martins T Borges</a> <span class="affiliation">• Advolve.ai </span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">Kubernetes além do deploy: automação inteligente com K8sGPT e AIOps</a>
-              <div class="speaker-info">Emerson Silva <span class="affiliation">• 4Linux</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/silvemerson/" target="_blank" rel="noopener" class="speaker-linkedin-link">Emerson Silva</a> <span class="affiliation">• 4Linux</span></div>
             </td>
+
 
           </tr>
+
+
 
 
 
@@ -1593,21 +1954,31 @@
           <tr>
             <td class="time-cell">16:30</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Supercharging SRE with Azure’s AI-Powered Age</a>
-              <div class="speaker-info">Rodrigo Candido Leme <span class="affiliation">• Microsoft </span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/leme-brasil-remote" target="_blank" rel="noopener" class="speaker-linkedin-link">Rodrigo Candido Leme</a> <span class="affiliation">• Microsoft </span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">Platform Engineering with Dynatrace for SRE: Intelligent Automation and Observability</a>
-              <div class="speaker-info">Alan Delcaro <span class="affiliation">• Dynatrace</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/alandelcaro/" target="_blank" rel="noopener" class="speaker-linkedin-link">Alan Delcaro</a> <span class="affiliation">• Dynatrace</span></div>
             </td>
+
 
           </tr>
+
+
 
 
 
@@ -1628,21 +1999,28 @@
           <tr>
             <td class="time-cell">17:00</td>
 
+
+
+
+
+
+            <td class="talk-cell merged-cell">Wrap up</td>
+
+
+
+
+
+
+
             <td class="talk-cell">
-
-              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
-              <div class="speaker-info"></div>
-
-            </td>
-
-            <td class="talk-cell">
-
               <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">Proteja Pipelines de SRE Terraform e AWS: Aplicando o Shift Left na Confiabilidade</a>
-              <div class="speaker-info">Amaury Borges Souza <span class="affiliation">• FIAP</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/amaurybsouza/" target="_blank" rel="noopener" class="speaker-linkedin-link">Amaury Borges Souza</a> <span class="affiliation">• FIAP</span></div>
             </td>
+
 
           </tr>
+
+
 
 
 
@@ -1663,16 +2041,22 @@
           <tr>
             <td class="time-cell">17:30</td>
 
+
+
+
+            <td class="talk-cell"></td>
+
+
+
+
+
+
+
             <td class="talk-cell">
-
-            </td>
-
-            <td class="talk-cell">
-
               <a href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22">Construindo um Operator para o DevLake</a>
-              <div class="speaker-info">Marcelo da Silva Pires <span class="affiliation">• Bosch</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/marcpires/" target="_blank" rel="noopener" class="speaker-linkedin-link">Marcelo da Silva Pires</a> <span class="affiliation">• Bosch</span></div>
             </td>
+
 
           </tr>
 
@@ -1692,19 +2076,24 @@
 
 
 
+
+
           <tr>
-            <td class="time-cell">18:00</td>
+            <td class="time-cell merged-cell">18:00</td>
 
-            <td class="talk-cell">
 
-            </td>
 
-            <td class="talk-cell">
 
-              <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
-              <div class="speaker-info"></div>
+            <td class="talk-cell merged-cell"></td>
 
-            </td>
+
+
+
+
+
+
+            <td class="talk-cell merged-cell">Wrap up</td>
+
 
           </tr>
 
@@ -1738,7 +2127,9 @@
     }
     </script>
 
-    <div class="schedule-cta text-center mx-auto mt-4"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+    
+    <div class="schedule-cta text-center mx-auto mt-4"><a href="https://luma.com/sre" target="_blank" rel="noopener" class="btn btn-secondary btn-lg d-block d-md-inline-block">Upcoming conferences on LUMA</a></div>
+    
   </div>
 </section>
 
@@ -1748,19 +2139,22 @@
 <section id="speakers" class="speakers-section section">
   <div class="container">
     <h3 class="section-heading text-center mb-3">Speakers</h3>
-    <div class="row">
+    <div class="row row-cols-2 row-cols-lg-5">
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17"><img src="../speakers/Ademar Gregio Junior & Ramon Maia.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
-            <h5 class="card-title mb-2">Ademar Gregio Junior & Ramon Maia</h5>
+            <h5 class="card-title mb-2">Ademar Gregio Junior<br>&amp; Ramon Maia</h5>
             <div class="card-text mb-3">
               <div class="meta">Accenture</div>
             </div><!--//card-text-->
-            <a href="./Ademar_Gregio_Junior__Ramon_Maia_Accenture_Conduzindo_FinOps_com_Confiabilidade_Como_os_SREs_Reduzir#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Ademar_Gregio_Junior__Ramon_Maia_Accenture_Conduzindo_FinOps_com_Confiabilidade_Como_os_SREs_Reduzir#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1775,7 +2169,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20"><img src="../speakers/Alan Delcaro.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1783,7 +2177,10 @@
             <div class="card-text mb-3">
               <div class="meta">Dynatrace</div>
             </div><!--//card-text-->
-            <a href="./Alan_Delcaro_Dynatrace_Platform_Engineering_with_Dynatrace_for_SRE_Intelligent_Automation_and_Observ#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Alan_Delcaro_Dynatrace_Platform_Engineering_with_Dynatrace_for_SRE_Intelligent_Automation_and_Observ#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1798,7 +2195,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img src="../speakers/Alexandre Melo Ferreira.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1806,7 +2203,10 @@
             <div class="card-text mb-3">
               <div class="meta">Grafana Labs</div>
             </div><!--//card-text-->
-            <a href="./Alexandre_Melo_Ferreira_Grafana_Labs_Stack_de_Observabilidade_com_Grafana_Cloud#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Alexandre_Melo_Ferreira_Grafana_Labs_Stack_de_Observabilidade_com_Grafana_Cloud#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1821,7 +2221,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14"><img src="../speakers/Alexandre Tavares.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1829,7 +2229,10 @@
             <div class="card-text mb-3">
               <div class="meta">C6 Bank</div>
             </div><!--//card-text-->
-            <a href="./Alexandre_Tavares_C6_Bank_Diferencas_entre_DataOps_e_DevOps_Entendendo_Prticas_e_Importancias_na_Era#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Alexandre_Tavares_C6_Bank_Diferencas_entre_DataOps_e_DevOps_Entendendo_Prticas_e_Importancias_na_Era#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1844,7 +2247,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21"><img src="../speakers/Amaury Borges Souza.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1852,7 +2255,10 @@
             <div class="card-text mb-3">
               <div class="meta">FIAP</div>
             </div><!--//card-text-->
-            <a href="./Amaury_Borges_Souza_FIAP_Proteja_Pipelines_de_SRE_Terraform_e_AWS_Aplicando_o_Shift_Left_na_Confiabi#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Amaury_Borges_Souza_FIAP_Proteja_Pipelines_de_SRE_Terraform_e_AWS_Aplicando_o_Shift_Left_na_Confiabi#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1867,15 +2273,18 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img src="../speakers/Anderson Dorigao, Willian Yamashita & Mateus Rodrigues.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
-            <h5 class="card-title mb-2">Anderson Dorigao, Willian Yamashita & Mateus Rodrigues</h5>
+            <h5 class="card-title mb-2">Anderson Dorigao,<br>Willian Yamashita<br>&amp; Mateus Rodrigues</h5>
             <div class="card-text mb-3">
               <div class="meta">Banco Bradesco</div>
             </div><!--//card-text-->
-            <a href="./Anderson_Dorigao_Willian_Yamashita__Mateus_Rodrigues_Banco_Bradesco_Continuous_profiling_e_resilienc#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Anderson_Dorigao_Willian_Yamashita__Mateus_Rodrigues_Banco_Bradesco_Continuous_profiling_e_resilienc#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1890,15 +2299,18 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15"><img src="../speakers/Andre Bonfa & Pedro Alex da Costa.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
-            <h5 class="card-title mb-2">Andre Bonfa & Pedro Alex da Costa</h5>
+            <h5 class="card-title mb-2">Andre Bonfa<br>&amp; Pedro Alex da Costa</h5>
             <div class="card-text mb-3">
               <div class="meta">Vivo</div>
             </div><!--//card-text-->
-            <a href="./Andre_Bonfa__Pedro_Alex_da_Costa_Vivo_Preparar__Operar__Aprender_O_Papel_do_PRR_e_do_Postmortem_na_E#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Andre_Bonfa__Pedro_Alex_da_Costa_Vivo_Preparar__Operar__Aprender_O_Papel_do_PRR_e_do_Postmortem_na_E#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1913,7 +2325,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Andre Murbach Maidl.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1921,7 +2333,10 @@
             <div class="card-text mb-3">
               <div class="meta">ClickHouse</div>
             </div><!--//card-text-->
-            <a href="./Andre_Murbach_Maidl_ClickHouse_Keynote_How_We_Built_ClickStack__an_open_source__open_telemetry_nativ#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Andre_Murbach_Maidl_ClickHouse_Keynote_How_We_Built_ClickStack__an_open_source__open_telemetry_nativ#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1936,7 +2351,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Bruno Paiuca.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1944,7 +2359,10 @@
             <div class="card-text mb-3">
               <div class="meta">Opsteam</div>
             </div><!--//card-text-->
-            <a href="./Bruno_Paiuca_Opsteam_The_Anatomy_of_a_Secure_Request_Ten_Layers_of_Defense_from_DNS_to_Database#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Bruno_Paiuca_Opsteam_The_Anatomy_of_a_Secure_Request_Ten_Layers_of_Defense_from_DNS_to_Database#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1959,7 +2377,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Danne Aguiar.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1967,7 +2385,10 @@
             <div class="card-text mb-3">
               <div class="meta">Kyndryl</div>
             </div><!--//card-text-->
-            <a href="./Danne_Aguiar_Kyndryl_Business_Observability_with_Dynatrace#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Danne_Aguiar_Kyndryl_Business_Observability_with_Dynatrace#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1982,7 +2403,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Douglas Bussoli Mugnos.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1990,7 +2411,10 @@
             <div class="card-text mb-3">
               <div class="meta">Netskope</div>
             </div><!--//card-text-->
-            <a href="./Douglas_Bussoli_Mugnos_Netskope_Designing_for_Failure_Proven_Techniques_for_Reliable_Applications#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Douglas_Bussoli_Mugnos_Netskope_Designing_for_Failure_Proven_Techniques_for_Reliable_Applications#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2005,7 +2429,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19"><img src="../speakers/Emerson Silva.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2013,7 +2437,10 @@
             <div class="card-text mb-3">
               <div class="meta">4Linux</div>
             </div><!--//card-text-->
-            <a href="./Emerson_Silva_4Linux_Kubernetes_alm_do_deploy_automao_inteligente_com_K8sGPT_e_AIOps#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Emerson_Silva_4Linux_Kubernetes_alm_do_deploy_automao_inteligente_com_K8sGPT_e_AIOps#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2028,7 +2455,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18"><img src="../speakers/Felipe de Freitas Campos.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2036,7 +2463,10 @@
             <div class="card-text mb-3">
               <div class="meta">GFT Technologies</div>
             </div><!--//card-text-->
-            <a href="./Felipe_de_Freitas_Campos_GFT_Technologies_Microservios_serverless_diferentes_designs__mesmas_dores#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Felipe_de_Freitas_Campos_GFT_Technologies_Microservios_serverless_diferentes_designs__mesmas_dores#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2051,7 +2481,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Gustavo Martins T Borges.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2059,7 +2489,10 @@
             <div class="card-text mb-3">
               <div class="meta">Advolve.ai </div>
             </div><!--//card-text-->
-            <a href="./Gustavo_Martins_T_Borges_Advolveai__Hello_World_in_Production_Building_CloudNative_applications_that#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Gustavo_Martins_T_Borges_Advolveai__Hello_World_in_Production_Building_CloudNative_applications_that#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2074,7 +2507,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Igor Eulalio Morgado Lopes.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2082,7 +2515,10 @@
             <div class="card-text mb-3">
               <div class="meta">Orca Security</div>
             </div><!--//card-text-->
-            <a href="./Igor_Eulalio_Morgado_Lopes_Orca_Security_eBPF_Why_is_everyone_talking_about_it_and_what_does_that_me#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Igor_Eulalio_Morgado_Lopes_Orca_Security_eBPF_Why_is_everyone_talking_about_it_and_what_does_that_me#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2097,7 +2533,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Joao Fernando Helena Filho & Gabriel Leite.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2105,7 +2541,10 @@
             <div class="card-text mb-3">
               <div class="meta">AWS</div>
             </div><!--//card-text-->
-            <a href="./Joao_Fernando_Helena_Filho__Gabriel_Leite_AWS_Enhancing_SRE_with_AI_Agents_on_AWS_Intelligent_Automa#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Joao_Fernando_Helena_Filho__Gabriel_Leite_AWS_Enhancing_SRE_with_AI_Agents_on_AWS_Intelligent_Automa#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2120,7 +2559,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img src="../speakers/Levi Leopoldino Alves.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2128,7 +2567,10 @@
             <div class="card-text mb-3">
               <div class="meta">Matera</div>
             </div><!--//card-text-->
-            <a href="./Levi_Leopoldino_Alves_Matera_Comunidades_de_SRE_e_DevOps_conectando_pessoas__processos_e_propsito_no#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Levi_Leopoldino_Alves_Matera_Comunidades_de_SRE_e_DevOps_conectando_pessoas__processos_e_propsito_no#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2143,15 +2585,18 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img src="../speakers/Luiz Siqueira & Leonardo Marques.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
-            <h5 class="card-title mb-2">Luiz Siqueira & Leonardo Marques</h5>
+            <h5 class="card-title mb-2">Luiz Siqueira<br>&amp; Leonardo Marques</h5>
             <div class="card-text mb-3">
               <div class="meta">Banco Bradesco</div>
             </div><!--//card-text-->
-            <a href="./Luiz_Siqueira__Leonardo_Marques_Banco_Bradesco_Chaos_Engineering_Como_Usar_o_Dynatrace_para_Transfor#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Luiz_Siqueira__Leonardo_Marques_Banco_Bradesco_Chaos_Engineering_Como_Usar_o_Dynatrace_para_Transfor#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2166,7 +2611,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22"><img src="../speakers/Marcelo da Silva Pires.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2174,7 +2619,10 @@
             <div class="card-text mb-3">
               <div class="meta">Bosch</div>
             </div><!--//card-text-->
-            <a href="./Marcelo_da_Silva_Pires_Bosch_Construindo_um_Operator_para_o_DevLake#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Marcelo_da_Silva_Pires_Bosch_Construindo_um_Operator_para_o_DevLake#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2189,7 +2637,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Miguel Di Ciurcio Filho.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2197,7 +2645,10 @@
             <div class="card-text mb-3">
               <div class="meta">Cloud Programming Shell (CPS1)</div>
             </div><!--//card-text-->
-            <a href="./Miguel_Di_Ciurcio_Filho_Cloud_Programming_Shell_CPS1_Staging_Is_Dead_How_Ephemeral_Environments_Rede#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Miguel_Di_Ciurcio_Filho_Cloud_Programming_Shell_CPS1_Staging_Is_Dead_How_Ephemeral_Environments_Rede#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2212,7 +2663,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img src="../speakers/Rod Anami.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2220,7 +2671,10 @@
             <div class="card-text mb-3">
               <div class="meta">Kyndryl</div>
             </div><!--//card-text-->
-            <a href="./Rod_Anami_Kyndryl_Agentic_AI_for_SREs_How_I_casually_developed_my_first_MCP_server#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Rod_Anami_Kyndryl_Agentic_AI_for_SREs_How_I_casually_developed_my_first_MCP_server#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2235,7 +2689,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Rodrigo Candido Leme.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2243,7 +2697,10 @@
             <div class="card-text mb-3">
               <div class="meta">Microsoft </div>
             </div><!--//card-text-->
-            <a href="./Rodrigo_Candido_Leme_Microsoft__Supercharging_SRE_with_Azures_AIPowered_Age#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Rodrigo_Candido_Leme_Microsoft__Supercharging_SRE_with_Azures_AIPowered_Age#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2258,7 +2715,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Tiago Dias Generoso.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2266,7 +2723,10 @@
             <div class="card-text mb-3">
               <div class="meta">Kyndryl</div>
             </div><!--//card-text-->
-            <a href="./Tiago_Dias_Generoso_Kyndryl_Observability_Strategy_From_Metrics_to_Meaningful_Reliability#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Tiago_Dias_Generoso_Kyndryl_Observability_Strategy_From_Metrics_to_Meaningful_Reliability#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2284,7 +2744,7 @@
       
 
     </div><!--//row-->
-    <div class="speakers-cta text-center py-3"><a class="btn btn-primary btn-lg" href="#tickets">Get Tickets</a></div>
+    
   </div><!--//container-->
 
 </section><!--//speakers-section-->
@@ -2345,6 +2805,21 @@
 
 
 
+<style>
+  .modal-speaker .desc p,
+  .modal-speaker .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .modal-speaker .desc {
+    padding-bottom: 0.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+</style>
+
 
 <!-- Modal Speaker 1 -->
 <div class="modal modal-speaker modal-speaker-1" id="modal-speaker-1" tabindex="-1" role="dialog" aria-labelledby="speaker-1-ModalLabel" aria-hidden="true">
@@ -2375,12 +2850,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Agentic AI has become well-known in the world of hybrid cloud operations. Cloud, DevOps, Platform, and Site Reliability engineers are either currently utilizing it or plan to do so in the near future. A common question is the steepness of the learning curve for incorporating it into your utility belt. In this session, I will introduce Agentic AI and the widely adopted integration framework, the Model Context Protocol (MCP). I will also share my experience building my first MCP server, which integrates Generative AI (referred to as the brain for modern operations) with MCP tools for HashiCorp Vault Server. A secrets management platform plays a crucial role in securing modern workloads.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p><a href="https://www.linkedin.com/in/rodanami/">Rod Anami</a> is a seasoned engineer who works with cloud infrastructure and software engineering technologies. As one of the Site Reliability Engineers from the SRE@Kyndryl CoE, he coaches other SREs on running IT modernization, transformation, and automation projects for clients worldwide. Rod leads the global SRE guild inside Kyndryl, where he helps plant and grow SRE chapters in many countries. Rod is certified as an SRE, Technical Specialist, and DevOps Engineer professional at their ultimate levels. He holds AWS, HashiCorp, Azure, and Kubernetes certificates, among others. He is passionate about contributing to the open-source software at large with Node.js libraries. Rod is also author of the "Becoming a Rockstar SRE" book.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2417,12 +2894,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Observabilty is well known for IT departments around the world. SRE relies over Observability data to ensure the systems are performing as it should be. Automations depends on Observability insights to accurately remediate events. What about bring the Observability to Business side of history? Application Performance Monitoring (APM) tools capture more than the only 4 Golden Signals, let's leverage this and provide insights to the Business. In this presentation, I will explain how the Business Events can be captured from monitored sytems, and how to handle them in order to be presented and monitored, providing a real time source of insights at Business level.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>I am currently working as Observability Consultant @ Kyndryl. IT Monitoring specialist since 2009. Started to play with APM tools in 2017 and presented to SRE world in 2020. I have participated in two sessions of <a href="https://info.dynatrace.com/noram-all-wc-the-state-of-sre-in-2022-19382-registration.html https://info.dynatrace.com/noram-all-wc-the-state-of-sre-in-2023-22177-registration.html">"The State of SRE by Dynatrace" (2022 and 2023)</a></p></p>
               </div>
           </div><!--//modal-body-->
@@ -2459,6 +2938,7 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Observability isn’t about tools—it’s about strategy, people, and culture. Too often, organizations invest in “magic tools” expecting instant results, only to end up with dashboards no one uses, alerts no one trusts, and teams that feel more burdened than empowered. True observability must start with strategy: aligning telemetry with business outcomes, defining maturity models, and using benchmarks to guide the journey.</p>
 <p>This talk advocates for a shift in mindset: observability as the compass, not the destination. We’ll explore how maturity models and benchmarking frameworks can help organizations measure progress, identify gaps, and link engineering practices (like SLOs, automation, and postmortems) with business impact (resilience, reliability, customer trust). We’ll also cover challenges often amplified in enterprise contexts—such as tool-centric procurement, talent gaps, silos between Dev/Ops/Business, and uneven maturity across teams—and discuss how SREs can drive cultural alignment to overcome them.</p></p>
               </div>
@@ -2466,6 +2946,7 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>I’m Tiago Dias Generoso, an SRE Leader with 25+ years of experience in hybrid cloud transformation, observability, and reliability at scale. A Master Inventor with 15 patents and a board member at The Open Group, I combine hands-on technical expertise with strategic leadership to help enterprises align technology with business outcomes.</p>
 <p>I hold certifications in SRE, Technical Specialist (OpenCTS L3), and Architecture (OpenCA L3), as well as multiple credentials from Azure, AWS, Dynatrace, and IBM.</p>
 <p>I regularly publish on Medium, where I write about SRE, observability, architecture, Azure, and Terraform.</p></p>
@@ -2504,12 +2985,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Transform your SRE with AWS GenAI solutions. From automated troubleshooting with Amazon Q to intelligent agents via Bedrock, we help teams automate tasks, detect anomalies, and streamline operations. Enhance efficiency with AI-powered assistance.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p><strong>João Fernando Helena Filho</strong> is a Partner Management Solutions Architect at Amazon Web Services (AWS), where he helps partners design and implement cloud solutions that drive business impact. With more than 20 years of experience in IT architecture and transformation, he has led major migration and modernization projects across industries. Before joining AWS, João spent 16 years at IBM as an IT Senior Specialist, focusing on infrastructure, virtualization, and cloud platforms. He’s passionate about understanding customer needs deeply and turning that insight into practical, scalable solutions.**</p>
 <p><strong>Gabriel Leite</strong> is a Solutions Architect for Partners at AWS. He has 18 years of experience in software development, critical systems, and solutions architecture. Currently, he supports AWS partners in building their journey to develop new competencies. An active member of the Serverless and Artificial Intelligence/Machine Learning (AI/ML) community, Gabriel specializes in building business applications. His focus is on using the flexibility of Serverless services integrated with Generative AI to create high-value
  business solutions.</p></p>
@@ -2548,12 +3031,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Failures are not a possibility — they are a certainty. What separates good systems from great ones is how they respond when things go wrong. In this talk, we’ll explore resilience at the heart of SRE: proven techniques such as load shedding, sharding, and deployment strategies that transform outages into controlled, predictable events. Attendees will walk away with understanding of patterns to minimize failure impact, protect user experience, and strengthen the reliability of their applications. If you care about building systems that survive chaos, this is the session you can’t miss!</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Douglas Bussoli Mugnos is a Principal SRE with a proven track record in designing and operating highly resilient systems. He has trained over 12,000 engineers in SRE methodologies and +1,000 engineering in system design, and currently leads efforts to ensure product resilience, architecture design, deployment strategies, and observability at a multinational company. Passionate about transforming outages into predictable events, Douglas brings real-world insights to every talk he delivers.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2590,12 +3075,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Static staging slows everything down. Ephemeral environments flip the model by creating production-like sandboxes for every branch. Learn how they accelerate feedback, cut friction, and boost reliability across your platform and teams.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>I have a degree in Computer Science and a postgraduate degree in Networks from the Institute of Computing at UNICAMP. My professional journey has always been closely tied to innovation in IT infrastructure and automation. Even before concepts like DevOps, Infrastructure as Code, and Continuous Delivery became widely known, I was already adopting practices such as automated configuration management with Puppet and using Git for code versioning.</p>
 <p>In 2011, I founded Instruct with my own resources, with the mission of transforming how companies operate their technology infrastructures. From the very beginning, I was directly involved in all areas of the company—designing projects, training professionals, negotiating with clients and partners, and helping to build a culture of technical excellence.</p>
 <p>I was the first professional in Latin America to earn the Puppet Certified Professional certification, in 2012. Between 2015 and 2017, I spoke at PuppetConf in Portland, San Diego, and San Francisco, presenting Instruct’s success stories and experiences to an international audience. I also founded the Puppet Brazil Community and served as an official instructor for the Puppet Fundamentals, Practitioner, and Architect courses, training over 500 professionals throughout the years.</p>
@@ -2639,12 +3126,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In the rapidly evolving landscape of technology, a groundbreaking innovation has captured the attention of enthusiasts, developers, and industry pioneers. This presentation aims to demystify the buzz around eBPF, illustrating its potential in the realms of networking, security, and monitoring.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Experienced Software Engineer with extensive knowledge of the Cloud and Container industry, speaker, and KCD Brasil 2024 Organizer.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2681,12 +3170,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Every HTTPS request tells a security story. Dissect the anatomy of an HTTPS request across ten layers of defense — from DNSSEC, TLS, WAF,  to Cedar-based authorization and beyond. Learn how Devs, DevOps, and SREs can weave security-by-design into every hop of modern, cloud-native systems.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Bruno Paiuca is an SRE and founder of Opsteam, a consultancy specialized in mission-critical operations, SRE, and FinOps.</p>
 <p>Husband of Nataly and proud dad of Aurora — named after AWS Aurora, and also because he dreams of traveling with his family to see the Aurora Borealis.</p>
 <p>Passionate about technology and people, he helps companies build resilient, efficient, and secure cloud systems that empower teams to innovate with confidence.</p></p>
@@ -2725,12 +3216,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This talk you’ll see how small, practical steps can make your application resilient, scalable, and ready for production without overengineering. Perfect for developers, SREs, and DevOps engineers who want to understand what production-ready really means in cloud environments.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>B.S. in Software Engineering with 14 years of experience in cloud infrastructure, observability, and production systems. I help companies design and operate reliable cloud environments, with a background in cloud migrations, cost optimization, and observability. 3x AWS certified, I have architected cloud-native solutions for clients ranging from startups to enterprises. Passionate about sharing knowledge, CNCF Community Group and DevOpsDays organizer in Goiania/GO.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2767,12 +3260,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>AI transforms Site Reliability Engineering by automating incident detection, accelerating root cause analysis, and predicting outages before they happen—boosting uptime, reducing toil, and empowering SREs to focus on strategic improvements.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>With over 15 years of global experience in cloud architecture, infrastructure modernization, and AI application design, this speaker brings deep technical expertise and a sharp business lens to every engagement. Currently at Microsoft, he leads technical initiatives that accelerate digital transformation across industries, including retail, healthcare, telecom, and finance. A frequent presenter and IBM-recognized speaker, he has earned multiple Manager’s Choice Awards and GTS Labs Leadership honors for his contributions to innovation and technical excellence. He specializes in Azure, GitHub Copilot, hybrid cloud, and secure, scalable AI solutions—and believes every cloud journey should hit as hard as a Metallica riff.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2809,6 +3304,7 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Comunidades de SRE e DevOps: conectando pessoas, processos e propósito no Brasil<br />
 <strong>Principais lições de estar entre as maiores comunidades de tecnologia do país.</strong></p>
 <p>Esta sessão provoca uma reflexão: muitos engenheiros de SRE e DevOps possuem vasto conhecimento, mas acabam sendo reconhecidos apenas dentro de suas empresas. Fora delas, ninguém os vê ou se inspira neles. Sabemos que quem não é visto é esquecido, e quem não compartilha não inspira.</p>
@@ -2836,6 +3332,7 @@ Chamada para ação</p>
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Sou Levi Leopoldino, também conhecido como Levinux, um profissional de tecnologia com mais de 25 anos de experiência. Iniciei minha jornada com Linux no ano 2000 e, hoje, minha paixão é DevOps, SRE e Cloud.</p>
 <p>Sou fundador do DOUG BR – DevOps User Group Brazil, uma comunidade criada para conectar pessoas, compartilhar conhecimento e tornar o DevOps mais acessível a todos, especialmente para quem está começando ou em transição para a área de tecnologia.</p>
 <p>Além da tecnologia, atuo como líder de jovens na Igreja Batista, o que me inspira a trazer os mesmos valores de serviço, colaboração e propósito para o mundo da tecnologia.</p>
@@ -2875,12 +3372,14 @@ Chamada para ação</p>
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Nessa talk, vamos configurar um cluster Kubernetes para enviar telemetria para Grafana Cloud e monitorar de ponta a ponta nosso ambiente utilizando Métricas de K8S com componentes padrão como node_exporter e cadvisor, Traces no formato Opentelemetry e correlação com Logs e como bônus,Assistant de AI</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Observability Architect na Grafana Labs com experiência em SRE e Software Engineering, amante de gatos, mergulho e churrasco </p></p>
               </div>
           </div><!--//modal-body-->
@@ -2917,12 +3416,14 @@ Chamada para ação</p>
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Como o Bradesco transformou o Chaos Engineering em uma prática contínua e automatizada de experimentos controlados, integrando Dynatrace, Ansible e Azure Chaos Studio para validar hipóteses, fortalecer padrões de resiliência e acelerar o aprendizado das squads em ambientes cloud native.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p><strong>Luiz Siqueira</strong> é <strong>Gerente de Site Reliability Engineering (SRE)</strong> no <strong>Banco Bradesco</strong>, onde lidera o <strong>SRE Core Team</strong>, responsável por impulsionar a confiabilidade, automação e observabilidade dos serviços críticos da organização.<br />
 Com mais de <strong>15 anos de experiência em tecnologia</strong>, Luiz construiu sua carreira em ambientes de alta complexidade e disponibilidade, atuando na <strong>gestão de operações, performance e resiliência digital</strong> em larga escala.</p>
 <p>Antes de assumir a posição atual, teve uma trajetória sólida em empresas globais como <strong>IBM</strong> e <strong>Kyndryl</strong>, desempenhando papéis estratégicos como <strong>SRE, Product Owner e Delivery Project Manager</strong> em projetos de <strong>cloud híbrida e automação de infraestrutura</strong>.<br />
@@ -2971,6 +3472,7 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Você está convidado para uma palestra imperdível que irá explorar as diferenças e similaridades entre DataOps e DevOps, duas práticas essenciais no desenvolvimento moderno de software e na gestão de dados.</p>
 <p>O que você vai aprender:</p>
 <p>A definição e os objetivos de DevOps e DataOps. As principais diferenças entre as duas práticas e como elas se complementam. A importância de cada uma no cenário atual das empresas voltadas para tecnologia. Exemplos de sucesso de organizações que implementaram essas práticas com eficiência. Público-alvo: Esta palestra é ideal para profissionais de tecnologia, cientistas de dados, desenvolvedores, gerentes de produto, e todos aqueles que desejam compreender melhor como as organizações podem alavancar suas operações de dados e software.</p></p>
@@ -2979,6 +3481,7 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Com mais de duas décadas em tecnologia, minha jornada me levou de desenvolvedor a um especialista em Big Data, Machine Learning e IA. Atuei liderando e arquitetando plataformas de dados em grandes empresas como o C6 Bank, GFT Technologies, Cogna Educação, Falconi entre outras.</p>
 <p>Além da minha experiência de mercado, sou Professor de MBA em Engenharia de Dados no Mackenzie e atuo como docente na UNIFAAT. Essa dualidade me permite ter uma visão única sobre o futuro da profissão: como as tecnologias emergentes, como os LLMs, estão moldando o mercado e quais habilidades os novos profissionais precisam desenvolver para se destacarem.</p>
 <p>Minha paixão por mentorar e compartilhar conhecimento me motiva a ajudar a próxima geração de talentos a prosperar nesse cenário de constante transformação, construindo a ponte entre o conhecimento acadêmico e as demandas reais do mercado de trabalho.</p></p>
@@ -3017,12 +3520,14 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>O desafio de transformar falhas em combustível para a excelência! Nesta palestra, exploramos como o PRR e Postmortems fortalecem a cultura de confiabilidade, aceleram aprendizados e elevam a maturidade da operação.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p></p>
               </div>
           </div><!--//modal-body-->
@@ -3059,12 +3564,14 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Descubra como práticas de SRE aliadas ao continuous profiling elevam a resiliência de aplicações Java. Veja exemplos práticos com Dynatrace e Grafana para detectar gargalos e fortalecer a estabilidade dos seus sistemas.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p><strong><a href="https://www.linkedin.com/in/andersondorigao/">Anderson Dorigão</a></strong> is an IT Specialist (SRE) at Bradesco, leading the Cross Product SRE team and driving the adoption of reliability engineering practices across product squads. With over a decade of experience in large-scale systems and telecommunications, he has worked on cloud migrations, observability strategies, and performance optimization for critical applications. Before joining Bradesco, Anderson held technical and leadership roles at Amdocs and Ericsson, where he specialized in DevOps, automation, and infrastructure for mission-critical billing and charging systems. His work blends a deep technical foundation with a strong focus on operational excellence and team mentorship.</p>
 <p><strong><a href="https://www.linkedin.com/in/willianyamashita/">Willian Yamashita</a></strong> is a Site Reliability Engineer Specialist at Bradesco, where he focuses on building reliable, high-performing systems for one of Brazil’s largest financial institutions. With over 15 years of experience across software development and systems engineering, he’s worked through every layer of technology—from mobile app development in Java, Swift, and Android to large-scale backend systems built with Spring and proprietary frameworks. Before joining Bradesco, Willian held engineering roles at Scopus Soluções em TI, DBW Databases, Luxfacta, and CGA Informática, consistently improving performance, stability, and user experience across complex platforms. Based in São Paulo, he’s known for bridging reliability with thoughtful engineering craft.</p>
 <p><strong><a href="https://www.linkedin.com/in/mateus-rodrigues-9a1b33141/">Mateus Rodrigues</a></strong> is a Software Engineer at Bradesco, where he designs and maintains systems that support the bank’s large-scale digital operations. With a background in systems engineering and a strong foundation in algorithms, infrastructure, and administration, he brings both precision and reliability to his work. Before joining Bradesco, Mateus worked at CommScope, where he contributed to system performance and integration projects across complex network environments. Based in São Paulo, he’s passionate about building efficient, scalable systems that keep technology running smoothly behind the scenes.</p></p>
@@ -3103,12 +3610,14 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Nossa equipe de SRE trabalhou em parceria com FinOps para automatizar otimizações de nuvem em tempo real no Kubernetes — redimensionando pods, reequilibrando clusters e ajustando dinamicamente os tipos de máquinas. Essa colaboração alcançou mais de 30% de redução de custos enquanto mantinha os SLAs, provando que confiabilidade e eficiência financeira podem andar juntas.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Gerente de SRE na Accenture Brasil, atuando na prática de Serviços Financeiros. Apaixonado por observabilidade, confiabilidade em nuvem e eficiência por meio de automação. Com uma sólida experiência em sistemas distribuídos em larga escala, Ademar se concentra em conectar tecnologia, cultura e resultados de negócio — ajudando equipes a entregar sistemas resilientes enquanto otimizam desempenho e custos.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -3145,12 +3654,14 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>A adoção de microserviços serverless promete maior agilidade e escalabilidade, mas, apesar das diferentes abordagens de design, as equipes enfrentam desafios semelhantes. Questões como observabilidade, latência, custos imprevisíveis e complexidade de integração continuam sendo pontos críticos. Este trabalho discute como arquiteturas distintas convergem para os mesmos problemas e o que pode ser feito para mitigá-los.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Desde 2006 mergulhado em tecnologia, onde comecei no PHP, passando por outras linguagens, e hoje com bastante Python! Também falo a língua dos bancos de dados (SQL e NoSQL) e, desde 2012, flutuo feliz nas nuvens, com destaque especial para a AWS, onde sou Community Builder e líder do AWS User Group Campinas…mas também navegando por Azure, GCP, IBM e Oracle, seja com IaaS, PaaS, Serverless, IaC ou até com meu grande amor, o FinOps. Curto demais Arquitetar Soluções, defender todos os "Ops" e compartilhar conhecimento, seja palestrando, mentorando ou organizando eventos. Hoje estou focado em IA e como ela pode revolucionar nosso jeito de criar e inovar! É isso ai…no fim, sou movido a #Curiosidade, #Desafios, #Comunidade, #Tecnologia, #Pokémon e #Café!</p></p>
               </div>
           </div><!--//modal-body-->
@@ -3187,12 +3698,14 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Nesta palestra, vamos explorar como aplicar AIOps no dia a dia da operação de clusters Kubernetes utilizando o K8sGPT. Mostrarei como SREs podem transformar ruído em insight, utilizando IA para interpretar sinais e sugerir correções automaticamente.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Sou desenvolvedor de infraestrutura e monitoramento, apaixonado por Open Source, comunidades de tecnologia e por compartilhar conhecimento. Tenho mais de 9 anos de experiência atuando em ambientes amplos e altamente críticos, com foco em automação, confiabilidade e eficiência operacional. Atualmente, trabalho na 4Linux como Consultor e Instrutor, onde ajudo empresas e profissionais a adotarem a cultura DevOps por meio de treinamentos e projetos com tecnologias Open Source.</p>
 <p>Atuo como DevOps Engineer com sólida experiência em Administração de Sistemas Linux, Virtualização, Cloud Computing e ferramentas fundamentais para práticas de Infraestrutura como Código (IaC) e pipelines CI/CD. Também sou instrutor de cursos especializados em Containers, Infraestrutura Ágil e Integração/Entrega Contínua, formando profissionais preparados para os desafios do mercado moderno de tecnologia.</p></p>
               </div>
@@ -3230,12 +3743,14 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Learn how Platform Engineering with Dynatrace empowers SRE teams to move beyond reactive dashboards. Discover practical ways to integrate observability and automation for proactive reliability, safe deployments, and continuous optimization.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Com mais de 15 anos de experiência em tecnologia, atualmente Lead Solutions Engineer, responsável por apoiar empresas na implementação de soluções de observabilidade em ambientes complexos e críticos. Atua em projetos estratégicos envolvendo cloud providers, práticas modernas de Site Reliability Engineering (SRE) e transformação digital, garantindo resiliência e excelência operacional.
 Ao longo da carreira, atuou em iniciativas para observabilidade em ambientes multi-cloud e tambem na evangelização das melhores práticas. 
 Participa de eventos técnicos e comunidades, compartilhando conhecimento sobre estratégias de observabilidade, gestão de performance e resiliência digital.</p>
@@ -3277,12 +3792,14 @@ Estratégias de confiabilidade e resiliência digital</p></p>
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Confiabilidade sem segurança é mera sorte. Nesta palestra, veja como as práticas do Shift Left capacitam SREs a automatizar a segurança, prevenir incidentes precocemente e entregar sistemas resilientes com confiança.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Sou um profissional de cloud security e curto práticas de ser/devops, com experiência prática em automação de segurança em pipelines CI/CD em ambientes multicloud (AWS, Azure e GCP). Atuo como HashiCorp Ambassador e AWS Community Builder, além de professor de MBA em DevSecOps e Cloud Security na FIAP, onde ensina justamente como integrar segurança e confiabilidade desde o início do ciclo de entrega.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -3319,12 +3836,14 @@ Estratégias de confiabilidade e resiliência digital</p></p>
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Nesta talk mostrarei as motivações para a construção de um Operator para o Apache DevLake, como começar, lições aprendidas e etc.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Desenvolvedor,  entusiasta da cultura DevOps,  durante a sua carreira em Ti já trabalho em diversos segmentos como treinamento,  sysadmin e desenvolvedor. </p></p>
               </div>
           </div><!--//modal-body-->
@@ -3361,12 +3880,14 @@ Estratégias de confiabilidade e resiliência digital</p></p>
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Observability was broken. How we built ClickStack - an open source, open telemetry native Observability stack.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Andre Murbach Maidl is a Curriculum Developer at ClickHouse with over 20 years of experience, which includes software development, services administration, and systems support. Based in Curitiba, Brazil, he has held roles at Conectiva Linux, HSBC GLT, and Elastic, specializing in observability and technical education.</p></p>
               </div>
           </div><!--//modal-body-->

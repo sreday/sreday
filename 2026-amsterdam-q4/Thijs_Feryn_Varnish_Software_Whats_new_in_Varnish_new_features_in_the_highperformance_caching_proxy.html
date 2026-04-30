@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -220,12 +230,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">What's new in Varnish: new features in the high-performance caching proxy</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Thijs Feryn.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -246,18 +269,22 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Varnish is a well-known reverse open source HTTP caching proxy that accelerates websites, applications, files, and any other HTTP-base type of workload. The technology has been around for more than 15 years and powers millions of active websites. While Varnish is considered a stable and reliable piece of acceleration software, there hasn't been a lot of hype surrounding the project. The recent release of Varnish version 9 deserves a bit of hype. In this presentation, Thijs will explain the major new features of Varnish 9, which include TLS support, dynamic backends, OTEL support, and a wide range of exciting modules. He’ll show you how to use them to apply a more intelligent caching layer to your web stack. Thijs will also explain some major changes in the way the open source project is run, and will present some cloud-native additions to the project like Docker images, Helm Charts, and even a Varnish-powered Kubernetes Gateway Controller.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>As the Technical Evangelist at <a href="https://www.varnish-software.com/">Varnish Software</a>, <a href="https://feryn.eu/">Thijs Feryn</a> focuses on web performance, software scalability, and content delivery. He demonstrates content-driven and technical messaging through presentations, videos, books, blog posts, social media posts, podcasts, and other media. Thijs is a published author and wrote <a href="https://learning.oreilly.com/library/view/getting-started-with/9781491972212/">Getting Started with Varnish Cache</a> and <a href="https://info.varnish-software.com/resources/varnish-6-by-example-book">Varnish 6 by Example</a>. As a public speaker, he has a track record of over 380 presentations in 26 different countries, where he is often praised for his energetic and engaging presentation style. As an evangelist, Thijs is also active in many open-source communities, most notably the Varnish and PHP community. He has contributed to various communities for over 15 years both technically and as an organizer and facilitator. Prior to joining Varnish Software, Thijs Feryn spent 15 years in the web hosting industry, tackling web performance and scalability issues on a daily basis and evangelizing these topics. For more information about Thijs’ past &amp; upcoming presentations, please visit <a href="https://feryn.eu/speaking">https://feryn.eu/speaking</a>.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

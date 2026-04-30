@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -216,12 +226,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Designing Your Custom-Fit Observability Launch</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Stefan Lenz.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -242,18 +265,22 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>More and more organizations are realizing that observability is the missing piece in how they deliver and operate digital products: teams get pulled into firefighting, troubleshooting stays siloed, and leaders lack a clear line from system behavior to business outcomes.  In this talk, we share first-hand experience designing an organization-wide observability rollout in a complex environment—guided by SRE principles and treating reliability as a product. Rather than starting with a mass, technology-first onboarding, we start from business objectives and a clear value proposition. These are then translated into clear requirements, which are used to select an observability platform that matches your custom need, scale, and constraints.  We then show how to define the right level of onboarding based on your product portfolio, and how to align early with product and delivery stakeholders so expectations, ownership, and priorities are clear from day one. You’ll learn a practical approach to structuring service onboarding across business, application, and infrastructure layers to achieve end-to-end visibility and correlation across services and domains—where the most valuable insights emerge.  Finally, we cover how to enable engineering teams early and set up an operating model with shared goals, shared responsibility, and dedicated roles to drive adoption at scale.   Our goal is to provide attendees a repeatable blueprint to design an observability launch that fits their organization.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Michele is an Observability Manager at Siemens Mobility, leading an enterprise-wide observability rollout. As a solution architect and active member of several SRE and DevOps communities, he promotes SRE principles, practices, and culture to help teams improve reliability and operational efficiency. Michele regularly shares his insights as a public speaker at conferences including Splunk .conf, Dynatrace Perform, All Day DevOps, ChaosCarnival, Conf42, and other industry events.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

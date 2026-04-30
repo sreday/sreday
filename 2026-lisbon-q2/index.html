@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -276,11 +286,11 @@
     </script>
 </section>
 
+
 <section id="tickets" class="tickets-section section">
   <div class="container">
     <h3 class="section-heading text-center mb-3">Tickets</h3>
 
-    
     <div class="row pricing mb-5 mt-10">
       <div class="col-12 text-center">
         <iframe
@@ -342,13 +352,13 @@
       }
     });
   })();
-</script> 
+</script>
       </div>
     </div>
-    
 
   </div>
 </section>
+
 
 <style>
   .speakers-section .card {
@@ -361,24 +371,82 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    font-size: 0.9rem;
+  }
+  .speakers-section .card-title {
+    font-size: 1.1rem;
+  }
+  .event-card-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-top: auto;
+    width: 100%;
+  }
+  .speakers-section .event-card-buttons a {
+    flex: 0 1 50%;
+    text-align: center;
+    min-width: 0;
+    display: block;
   }
   .event-read-more-btn {
     display: inline-block;
-    padding: 8px 18px;
-    background: #8D5E80;
+    padding: 6px 12px;
+    background: var(--brand-light);
     color: #fff;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
+    font-size: 0.8rem;
     transition: background 0.2s ease;
-    margin-top: auto;
-    align-self: flex-start;
   }
   .event-read-more-btn:hover,
   .event-read-more-btn:focus {
-    background: #9C7290;
+    background: var(--brand-lighter);
     color: #fff;
     text-decoration: none;
+  }
+  .event-watch-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #EC645E;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    transition: background 0.2s ease;
+  }
+  .event-watch-btn:hover,
+  .event-watch-btn:focus {
+    background: #F28B87;
+    color: #fff;
+    text-decoration: none;
+  }
+  .event-watch-btn-sm {
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    margin-left: 12px;
+  }
+  .schedule-abstract {
+    position: relative;
+    max-height: 3.2em;
+    line-height: 1.6;
+    overflow: hidden;
+    text-align: justify;
+  }
+  .schedule-abstract-read-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-left: 3em;
+    background: linear-gradient(to right, transparent, #e8f8f0 30%);
+    font-weight: 700;
+    color: var(--brand);
+    text-decoration: underline;
+  }
+  .schedule-section .item {
+    margin-bottom: 4.5rem;
   }
 </style>
 
@@ -396,11 +464,11 @@
 <section id="speakers" class="speakers-section section">
   <div class="container">
     <h3 class="section-heading text-center mb-3">Speakers</h3>
-    <div class="row">
+    <div class="row row-cols-2 row-cols-lg-5">
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img src="../speakers/Helia Barroso.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -408,7 +476,10 @@
             <div class="card-text mb-3">
               <div class="meta">Five9</div>
             </div><!--//card-text-->
-            <a href="./Helia_Barroso_Five9_Observability_Through_Users_Eyes_and_How_to_Fix_the_Knowledge_Disconnect#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Helia_Barroso_Five9_Observability_Through_Users_Eyes_and_How_to_Fix_the_Knowledge_Disconnect#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -423,7 +494,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Tiago Costa.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -431,7 +502,10 @@
             <div class="card-text mb-3">
               <div class="meta">Azure Cloud & AI Architect and Advisor</div>
             </div><!--//card-text-->
-            <a href="./Tiago_Costa_Azure_Cloud__AI_Architect_and_Advisor_Reliability_Patterns_for_AIPowered_Apps_in_Azure_A#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Tiago_Costa_Azure_Cloud__AI_Architect_and_Advisor_Reliability_Patterns_for_AIPowered_Apps_in_Azure_A#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -448,7 +522,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card">
           <div class="card-body">
             <h4>More coming soon</h4>
@@ -534,6 +608,21 @@
 
 
 
+<style>
+  .modal-speaker .desc p,
+  .modal-speaker .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .modal-speaker .desc {
+    padding-bottom: 0.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+</style>
+
 
 <!-- Modal Speaker 0 -->
 <div class="modal modal-speaker modal-speaker-0" id="modal-speaker-0" tabindex="-1" role="dialog" aria-labelledby="speaker-0-ModalLabel" aria-hidden="true">
@@ -564,12 +653,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>AI applications promise transformative capabilities but introduce unique failure modes, such as hallucinations, latency spikes, data drift, and cost overruns, that traditional SRE practices don't fully address. This session explores proven reliability patterns, retries with exponential backoff, circuit breakers, graceful degradation, and human-in-the-loop guardrails tailored for Microsoft Foundry workloads, where observability covers agent traces, quality metrics, and safety evaluations. You'll see live demos of implementing these in Foundry projects using zone-redundant storage, multi-region failover, and built-in content filters to achieve production-grade resilience while maintaining trust and compliance.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Tiago Costa is an Azure Cloud and AI Architect, advisor, trainer, public speaker, and author based in the Lisbon Metropolitan Area. As an independent contractor, he helps organizations design and optimize cloud and AI strategies, with a strong focus on Microsoft Azure technologies. He is also recognized for educating technical audiences through training, speaking engagements, and thought leadership.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -606,12 +697,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Logs, metrics and traces nowadays are common words in every engineer's vocabulary, as Observability is everywhere with the rise of OpenTelemetry and improved standards. Instrumentation? No problem. Getting data from any system? Done. But then soon after, things start to fall apart, telemetry piles up unused, cloud bills soar, dashboards rot and alerts confuse even seasoned engineers. Clearly there is something missing. In this talk, Iris and Hélia share some experiences from building Observability platforms, patterns they have discovered of how users interact with telemetry data. From common questions across different teams and companies, pitfalls and also, strategies that empower teams to move from confusion to confidence. So get practical insights to bridge the gap between Observability data and User Knowledge, whether you're building platforms, supporting teams, or trying to make sense of your own telemetry chaos.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>DevOps/SRE with a background in Biotechnology and a strong passion for Observability. Maintainer of Prometheus Operator and active contributor to open source projects including Perses. Community organizer for Cloud Native Porto. Curious by nature, always learning and exploring new challenges in the cloud-native ecosystem.</p></p>
               </div>
           </div><!--//modal-body-->

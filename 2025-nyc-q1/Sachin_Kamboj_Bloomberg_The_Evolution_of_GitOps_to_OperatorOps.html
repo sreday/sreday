@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -133,6 +143,7 @@
 		</div><!--//branding-->
 	</header><!--//header-->
 
+	
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
@@ -180,6 +191,7 @@
 		</div><!--//container-->
 
 	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -216,12 +228,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">The Evolution of GitOps to OperatorOps</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Sachin Kamboj.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -242,10 +267,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>We SREs and infrastructure engineers love GitOps. After all, what’s not to love about declarative infrastructure-as-code, a single source-of-truth, change tracking, and automated CI/CD pipelines that make the magic happen?</p>
 <p>However, we must ask whether GitOps is the silver bullet that solves all problems -- including climate change and world peace. Or are there limitations and situations where GitOps might not be the best approach?</p>
 <p>This talk will explore why and how Bloomberg's cloud-native infrastructure engineering team migrated from GitOps to what we are calling “OperatorOps" -- a mix of declarative specifications and Kubernetes operators to handle Day 2 operations for our fully managed etcd-as-a-service system.</p></p>
@@ -254,10 +280,13 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Sachin Kamboj is one of the principal software engineers working on Bloomberg's internal Kubernetes-as-a-Service (KaaS) platform. He has been involved in implementing various open source cloud-native projects at Bloomberg since 2016.</p>
 <p>Sachin loves to play with new technologies and to learn how things really work behind the scenes. To this end, he contributed to some of the open source projects for the Kubernetes community that were started at and published by Bloomberg, including <a href="https://github.com/powerfulseal/powerfulseal">PowerfulSeal</a> and <a href="https://github.com/bloomberg/goldpinger/">Goldpinger</a>.</p>
 <p>Before joining Bloomberg, Sachin was active in the multi-agent systems and distributed systems communities, where he presented his work at various academic conferences and was nominated multiple times for "best paper" awards. He has also presented at various internal Bloomberg conferences, and has mentored and taught the company's new software engineers.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

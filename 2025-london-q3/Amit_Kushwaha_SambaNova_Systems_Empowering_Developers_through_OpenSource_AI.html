@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -133,6 +143,7 @@
 		</div><!--//branding-->
 	</header><!--//header-->
 
+	
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
@@ -176,6 +187,7 @@
 		</div><!--//container-->
 
 	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -212,12 +224,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Empowering Developers through Open-Source AI</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Amit Kushwaha.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -238,10 +263,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In the ever evolving AI landscape, organizations are faced with the choice between open-source versus closed-source models. While many developers find it easier to get started in the closed source ecosystem, they quickly realize it is ultimately more expensive, inefficient, and doesn’t have the security and controls required for their applications. Alternatively, open source models have quickly caught up to their closed counterparts and now deliver a cheaper and just as accurate solution that provides organizations with the security they need to run their operations.
 In addition, the pace of the open source community is iterating at speeds that are beyond belief and not only improving the accuracy of these models, but making them run even faster, especially on hardware that is better suited for AI beyond the GPU. With new open source models dropping every week and an active community fine-tuning even better versions daily, open source is making AI a commodity, with a wide range of cloud services for developers to choose from that make it even easier for them to use.
 Join Amit Kushwaha, Director of AI Engineering, SambaNova, as he breaks down for attendees the advantages of open-source models, why they are critical for fast product iteration, and how organizations can use them to tap into the best minds globally, accelerate their pace of innovation, and position themselves to shape industry standards while continuously advancing enterprise-grade solutions.</p></p>
@@ -250,9 +276,12 @@ Join Amit Kushwaha, Director of AI Engineering, SambaNova, as he breaks down for
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Amit Kushwaha is the Director of AI Engineering at SambaNova Systems, leading the development and implementation of AI solutions that leverage SambaNova's differentiated hardware. Previously, as Principal Data Scientist at ExxonMobil, he led the organization’s digital transformation efforts, driving the strategy and execution of a multi-million dollar AI/ML portfolio that fostered innovation and enhanced operational efficiency at scale.
 Passionate about harnessing technology to solve complex challenges, Amit specializes in developing innovative, business-focused solutions at the intersection of artificial intelligence, high-performance computing, and computer simulations. He holds a Ph.D. in Engineering from Stanford University.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

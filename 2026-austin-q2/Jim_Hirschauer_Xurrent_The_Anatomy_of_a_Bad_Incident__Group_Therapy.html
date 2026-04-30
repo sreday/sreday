@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -240,12 +250,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">The Anatomy of a Bad Incident - Group Therapy</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Jim Hirschauer.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -266,10 +289,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Every incident has the same bones: detection, declaration, assembly, diagnosis, resolution, postmortem. And every team bleeds in the same places.</p>
 <p>This isn't a "presentation". It's a structured conversation. We'll walk through each stage of a bad incident together, name the friction points that never make it into the postmortem, and hear from the room: your war stories, your workarounds, your hard-won fixes.</p>
 <p>No slides full of vendor claims. No theory. Just practitioners in a room being honest about what breaks, and what actually helps.</p>
@@ -279,8 +303,11 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Jim Hirschauer is a growth-focused technology executive and category builder currently with Xurrent (formerly 4me). Based in Austin, Texas, he is focused on shaping the ITxM category through strategic messaging, market development, and industry engagement. With a background rooted in technology and business development, Jim combines sales leadership with a strong understanding of IT service management and enterprise solutions.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

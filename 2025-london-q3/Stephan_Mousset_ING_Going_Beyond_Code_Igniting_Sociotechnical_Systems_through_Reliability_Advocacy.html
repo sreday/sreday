@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -133,6 +143,7 @@
 		</div><!--//branding-->
 	</header><!--//header-->
 
+	
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
@@ -176,6 +187,7 @@
 		</div><!--//container-->
 
 	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -212,12 +224,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Going Beyond Code: Igniting Sociotechnical Systems through Reliability Advocacy</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Stephan Mousset.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -238,10 +263,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In our world where everything is code, reliability extends beyond clean and reliable code running on the right infrastructure. It requires a robust sociotechnical system, the dynamic interplay between social and technical components. Our North Star is an engineering culture, built on shared beliefs, practices and behaviours that shape how we operate, solve problems, collaborate, innovate and continuously learn.
 But how do we achieve this engineering culture, where innovation and success are driven by collaboration, trust, autonomy, and passion? What is our code of conduct and how does it propel us forward?
 In this talk, we will take you through our 5-year journey in Reliability Advocacy. We started out as a group of 10 enthusiastic engineers from different platform and enablement teams who wanted to share knowledge of our reliability product offering and practices across the organization. We are now a household name, run our annual Reliability Event conference which are attended by 300+ engineers every year and our reliability trainings are part of the curriculum for all new joiners and we've guided hundreds of engineers on their path to defining SLIs and SLOs. In part, thanks to our reliability advocates, reliability is now one of our engineering pillars for years to come shaping our organization in the process, raising our general availability rating from 99.54% to 99,87% in the process.
@@ -251,11 +277,14 @@ We will share what worked for us, what didn’t, and how we gradually embedded o
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Stephan Mousset is the Global Product Manager for the Performance &amp; Resilience Engineering Platform at ING, where he also serves as Lead Reliability Advocate. With nearly two decades of experience at ING, Stephan has led major efforts in performance testing automation, SLI/SLO adoption, and reliability engineering at scale.
 He is an active voice in the DevOps and SRE communities — co-organizing DevOpsDays Amsterdam, Site Reliability Engineering NL, and ING’s internal Reliability Event.
 Stephan has shared his insights at multiple conferences, including: - SLOconf 2022: ING’s global SLO rollout and lessons learned - SRE NL Meetup at ING (2023): Building a platform for SLO-driven performance engineering - DevOpsDays Berlin 2024 (Ignite): "Unleashing DevOps Magic in Performance Testing &amp; Analysis Automation"
 His talks focus on practical, platform-enabled approaches to making reliability and resilience part of everyday engineering — through automation, observability, and culture.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -216,12 +226,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">The LLM Said What?! A Survival Guide</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Laysa Uchoa.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -242,10 +265,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>LLMs are confident liars. We will start with a true story about an internet meme, and an AI that learned exactly the wrong lesson, and use it to explain why hallucinations happen and how to stop them
 This talk walks through a production-ready approach to grounding LLMs in real data using Retrieval-Augmented Generation on OpenSearch. We will compare RAG against fine-tuning and explain why retrieval wins for fact-based use cases. We will dig into hybrid search, combining BM25 lexical scoring with k-NN vector search, and show how to tune the normalization and weighting that ties them together. We'll spend real time on chunking strategies because chunking is where most RAG projects quietly fail. Finally, we will introduce a three-layer evaluation framework covering retrieval quality, configuration, and answer faithfulness.
 You will leave with the mental model that turns RAG from guesswork into engineering.</p></p>
@@ -254,9 +278,12 @@ You will leave with the mental model that turns RAG from guesswork into engineer
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Senior Platform Engineer at enmacc, OpenSearch Ambassador, and PyLadies Munich leader. I spent years as a backend developer, and now I build platforms so other developers do not have to suffer like I did. Multi-cloud by trade, search nerd by choice, continuous learner by habit.</p>
 <p>Helping scale Europe‘s leading OTC energy trading platform and driving more transparent, efficient markets for the energy transition.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

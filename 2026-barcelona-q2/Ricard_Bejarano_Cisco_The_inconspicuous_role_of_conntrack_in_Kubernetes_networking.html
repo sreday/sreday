@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -216,12 +226,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">The inconspicuous role of conntrack in Kubernetes networking</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Ricard Bejarano.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -242,18 +265,22 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>One very common assumption of Kubernetes practicioners, even those in the network side of things, is that Kubernetes Services behave like good old load balancers. And to a certain extent, Services do behave in a similar fashion to what one would typically classify as a round-robin load balancer. However, the reality of it is much deeper than that. Both simpler and more complex at the same time. In this talk we'll go over an incident we had on September 2025, where a mix of this misconception, Istio's behavior, CoreDNS' failure, kube-proxy's silence, and iptables and conntrack interoperability made it look like everything was OK, yet DNS—it's always DNS—was failing. We will go deep into how brilliantly simple Kubernetes' networking is, how Istio's DNS works on top of Kubernetes' DNS, and how both broke each other.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Ricard is a Lead Site Reliability Engineer at Cisco ThousandEyes' SRE team. You can often find him investigating the weirdest incidents, such as the one that motivated this talk. Ricard is currently writing a book about homelabbing, so go talk to him if you have a homelab!</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

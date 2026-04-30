@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="#venue">Venue</a></li>
@@ -243,7 +253,117 @@
   <div class="container">
     <div class="event-countdown text-center mb-3">
     
-      <h4 class="countdown-intro mb-2 text-center mb-3">Event finished</h4>
+      <h4 class="countdown-intro mb-2 text-center mb-3">Event finished, what's next?</h4>
+      
+      <style>
+        .idx-tl { position: relative; padding: 20px 0 8px; margin-bottom: 8px; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .idx-tl-line { position: absolute; top: 26px; left: 0; right: 0; height: 2px; background: var(--brand-lighter); z-index: 0; }
+        .idx-tl-events { display: flex; justify-content: space-between; position: relative; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
+        .idx-tl-event { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 0; }
+        .idx-tl-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--brand); border: 2px solid #fff; outline: 2px solid var(--brand); margin-bottom: 10px; flex-shrink: 0; z-index: 1; }
+        .idx-tl-dot.past { background: #999; outline-color: #999; }
+        .idx-tl-chip { background: var(--brand-lightest); border: 1px solid var(--brand-lighter); border-radius: 8px; padding: 8px 10px; text-align: center; text-decoration: none; width: 100%; transition: background .15s; min-height: 80px; display: flex; flex-direction: column; justify-content: center; }
+        .idx-tl-chip:hover { background: var(--brand-pale); text-decoration: none; }
+        .idx-tl-chip.past { background: #e8e8e8; border-color: #ccc; }
+        .idx-tl-chip.past:hover { background: #d8d8d8; }
+        .idx-tl-city { font-family: 'Montserrat', sans-serif; font-size: .8rem; font-weight: 700; color: var(--brand-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .idx-tl-chip.past .idx-tl-city { color: #555; }
+        .idx-tl-date { font-size: .75rem; color: var(--brand-light); margin-top: 2px; }
+        .idx-tl-chip.past .idx-tl-date { color: #777; }
+        .idx-tl-pin-event { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+        .idx-tl-pin { font-size: 2.25rem; line-height: 1; color: var(--brand-dark); margin-bottom: 10px; position: relative; top: -4px; }
+      </style>
+      <div class="idx-tl">
+        <div class="idx-tl-line"></div>
+        <div class="idx-tl-events">
+          
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-nyc-q1/" class="idx-tl-chip past">
+              <div class="idx-tl-city">NYC</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">February 26, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-london-q1/" class="idx-tl-chip past">
+              <div class="idx-tl-city">London</div>
+              <div class="idx-tl-date" style="font-style:normal;">United Kingdom</div>
+              <div class="idx-tl-date">March 12, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-san-francisco-q2/" class="idx-tl-chip past">
+              <div class="idx-tl-city">San Francisco</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">April 17, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-seattle-q2/" class="idx-tl-chip past">
+              <div class="idx-tl-city">Seattle</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">April 21, 2026</div>
+            </a>
+          </div>
+          
+          
+          
+          <div class="idx-tl-pin-event"><div class="idx-tl-pin">▼</div></div>
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-barcelona-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Barcelona</div>
+              <div class="idx-tl-date" style="font-style:normal;">Spain</div>
+              <div class="idx-tl-date">May 8, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-austin-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Austin</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">May 11, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-munich-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Munich</div>
+              <div class="idx-tl-date" style="font-style:normal;">Germany</div>
+              <div class="idx-tl-date">May 21, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-nyc-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">NYC</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">June 6, 2026</div>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+      
     
     </div>
   </div>
@@ -297,14 +417,7 @@
     </script>
 </section>
 
-<section id="tickets" class="tickets-section section">
-  <div class="container">
-    <h3 class="section-heading text-center mb-3">Tickets</h3>
 
-    
-
-  </div>
-</section>
 
 <style>
   .speakers-section .card {
@@ -317,24 +430,82 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    font-size: 0.9rem;
+  }
+  .speakers-section .card-title {
+    font-size: 1.1rem;
+  }
+  .event-card-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-top: auto;
+    width: 100%;
+  }
+  .speakers-section .event-card-buttons a {
+    flex: 0 1 50%;
+    text-align: center;
+    min-width: 0;
+    display: block;
   }
   .event-read-more-btn {
     display: inline-block;
-    padding: 8px 18px;
-    background: #8D5E80;
+    padding: 6px 12px;
+    background: var(--brand-light);
     color: #fff;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
+    font-size: 0.8rem;
     transition: background 0.2s ease;
-    margin-top: auto;
-    align-self: flex-start;
   }
   .event-read-more-btn:hover,
   .event-read-more-btn:focus {
-    background: #9C7290;
+    background: var(--brand-lighter);
     color: #fff;
     text-decoration: none;
+  }
+  .event-watch-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #EC645E;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    transition: background 0.2s ease;
+  }
+  .event-watch-btn:hover,
+  .event-watch-btn:focus {
+    background: #F28B87;
+    color: #fff;
+    text-decoration: none;
+  }
+  .event-watch-btn-sm {
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    margin-left: 12px;
+  }
+  .schedule-abstract {
+    position: relative;
+    max-height: 3.2em;
+    line-height: 1.6;
+    overflow: hidden;
+    text-align: justify;
+  }
+  .schedule-abstract-read-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-left: 3em;
+    background: linear-gradient(to right, transparent, #e8f8f0 30%);
+    font-weight: 700;
+    color: var(--brand);
+    text-decoration: underline;
+  }
+  .schedule-section .item {
+    margin-bottom: 4.5rem;
   }
 </style>
 
@@ -361,7 +532,7 @@
   .track-nav-links a {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: #713660;
+    background: var(--brand);
     color: white;
     text-decoration: none;
     border-radius: 4px;
@@ -370,25 +541,25 @@
     transition: background 0.2s;
   }
   .track-nav-links a:hover {
-    background: #5e2c50;
+    background: var(--brand-dark);
     color: white;
   }
   .view-toggle-link {
-    color: #713660;
+    color: var(--brand);
     text-decoration: none;
     font-size: 0.9rem;
     cursor: pointer;
     padding: 0.5rem 0.75rem;
-    border: 1px solid #713660;
+    border: 1px solid var(--brand);
     border-radius: 4px;
     transition: all 0.2s;
   }
   .view-toggle-link:hover {
-    background: #713660;
+    background: var(--brand);
     color: white;
   }
   .view-toggle-link.active {
-    background: #713660;
+    background: var(--brand);
     color: white;
   }
   /* Table view */
@@ -405,7 +576,7 @@
     table-layout: fixed;
   }
   .schedule-grid-table th {
-    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
     color: white;
     padding: 0.75rem 1rem;
     text-align: left;
@@ -417,17 +588,17 @@
   }
   .schedule-grid-table td {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid #ede5eb;
+    border-bottom: 1px solid var(--brand-lightest);
     vertical-align: top;
   }
   .schedule-grid-table td.merged-cell {
     text-align: center;
     font-weight: 500;
     color: #555;
-    background: #ede5eb;
+    background: var(--brand-lightest);
   }
   .schedule-grid-table .time-cell {
-    color: #713660;
+    color: var(--brand);
     font-weight: 600;
     white-space: nowrap;
   }
@@ -437,7 +608,7 @@
     font-weight: 500;
   }
   .schedule-grid-table .talk-cell a:hover {
-    color: #713660;
+    color: var(--brand);
   }
   .schedule-grid-table .speaker-info {
     color: #444;
@@ -446,6 +617,13 @@
   }
   .schedule-grid-table .speaker-info .affiliation {
     color: #666;
+  }
+  .speaker-linkedin-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .speaker-linkedin-link:hover {
+    color: #098dcf;
   }
   .schedule-meta {
     display: flex;
@@ -471,7 +649,7 @@
   }
   /* Track section header */
   .track-section-header {
-    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
     color: white;
     padding: 1rem 1.5rem;
     margin: 2rem 0 0 0;
@@ -483,7 +661,7 @@
     margin-top: 0;
   }
 
-  .schedule-section.theme-bg-light { background-color: #f8f0f6 !important; }
+  .schedule-section.theme-bg-light { background-color: #f0faf5 !important; }
 </style>
 
 <section id="schedule" class="schedule-section section theme-bg-light">
@@ -497,6 +675,8 @@
       <span class="schedule-meta-item">single track</span>
       <span class="schedule-meta-divider">•</span>
       <span class="schedule-meta-item">9AM - 6:30PM</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">NYC, in-person</span>
     </div>
 
 
@@ -526,15 +706,21 @@
               <h4 class="time mb-3">09:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle mb-2" src="../speakers/Dewan Ahmed.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Dewan Ahmed</a></div>
+                <div class="name">Dewan Ahmed</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: Secure by Default: Building Confidence in AI-Driven Delivery</a>
               </h3>
               <div class="location mb-3">Harness</div>
-              <div class="desc">The fastest way to break trust in DevSecOps is to automate insecurity at scale. As AI takes a central role in our pipelines, it is time to rethink what "secure by default" really means. In this keynote, Dewan Ahmed will challenge the audience to look beyond vulnerability scanners and compliance...<br /><br /></div>
+              <div class="desc schedule-abstract">The fastest way to break trust in DevSecOps is to automate insecurity at scale. As AI takes a central role in our pipelines, it is time to rethink what "secure by default" really means.
+
+In this keynote, Dewan Ahmed will challenge the audience to look beyond vulnerability scanners and compliance gates. He will share a vision for intelligent security by design, where native intelligence within the delivery platform detects not only vulnerable code but risky delivery behavior such as misconfigured environments, suspicious artifact provenance, and drift between source and runtime.
+
+You will walk away with a framework for balancing automation with human oversight and examples from Harness’ work on building verifiable, auditable, AI-native delivery systems. In the new world of DevSecOps, safety is not a step; it is an outcome we continuously learn to improve.<a class="schedule-abstract-read-more" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -543,15 +729,17 @@
               <h4 class="time mb-3">09:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle mb-2" src="../speakers/Birol Yildiz.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Birol Yildiz</a></div>
+                <div class="name">Birol Yildiz</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Keynote: When Incidents Fix Themselves: AI SRE in action</a>
               </h3>
               <div class="location mb-3">ilert</div>
-              <div class="desc">The next evolution of incident response isn’t faster alerts, it’s autonomous resolution. Join ilert CEO Birol Yildiz as he shows how AI SRE agents now diagnose and remediate outages without waking anyone up. Learn how these systems combine observability data, deployment context, and code...<br /><br /></div>
+              <div class="desc schedule-abstract">The next evolution of incident response isn’t faster alerts, it’s autonomous resolution. Join ilert CEO Birol Yildiz as he shows how AI SRE agents now diagnose and remediate outages without waking anyone up. Learn how these systems combine observability data, deployment context, and code intelligence to restore services in minutes and hand over clean incident reports instead of 3 a.m. pages.<a class="schedule-abstract-read-more" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -560,15 +748,23 @@
               <h4 class="time mb-3">10:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Ben Hopp.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Ben Hopp</a></div>
+                <div class="name">Ben Hopp</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Keynote: Decoupling Observability for Incident Response at Scale</a>
               </h3>
               <div class="location mb-3">Imply</div>
-              <div class="desc">On-call incidents don’t fail because teams lack dashboards. They fail because observability systems slow down under real investigative load. As telemetry volumes grow and retention windows expand, SRE teams are being asked to run deeper, broader investigations—often under time pressure—on...<br /><br /></div>
+              <div class="desc schedule-abstract">On-call incidents don’t fail because teams lack dashboards. They fail because observability systems slow down under real investigative load.
+
+As telemetry volumes grow and retention windows expand, SRE teams are being asked to run deeper, broader investigations—often under time pressure—on platforms that were designed for steady-state monitoring, not bursty incident response. Tightly coupled observability stacks bind storage, compute, and query together, forcing teams to overprovision infrastructure, limit retention, or accept degraded performance during incidents.
+
+In this talk, we’ll explore why decoupling observability architectures is becoming essential for SRE teams operating at scale. Using a real incident investigation workflow, we’ll break down how separating data storage, compute, and interaction layers allows teams to keep fast, reliable monitoring while elastically scaling investigations when incidents occur.
+
+We’ll connect these patterns to lessons learned in other data-intensive systems, but stay grounded in the day-to-day realities of on-call life: faster root cause analysis, fewer tradeoffs during incidents, and observability systems that hold up when you need them most.<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -577,15 +773,19 @@
               <h4 class="time mb-3">10:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/AJ Mejorado.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">AJ Mejorado</a></div>
+                <div class="name">AJ Mejorado</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Keynote: The Best CVE Is the One You Never Patch: Removing Vulnerability Toil for SREs</a>
               </h3>
               <div class="location mb-3">Chainguard</div>
-              <div class="desc">For most SRE teams, CVE remediation has become a never-ending source of toil—rebuilds, backports, emergency releases, and late-night firefighting. This talk explores how Chainguard flips that model by removing vulnerability remediation from the SRE workload entirely. We’ll look at how secure-by-...<br /><br /></div>
+              <div class="desc schedule-abstract">For most SRE teams, CVE remediation has become a never-ending source of toil—rebuilds, backports, emergency releases, and late-night firefighting. This talk explores how Chainguard flips that model by removing vulnerability remediation from the SRE workload entirely.
+We’ll look at how secure-by-default images, continuous rebuilds, and automated patch pipelines eliminate the need for teams to chase CVEs in production. Instead of reacting to vulnerabilities, SREs inherit artifacts that are already patched, minimal, and ready to run—freeing them to focus on reliability, performance, and scale.
+This session is about shifting CVE response left, shrinking the attack surface, and giving SRE teams their time back—because patching shouldn’t be an on-call responsibility.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -594,15 +794,17 @@
               <h4 class="time mb-3">11:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Michael Levan.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Michael Levan</a></div>
+                <div class="name">Michael Levan</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Keynote: Observing Agentic/MCP Traffic & Keeping Cost Low</a>
               </h3>
               <div class="location mb-3">solo.io</div>
-              <div class="desc">You use an LLM, ask it some questions, have it write a little code for you, and before you know it, you're hit with a massive bill. Out of the box, there's zero way to see token usage, cost, and an overall ability to control it. In this talk, you'll learn exactly how to do that.<br /><br /></div>
+              <div class="desc schedule-abstract">You use an LLM, ask it some questions, have it write a little code for you, and before you know it, you're hit with a massive bill. Out of the box, there's zero way to see token usage, cost, and an overall ability to control it. In this talk, you'll learn exactly how to do that.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -611,15 +813,21 @@
               <h4 class="time mb-3">11:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Endre Sara.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Endre Sara</a></div>
+                <div class="name">Endre Sara</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Keynote: The Missing Layer in AI-Driven Reliability </a>
               </h3>
               <div class="location mb-3">Causely </div>
-              <div class="desc">AI agents are entering incident response with powerful capabilities—detecting anomalies, summarizing logs, and suggesting fixes. Some even execute changes autonomously. The promise is compelling: fully autonomous resolution of production incidents in complex, constantly changing distributed...<br /><br /></div>
+              <div class="desc schedule-abstract">AI agents are entering incident response with powerful capabilities—detecting anomalies, summarizing logs, and suggesting fixes. Some even execute changes autonomously. The promise is compelling: fully autonomous resolution of production incidents in complex, constantly changing distributed systems. 
+
+But before we hand control to agents, we must ask a fundamental question: What kind of understanding must exist before we let agents act? 
+
+This talk argues that the real bottleneck is not model intelligence, but the absence of a continuously updated causal model of the system itself. <a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -628,15 +836,23 @@
               <h4 class="time mb-3">12:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Francois Martel.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Francois Martel</a></div>
+                <div class="name">Francois Martel</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Keynote: The AI SRE Landscape: From LLMs to Multi-Agent Ecosystems</a>
               </h3>
               <div class="location mb-3">NeuBird AI</div>
-              <div class="desc">With more than 15 vendors now claiming AI powered SRE capabilities, engineering leaders are facing a deafening amount of noise. Teams are asking hard questions. Is Datadog Bits AI the same thing as an AI agent? AWS just launched a DevOps Agent. Do we still need a vendor? Our ServiceNow rep says...<br /><br /></div>
+              <div class="desc schedule-abstract">With more than 15 vendors now claiming AI powered SRE capabilities, engineering leaders are facing a deafening amount of noise. Teams are asking hard questions. Is Datadog Bits AI the same thing as an AI agent? AWS just launched a DevOps Agent. Do we still need a vendor? Our ServiceNow rep says their AI can handle it all. How do you cut through the hype?
+
+This talk provides a practical framework for understanding the AI systems transforming Site Reliability Engineering, including foundation LLMs, RAG systems, chat based tools, agentic AI, and multi agent ecosystems. We map the current vendor landscape across five categories: Incident Coordinators, AI Investigators, Observability Native AI, Cloud Provider Agents, and Coding Agents. You will see what each category can actually do today and why context engineering, not model intelligence, is the real differentiator.
+
+The session includes a live walkthrough of a multi agent workflow handling a production incident end to end. It starts with intelligent detection and root cause analysis, continues through automated remediation using a coding agent, and finishes with verified resolution. Humans stay in the loop only where it matters. The workflow persists for hours, coordinates across tools, and retains full context throughout.
+
+You will leave with a clear mental model for evaluating AI SRE tools and a phased adoption roadmap. The key takeaways are straightforward. Know what type of AI you are buying. Invest in context architecture over model hype. Build a layered stack rather than a monolith.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -645,15 +861,14 @@
               <h4 class="time mb-3">12:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -662,15 +877,19 @@
               <h4 class="time mb-3">13:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Yasmin Dunsky & Avner Yaacov.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Yasmin Dunsky & Avner Yaacov</a></div>
+                <div class="name">Yasmin Dunsky & Avner Yaacov</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">What It Takes To Build Reliability as a System</a>
               </h3>
               <div class="location mb-3">Wild Moose & Redis</div>
-              <div class="desc">In this talk, Redis and Wild Moose share how they're approaching AI SRE as something that can be designed, automated, and continuously improved. We'll explore how to build AI SRE systems that teams can actually trust in production by applying the same standards used for observability systems:...<br /><br /></div>
+              <div class="desc schedule-abstract">In this talk, Redis and Wild Moose share how they're approaching AI SRE as something that can be designed, automated, and continuously improved. We'll explore how to build AI SRE systems that teams can actually trust in production by applying the same standards used for observability systems: fast, testable, configurable, and transparent.
+
+Using a real-world example from Redis, we'll show how debugging agents turn tribal knowledge into structured investigation workflows and automate critical parts of the operational flow—creating a reliability system that improves with every incident. We'll also share why treating agents like production code, with regression testing and validation, is essential for long-term scale. You'll walk away with an understanding of the cultural shift needed to fully leverage AI for incident management.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -679,15 +898,20 @@
               <h4 class="time mb-3">14:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Mandi Walls.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Mandi Walls</a></div>
+                <div class="name">Mandi Walls</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Reevaluating Post-Incident Reviews</a>
               </h3>
               <div class="location mb-3">PagerDuty</div>
-              <div class="desc">Post-Incident Review. Postmortem. Incident Report. Whatever you call them, they take time and resources, and sometimes you’re not even sure if anyone reads them. The Post-Incident Review is a story. Maybe it’s a bit of a mystery, maybe it’s a feel-good story of redemption. Maybe it’s a buddy...<br /><br /></div>
+              <div class="desc schedule-abstract">Post-Incident Review. Postmortem. Incident Report. Whatever you call them, they take time and resources, and sometimes you’re not even sure if anyone reads them.
+The Post-Incident Review is a story. Maybe it’s a bit of a mystery, maybe it’s a feel-good story of redemption. Maybe it’s a buddy comedy. We produce these reports so that other folks in our organization can learn from the things we learned and hopefully not repeat our same mistakes.
+
+Collecting the data and creating the story are work. We’ll talk about how PagerDuty has changed and adapted our methodology over time to produce better reviews that help more engineers get more out of the process and the assets that are produced.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -696,15 +920,23 @@
               <h4 class="time mb-3">14:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Jason Schechner.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Jason Schechner</a></div>
+                <div class="name">Jason Schechner</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">What Makes an AI SRE Trustworthy? An SRE’s Take.</a>
               </h3>
               <div class="location mb-3">Traversal</div>
-              <div class="desc">On-call is stressful enough without worrying whether AI hallucinated the root cause. In this talk, an SRE who's been handling production incidents since before the role had a name will share what it's like to build an AI system that triages incidents and monitors system health — and why it's not...<br /><br /></div>
+              <div class="desc schedule-abstract">On-call is stressful enough without worrying whether AI hallucinated the root cause.
+
+In this talk, an SRE who's been handling production incidents since before the role had a name will share what it's like to build an AI system that triages incidents and monitors system health — and why it's not as simple as throwing telemetry at an LLM.
+
+He'll walk through how he worked with AI engineers to transfer decades of troubleshooting instincts — and where the AI deliberately diverges (like parallelizing hypothesis exploration). He'll also discuss how we build trust through evaluation — comparing accuracy, latency, and reasoning against ground truth from SREs.
+
+This is a practitioner's view of what it takes to build an AI investigator that engineers can rely on when things are on fire at 3am.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -713,15 +945,19 @@
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Maria Garcia Garcia & Lucia Lopez Barrero.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Maria Garcia Garcia & Lucia Lopez Barrero</a></div>
+                <div class="name">Maria Garcia Garcia & Lucia Lopez Barrero</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Responsible Kubernetes: clusters that don’t kill the planet (or your budget)</a>
               </h3>
               <div class="location mb-3">Resizes</div>
-              <div class="desc">This talk focuses on applying FinOps and sustainability (GreenOps) principles in Kubernetes, addressing very common challenges such as cluster overprovisioning, inefficient resource usage, lack of cost visibility, and the environmental impact of always-on infrastructure. We share real-world...<br /><br /></div>
+              <div class="desc schedule-abstract">This talk focuses on applying FinOps and sustainability (GreenOps) principles in Kubernetes, addressing very common challenges such as cluster overprovisioning, inefficient resource usage, lack of cost visibility, and the environmental impact of always-on infrastructure. We share real-world practices, common mistakes, and practical lessons on how to run Kubernetes in a more efficient, cost-aware, and sustainable way.
+
+We are two engineers who started working in Platform Engineering about a year ago, and we believe this perspective brings real value: we speak from recent, hands-on experience, from what we’ve encountered operating real clusters, what didn’t work, what did, and what we’ve learned along the way while trying to make Kubernetes more responsible in day-to-day operations.<a class="schedule-abstract-read-more" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -730,15 +966,18 @@
               <h4 class="time mb-3">15:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img class="profile-image rounded-circle mb-2" src="../speakers/Bryan Patton.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Bryan Patton</a></div>
+                <div class="name">Bryan Patton</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">The "Supply Chain" Mindset: Why I hire Logistical Engineers, Not Just SREs</a>
               </h3>
               <div class="location mb-3">Xurrent</div>
-              <div class="desc">This talk covers how we hire and run SRE, DevOps, and TechOps teams by treating infrastructure like a supply chain. Looking at systems this way makes bottlenecks, risk, and capacity limits easier to see before they cause outages. I’ll explain what we look for when hiring, how we expect engineers...<br /><br /></div>
+              <div class="desc schedule-abstract">This talk covers how we hire and run SRE, DevOps, and TechOps teams by treating infrastructure like a supply chain. Looking at systems this way makes bottlenecks, risk, and capacity limits easier to see before they cause outages.
+I’ll explain what we look for when hiring, how we expect engineers to operate day to day, and how this approach helps us define the right metrics early instead of after incidents.<a class="schedule-abstract-read-more" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -747,15 +986,14 @@
               <h4 class="time mb-3">16:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Networking and sponsor crawl</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Networking and sponsor crawl</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -764,15 +1002,17 @@
               <h4 class="time mb-3">16:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img class="profile-image rounded-circle mb-2" src="../speakers/Adna Zujo Lakisic.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Adna Zujo Lakisic</a></div>
+                <div class="name">Adna Zujo Lakisic</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Honey, the Audience Broke My App: Reproduce & Fix Live in Kubernetes with mirrord</a>
               </h3>
               <div class="location mb-3">MetalBear</div>
-              <div class="desc">A room of engineers breaks my live app and we fix it together. They scan a QR code which triggers a real failure in a Kubernetes staging environment. Together we reproduce, trace, patch, and validate the fix with kubectl debug and mirrord. A real breakage repaired live.<br /><br /></div>
+              <div class="desc schedule-abstract">A room of engineers breaks my live app and we fix it together. They scan a QR code which triggers a real failure in a Kubernetes staging environment. Together we reproduce, trace, patch, and validate the fix with kubectl debug and mirrord. A real breakage repaired live.<a class="schedule-abstract-read-more" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -781,15 +1021,17 @@
               <h4 class="time mb-3">17:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img class="profile-image rounded-circle mb-2" src="../speakers/Leon Adato.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">Leon Adato</a></div>
+                <div class="name">Leon Adato</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">Looking back at a lifetime of poor tech choices</a>
               </h3>
               <div class="location mb-3">Cribl</div>
-              <div class="desc">Watching your technology choice go down the drain - because of broken promises, vendor implosion, or obsolescence - can feel like a career-ending experience. But in my experience there's usually a lot of good that comes out of those seemingly bad tech choices.<br /><br /></div>
+              <div class="desc schedule-abstract">Watching your technology choice go down the drain - because of broken promises, vendor implosion, or obsolescence - can feel like a career-ending experience. But in my experience there's usually a lot of good that comes out of those seemingly bad tech choices.<a class="schedule-abstract-read-more" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -798,15 +1040,17 @@
               <h4 class="time mb-3">17:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14"><img class="profile-image rounded-circle mb-2" src="../speakers/Marcos Novelli Harispe.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">Marcos Novelli Harispe</a></div>
+                <div class="name">Marcos Novelli Harispe</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">Making Life Easier for SREs with Ephemeral Environments</a>
               </h3>
               <div class="location mb-3">LoopStudio</div>
-              <div class="desc">SREs often work under constant pressure, dealing with incidents and operational overhead. This talk explores how ephemeral environments can help make day-to-day SRE work easier, starting small and without disruptive changes.<br /><br /></div>
+              <div class="desc schedule-abstract">SREs often work under constant pressure, dealing with incidents and operational overhead. This talk explores how ephemeral environments can help make day-to-day SRE work easier, starting small and without disruptive changes.<a class="schedule-abstract-read-more" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -815,15 +1059,14 @@
               <h4 class="time mb-3">18:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Happy Hour by Imply - grab a beer!</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Happy Hour by Imply - grab a beer!</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -832,15 +1075,14 @@
               <h4 class="time mb-3">18:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
-              </h3>
-              <div class="location mb-3">Scan each other's QR codes & head to a nearby pub!</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Wrap up</h3>
+              <div class="location mb-3" style="color:#098dcf;">Scan each other's QR codes & head to a nearby pub!</div>
+              
             </div>
           </div>
 
@@ -1347,7 +1589,9 @@
     }
     </script>
 
-    <div class="schedule-cta text-center mx-auto mt-4"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+    
+    <div class="schedule-cta text-center mx-auto mt-4"><a href="https://luma.com/sre" target="_blank" rel="noopener" class="btn btn-secondary btn-lg d-block d-md-inline-block">Upcoming conferences on LUMA</a></div>
+    
   </div>
 </section>
 
@@ -1357,11 +1601,11 @@
 <section id="speakers" class="speakers-section section">
   <div class="container">
     <h3 class="section-heading text-center mb-3">Speakers</h3>
-    <div class="row">
+    <div class="row row-cols-2 row-cols-lg-5">
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img src="../speakers/Adna Zujo Lakisic.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1369,7 +1613,10 @@
             <div class="card-text mb-3">
               <div class="meta">MetalBear</div>
             </div><!--//card-text-->
-            <a href="./Adna_Zujo_Lakisic_MetalBear_Honey__the_Audience_Broke_My_App_Reproduce__Fix_Live_in_Kubernetes_with_#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Adna_Zujo_Lakisic_MetalBear_Honey__the_Audience_Broke_My_App_Reproduce__Fix_Live_in_Kubernetes_with_#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1384,7 +1631,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/AJ Mejorado.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1392,7 +1639,10 @@
             <div class="card-text mb-3">
               <div class="meta">Chainguard</div>
             </div><!--//card-text-->
-            <a href="./AJ_Mejorado_Chainguard_Keynote_The_Best_CVE_Is_the_One_You_Never_Patch_Removing_Vulnerability_Toil_f#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./AJ_Mejorado_Chainguard_Keynote_The_Best_CVE_Is_the_One_You_Never_Patch_Removing_Vulnerability_Toil_f#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1407,7 +1657,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Ben Hopp.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1415,7 +1665,10 @@
             <div class="card-text mb-3">
               <div class="meta">Imply</div>
             </div><!--//card-text-->
-            <a href="./Ben_Hopp_Imply_Keynote_Decoupling_Observability_for_Incident_Response_at_Scale#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Ben_Hopp_Imply_Keynote_Decoupling_Observability_for_Incident_Response_at_Scale#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1430,7 +1683,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img src="../speakers/Birol Yildiz.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1438,7 +1691,10 @@
             <div class="card-text mb-3">
               <div class="meta">ilert</div>
             </div><!--//card-text-->
-            <a href="./Birol_Yildiz_ilert_Keynote_When_Incidents_Fix_Themselves_AI_SRE_in_action#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Birol_Yildiz_ilert_Keynote_When_Incidents_Fix_Themselves_AI_SRE_in_action#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1453,7 +1709,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img src="../speakers/Bryan Patton.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1461,7 +1717,10 @@
             <div class="card-text mb-3">
               <div class="meta">Xurrent</div>
             </div><!--//card-text-->
-            <a href="./Bryan_Patton_Xurrent_The_Supply_Chain_Mindset_Why_I_hire_Logistical_Engineers__Not_Just_SREs#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Bryan_Patton_Xurrent_The_Supply_Chain_Mindset_Why_I_hire_Logistical_Engineers__Not_Just_SREs#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1476,7 +1735,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Dewan Ahmed.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1484,7 +1743,10 @@
             <div class="card-text mb-3">
               <div class="meta">Harness</div>
             </div><!--//card-text-->
-            <a href="./Dewan_Ahmed_Harness_Keynote_Secure_by_Default_Building_Confidence_in_AIDriven_Delivery#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Dewan_Ahmed_Harness_Keynote_Secure_by_Default_Building_Confidence_in_AIDriven_Delivery#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1499,7 +1761,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Endre Sara.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1507,7 +1769,10 @@
             <div class="card-text mb-3">
               <div class="meta">Causely </div>
             </div><!--//card-text-->
-            <a href="./Endre_Sara_Causely__Keynote_The_Missing_Layer_in_AIDriven_Reliability_#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Endre_Sara_Causely__Keynote_The_Missing_Layer_in_AIDriven_Reliability_#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1522,7 +1787,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Francois Martel.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1530,7 +1795,10 @@
             <div class="card-text mb-3">
               <div class="meta">NeuBird AI</div>
             </div><!--//card-text-->
-            <a href="./Francois_Martel_NeuBird_AI_Keynote_The_AI_SRE_Landscape_From_LLMs_to_MultiAgent_Ecosystems#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Francois_Martel_NeuBird_AI_Keynote_The_AI_SRE_Landscape_From_LLMs_to_MultiAgent_Ecosystems#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1545,7 +1813,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Jason Schechner.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1553,7 +1821,10 @@
             <div class="card-text mb-3">
               <div class="meta">Traversal</div>
             </div><!--//card-text-->
-            <a href="./Jason_Schechner_Traversal_What_Makes_an_AI_SRE_Trustworthy_An_SREs_Take#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Jason_Schechner_Traversal_What_Makes_an_AI_SRE_Trustworthy_An_SREs_Take#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1568,7 +1839,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img src="../speakers/Leon Adato.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1576,7 +1847,10 @@
             <div class="card-text mb-3">
               <div class="meta">Cribl</div>
             </div><!--//card-text-->
-            <a href="./Leon_Adato_Cribl_Looking_back_at_a_lifetime_of_poor_tech_choices#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Leon_Adato_Cribl_Looking_back_at_a_lifetime_of_poor_tech_choices#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1591,7 +1865,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Mandi Walls.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1599,7 +1873,10 @@
             <div class="card-text mb-3">
               <div class="meta">PagerDuty</div>
             </div><!--//card-text-->
-            <a href="./Mandi_Walls_PagerDuty_Reevaluating_PostIncident_Reviews#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Mandi_Walls_PagerDuty_Reevaluating_PostIncident_Reviews#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1614,7 +1891,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14"><img src="../speakers/Marcos Novelli Harispe.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1622,7 +1899,10 @@
             <div class="card-text mb-3">
               <div class="meta">LoopStudio</div>
             </div><!--//card-text-->
-            <a href="./Marcos_Novelli_Harispe_LoopStudio_Making_Life_Easier_for_SREs_with_Ephemeral_Environments#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Marcos_Novelli_Harispe_LoopStudio_Making_Life_Easier_for_SREs_with_Ephemeral_Environments#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1637,15 +1917,18 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Maria Garcia Garcia & Lucia Lopez Barrero.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
-            <h5 class="card-title mb-2">Maria Garcia Garcia & Lucia Lopez Barrero</h5>
+            <h5 class="card-title mb-2">Maria Garcia Garcia<br>&amp; Lucia Lopez Barrero</h5>
             <div class="card-text mb-3">
               <div class="meta">Resizes</div>
             </div><!--//card-text-->
-            <a href="./Maria_Garcia_Garcia__Lucia_Lopez_Barrero_Resizes_Responsible_Kubernetes_clusters_that_dont_kill_the_#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Maria_Garcia_Garcia__Lucia_Lopez_Barrero_Resizes_Responsible_Kubernetes_clusters_that_dont_kill_the_#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1660,7 +1943,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Michael Levan.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1668,7 +1951,10 @@
             <div class="card-text mb-3">
               <div class="meta">solo.io</div>
             </div><!--//card-text-->
-            <a href="./Michael_Levan_soloio_Keynote_Observing_AgenticMCP_Traffic__Keeping_Cost_Low#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Michael_Levan_soloio_Keynote_Observing_AgenticMCP_Traffic__Keeping_Cost_Low#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1683,15 +1969,18 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Yasmin Dunsky & Avner Yaacov.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
-            <h5 class="card-title mb-2">Yasmin Dunsky & Avner Yaacov</h5>
+            <h5 class="card-title mb-2">Yasmin Dunsky<br>&amp; Avner Yaacov</h5>
             <div class="card-text mb-3">
               <div class="meta">Wild Moose & Redis</div>
             </div><!--//card-text-->
-            <a href="./Yasmin_Dunsky__Avner_Yaacov_Wild_Moose__Redis_What_It_Takes_To_Build_Reliability_as_a_System#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Yasmin_Dunsky__Avner_Yaacov_Wild_Moose__Redis_What_It_Takes_To_Build_Reliability_as_a_System#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1709,7 +1998,7 @@
       
 
     </div><!--//row-->
-    <div class="speakers-cta text-center py-3"><a class="btn btn-primary btn-lg" href="#tickets">Get Tickets</a></div>
+    
   </div><!--//container-->
 
 </section><!--//speakers-section-->
@@ -1786,6 +2075,21 @@
 
 
 
+<style>
+  .modal-speaker .desc p,
+  .modal-speaker .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .modal-speaker .desc {
+    padding-bottom: 0.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+</style>
+
 
 <!-- Modal Speaker 7 -->
 <div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
@@ -1816,6 +2120,7 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In this talk, Redis and Wild Moose share how they're approaching AI SRE as something that can be designed, automated, and continuously improved. We'll explore how to build AI SRE systems that teams can actually trust in production by applying the same standards used for observability systems: fast, testable, configurable, and transparent.</p>
 <p>Using a real-world example from Redis, we'll show how debugging agents turn tribal knowledge into structured investigation workflows and automate critical parts of the operational flow—creating a reliability system that improves with every incident. We'll also share why treating agents like production code, with regression testing and validation, is essential for long-term scale. You'll walk away with an understanding of the cultural shift needed to fully leverage AI for incident management.</p></p>
               </div>
@@ -1823,6 +2128,7 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p><strong><a href="https://www.linkedin.com/in/yasmin-dunsky/">Yasmin Dunsky</a></strong> is the Co-Founder &amp; CEO of Wild Moose (YC W23), an AI-first SRE platform that helps engineering teams investigate production incidents in under a minute by turning tribal debugging knowledge into reliable, testable AI agents. Prior to founding Wild Moose, she led and scaled one of Israel’s largest nonprofits for computer science education, partnering with Google and Microsoft to build programs that reached thousands of students nationwide. She holds an MBA from Stanford and previously worked as a software engineer at Google.</p>
 <p><strong><a href="https://www.linkedin.com/in/avner-yaacov-b69b2475/">Avner Yaacov</a></strong> is Director of Cloud Operations at Redis, where he leads global SRE, Cloud Operations, and Software Engineering teams responsible for the reliability, scalability, and operability of Redis Cloud. He manages the largest multi-cloud deployment of Redis, overseeing complex production environments across cloud providers and regions. With over a decade of experience in DevOps and SRE roles, Avner has built and operated large-scale distributed systems across cloud and high-performance environments. Over the past year, he has led Redis' shift toward AI-driven operations, focusing on moving from reactive operations to AI-assisted troubleshooting and automated remediation, while establishing clear standards for how automation is written, tested, rolled out, and trusted in production.</p></p>
               </div>
@@ -1860,6 +2166,7 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Post-Incident Review. Postmortem. Incident Report. Whatever you call them, they take time and resources, and sometimes you’re not even sure if anyone reads them.
 The Post-Incident Review is a story. Maybe it’s a bit of a mystery, maybe it’s a feel-good story of redemption. Maybe it’s a buddy comedy. We produce these reports so that other folks in our organization can learn from the things we learned and hopefully not repeat our same mistakes.</p>
 <p>Collecting the data and creating the story are work. We’ll talk about how PagerDuty has changed and adapted our methodology over time to produce better reviews that help more engineers get more out of the process and the assets that are produced.</p></p>
@@ -1868,6 +2175,7 @@ The Post-Incident Review is a story. Maybe it’s a bit of a mystery, maybe it�
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Mandi Walls is a DevOps Advocate at PagerDuty and an Advisory Board Member for the Customer Experience Executive Program at Ithaca College. With more than a decade of experience across operations, automation, and community leadership - including nearly nine years in technical and community roles at Chef Software - she brings deep expertise in incident response, service reliability, and practitioner education. A frequent speaker, Mandi focuses on practical DevOps practices and building healthier engineering cultures.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -1904,6 +2212,7 @@ The Post-Incident Review is a story. Maybe it’s a bit of a mystery, maybe it�
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>On-call is stressful enough without worrying whether AI hallucinated the root cause.</p>
 <p>In this talk, an SRE who's been handling production incidents since before the role had a name will share what it's like to build an AI system that triages incidents and monitors system health — and why it's not as simple as throwing telemetry at an LLM.</p>
 <p>He'll walk through how he worked with AI engineers to transfer decades of troubleshooting instincts — and where the AI deliberately diverges (like parallelizing hypothesis exploration). He'll also discuss how we build trust through evaluation — comparing accuracy, latency, and reasoning against ground truth from SREs.</p>
@@ -1913,6 +2222,7 @@ The Post-Incident Review is a story. Maybe it’s a bit of a mystery, maybe it�
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p></p>
               </div>
           </div><!--//modal-body-->
@@ -1949,6 +2259,7 @@ The Post-Incident Review is a story. Maybe it’s a bit of a mystery, maybe it�
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This talk focuses on applying FinOps and sustainability (GreenOps) principles in Kubernetes, addressing very common challenges such as cluster overprovisioning, inefficient resource usage, lack of cost visibility, and the environmental impact of always-on infrastructure. We share real-world practices, common mistakes, and practical lessons on how to run Kubernetes in a more efficient, cost-aware, and sustainable way.</p>
 <p>We are two engineers who started working in Platform Engineering about a year ago, and we believe this perspective brings real value: we speak from recent, hands-on experience, from what we’ve encountered operating real clusters, what didn’t work, what did, and what we’ve learned along the way while trying to make Kubernetes more responsible in day-to-day operations.</p></p>
               </div>
@@ -1956,6 +2267,7 @@ The Post-Incident Review is a story. Maybe it’s a bit of a mystery, maybe it�
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p><strong><a href="https://www.linkedin.com/in/mariia126/">María García García</a></strong> is a junior platform engineer currently completing an apprenticeship in Gijón, Asturias. She is building her foundations in platform engineering while gaining hands-on experience in real environments. Previously, she worked as an application developer intern at ABAMobile, where she focused on multiplatform development, and as a web developer intern at Bittia, contributing to real-world projects and strengthening her teamwork skills. María has a background in technical training from TuniverS Formación and brings a practical, detail-oriented mindset shaped by both technical and non-technical roles.</p>
 <p><strong><a href="https://www.linkedin.com/in/luc%C3%ADa-l%C3%B3pez-barrero-88a786351/">Lucía López Barrero</a></strong> is a computer engineering student specializing in information technologies at the University of Oviedo. She is currently completing an internship, gaining practical experience alongside her academic studies. Lucía is in the final stage of her degree and is focused on developing a solid technical foundation while applying her knowledge in a professional setting.</p></p>
               </div>
@@ -1993,6 +2305,7 @@ The Post-Incident Review is a story. Maybe it’s a bit of a mystery, maybe it�
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This talk covers how we hire and run SRE, DevOps, and TechOps teams by treating infrastructure like a supply chain. Looking at systems this way makes bottlenecks, risk, and capacity limits easier to see before they cause outages.
 I’ll explain what we look for when hiring, how we expect engineers to operate day to day, and how this approach helps us define the right metrics early instead of after incidents.</p></p>
               </div>
@@ -2000,6 +2313,7 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Bryan Patton is Director of Site Reliability and TechOps at Xurrent, where he leads global reliability engineering, operational excellence including architecture and performance monitoring, and incident response practices for modern cloud environments.</p>
 <p>Bryan previously directed a high-performance ecosystem engineered to handle massive surges in real-time sports data, consistently managing traffic loads exceeding millions of requests per second. He oversaw the scaling of cloud-native systems and low-latency databases to ensure 99.9% uptime during peak global sporting events, where millisecond-level precision is critical for user engagement. By implementing robust automated scaling protocols and optimizing distributed cache layers, they successfully balanced extreme throughput with system resilience and cost-efficiency in a high-stakes, data-intensive environment.</p></p>
               </div>
@@ -2037,12 +2351,14 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>A room of engineers breaks my live app and we fix it together. They scan a QR code which triggers a real failure in a Kubernetes staging environment. Together we reproduce, trace, patch, and validate the fix with kubectl debug and mirrord. A real breakage repaired live.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Adna Zujo Lakisic is a Solutions Engineer based in North America, currently working at MetalBear. She brings a strong engineering background spanning software development, technical consulting, and solutions engineering across media, marketing, and technology companies. Prior to MetalBear, she spent several years as a Senior Engineer at Haymarket Media US, where she supported large scale digital platforms. Her experience also includes technical consulting roles at Omega IT and solutions engineering at Midan Marketing, with hands on work in areas such as Terraform, Python, Kubernetes, and cloud infrastructure. Earlier in her career, Adna helped shape and fund a mobile tour guide platform focused on promoting tourism in Mostar through curated self guided experiences.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2079,12 +2395,14 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Watching your technology choice go down the drain - because of broken promises, vendor implosion, or obsolescence - can feel like a career-ending experience. But in my experience there's usually a lot of good that comes out of those seemingly bad tech choices.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p><em>A full speaker profile is available on <a href="adatosystems.com/speaking/">adatosystems.com</a></em></p>
 <p>In my sordid career, I have been an actor, bug exterminator and wild-animal remover (nothing crazy like pumas or wildebeests. Just skunks, snakes, and raccoons.), electrician, carpenter, stage-combat instructor, ASL interpreter, and Sunday school teacher. Oh, yeah, I've also worked with computers.</p>
 <p>While my first keyboard was an IBM selectric, and my first digital experience was on an Atari 400, my professional work in tech started in 1989 (when you got Windows 286 for free on twelve 5¼” when you bought Excel 1.0). Since then I've worked as a classroom instructor, courseware designer, helpdesk operator, desktop support staff, sysadmin, network engineer, and software distribution technician.</p>
@@ -2124,12 +2442,14 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>SREs often work under constant pressure, dealing with incidents and operational overhead. This talk explores how ephemeral environments can help make day-to-day SRE work easier, starting small and without disruptive changes.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Marcos Novelli Harispe is a software engineer specializing in AWS, serverless architectures, and data-driven solutions. He has delivered scalable notification systems, analytics platforms, and automation tools across freelance and full-time roles, with a focus on reliability, efficiency, and measurable business impact.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2166,6 +2486,7 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The fastest way to break trust in DevSecOps is to automate insecurity at scale. As AI takes a central role in our pipelines, it is time to rethink what "secure by default" really means.</p>
 <p>In this keynote, Dewan Ahmed will challenge the audience to look beyond vulnerability scanners and compliance gates. He will share a vision for intelligent security by design, where native intelligence within the delivery platform detects not only vulnerable code but risky delivery behavior such as misconfigured environments, suspicious artifact provenance, and drift between source and runtime.</p>
 <p>You will walk away with a framework for balancing automation with human oversight and examples from Harness’ work on building verifiable, auditable, AI-native delivery systems. In the new world of DevSecOps, safety is not a step; it is an outcome we continuously learn to improve.</p></p>
@@ -2174,6 +2495,7 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Dewan Ahmed is a Principal Developer Advocate at Harness and a Governing Board General Member Representative at the Continuous Delivery Foundation. He focuses on DevRel and content strategy across CI/CD, DevOps, and open source, with deep expertise in software supply chain security and developer experience.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2210,12 +2532,14 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The next evolution of incident response isn’t faster alerts, it’s autonomous resolution. Join ilert CEO Birol Yildiz as he shows how AI SRE agents now diagnose and remediate outages without waking anyone up. Learn how these systems combine observability data, deployment context, and code intelligence to restore services in minutes and hand over clean incident reports instead of 3 a.m. pages.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Birol Yildiz is the Co-founder and CEO of ilert, adeptly steering the company with a rare combination of technical and product expertise. His prior experience includes a significant role as Chief Product Owner for Big Data products at REWE Digital. With a strong foundation in computer science, Birol bridges the gap between developer and product strategist, constantly striving to innovate and provide customer-centric solutions at ilert.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2252,6 +2576,7 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>On-call incidents don’t fail because teams lack dashboards. They fail because observability systems slow down under real investigative load.</p>
 <p>As telemetry volumes grow and retention windows expand, SRE teams are being asked to run deeper, broader investigations—often under time pressure—on platforms that were designed for steady-state monitoring, not bursty incident response. Tightly coupled observability stacks bind storage, compute, and query together, forcing teams to overprovision infrastructure, limit retention, or accept degraded performance during incidents.</p>
 <p>In this talk, we’ll explore why decoupling observability architectures is becoming essential for SRE teams operating at scale. Using a real incident investigation workflow, we’ll break down how separating data storage, compute, and interaction layers allows teams to keep fast, reliable monitoring while elastically scaling investigations when incidents occur.</p>
@@ -2261,6 +2586,7 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Ben Hopp is an Architect at Imply, where he helps organizations decouple their observability stack with Imply Lumi. Based in Denver, Ben brings an extensive background in real-time data systems and observability, having worked on some of the world's largest data platforms. He specializes in helping teams break free from legacy observability stacks, enabling them to retain flexibility and control over their observability data while reducing costs and complexity.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2297,6 +2623,7 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>For most SRE teams, CVE remediation has become a never-ending source of toil—rebuilds, backports, emergency releases, and late-night firefighting. This talk explores how Chainguard flips that model by removing vulnerability remediation from the SRE workload entirely.
 We’ll look at how secure-by-default images, continuous rebuilds, and automated patch pipelines eliminate the need for teams to chase CVEs in production. Instead of reacting to vulnerabilities, SREs inherit artifacts that are already patched, minimal, and ready to run—freeing them to focus on reliability, performance, and scale.
 This session is about shifting CVE response left, shrinking the attack surface, and giving SRE teams their time back—because patching shouldn’t be an on-call responsibility.</p></p>
@@ -2305,6 +2632,7 @@ This session is about shifting CVE response left, shrinking the attack surface, 
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>AJ Mejorado is a Solutions Engineer at Chainguard with a background in DevOps and CI/CD. He focuses on helping teams improve software delivery practices, scale pipelines safely, and reduce risk across the development lifecycle. AJ has held engineering, sales engineering, and product education roles, including helping build certification programs and developer enablement initiatives.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2341,12 +2669,14 @@ This session is about shifting CVE response left, shrinking the attack surface, 
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>You use an LLM, ask it some questions, have it write a little code for you, and before you know it, you're hit with a massive bill. Out of the box, there's zero way to see token usage, cost, and an overall ability to control it. In this talk, you'll learn exactly how to do that.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Michael Levan translates technical complexity into practical value. He is a seasoned engineer, advisor/solutions engineer, and content creator in the AI and Platform Engineering space who spends his time working with organizations around the globe on technical implementation and strategy. Michael is also a Microsoft MVP, 4x published author, podcast host, international public speaker, CNCF Ambassador, and was part of the Kubernetes v1.28 Release Team.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2383,6 +2713,7 @@ This session is about shifting CVE response left, shrinking the attack surface, 
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>AI agents are entering incident response with powerful capabilities—detecting anomalies, summarizing logs, and suggesting fixes. Some even execute changes autonomously. The promise is compelling: fully autonomous resolution of production incidents in complex, constantly changing distributed systems. </p>
 <p>But before we hand control to agents, we must ask a fundamental question: What kind of understanding must exist before we let agents act? </p>
 <p>This talk argues that the real bottleneck is not model intelligence, but the absence of a continuously updated causal model of the system itself. </p></p>
@@ -2391,6 +2722,7 @@ This session is about shifting CVE response left, shrinking the attack surface, 
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Co-Founder of Causely and former Engineering Director at Turbonomic (acquired by IBM), Endre has over 20 years of experience designing distributed data and runtime platforms. Before joining Turbonomic, he served as Vice President of Enterprise Systems Management at Goldman Sachs, leading large-scale infrastructure and monitoring initiatives. Endre holds a Ph.D. in Electrical Engineering from Stevens Institute of Technology and an M.S. in Electrical Engineering from the Budapest University of Technology and Economics.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2427,6 +2759,7 @@ This session is about shifting CVE response left, shrinking the attack surface, 
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>With more than 15 vendors now claiming AI powered SRE capabilities, engineering leaders are facing a deafening amount of noise. Teams are asking hard questions. Is Datadog Bits AI the same thing as an AI agent? AWS just launched a DevOps Agent. Do we still need a vendor? Our ServiceNow rep says their AI can handle it all. How do you cut through the hype?</p>
 <p>This talk provides a practical framework for understanding the AI systems transforming Site Reliability Engineering, including foundation LLMs, RAG systems, chat based tools, agentic AI, and multi agent ecosystems. We map the current vendor landscape across five categories: Incident Coordinators, AI Investigators, Observability Native AI, Cloud Provider Agents, and Coding Agents. You will see what each category can actually do today and why context engineering, not model intelligence, is the real differentiator.</p>
 <p>The session includes a live walkthrough of a multi agent workflow handling a production incident end to end. It starts with intelligent detection and root cause analysis, continues through automated remediation using a coding agent, and finishes with verified resolution. Humans stay in the loop only where it matters. The workflow persists for hours, coordinates across tools, and retains full context throughout.</p>
@@ -2436,6 +2769,7 @@ This session is about shifting CVE response left, shrinking the attack surface, 
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Francois Martel is the Field CTO at Neubird.ai, where he works with SRE and platform teams to apply generative AI to real world reliability and operations challenges. He focuses on helping engineering leaders move beyond hype to practical, production ready AI systems for incident response, observability, and operations at scale.</p></p>
               </div>
           </div><!--//modal-body-->

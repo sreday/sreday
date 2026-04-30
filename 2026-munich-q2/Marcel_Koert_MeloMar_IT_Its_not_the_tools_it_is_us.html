@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -216,12 +226,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">It's not the tools it is us</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Marcel Koert.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -242,18 +265,22 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Reliability fails in surprising ways—not because engineers don’t care, but because our brains are optimized for speed, not accuracy. In high-pressure IT environments, that leads to familiar patterns: premature conclusions during incidents, “obvious” fixes that don’t fix anything, risky changes that felt safe at the time, and meetings where everyone nods while the real problem stays untouched. This lecture is a sharp, highly relatable look at the human side of reliability: how bias shapes decisions in operations, why smart teams repeat the same mistakes, and what lightweight practices help you improve outcomes without adding bureaucracy. Expect real-world scenarios, humor, and practical takeaways you can apply immediately—without me giving away the full playbook.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>I’m Marcel Koert—a Site Reliability / DevOps / Platform Engineering professional focused on turning “reliability theory” into a way of working teams can actually sustain. I’m the author of two books in the Essential SRE series: • <strong>Essential SRE: Way of Working — a practical operating model for SRE: how to run reliability day to day, reduce chaos, and make delivery and operations work together (without hero culture). • </strong>Essential SRE Articles — a curated, straight-to-the-point collection of the essential knowledge SREs need, grounded in real-world application rather than slideware. Alongside the books, I share talks, playbooks, and field-tested guidance through MeloMar-IT to help engineers and leaders build systems (and teams) that stay stable under pressure. If you care about reliable delivery, calmer on-call, and reliability that survives contact with reality—let’s connect.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

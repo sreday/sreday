@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -216,12 +226,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Metrics, logs, traces, and mayhem: Introducing an observability adventure game powered by Grafana Alloy and OTel</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Imma Valls Bernaus.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -242,10 +265,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Have you ever wanted to play an actual game on your observability stack? Well, you can. Not only does Doom run on Grafana, we also built an actual text-based adventure game.</p>
 <p>Join this session to play a real text-based Observability adventure game! Armed with the tools of the trade—metrics, logs, and traces—you’ll learn to navigate the labyrinth of debugging and optimization, rescuing your application from the clutches of the dark wizard!</p>
 <p>In this session, we will dive into a game played live to showcase how each telemetry type is used to solve real-world Observability challenges. As players encounter obstacles, they’ll wield the power of OpenTelemetry to gather critical data and use OSS tools like Grafana, Loki, Tempo, and Prometheus to make informed decisions.</p>
@@ -255,8 +279,11 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Imma is a Staff Developer Advocate at Grafana Labs, passionate about simplifying Observability, OpenTelemetry, and Cloud-Native technologies. In her past life, she worked as a consultant, trainer, and support engineer at @elastic, and was a proud organizer of Software Crafters Barcelona from 2018 to 2025. She currently focuses on creating accessible technical content and driving the adoption of best practices within the community. She is deeply committed to clean code and the art of automation. She is also a passionate community builder and ally. As a WomenInAPIs champion, she advocates for underrepresented groups being seen and heard in the public domain. You will find her co-organizing Grafana meetups in Barcelona, Madrid, Amsterdam, Stockholm, Zurich, and Lisboa; Cloud Native Barcelona; DevOpsDays Barcelona, Green Software Barcelona; and TechFems. She is an aquafitness enthusiast and a huge Bruce Springsteen fan. No surrender!</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

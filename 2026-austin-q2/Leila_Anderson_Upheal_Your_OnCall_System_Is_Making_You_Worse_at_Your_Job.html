@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -240,12 +250,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Your On-Call System Is Making You Worse at Your Job</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Leila Anderson.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -266,10 +289,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>On-call exists to improve system reliability. But over time, many teams find the opposite happening: more pages, slower recovery, and engineers who are technically capable but increasingly reactive under pressure.</p>
 <p>This is a feedback loop, not just a workload problem.</p>
 <p>In this talk, I’ll introduce a pattern I call The On-Call Trap, a system dynamic where repeated incident response gradually shifts teams from proactive to reactive modes of operation. As load increases, attention narrows, decision-making speeds up but degrades in quality, and teams unintentionally reinforce the very conditions that generate more incidents.</p>
@@ -280,9 +304,12 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Leila Anderson studies failure in human systems.</p>
 <p>As a therapist and Clinical AI Prompt Engineer at Upheal, she works at the intersection of mental health, product design, and operational performance, with a focus on how high-performing individuals and teams break down under sustained pressure. Her work centers on identifying hidden feedback loops that drive reactivity, reduce adaptability, and quietly degrade reliability over time.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

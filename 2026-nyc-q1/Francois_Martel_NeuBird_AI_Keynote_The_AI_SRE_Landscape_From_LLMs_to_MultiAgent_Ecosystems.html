@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -238,12 +248,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Keynote: The AI SRE Landscape: From LLMs to Multi-Agent Ecosystems</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Francois Martel.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -264,10 +287,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>With more than 15 vendors now claiming AI powered SRE capabilities, engineering leaders are facing a deafening amount of noise. Teams are asking hard questions. Is Datadog Bits AI the same thing as an AI agent? AWS just launched a DevOps Agent. Do we still need a vendor? Our ServiceNow rep says their AI can handle it all. How do you cut through the hype?</p>
 <p>This talk provides a practical framework for understanding the AI systems transforming Site Reliability Engineering, including foundation LLMs, RAG systems, chat based tools, agentic AI, and multi agent ecosystems. We map the current vendor landscape across five categories: Incident Coordinators, AI Investigators, Observability Native AI, Cloud Provider Agents, and Coding Agents. You will see what each category can actually do today and why context engineering, not model intelligence, is the real differentiator.</p>
 <p>The session includes a live walkthrough of a multi agent workflow handling a production incident end to end. It starts with intelligent detection and root cause analysis, continues through automated remediation using a coding agent, and finishes with verified resolution. Humans stay in the loop only where it matters. The workflow persists for hours, coordinates across tools, and retains full context throughout.</p>
@@ -277,8 +301,11 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Francois Martel is the Field CTO at Neubird.ai, where he works with SRE and platform teams to apply generative AI to real world reliability and operations challenges. He focuses on helping engineering leaders move beyond hype to practical, production ready AI systems for incident response, observability, and operations at scale.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

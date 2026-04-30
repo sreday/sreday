@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -238,12 +248,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">From Compute to Datastores: Predictable Region Failover for Microservice Stacks</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Akshay Pratinav & Sahil Sabharwal.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -264,20 +287,24 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Outages happen. At Intuit, a Kubernetes-native platform makes region failover boring: services declaratively onboard; we pre-scale from live traffic, promote standby DBs, and shift routes via Route53/Istio—slashing recovery time and standardizing resilience for hundreds of microservices.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>What's up folks, I'm <strong><a href="https://www.linkedin.com/in/akshaypratinav/">Akshay Pratinav</a></strong>, I’m a Staff Software Engineer with deep expertise in cloud‑native distributed computing and resilience engineering. My career spans critical roles building internal developer productivity tools, where I’ve consistently delivered impactful, high‑performance solutions. In my current role at Intuit, I am leading the development of an internal Disaster Recovery platform that’s a non‑negotiable imperative for maintaining business continuity and customer trust. I also played a key role in the ITSM initiative, automating and streamlining incident management and significantly reducing Mean Time to Detect (MTTD) and Mean Time to Recovery (MTTR) for major incidents. Additionally, I was instrumental in the design and development of the Policy Enforcement platform, providing a sophisticated, unified, and consistent experience for authoring, deploying, and enforcing policies across diverse cloud and Kubernetes infrastructure—embedding security, compliance, and operational efficiency.
 Hi, I'm <strong><a href="https://www.linkedin.com/in/sahil-sabharwal-a660815b/">Sahil Sabharwal</a></strong>, Senior Engineering Manager at Intuit, where I lead core platform team focused on disaster recovery and resiliency for Intuit’s large-scale Kubernetes applications—including TurboTax and QuickBooks—running on AWS.
 Prior to Intuit, I worked at Nutanix, where I helped build the in-house private container registry (NCR) and the Nutanix Kubernetes Platform (NKP). I also held engineering roles at Juniper Networks and IBM Cloud, where I contributed to the open-source cloud infrastructure project OpenStack. I hold a Master’s in Computer Engineering from North Carolina State University, where I completed my thesis under Dr. Eric Rotenberg. Most recently, I had the opportunity to present my work and product innovations at AWS re:Invent 2025.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

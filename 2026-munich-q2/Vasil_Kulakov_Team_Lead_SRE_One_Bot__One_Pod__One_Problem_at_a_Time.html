@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -216,12 +226,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">One Bot, One Pod, One Problem at a Time</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Vasil Kulakov.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -242,10 +265,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Running a Telegram bot as a single pod is easy. Scaling it to multiple replicas is where things get interesting.
 This talk follows the real evolution of a production bot for a language-learning platform. Each step was driven by a concrete problem: polling breaks when two instances race for the same update, so you switch to webhooks and introduce an ingress. In-memory sessions disappear between replicas, so Redis shows up. Reminder workers block the webhook handler, so they become separate binaries running as CronJobs. You add a second language pair and suddenly the same Helm chart needs to deploy two isolated bots — and a subtle bug surfaces where one bot answers for the other.
 We'll also cover how LLM calls made cost invisible (and how a small in-cluster usage-tracking service fixed that), plus encrypted secrets in git with SOPS across a multi-chart monorepo.</p></p>
@@ -254,8 +278,11 @@ We'll also cover how LLM calls made cost invisible (and how a small in-cluster u
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Vasil Kulakov is a Staff Engineer in Site Reliability Engineering with a strong focus on building and scaling production infrastructure. Currently at snappyloop.work, he has helped establish the backbone for an AI-driven language learning platform, supporting rapid user growth. Previously, he led SRE teams at CHECK24, combining hands-on engineering with leadership across high-performance systems. His work spans Go, PHP, and modern cloud-native tooling, with a practical, execution-first approach to reliability and scale.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

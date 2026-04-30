@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -216,12 +226,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Keynote: Secure by Default: Building Confidence in AI-Driven Delivery</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Dewan Ahmed.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -242,10 +265,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The fastest way to break trust in DevSecOps is to automate insecurity at scale. As AI takes a central role in our pipelines, it is time to rethink what "secure by default" really means.</p>
 <p>In this keynote, Dewan Ahmed will challenge the audience to look beyond vulnerability scanners and compliance gates. He will share a vision for intelligent security by design, where native intelligence within the delivery platform detects not only vulnerable code but risky delivery behavior such as misconfigured environments, suspicious artifact provenance, and drift between source and runtime.</p>
 <p>You will walk away with a framework for balancing automation with human oversight and examples from Harness’ work on building verifiable, auditable, AI-native delivery systems. In the new world of DevSecOps, safety is not a step; it is an outcome we continuously learn to improve.</p></p>
@@ -254,8 +278,11 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Dewan Ahmed is a Principal Developer Advocate at Harness and a Governing Board General Member Representative at the Continuous Delivery Foundation. He focuses on DevRel and content strategy across CI/CD, DevOps, and open source, with deep expertise in software supply chain security and developer experience.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

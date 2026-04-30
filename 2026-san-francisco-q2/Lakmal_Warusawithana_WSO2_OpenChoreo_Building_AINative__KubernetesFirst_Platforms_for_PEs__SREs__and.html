@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -238,12 +248,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">OpenChoreo: Building AI-Native, Kubernetes-First Platforms for PEs, SREs, and Developers</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Lakmal Warusawithana.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -264,10 +287,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Platform teams are expected to provide self-service for developers while maintaining reliability, security, and operational clarity. Many internal developer platforms introduce additional abstraction layers that move teams away from Kubernetes, making day-2 operations harder.
 OpenChoreo takes a Kubernetes-first approach.In this session, I’ll introduce OpenChoreo, a CNCF Sandbox project and Kubernetes-native internal developer platform designed to be defined and operated by Platform Engineers. OpenChoreo treats Kubernetes as the system of record and builds higher-level abstractions on top of native primitives that remain visible, debuggable, and operable by SRE teams.
 I’ll show how OpenChoreo includes a Backstage-based developer portal to support self-service workflows, while allowing platform teams to enforce policies, standards, and operational boundaries. Its modular architecture allows teams to choose and integrate their own tooling for CI/CD, observability, policy enforcement, and runtime concerns.
@@ -281,9 +305,12 @@ The session includes a live demo covering:
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Lakmal Warusawithana is Vice President and Distinguished Engineer at WSO2, where he serves as a senior technical leader within the Engineering organization Lakmal Warusawithana _ LinkedIn
 . He is a subject matter expert in cloud native architectures, Kubernetes, and platform engineering, with deep experience designing and scaling distributed systems for modern enterprise environments. Based in Roseville, California, Lakmal combines hands on engineering expertise with strategic leadership to drive innovation across cloud and platform initiatives.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

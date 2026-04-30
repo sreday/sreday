@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -238,12 +248,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Responsible Kubernetes: clusters that don’t kill the planet (or your budget)</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Maria Garcia Garcia & Lucia Lopez Barrero.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -264,10 +287,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This talk focuses on applying FinOps and sustainability (GreenOps) principles in Kubernetes, addressing very common challenges such as cluster overprovisioning, inefficient resource usage, lack of cost visibility, and the environmental impact of always-on infrastructure. We share real-world practices, common mistakes, and practical lessons on how to run Kubernetes in a more efficient, cost-aware, and sustainable way.</p>
 <p>We are two engineers who started working in Platform Engineering about a year ago, and we believe this perspective brings real value: we speak from recent, hands-on experience, from what we’ve encountered operating real clusters, what didn’t work, what did, and what we’ve learned along the way while trying to make Kubernetes more responsible in day-to-day operations.</p></p>
               </div>
@@ -275,9 +299,12 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p><strong><a href="https://www.linkedin.com/in/mariia126/">María García García</a></strong> is a junior platform engineer currently completing an apprenticeship in Gijón, Asturias. She is building her foundations in platform engineering while gaining hands-on experience in real environments. Previously, she worked as an application developer intern at ABAMobile, where she focused on multiplatform development, and as a web developer intern at Bittia, contributing to real-world projects and strengthening her teamwork skills. María has a background in technical training from TuniverS Formación and brings a practical, detail-oriented mindset shaped by both technical and non-technical roles.</p>
 <p><strong><a href="https://www.linkedin.com/in/luc%C3%ADa-l%C3%B3pez-barrero-88a786351/">Lucía López Barrero</a></strong> is a computer engineering student specializing in information technologies at the University of Oviedo. She is currently completing an internship, gaining practical experience alongside her academic studies. Lucía is in the final stage of her degree and is focused on developing a solid technical foundation while applying her knowledge in a professional setting.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

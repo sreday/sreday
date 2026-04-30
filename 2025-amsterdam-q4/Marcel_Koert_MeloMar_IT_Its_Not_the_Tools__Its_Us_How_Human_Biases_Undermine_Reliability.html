@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -133,6 +143,7 @@
 		</div><!--//branding-->
 	</header><!--//header-->
 
+	
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
@@ -196,6 +207,7 @@
 		</div><!--//container-->
 
 	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -232,12 +244,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">It’s Not the Tools - It’s Us: How Human Biases Undermine Reliability</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Marcel Koert.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -258,10 +283,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In the world of DevOps and SRE, we pride ourselves on automation, observability, and engineering excellence. But even the most sophisticated infrastructure can be derailed by something far more human: our own brains.</p>
 <p>This talk explores the invisible enemies of reliability — cognitive biases that affect how engineers make decisions, solve problems, and respond to incidents. From confirmation bias during outages to groupthink in postmortems, we’ll unpack six specific mental shortcuts that silently undermine your systems.</p>
 <p>Each bias is brought to life with real-world engineering examples, memorable visuals, and practical strategies you can apply immediately. You’ll hear relatable war stories — like how anchoring on a bad hypothesis prolonged a major incident, or how optimism bias led to a Friday deployment that ended in disaster.</p>
@@ -273,12 +299,15 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>As the founder of Melomar-IT, I am dedicated to demystifying complex IT concepts and providing clear, actionable insights to professionals and enthusiasts alike. With a robust background in Platform Engineering, DevOps, and Site Reliability Engineering (SRE), I specialize in creating content that bridges the gap between intricate technical subjects and practical understanding.
 Professional Expertise: • Platform Engineering: Designing and managing scalable, efficient, and secure IT infrastructures that support seamless application development and deployment. • DevOps Engineering: Implementing and promoting DevOps best practices to enhance collaboration, automate workflows, and accelerate software delivery. • Site Reliability Engineering (SRE): Ensuring system reliability, performance, and scalability through proactive monitoring, automation, and incident response strategies. • IT Education and Content Creation: Developing comprehensive IT explainers and tutorials that empower individuals to enhance their technical skills and stay abreast of industry trends.
 Melomar-IT on YouTube: Through Melomar-IT, I produce and share content focused on: • In-Depth Tutorials: Step-by-step guides on Platform Engineering, DevOps tools, and SRE practices. • Industry Insights: Analysis of current trends and emerging technologies in the IT sector. • Practical IT Explainers: Simplifying complex concepts for better understanding and application.
 Mission: My goal is to equip IT professionals and enthusiasts with the knowledge and tools necessary to excel in the rapidly evolving tech landscape. By fostering a community centered on continuous learning and growth, I aim to inspire innovation and excellence in the field of Information Technology.
 Connect with Me: I am always eager to connect with fellow professionals, share insights, and explore collaborative opportunities. Feel free to reach out to discuss all things IT, from Platform Engineering and DevOps to the latest industry developments.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

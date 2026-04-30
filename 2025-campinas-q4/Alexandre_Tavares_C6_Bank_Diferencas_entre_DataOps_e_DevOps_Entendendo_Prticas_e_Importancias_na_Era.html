@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -133,6 +143,7 @@
 		</div><!--//branding-->
 	</header><!--//header-->
 
+	
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
@@ -176,6 +187,7 @@
 		</div><!--//container-->
 
 	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -212,12 +224,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Diferencas entre DataOps e DevOps: Entendendo Práticas e Importancias na Era Digital</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Alexandre Tavares.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -238,10 +263,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Você está convidado para uma palestra imperdível que irá explorar as diferenças e similaridades entre DataOps e DevOps, duas práticas essenciais no desenvolvimento moderno de software e na gestão de dados.</p>
 <p>O que você vai aprender:</p>
 <p>A definição e os objetivos de DevOps e DataOps. As principais diferenças entre as duas práticas e como elas se complementam. A importância de cada uma no cenário atual das empresas voltadas para tecnologia. Exemplos de sucesso de organizações que implementaram essas práticas com eficiência. Público-alvo: Esta palestra é ideal para profissionais de tecnologia, cientistas de dados, desenvolvedores, gerentes de produto, e todos aqueles que desejam compreender melhor como as organizações podem alavancar suas operações de dados e software.</p></p>
@@ -250,10 +276,13 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Com mais de duas décadas em tecnologia, minha jornada me levou de desenvolvedor a um especialista em Big Data, Machine Learning e IA. Atuei liderando e arquitetando plataformas de dados em grandes empresas como o C6 Bank, GFT Technologies, Cogna Educação, Falconi entre outras.</p>
 <p>Além da minha experiência de mercado, sou Professor de MBA em Engenharia de Dados no Mackenzie e atuo como docente na UNIFAAT. Essa dualidade me permite ter uma visão única sobre o futuro da profissão: como as tecnologias emergentes, como os LLMs, estão moldando o mercado e quais habilidades os novos profissionais precisam desenvolver para se destacarem.</p>
 <p>Minha paixão por mentorar e compartilhar conhecimento me motiva a ajudar a próxima geração de talentos a prosperar nesse cenário de constante transformação, construindo a ponte entre o conhecimento acadêmico e as demandas reais do mercado de trabalho.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

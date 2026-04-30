@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -214,12 +224,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Beyond Human Speed: Building Autonomous, Self Healing Multi Cloud Security Architectures</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Deven Chawla.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -240,18 +263,22 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The scale and velocity of modern multi-cloud environments have surpassed the limits of manual security operations. To defend against sophisticated cyber threats and ensure continuous data integrity, our architectures must evolve from reactive to autonomous. This session explores the integration of GenAI-driven operations and adaptive multi-cloud security. We will unpack the mechanics of building self-healing architectures that leverage advanced telemetry and structured logging to dynamically detect anomalies and orchestrate real-time remediation. By examining robust, idempotent transaction frameworks and advanced conflict resolution algorithms, we will look at how the next generation of cloud infrastructure will autonomously manage highly sensitive credentials and enforce dynamic Zero Trust perimeters across OCI, Azure, and AWS. Key Takeaways: 1) The role of adaptive algorithms in achieving self-healing cloud architectures. 2) How to build intelligent fallback mechanisms that guarantee system resilience during high-concurrency operations. 3) The future of automated compliance and threat mitigation in heterogeneous environments.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Deven Chawla is a Senior Member of Technical Staff at Oracle with over nine years of experience specializing in high-availability multi-cloud architecture and intelligent cloud services. He has engineered large-scale synchronization frameworks and resilient “Dual-Read” patterns across OCI, AWS, GCP, and Azure to ensure 99.99% system availability. Previously, he held engineering roles at Microsoft and Walmart, where he optimized cloud infrastructure and supply chain algorithms. A researcher in AI-driven mental health diagnosis and multi-cloud security, Deven holds four patents and frequently serves as a judge for global AI and coding hackathons. His work focuses on building resilient, scalable, and secure cloud systems for mission-critical enterprise environments.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

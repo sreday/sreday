@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -133,6 +143,7 @@
 		</div><!--//branding-->
 	</header><!--//header-->
 
+	
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
@@ -200,6 +211,7 @@
 		</div><!--//container-->
 
 	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -236,12 +248,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">The DevOps Organisation</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Mark Faiers.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -262,18 +287,22 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>DevOps has many benefits for software eng, but is rarely talked about outside of that context. In this talk we’ll explore why DevOps is not a purely technical endeavour, what it means to apply DevOps across the whole organisation, and how you can use these ideas to deliver change where you work.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p><p>DevOps is one of those terms whose meaning varies greatly depending on the background, job role, and lived experience of those being asked, but most people would agree that it is something that applies to the development and operation of software. But at some point, DevOps outgrew this simple coming together, and so we combined other functions to get terms like ‘DevSecOps’, ‘DataOps’, ‘MLOps’ and so on. All these terms are, however, too simplistic to capture the actual essence of DevOps and the ways of working that have developed around it. However, there is no reason that these principles should only be applied to the development and operation of digital products and services. They can actually be applied across organisations as a whole to create ‘The DevOps Organisation’. This talk explores how DevOps principles can be taken and applied outside of the context of software development to provide better outcomes, both internally, and externally, for an organisation.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Mark has over 15 years experience in software engineering, working across the SDLC starting out as a software engineer and later transitioning into DevOps and Cloud focused roles. He has been leading Communities of Practice for around 5 years and has worked with numerous technology stacks and across a wide range of industries, including Healthcare, FinTech, and Logistics. He has worked as an AWS consultant to some of the biggest Financial and Insurance firms in the U.K. and is now the DevOps Practice Lead at RiverSafe. In this role he is responsible for leading and building a highly skilled team of DevOps experts, delivering expert services and exceptional outcomes for customers. Mark is especially passionate about serverless technology and sustainability.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="#venue">Venue</a></li>
@@ -133,6 +143,7 @@
 		</div><!--//branding-->
 	</header><!--//header-->
 
+	
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
@@ -200,6 +211,7 @@
 		</div><!--//container-->
 
 	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -241,7 +253,117 @@
   <div class="container">
     <div class="event-countdown text-center mb-3">
     
-      <h4 class="countdown-intro mb-2 text-center mb-3">Event finished</h4>
+      <h4 class="countdown-intro mb-2 text-center mb-3">Event finished, what's next?</h4>
+      
+      <style>
+        .idx-tl { position: relative; padding: 20px 0 8px; margin-bottom: 8px; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .idx-tl-line { position: absolute; top: 26px; left: 0; right: 0; height: 2px; background: var(--brand-lighter); z-index: 0; }
+        .idx-tl-events { display: flex; justify-content: space-between; position: relative; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
+        .idx-tl-event { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 0; }
+        .idx-tl-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--brand); border: 2px solid #fff; outline: 2px solid var(--brand); margin-bottom: 10px; flex-shrink: 0; z-index: 1; }
+        .idx-tl-dot.past { background: #999; outline-color: #999; }
+        .idx-tl-chip { background: var(--brand-lightest); border: 1px solid var(--brand-lighter); border-radius: 8px; padding: 8px 10px; text-align: center; text-decoration: none; width: 100%; transition: background .15s; min-height: 80px; display: flex; flex-direction: column; justify-content: center; }
+        .idx-tl-chip:hover { background: var(--brand-pale); text-decoration: none; }
+        .idx-tl-chip.past { background: #e8e8e8; border-color: #ccc; }
+        .idx-tl-chip.past:hover { background: #d8d8d8; }
+        .idx-tl-city { font-family: 'Montserrat', sans-serif; font-size: .8rem; font-weight: 700; color: var(--brand-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .idx-tl-chip.past .idx-tl-city { color: #555; }
+        .idx-tl-date { font-size: .75rem; color: var(--brand-light); margin-top: 2px; }
+        .idx-tl-chip.past .idx-tl-date { color: #777; }
+        .idx-tl-pin-event { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+        .idx-tl-pin { font-size: 2.25rem; line-height: 1; color: var(--brand-dark); margin-bottom: 10px; position: relative; top: -4px; }
+      </style>
+      <div class="idx-tl">
+        <div class="idx-tl-line"></div>
+        <div class="idx-tl-events">
+          
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-nyc-q1/" class="idx-tl-chip past">
+              <div class="idx-tl-city">NYC</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">February 26, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-london-q1/" class="idx-tl-chip past">
+              <div class="idx-tl-city">London</div>
+              <div class="idx-tl-date" style="font-style:normal;">United Kingdom</div>
+              <div class="idx-tl-date">March 12, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-san-francisco-q2/" class="idx-tl-chip past">
+              <div class="idx-tl-city">San Francisco</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">April 17, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-seattle-q2/" class="idx-tl-chip past">
+              <div class="idx-tl-city">Seattle</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">April 21, 2026</div>
+            </a>
+          </div>
+          
+          
+          
+          <div class="idx-tl-pin-event"><div class="idx-tl-pin">▼</div></div>
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-barcelona-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Barcelona</div>
+              <div class="idx-tl-date" style="font-style:normal;">Spain</div>
+              <div class="idx-tl-date">May 8, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-austin-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Austin</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">May 11, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-munich-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Munich</div>
+              <div class="idx-tl-date" style="font-style:normal;">Germany</div>
+              <div class="idx-tl-date">May 21, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-nyc-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">NYC</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">June 6, 2026</div>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+      
     
     </div>
   </div>
@@ -295,14 +417,7 @@
     </script>
 </section>
 
-<section id="tickets" class="tickets-section section">
-  <div class="container">
-    <h3 class="section-heading text-center mb-3">Tickets</h3>
 
-    
-
-  </div>
-</section>
 
 <style>
   .speakers-section .card {
@@ -315,24 +430,82 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    font-size: 0.9rem;
+  }
+  .speakers-section .card-title {
+    font-size: 1.1rem;
+  }
+  .event-card-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-top: auto;
+    width: 100%;
+  }
+  .speakers-section .event-card-buttons a {
+    flex: 0 1 50%;
+    text-align: center;
+    min-width: 0;
+    display: block;
   }
   .event-read-more-btn {
     display: inline-block;
-    padding: 8px 18px;
-    background: #8D5E80;
+    padding: 6px 12px;
+    background: var(--brand-light);
     color: #fff;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
+    font-size: 0.8rem;
     transition: background 0.2s ease;
-    margin-top: auto;
-    align-self: flex-start;
   }
   .event-read-more-btn:hover,
   .event-read-more-btn:focus {
-    background: #9C7290;
+    background: var(--brand-lighter);
     color: #fff;
     text-decoration: none;
+  }
+  .event-watch-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #EC645E;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    transition: background 0.2s ease;
+  }
+  .event-watch-btn:hover,
+  .event-watch-btn:focus {
+    background: #F28B87;
+    color: #fff;
+    text-decoration: none;
+  }
+  .event-watch-btn-sm {
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    margin-left: 12px;
+  }
+  .schedule-abstract {
+    position: relative;
+    max-height: 3.2em;
+    line-height: 1.6;
+    overflow: hidden;
+    text-align: justify;
+  }
+  .schedule-abstract-read-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-left: 3em;
+    background: linear-gradient(to right, transparent, #e8f8f0 30%);
+    font-weight: 700;
+    color: var(--brand);
+    text-decoration: underline;
+  }
+  .schedule-section .item {
+    margin-bottom: 4.5rem;
   }
 </style>
 
@@ -359,7 +532,7 @@
   .track-nav-links a {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: #713660;
+    background: var(--brand);
     color: white;
     text-decoration: none;
     border-radius: 4px;
@@ -368,25 +541,25 @@
     transition: background 0.2s;
   }
   .track-nav-links a:hover {
-    background: #5e2c50;
+    background: var(--brand-dark);
     color: white;
   }
   .view-toggle-link {
-    color: #713660;
+    color: var(--brand);
     text-decoration: none;
     font-size: 0.9rem;
     cursor: pointer;
     padding: 0.5rem 0.75rem;
-    border: 1px solid #713660;
+    border: 1px solid var(--brand);
     border-radius: 4px;
     transition: all 0.2s;
   }
   .view-toggle-link:hover {
-    background: #713660;
+    background: var(--brand);
     color: white;
   }
   .view-toggle-link.active {
-    background: #713660;
+    background: var(--brand);
     color: white;
   }
   /* Table view */
@@ -403,7 +576,7 @@
     table-layout: fixed;
   }
   .schedule-grid-table th {
-    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
     color: white;
     padding: 0.75rem 1rem;
     text-align: left;
@@ -415,17 +588,17 @@
   }
   .schedule-grid-table td {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid #ede5eb;
+    border-bottom: 1px solid var(--brand-lightest);
     vertical-align: top;
   }
   .schedule-grid-table td.merged-cell {
     text-align: center;
     font-weight: 500;
     color: #555;
-    background: #ede5eb;
+    background: var(--brand-lightest);
   }
   .schedule-grid-table .time-cell {
-    color: #713660;
+    color: var(--brand);
     font-weight: 600;
     white-space: nowrap;
   }
@@ -435,7 +608,7 @@
     font-weight: 500;
   }
   .schedule-grid-table .talk-cell a:hover {
-    color: #713660;
+    color: var(--brand);
   }
   .schedule-grid-table .speaker-info {
     color: #444;
@@ -444,6 +617,13 @@
   }
   .schedule-grid-table .speaker-info .affiliation {
     color: #666;
+  }
+  .speaker-linkedin-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .speaker-linkedin-link:hover {
+    color: #098dcf;
   }
   .schedule-meta {
     display: flex;
@@ -469,7 +649,7 @@
   }
   /* Track section header */
   .track-section-header {
-    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
     color: white;
     padding: 1rem 1.5rem;
     margin: 2rem 0 0 0;
@@ -481,7 +661,7 @@
     margin-top: 0;
   }
 
-  .schedule-section.theme-bg-light { background-color: #f8f0f6 !important; }
+  .schedule-section.theme-bg-light { background-color: #f0faf5 !important; }
 </style>
 
 <section id="schedule" class="schedule-section section theme-bg-light">
@@ -495,6 +675,8 @@
       <span class="schedule-meta-item">2 parallel tracks</span>
       <span class="schedule-meta-divider">•</span>
       <span class="schedule-meta-item">9AM - 5PM</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">San Francisco, in-person</span>
     </div>
 
 
@@ -526,15 +708,17 @@
               <h4 class="time mb-3">09:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle mb-2" src="../speakers/Rohan Gupta.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Rohan Gupta</a></div>
+                <div class="name">Rohan Gupta</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: No Single Point of (AI) Failure: Agent Maintenance & Model Fallbacks</a>
               </h3>
               <div class="location mb-3">Harness</div>
-              <div class="desc">AI agents are only as reliable as the models they depend on, but what happens when capacity is maxed out, latency spikes, or a model becomes unavailable? In this keynote, we’ll explore SRE-grade approaches to agent maintenance and multi-LLM fallback strategies. You’ll learn how to design AI...<br /><br /></div>
+              <div class="desc schedule-abstract">AI agents are only as reliable as the models they depend on, but what happens when capacity is maxed out, latency spikes, or a model becomes unavailable? In this keynote, we’ll explore SRE-grade approaches to agent maintenance and multi-LLM fallback strategies. You’ll learn how to design AI systems that gracefully switch between models, maintain reliability under pressure, and deliver consistent performance even when your primary model is unavailable. Think of it as applying tried-and-true SRE principles of failover, observability, and incident readiness now in the world of AI.<a class="schedule-abstract-read-more" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -543,15 +727,19 @@
               <h4 class="time mb-3">09:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle mb-2" src="../speakers/Gian Merlino.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Gian Merlino</a></div>
+                <div class="name">Gian Merlino</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Keynote: What Observability Can Learn From BI: Decoupling for Speed, Scale, and Flexibility</a>
               </h3>
               <div class="location mb-3">Imply</div>
-              <div class="desc">Today’s observability platforms are often vertically integrated—binding data storage, query, and visualization layers into a single stack. This tight coupling drives up costs, makes integrations painful, and slows teams down. But it doesn’t have to be this way. In this talk, we’ll explore how SRE...<br /><br /></div>
+              <div class="desc schedule-abstract">Today’s observability platforms are often vertically integrated—binding data storage, query, and visualization layers into a single stack. This tight coupling drives up costs, makes integrations painful, and slows teams down. But it doesn’t have to be this way.
+In this talk, we’ll explore how SRE teams can benefit from a more modular approach to observability—one inspired by the evolution of Business Intelligence. Just as BI stacks evolved to separate ETL, data warehouses, and dashboards, observability stacks can be designed around clear boundaries: interoperable tools, technology-neutral query layers, and plug-and-play storage.
+You’ll learn why decoupled observability architecture is essential for cost control, agility, and tool flexibility—and how to move toward a stack that meets the real-world needs of today’s SRE teams.<a class="schedule-abstract-read-more" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -560,15 +748,14 @@
               <h4 class="time mb-3">10:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Coffee break</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -577,15 +764,19 @@
               <h4 class="time mb-3">10:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Steve Poyer.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Steve Poyer</a></div>
+                <div class="name">Steve Poyer</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Container Live Migration in Kubernetes: Why and How</a>
               </h3>
               <div class="location mb-3">CAST AI</div>
-              <div class="desc">What if Kubernetes could move a running container to another node without a single second of downtime? In this session, we’ll dive into Container Live Migration—a game-changing capability that brings a new level of availability to your workloads. Say goodbye to disruption from Spot instance...<br /><br /></div>
+              <div class="desc schedule-abstract">What if Kubernetes could move a running container to another node without a single second of downtime? In this session, we’ll dive into Container Live Migration—a game-changing capability that brings a new level of availability to your workloads. Say goodbye to disruption from Spot instance terminations, node pressure, or scaling events—even for apps with long startup times like Java services, long-running jobs, or stateful workloads.
+
+We’ll explore how live migration works under the hood, why it’s a powerful cost-saving tool for intelligent bin-packing, and show it all in action with a live demo.<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -594,15 +785,39 @@
               <h4 class="time mb-3">11:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Aditya Bansal.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Aditya Bansal</a></div>
+                <div class="name">Aditya Bansal</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">“We’re Down!” to “We’re Good.” — Shipping observability in 2 weeks</a>
               </h3>
               <div class="location mb-3">Cortex</div>
-              <div class="desc">**Many hyper-growth startups hit a point where the current systems just aren’t enough.** Racing toward product–market fit, they skip best practices around observability, monitoring, and alerting—and pay for it later. This talk is about going from **0 → 1** and protecting your company, team, and...<br /><br /></div>
+              <div class="desc schedule-abstract">**Many hyper-growth startups hit a point where the current systems just aren’t enough.**  
+Racing toward product–market fit, they skip best practices around observability, monitoring, and alerting—and pay for it later.
+
+This talk is about going from **0 → 1** and protecting your company, team, and customers when the pressure mounts.
+
+**I’ll cover:**
+
+- **Getting started from the ground floor**  
+  Foundational work, the three pillars of observability, and—more importantly—how to get hands-on with all three.  
+  This won’t be another high-level “logs/traces/metrics” sermon; we’ll actually use them.
+
+- **Building your first monitor, alert, and dashboard**  
+  Move to offense: catch full outages, errors, latency spikes, and change alerts *before* your customers do.  
+  We’ll touch more than just the “golden signals.”
+
+- **Iterating**  
+  Going from 0 → 1 is only the beginning. You’ll need to tune false alarms, coach engineers on response, add new metrics, and prune stale ones—plenty of hidden gotchas here.
+
+Teams often get bogged down by dogma and decision paralysis.  
+I’ll share tactics for keeping a **bias toward action** and steadily moving the reliability needle.
+
+*No sales pitch.* I may demo with an APM tool (no affiliations) purely to illustrate what’s possible.
+<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -611,15 +826,23 @@
               <h4 class="time mb-3">11:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Prabhat Sharma.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Prabhat Sharma</a></div>
+                <div class="name">Prabhat Sharma</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Rust-Powered Observability: The Language of Modern Observability</a>
               </h3>
               <div class="location mb-3">OpenObserve</div>
-              <div class="desc">Traditional observability tools built in C++, Java and Go often become part of the problem they're meant to solve, crashing under load, leaking memory during critical incidents, and introducing race conditions that corrupt data. Extremely high resource consumption leads to increased costs and...<br /><br /></div>
+              <div class="desc schedule-abstract">Traditional observability tools built in C++, Java and Go often become part of the problem they're meant to solve, crashing under load, leaking memory during critical incidents, and introducing race conditions that corrupt data. Extremely high resource consumption leads to increased costs and complexity in managing infrastructure.
+
+Rust offers a compelling alternative, providing memory safety without a garbage collector, which translates to more reliable and efficient observability systems. Coupled with its strong ecosystem for building high-performance data processing pipelines, Rust enables the creation of observability tools that are not only robust, highly performant and also cost-effective.
+
+This session explains how we used rust to build a next-generation observability platform that addresses the shortcomings of existing solutions.
+
+You will see real world examples on how Rust's unique features lead to significant improvements in reliability, performance, and cost-efficiency for observability systems.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -628,15 +851,14 @@
               <h4 class="time mb-3">12:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -645,15 +867,23 @@
               <h4 class="time mb-3">13:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Nico Bistolfi.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Nico Bistolfi</a></div>
+                <div class="name">Nico Bistolfi</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">MCP Is Not Enough: Introducing, Data Containers for AI</a>
               </h3>
               <div class="location mb-3">AlienGiraffe</div>
-              <div class="desc">LLMs are demanding data access, but they are like a toddler with a popsicle, always wanting more. We’ll tell you how to keep your toddlers sugar free and your LLMs in check, to make sure neither your house burns down or your company receives a massive lawsuit for a data leak. This talk explains...<br /><br /></div>
+              <div class="desc schedule-abstract">LLMs are demanding data access, but they are like a toddler with a popsicle, always wanting more. We’ll tell you how to keep your toddlers sugar free and your LLMs in check, to make sure neither your house burns down or your company receives a massive lawsuit for a data leak.
+
+This talk explains why the Model Context Protocol (MCP), while useful for connecting LLMs to data, fails to enforce ongoing authorization.
+
+Through a practical example, you’ll see how to replace production access with lightweight, per-session data isolation: giving AI agents the data they need without risking your systems.
+
+Takeaways: Practical patterns for database isolation, architectures that scale with AI workloads, and concrete steps for DevOps and SRE teams preparing for an AI-driven future.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -662,15 +892,17 @@
               <h4 class="time mb-3">13:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Mark Freeman.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Mark Freeman</a></div>
+                <div class="name">Mark Freeman</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Shadow Dependencies - The Rising Role (Risk?) of Data</a>
               </h3>
               <div class="location mb-3">Gable.ai</div>
-              <div class="desc">Some of the largest outages on the internet can be traced back not only to changes in code, but also how the code changed underlying data models. Through countless discussions with software engineers, many noted the importance of the underlying data model for quality development, yet also...<br /><br /></div>
+              <div class="desc schedule-abstract">Some of the largest outages on the internet can be traced back not only to changes in code, but also how the code changed underlying data models. Through countless discussions with software engineers, many noted the importance of the underlying data model for quality development, yet also highlighted the lack of incentives (or outright discouragement) by leadership to put in the extra effort to maintain it. Even more troubling, not only are applications impacted by data, but also downstream consumers within the business are taking major dependencies on the output of this data for business-critical workflows-- unbeknownst to the upstream engineers producing the data (i.e., shadow dependencies). In this talk, we highlight this growing problem, why engineer leadership is paying more attention to the risk of data, and how to surface and prevent these issues within the CI/CD workflow via an emerging pattern called "data contracts."<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -679,15 +911,17 @@
               <h4 class="time mb-3">14:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Vlad Seliverstov.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Vlad Seliverstov</a></div>
+                <div class="name">Vlad Seliverstov</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Beyond 100 Petabytes: Why We Built a Custom Exporter to Replace Our OTel Pipeline</a>
               </h3>
               <div class="location mb-3">ClickHouse</div>
-              <div class="desc">Are your observability signals trapped in separate pillars? Logs in one place, metrics in another, both losing context? At ClickHouse, we faced this challenge at a massive scale. Our solution was to abandon the traditional model and embrace a new philosophy: store everything, aggregate nothing....<br /><br /></div>
+              <div class="desc schedule-abstract">Are your observability signals trapped in separate pillars? Logs in one place, metrics in another, both losing context? At ClickHouse, we faced this challenge at a massive scale. Our solution was to abandon the traditional model and embrace a new philosophy: store everything, aggregate nothing. This talk charts our journey to 100 PB and 500 trillion rows, centered on the concept of “wide events.” Instead of shipping a simple log message and a separate, pre-aggregated metric, we store a single, context-rich event containing every possible dimension. This shift from three pillars to a single warehouse of high-cardinality telemetry was a game-changer. The key to this model is using ClickHouse itself as our observability backend. This unlocks unbounded query flexibility through full SQL. When an engineer asks “what’s the p95 pod replacement time after termination?”, we don’t say “let me ship a new metric.” We write a SQL query.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -696,15 +930,14 @@
               <h4 class="time mb-3">14:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Networking & sponsor crawl</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -713,15 +946,17 @@
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Saurabh Kumar & Ruskin Dantra.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Saurabh Kumar & Ruskin Dantra</a></div>
+                <div class="name">Saurabh Kumar & Ruskin Dantra</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Transform chaos experiments into actionable insights using generative AI</a>
               </h3>
               <div class="location mb-3">AWS</div>
-              <div class="desc">Tired of manual chaos experiment analysis? Discover how to leverage generative AI to analyze test results and validate experiment hypothesis. Learn to integrate Amazon Bedrock with AWS FIS to transform your chaos engineering experiments and game days into efficient, data-driven exercises that...<br /><br /></div>
+              <div class="desc schedule-abstract">Tired of manual chaos experiment analysis? Discover how to leverage generative AI to analyze test results and validate experiment hypothesis. Learn to integrate Amazon Bedrock with AWS FIS to transform your chaos engineering experiments and game days into efficient, data-driven exercises that prove system resilience.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -730,15 +965,23 @@
               <h4 class="time mb-3">15:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Avi Press.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Avi Press</a></div>
+                <div class="name">Avi Press</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">10 Billion Downloads: Insights and Trends in Open Source</a>
               </h3>
               <div class="location mb-3">Scarf</div>
-              <div class="desc">In this talk, we share the up-to-date results and fresh insights of an in-depth analysis of data gathered from over 10 billion events analyzed across thousands of projects. The analysis reveals a clearer view of the latest emerging trends. Our findings offer valuable insights into user behaviors...<br /><br /></div>
+              <div class="desc schedule-abstract">In this talk, we share the up-to-date results and fresh insights of an in-depth analysis of data gathered from over 10 billion events analyzed across thousands of projects. The analysis reveals a clearer view of the latest emerging trends.
+
+Our findings offer valuable insights into user behaviors and interactions with open source software, making it essential for maintainers, founders, and executives in open source companies. We will delve deep into our data, uncovering the best practices employed by successful open source projects.
+
+We’ll explore critical trends, including packaging formats, geographic download shifts, and the role of documentation in user retention. Additionally, we’ll examine how community engagement impacts project success and what maintainers can do to drive growth.
+
+Attendees can expect to leave this talk equipped with actionable insights and best practices to optimize their open source projects and thrive in the competitive landscape of open source software.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -747,15 +990,19 @@
               <h4 class="time mb-3">16:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Dwayne McDaniel.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Dwayne McDaniel</a></div>
+                <div class="name">Dwayne McDaniel</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Secrets Security End-To-End</a>
               </h3>
               <div class="location mb-3">GitGuardian</div>
-              <div class="desc">Credentials allow human-to-machine and machine-to-machine communication. According to CyberArk's recent research, 93% of organizations had two or more identity-related breaches in the past year. It is clear that we need to address this growing issue. Unfortunately, many organizations are OK with...<br /><br /></div>
+              <div class="desc schedule-abstract">Credentials allow human-to-machine and machine-to-machine communication. According to CyberArk's recent research, 93% of organizations had two or more identity-related breaches in the past year. It is clear that we need to address this growing issue. Unfortunately, many organizations are OK with using plaintext credentials, which we should all know not to do by now. Given the scope of the problem, what can we do? Let's make a plan! Secrets Detection Secrets Management Developer Workflows Secrets Scanning Automatic Rotation
+
+By the end of this session, you should have a clear roadmap for taming the machine identity mess in your code and pipelines. `<a class="schedule-abstract-read-more" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -764,15 +1011,14 @@
               <h4 class="time mb-3">16:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Happy Hour by Imply - grab a beer!</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Happy Hour by Imply - grab a beer!</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -781,15 +1027,14 @@
               <h4 class="time mb-3">17:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
-              </h3>
-              <div class="location mb-3">Scan each other's QR codes & head to a nearby pub!</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Wrap up</h3>
+              <div class="location mb-3" style="color:#098dcf;">Scan each other's QR codes & head to a nearby pub!</div>
+              
             </div>
           </div>
 
@@ -805,15 +1050,14 @@
               <h4 class="time mb-3">10:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Coffee break</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -822,15 +1066,17 @@
               <h4 class="time mb-3">10:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img class="profile-image rounded-circle mb-2" src="../speakers/Jimmy Katiyar.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Jimmy Katiyar</a></div>
+                <div class="name">Jimmy Katiyar</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">The Human Factor in Site Reliability: Designing Automation That Amplifies Engineering</a>
               </h3>
               <div class="location mb-3">SiriusXM</div>
-              <div class="desc">As automation sophistication increases across SRE practices, organizations face a critical inflection point: whether to pursue lights-out operations or embrace human-centered reliability engineering that delivers measurably superior outcomes. This presentation reveals how leading tech...<br /><br /></div>
+              <div class="desc schedule-abstract">As automation sophistication increases across SRE practices, organizations face a critical inflection point: whether to pursue lights-out operations or embrace human-centered reliability engineering that delivers measurably superior outcomes. This presentation reveals how leading tech organizations achieve significantly higher system reliability and faster incident resolution by strategically designing automation as engineering amplification rather than replacement. Based on comprehensive analysis of incident response patterns and drawing from my experience implementing AI-powered operational workflows at SiriusXM, this session demonstrates how organizations adopting human-centered SRE practices achieve faster mean time to resolution (MTTR) and fewer repeat incidents compared to fully automated approaches. Real-world case studies examine intelligent alerting systems that provide contextual incident classification while preserving human expertise for complex failure mode analysis, and automated remediation tools that execute standard procedures while escalating edge cases requiring engineering judgment. The presentation addresses critical operational challenges including alert fatigue, over-automation risks that mask system complexity, and cognitive load management for on-call engineers. Attendees discover proven frameworks for designing multi-tiered incident response that achieves substantial efficiency gains while maintaining engineering situational awareness, and learn how strategic automation reduces toil while enhancing rather than replacing critical thinking skills. Key implementation strategies include developing runbook automation that educates while executing, establishing escalation frameworks that improve incident learning outcomes, and creating measurement systems that capture both operational metrics and engineer wellness indicators. Organizations following these human-centered reliability principles consistently achieve better uptime, faster recovery, and higher team satisfaction compared to automation-first approaches. This session provides SRE leaders with practical tools for building resilient operations that leverage automation strategically while preserving the engineering judgment essential for managing complex distributed systems.<a class="schedule-abstract-read-more" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -839,15 +1085,17 @@
               <h4 class="time mb-3">11:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img class="profile-image rounded-circle mb-2" src="../speakers/Piyush Dubey.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Piyush Dubey</a></div>
+                <div class="name">Piyush Dubey</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Data Lakehouse Architecture: Reducing Operational Complexity for SRE Teams</a>
               </h3>
               <div class="location mb-3">Microsoft</div>
-              <div class="desc">Modern enterprise data infrastructure creates significant operational overhead for SRE teams, with organizations spending the majority of their engineering cycles managing ETL pipelines, data replication, and maintaining multiple storage systems across data warehouses, lakes, and specialized...<br /><br /></div>
+              <div class="desc schedule-abstract">Modern enterprise data infrastructure creates significant operational overhead for SRE teams, with organizations spending the majority of their engineering cycles managing ETL pipelines, data replication, and maintaining multiple storage systems across data warehouses, lakes, and specialized databases. This operational complexity directly impacts service reliability, increases mean time to recovery (MTTR), and creates numerous points of failure that challenge SLO achievement. This presentation demonstrates how data lakehouse architecture transforms operational paradigms by consolidating disparate data systems into unified, cloud-native platforms that dramatically reduce infrastructure complexity. Through practical implementation strategies, we explore how SRE teams can eliminate redundant data copies, reduce operational toil through automated governance frameworks, and achieve better observability through centralized metadata management. Key operational benefits include substantial reduction in data pipeline maintenance overhead, simplified monitoring through unified observability stacks, and improved incident response through consolidated failure domains. The architecture leverages open table formats like Delta Lake and Apache Iceberg to ensure vendor neutrality while enabling automated backup, recovery, and compliance workflows. We examine five critical architectural layers from an operational perspective: scalable cloud storage foundations with built-in redundancy, self-healing metadata catalogs that reduce manual intervention, automated semantic layers that abstract operational complexity, and optimized query engines that provide consistent performance under varying loads. Attendees will learn practical migration strategies for reducing operational complexity, frameworks for measuring reliability improvements through SLI/SLO metrics, and automation patterns for minimizing manual operational overhead. This session provides actionable insights for SRE teams seeking to modernize data infrastructure while improving service reliability and reducing operational burden.<a class="schedule-abstract-read-more" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -856,15 +1104,17 @@
               <h4 class="time mb-3">11:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img class="profile-image rounded-circle mb-2" src="../speakers/Ran Tao.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">Ran Tao</a></div>
+                <div class="name">Ran Tao</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">Migration from On-Prem Messaging System to The Cloud: What, How and Why</a>
               </h3>
               <div class="location mb-3">AWS</div>
-              <div class="desc">The race to the cloud is on, with enterprises everywhere migrating core infrastructure to stay competitive and cost effective. But when it comes to the messaging systems that power cross-component communications, a simple "lift and shift" isn't adequate and can be a recipe for failure. The...<br /><br /></div>
+              <div class="desc schedule-abstract">The race to the cloud is on, with enterprises everywhere migrating core infrastructure to stay competitive and cost effective. But when it comes to the messaging systems that power cross-component communications, a simple "lift and shift" isn't adequate and can be a recipe for failure. The migration path is riddled with complex decisions and design pitfalls unique to every use case. In this session, AWS Cloud Support expert Tom will walk you through the critical stages of rehosting, replatforming, and refactoring, showing you how to unlock maximum performance and reliability for messaging systems. Additionally, Tom will compare traditional message brokers with more modernized serverless messaging services on AWS. By the end of the session, you will have a much more comprehensive understanding of the migration prcess, key questions to ask and some best practices for harnessing the benefits of Cloud.<a class="schedule-abstract-read-more" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -873,15 +1123,14 @@
               <h4 class="time mb-3">12:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -890,15 +1139,28 @@
               <h4 class="time mb-3">13:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14"><img class="profile-image rounded-circle mb-2" src="../speakers/Sureshkumar Karuppuchamy.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">Sureshkumar Karuppuchamy</a></div>
+                <div class="name">Sureshkumar Karuppuchamy</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">From Dashboard to Defense: Automating Resilience at Large Scale</a>
               </h3>
               <div class="location mb-3">eBay</div>
-              <div class="desc">Modern production systems can no longer rely on static dashboards and reactive on-call rotations to ensure uptime. At large scale — with billions of requests flowing through mission-critical services — reliability must be engineered into the system through autonomous detection, mitigation, and...<br /><br /></div>
+              <div class="desc schedule-abstract">Modern production systems can no longer rely on static dashboards and reactive on-call rotations to ensure uptime. At large scale — with billions of requests flowing through mission-critical services — reliability must be engineered into the system through autonomous detection, mitigation, and recovery.
+In this session, I’ll share how our platform team evolved from traditional observability stacks to an integrated, self-defending resilience architecture that transforms metrics into real-time, automated mitigations.
+Key topics include:
+Actionable observability: Designing high-fidelity Prometheus instrumentation that surfaces actionable SLO breaches and capacity anomalies — not just vanity metrics.
+Closed-loop alerting: Building alert pipelines that automatically trigger mitigations, including traffic shaping, circuit breaking, and dynamic configuration changes.
+Continuous delivery at scale: How we implemented fully automated CI/CD pipelines with canary deployments, progressive rollouts, and automatic rollback — eliminating manual gates while preserving production stability.
+Dynamic rate limiting: Using adaptive throttling to contain abusive or runaway workloads before they impact critical path services.
+Proactive incident response: Real-world learnings from production incidents that shaped our automated safeguards, including post-incident automation improvements and resilience patterns.
+Operational trust: Governance strategies for enabling engineers to trust self-healing automation, from progressive rollout policies to guardrails for fail-safe operation.
+Attendees will gain a practical blueprint for evolving traditional monitoring into an autonomous resilience layer — with concrete patterns, architectural considerations, and lessons learned operating a high-volume, always-on platform.
+Whether you’re modernizing your incident response playbooks, tightening your feedback loops, or scaling continuous delivery for critical systems, you’ll leave with actionable strategies to move beyond dashboards — and build a production environment that can defend itself.
+Key Takeaways How to evolve from passive observability to automated corrective action. Designing metrics pipelines that detect and trigger real-time mitigations. Safe automation of deployments at scale without sacrificing reliability. Implementing dynamic safeguards like adaptive rate limiting and circuit breaking. Practical leadership and governance approaches for building trust in self-healing systems.<a class="schedule-abstract-read-more" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -907,15 +1169,17 @@
               <h4 class="time mb-3">13:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15"><img class="profile-image rounded-circle mb-2" src="../speakers/Gangadharan Venkataraman.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Gangadharan Venkataraman</a></div>
+                <div class="name">Gangadharan Venkataraman</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Building Bulletproof ML Inference Platforms: SRE Principles for Real-Time AI at Scale</a>
               </h3>
               <div class="location mb-3">Starbucks</div>
-              <div class="desc">Real-time machine learning inference platforms present unique SRE challenges that traditional monitoring and reliability practices often can't address. This talk provides a comprehensive framework for applying SRE principles to ML inference systems, drawing from hands-on experience scaling...<br /><br /></div>
+              <div class="desc schedule-abstract">Real-time machine learning inference platforms present unique SRE challenges that traditional monitoring and reliability practices often can't address. This talk provides a comprehensive framework for applying SRE principles to ML inference systems, drawing from hands-on experience scaling platforms that serve billions of daily predictions with sub-100ms latency requirements. We'll explore how to establish meaningful SLIs and SLOs for ML systems, where traditional availability metrics fall short in capturing model performance degradation, data drift, and inference quality issues. Learn practical approaches to incident response for ML platforms, including automated fallback mechanisms, circuit breakers for model failures, and graceful degradation strategies that maintain user experience during outages. The session covers essential reliability patterns including blue-green deployments for model updates, canary releases with statistical significance testing, and rollback strategies that account for model warming and feature pipeline dependencies. We'll examine monitoring and observability strategies that go beyond traditional metrics, incorporating model performance tracking, feature drift detection, and business impact correlation. Infrastructure reliability techniques will be demonstrated through real-world examples: implementing request batching for throughput optimization while maintaining latency SLAs, designing feature stores for consistency and disaster recovery, and orchestrating Kubernetes-based serving infrastructure with proper resource allocation and auto-scaling policies. Critical operational aspects include capacity planning for ML workloads with variable computational requirements, managing dependencies between feature generation pipelines and serving systems, and implementing effective on-call procedures for ML-specific incidents. Attendees will gain practical tools for building resilient ML inference platforms including monitoring dashboards, alerting strategies, and runbook templates. This session bridges the gap between traditional SRE practices and modern ML operations, providing actionable frameworks for maintaining reliable AI systems that deliver consistent business value while meeting stringent performance requirements.<a class="schedule-abstract-read-more" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -924,15 +1188,17 @@
               <h4 class="time mb-3">14:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img class="profile-image rounded-circle mb-2" src="../speakers/Anjan Dash.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Anjan Dash</a></div>
+                <div class="name">Anjan Dash</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Bulletproofing Trillion-Parameter Training: SRE Strategies for Ultra-Large AI Infrastructure at Scale</a>
               </h3>
               <div class="location mb-3">Meta</div>
-              <div class="desc">Training trillion-parameter language models presents unique site reliability challenges that dwarf traditional distributed systems complexity. With training costs exceeding millions of dollars and runs spanning months across thousands of GPUs, even minor infrastructure failures can result in...<br /><br /></div>
+              <div class="desc schedule-abstract">Training trillion-parameter language models presents unique site reliability challenges that dwarf traditional distributed systems complexity. With training costs exceeding millions of dollars and runs spanning months across thousands of GPUs, even minor infrastructure failures can result in catastrophic business impact and resource waste. This presentation examines the SRE principles and practices essential for maintaining high uptime in distributed AI training environments. Drawing from real-world experience managing production AI infrastructure, the session explores how frameworks like NVIDIA's Megatron-LM, Microsoft's DeepSpeed, and UC Berkeley's Alpa introduce novel reliability challenges that traditional monitoring and alerting systems cannot adequately address. Key topics include implementing robust fault tolerance mechanisms for multi-week training jobs, designing effective checkpointing strategies that balance recovery speed with storage costs, and building comprehensive observability pipelines for distributed training workloads. The presentation examines how communication overhead between thousands of nodes creates cascading failure scenarios and demonstrates monitoring techniques for detecting performance degradation before it impacts model convergence. The session covers practical SRE implementations including automated failure recovery systems, capacity planning for massive memory requirements, and energy-aware resource allocation strategies. The discussion addresses the operational complexity of managing heterogeneous GPU clusters and the monitoring strategies needed to track model performance alongside traditional infrastructure metrics. Attendees will learn actionable SRE practices for large-scale AI infrastructure including incident response procedures for distributed training failures, reliability testing methodologies for AI workloads, and capacity forecasting techniques for rapidly evolving model architectures. This presentation addresses the critical reliability challenges that determine whether organizations can successfully operate next-generation AI systems in production environments.<a class="schedule-abstract-read-more" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -941,15 +1207,14 @@
               <h4 class="time mb-3">14:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Networking & sponsor crawl</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -958,15 +1223,17 @@
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17"><img class="profile-image rounded-circle mb-2" src="../speakers/Justin Davis.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Justin Davis</a></div>
+                <div class="name">Justin Davis</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Microfrontend Reliability: SRE Strategies for Distributed Frontend Systems</a>
               </h3>
               <div class="location mb-3">Castlight Health</div>
-              <div class="desc">Microfrontend architectures with Module Federation introduce distributed system complexity to frontend applications, creating new reliability challenges that traditional SRE practices must adapt to address. This talk explores how to apply Site Reliability Engineering principles to microfrontend...<br /><br /></div>
+              <div class="desc schedule-abstract">Microfrontend architectures with Module Federation introduce distributed system complexity to frontend applications, creating new reliability challenges that traditional SRE practices must adapt to address. This talk explores how to apply Site Reliability Engineering principles to microfrontend systems, ensuring high availability, performance, and operational excellence across independently deployed frontend modules. Unlike backend microservices, microfrontends face unique reliability challenges including runtime integration failures, cross-module dependency conflicts, and cascading failures that can break entire user experiences. We'll examine how to implement the four golden signals for microfrontend systems: measuring latency across module boundaries, tracking traffic patterns for federated modules, monitoring error rates in distributed frontend components, and managing saturation in shared resources and container applications. The session covers essential observability strategies including distributed tracing for microfrontend interactions, real user monitoring (RUM) for federated applications, and synthetic monitoring approaches that validate cross-module integrations. We'll explore how to implement effective circuit breakers for frontend modules, graceful degradation patterns when remote modules fail, and automated rollback strategies for problematic deployments. Attendees will learn production-tested techniques for capacity planning microfrontend systems, including CDN optimization strategies, bundle size monitoring, and performance budget enforcement across teams. The talk addresses critical operational concerns such as coordinated deployments across multiple frontend teams, dependency version management, and incident response procedures for distributed frontend failures. We'll also cover advanced reliability patterns including canary deployments for federated modules, A/B testing infrastructure for microfrontends, and automated performance regression detection. The session explores monitoring strategies for shared design systems, container application health checks, and cross-team SLO management in federated architectures. This session targets SREs, platform engineers, and DevOps professionals working with complex frontend architectures, providing practical frameworks for maintaining reliability, performance, and operational excellence in distributed frontend systems while avoiding common reliability pitfalls.<a class="schedule-abstract-read-more" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -975,15 +1242,17 @@
               <h4 class="time mb-3">15:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18"><img class="profile-image rounded-circle mb-2" src="../speakers/Mike Shi.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">Mike Shi</a></div>
+                <div class="name">Mike Shi</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">How We Built ClickStack - an open source, open telemetry native Observability stack</a>
               </h3>
               <div class="location mb-3">ClickHouse</div>
-              <div class="desc">Modern observability is built on a flawed foundation: three siloed pillars - logs, metrics, and traces - each powered by different engines with separate query models, storage formats, and operational costs. Users are forced to manually correlate across systems, accept duplication, or pay high...<br /><br /></div>
+              <div class="desc schedule-abstract">Modern observability is built on a flawed foundation: three siloed pillars - logs, metrics, and traces - each powered by different engines with separate query models, storage formats, and operational costs. Users are forced to manually correlate across systems, accept duplication, or pay high SaaS bills. But what if observability is just a data problem? One that needs a general-purpose solution instead of purpose-built compromises? This talk argues that true observability requires fast, high-cardinality queries over unsampled data at scale and at low cost. Traditional search and metrics engines were not designed for this, but column-oriented databases are. We introduce ClickStack, a fully open source, OpenTelemetry-native observability stack built around ClickHouse. It provides fast, flexible querying and efficient storage, enabling real-time visibility without compromise.<a class="schedule-abstract-read-more" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -992,15 +1261,17 @@
               <h4 class="time mb-3">16:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19"><img class="profile-image rounded-circle mb-2" src="../speakers/Chad Sanderson.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">Chad Sanderson</a></div>
+                <div class="name">Chad Sanderson</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">Data Lineage in the Era of AI: Solving One of Tech’s Biggest Challenges</a>
               </h3>
               <div class="location mb-3">Gable.ai</div>
-              <div class="desc">Modern enterprises can’t manage data they don’t understand – uncovering the code-to-data relationship is the missing link. As data ecosystems grow more complex, traditional approaches to tracking data lineage can’t keep up. This talk explores how AI-driven code analysis can automatically build...<br /><br /></div>
+              <div class="desc schedule-abstract">Modern enterprises can’t manage data they don’t understand – uncovering the code-to-data relationship is the missing link. As data ecosystems grow more complex, traditional approaches to tracking data lineage can’t keep up. This talk explores how AI-driven code analysis can automatically build end-to-end lineage graphs, giving engineers clear visibility into hidden dependencies across large, legacy, and regulated systems. We’ll show how AI enhances data catalogues and introduce Gable - a tool that helps teams map, validate, and monitor data flows at scale. A live demo on a large energy data codebase will highlight how AI transforms lineage tracking from a manual headache into an automated, scalable solution.<a class="schedule-abstract-read-more" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -1009,15 +1280,14 @@
               <h4 class="time mb-3">16:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Happy Hour by Imply - grab a beer!</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Happy Hour by Imply - grab a beer!</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -1026,15 +1296,14 @@
               <h4 class="time mb-3">17:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
-              </h3>
-              <div class="location mb-3">Scan each other's QR codes & head to a nearby pub!</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Wrap up</h3>
+              <div class="location mb-3" style="color:#098dcf;">Scan each other's QR codes & head to a nearby pub!</div>
+              
             </div>
           </div>
 
@@ -1171,21 +1440,31 @@
 
 
 
+
+
           <tr>
             <td class="time-cell">09:00</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: No Single Point of (AI) Failure: Agent Maintenance & Model Fallbacks</a>
-              <div class="speaker-info">Rohan Gupta <span class="affiliation">• Harness</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/swarnendurohan-gupta/" target="_blank" rel="noopener" class="speaker-linkedin-link">Rohan Gupta</a> <span class="affiliation">• Harness</span></div>
             </td>
 
-            <td class="talk-cell">
 
-            </td>
+
+
+
+            <td class="talk-cell"></td>
+
 
           </tr>
+
+
 
 
 
@@ -1206,16 +1485,22 @@
           <tr>
             <td class="time-cell">09:30</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Keynote: What Observability Can Learn From BI: Decoupling for Speed, Scale, and Flexibility</a>
-              <div class="speaker-info">Gian Merlino <span class="affiliation">• Imply</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/gianmerlino/" target="_blank" rel="noopener" class="speaker-linkedin-link">Gian Merlino</a> <span class="affiliation">• Imply</span></div>
             </td>
 
-            <td class="talk-cell">
 
-            </td>
+
+
+
+            <td class="talk-cell"></td>
+
 
           </tr>
 
@@ -1260,24 +1545,36 @@
 
 
 
+
+
           <tr>
             <td class="time-cell">10:30</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Container Live Migration in Kubernetes: Why and How</a>
-              <div class="speaker-info">Steve Poyer <span class="affiliation">• CAST AI</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/stevepoyer/" target="_blank" rel="noopener" class="speaker-linkedin-link">Steve Poyer</a> <span class="affiliation">• CAST AI</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">The Human Factor in Site Reliability: Designing Automation That Amplifies Engineering</a>
-              <div class="speaker-info">Jimmy Katiyar <span class="affiliation">• SiriusXM</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/jimmykatiyar/" target="_blank" rel="noopener" class="speaker-linkedin-link">Jimmy Katiyar</a> <span class="affiliation">• SiriusXM</span></div>
             </td>
+
 
           </tr>
+
+
 
 
 
@@ -1298,21 +1595,31 @@
           <tr>
             <td class="time-cell">11:00</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">“We’re Down!” to “We’re Good.” — Shipping observability in 2 weeks</a>
-              <div class="speaker-info">Aditya Bansal <span class="affiliation">• Cortex</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/adbansal/" target="_blank" rel="noopener" class="speaker-linkedin-link">Aditya Bansal</a> <span class="affiliation">• Cortex</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Data Lakehouse Architecture: Reducing Operational Complexity for SRE Teams</a>
-              <div class="speaker-info">Piyush Dubey <span class="affiliation">• Microsoft</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/piyushdubey07/" target="_blank" rel="noopener" class="speaker-linkedin-link">Piyush Dubey</a> <span class="affiliation">• Microsoft</span></div>
             </td>
+
 
           </tr>
+
+
 
 
 
@@ -1333,19 +1640,27 @@
           <tr>
             <td class="time-cell">11:30</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Rust-Powered Observability: The Language of Modern Observability</a>
-              <div class="speaker-info">Prabhat Sharma <span class="affiliation">• OpenObserve</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/hiprabhat/" target="_blank" rel="noopener" class="speaker-linkedin-link">Prabhat Sharma</a> <span class="affiliation">• OpenObserve</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">Migration from On-Prem Messaging System to The Cloud: What, How and Why</a>
-              <div class="speaker-info">Ran Tao <span class="affiliation">• AWS</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/tomtaoran/" target="_blank" rel="noopener" class="speaker-linkedin-link">Ran Tao</a> <span class="affiliation">• AWS</span></div>
             </td>
+
 
           </tr>
 
@@ -1390,24 +1705,36 @@
 
 
 
+
+
           <tr>
             <td class="time-cell">13:00</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">MCP Is Not Enough: Introducing, Data Containers for AI</a>
-              <div class="speaker-info">Nico Bistolfi <span class="affiliation">• AlienGiraffe</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/nicobistolfi/" target="_blank" rel="noopener" class="speaker-linkedin-link">Nico Bistolfi</a> <span class="affiliation">• AlienGiraffe</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">From Dashboard to Defense: Automating Resilience at Large Scale</a>
-              <div class="speaker-info">Sureshkumar Karuppuchamy <span class="affiliation">• eBay</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/sureshkumar-karuppuchamy-51282b7/" target="_blank" rel="noopener" class="speaker-linkedin-link">Sureshkumar Karuppuchamy</a> <span class="affiliation">• eBay</span></div>
             </td>
+
 
           </tr>
+
+
 
 
 
@@ -1428,21 +1755,31 @@
           <tr>
             <td class="time-cell">13:30</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Shadow Dependencies - The Rising Role (Risk?) of Data</a>
-              <div class="speaker-info">Mark Freeman <span class="affiliation">• Gable.ai</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/mafreeman2/" target="_blank" rel="noopener" class="speaker-linkedin-link">Mark Freeman</a> <span class="affiliation">• Gable.ai</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Building Bulletproof ML Inference Platforms: SRE Principles for Real-Time AI at Scale</a>
-              <div class="speaker-info">Gangadharan Venkataraman <span class="affiliation">• Starbucks</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/ganga5v/" target="_blank" rel="noopener" class="speaker-linkedin-link">Gangadharan Venkataraman</a> <span class="affiliation">• Starbucks</span></div>
             </td>
+
 
           </tr>
+
+
 
 
 
@@ -1463,19 +1800,27 @@
           <tr>
             <td class="time-cell">14:00</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Beyond 100 Petabytes: Why We Built a Custom Exporter to Replace Our OTel Pipeline</a>
-              <div class="speaker-info">Vlad Seliverstov <span class="affiliation">• ClickHouse</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/behemot/" target="_blank" rel="noopener" class="speaker-linkedin-link">Vlad Seliverstov</a> <span class="affiliation">• ClickHouse</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Bulletproofing Trillion-Parameter Training: SRE Strategies for Ultra-Large AI Infrastructure at Scale</a>
-              <div class="speaker-info">Anjan Dash <span class="affiliation">• Meta</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/anjan-dash/" target="_blank" rel="noopener" class="speaker-linkedin-link">Anjan Dash</a> <span class="affiliation">• Meta</span></div>
             </td>
+
 
           </tr>
 
@@ -1520,24 +1865,36 @@
 
 
 
+
+
           <tr>
             <td class="time-cell">15:00</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Transform chaos experiments into actionable insights using generative AI</a>
-              <div class="speaker-info">Saurabh Kumar & Ruskin Dantra <span class="affiliation">• AWS</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/saurabh-kumar-sk/" target="_blank" rel="noopener" class="speaker-linkedin-link">Saurabh Kumar & Ruskin Dantra</a> <span class="affiliation">• AWS</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Microfrontend Reliability: SRE Strategies for Distributed Frontend Systems</a>
-              <div class="speaker-info">Justin Davis <span class="affiliation">• Castlight Health</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/justin-davis-15565128/" target="_blank" rel="noopener" class="speaker-linkedin-link">Justin Davis</a> <span class="affiliation">• Castlight Health</span></div>
             </td>
+
 
           </tr>
+
+
 
 
 
@@ -1558,21 +1915,31 @@
           <tr>
             <td class="time-cell">15:30</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">10 Billion Downloads: Insights and Trends in Open Source</a>
-              <div class="speaker-info">Avi Press <span class="affiliation">• Scarf</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/avi-press-4437a356/" target="_blank" rel="noopener" class="speaker-linkedin-link">Avi Press</a> <span class="affiliation">• Scarf</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">How We Built ClickStack - an open source, open telemetry native Observability stack</a>
-              <div class="speaker-info">Mike Shi <span class="affiliation">• ClickHouse</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/mikeshi42/" target="_blank" rel="noopener" class="speaker-linkedin-link">Mike Shi</a> <span class="affiliation">• ClickHouse</span></div>
             </td>
+
 
           </tr>
+
+
 
 
 
@@ -1593,19 +1960,27 @@
           <tr>
             <td class="time-cell">16:00</td>
 
-            <td class="talk-cell">
 
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Secrets Security End-To-End</a>
-              <div class="speaker-info">Dwayne McDaniel <span class="affiliation">• GitGuardian</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/dwaynemcdaniel/" target="_blank" rel="noopener" class="speaker-linkedin-link">Dwayne McDaniel</a> <span class="affiliation">• GitGuardian</span></div>
             </td>
+
+
+
+
+
+
 
             <td class="talk-cell">
-
               <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">Data Lineage in the Era of AI: Solving One of Tech’s Biggest Challenges</a>
-              <div class="speaker-info">Chad Sanderson <span class="affiliation">• Gable.ai</span></div>
-
+              <div class="speaker-info"><a href="https://www.linkedin.com/in/chad-sanderson/" target="_blank" rel="noopener" class="speaker-linkedin-link">Chad Sanderson</a> <span class="affiliation">• Gable.ai</span></div>
             </td>
+
 
           </tr>
 
@@ -1689,7 +2064,9 @@
     }
     </script>
 
-    <div class="schedule-cta text-center mx-auto mt-4"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+    
+    <div class="schedule-cta text-center mx-auto mt-4"><a href="https://luma.com/sre" target="_blank" rel="noopener" class="btn btn-secondary btn-lg d-block d-md-inline-block">Upcoming conferences on LUMA</a></div>
+    
   </div>
 </section>
 
@@ -1699,11 +2076,11 @@
 <section id="speakers" class="speakers-section section">
   <div class="container">
     <h3 class="section-heading text-center mb-3">Speakers</h3>
-    <div class="row">
+    <div class="row row-cols-2 row-cols-lg-5">
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Aditya Bansal.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1711,7 +2088,10 @@
             <div class="card-text mb-3">
               <div class="meta">Cortex</div>
             </div><!--//card-text-->
-            <a href="./Aditya_Bansal_Cortex_Were_Down_to_Were_Good__Shipping_observability_in_2_weeks#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Aditya_Bansal_Cortex_Were_Down_to_Were_Good__Shipping_observability_in_2_weeks#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1726,7 +2106,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img src="../speakers/Anjan Dash.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1734,7 +2114,10 @@
             <div class="card-text mb-3">
               <div class="meta">Meta</div>
             </div><!--//card-text-->
-            <a href="./Anjan_Dash_Meta_Bulletproofing_TrillionParameter_Training_SRE_Strategies_for_UltraLarge_AI_Infrastru#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Anjan_Dash_Meta_Bulletproofing_TrillionParameter_Training_SRE_Strategies_for_UltraLarge_AI_Infrastru#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1749,7 +2132,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Avi Press.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1757,7 +2140,10 @@
             <div class="card-text mb-3">
               <div class="meta">Scarf</div>
             </div><!--//card-text-->
-            <a href="./Avi_Press_Scarf_10_Billion_Downloads_Insights_and_Trends_in_Open_Source#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Avi_Press_Scarf_10_Billion_Downloads_Insights_and_Trends_in_Open_Source#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1772,7 +2158,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19"><img src="../speakers/Chad Sanderson.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1780,7 +2166,10 @@
             <div class="card-text mb-3">
               <div class="meta">Gable.ai</div>
             </div><!--//card-text-->
-            <a href="./Chad_Sanderson_Gableai_Data_Lineage_in_the_Era_of_AI_Solving_One_of_Techs_Biggest_Challenges#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Chad_Sanderson_Gableai_Data_Lineage_in_the_Era_of_AI_Solving_One_of_Techs_Biggest_Challenges#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1795,7 +2184,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Dwayne McDaniel.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1803,7 +2192,10 @@
             <div class="card-text mb-3">
               <div class="meta">GitGuardian</div>
             </div><!--//card-text-->
-            <a href="./Dwayne_McDaniel_GitGuardian_Secrets_Security_EndToEnd#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Dwayne_McDaniel_GitGuardian_Secrets_Security_EndToEnd#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1818,7 +2210,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15"><img src="../speakers/Gangadharan Venkataraman.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1826,7 +2218,10 @@
             <div class="card-text mb-3">
               <div class="meta">Starbucks</div>
             </div><!--//card-text-->
-            <a href="./Gangadharan_Venkataraman_Starbucks_Building_Bulletproof_ML_Inference_Platforms_SRE_Principles_for_Re#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Gangadharan_Venkataraman_Starbucks_Building_Bulletproof_ML_Inference_Platforms_SRE_Principles_for_Re#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1841,7 +2236,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img src="../speakers/Gian Merlino.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1849,7 +2244,10 @@
             <div class="card-text mb-3">
               <div class="meta">Imply</div>
             </div><!--//card-text-->
-            <a href="./Gian_Merlino_Imply_Keynote_What_Observability_Can_Learn_From_BI_Decoupling_for_Speed__Scale__and_Fle#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Gian_Merlino_Imply_Keynote_What_Observability_Can_Learn_From_BI_Decoupling_for_Speed__Scale__and_Fle#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1864,7 +2262,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img src="../speakers/Jimmy Katiyar.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1872,7 +2270,10 @@
             <div class="card-text mb-3">
               <div class="meta">SiriusXM</div>
             </div><!--//card-text-->
-            <a href="./Jimmy_Katiyar_SiriusXM_The_Human_Factor_in_Site_Reliability_Designing_Automation_That_Amplifies_Engi#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Jimmy_Katiyar_SiriusXM_The_Human_Factor_in_Site_Reliability_Designing_Automation_That_Amplifies_Engi#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1887,7 +2288,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17"><img src="../speakers/Justin Davis.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1895,7 +2296,10 @@
             <div class="card-text mb-3">
               <div class="meta">Castlight Health</div>
             </div><!--//card-text-->
-            <a href="./Justin_Davis_Castlight_Health_Microfrontend_Reliability_SRE_Strategies_for_Distributed_Frontend_Syst#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Justin_Davis_Castlight_Health_Microfrontend_Reliability_SRE_Strategies_for_Distributed_Frontend_Syst#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1910,7 +2314,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Mark Freeman.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1918,7 +2322,10 @@
             <div class="card-text mb-3">
               <div class="meta">Gable.ai</div>
             </div><!--//card-text-->
-            <a href="./Mark_Freeman_Gableai_Shadow_Dependencies__The_Rising_Role_Risk_of_Data#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Mark_Freeman_Gableai_Shadow_Dependencies__The_Rising_Role_Risk_of_Data#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1933,7 +2340,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18"><img src="../speakers/Mike Shi.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1941,7 +2348,10 @@
             <div class="card-text mb-3">
               <div class="meta">ClickHouse</div>
             </div><!--//card-text-->
-            <a href="./Mike_Shi_ClickHouse_How_We_Built_ClickStack__an_open_source__open_telemetry_native_Observability_sta#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Mike_Shi_ClickHouse_How_We_Built_ClickStack__an_open_source__open_telemetry_native_Observability_sta#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1956,7 +2366,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Nico Bistolfi.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1964,7 +2374,10 @@
             <div class="card-text mb-3">
               <div class="meta">AlienGiraffe</div>
             </div><!--//card-text-->
-            <a href="./Nico_Bistolfi_AlienGiraffe_MCP_Is_Not_Enough_Introducing__Data_Containers_for_AI#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Nico_Bistolfi_AlienGiraffe_MCP_Is_Not_Enough_Introducing__Data_Containers_for_AI#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1979,7 +2392,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img src="../speakers/Piyush Dubey.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1987,7 +2400,10 @@
             <div class="card-text mb-3">
               <div class="meta">Microsoft</div>
             </div><!--//card-text-->
-            <a href="./Piyush_Dubey_Microsoft_Data_Lakehouse_Architecture_Reducing_Operational_Complexity_for_SRE_Teams#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Piyush_Dubey_Microsoft_Data_Lakehouse_Architecture_Reducing_Operational_Complexity_for_SRE_Teams#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2002,7 +2418,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Prabhat Sharma.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2010,7 +2426,10 @@
             <div class="card-text mb-3">
               <div class="meta">OpenObserve</div>
             </div><!--//card-text-->
-            <a href="./Prabhat_Sharma_OpenObserve_RustPowered_Observability_The_Language_of_Modern_Observability#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Prabhat_Sharma_OpenObserve_RustPowered_Observability_The_Language_of_Modern_Observability#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2025,7 +2444,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img src="../speakers/Ran Tao.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2033,7 +2452,10 @@
             <div class="card-text mb-3">
               <div class="meta">AWS</div>
             </div><!--//card-text-->
-            <a href="./Ran_Tao_AWS_Migration_from_OnPrem_Messaging_System_to_The_Cloud_What__How_and_Why#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Ran_Tao_AWS_Migration_from_OnPrem_Messaging_System_to_The_Cloud_What__How_and_Why#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2048,7 +2470,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Rohan Gupta.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2056,7 +2478,10 @@
             <div class="card-text mb-3">
               <div class="meta">Harness</div>
             </div><!--//card-text-->
-            <a href="./Rohan_Gupta_Harness_Keynote_No_Single_Point_of_AI_Failure_Agent_Maintenance__Model_Fallbacks#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Rohan_Gupta_Harness_Keynote_No_Single_Point_of_AI_Failure_Agent_Maintenance__Model_Fallbacks#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2071,15 +2496,18 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Saurabh Kumar & Ruskin Dantra.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
-            <h5 class="card-title mb-2">Saurabh Kumar & Ruskin Dantra</h5>
+            <h5 class="card-title mb-2">Saurabh Kumar<br>&amp; Ruskin Dantra</h5>
             <div class="card-text mb-3">
               <div class="meta">AWS</div>
             </div><!--//card-text-->
-            <a href="./Saurabh_Kumar__Ruskin_Dantra_AWS_Transform_chaos_experiments_into_actionable_insights_using_generati#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Saurabh_Kumar__Ruskin_Dantra_AWS_Transform_chaos_experiments_into_actionable_insights_using_generati#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2094,7 +2522,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Steve Poyer.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2102,7 +2530,10 @@
             <div class="card-text mb-3">
               <div class="meta">CAST AI</div>
             </div><!--//card-text-->
-            <a href="./Steve_Poyer_CAST_AI_Container_Live_Migration_in_Kubernetes_Why_and_How#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Steve_Poyer_CAST_AI_Container_Live_Migration_in_Kubernetes_Why_and_How#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2117,7 +2548,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14"><img src="../speakers/Sureshkumar Karuppuchamy.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2125,7 +2556,10 @@
             <div class="card-text mb-3">
               <div class="meta">eBay</div>
             </div><!--//card-text-->
-            <a href="./Sureshkumar_Karuppuchamy_eBay_From_Dashboard_to_Defense_Automating_Resilience_at_Large_Scale#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Sureshkumar_Karuppuchamy_eBay_From_Dashboard_to_Defense_Automating_Resilience_at_Large_Scale#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2140,7 +2574,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Vlad Seliverstov.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -2148,7 +2582,10 @@
             <div class="card-text mb-3">
               <div class="meta">ClickHouse</div>
             </div><!--//card-text-->
-            <a href="./Vlad_Seliverstov_ClickHouse_Beyond_100_Petabytes_Why_We_Built_a_Custom_Exporter_to_Replace_Our_OTel_#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Vlad_Seliverstov_ClickHouse_Beyond_100_Petabytes_Why_We_Built_a_Custom_Exporter_to_Replace_Our_OTel_#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -2166,7 +2603,7 @@
       
 
     </div><!--//row-->
-    <div class="speakers-cta text-center py-3"><a class="btn btn-primary btn-lg" href="#tickets">Get Tickets</a></div>
+    
   </div><!--//container-->
 
 </section><!--//speakers-section-->
@@ -2229,6 +2666,21 @@
 
 
 
+<style>
+  .modal-speaker .desc p,
+  .modal-speaker .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .modal-speaker .desc {
+    padding-bottom: 0.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+</style>
+
 
 <!-- Modal Speaker 2 -->
 <div class="modal modal-speaker modal-speaker-2" id="modal-speaker-2" tabindex="-1" role="dialog" aria-labelledby="speaker-2-ModalLabel" aria-hidden="true">
@@ -2259,6 +2711,7 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>What if Kubernetes could move a running container to another node without a single second of downtime? In this session, we’ll dive into Container Live Migration—a game-changing capability that brings a new level of availability to your workloads. Say goodbye to disruption from Spot instance terminations, node pressure, or scaling events—even for apps with long startup times like Java services, long-running jobs, or stateful workloads.</p>
 <p>We’ll explore how live migration works under the hood, why it’s a powerful cost-saving tool for intelligent bin-packing, and show it all in action with a live demo.</p></p>
               </div>
@@ -2266,6 +2719,7 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Steve Poyer is an experienced pre-sales systems engineer with a strong background in cloud-native infrastructure, Kubernetes orchestration, and container runtime optimization. He has worked in both enterprise and startup environments, delivering high-availability, low-latency solutions for mission-critical workloads on AWS, Azure, and GCP.</p>
 <p>In his current role at Cast AI, Steve advises organizations on optimizing Kubernetes performance and cost efficiency through advanced scheduling, autoscaling, and workload placement strategies. With hands-on expertise in cluster design, node management, and storage/network integration, Steve brings a unique mix of technical depth and practical SRE know-how to the topic of Container Live Migration.</p></p>
               </div>
@@ -2303,6 +2757,7 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p><strong>Many hyper-growth startups hit a point where the current systems just aren’t enough.</strong><br />
 Racing toward product–market fit, they skip best practices around observability, monitoring, and alerting—and pay for it later.</p>
 <p>This talk is about going from <strong>0 → 1</strong> and protecting your company, team, and customers when the pressure mounts.</p>
@@ -2331,6 +2786,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Aditya Bansal is a Staff Engineer at Cortex, an Internal Developer Portal that helps engineering teams catalog their services. He joined as the company’s first employee over four years ago and has since grown into his current Staff Engineer role.</p>
 <p>Aditya began his career at Poynt, helping scale the engineering team from 15 to 60+ people. There, he built and maintained much of the company-wide infrastructure and watched the platform make the classic transition from a monolith to microservices.</p>
 <p>He later joined Curebase as one of the earliest hires, working directly with the founders to build the engineering organisation from scratch before moving on to Cortex.</p></p>
@@ -2369,6 +2825,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Traditional observability tools built in C++, Java and Go often become part of the problem they're meant to solve, crashing under load, leaking memory during critical incidents, and introducing race conditions that corrupt data. Extremely high resource consumption leads to increased costs and complexity in managing infrastructure.</p>
 <p>Rust offers a compelling alternative, providing memory safety without a garbage collector, which translates to more reliable and efficient observability systems. Coupled with its strong ecosystem for building high-performance data processing pipelines, Rust enables the creation of observability tools that are not only robust, highly performant and also cost-effective.</p>
 <p>This session explains how we used rust to build a next-generation observability platform that addresses the shortcomings of existing solutions.</p>
@@ -2378,6 +2835,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Prabhat Sharma is the founder of OpenObserve, bringing extensive expertise in cloud computing, Kubernetes, and observability. His interests also encompass machine learning, liberal arts, economics, and systems architecture. </p></p>
               </div>
           </div><!--//modal-body-->
@@ -2414,6 +2872,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>LLMs are demanding data access, but they are like a toddler with a popsicle, always wanting more. We’ll tell you how to keep your toddlers sugar free and your LLMs in check, to make sure neither your house burns down or your company receives a massive lawsuit for a data leak.</p>
 <p>This talk explains why the Model Context Protocol (MCP), while useful for connecting LLMs to data, fails to enforce ongoing authorization.</p>
 <p>Through a practical example, you’ll see how to replace production access with lightweight, per-session data isolation: giving AI agents the data they need without risking your systems.</p>
@@ -2423,6 +2882,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Nico is the co-founder and CTO of AlienGiraffe. He has more than 20 years of experience in technology and product leadership, from bootstrapping the first e-commerce company in Uruguay to 150 people and $25M ARR to building cutting edge solutions like image optimization and data infrastructure serving Fortune 50 companies. He specializes in distributes systems, resilience and production readiness.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2459,12 +2919,14 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Some of the largest outages on the internet can be traced back not only to changes in code, but also how the code changed underlying data models. Through countless discussions with software engineers, many noted the importance of the underlying data model for quality development, yet also highlighted the lack of incentives (or outright discouragement) by leadership to put in the extra effort to maintain it. Even more troubling, not only are applications impacted by data, but also downstream consumers within the business are taking major dependencies on the output of this data for business-critical workflows-- unbeknownst to the upstream engineers producing the data (i.e., shadow dependencies). In this talk, we highlight this growing problem, why engineer leadership is paying more attention to the risk of data, and how to surface and prevent these issues within the CI/CD workflow via an emerging pattern called "data contracts."</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Mark Freeman, co-author of the upcoming O’Reilly book "Data Contracts: Developing Production-Grade Pipelines at Scale," has spent the past two years collaborating with organizations to implement data contracts and refine best practices. Previously, he was a data scientist turned data engineer with experience in building, putting into production, and maintaining data products across the entire development lifecycle, such as consumer-facing algorithms, personalized insights, and machine learning models. This work has put him at the intersection of software and data teams, where he has become obsessed with the translation between both technical fields.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2501,12 +2963,14 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Are your observability signals trapped in separate pillars? Logs in one place, metrics in another, both losing context? At ClickHouse, we faced this challenge at a massive scale. Our solution was to abandon the traditional model and embrace a new philosophy: store everything, aggregate nothing. This talk charts our journey to 100 PB and 500 trillion rows, centered on the concept of “wide events.” Instead of shipping a simple log message and a separate, pre-aggregated metric, we store a single, context-rich event containing every possible dimension. This shift from three pillars to a single warehouse of high-cardinality telemetry was a game-changer. The key to this model is using ClickHouse itself as our observability backend. This unlocks unbounded query flexibility through full SQL. When an engineer asks “what’s the p95 pod replacement time after termination?”, we don’t say “let me ship a new metric.” We write a SQL query.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Vlad Seliverstov leads the internal observability team at ClickHouse, overseeing the monitoring of ClickHouse Cloud, which handles over 100 petabytes of data and 500 trillion events. With more than a decade of SRE experience at Datadog, Dropbox, and Facebook, Vlad now focuses on building and scaling ClickHouse’s in-house observability platform.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2543,12 +3007,14 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Tired of manual chaos experiment analysis? Discover how to leverage generative AI to analyze test results and validate experiment hypothesis. Learn to integrate Amazon Bedrock with AWS FIS to transform your chaos engineering experiments and game days into efficient, data-driven exercises that prove system resilience.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p><strong>Saurabh Kumar</strong> is an experienced technology leader with over two decades in the software and cloud architecture domain. He currently serves as a Sr. Solutions Architect at Amazon, where he has been driving strategic cloud initiatives since 2022. Prior to Amazon, Saurabh held the role of Principal Architect at Fidelity Investments for over 15 years, leading complex enterprise solutions and architecture transformations. He began his career as a Senior Software Engineer at Patni Computer Systems, gaining a strong foundation in software development. Based in Raleigh, North Carolina, Saurabh brings deep expertise in cloud architecture, enterprise systems, and Failure Mode and Effects Analysis (FMEA).</p>
 <p><strong>Ruskin Dantra</strong> is a seasoned Solutions Architect with a strong track record of delivering scalable and innovative software solutions across diverse industries. Currently based in the San Francisco Bay Area, he has been with Amazon Web Services (AWS) since 2021, first in Auckland, New Zealand, and now in a hybrid role in the U.S., focusing on helping organizations accelerate their cloud journeys. With over 15 years of experience, Ruskin has held technical leadership roles including Principal Engineer and Chapter Lead at ASB Bank, and Development Team Lead at Nintex, where he led software architecture and engineering efforts. He is known for his pragmatic approach to system design, mentoring teams, and driving best practices in software development. Passionate about animal welfare, he also volunteered for five years at SPCA Auckland, supporting dog adoption and care.</p></p>
               </div>
@@ -2586,6 +3052,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In this talk, we share the up-to-date results and fresh insights of an in-depth analysis of data gathered from over 10 billion events analyzed across thousands of projects. The analysis reveals a clearer view of the latest emerging trends.</p>
 <p>Our findings offer valuable insights into user behaviors and interactions with open source software, making it essential for maintainers, founders, and executives in open source companies. We will delve deep into our data, uncovering the best practices employed by successful open source projects.</p>
 <p>We’ll explore critical trends, including packaging formats, geographic download shifts, and the role of documentation in user retention. Additionally, we’ll examine how community engagement impacts project success and what maintainers can do to drive growth.</p>
@@ -2595,6 +3062,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Avi Press is a developer tool author, and functional programming language enthusiast, serving as a founder &amp; CEO at Scarf. Avi loves thinking about and discussing how people can solve problems by more effectively sharing data, and how that applies to building a sustainable open-source ecosystem. He is also a host of the Hacking Open Source Business Podcast, where Avi continues to share insights, inspire discussions, and contribute to the ever-evolving open-source landscape.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2631,6 +3099,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Credentials allow human-to-machine and machine-to-machine communication. According to CyberArk's recent research, 93% of organizations had two or more identity-related breaches in the past year. It is clear that we need to address this growing issue. Unfortunately, many organizations are OK with using plaintext credentials, which we should all know not to do by now. Given the scope of the problem, what can we do? Let's make a plan! Secrets Detection Secrets Management Developer Workflows Secrets Scanning Automatic Rotation</p>
 <p>By the end of this session, you should have a clear roadmap for taming the machine identity mess in your code and pipelines. `</p></p>
               </div>
@@ -2638,6 +3107,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Dwayne has been working as a Developer Advocate since 2014 and has been involved in tech communities since 2005. His entire mission is to “help people figure stuff out.” He loves sharing his knowledge, and he has done so by giving talks at hundreds of events worldwide. He has been fortunate enough to speak at institutions like MIT and Stanford and internationally in Paris and Iceland. Dwayne currently lives in Chicago. Outside of tech, he loves karaoke, live music, and crochet.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2674,12 +3144,14 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>As automation sophistication increases across SRE practices, organizations face a critical inflection point: whether to pursue lights-out operations or embrace human-centered reliability engineering that delivers measurably superior outcomes. This presentation reveals how leading tech organizations achieve significantly higher system reliability and faster incident resolution by strategically designing automation as engineering amplification rather than replacement. Based on comprehensive analysis of incident response patterns and drawing from my experience implementing AI-powered operational workflows at SiriusXM, this session demonstrates how organizations adopting human-centered SRE practices achieve faster mean time to resolution (MTTR) and fewer repeat incidents compared to fully automated approaches. Real-world case studies examine intelligent alerting systems that provide contextual incident classification while preserving human expertise for complex failure mode analysis, and automated remediation tools that execute standard procedures while escalating edge cases requiring engineering judgment. The presentation addresses critical operational challenges including alert fatigue, over-automation risks that mask system complexity, and cognitive load management for on-call engineers. Attendees discover proven frameworks for designing multi-tiered incident response that achieves substantial efficiency gains while maintaining engineering situational awareness, and learn how strategic automation reduces toil while enhancing rather than replacing critical thinking skills. Key implementation strategies include developing runbook automation that educates while executing, establishing escalation frameworks that improve incident learning outcomes, and creating measurement systems that capture both operational metrics and engineer wellness indicators. Organizations following these human-centered reliability principles consistently achieve better uptime, faster recovery, and higher team satisfaction compared to automation-first approaches. This session provides SRE leaders with practical tools for building resilient operations that leverage automation strategically while preserving the engineering judgment essential for managing complex distributed systems.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Jimmy Katiyar is a Senior Manager of Product Management at SiriusXM Inc., where he leads Salesforce-based ad sales technology transformations across media, satellite, streaming, and podcast platforms. As a Certified Scrum Product Owner, he serves as both a Product Leader and Functional Solution Architect, supporting cross-functional domains including Sales Development, Marketing, Listener Support, Legal, Programmatic Sales, Ad Creative Services, Finance, Credit &amp; Collections, and Training Enablement. In his current role, Jimmy spearheads critical initiatives for streaming and podcast campaign booking, brand categorization, show monetization, and enforcement of ad block category and brand preferences. He drives unified Quote-to-Cash programs, leading Direct and Programmatic Sales redesign with opportunity product line-item integration, split approval processes, insertion order automation, and reporting data aggregation. His leadership of the Revenue Recognition project resulted in the successful design and implementation of a payment portal processing $750K–$3.5M daily, enabling advertisers and agencies to pay invoices via ACH or credit cards while integrating with Oracle Finance systems. Jimmy's technical expertise spans Salesforce Service Cloud optimization, where he has delivered AI-powered solutions including DeepConverse Chat and Einstein AI features for case classification, article recommendation, case closure, and next best action workflows. His architectural work includes designing omni-channel routing systems, entitlement management for case milestones, CSAT automation, and creating unified "single pane of glass" interfaces for service agents. He also architected Salesforce processes for legal digital signature workflows using Adobe Sign for NDAs. With over two decades of experience in enterprise technology solutions, Jimmy has held progressive leadership roles at organizations including Equinix Inc., IBM Global Business Services, Hewlett Packard, and Tech Mahindra. His international experience includes traveling to the UK and Singapore to support regional product integration efforts, aligning global teams and system designs for scalable, maintainable solutions tailored to global support operations. Jimmy holds a Bachelor of Technology degree from MJP Rohilkhand University and maintains multiple industry certifications, including Salesforce Certified AI Associate, Service Cloud Consultant, and Administrator credentials, along with Certified Scrum Product Owner from Scrum Alliance, Oracle Siebel CRM Consultant, and IBM Enterprise Design Thinking Practitioner certifications. His expertise in streamlining ad sales, AI strategies, product integration, business process re-engineering, and customer experience continues to drive innovation in ad sales technology transformations.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2716,12 +3188,14 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Modern enterprise data infrastructure creates significant operational overhead for SRE teams, with organizations spending the majority of their engineering cycles managing ETL pipelines, data replication, and maintaining multiple storage systems across data warehouses, lakes, and specialized databases. This operational complexity directly impacts service reliability, increases mean time to recovery (MTTR), and creates numerous points of failure that challenge SLO achievement. This presentation demonstrates how data lakehouse architecture transforms operational paradigms by consolidating disparate data systems into unified, cloud-native platforms that dramatically reduce infrastructure complexity. Through practical implementation strategies, we explore how SRE teams can eliminate redundant data copies, reduce operational toil through automated governance frameworks, and achieve better observability through centralized metadata management. Key operational benefits include substantial reduction in data pipeline maintenance overhead, simplified monitoring through unified observability stacks, and improved incident response through consolidated failure domains. The architecture leverages open table formats like Delta Lake and Apache Iceberg to ensure vendor neutrality while enabling automated backup, recovery, and compliance workflows. We examine five critical architectural layers from an operational perspective: scalable cloud storage foundations with built-in redundancy, self-healing metadata catalogs that reduce manual intervention, automated semantic layers that abstract operational complexity, and optimized query engines that provide consistent performance under varying loads. Attendees will learn practical migration strategies for reducing operational complexity, frameworks for measuring reliability improvements through SLI/SLO metrics, and automation patterns for minimizing manual operational overhead. This session provides actionable insights for SRE teams seeking to modernize data infrastructure while improving service reliability and reducing operational burden.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Piyush Dubey is a technology professional with over a decade of experience architecting and developing large-scale, distributed systems in cloud-native environments. Currently serving as a Senior Software Engineer at Microsoft since March 2021, he specializes in building high-performance data platforms, scalable microservices, and lakehouse solutions using technologies including Apache Spark, Delta Lake, Apache Iceberg, and Hive. At Microsoft, Piyush leads the Metadata Interoperability initiative to support open table formats in OneLake, enabling seamless integration with external data platforms like Snowflake. He designed and developed the Table Preview API to enable data governance and sensitivity labeling across OneLake datasets, supporting GDPR and CCPA compliance. As part of the founding team for OneSecurity, he built the OneLake Data Access Roles framework to enable fine-grained access on data artifacts. Prior to Microsoft, Piyush worked at Amazon on the Display Advertising team developing APIs for ad delivery and publishing across Kindle devices, and contributed to data compliance APIs supporting GDPR and CCPA requirements. At ServiceNow, he designed and implemented a scalable onboarding automation workflow engine that became a full-fledged product marketed as Employee Workflows, and led the design of a web-based PDF editor that digitized signature workflows. During his time at Pearson, he led the redesign and migration of a legacy SOAP-based address verification service to a RESTful API, resulting in a 65% performance improvement. Piyush holds a Master's degree in Computer Science from the University of Iowa and a Bachelor's degree in Information Technology from Rajiv Gandhi Technical University. He holds a patent for Sound Assessment and Remediation and has expertise across multiple programming languages and cloud platforms including Azure, AWS, and Google Cloud. He is based in Boston, MA.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2758,12 +3232,14 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The race to the cloud is on, with enterprises everywhere migrating core infrastructure to stay competitive and cost effective. But when it comes to the messaging systems that power cross-component communications, a simple "lift and shift" isn't adequate and can be a recipe for failure. The migration path is riddled with complex decisions and design pitfalls unique to every use case. In this session, AWS Cloud Support expert Tom will walk you through the critical stages of rehosting, replatforming, and refactoring, showing you how to unlock maximum performance and reliability for messaging systems. Additionally, Tom will compare traditional message brokers with more modernized serverless messaging services on AWS. By the end of the session, you will have a much more comprehensive understanding of the migration prcess, key questions to ask and some best practices for harnessing the benefits of Cloud.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Tom is a Cloud Support Engineer at AWS with five years of dedicated experience. He has gained extensive expertise in cloud-based messaging systems by guiding hundreds of customers through the process of migrating their on-premise systems to the cloud and troubleshooting any issues that arise.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2800,6 +3276,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Modern production systems can no longer rely on static dashboards and reactive on-call rotations to ensure uptime. At large scale — with billions of requests flowing through mission-critical services — reliability must be engineered into the system through autonomous detection, mitigation, and recovery.
 In this session, I’ll share how our platform team evolved from traditional observability stacks to an integrated, self-defending resilience architecture that transforms metrics into real-time, automated mitigations.
 Key topics include:
@@ -2817,6 +3294,7 @@ Key Takeaways How to evolve from passive observability to automated corrective a
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Sureshkumar Karuppuchamy is a technology leader with more than two decades of experience designing and modernizing large-scale, AI-enabled infrastructure for some of the world’s most complex platforms. In his current role as a senior engineering leader at eBay, he has led critical modernization efforts across core systems—revamping legacy platforms, transitioning to cloud-native data solutions, and reimagining API architectures to improve agility, reliability, and scalability.
 His work includes the development of advanced compliance systems that support real-time moderation and auditing in alignment with global regulations like the EU Digital Services Act. He’s also helped shape seller experience through intuitive listing flows and AI-powered tools that streamline product onboarding, such as transforming product images into fully generated listings.
 Sureshkumar’s contributions have been featured in publications including The Guardian, Deloitte WSJ Insights, and marketscreener.com. He began his career at Oracle, building enterprise solutions for global supply chains, and is a graduate of Anna University’s College of Engineering, Guindy.
@@ -2856,12 +3334,14 @@ Passionate about knowledge-sharing, he mentors technologists, contributes to pee
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Real-time machine learning inference platforms present unique SRE challenges that traditional monitoring and reliability practices often can't address. This talk provides a comprehensive framework for applying SRE principles to ML inference systems, drawing from hands-on experience scaling platforms that serve billions of daily predictions with sub-100ms latency requirements. We'll explore how to establish meaningful SLIs and SLOs for ML systems, where traditional availability metrics fall short in capturing model performance degradation, data drift, and inference quality issues. Learn practical approaches to incident response for ML platforms, including automated fallback mechanisms, circuit breakers for model failures, and graceful degradation strategies that maintain user experience during outages. The session covers essential reliability patterns including blue-green deployments for model updates, canary releases with statistical significance testing, and rollback strategies that account for model warming and feature pipeline dependencies. We'll examine monitoring and observability strategies that go beyond traditional metrics, incorporating model performance tracking, feature drift detection, and business impact correlation. Infrastructure reliability techniques will be demonstrated through real-world examples: implementing request batching for throughput optimization while maintaining latency SLAs, designing feature stores for consistency and disaster recovery, and orchestrating Kubernetes-based serving infrastructure with proper resource allocation and auto-scaling policies. Critical operational aspects include capacity planning for ML workloads with variable computational requirements, managing dependencies between feature generation pipelines and serving systems, and implementing effective on-call procedures for ML-specific incidents. Attendees will gain practical tools for building resilient ML inference platforms including monitoring dashboards, alerting strategies, and runbook templates. This session bridges the gap between traditional SRE practices and modern ML operations, providing actionable frameworks for maintaining reliable AI systems that deliver consistent business value while meeting stringent performance requirements.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Gangadharan Venkataraman is a highly accomplished technology leader based in Bellevue, Washington, with a strong record of envisioning, architecting, and delivering cutting-edge software and AI/ML solutions for leading global enterprises. With over 18 years of experience across diverse domains including e-commerce, telecommunications, healthcare, and enterprise technology, Gangadharan brings deep technical expertise and strategic leadership to every initiative. Currently serving as Senior Engineer - AI/ML Platform at Starbucks, he leads the design and optimization of large-scale machine learning infrastructure. He recently spearheaded the launch of ML Platform v2.0, drove the Databricks-to-Unity Catalog migration, and championed data governance enhancements, all to improve scalability, performance, and model reliability enterprise-wide. Previously, at UST Global (client: T-Mobile), Gangadharan led key modernization efforts, including Kubernetes-based Gen4 migrations and critical database upgrades for T-Mobile’s Customer Hub platform. Prior to that, he had a transformative 11+ year tenure at eBay, where as a Member of Technical Staff II, Core AI, he led the development of scalable ML infrastructure, real-time personalization pipelines, and video commerce platforms. His contributions powered over 30 billion daily inferences and $200M in annual GMV from event-triggered campaigns. Earlier roles at Computer Science Corporation and GE Healthcare saw him building resilient email platforms and clinical decision-support systems, with a strong focus on automation, compliance, and user-centric design. Gangadharan holds an M.S. in Computer Science from the Georgia Institute of Technology and a B.Tech in Information Technology from the University of Madras. His technical toolkit includes expertise in distributed systems, MLOps, big data pipelines, and cloud-native development using Java, Scala, Python, Kubernetes, and Azure. A recognized leader with a passion for innovation, Gangadharan thrives on solving complex problems, building high-performing teams, and delivering impactful products that scale.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2898,12 +3378,14 @@ Passionate about knowledge-sharing, he mentors technologists, contributes to pee
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Training trillion-parameter language models presents unique site reliability challenges that dwarf traditional distributed systems complexity. With training costs exceeding millions of dollars and runs spanning months across thousands of GPUs, even minor infrastructure failures can result in catastrophic business impact and resource waste. This presentation examines the SRE principles and practices essential for maintaining high uptime in distributed AI training environments. Drawing from real-world experience managing production AI infrastructure, the session explores how frameworks like NVIDIA's Megatron-LM, Microsoft's DeepSpeed, and UC Berkeley's Alpa introduce novel reliability challenges that traditional monitoring and alerting systems cannot adequately address. Key topics include implementing robust fault tolerance mechanisms for multi-week training jobs, designing effective checkpointing strategies that balance recovery speed with storage costs, and building comprehensive observability pipelines for distributed training workloads. The presentation examines how communication overhead between thousands of nodes creates cascading failure scenarios and demonstrates monitoring techniques for detecting performance degradation before it impacts model convergence. The session covers practical SRE implementations including automated failure recovery systems, capacity planning for massive memory requirements, and energy-aware resource allocation strategies. The discussion addresses the operational complexity of managing heterogeneous GPU clusters and the monitoring strategies needed to track model performance alongside traditional infrastructure metrics. Attendees will learn actionable SRE practices for large-scale AI infrastructure including incident response procedures for distributed training failures, reliability testing methodologies for AI workloads, and capacity forecasting techniques for rapidly evolving model architectures. This presentation addresses the critical reliability challenges that determine whether organizations can successfully operate next-generation AI systems in production environments.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Anjan Dash is an accomplished Tech Lead at Meta Platforms Inc., where he specializes in AI/ML infrastructure and privacy-preserving machine learning systems for ad recommendations. With over 15 years of experience in software engineering, he has driven significant business impact, including a 1%+ uplift in ads revenue representing approximately $1 billion in incremental revenue through innovative model architecture and infrastructure improvements. Before Meta, Anjan served as Lead Software Engineer at Amazon Web Services, where he launched the AWS SageMaker Ground Truth service, reducing AI training data labeling costs by up to 70%. His diverse background spans financial services, healthcare technology, and enterprise software, with notable achievements including leading the migration of legacy mainframe systems that generated $3 million in annual savings. Anjan holds a Postgraduate degree in Software Enterprise Management from the Indian Institute of Management, Bangalore, and a Master's in Computer Applications from the National Institute of Technology, Bhopal. He is a recipient of the Scott Cook Innovation Award at Intuit and achieved All India 2nd rank in the MCA entrance examination. Based in Dublin, California, he continues to drive innovation in distributed systems, cloud computing, and AI/ML platforms.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2940,12 +3422,14 @@ Passionate about knowledge-sharing, he mentors technologists, contributes to pee
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Microfrontend architectures with Module Federation introduce distributed system complexity to frontend applications, creating new reliability challenges that traditional SRE practices must adapt to address. This talk explores how to apply Site Reliability Engineering principles to microfrontend systems, ensuring high availability, performance, and operational excellence across independently deployed frontend modules. Unlike backend microservices, microfrontends face unique reliability challenges including runtime integration failures, cross-module dependency conflicts, and cascading failures that can break entire user experiences. We'll examine how to implement the four golden signals for microfrontend systems: measuring latency across module boundaries, tracking traffic patterns for federated modules, monitoring error rates in distributed frontend components, and managing saturation in shared resources and container applications. The session covers essential observability strategies including distributed tracing for microfrontend interactions, real user monitoring (RUM) for federated applications, and synthetic monitoring approaches that validate cross-module integrations. We'll explore how to implement effective circuit breakers for frontend modules, graceful degradation patterns when remote modules fail, and automated rollback strategies for problematic deployments. Attendees will learn production-tested techniques for capacity planning microfrontend systems, including CDN optimization strategies, bundle size monitoring, and performance budget enforcement across teams. The talk addresses critical operational concerns such as coordinated deployments across multiple frontend teams, dependency version management, and incident response procedures for distributed frontend failures. We'll also cover advanced reliability patterns including canary deployments for federated modules, A/B testing infrastructure for microfrontends, and automated performance regression detection. The session explores monitoring strategies for shared design systems, container application health checks, and cross-team SLO management in federated architectures. This session targets SREs, platform engineers, and DevOps professionals working with complex frontend architectures, providing practical frameworks for maintaining reliability, performance, and operational excellence in distributed frontend systems while avoiding common reliability pitfalls.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Justin Davis is an innovative Principal Engineer and UI Architect with over 17 years of experience delivering scalable, user-centric digital solutions across healthcare, finance, retail, and media sectors. Currently serving as Principal Engineer at Castlight Health since September 2019, he specializes in full-stack development, modern frontend frameworks, authentication systems, and microservices architecture. At Castlight Health, he has led multiple high-impact projects that enhanced platform capabilities and user experience, including architecting and implementing a multi-tenant OpenID authentication system and leading the migration of a legacy Reporting application to a modern microfrontend architecture using Angular. Prior to his current role, Justin served as UI Architect at Solgenie Technologies from September 2017 to July 2019, where he spearheaded digital transformation initiatives for global clients. His notable achievements include leading the end-to-end development of SAGE, a portfolio management system for BNY Mellon, where he unified multiple legacy systems into a single Angular-based application for portfolio managers overseeing 401k and retirement funds. He also led the migration of DIRECTV's NFL Sunday Ticket platform from Flash/Flex to modern Angular 5, HTML5, and CSS stack, transforming the experience for millions of users. From August 2016 to September 2017, Justin worked as UI Architect and Technical Director at Amazecodes Solutions, leading development projects for Deluxe Corporation and SoulCafe. His responsibilities included creating comprehensive product suites, developing scalable email marketing solutions, and implementing advanced image processing services. During his tenure at Target Corporation from August 2014 to August 2016 as Lead Interactive Specialist, he led UI engineering for the Guest Profile Recommendation Engine and developed a custom jQuery-based product image zoom plugin that replaced the legacy Adobe Scene7 solution. Justin holds a B.Tech in Computer Science Engineering from Calicut University, Kerala, India, completed in May 2007. His technical expertise encompasses JavaScript, Angular, React, Android, iOS, Ionic, Node.js, Java Spring Boot, PHP, Docker, Kubernetes, and Jenkins. He is experienced in DevOps and CI/CD pipelines, cross-functional team leadership, performance optimization, and Agile/Scrum project management, consistently driving projects that align technology strategy with business objectives.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2982,12 +3466,14 @@ Passionate about knowledge-sharing, he mentors technologists, contributes to pee
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Modern observability is built on a flawed foundation: three siloed pillars - logs, metrics, and traces - each powered by different engines with separate query models, storage formats, and operational costs. Users are forced to manually correlate across systems, accept duplication, or pay high SaaS bills. But what if observability is just a data problem? One that needs a general-purpose solution instead of purpose-built compromises? This talk argues that true observability requires fast, high-cardinality queries over unsampled data at scale and at low cost. Traditional search and metrics engines were not designed for this, but column-oriented databases are. We introduce ClickStack, a fully open source, OpenTelemetry-native observability stack built around ClickHouse. It provides fast, flexible querying and efficient storage, enabling real-time visibility without compromise.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Mike Shi is Head of Observability at ClickHouse building ClickStack, the open source observability stack built on ClickHouse and OpenTelemetry. He co-founded HyperDX, acquired by ClickHouse. Mike remains a hands-on developer, contributes to the OpenTelemetry and ClickStack ecosystems, and speaks regularly at observability-focused events.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -3024,12 +3510,14 @@ Passionate about knowledge-sharing, he mentors technologists, contributes to pee
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Modern enterprises can’t manage data they don’t understand – uncovering the code-to-data relationship is the missing link. As data ecosystems grow more complex, traditional approaches to tracking data lineage can’t keep up. This talk explores how AI-driven code analysis can automatically build end-to-end lineage graphs, giving engineers clear visibility into hidden dependencies across large, legacy, and regulated systems. We’ll show how AI enhances data catalogues and introduce Gable - a tool that helps teams map, validate, and monitor data flows at scale. A live demo on a large energy data codebase will highlight how AI transforms lineage tracking from a manual headache into an automated, scalable solution.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Chad Sanderson, CEO of Gable.ai, is a prominent figure in the data tech industry, having held key data positions at leading companies such as Convoy, Microsoft, Sephora, Subway, and Oracle. He is also the author of the upcoming O'Reilly book, "Data Contracts” and writes about the future of data infrastructure, modeling, and contracts in his newsletter “Data Products.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -3066,12 +3554,14 @@ Passionate about knowledge-sharing, he mentors technologists, contributes to pee
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>AI agents are only as reliable as the models they depend on, but what happens when capacity is maxed out, latency spikes, or a model becomes unavailable? In this keynote, we’ll explore SRE-grade approaches to agent maintenance and multi-LLM fallback strategies. You’ll learn how to design AI systems that gracefully switch between models, maintain reliability under pressure, and deliver consistent performance even when your primary model is unavailable. Think of it as applying tried-and-true SRE principles of failover, observability, and incident readiness now in the world of AI.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Rohan Gupta is Principal Product Manager at Harness, where he leads the AI transformation of DevOps through innovations like the Harness AI DevOps Agent, Unified Agent, and MCP Server. Over six years at Harness, he has driven the evolution of Continuous Delivery and NextGen platforms, scaling adoption, launching core integrations, and redefining how engineering teams build and manage software delivery pipelines.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -3108,6 +3598,7 @@ Passionate about knowledge-sharing, he mentors technologists, contributes to pee
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Today’s observability platforms are often vertically integrated—binding data storage, query, and visualization layers into a single stack. This tight coupling drives up costs, makes integrations painful, and slows teams down. But it doesn’t have to be this way.
 In this talk, we’ll explore how SRE teams can benefit from a more modular approach to observability—one inspired by the evolution of Business Intelligence. Just as BI stacks evolved to separate ETL, data warehouses, and dashboards, observability stacks can be designed around clear boundaries: interoperable tools, technology-neutral query layers, and plug-and-play storage.
 You’ll learn why decoupled observability architecture is essential for cost control, agility, and tool flexibility—and how to move toward a stack that meets the real-world needs of today’s SRE teams.</p></p>
@@ -3116,6 +3607,7 @@ You’ll learn why decoupled observability architecture is essential for cost co
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Gian is one of the original authors of the open source Apache Druid® project and co-founder and CTO at Imply. Gian served as the Apache Druid project’s first PMC chair. Previously, Gian led the data ingestion team at Metamarkets and held senior engineering positions at Yahoo. He holds a B.S. in Computer Science from Caltech. </p></p>
               </div>
           </div><!--//modal-body-->

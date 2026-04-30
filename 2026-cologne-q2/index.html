@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -300,11 +310,11 @@
     </script>
 </section>
 
+
 <section id="tickets" class="tickets-section section">
   <div class="container">
     <h3 class="section-heading text-center mb-3">Tickets</h3>
 
-    
     <div class="row pricing mb-5 mt-10">
       <div class="col-12 text-center">
         <iframe
@@ -366,13 +376,13 @@
       }
     });
   })();
-</script> 
+</script>
       </div>
     </div>
-    
 
   </div>
 </section>
+
 
 <style>
   .speakers-section .card {
@@ -385,24 +395,82 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    font-size: 0.9rem;
+  }
+  .speakers-section .card-title {
+    font-size: 1.1rem;
+  }
+  .event-card-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-top: auto;
+    width: 100%;
+  }
+  .speakers-section .event-card-buttons a {
+    flex: 0 1 50%;
+    text-align: center;
+    min-width: 0;
+    display: block;
   }
   .event-read-more-btn {
     display: inline-block;
-    padding: 8px 18px;
-    background: #8D5E80;
+    padding: 6px 12px;
+    background: var(--brand-light);
     color: #fff;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
+    font-size: 0.8rem;
     transition: background 0.2s ease;
-    margin-top: auto;
-    align-self: flex-start;
   }
   .event-read-more-btn:hover,
   .event-read-more-btn:focus {
-    background: #9C7290;
+    background: var(--brand-lighter);
     color: #fff;
     text-decoration: none;
+  }
+  .event-watch-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #EC645E;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    transition: background 0.2s ease;
+  }
+  .event-watch-btn:hover,
+  .event-watch-btn:focus {
+    background: #F28B87;
+    color: #fff;
+    text-decoration: none;
+  }
+  .event-watch-btn-sm {
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    margin-left: 12px;
+  }
+  .schedule-abstract {
+    position: relative;
+    max-height: 3.2em;
+    line-height: 1.6;
+    overflow: hidden;
+    text-align: justify;
+  }
+  .schedule-abstract-read-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-left: 3em;
+    background: linear-gradient(to right, transparent, #e8f8f0 30%);
+    font-weight: 700;
+    color: var(--brand);
+    text-decoration: underline;
+  }
+  .schedule-section .item {
+    margin-bottom: 4.5rem;
   }
 </style>
 
@@ -420,11 +488,11 @@
 <section id="speakers" class="speakers-section section">
   <div class="container">
     <h3 class="section-heading text-center mb-3">Speakers</h3>
-    <div class="row">
+    <div class="row row-cols-2 row-cols-lg-5">
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Ankit Asthana.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -432,7 +500,10 @@
             <div class="card-text mb-3">
               <div class="meta">SQUER</div>
             </div><!--//card-text-->
-            <a href="./Ankit_Asthana_SQUER_Beyond_API_Keys_FineGrained_Authorization_with_OpenFGA#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Ankit_Asthana_SQUER_Beyond_API_Keys_FineGrained_Authorization_with_OpenFGA#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -447,7 +518,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Birol Yildiz.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -455,7 +526,10 @@
             <div class="card-text mb-3">
               <div class="meta">ilert</div>
             </div><!--//card-text-->
-            <a href="./Birol_Yildiz_ilert_Keynote_When_Incidents_Fix_Themselves_AI_SRE_in_action#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Birol_Yildiz_ilert_Keynote_When_Incidents_Fix_Themselves_AI_SRE_in_action#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -470,7 +544,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img src="../speakers/Ravin Trivedi.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -478,7 +552,10 @@
             <div class="card-text mb-3">
               <div class="meta">Imply</div>
             </div><!--//card-text-->
-            <a href="./Ravin_Trivedi_Imply_Keynote_Decoupling_Observability_for_Incident_Response_at_Scale#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Ravin_Trivedi_Imply_Keynote_Decoupling_Observability_for_Incident_Response_at_Scale#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -493,7 +570,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Thijs Feryn.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -501,7 +578,10 @@
             <div class="card-text mb-3">
               <div class="meta">Varnish Software</div>
             </div><!--//card-text-->
-            <a href="./Thijs_Feryn_Varnish_Software_Accelerate__control__secure_your_CICD_artifacts_with_Varnish__Varnish_O#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Thijs_Feryn_Varnish_Software_Accelerate__control__secure_your_CICD_artifacts_with_Varnish__Varnish_O#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -518,7 +598,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card">
           <div class="card-body">
             <h4>More coming soon</h4>
@@ -586,6 +666,21 @@
 
 
 
+<style>
+  .modal-speaker .desc p,
+  .modal-speaker .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .modal-speaker .desc {
+    padding-bottom: 0.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+</style>
+
 
 <!-- Modal Speaker 2 -->
 <div class="modal modal-speaker modal-speaker-2" id="modal-speaker-2" tabindex="-1" role="dialog" aria-labelledby="speaker-2-ModalLabel" aria-hidden="true">
@@ -616,6 +711,7 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Modern applications often outgrow simple API key or role-based access models, especially in multi-tenant and microservice environments. This talk explores how OpenFGA enables fine-grained, relationship-based authorization to model complex access patterns such as “user X can access resource Y because they belong to team Z.”
 We’ll walk through real-world scenarios where traditional RBAC breaks down, demonstrate how OpenFGA implements Google Zanzibar–inspired authorization, and show how to integrate it into cloud-native platforms and APIs. Attendees will leave with practical patterns, architecture guidance, and lessons learned from implementing authorization as a standalone service in modern platform architectures.</p></p>
               </div>
@@ -623,6 +719,7 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Ankit Asthana is a Senior Cloud &amp; Platform Architect Engineer at SQUER, with over 13 years of experience across AI infrastructure, DevOps, SRE, and platform engineering. He specializes in building secure, scalable cloud-native systems on Kubernetes and AWS, and works at the intersection of platform engineering and AI-driven workloads. Ankit is an active community contributor and regularly speaks at meetups on topics such as developer platforms, policy-as-code, and modern authorization systems.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -659,12 +756,14 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Slow CI/CD pipelines delay builds, releases and deployments. A lot of time is wasted waiting for external dependencies like Docker images, Helm Charts, Linux packages, NPM packages, Maven packages, Go modules, Python libraries, and any other artifact that is required in the software development process. The registries that host these artifacts become a bottleneck. Besides performance and scalability concerns, organizations also struggle with cost, resilience and security risks when operating artifact registries. In this session, Thijs will show how to regain control over your software supply chain by caching your artifacts in Varnish and by using a Virtual Registry like Varnish Orca. Orca is a specially packaged version of Varnish that abstracts direct access to artifact registries. Orca accelerates access to artifacts by caching them as close to the consumers as possible, and uses its role as a “reverse caching HTTP proxy” to enforce security policies at request time, eliminate registry rate limits, protect pipelines against registry outages, and provide meaningful insights through an OTEL observability layer.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>As the Technical Evangelist at <a href="https://www.varnish-software.com/">Varnish Software</a>, <a href="https://feryn.eu/">Thijs Feryn</a> focuses on web performance, software scalability, and content delivery. He demonstrates content-driven and technical messaging through presentations, videos, books, blog posts, social media posts, podcasts, and other media. Thijs is a published author and wrote <a href="https://learning.oreilly.com/library/view/getting-started-with/9781491972212/">Getting Started with Varnish Cache</a> and <a href="https://info.varnish-software.com/resources/varnish-6-by-example-book">Varnish 6 by Example</a>. As a public speaker, he has a track record of over 380 presentations in 26 different countries, where he is often praised for his energetic and engaging presentation style. As an evangelist, Thijs is also active in many open-source communities, most notably the Varnish and PHP community. He has contributed to various communities for over 15 years both technically and as an organizer and facilitator. Prior to joining Varnish Software, Thijs Feryn spent 15 years in the web hosting industry, tackling web performance and scalability issues on a daily basis and evangelizing these topics. For more information about Thijs’ past &amp; upcoming presentations, please visit <a href="https://feryn.eu/speaking">https://feryn.eu/speaking</a>.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -701,12 +800,14 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The next evolution of incident response isn’t faster alerts, it’s autonomous resolution. Join ilert CEO Birol Yildiz as he shows how AI SRE agents now diagnose and remediate outages without waking anyone up. Learn how these systems combine observability data, deployment context, and code intelligence to restore services in minutes and hand over clean incident reports instead of 3 a.m. pages.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Birol Yildiz is the Co-founder and CEO of ilert, adeptly steering the company with a rare combination of technical and product expertise. His prior experience includes a significant role as Chief Product Owner for Big Data products at REWE Digital. With a strong foundation in computer science, Birol bridges the gap between developer and product strategist, constantly striving to innovate and provide customer-centric solutions at ilert.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -743,6 +844,7 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>On-call incidents don’t fail because teams lack dashboards. They fail because observability systems slow down under real investigative load</p>
 <p>As telemetry volumes grow and retention windows expand, SRE teams are being asked to run deeper, broader investigations—often under time pressure—on platforms that were designed for steady-state monitoring, not bursty incident response. Tightly coupled observability stacks bind storage, compute, and query together, forcing teams to overprovision infrastructure, limit retention, or accept degraded performance during incidents.</p>
 <p>In this talk, we’ll explore why decoupling observability architectures is becoming essential for SRE teams operating at scale. Using a real incident investigation workflow, we’ll break down how separating data storage, compute, and interaction layers allows teams to keep fast, reliable monitoring while elastically scaling investigations when incidents occur.</p></p>
@@ -751,6 +853,7 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Ravin Trivedi is a Senior Customer Architect at Imply with over 15 years of experience in the data space, specialising in real-time analytics, distributed systems and observability. He works closely with organisations across different industries to design scalable, performant and cost-efficient data architectures. With a strong customer focus, Ravin helps break down complex technical challenges and supports data/observability teams in turning them into practical, future-ready solutions that deliver measurable business value.</p></p>
               </div>
           </div><!--//modal-body-->

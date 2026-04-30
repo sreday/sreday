@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -276,11 +286,11 @@
     </script>
 </section>
 
+
 <section id="tickets" class="tickets-section section">
   <div class="container">
     <h3 class="section-heading text-center mb-3">Tickets</h3>
 
-    
     <div class="row pricing mb-5 mt-10">
       <div class="col-12 text-center">
         <iframe
@@ -342,13 +352,13 @@
       }
     });
   })();
-</script> 
+</script>
       </div>
     </div>
-    
 
   </div>
 </section>
+
 
 <style>
   .speakers-section .card {
@@ -361,24 +371,82 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    font-size: 0.9rem;
+  }
+  .speakers-section .card-title {
+    font-size: 1.1rem;
+  }
+  .event-card-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-top: auto;
+    width: 100%;
+  }
+  .speakers-section .event-card-buttons a {
+    flex: 0 1 50%;
+    text-align: center;
+    min-width: 0;
+    display: block;
   }
   .event-read-more-btn {
     display: inline-block;
-    padding: 8px 18px;
-    background: #8D5E80;
+    padding: 6px 12px;
+    background: var(--brand-light);
     color: #fff;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
+    font-size: 0.8rem;
     transition: background 0.2s ease;
-    margin-top: auto;
-    align-self: flex-start;
   }
   .event-read-more-btn:hover,
   .event-read-more-btn:focus {
-    background: #9C7290;
+    background: var(--brand-lighter);
     color: #fff;
     text-decoration: none;
+  }
+  .event-watch-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #EC645E;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    transition: background 0.2s ease;
+  }
+  .event-watch-btn:hover,
+  .event-watch-btn:focus {
+    background: #F28B87;
+    color: #fff;
+    text-decoration: none;
+  }
+  .event-watch-btn-sm {
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    margin-left: 12px;
+  }
+  .schedule-abstract {
+    position: relative;
+    max-height: 3.2em;
+    line-height: 1.6;
+    overflow: hidden;
+    text-align: justify;
+  }
+  .schedule-abstract-read-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-left: 3em;
+    background: linear-gradient(to right, transparent, #e8f8f0 30%);
+    font-weight: 700;
+    color: var(--brand);
+    text-decoration: underline;
+  }
+  .schedule-section .item {
+    margin-bottom: 4.5rem;
   }
 </style>
 
@@ -405,7 +473,7 @@
   .track-nav-links a {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: #713660;
+    background: var(--brand);
     color: white;
     text-decoration: none;
     border-radius: 4px;
@@ -414,25 +482,25 @@
     transition: background 0.2s;
   }
   .track-nav-links a:hover {
-    background: #5e2c50;
+    background: var(--brand-dark);
     color: white;
   }
   .view-toggle-link {
-    color: #713660;
+    color: var(--brand);
     text-decoration: none;
     font-size: 0.9rem;
     cursor: pointer;
     padding: 0.5rem 0.75rem;
-    border: 1px solid #713660;
+    border: 1px solid var(--brand);
     border-radius: 4px;
     transition: all 0.2s;
   }
   .view-toggle-link:hover {
-    background: #713660;
+    background: var(--brand);
     color: white;
   }
   .view-toggle-link.active {
-    background: #713660;
+    background: var(--brand);
     color: white;
   }
   /* Table view */
@@ -449,7 +517,7 @@
     table-layout: fixed;
   }
   .schedule-grid-table th {
-    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
     color: white;
     padding: 0.75rem 1rem;
     text-align: left;
@@ -461,17 +529,17 @@
   }
   .schedule-grid-table td {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid #ede5eb;
+    border-bottom: 1px solid var(--brand-lightest);
     vertical-align: top;
   }
   .schedule-grid-table td.merged-cell {
     text-align: center;
     font-weight: 500;
     color: #555;
-    background: #ede5eb;
+    background: var(--brand-lightest);
   }
   .schedule-grid-table .time-cell {
-    color: #713660;
+    color: var(--brand);
     font-weight: 600;
     white-space: nowrap;
   }
@@ -481,7 +549,7 @@
     font-weight: 500;
   }
   .schedule-grid-table .talk-cell a:hover {
-    color: #713660;
+    color: var(--brand);
   }
   .schedule-grid-table .speaker-info {
     color: #444;
@@ -490,6 +558,13 @@
   }
   .schedule-grid-table .speaker-info .affiliation {
     color: #666;
+  }
+  .speaker-linkedin-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .speaker-linkedin-link:hover {
+    color: #098dcf;
   }
   .schedule-meta {
     display: flex;
@@ -515,7 +590,7 @@
   }
   /* Track section header */
   .track-section-header {
-    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
     color: white;
     padding: 1rem 1.5rem;
     margin: 2rem 0 0 0;
@@ -527,7 +602,7 @@
     margin-top: 0;
   }
 
-  .schedule-section.theme-bg-light { background-color: #f8f0f6 !important; }
+  .schedule-section.theme-bg-light { background-color: #f0faf5 !important; }
 </style>
 
 <section id="schedule" class="schedule-section section theme-bg-light">
@@ -541,6 +616,8 @@
       <span class="schedule-meta-item">single track</span>
       <span class="schedule-meta-divider">•</span>
       <span class="schedule-meta-item">10AM - 6PM</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">Barcelona, in-person</span>
     </div>
 
 
@@ -570,15 +647,21 @@
               <h4 class="time mb-3">10:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle mb-2" src="../speakers/Andreas Grabner.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Andreas Grabner</a></div>
+                <div class="name">Andreas Grabner</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: Stranger Platforms: The Two Sides of Observability and Resiliency in Your IDP</a>
               </h3>
               <div class="location mb-3">Dynatrace</div>
-              <div class="desc">Your Internal Developer Platform lives in two worlds. In the Right Side Up, developers rely on self‑service observability and resiliency to build, deploy, operate and debug their apps. In the Upside Down, the platform itself must be observable to ensure its reliability, performance, resiliency...<br /><br /></div>
+              <div class="desc schedule-abstract">Your Internal Developer Platform lives in two worlds.
+In the Right Side Up, developers rely on self‑service observability and resiliency to build, deploy, operate and debug their apps.
+In the Upside Down, the platform itself must be observable to ensure its reliability, performance, resiliency and to understand usage patterns and adoption.
+The twist? these two worlds are not separate. Improving observability and resiliency of the platform directly improves the observability and resiliency for the applications built on top of it. Just like in Stranger Things, observability and resiliency becomes the bridge that connects both realities
+In this talk you learn real-world OpenTelemetry-based best practices to observe the core layers of your platform such as your Git, Argo, Backstage and k8s! You learn how to derive SLOs from that data to increase resiliency for your platform and the apps and services deployed through your platform!<a class="schedule-abstract-read-more" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -587,15 +670,17 @@
               <h4 class="time mb-3">10:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle mb-2" src="../speakers/Birol Yildiz.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Birol Yildiz</a></div>
+                <div class="name">Birol Yildiz</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Keynote: When Incidents Fix Themselves: AI SRE in action</a>
               </h3>
               <div class="location mb-3">ilert</div>
-              <div class="desc">The next evolution of incident response isn’t faster alerts, it’s autonomous resolution. Join ilert CEO Birol Yildiz as he shows how AI SRE agents now diagnose and remediate outages without waking anyone up. Learn how these systems combine observability data, deployment context, and code...<br /><br /></div>
+              <div class="desc schedule-abstract">The next evolution of incident response isn’t faster alerts, it’s autonomous resolution. Join ilert CEO Birol Yildiz as he shows how AI SRE agents now diagnose and remediate outages without waking anyone up. Learn how these systems combine observability data, deployment context, and code intelligence to restore services in minutes and hand over clean incident reports instead of 3 a.m. pages.<a class="schedule-abstract-read-more" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -604,15 +689,14 @@
               <h4 class="time mb-3">11:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Coffee break</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -621,15 +705,23 @@
               <h4 class="time mb-3">11:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Imma Valls Bernaus.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Imma Valls Bernaus</a></div>
+                <div class="name">Imma Valls Bernaus</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Metrics, logs, traces, and mayhem: Introducing an observability adventure game powered by Grafana Alloy and OTel</a>
               </h3>
               <div class="location mb-3">Grafana Labs</div>
-              <div class="desc">Have you ever wanted to play an actual game on your observability stack? Well, you can. Not only does Doom run on Grafana, we also built an actual text-based adventure game. Join this session to play a real text-based Observability adventure game! Armed with the tools of the trade—metrics, logs,...<br /><br /></div>
+              <div class="desc schedule-abstract">Have you ever wanted to play an actual game on your observability stack? Well, you can. Not only does Doom run on Grafana, we also built an actual text-based adventure game.
+
+Join this session to play a real text-based Observability adventure game! Armed with the tools of the trade—metrics, logs, and traces—you’ll learn to navigate the labyrinth of debugging and optimization, rescuing your application from the clutches of the dark wizard!
+
+In this session, we will dive into a game played live to showcase how each telemetry type is used to solve real-world Observability challenges. As players encounter obstacles, they’ll wield the power of OpenTelemetry to gather critical data and use OSS tools like Grafana, Loki, Tempo, and Prometheus to make informed decisions.
+
+Whether you’re an observability novice or a seasoned engineer, this talk will level up your debugging skills and showcase how to gamify observability training for your team. So, gear up, adventurer—your quest awaits!<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -638,15 +730,17 @@
               <h4 class="time mb-3">12:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Heather Thacker & Daniel Coll Leal.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Heather Thacker & Daniel Coll Leal</a></div>
+                <div class="name">Heather Thacker & Daniel Coll Leal</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">What Happened and Why: Correlating Load Testing with Observability</a>
               </h3>
               <div class="location mb-3">Gatling & Dynatrace</div>
-              <div class="desc">Load testing tells you what happened. Observability tells you why. But too often these disciplines operate independently, leaving teams manually piecing together performance regressions with server-side telemetry after the fact. This talk introduces the key concepts behind correlating load...<br /><br /></div>
+              <div class="desc schedule-abstract">Load testing tells you what happened. Observability tells you why. But too often these disciplines operate independently, leaving teams manually piecing together performance regressions with server-side telemetry after the fact. This talk introduces the key concepts behind correlating load testing metrics with infrastructure and application observability data, and why automating that correlation is a force multiplier for reliability and informed decision-making.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -655,15 +749,17 @@
               <h4 class="time mb-3">12:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Almudena Vivanco.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Almudena Vivanco</a></div>
+                <div class="name">Almudena Vivanco</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Don't thank the AI</a>
               </h3>
               <div class="location mb-3">SCRM Lidl International Hub</div>
-              <div class="desc">The exponential growth of Generative AI (GenAI) is simultaneously revolutionizing business and creating an unsustainable demand on global energy infrastructure. Are you ready to scale your Cloud capabilities without compromising your corporate sustainability goals? Our presentation introduces a...<br /><br /></div>
+              <div class="desc schedule-abstract">The exponential growth of Generative AI (GenAI) is simultaneously revolutionizing business and creating an unsustainable demand on global energy infrastructure. Are you ready to scale your Cloud capabilities without compromising your corporate sustainability goals? Our presentation introduces a strategic framework for Sustainable Cloud Solutions that turns resource intensity into an opportunity for operational efficiency and environmental stewardship. Stop settling for legacy infrastructure that strains the grid and join the movement toward performant systems engineered for a zero-carbon future. This presentation tackles the urgent and growing environmental footprint of GenAI, driven by its high-resource training and deployment. We will detail the alarming reality of GenAI training clusters, which exhibit an intense power density consuming 7-8 times the energy of typical workloads, rapidly necessitating reliance on fossil fuel-based data centers. Using concrete examples, such as the estimated 1,287 MWh and 552 tons of CO2 generated by the training of a major model like GPT-3, we establish the critical need for change. We then pivot to the practical application of Performance Engineering and Sustainable Software Development—the only viable solution to manage these demands. The session will cover key mitigation strategies ranging from architectural redesigns to code-level optimizations. Attendees will leave this session equipped with actionable knowledge and a strategic roadmap to immediately reduce the environmental and operational cost of their Cloud Solutions. You will learn how to: Implement Green Coding Practices: Discover specific techniques to optimize code for maximum computational efficiency and minimum energy consumption. Architect for Sustainability: Master the adoption of Sustainable Software Architectures, including the strategic deployment of serverless computing and microservices to ensure resources are consumed only during active execution, eliminating wasteful energy use from idle servers. Apply Energy-Efficient Algorithms: Identify and deploy algorithms and data structures that offer equivalent performance with a significantly smaller energy and carbon footprint, future-proofing your GenAI projects.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -672,15 +768,14 @@
               <h4 class="time mb-3">13:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -689,15 +784,17 @@
               <h4 class="time mb-3">14:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Julia Lamenza.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Julia Lamenza</a></div>
+                <div class="name">Julia Lamenza</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">The Most Expensive Mistakes in Cloud Infrastructure</a>
               </h3>
               <div class="location mb-3">Consultant</div>
-              <div class="desc">Cloud platforms make it incredibly easy to deploy infrastructure in minutes, but they also make it surprisingly easy to create costly mistakes that quietly inflate cloud bills and reduce system reliability. In this talk, I will explore some of the most common and expensive mistakes teams make...<br /><br /></div>
+              <div class="desc schedule-abstract">Cloud platforms make it incredibly easy to deploy infrastructure in minutes, but they also make it surprisingly easy to create costly mistakes that quietly inflate cloud bills and reduce system reliability.  In this talk, I will explore some of the most common and expensive mistakes teams make when running cloud infrastructure at scale.   Drawing from real-world SRE experience operating cloud-native systems, this session highlights practical examples of how these issues appear in production environments and how teams can identify and avoid them.  Attendees will leave with a better understanding of the hidden pitfalls in cloud infrastructure and practical strategies to build systems that are not only reliable, but also cost-efficient.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -706,15 +803,17 @@
               <h4 class="time mb-3">14:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Oriol Matavacas Rodriguez.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Oriol Matavacas Rodriguez</a></div>
+                <div class="name">Oriol Matavacas Rodriguez</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Disaster Recovery of Workloads on AWS</a>
               </h3>
               <div class="location mb-3">AWS</div>
-              <div class="desc">In this session, we'll explore the architecture best practices and AWS tooling that enable organizations to design highly available and disaster-resilient workloads in the cloud. We'll start by laying the foundation with High Availability patterns, and then we will talk about AWS Toling like Well...<br /><br /></div>
+              <div class="desc schedule-abstract">In this session, we'll explore the architecture best practices and AWS tooling that enable organizations to design highly available and disaster-resilient workloads in the cloud. We'll start by laying the foundation with High Availability patterns, and then we will talk about AWS Toling like Well Architected Framework, Route 53 Application Recovery Controller, AWS Elastic Disaster Recovery and Fault Injection Service (FIS)<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -723,15 +822,17 @@
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Diego Delgado.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Diego Delgado</a></div>
+                <div class="name">Diego Delgado</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Canary tenants: how we measure customer experience without touching customer data</a>
               </h3>
               <div class="location mb-3">STACKIT Cloud</div>
-              <div class="desc">At STACKIT we run a multi-tenant Git platform with hundreds of tenants. Customer data is off-limits. By design, not by accident. We have no access to their repositories, no way to inspect their traffic, no debugging backdoor. So how do you know customers are having a good experience when you...<br /><br /></div>
+              <div class="desc schedule-abstract">At STACKIT we run a multi-tenant Git platform with hundreds of tenants. Customer data is off-limits. By design, not by accident. We have no access to their repositories, no way to inspect their traffic, no debugging backdoor. So how do you know customers are having a good experience when you can’t look at what they’re doing? Our answer is canary tenants. A synthetic tenant that we provision in production alongside the real ones, running end-to-end checks every minute. Control plane journeys, data plane journeys, all on infrastructure we own. Zero risk to customer data. In this talk I’ll walk through the architecture with CanaryChecker, how we keep synthetic traffic out of our real-user SLIs, and why running canaries in production gives better signal than an isolated staging environment. I’ll also cover what canary tenants can’t tell you. Tenant-specific config drift. Data-at-scale issues. Every feature outside the happy path. These are blind spots we’ve chosen to accept rather than close, and I’ll explain why.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -740,15 +841,14 @@
               <h4 class="time mb-3">15:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Networking & sponsor crawl</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -757,15 +857,17 @@
               <h4 class="time mb-3">16:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Ricard Bejarano.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Ricard Bejarano</a></div>
+                <div class="name">Ricard Bejarano</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">The inconspicuous role of conntrack in Kubernetes networking</a>
               </h3>
               <div class="location mb-3">Cisco</div>
-              <div class="desc">One very common assumption of Kubernetes practicioners, even those in the network side of things, is that Kubernetes Services behave like good old load balancers. And to a certain extent, Services do behave in a similar fashion to what one would typically classify as a round-robin load balancer....<br /><br /></div>
+              <div class="desc schedule-abstract">One very common assumption of Kubernetes practicioners, even those in the network side of things, is that Kubernetes Services behave like good old load balancers. And to a certain extent, Services do behave in a similar fashion to what one would typically classify as a round-robin load balancer. However, the reality of it is much deeper than that. Both simpler and more complex at the same time. In this talk we'll go over an incident we had on September 2025, where a mix of this misconception, Istio's behavior, CoreDNS' failure, kube-proxy's silence, and iptables and conntrack interoperability made it look like everything was OK, yet DNS—it's always DNS—was failing. We will go deep into how brilliantly simple Kubernetes' networking is, how Istio's DNS works on top of Kubernetes' DNS, and how both broke each other.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -774,15 +876,17 @@
               <h4 class="time mb-3">16:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Wellyson Freitas.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Wellyson Freitas</a></div>
+                <div class="name">Wellyson Freitas</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Reliable Systems Beyond Your Control</a>
               </h3>
               <div class="location mb-3">Revolut</div>
-              <div class="desc">Reliability engineering often assumes that systems can be observed, debugged, and modified when things go wrong. In practice, many systems depend on components that sit outside a team's control: vendor systems, regulatory integrations, third-party APIs, and internal platforms owned by other...<br /><br /></div>
+              <div class="desc schedule-abstract">Reliability engineering often assumes that systems can be observed, debugged, and modified when things go wrong. In practice, many systems depend on components that sit outside a team's control: vendor systems, regulatory integrations, third-party APIs, and internal platforms owned by other teams. In these environments, some standard practices become harder to apply. Observability may be limited, testing environments may be incomplete or unavailable, and incident resolution can involve external teams or vendor support. In certain cases, critical pipelines rely on batch processes that run for hours, while other integrations directly impact user-facing flows, making failures harder to isolate and recover from. This talk explores how dependencies outside a team's control shape architecture, observability, and incident response. Drawing from experience operating compliance and regulatory systems in large-scale fintech environments, it focuses on the practical constraints these systems introduce. The session presents a mental model for reasoning about these dependencies and discusses patterns that proved useful in real scenarios, such as isolating fragile integrations, monitoring system outcomes instead of internals, and handling incidents that cross organizational boundaries. The goal is to provide a realistic view of reliability in systems that extend beyond a single team's control, relevant not only to SREs but also to engineers and roles working with external or cross-team dependencies.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -791,15 +895,17 @@
               <h4 class="time mb-3">17:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Daniel Afonso.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Daniel Afonso</a></div>
+                <div class="name">Daniel Afonso</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Plan for Unplanned Work: Game Days with Chaos Engineering</a>
               </h3>
               <div class="location mb-3">PagerDuty</div>
-              <div class="desc">How do you plan for unplanned incidents? You practice with Chaos Engineering. Strong incident response doesn’t just happen, you have to build the skills and train your team. Practicing for major incidents gives your team insight into how your applications will behave when something goes wrong as...<br /><br /></div>
+              <div class="desc schedule-abstract">How do you plan for unplanned incidents? You practice with Chaos Engineering. Strong incident response doesn’t just happen, you have to build the skills and train your team. Practicing for major incidents gives your team insight into how your applications will behave when something goes wrong as well as how the team will interact to solve problems. Combining your Incident Response practices with Chaos Engineering roots your response practice in real-world scenarios, helping your team build confidence.<a class="schedule-abstract-read-more" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -808,15 +914,17 @@
               <h4 class="time mb-3">17:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img class="profile-image rounded-circle mb-2" src="../speakers/David Jacovkis.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">David Jacovkis</a></div>
+                <div class="name">David Jacovkis</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">DevOps in Space: Lessons from Low Earth Orbit</a>
               </h3>
               <div class="location mb-3">Sateliot</div>
-              <div class="desc">Remember when you knew all your servers by name and deployed changes with a single SSH command? Now imagine doing that when your link comes in 10-minute windows every few hours, and bandwidth is a precious commodity measured in kbps. Welcome to DevOps in Space. At Sateliot, our Infrastructure &...<br /><br /></div>
+              <div class="desc schedule-abstract">Remember when you knew all your servers by name and deployed changes with a single SSH command? Now imagine doing that when your link comes in 10-minute windows every few hours, and bandwidth is a precious commodity measured in kbps. Welcome to DevOps in Space. At Sateliot, our Infrastructure & Software Engineering team works at the intersection of aerospace, telecommunications and software. We build modern distributed systems and then send them to an environment where normal expectations -low latency, immediate feedback, up-to-date systems- simply don’t apply. In this talk I’ll give a high-level tour of the challenges that make space and telco different: intermittent and low-bandwidth connectivity, long feedback loops, constrained devices, and the cultural gaps between aerospace, telco and software teams. I'll also share some adaptations that allow us to apply some of the DevOps processes and tools that have become industry standards.<a class="schedule-abstract-read-more" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -825,15 +933,14 @@
               <h4 class="time mb-3">18:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
-              </h3>
-              <div class="location mb-3">Scan each other's QR codes & head to a nearby pub!</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Wrap up</h3>
+              <div class="location mb-3" style="color:#098dcf;">Scan each other's QR codes & head to a nearby pub!</div>
+              
             </div>
           </div>
 
@@ -1268,7 +1375,9 @@
     }
     </script>
 
+    
     <div class="schedule-cta text-center mx-auto mt-4"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+    
   </div>
 </section>
 
@@ -1278,11 +1387,11 @@
 <section id="speakers" class="speakers-section section">
   <div class="container">
     <h3 class="section-heading text-center mb-3">Speakers</h3>
-    <div class="row">
+    <div class="row row-cols-2 row-cols-lg-5">
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Almudena Vivanco.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1290,7 +1399,10 @@
             <div class="card-text mb-3">
               <div class="meta">SCRM Lidl International Hub</div>
             </div><!--//card-text-->
-            <a href="./Almudena_Vivanco_SCRM_Lidl_International_Hub_Dont_thank_the_AI#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Almudena_Vivanco_SCRM_Lidl_International_Hub_Dont_thank_the_AI#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1305,7 +1417,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Andreas Grabner.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1313,7 +1425,10 @@
             <div class="card-text mb-3">
               <div class="meta">Dynatrace</div>
             </div><!--//card-text-->
-            <a href="./Andreas_Grabner_Dynatrace_Keynote_Stranger_Platforms_The_Two_Sides_of_Observability_and_Resiliency_i#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Andreas_Grabner_Dynatrace_Keynote_Stranger_Platforms_The_Two_Sides_of_Observability_and_Resiliency_i#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1328,7 +1443,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img src="../speakers/Birol Yildiz.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1336,7 +1451,10 @@
             <div class="card-text mb-3">
               <div class="meta">ilert</div>
             </div><!--//card-text-->
-            <a href="./Birol_Yildiz_ilert_Keynote_When_Incidents_Fix_Themselves_AI_SRE_in_action#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Birol_Yildiz_ilert_Keynote_When_Incidents_Fix_Themselves_AI_SRE_in_action#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1351,7 +1469,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Daniel Afonso.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1359,7 +1477,10 @@
             <div class="card-text mb-3">
               <div class="meta">PagerDuty</div>
             </div><!--//card-text-->
-            <a href="./Daniel_Afonso_PagerDuty_Plan_for_Unplanned_Work_Game_Days_with_Chaos_Engineering#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Daniel_Afonso_PagerDuty_Plan_for_Unplanned_Work_Game_Days_with_Chaos_Engineering#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1374,7 +1495,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img src="../speakers/David Jacovkis.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1382,7 +1503,10 @@
             <div class="card-text mb-3">
               <div class="meta">Sateliot</div>
             </div><!--//card-text-->
-            <a href="./David_Jacovkis_Sateliot_DevOps_in_Space_Lessons_from_Low_Earth_Orbit#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./David_Jacovkis_Sateliot_DevOps_in_Space_Lessons_from_Low_Earth_Orbit#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1397,7 +1521,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Diego Delgado.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1405,7 +1529,10 @@
             <div class="card-text mb-3">
               <div class="meta">STACKIT Cloud</div>
             </div><!--//card-text-->
-            <a href="./Diego_Delgado_STACKIT_Cloud_Canary_tenants_how_we_measure_customer_experience_without_touching_custo#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Diego_Delgado_STACKIT_Cloud_Canary_tenants_how_we_measure_customer_experience_without_touching_custo#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1420,15 +1547,18 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Heather Thacker & Daniel Coll Leal.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
-            <h5 class="card-title mb-2">Heather Thacker & Daniel Coll Leal</h5>
+            <h5 class="card-title mb-2">Heather Thacker<br>&amp; Daniel Coll Leal</h5>
             <div class="card-text mb-3">
               <div class="meta">Gatling & Dynatrace</div>
             </div><!--//card-text-->
-            <a href="./Heather_Thacker__Daniel_Coll_Leal_Gatling__Dynatrace_What_Happened_and_Why_Correlating_Load_Testing_#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Heather_Thacker__Daniel_Coll_Leal_Gatling__Dynatrace_What_Happened_and_Why_Correlating_Load_Testing_#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1443,7 +1573,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Imma Valls Bernaus.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1451,7 +1581,10 @@
             <div class="card-text mb-3">
               <div class="meta">Grafana Labs</div>
             </div><!--//card-text-->
-            <a href="./Imma_Valls_Bernaus_Grafana_Labs_Metrics__logs__traces__and_mayhem_Introducing_an_observability_adven#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Imma_Valls_Bernaus_Grafana_Labs_Metrics__logs__traces__and_mayhem_Introducing_an_observability_adven#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1466,7 +1599,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Julia Lamenza.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1474,7 +1607,10 @@
             <div class="card-text mb-3">
               <div class="meta">Consultant</div>
             </div><!--//card-text-->
-            <a href="./Julia_Lamenza_Consultant_The_Most_Expensive_Mistakes_in_Cloud_Infrastructure#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Julia_Lamenza_Consultant_The_Most_Expensive_Mistakes_in_Cloud_Infrastructure#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1489,7 +1625,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Oriol Matavacas Rodriguez.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1497,7 +1633,10 @@
             <div class="card-text mb-3">
               <div class="meta">AWS</div>
             </div><!--//card-text-->
-            <a href="./Oriol_Matavacas_Rodriguez_AWS_Disaster_Recovery_of_Workloads_on_AWS#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Oriol_Matavacas_Rodriguez_AWS_Disaster_Recovery_of_Workloads_on_AWS#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1512,7 +1651,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Ricard Bejarano.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1520,7 +1659,10 @@
             <div class="card-text mb-3">
               <div class="meta">Cisco</div>
             </div><!--//card-text-->
-            <a href="./Ricard_Bejarano_Cisco_The_inconspicuous_role_of_conntrack_in_Kubernetes_networking#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Ricard_Bejarano_Cisco_The_inconspicuous_role_of_conntrack_in_Kubernetes_networking#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1535,7 +1677,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Wellyson Freitas.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1543,7 +1685,10 @@
             <div class="card-text mb-3">
               <div class="meta">Revolut</div>
             </div><!--//card-text-->
-            <a href="./Wellyson_Freitas_Revolut_Reliable_Systems_Beyond_Your_Control#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Wellyson_Freitas_Revolut_Reliable_Systems_Beyond_Your_Control#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1621,6 +1766,21 @@
 
 
 
+<style>
+  .modal-speaker .desc p,
+  .modal-speaker .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .modal-speaker .desc {
+    padding-bottom: 0.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+</style>
+
 
 <!-- Modal Speaker 2 -->
 <div class="modal modal-speaker modal-speaker-2" id="modal-speaker-2" tabindex="-1" role="dialog" aria-labelledby="speaker-2-ModalLabel" aria-hidden="true">
@@ -1651,6 +1811,7 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Have you ever wanted to play an actual game on your observability stack? Well, you can. Not only does Doom run on Grafana, we also built an actual text-based adventure game.</p>
 <p>Join this session to play a real text-based Observability adventure game! Armed with the tools of the trade—metrics, logs, and traces—you’ll learn to navigate the labyrinth of debugging and optimization, rescuing your application from the clutches of the dark wizard!</p>
 <p>In this session, we will dive into a game played live to showcase how each telemetry type is used to solve real-world Observability challenges. As players encounter obstacles, they’ll wield the power of OpenTelemetry to gather critical data and use OSS tools like Grafana, Loki, Tempo, and Prometheus to make informed decisions.</p>
@@ -1660,6 +1821,7 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Imma is a Staff Developer Advocate at Grafana Labs, passionate about simplifying Observability, OpenTelemetry, and Cloud-Native technologies. In her past life, she worked as a consultant, trainer, and support engineer at @elastic, and was a proud organizer of Software Crafters Barcelona from 2018 to 2025. She currently focuses on creating accessible technical content and driving the adoption of best practices within the community. She is deeply committed to clean code and the art of automation. She is also a passionate community builder and ally. As a WomenInAPIs champion, she advocates for underrepresented groups being seen and heard in the public domain. You will find her co-organizing Grafana meetups in Barcelona, Madrid, Amsterdam, Stockholm, Zurich, and Lisboa; Cloud Native Barcelona; DevOpsDays Barcelona, Green Software Barcelona; and TechFems. She is an aquafitness enthusiast and a huge Bruce Springsteen fan. No surrender!</p></p>
               </div>
           </div><!--//modal-body-->
@@ -1696,12 +1858,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Load testing tells you what happened. Observability tells you why. But too often these disciplines operate independently, leaving teams manually piecing together performance regressions with server-side telemetry after the fact. This talk introduces the key concepts behind correlating load testing metrics with infrastructure and application observability data, and why automating that correlation is a force multiplier for reliability and informed decision-making.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p><strong><a href="https://www.linkedin.com/in/hhthacker/">Heather Thacker</a></strong> is a Developer Advocate at Gatling where she enjoys building content and community around making performance testing approachable and essential to teams. Her perspective is shaped by five years as a software developer followed by three years advocating for DevOps best practices. She’s an international speaker that enjoys comparing theory with reality of software development lifecycles, using practical examples and analogies. Her goal is to give engineers different perspectives that will build the confidence they need to make performance a core part of their workflow.</p>
 <p><strong><a href="https://www.linkedin.com/in/daniel-coll-leal/">Daniel Coll Leal</a></strong> began his tech journey at a startup 10 years ago as a mobile developer. Over the years, he worked at several consulting companies, gaining some experience across multiple stacks. Eventually, he specialized in web development and observability and is now focused on advocating for the field by creating technical content, conducting workshops and giving talks.</p></p>
               </div>
@@ -1739,12 +1903,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The exponential growth of Generative AI (GenAI) is simultaneously revolutionizing business and creating an unsustainable demand on global energy infrastructure. Are you ready to scale your Cloud capabilities without compromising your corporate sustainability goals? Our presentation introduces a strategic framework for Sustainable Cloud Solutions that turns resource intensity into an opportunity for operational efficiency and environmental stewardship. Stop settling for legacy infrastructure that strains the grid and join the movement toward performant systems engineered for a zero-carbon future. This presentation tackles the urgent and growing environmental footprint of GenAI, driven by its high-resource training and deployment. We will detail the alarming reality of GenAI training clusters, which exhibit an intense power density consuming 7-8 times the energy of typical workloads, rapidly necessitating reliance on fossil fuel-based data centers. Using concrete examples, such as the estimated 1,287 MWh and 552 tons of CO2 generated by the training of a major model like GPT-3, we establish the critical need for change. We then pivot to the practical application of Performance Engineering and Sustainable Software Development—the only viable solution to manage these demands. The session will cover key mitigation strategies ranging from architectural redesigns to code-level optimizations. Attendees will leave this session equipped with actionable knowledge and a strategic roadmap to immediately reduce the environmental and operational cost of their Cloud Solutions. You will learn how to: Implement Green Coding Practices: Discover specific techniques to optimize code for maximum computational efficiency and minimum energy consumption. Architect for Sustainability: Master the adoption of Sustainable Software Architectures, including the strategic deployment of serverless computing and microservices to ensure resources are consumed only during active execution, eliminating wasteful energy use from idle servers. Apply Energy-Efficient Algorithms: Identify and deploy algorithms and data structures that offer equivalent performance with a significantly smaller energy and carbon footprint, future-proofing your GenAI projects.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Almudena is of a mathematical vocation and has been dedicated to performance engineering for 18 years. Almudena has worked on projects with high traffic and high availability from online television platforms, job portals, security proxies, and now a European retailer. For 15 years, she has been actively involved in the dissemination of DevOps and performance culture in Spain. She is also an activist for the integration of female talent in STEM in Spain.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -1781,12 +1947,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Cloud platforms make it incredibly easy to deploy infrastructure in minutes, but they also make it surprisingly easy to create costly mistakes that quietly inflate cloud bills and reduce system reliability.  In this talk, I will explore some of the most common and expensive mistakes teams make when running cloud infrastructure at scale.   Drawing from real-world SRE experience operating cloud-native systems, this session highlights practical examples of how these issues appear in production environments and how teams can identify and avoid them.  Attendees will leave with a better understanding of the hidden pitfalls in cloud infrastructure and practical strategies to build systems that are not only reliable, but also cost-efficient.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Focuses on improving reliability, observability, and cost efficiency in cloud-native environments. I'm passionate about sharing practical lessons from operating real systems and regularly contributes to the DevOps and SRE community through talks and knowledge sharing.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -1823,12 +1991,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In this session, we'll explore the architecture best practices and AWS tooling that enable organizations to design highly available and disaster-resilient workloads in the cloud. We'll start by laying the foundation with High Availability patterns, and then we will talk about AWS Toling like Well Architected Framework, Route 53 Application Recovery Controller, AWS Elastic Disaster Recovery and Fault Injection Service (FIS)</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Oriol Matavacas is a Sr. Solutions Architect at AWS based in Barcelona, primarily supporting customers on their journey to the Cloud. He enjoys building new solutions with scalability, availability, and ease of maintenance by leveraging serverless architectures.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -1865,12 +2035,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>At STACKIT we run a multi-tenant Git platform with hundreds of tenants. Customer data is off-limits. By design, not by accident. We have no access to their repositories, no way to inspect their traffic, no debugging backdoor. So how do you know customers are having a good experience when you can’t look at what they’re doing? Our answer is canary tenants. A synthetic tenant that we provision in production alongside the real ones, running end-to-end checks every minute. Control plane journeys, data plane journeys, all on infrastructure we own. Zero risk to customer data. In this talk I’ll walk through the architecture with CanaryChecker, how we keep synthetic traffic out of our real-user SLIs, and why running canaries in production gives better signal than an isolated staging environment. I’ll also cover what canary tenants can’t tell you. Tenant-specific config drift. Data-at-scale issues. Every feature outside the happy path. These are blind spots we’ve chosen to accept rather than close, and I’ll explain why.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Diego is a Senior SRE at STACKIT Cloud. He spends his days operating multi-tenant developer tooling and his nights wondering whether the alerts that didn’t fire meant everything was fine or that his monitoring is lying to him.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -1907,12 +2079,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>One very common assumption of Kubernetes practicioners, even those in the network side of things, is that Kubernetes Services behave like good old load balancers. And to a certain extent, Services do behave in a similar fashion to what one would typically classify as a round-robin load balancer. However, the reality of it is much deeper than that. Both simpler and more complex at the same time. In this talk we'll go over an incident we had on September 2025, where a mix of this misconception, Istio's behavior, CoreDNS' failure, kube-proxy's silence, and iptables and conntrack interoperability made it look like everything was OK, yet DNS—it's always DNS—was failing. We will go deep into how brilliantly simple Kubernetes' networking is, how Istio's DNS works on top of Kubernetes' DNS, and how both broke each other.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Ricard is a Lead Site Reliability Engineer at Cisco ThousandEyes' SRE team. You can often find him investigating the weirdest incidents, such as the one that motivated this talk. Ricard is currently writing a book about homelabbing, so go talk to him if you have a homelab!</p></p>
               </div>
           </div><!--//modal-body-->
@@ -1949,12 +2123,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Reliability engineering often assumes that systems can be observed, debugged, and modified when things go wrong. In practice, many systems depend on components that sit outside a team's control: vendor systems, regulatory integrations, third-party APIs, and internal platforms owned by other teams. In these environments, some standard practices become harder to apply. Observability may be limited, testing environments may be incomplete or unavailable, and incident resolution can involve external teams or vendor support. In certain cases, critical pipelines rely on batch processes that run for hours, while other integrations directly impact user-facing flows, making failures harder to isolate and recover from. This talk explores how dependencies outside a team's control shape architecture, observability, and incident response. Drawing from experience operating compliance and regulatory systems in large-scale fintech environments, it focuses on the practical constraints these systems introduce. The session presents a mental model for reasoning about these dependencies and discusses patterns that proved useful in real scenarios, such as isolating fragile integrations, monitoring system outcomes instead of internals, and handling incidents that cross organizational boundaries. The goal is to provide a realistic view of reliability in systems that extend beyond a single team's control, relevant not only to SREs but also to engineers and roles working with external or cross-team dependencies.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Software Engineer focused on distributed systems and reliability, with experience operating large-scale fintech platforms at companies such as Revolut and N26. Worked on compliance and regulatory integrations, including high-volume data pipelines, event-driven systems, and reliability-critical workflows under strict operational and regulatory constraints. Experience includes designing systems that depend on external vendors, third-party APIs, and internal platforms outside the team's direct control. Interested in reliability engineering, system design, and the practical challenges of operating complex systems across organizational and technical boundaries.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -1991,12 +2167,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>How do you plan for unplanned incidents? You practice with Chaos Engineering. Strong incident response doesn’t just happen, you have to build the skills and train your team. Practicing for major incidents gives your team insight into how your applications will behave when something goes wrong as well as how the team will interact to solve problems. Combining your Incident Response practices with Chaos Engineering roots your response practice in real-world scenarios, helping your team build confidence.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Daniel Afonso is a Senior Developer Advocate at PagerDuty, SolidJS DX team member, Instructor at Egghead.io, and Author of State Management with React Query. Daniel has a full-stack background, having worked with different languages and frameworks on various projects from IoT to Fraud Detection. He is passionate about learning and teaching and has spoken at multiple conferences around the world about topics he loves. In his free time, when he's not learning new technologies or writing about them, he's probably reading comics or watching superhero movies and shows.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2033,12 +2211,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Remember when you knew all your servers by name and deployed changes with a single SSH command? Now imagine doing that when your link comes in 10-minute windows every few hours, and bandwidth is a precious commodity measured in kbps. Welcome to DevOps in Space. At Sateliot, our Infrastructure &amp; Software Engineering team works at the intersection of aerospace, telecommunications and software. We build modern distributed systems and then send them to an environment where normal expectations -low latency, immediate feedback, up-to-date systems- simply don’t apply. In this talk I’ll give a high-level tour of the challenges that make space and telco different: intermittent and low-bandwidth connectivity, long feedback loops, constrained devices, and the cultural gaps between aerospace, telco and software teams. I'll also share some adaptations that allow us to apply some of the DevOps processes and tools that have become industry standards.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>I started as a sysadmin when workloads ran on bare metal and Devs were the enemies of Ops. The industry changed and we changed with it, but at the end of the day we're still the ones that receive an alert when things stop working.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2075,6 +2255,7 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Your Internal Developer Platform lives in two worlds.
 In the Right Side Up, developers rely on self‑service observability and resiliency to build, deploy, operate and debug their apps.
 In the Upside Down, the platform itself must be observable to ensure its reliability, performance, resiliency and to understand usage patterns and adoption.
@@ -2085,6 +2266,7 @@ In this talk you learn real-world OpenTelemetry-based best practices to observe 
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Andreas Grabner (@grabnerandi) has 25+ years of experience as a software developer, tester and architect and is an advocate for high-performing cloud scale applications. He is a CNCF ambassador, contributor to the CNCF project keptn, Co-Author of Platform Engineering for Architects and a Fellow DevRel for Dynatrace.
 Andreas is also a regular contributor to the DevOps, Platform Engineering and Cloud Native community and a frequent speaker at technology conferences.
 In his spare time you can most likely find him on one of the salsa dancefloors of the world!</p></p>
@@ -2123,12 +2305,14 @@ In his spare time you can most likely find him on one of the salsa dancefloors o
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The next evolution of incident response isn’t faster alerts, it’s autonomous resolution. Join ilert CEO Birol Yildiz as he shows how AI SRE agents now diagnose and remediate outages without waking anyone up. Learn how these systems combine observability data, deployment context, and code intelligence to restore services in minutes and hand over clean incident reports instead of 3 a.m. pages.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Birol Yildiz is the Co-founder and CEO of ilert, adeptly steering the company with a rare combination of technical and product expertise. His prior experience includes a significant role as Chief Product Owner for Big Data products at REWE Digital. With a strong foundation in computer science, Birol bridges the gap between developer and product strategist, constantly striving to innovate and provide customer-centric solutions at ilert.</p></p>
               </div>
           </div><!--//modal-body-->

@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -133,6 +143,7 @@
 		</div><!--//branding-->
 	</header><!--//header-->
 
+	
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
@@ -200,6 +211,7 @@
 		</div><!--//container-->
 
 	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -236,12 +248,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">The Human Side of the Cloud: Why Soft Skills Are the Key to Success</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Victor Onyenagubom.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -262,10 +287,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In a world increasingly defined by complex technology and rapid innovation, it is easy to focus entirely on the technical aspects of success. Yet, the most advanced cloud infrastructure, the most cutting-edge tools, and the most sophisticated algorithms are only as effective as the people behind them. The truth is, it is not just the technical expertise that drives successful cloud initiatives; it is the ability to communicate, collaborate, and build trust that truly sets teams apart. In this talk, I will explore why the human side of the cloud is often the missing piece in achieving transformational success.</p>
 <p>The cloud is not just a technical platform; it is a shared space where people, ideas, and goals converge. Whether you are working on a multi-cloud strategy or deploying serverless applications, success hinges on the ability of individuals and teams to work together seamlessly. It is about understanding diverse perspectives, breaking down silos, and fostering an environment where innovation thrives. Yet, too often, organizations overlook the importance of soft skills in favor of purely technical competencies. The result? Misaligned priorities, communication breakdowns, and missed opportunities to fully leverage the power of the cloud.</p>
 <p>Soft skills such as empathy, active listening, and conflict resolution are not just “nice to have” in cloud projects—they are essential. Imagine a scenario where a development team and an operations team have differing priorities during a cloud migration. Without clear communication and a shared understanding, this disconnect can lead to delays, inefficiencies, or worse, failure to deliver. On the other hand, when team members can articulate their needs, understand each other's challenges, and find common ground, the result is a project that runs more smoothly and achieves better outcomes.</p>
@@ -280,11 +306,14 @@
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Victor Onyenagubom is a dynamic Lecturer in Cybersecurity at Teesside University London, where he develops and delivers cybersecurity modules to international master’s students, fostering an engaging and inclusive learning environment.</p>
 <p>Victor has attended the Pre-Doctoral school organized by the Max Planck Institute of Software Systems in Germany, in partnership with the University of Maryland and Cornell University. He also volunteers as a Lead IT Trainer at CodeYourFuture, where he empowers refugees and asylum seekers with digital and cybersecurity skills.</p>
 <p>Victor is a frequent speaker at high-profile tech events, where he shares his expertise on cybersecurity and other emerging technologies. His combined expertise in cybersecurity, research, and community service positions him as a key figure in both academic and social spheres, dedicated to equipping others with the tools to navigate and secure the digital world.</p>
 <p>As an IT Security Analyst at Pennon Group Plc, Victor performed security audits, designed cybersecurity training materials, and conducted vulnerability assessments, significantly enhancing the organization's security posture. In his role as a Research Assistant at the Nuffield Trust, he extracted, cleaned, and analyzed healthcare data, developed dashboards, and presented data-driven insights to improve NHS processes.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

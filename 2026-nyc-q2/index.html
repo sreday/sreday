@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -276,11 +286,11 @@
     </script>
 </section>
 
+
 <section id="tickets" class="tickets-section section">
   <div class="container">
     <h3 class="section-heading text-center mb-3">Tickets</h3>
 
-    
     <div class="row pricing mb-5 mt-10">
       <div class="col-12 text-center">
         <iframe
@@ -342,13 +352,13 @@
       }
     });
   })();
-</script> 
+</script>
       </div>
     </div>
-    
 
   </div>
 </section>
+
 
 <style>
   .speakers-section .card {
@@ -361,24 +371,82 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    font-size: 0.9rem;
+  }
+  .speakers-section .card-title {
+    font-size: 1.1rem;
+  }
+  .event-card-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-top: auto;
+    width: 100%;
+  }
+  .speakers-section .event-card-buttons a {
+    flex: 0 1 50%;
+    text-align: center;
+    min-width: 0;
+    display: block;
   }
   .event-read-more-btn {
     display: inline-block;
-    padding: 8px 18px;
-    background: #8D5E80;
+    padding: 6px 12px;
+    background: var(--brand-light);
     color: #fff;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
+    font-size: 0.8rem;
     transition: background 0.2s ease;
-    margin-top: auto;
-    align-self: flex-start;
   }
   .event-read-more-btn:hover,
   .event-read-more-btn:focus {
-    background: #9C7290;
+    background: var(--brand-lighter);
     color: #fff;
     text-decoration: none;
+  }
+  .event-watch-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #EC645E;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    transition: background 0.2s ease;
+  }
+  .event-watch-btn:hover,
+  .event-watch-btn:focus {
+    background: #F28B87;
+    color: #fff;
+    text-decoration: none;
+  }
+  .event-watch-btn-sm {
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    margin-left: 12px;
+  }
+  .schedule-abstract {
+    position: relative;
+    max-height: 3.2em;
+    line-height: 1.6;
+    overflow: hidden;
+    text-align: justify;
+  }
+  .schedule-abstract-read-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-left: 3em;
+    background: linear-gradient(to right, transparent, #e8f8f0 30%);
+    font-weight: 700;
+    color: var(--brand);
+    text-decoration: underline;
+  }
+  .schedule-section .item {
+    margin-bottom: 4.5rem;
   }
 </style>
 
@@ -396,11 +464,11 @@
 <section id="speakers" class="speakers-section section">
   <div class="container">
     <h3 class="section-heading text-center mb-3">Speakers</h3>
-    <div class="row">
+    <div class="row row-cols-2 row-cols-lg-5">
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Aaron Zamora.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -408,7 +476,10 @@
             <div class="card-text mb-3">
               <div class="meta">Cribl</div>
             </div><!--//card-text-->
-            <a href="./Aaron_Zamora_Cribl_How_Cribl_Showed_Me_Why_Some_Runs_Suck#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Aaron_Zamora_Cribl_How_Cribl_Showed_Me_Why_Some_Runs_Suck#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -423,7 +494,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Christopher Tineo.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -431,7 +502,10 @@
             <div class="card-text mb-3">
               <div class="meta">Game Plan Tech</div>
             </div><!--//card-text-->
-            <a href="./Christopher_Tineo_Game_Plan_Tech_Free_Software_Isnt_Gratis_why_companies_should_treat_Open_Source_as#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Christopher_Tineo_Game_Plan_Tech_Free_Software_Isnt_Gratis_why_companies_should_treat_Open_Source_as#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -446,7 +520,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Dan Putman.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -454,7 +528,10 @@
             <div class="card-text mb-3">
               <div class="meta">Lightrun</div>
             </div><!--//card-text-->
-            <a href="./Dan_Putman_Lightrun_The_Runtime_Gap_Why_Your_AI_Agents_are_Flying_Blind_and_How_to_Fix_It#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Dan_Putman_Lightrun_The_Runtime_Gap_Why_Your_AI_Agents_are_Flying_Blind_and_How_to_Fix_It#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -469,7 +546,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Dewan Ahmed.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -477,7 +554,10 @@
             <div class="card-text mb-3">
               <div class="meta">Harness</div>
             </div><!--//card-text-->
-            <a href="./Dewan_Ahmed_Harness_Keynote_Secure_by_Default_Building_Confidence_in_AIDriven_Delivery#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Dewan_Ahmed_Harness_Keynote_Secure_by_Default_Building_Confidence_in_AIDriven_Delivery#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -492,7 +572,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Lev Andelman.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -500,7 +580,10 @@
             <div class="card-text mb-3">
               <div class="meta">TeraSky</div>
             </div><!--//card-text-->
-            <a href="./Lev_Andelman_TeraSky_Imperfect_Is_Fine_When_Its_You#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Lev_Andelman_TeraSky_Imperfect_Is_Fine_When_Its_You#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -515,7 +598,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img src="../speakers/Miko Pawlikowski.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -523,7 +606,10 @@
             <div class="card-text mb-3">
               <div class="meta">SRE Author</div>
             </div><!--//card-text-->
-            <a href="./Miko_Pawlikowski_SRE_Author_Keynote_7_Deadly_Traps_ofSRE#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Miko_Pawlikowski_SRE_Author_Keynote_7_Deadly_Traps_ofSRE#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -538,7 +624,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Omari Gaskins Jr.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -546,7 +632,10 @@
             <div class="card-text mb-3">
               <div class="meta">DocuSOR</div>
             </div><!--//card-text-->
-            <a href="./Omari_Gaskins_Jr_DocuSOR_Your_Outdated_Docs_are_Costly_Why_You_should_be_writing_tests_for_your_docs#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Omari_Gaskins_Jr_DocuSOR_Your_Outdated_Docs_are_Costly_Why_You_should_be_writing_tests_for_your_docs#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -561,7 +650,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Zachary Gruenberg.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -569,7 +658,10 @@
             <div class="card-text mb-3">
               <div class="meta">Palo Alto Networks</div>
             </div><!--//card-text-->
-            <a href="./Zachary_Gruenberg_Palo_Alto_Networks_Who_Watches_the_AI_Agents_SRE_for_NonHuman_Identity_at_Scale#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Zachary_Gruenberg_Palo_Alto_Networks_Who_Watches_the_AI_Agents_SRE_for_NonHuman_Identity_at_Scale#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -586,7 +678,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card">
           <div class="card-body">
             <h4>More coming soon</h4>
@@ -661,6 +753,21 @@
 
 
 
+<style>
+  .modal-speaker .desc p,
+  .modal-speaker .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .modal-speaker .desc {
+    padding-bottom: 0.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+</style>
+
 
 <!-- Modal Speaker 2 -->
 <div class="modal modal-speaker modal-speaker-2" id="modal-speaker-2" tabindex="-1" role="dialog" aria-labelledby="speaker-2-ModalLabel" aria-hidden="true">
@@ -691,6 +798,7 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Humans hallucinate memories, forget decisions, and confidently state wrong facts - and we built entire civilizations around it. Yet when AI does the same, we call it broken. 
 This talk uses cognitive science, live audience experiments, and real-world engineering failures to expose the double standard killing your AI adoption. You’ll leave with a practical framework: validate the output, not the process - and stop demanding perfection from AI that you never demanded from yourself.</p></p>
               </div>
@@ -698,6 +806,7 @@ This talk uses cognitive science, live audience experiments, and real-world engi
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Lev Andelman is a Co-Founder and CTO at TeraSky Group with over 15 years of experience designing and managing large-scale production environments. He specializes in cloud, DevOps, and infrastructure across Unix/Linux and Windows systems, with a track record of leading engineering teams and building robust R&amp;D, QA, and production platforms.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -734,12 +843,14 @@ This talk uses cognitive science, live audience experiments, and real-world engi
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Internal Developer Platforms aim to create golden paths, reduce cognitive load, and standardize how teams build and operate software. But there’s a blind spot: documentation. READMEs, onboarding guides, and operational runbooks are often treated as static artifacts. Over time they drift from reality, even as the platform itself evolves. The result is slower onboarding, brittle self-service workflows, and increased support burden on platform teams. In this talk, I’ll explore documentation as an unverified surface within Internal Developer Platforms, and introduce a practical approach to making it executable. By treating markdown instructions and runbooks as workflows that can be executed and validated inside CI or ephemeral environments, platform teams can detect drift automatically. Setup steps, service bootstrapping commands, and health checks become verifiable contracts rather than informal guidance. We’ll cover: • Why documentation drift increases cognitive load and support tickets • How to integrate executable documentation into platform pipelines • How this approach strengthens golden paths and reduces onboarding time • What changes in platform team workflows when documentation becomes testable Document drift is a universal problem, and a costly one. It's time we implmented an actual fix.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Omari Gaskins Jr. is the creator of DocuSOR, the first platform that executes and validates documentation to prevent drift and accelerate developer onboarding. As a Software Engineer at JPMorgan Chase for the last 5 years, he has worked on hundreds of different applications, with on prem and public cloud integrations, managing the scale that comes with working for a large global enterprise.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -776,12 +887,14 @@ This talk uses cognitive science, live audience experiments, and real-world engi
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>AI agents (MCP servers, LangChain tools, autonomous coding assistants) are becoming production workloads that SREs own, but nobody’s treating their identities, secrets, or privilege escalation paths with the same rigor as human operators. Walk through real patterns: Conjur-brokered credentials for AI agents, JIT privilege grants scoped to agent tasks, and what an incident looks like when an agent’s session token gets over-permissioned.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Zach is an AI Subject Matter Expert at Palo Alto via CyberArk, where he works at the intersection of identity security and site reliability — focusing on non-human identity governance, AI agent privilege controls, and secrets management for cloud-native workloads. Day-to-day, he builds secure credential brokering for AI agents, integrates machine identity into Kubernetes platforms using SPIFFE and Conjur, and helps organizations treat identity as a reliability problem, not just a security checkbox.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -818,6 +931,7 @@ This talk uses cognitive science, live audience experiments, and real-world engi
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>If you're a runner, chances are you're drowning in metrics - sleep scores, heart rate, temperature, pace, fueling, recovery. But what does all this data actually mean, and how do you use it to debug the most complex production system of all: your body?
 This session takes years of tracking data collected while training for everything from half marathons to 10-milers to world major marathons and shows the patterns that emerged. Was the seemingly-easy run actually too hard? Did heat and humidity affect the outcome? Did the trail just suck? Was sleep the problem? Or was my love for craft beer finally catching up?
 By exploring the ways I converted data into information to show what made some runs suck and others click. I demonstrate the techniques you need to spot the signals in your own data.
@@ -827,6 +941,7 @@ This session is for anyone who generates a pile of data(fitness or otherwise) an
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Aaron Zamora is a Principal Technical Marketing Engineer at Cribl, specializing in bridging complex technical solutions with real-world customer needs. Based in New York, he brings a strong background in engineering and data platforms, combining deep technical expertise with a focus on clear communication and practical application.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -863,12 +978,14 @@ This session is for anyone who generates a pile of data(fitness or otherwise) an
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Maintaining an open source project is hard. It requires managing a group of people who are largely working for free to build something that other people profit off of, usually distributed across the globe, with limited resources. The whole time you’re doing this, you’re receiving demands from users and businesses alike for features or bug fixes on a timeline that works for them, not you and your (possibly very limited) group of contributors that you can’t exactly order around, since they aren’t being paid. It’s stressful, and it can be overwhelming. When one of these projects is the victim of an attack that takes advantage of the fact that there are only one or two maintainers, or eventually has to shut down due to rising technical debt and falling contributor numbers, the public blame falls on us, not on the businesses that didn’t offer contributors in time.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>I'm passionate about everything related to the Open Source and Cloud Native ecosystem. I'm results-driven and passionate about this industry. I truly believe in the value of giving back to others, so when I'm not working or studying, you will see me volunteering for the communities around my area or Latin America.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -905,6 +1022,7 @@ This session is for anyone who generates a pile of data(fitness or otherwise) an
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The adoption of Generative AI in the SDLC has created a paradox: code generation has outpaced safe production. As teams shift from coding to prompting, they now spend up to 70% of their time verifying and fixing bugs. Traditional observability often comes too late, requiring reactive redeployments that stall innovation.</p>
 <p>This session explores the mandatory shift toward AI Site Reliability Engineering. We will discuss how to move beyond "unknown unknowns" by providing AI agents with In-line Runtime Context. You will learn how to:</p>
 <ul>
@@ -917,6 +1035,7 @@ This session is for anyone who generates a pile of data(fitness or otherwise) an
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Dan Putman is a Solution Architect at Lightrun with a distinguished career in software development and engineering management. Prior to his current role, Dan served as the VP of Engineering at Pillar Technology, where he led a massive team of over 250 technologists and pioneered innovative technical quality programs. He is also the Co-Founder and former CTO of Direct Energy Partners.
 With deep technical expertise spanning medical research, logistics, and renewable energy, Dan is known for tackling the complex "unknown unknowns" that impact global organizations. He focuses on implementing strategic, high-impact solutions that enhance developer productivity and system resilience. Dan is committed to advancing the future of AI-driven site reliability, helping enterprises transition from reactive firefighting to proactive, runtime-aware engineering.</p></p>
               </div>
@@ -954,6 +1073,7 @@ With deep technical expertise spanning medical research, logistics, and renewabl
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The fastest way to break trust in DevSecOps is to automate insecurity at scale. As AI takes a central role in our pipelines, it is time to rethink what "secure by default" really means.</p>
 <p>In this keynote, Dewan Ahmed will challenge the audience to look beyond vulnerability scanners and compliance gates. He will share a vision for intelligent security by design, where native intelligence within the delivery platform detects not only vulnerable code but risky delivery behavior such as misconfigured environments, suspicious artifact provenance, and drift between source and runtime.</p>
 <p>You will walk away with a framework for balancing automation with human oversight and examples from Harness’ work on building verifiable, auditable, AI-native delivery systems. In the new world of DevSecOps, safety is not a step; it is an outcome we continuously learn to improve.</p></p>
@@ -962,6 +1082,7 @@ With deep technical expertise spanning medical research, logistics, and renewabl
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Dewan Ahmed is a Principal Developer Advocate at Harness and a Governing Board General Member Representative at the Continuous Delivery Foundation. He focuses on DevRel and content strategy across CI/CD, DevOps, and open source, with deep expertise in software supply chain security and developer experience.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -998,6 +1119,7 @@ With deep technical expertise spanning medical research, logistics, and renewabl
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Site Reliability Engineering was never meant to be about firefighting, yet too many teams find themselves stuck in an endless cycle of pages, postmortems, and quick fixes. Why? Because SRE is full of hidden traps — patterns that look like best practices on the surface but slowly erode reliability, burn out engineers, and stall progress.</p>
 <p>In this talk, we’ll expose the 7 Deadly Traps of SRE, from the obsession with chasing “five nines,” to the cult of on-call heroism, to the false comfort of tooling and checklists. For each trap, we’ll unpack why it’s so seductive, how it quietly sabotages your team, and what to do instead.</p>
 <p>You’ll walk away with a clearer lens on the pitfalls holding SRE organizations back, and a practical playbook to help your team escape firefighting mode and reclaim the true purpose of SRE: building systems - and cultures - that are resilient, scalable, and human-friendly.</p></p>
@@ -1006,6 +1128,7 @@ With deep technical expertise spanning medical research, logistics, and renewabl
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Miko Pawlikowski is an SRE Author and a platform engineer at Quadrature. He has led large-scale infrastructure and SRE initiatives at Citadel and Bloomberg, with deep expertise in Kubernetes, cloud computing, and chaos engineering. Passionate about building resilient systems and communities, he brings together engineers worldwide through conferences and media projects.</p></p>
               </div>
           </div><!--//modal-body-->

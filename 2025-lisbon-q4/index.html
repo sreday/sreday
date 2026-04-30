@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="#venue">Venue</a></li>
@@ -133,6 +143,7 @@
 		</div><!--//branding-->
 	</header><!--//header-->
 
+	
 	<div id="home" class="hero-block">
 		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
 			<div class="carousel-inner">
@@ -176,6 +187,7 @@
 		</div><!--//container-->
 
 	</div><!--//hero-block-->
+	
 
 	<div class="stats-block theme-bg-primary text-white py-4 text-center">
 		<div class="container">
@@ -217,7 +229,117 @@
   <div class="container">
     <div class="event-countdown text-center mb-3">
     
-      <h4 class="countdown-intro mb-2 text-center mb-3">Event finished</h4>
+      <h4 class="countdown-intro mb-2 text-center mb-3">Event finished, what's next?</h4>
+      
+      <style>
+        .idx-tl { position: relative; padding: 20px 0 8px; margin-bottom: 8px; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .idx-tl-line { position: absolute; top: 26px; left: 0; right: 0; height: 2px; background: var(--brand-lighter); z-index: 0; }
+        .idx-tl-events { display: flex; justify-content: space-between; position: relative; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
+        .idx-tl-event { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 0; }
+        .idx-tl-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--brand); border: 2px solid #fff; outline: 2px solid var(--brand); margin-bottom: 10px; flex-shrink: 0; z-index: 1; }
+        .idx-tl-dot.past { background: #999; outline-color: #999; }
+        .idx-tl-chip { background: var(--brand-lightest); border: 1px solid var(--brand-lighter); border-radius: 8px; padding: 8px 10px; text-align: center; text-decoration: none; width: 100%; transition: background .15s; min-height: 80px; display: flex; flex-direction: column; justify-content: center; }
+        .idx-tl-chip:hover { background: var(--brand-pale); text-decoration: none; }
+        .idx-tl-chip.past { background: #e8e8e8; border-color: #ccc; }
+        .idx-tl-chip.past:hover { background: #d8d8d8; }
+        .idx-tl-city { font-family: 'Montserrat', sans-serif; font-size: .8rem; font-weight: 700; color: var(--brand-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .idx-tl-chip.past .idx-tl-city { color: #555; }
+        .idx-tl-date { font-size: .75rem; color: var(--brand-light); margin-top: 2px; }
+        .idx-tl-chip.past .idx-tl-date { color: #777; }
+        .idx-tl-pin-event { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+        .idx-tl-pin { font-size: 2.25rem; line-height: 1; color: var(--brand-dark); margin-bottom: 10px; position: relative; top: -4px; }
+      </style>
+      <div class="idx-tl">
+        <div class="idx-tl-line"></div>
+        <div class="idx-tl-events">
+          
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-nyc-q1/" class="idx-tl-chip past">
+              <div class="idx-tl-city">NYC</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">February 26, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-london-q1/" class="idx-tl-chip past">
+              <div class="idx-tl-city">London</div>
+              <div class="idx-tl-date" style="font-style:normal;">United Kingdom</div>
+              <div class="idx-tl-date">March 12, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-san-francisco-q2/" class="idx-tl-chip past">
+              <div class="idx-tl-city">San Francisco</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">April 17, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot past"></div>
+            <a href="../2026-seattle-q2/" class="idx-tl-chip past">
+              <div class="idx-tl-city">Seattle</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">April 21, 2026</div>
+            </a>
+          </div>
+          
+          
+          
+          <div class="idx-tl-pin-event"><div class="idx-tl-pin">▼</div></div>
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-barcelona-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Barcelona</div>
+              <div class="idx-tl-date" style="font-style:normal;">Spain</div>
+              <div class="idx-tl-date">May 8, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-austin-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Austin</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">May 11, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-munich-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">Munich</div>
+              <div class="idx-tl-date" style="font-style:normal;">Germany</div>
+              <div class="idx-tl-date">May 21, 2026</div>
+            </a>
+          </div>
+          
+          
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot "></div>
+            <a href="../2026-nyc-q2/" class="idx-tl-chip">
+              <div class="idx-tl-city">NYC</div>
+              <div class="idx-tl-date" style="font-style:normal;">United States</div>
+              <div class="idx-tl-date">June 6, 2026</div>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+      
     
     </div>
   </div>
@@ -271,14 +393,7 @@
     </script>
 </section>
 
-<section id="tickets" class="tickets-section section">
-  <div class="container">
-    <h3 class="section-heading text-center mb-3">Tickets</h3>
 
-    
-
-  </div>
-</section>
 
 <style>
   .speakers-section .card {
@@ -291,24 +406,82 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    font-size: 0.9rem;
+  }
+  .speakers-section .card-title {
+    font-size: 1.1rem;
+  }
+  .event-card-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-top: auto;
+    width: 100%;
+  }
+  .speakers-section .event-card-buttons a {
+    flex: 0 1 50%;
+    text-align: center;
+    min-width: 0;
+    display: block;
   }
   .event-read-more-btn {
     display: inline-block;
-    padding: 8px 18px;
-    background: #8D5E80;
+    padding: 6px 12px;
+    background: var(--brand-light);
     color: #fff;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
+    font-size: 0.8rem;
     transition: background 0.2s ease;
-    margin-top: auto;
-    align-self: flex-start;
   }
   .event-read-more-btn:hover,
   .event-read-more-btn:focus {
-    background: #9C7290;
+    background: var(--brand-lighter);
     color: #fff;
     text-decoration: none;
+  }
+  .event-watch-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #EC645E;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    transition: background 0.2s ease;
+  }
+  .event-watch-btn:hover,
+  .event-watch-btn:focus {
+    background: #F28B87;
+    color: #fff;
+    text-decoration: none;
+  }
+  .event-watch-btn-sm {
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    margin-left: 12px;
+  }
+  .schedule-abstract {
+    position: relative;
+    max-height: 3.2em;
+    line-height: 1.6;
+    overflow: hidden;
+    text-align: justify;
+  }
+  .schedule-abstract-read-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-left: 3em;
+    background: linear-gradient(to right, transparent, #e8f8f0 30%);
+    font-weight: 700;
+    color: var(--brand);
+    text-decoration: underline;
+  }
+  .schedule-section .item {
+    margin-bottom: 4.5rem;
   }
 </style>
 
@@ -335,7 +508,7 @@
   .track-nav-links a {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background: #713660;
+    background: var(--brand);
     color: white;
     text-decoration: none;
     border-radius: 4px;
@@ -344,25 +517,25 @@
     transition: background 0.2s;
   }
   .track-nav-links a:hover {
-    background: #5e2c50;
+    background: var(--brand-dark);
     color: white;
   }
   .view-toggle-link {
-    color: #713660;
+    color: var(--brand);
     text-decoration: none;
     font-size: 0.9rem;
     cursor: pointer;
     padding: 0.5rem 0.75rem;
-    border: 1px solid #713660;
+    border: 1px solid var(--brand);
     border-radius: 4px;
     transition: all 0.2s;
   }
   .view-toggle-link:hover {
-    background: #713660;
+    background: var(--brand);
     color: white;
   }
   .view-toggle-link.active {
-    background: #713660;
+    background: var(--brand);
     color: white;
   }
   /* Table view */
@@ -379,7 +552,7 @@
     table-layout: fixed;
   }
   .schedule-grid-table th {
-    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
     color: white;
     padding: 0.75rem 1rem;
     text-align: left;
@@ -391,17 +564,17 @@
   }
   .schedule-grid-table td {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid #ede5eb;
+    border-bottom: 1px solid var(--brand-lightest);
     vertical-align: top;
   }
   .schedule-grid-table td.merged-cell {
     text-align: center;
     font-weight: 500;
     color: #555;
-    background: #ede5eb;
+    background: var(--brand-lightest);
   }
   .schedule-grid-table .time-cell {
-    color: #713660;
+    color: var(--brand);
     font-weight: 600;
     white-space: nowrap;
   }
@@ -411,7 +584,7 @@
     font-weight: 500;
   }
   .schedule-grid-table .talk-cell a:hover {
-    color: #713660;
+    color: var(--brand);
   }
   .schedule-grid-table .speaker-info {
     color: #444;
@@ -420,6 +593,13 @@
   }
   .schedule-grid-table .speaker-info .affiliation {
     color: #666;
+  }
+  .speaker-linkedin-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .speaker-linkedin-link:hover {
+    color: #098dcf;
   }
   .schedule-meta {
     display: flex;
@@ -445,7 +625,7 @@
   }
   /* Track section header */
   .track-section-header {
-    background: linear-gradient(135deg, #713660 0%, #5e2c50 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
     color: white;
     padding: 1rem 1.5rem;
     margin: 2rem 0 0 0;
@@ -457,7 +637,7 @@
     margin-top: 0;
   }
 
-  .schedule-section.theme-bg-light { background-color: #f8f0f6 !important; }
+  .schedule-section.theme-bg-light { background-color: #f0faf5 !important; }
 </style>
 
 <section id="schedule" class="schedule-section section theme-bg-light">
@@ -471,6 +651,8 @@
       <span class="schedule-meta-item">single track</span>
       <span class="schedule-meta-divider">•</span>
       <span class="schedule-meta-item">9:30AM - 5:30PM</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">Lisbon, in-person</span>
     </div>
 
 
@@ -500,15 +682,19 @@
               <h4 class="time mb-3">09:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle mb-2" src="../speakers/Joao Freitas.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Joao Freitas</a></div>
+                <div class="name">Joao Freitas</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: The Rise of AI-driven SRE</a>
               </h3>
               <div class="location mb-3">PagerDuty</div>
-              <div class="desc">As modern software systems become increasingly complex, Site Reliability Engineering (SRE) teams face mounting operational challenges. Traditional methods—manual triage, rule-based alerts, fragmented dashboards—are no longer sufficient to manage the scale and dynamism of today's distributed...<br /><br /></div>
+              <div class="desc schedule-abstract">As modern software systems become increasingly complex, Site Reliability Engineering (SRE) teams face mounting operational challenges. Traditional methods—manual triage, rule-based alerts, fragmented dashboards—are no longer sufficient to manage the scale and dynamism of today's distributed architectures. In response, the "AI-driven SRE" paradigm is emerging: agentic systems that emulate expert diagnostic reasoning, integrate service knowledge, and maintain a continuous improvement loop across the incident management lifecycle. Unlike legacy automation or general-purpose AI solutions, these SRE agents are tailored for the investigative, causal-analysis workflows unique to SRE—incorporating telemetry, change history, service topology, and post-incident knowledge. In their most advanced form, they transition from advising to semi-autonomous or fully autonomous operation, triaging incidents, hypothesizing root causes, executing remediation actions, and learning from outcomes in production.
+
+In this talk we will walkthrough recent research and industry initiatives that embody this shift, highlight key architectural patterns (multi-agent coordination, model-context protocols, observability pipelines), and discuss avenues for safe adoption—governance, auditability, and gradual autonomy. In doing so, we argue that AI-driven SRE is poised not merely to augment reliability engineers but to transform how reliability is engineered and operated at scale.<a class="schedule-abstract-read-more" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -517,15 +703,17 @@
               <h4 class="time mb-3">10:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle mb-2" src="../speakers/William Mendes.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">William Mendes</a></div>
+                <div class="name">William Mendes</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Keynote: Management is a Hard Job. That’s Why You Should Do It Like an Engineer</a>
               </h3>
               <div class="location mb-3">Coralogix</div>
-              <div class="desc">Management feels messy, but it’s just another complex system - full of incidents, dependencies, and feedback loops. In this talk, we will discuss how to apply engineering principles to leadership: observability, reliability, and iterative improvement for people instead of servers.<br /><br /></div>
+              <div class="desc schedule-abstract">Management feels messy, but it’s just another complex system - full of incidents, dependencies, and feedback loops. In this talk, we will discuss how to apply engineering principles to leadership: observability, reliability, and iterative improvement for people instead of servers.<a class="schedule-abstract-read-more" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -534,15 +722,17 @@
               <h4 class="time mb-3">10:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Birol Yildiz.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Birol Yildiz</a></div>
+                <div class="name">Birol Yildiz</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Keynote: When Incidents Fix Themselves: AI SRE in action</a>
               </h3>
               <div class="location mb-3">ilert</div>
-              <div class="desc">The next evolution of incident response isn’t faster alerts, it’s autonomous resolution. Join ilert CEO Birol Yildiz as he shows how AI SRE agents now diagnose and remediate outages without waking anyone up. Learn how these systems combine observability data, deployment context, and code...<br /><br /></div>
+              <div class="desc schedule-abstract">The next evolution of incident response isn’t faster alerts, it’s autonomous resolution. Join ilert CEO Birol Yildiz as he shows how AI SRE agents now diagnose and remediate outages without waking anyone up. Learn how these systems combine observability data, deployment context, and code intelligence to restore services in minutes and hand over clean incident reports instead of 3 a.m. pages.<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -551,15 +741,14 @@
               <h4 class="time mb-3">11:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Coffee break</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Coffee break</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -568,15 +757,17 @@
               <h4 class="time mb-3">11:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Diogo Cebola & Andre Bento.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Diogo Cebola & Andre Bento</a></div>
+                <div class="name">Diogo Cebola & Andre Bento</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Increase observability, not costs: controlling telemetry data ingestion at scale</a>
               </h3>
               <div class="location mb-3">Mollie</div>
-              <div class="desc">At Mollie, as teams grow and new projects are launched, we experienced firsthand how quickly observability costs can start to grow unsustainably. As a response to the limited support from our vendor, we developed a, Vector-powered, telemetry data ingestion solution to help manage ingestion at scale.<br /><br /></div>
+              <div class="desc schedule-abstract">At Mollie, as teams grow and new projects are launched, we experienced firsthand how quickly observability costs can start to grow unsustainably. As a response to the limited support from our vendor, we developed a, Vector-powered, telemetry data ingestion solution to help manage ingestion at scale.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -585,15 +776,17 @@
               <h4 class="time mb-3">12:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Yuri Oliveira Sa.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Yuri Oliveira Sa</a></div>
+                <div class="name">Yuri Oliveira Sa</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Beyond 'Done': Strategies for Improving OpenTelemetry Instrumentation Quality</a>
               </h3>
               <div class="location mb-3">OllyGarden</div>
-              <div class="desc">Many teams stop improving OpenTelemetry once basic data is collected, but low-quality instrumentation limits observability. This talk shares practical strategies to enhance signal consistency, completeness, and correlation, plus methods for validating and maintaining quality over time. Learn how...<br /><br /></div>
+              <div class="desc schedule-abstract">Many teams stop improving OpenTelemetry once basic data is collected, but low-quality instrumentation limits observability. This talk shares practical strategies to enhance signal consistency, completeness, and correlation, plus methods for validating and maintaining quality over time. Learn how to move beyond “done” to build reliable, insightful OpenTelemetry instrumentation.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -602,15 +795,17 @@
               <h4 class="time mb-3">12:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Ricardo Miguel Magalhaes.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Ricardo Miguel Magalhaes</a></div>
+                <div class="name">Ricardo Miguel Magalhaes</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">FinOps at Scale: Lessons from Scaling Kubernetes Workloads</a>
               </h3>
               <div class="location mb-3">xgeeks</div>
-              <div class="desc">As organizations scale their Kubernetes workloads, they often encounter a painful truth: without a solid FinOps strategy, cloud costs can spiral out of control. In this session, we'll explore real-world lessons from scaling Kubernetes environments, and how applying FinOps principles early can...<br /><br /></div>
+              <div class="desc schedule-abstract">As organizations scale their Kubernetes workloads, they often encounter a painful truth: without a solid FinOps strategy, cloud costs can spiral out of control. In this session, we'll explore real-world lessons from scaling Kubernetes environments, and how applying FinOps principles early can avoid firefighting later. You'll learn practical strategies for improving cost visibility, allocating expenses, optimizing resources, and creating a culture of financial accountability. Whether you're just starting with Kubernetes or managing it at scale, this talk will equip you with the tools to align technical growth with business outcomes—without blowing your cloud budget.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -619,15 +814,20 @@
               <h4 class="time mb-3">13:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Luis Serra.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Luis Serra</a></div>
+                <div class="name">Luis Serra</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">When Infrastructure as Code Becomes a Product: Lessons from the Trenches</a>
               </h3>
               <div class="location mb-3">synvert, a GlogalLogic company</div>
-              <div class="desc">Over the past two years, I’ve been part of building and maintaining a platform where Infrastructure as Code isn’t just a tool — it is the product. Along this journey, we’ve faced a unique set of challenges that go far beyond writing Terraform modules or defining cloud resources. This talk...<br /><br /></div>
+              <div class="desc schedule-abstract">Over the past two years, I’ve been part of building and maintaining a platform where Infrastructure as Code isn’t just a tool — it is the product. Along this journey, we’ve faced a unique set of challenges that go far beyond writing Terraform modules or defining cloud resources.
+This talk explores what happens when the abstractions created for scalability and flexibility begin to clash with user experience. From bridging the knowledge gap between the underlying technology and end users, to managing the complexity that comes with more configuration options, I’ll share what worked, what didn’t, and the lessons learned.
+We’ll also dive into one of the hardest aspects of maintaining large IaC systems: testing. How do you ensure reliability when every configuration combination can generate a different infrastructure outcome? And how can we build meaningful observability that focuses not only on infrastructure health, but also on giving users actionable insights to optimize performance and control costs?
+If you’re building or scaling a product powered by IaC, this talk provides a candid look at the trade-offs, challenges, and strategies to make your platform both powerful and user-friendly.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -636,15 +836,14 @@
               <h4 class="time mb-3">13:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Lunch & networking</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -653,15 +852,17 @@
               <h4 class="time mb-3">14:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Murilo Venturin & Ricardo Moreira.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Murilo Venturin & Ricardo Moreira</a></div>
+                <div class="name">Murilo Venturin & Ricardo Moreira</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Building End-to-End  Observability for AI Agents</a>
               </h3>
               <div class="location mb-3">PagerDuty</div>
-              <div class="desc">AI Agents are non-deterministic, tool-using systems, so typical unit tests and quality monitoring frameworks are not up to the task. In this talk, I will share a practical, end-to-end framework for evaluating our AI agents at PagerDuty, both offline and online.<br /><br /></div>
+              <div class="desc schedule-abstract">AI Agents are non-deterministic, tool-using systems, so typical unit tests and quality monitoring frameworks are not up to the task. In this talk, I will share a practical, end-to-end framework for evaluating our AI agents at PagerDuty, both offline and online.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -670,15 +871,47 @@
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Rajat Gupta.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Rajat Gupta</a></div>
+                <div class="name">Rajat Gupta</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Building an Actionable Runbook Platform</a>
               </h3>
               <div class="location mb-3">Paymenttools</div>
-              <div class="desc">**Actionable runbooks** close the gap between *“what to do”* and *“doing it.”* This talk shows how to design and ship a runbook platform where steps can be clicked and executed safely during incidents. **What the system does** - Create and manage runbooks with tags and Markdown. - Blocks include:...<br /><br /></div>
+              <div class="desc schedule-abstract">**Actionable runbooks** close the gap between *“what to do”* and *“doing it.”*  
+This talk shows how to design and ship a runbook platform where steps can be clicked and executed safely during incidents.  
+
+**What the system does**  
+- Create and manage runbooks with tags and Markdown.  
+  - Blocks include: instruction, command, API call, conditional, and timer.  
+- Execute a full runbook or a single block with outputs captured in history.  
+- Use RBAC, encrypted credential store, versioning, and containerized environments to keep execution safe and repeatable.  
+- Core entities and API surface: `Runbook`, `RunbookVersion`, `Block`, `ExecutionJob`, `Credentials`, plus endpoints for runbooks, versions, execution, and credentials.  
+
+**Architecture at a glance**  
+- React SPA communicates with a FastAPI backend and MongoDB.  
+- An execution worker runs jobs and streams results.  
+
+**Demo flow**  
+1. Create a runbook with tags and Markdown instructions.  
+2. Add a command block and an API call block that uses a stored credential.  
+3. Assign a custom Docker execution environment to the runbook.  
+4. Run a single block, then run the entire runbook and watch outputs land in history.  
+
+**What you will learn**  
+- Design principles for truly actionable runbooks and how they differ from static docs.  
+- How to implement safe execution with RBAC, audit, and container isolation.  
+- Patterns for versioning and rollbacks so teams can iterate without fear.  
+- How this approach complements existing incident tooling and industry guidance on making runbooks actionable  
+  ([Incident][1], [resources.rundeck.com][2]).  
+
+**Who should attend**  
+- SRE, platform, security, and backend engineers who own on-call and incident response.  
+- Engineering managers who want safer self-service for ops tasks.  
+<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -687,15 +920,17 @@
               <h4 class="time mb-3">15:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Hakoub Esfahani.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Hakoub Esfahani</a></div>
+                <div class="name">Hakoub Esfahani</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Modular Terraform, Unit Testing  IaC, and CI/CD</a>
               </h3>
               <div class="location mb-3">Veritas Technologies</div>
-              <div class="desc">Terraform modules are the backbone of modern infrastructures, but, unit testing even in small DevOps teams is a challenge. In this talk I would like to present multiple approaches to address this challenge by deploying ephemeral environments using CI/CD.<br /><br /></div>
+              <div class="desc schedule-abstract">Terraform modules are the backbone of modern infrastructures, but, unit testing even in small DevOps teams is a challenge. In this talk I would like to present multiple approaches to address this challenge by deploying ephemeral environments using CI/CD.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -704,15 +939,14 @@
               <h4 class="time mb-3">16:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Networking & sponsor crawl</a>
-              </h3>
-              <div class="location mb-3">Main lobby</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
             </div>
           </div>
 
@@ -721,15 +955,17 @@
               <h4 class="time mb-3">16:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Oscar Manzano.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Oscar Manzano</a></div>
+                <div class="name">Oscar Manzano</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">The Augmented SRE Leader: Steering Human-Machine Synergy in the Age of AIOps</a>
               </h3>
               <div class="location mb-3">Roche Diagnostics</div>
-              <div class="desc">SRE leaders must move beyond automation to lead augmented teams. They must leverage human-AI collaboration and champion explainable AI along with upskilling teams to master this new symbiosis, ensuring AI becomes a reliable partner. The future is human-machine collaboration.<br /><br /></div>
+              <div class="desc schedule-abstract">SRE leaders must move beyond automation to lead augmented teams. They must leverage human-AI collaboration and champion explainable AI along with upskilling teams to master this new symbiosis, ensuring AI becomes a reliable partner. The future is human-machine collaboration.<a class="schedule-abstract-read-more" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -738,15 +974,17 @@
               <h4 class="time mb-3">17:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img class="profile-image rounded-circle mb-2" src="../speakers/Jake Page.png" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Jake Page</a></div>
+                <div class="name">Jake Page</div>
               </div>
             </div>
             <div class="content">
+              
               <h3 class="title mb-3">
                 <a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Get More Bang for Your Error Budget's Buck: 3 Ways to Extend Reliability Without Changing Your SLOs</a>
               </h3>
               <div class="location mb-3">MetalBear</div>
-              <div class="desc">As an SRE, you rarely get to choose the SLO. But you can influence how the error budget is spent by making smaller, more frequent releases, testing in creative ways and learning to effectively nudge leadership to have a higher change tolerance, you can extend the value of your error budget.<br /><br /></div>
+              <div class="desc schedule-abstract">As an SRE, you rarely get to choose the SLO. But you can influence how the error budget is spent by making smaller, more frequent releases, testing in creative ways and learning to effectively nudge leadership to have a higher change tolerance, you can extend the value of your error budget.<a class="schedule-abstract-read-more" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">... Read more</a></div>
+              
             </div>
           </div>
 
@@ -755,15 +993,14 @@
               <h4 class="time mb-3">17:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"><a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"></a></div>
+                <div class="name"></div>
               </div>
             </div>
             <div class="content">
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-">Wrap up</a>
-              </h3>
-              <div class="location mb-3">Scan each other's QR codes & head to a nearby pub!</div>
-              <div class="desc"><br /><br /></div>
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Wrap up</h3>
+              <div class="location mb-3" style="color:#098dcf;">Scan each other's QR codes & head to a nearby pub!</div>
+              
             </div>
           </div>
 
@@ -1198,7 +1435,9 @@
     }
     </script>
 
-    <div class="schedule-cta text-center mx-auto mt-4"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+    
+    <div class="schedule-cta text-center mx-auto mt-4"><a href="https://luma.com/sre" target="_blank" rel="noopener" class="btn btn-secondary btn-lg d-block d-md-inline-block">Upcoming conferences on LUMA</a></div>
+    
   </div>
 </section>
 
@@ -1208,11 +1447,11 @@
 <section id="speakers" class="speakers-section section">
   <div class="container">
     <h3 class="section-heading text-center mb-3">Speakers</h3>
-    <div class="row">
+    <div class="row row-cols-2 row-cols-lg-5">
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Birol Yildiz.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1220,7 +1459,10 @@
             <div class="card-text mb-3">
               <div class="meta">ilert</div>
             </div><!--//card-text-->
-            <a href="./Birol_Yildiz_ilert_Keynote_When_Incidents_Fix_Themselves_AI_SRE_in_action#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Birol_Yildiz_ilert_Keynote_When_Incidents_Fix_Themselves_AI_SRE_in_action#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1235,15 +1477,18 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Diogo Cebola & Andre Bento.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
-            <h5 class="card-title mb-2">Diogo Cebola & Andre Bento</h5>
+            <h5 class="card-title mb-2">Diogo Cebola<br>&amp; Andre Bento</h5>
             <div class="card-text mb-3">
               <div class="meta">Mollie</div>
             </div><!--//card-text-->
-            <a href="./Diogo_Cebola__Andre_Bento_Mollie_Increase_observability__not_costs_controlling_telemetry_data_ingest#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Diogo_Cebola__Andre_Bento_Mollie_Increase_observability__not_costs_controlling_telemetry_data_ingest#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1258,7 +1503,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Hakoub Esfahani.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1266,7 +1511,10 @@
             <div class="card-text mb-3">
               <div class="meta">Veritas Technologies</div>
             </div><!--//card-text-->
-            <a href="./Hakoub_Esfahani_Veritas_Technologies_Modular_Terraform__Unit_Testing__IaC__and_CICD#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Hakoub_Esfahani_Veritas_Technologies_Modular_Terraform__Unit_Testing__IaC__and_CICD#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1281,7 +1529,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img src="../speakers/Jake Page.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1289,7 +1537,10 @@
             <div class="card-text mb-3">
               <div class="meta">MetalBear</div>
             </div><!--//card-text-->
-            <a href="./Jake_Page_MetalBear_Get_More_Bang_for_Your_Error_Budgets_Buck_3_Ways_to_Extend_Reliability_Without_C#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Jake_Page_MetalBear_Get_More_Bang_for_Your_Error_Budgets_Buck_3_Ways_to_Extend_Reliability_Without_C#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1304,7 +1555,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Joao Freitas.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1312,7 +1563,10 @@
             <div class="card-text mb-3">
               <div class="meta">PagerDuty</div>
             </div><!--//card-text-->
-            <a href="./Joao_Freitas_PagerDuty_Keynote_The_Rise_of_AIdriven_SRE#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Joao_Freitas_PagerDuty_Keynote_The_Rise_of_AIdriven_SRE#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1327,7 +1581,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Luis Serra.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1335,7 +1589,10 @@
             <div class="card-text mb-3">
               <div class="meta">synvert, a GlogalLogic company</div>
             </div><!--//card-text-->
-            <a href="./Luis_Serra_synvert_a_GlogalLogic_company_When_Infrastructure_as_Code_Becomes_a_Product_Lessons_from_#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Luis_Serra_synvert_a_GlogalLogic_company_When_Infrastructure_as_Code_Becomes_a_Product_Lessons_from_#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1350,15 +1607,18 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Murilo Venturin & Ricardo Moreira.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
-            <h5 class="card-title mb-2">Murilo Venturin & Ricardo Moreira</h5>
+            <h5 class="card-title mb-2">Murilo Venturin<br>&amp; Ricardo Moreira</h5>
             <div class="card-text mb-3">
               <div class="meta">PagerDuty</div>
             </div><!--//card-text-->
-            <a href="./Murilo_Venturin__Ricardo_Moreira_PagerDuty_Building_EndtoEnd__Observability_for_AI_Agents#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Murilo_Venturin__Ricardo_Moreira_PagerDuty_Building_EndtoEnd__Observability_for_AI_Agents#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1373,7 +1633,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Oscar Manzano.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1381,7 +1641,10 @@
             <div class="card-text mb-3">
               <div class="meta">Roche Diagnostics</div>
             </div><!--//card-text-->
-            <a href="./Oscar_Manzano_Roche_Diagnostics_The_Augmented_SRE_Leader_Steering_HumanMachine_Synergy_in_the_Age_of#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Oscar_Manzano_Roche_Diagnostics_The_Augmented_SRE_Leader_Steering_HumanMachine_Synergy_in_the_Age_of#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1396,7 +1659,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Rajat Gupta.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1404,7 +1667,10 @@
             <div class="card-text mb-3">
               <div class="meta">Paymenttools</div>
             </div><!--//card-text-->
-            <a href="./Rajat_Gupta_Paymenttools_Building_an_Actionable_Runbook_Platform#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Rajat_Gupta_Paymenttools_Building_an_Actionable_Runbook_Platform#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1419,7 +1685,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Ricardo Miguel Magalhaes.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1427,7 +1693,10 @@
             <div class="card-text mb-3">
               <div class="meta">xgeeks</div>
             </div><!--//card-text-->
-            <a href="./Ricardo_Miguel_Magalhaes_xgeeks_FinOps_at_Scale_Lessons_from_Scaling_Kubernetes_Workloads#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Ricardo_Miguel_Magalhaes_xgeeks_FinOps_at_Scale_Lessons_from_Scaling_Kubernetes_Workloads#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1442,7 +1711,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img src="../speakers/William Mendes.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1450,7 +1719,10 @@
             <div class="card-text mb-3">
               <div class="meta">Coralogix</div>
             </div><!--//card-text-->
-            <a href="./William_Mendes_Coralogix_Keynote_Management_is_a_Hard_Job_Thats_Why_You_Should_Do_It_Like_an_Enginee#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./William_Mendes_Coralogix_Keynote_Management_is_a_Hard_Job_Thats_Why_You_Should_Do_It_Like_an_Enginee#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1465,7 +1737,7 @@
 
       
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col mb-4">
         <div class="card rounded">
           <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Yuri Oliveira Sa.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
@@ -1473,7 +1745,10 @@
             <div class="card-text mb-3">
               <div class="meta">OllyGarden</div>
             </div><!--//card-text-->
-            <a href="./Yuri_Oliveira_Sa_OllyGarden_Beyond_Done_Strategies_for_Improving_OpenTelemetry_Instrumentation_Quali#speakers-section" class="event-read-more-btn">Read more &rarr;</a>
+            <div class="event-card-buttons">
+              <a href="./Yuri_Oliveira_Sa_OllyGarden_Beyond_Done_Strategies_for_Improving_OpenTelemetry_Instrumentation_Quali#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
@@ -1491,7 +1766,7 @@
       
 
     </div><!--//row-->
-    <div class="speakers-cta text-center py-3"><a class="btn btn-primary btn-lg" href="#tickets">Get Tickets</a></div>
+    
   </div><!--//container-->
 
 </section><!--//speakers-section-->
@@ -1568,6 +1843,21 @@
 
 
 
+<style>
+  .modal-speaker .desc p,
+  .modal-speaker .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .modal-speaker .desc {
+    padding-bottom: 0.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+</style>
+
 
 <!-- Modal Speaker 3 -->
 <div class="modal modal-speaker modal-speaker-3" id="modal-speaker-3" tabindex="-1" role="dialog" aria-labelledby="speaker-3-ModalLabel" aria-hidden="true">
@@ -1598,12 +1888,14 @@
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>At Mollie, as teams grow and new projects are launched, we experienced firsthand how quickly observability costs can start to grow unsustainably. As a response to the limited support from our vendor, we developed a, Vector-powered, telemetry data ingestion solution to help manage ingestion at scale.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Hello, my name is Diogo Cebola. I have a background in Computer Engineering, specialising in distributed systems and secure multiparty computation. 
 My passion for automation and building robust, and simple to deploy applications, led me to the field of platform engineering. I have around 2 years of experience as a platform engineer working in the fields of Reliability and Observability. 
 I'm currently part of the Reliability team at Mollie. Here I enable teams to build reliable systems and, alongside my colleagues, maintain our observability platform.</p>
@@ -1644,12 +1936,14 @@ He earned his PhD in Informatics Engineering from the University of Coimbra, wit
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Many teams stop improving OpenTelemetry once basic data is collected, but low-quality instrumentation limits observability. This talk shares practical strategies to enhance signal consistency, completeness, and correlation, plus methods for validating and maintaining quality over time. Learn how to move beyond “done” to build reliable, insightful OpenTelemetry instrumentation.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>In his professional path, Yuri Sa has always been involved in helping companies achieve the next level of automation in their infrastructure environment. Throughout his 15 years of experience, he worked in critical environments as SysAdmin, SRE, and DevOps Engineer. One of his central beliefs is that all barriers between Development and Operations teams should be removed; for that reason, he decided to contribute to open-source projects focused on observability in the past few years.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -1686,12 +1980,14 @@ He earned his PhD in Informatics Engineering from the University of Coimbra, wit
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>As organizations scale their Kubernetes workloads, they often encounter a painful truth: without a solid FinOps strategy, cloud costs can spiral out of control. In this session, we'll explore real-world lessons from scaling Kubernetes environments, and how applying FinOps principles early can avoid firefighting later. You'll learn practical strategies for improving cost visibility, allocating expenses, optimizing resources, and creating a culture of financial accountability. Whether you're just starting with Kubernetes or managing it at scale, this talk will equip you with the tools to align technical growth with business outcomes—without blowing your cloud budget.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Ricardo Magalhães is a Senior DevOps Engineer at xgeeks. He drives the infrastructure for one of the world’s leading automotive companies. Always striving for bigger and better, Ricardo brings an unmatched determination to elevate projects and, of course, build a great story along the way—because everything is better with a good story.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -1728,6 +2024,7 @@ He earned his PhD in Informatics Engineering from the University of Coimbra, wit
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Over the past two years, I’ve been part of building and maintaining a platform where Infrastructure as Code isn’t just a tool — it is the product. Along this journey, we’ve faced a unique set of challenges that go far beyond writing Terraform modules or defining cloud resources.
 This talk explores what happens when the abstractions created for scalability and flexibility begin to clash with user experience. From bridging the knowledge gap between the underlying technology and end users, to managing the complexity that comes with more configuration options, I’ll share what worked, what didn’t, and the lessons learned.
 We’ll also dive into one of the hardest aspects of maintaining large IaC systems: testing. How do you ensure reliability when every configuration combination can generate a different infrastructure outcome? And how can we build meaningful observability that focuses not only on infrastructure health, but also on giving users actionable insights to optimize performance and control costs?
@@ -1737,6 +2034,7 @@ If you’re building or scaling a product powered by IaC, this talk provides a c
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Luis is passionate about the Cloud-Native ecosystem, with Kubernetes playing a central role in all the projects he has worked on. He continuously hones his skills in this area, exploring the CNCF landscape for innovative technologies that solve real-world challenges.
 Outside of work, Luis is committed to knowledge sharing. He has published several articles and is an active participant in multiple discussion groups, contributing to the wider DevOps community.</p></p>
               </div>
@@ -1774,12 +2072,14 @@ Outside of work, Luis is committed to knowledge sharing. He has published severa
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>AI Agents are non-deterministic, tool-using systems, so typical unit tests and quality monitoring frameworks are not up to the task. In this talk, I will share a practical, end-to-end framework for evaluating our AI agents at PagerDuty, both offline and online.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p><strong>Murilo Venturin</strong> is a Machine Learning Engineer specializing in AI agents, LLMs, and generative AI systems. At PagerDuty, he designs and deploys multi-agent AI architectures, integrates reasoning workflows, and builds evaluation frameworks to measure performance of generative AI in production.</p>
 <p><strong>Ricardo Moreira</strong> is an AI Engineer and Full-Stack Developer specializing in LLMs, deep learning, and scalable AI systems. He is a Senior Applied Scientist at PagerDuty, where he built the company’s unified AI agent testing and evaluation framework.</p></p>
               </div>
@@ -1817,6 +2117,7 @@ Outside of work, Luis is committed to knowledge sharing. He has published severa
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p><strong>Actionable runbooks</strong> close the gap between <em>“what to do”</em> and <em>“doing it.”</em><br />
 This talk shows how to design and ship a runbook platform where steps can be clicked and executed safely during incidents.  </p>
 <p><strong>What the system does</strong><br />
@@ -1847,6 +2148,7 @@ This talk shows how to design and ship a runbook platform where steps can be cli
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>I’m a Senior Engineering Manager at Paymenttools in Berlin, leading platform teams across SRE and Security. I focus on reliability, observability, Kubernetes, and policy as code, and I drive green-field work from idea to production. Lately I’ve been applying GenAI into the SRE and platform domains. I like clear processes, data-backed decisions, and practical solutions, and I write for peers to share what works and what doesn’t.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -1883,12 +2185,14 @@ This talk shows how to design and ship a runbook platform where steps can be cli
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Terraform modules are the backbone of modern infrastructures, but, unit testing even in small DevOps teams is a challenge. In this talk I would like to present multiple approaches to address this challenge by deploying ephemeral environments using CI/CD.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Hakoub Esfahani is the DevOps Manager and Product Security lead for Arctera Insight Capture, where he leads CI/CD, Cloud infrastructure, Cloud Security and Product Security efforts.</p>
 <p>Over the course of 8 years, Hakoub has closely worked with multiple engineering, security, and product teams on different projects, allowing him to develop a wide array of skills.</p>
 <p>He started his career in 2017 by working with clients on technical problems in complex enterprise environments, giving him the opportunity to firsthand understand both the functional and security requirements of the field.</p>
@@ -1928,12 +2232,14 @@ This talk shows how to design and ship a runbook platform where steps can be cli
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>SRE leaders must move beyond automation to lead augmented teams. They must leverage human-AI collaboration and champion explainable AI along with upskilling teams to master this new symbiosis, ensuring AI becomes a reliable partner. The future is human-machine collaboration.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>As People Lead in the Infrastructure Reliability Engineering chapter at Roche, I empower my team to deliver key capabilities for innovative digital health solutions. My leadership philosophy centers on mentorship and fostering professional growth.</p>
 <p>Beyond people leadership, I have extensive experience in optimizing engineering operations. DevOps is a mindset that I still use and practice. In my previous software engineer experience I developed impactful applications, from mobile apps to assist visually impaired individuals with indoor navigation, decision-support tools for reducing global data center energy consumption, or a full platform designed to accelerate recovery for knee-injured patients.</p>
 <p>Along the years in the academia, I authored scientific articles and worked as a software engineer at University College Cork, Ireland, on research projects related to Supply Chain Optimization, Energy Efficiency, Cloud Computing, and e-Health, designing solutions for complex challenges. Finally, I created and directed a Master's program in DevOps, bridging the gap between academia and industry at University of Barcelona, Spain.</p></p>
@@ -1972,12 +2278,14 @@ This talk shows how to design and ship a runbook platform where steps can be cli
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>As an SRE, you rarely get to choose the SLO. But you can influence how the error budget is spent by making smaller, more frequent releases, testing in creative ways and learning to effectively nudge leadership to have a higher change tolerance, you can extend the value of your error budget.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>I'm Jake a DevOps engineer turned DevRel. </p>
 <p>Over the last 5 years I have been heavily focused on the world of Cloud Native Dev tooling, from cloud FinOps, Packaging and Software Delivery, not exclusively but many times in the context of Kubernetes clusters. </p>
 <p>Having transitioned from a previous career as a high school teacher, any chance I get to speak in front of a crowd on topics that I'm passionate about I try to take. I'm a Lisbon resident and love to frequent the local meetup scene. So if you see me around, don't be a stranger and let's chat. </p></p>
@@ -2016,6 +2324,7 @@ This talk shows how to design and ship a runbook platform where steps can be cli
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>As modern software systems become increasingly complex, Site Reliability Engineering (SRE) teams face mounting operational challenges. Traditional methods—manual triage, rule-based alerts, fragmented dashboards—are no longer sufficient to manage the scale and dynamism of today's distributed architectures. In response, the "AI-driven SRE" paradigm is emerging: agentic systems that emulate expert diagnostic reasoning, integrate service knowledge, and maintain a continuous improvement loop across the incident management lifecycle. Unlike legacy automation or general-purpose AI solutions, these SRE agents are tailored for the investigative, causal-analysis workflows unique to SRE—incorporating telemetry, change history, service topology, and post-incident knowledge. In their most advanced form, they transition from advising to semi-autonomous or fully autonomous operation, triaging incidents, hypothesizing root causes, executing remediation actions, and learning from outcomes in production.</p>
 <p>In this talk we will walkthrough recent research and industry initiatives that embody this shift, highlight key architectural patterns (multi-agent coordination, model-context protocols, observability pipelines), and discuss avenues for safe adoption—governance, auditability, and gradual autonomy. In doing so, we argue that AI-driven SRE is poised not merely to augment reliability engineers but to transform how reliability is engineered and operated at scale.</p></p>
               </div>
@@ -2023,6 +2332,7 @@ This talk shows how to design and ship a runbook platform where steps can be cli
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>João Freitas is General Manager and Engineering Lead for AI at Pager Duty. João leads PagerDuty AI initiatives and he is the main representative of the Lisbon office, being responsible for its growth, expansion, and culture. With about 20 years of experience in Software Development, Machine Learning, and as a People Manager, he was previously CTO at a startup in the area of Artificial Intelligence and has taken several roles at Microsoft in the areas of Speech Technologies and Data Engineering. João also holds a PhD in the areas of speech technology and human-computer interaction, filed several patents, and published over 40 articles in peer-reviewed international conferences and journals. He is also a regular speaker at AI conferences and the author and co-author of book chapters and one book.</p></p>
               </div>
           </div><!--//modal-body-->
@@ -2059,12 +2369,14 @@ This talk shows how to design and ship a runbook platform where steps can be cli
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Management feels messy, but it’s just another complex system - full of incidents, dependencies, and feedback loops. In this talk, we will discuss how to apply engineering principles to leadership: observability, reliability, and iterative improvement for people instead of servers.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>William Mendes is an Engineering Leader with over 15 years of experience designing, scaling, and leading high-performance systems and teams. </p></p>
               </div>
           </div><!--//modal-body-->
@@ -2101,12 +2413,14 @@ This talk shows how to design and ship a runbook platform where steps can be cli
                   </div><!--//row-->
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The next evolution of incident response isn’t faster alerts, it’s autonomous resolution. Join ilert CEO Birol Yildiz as he shows how AI SRE agents now diagnose and remediate outages without waking anyone up. Learn how these systems combine observability data, deployment context, and code intelligence to restore services in minutes and hand over clean incident reports instead of 3 a.m. pages.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Birol Yildiz is the Co-founder and CEO of ilert, adeptly steering the company with a rare combination of technical and product expertise. His prior experience includes a significant role as Chief Product Owner for Big Data products at REWE Digital. With a strong foundation in computer science, Birol bridges the gap between developer and product strategist, constantly striving to innovate and provide customer-centric solutions at ilert.</p></p>
               </div>
           </div><!--//modal-body-->

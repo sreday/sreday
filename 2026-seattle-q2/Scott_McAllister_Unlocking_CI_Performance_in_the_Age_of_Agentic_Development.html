@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -107,7 +117,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -118,7 +128,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="index.html#tickets">Tickets</a></li>
+							
 							<li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="index.html#venue">Venue</a></li>
@@ -214,12 +224,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Unlocking CI Performance in the Age of Agentic Development</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Scott McAllister.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -240,18 +263,22 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Agentic development is changing how fast your team ships — and your CI pipeline is feeling it. More PRs, bigger diffs, more frequent builds. The bottlenecks that used to be minor annoyances are now real blockers. Queue times, cold starts, and network overhead add up fast when your developers are pushing code at a pace that wasn't possible a year ago. In this session, I'll show you how to look beyond reported build times and find where your pipeline is actually spending its minutes. You'll learn practical techniques for identifying bottlenecks, measuring what matters, and prioritizing the fixes that deliver real impact. I'll share examples from production pipelines where small changes led to big improvements — and explain why optimizing CI is one of the highest-leverage things you can do to get the most out of AI-assisted development. Faster CI means faster feedback loops, happier developers, and more deploys per day.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Scott McAllister is a developer and educator. He has been building software in several industries for over a decade. Now, he's helping others learn about various software development, delivery, and infrastructure principles. When he's not coding, writing, or speaking, he enjoys long walks with his wife, skipping rocks with his kids, and is happy whenever Seattle Sounders FC, Manchester City, St. Louis Cardinals, Seattle Mariners, Chicago Bulls, Seattle Storm, Seattle Seahawks, Seattle Reign FC, Seattle Kraken, Malaga, Fiorentina, Borussia Dortmund or Mainz 05 can manage a win.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

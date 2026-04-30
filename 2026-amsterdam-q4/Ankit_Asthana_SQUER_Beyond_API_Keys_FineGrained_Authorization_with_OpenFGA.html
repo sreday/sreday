@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -220,12 +230,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Beyond API Keys: Fine-Grained Authorization with OpenFGA</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Ankit Asthana.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -246,10 +269,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Modern applications often outgrow simple API key or role-based access models, especially in multi-tenant and microservice environments. This talk explores how OpenFGA enables fine-grained, relationship-based authorization to model complex access patterns such as “user X can access resource Y because they belong to team Z.”
 We’ll walk through real-world scenarios where traditional RBAC breaks down, demonstrate how OpenFGA implements Google Zanzibar–inspired authorization, and show how to integrate it into cloud-native platforms and APIs. Attendees will leave with practical patterns, architecture guidance, and lessons learned from implementing authorization as a standalone service in modern platform architectures.</p></p>
               </div>
@@ -257,8 +281,11 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Ankit Asthana is a Senior Cloud &amp; Platform Architect Engineer at SQUER, with over 13 years of experience across AI infrastructure, DevOps, SRE, and platform engineering. He specializes in building secure, scalable cloud-native systems on Kubernetes and AWS, and works at the intersection of platform engineering and AI-driven workloads. Ankit is an active community contributor and regularly speaks at meetups on topics such as developer platforms, policy-as-code, and modern authorization systems.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

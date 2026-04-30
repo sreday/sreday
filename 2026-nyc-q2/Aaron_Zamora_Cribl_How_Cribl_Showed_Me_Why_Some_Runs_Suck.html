@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -216,12 +226,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">How Cribl Showed Me Why Some Runs Suck</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Aaron Zamora.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -242,10 +265,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>If you're a runner, chances are you're drowning in metrics - sleep scores, heart rate, temperature, pace, fueling, recovery. But what does all this data actually mean, and how do you use it to debug the most complex production system of all: your body?
 This session takes years of tracking data collected while training for everything from half marathons to 10-milers to world major marathons and shows the patterns that emerged. Was the seemingly-easy run actually too hard? Did heat and humidity affect the outcome? Did the trail just suck? Was sleep the problem? Or was my love for craft beer finally catching up?
 By exploring the ways I converted data into information to show what made some runs suck and others click. I demonstrate the techniques you need to spot the signals in your own data.
@@ -255,8 +279,11 @@ This session is for anyone who generates a pile of data(fitness or otherwise) an
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Aaron Zamora is a Principal Technical Marketing Engineer at Cribl, specializing in bridging complex technical solutions with real-world customer needs. Based in New York, he brings a strong background in engineering and data platforms, combining deep technical expertise with a focus on clear communication and practical application.</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">

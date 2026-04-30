@@ -95,6 +95,16 @@
 	#home {
 		scroll-margin-top: 70px;
 	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 55%, white);
+		--brand-lighter: color-mix(in srgb, #713660 35%, white);
+		--brand-lightest: color-mix(in srgb, #713660 12%, white);
+		--brand-pale: color-mix(in srgb, #713660 8%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
 </style>
 
 
@@ -216,12 +226,25 @@
 <!-- CONTENT -->
 
 
+<style>
+  .talk-content .desc p,
+  .talk-content .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  .talk-content .desc {
+    padding-bottom: 0.25rem;
+  }
+</style>
+
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
     <h1 class="section-heading text-center mb-3">Keynote: Stranger Platforms: The Two Sides of Observability and Resiliency in Your IDP</h1>
     <div class="row">
 
-      <div class="col-6 col-lg-3 mb-4">
+      <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
           <img src="../speakers/Andreas Grabner.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
@@ -242,10 +265,11 @@
       </div><!--//col-->
 
       <div class="col-6 col-lg-9 mb-4">
-        <div class="card rounded-0">
+        <div class="card rounded-0 talk-content">
           <div class="card-body">
 
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Your Internal Developer Platform lives in two worlds.
 In the Right Side Up, developers rely on self‑service observability and resiliency to build, deploy, operate and debug their apps.
 In the Upside Down, the platform itself must be observable to ensure its reliability, performance, resiliency and to understand usage patterns and adoption.
@@ -256,10 +280,13 @@ In this talk you learn real-world OpenTelemetry-based best practices to observe 
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Andreas Grabner (@grabnerandi) has 25+ years of experience as a software developer, tester and architect and is an advocate for high-performing cloud scale applications. He is a CNCF ambassador, contributor to the CNCF project keptn, Co-Author of Platform Engineering for Architects and a Fellow DevRel for Dynatrace.
 Andreas is also a regular contributor to the DevOps, Platform Engineering and Cloud Native community and a frequent speaker at technology conferences.
 In his spare time you can most likely find him on one of the salsa dancefloors of the world!</p></p>
               </div>
+
+              
 
           </div><!--//card-->
           <div class="card-footer text-muted">
