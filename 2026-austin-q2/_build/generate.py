@@ -37,7 +37,8 @@ def generate_talk_url(talk):
 def read_csv(path):
     """ Read the pre-process the CSV """
     items = []
-    with open(path, 'r', encoding='utf-8-sig') as f:
+    with open(path, 'r', encoding='utf-8') as f:
+        # strip NUL bytes that some editors (e.g. Excel UTF-16 export) leave in
         reader = csv.DictReader(line.replace('\0', '') for line in f)
         for item in reader:
             item = dict(item)
@@ -53,7 +54,19 @@ file_loader = FileSystemLoader("_templates")
 env = Environment(loader=file_loader)
 env.add_extension(MarkdownExtension)
 env.filters["short_url"] = generate_short_url
-env.filters["markdown"] = lambda x: markdown.markdown(x)
+def _markdown_no_headers(text):
+    lines = text.split('\n')
+    cleaned = []
+    for line in lines:
+        stripped = line.lstrip()
+        if stripped.startswith('#'):
+            # convert "#### Heading" → "**Heading**"
+            heading_text = stripped.lstrip('#').strip()
+            cleaned.append('**%s**' % heading_text)
+        else:
+            cleaned.append(line)
+    return markdown.markdown('\n'.join(cleaned))
+env.filters["markdown"] = _markdown_no_headers
 def dedupe(items):
      present = set()
      output = []
@@ -69,7 +82,7 @@ env.filters["dedupe"] = dedupe
 print(DIVIDER)
 print("Loading context")
 talks_raw = read_csv("./_db/talks.csv")
-with open('metadata.yml') as f:
+with open('metadata.yml', encoding='utf-8') as f:
     context = yaml.load(f, Loader=yaml.FullLoader)
     BASE_FOLDER = "./" + context.get("base_folder")
 
@@ -82,6 +95,32 @@ for i, talk in enumerate(talks_raw):
     else:
         talk["photo_url"] = talk.get("avatar")
     talk["short_url"] = generate_talk_url(talk)
+    yt = (talk.get("YouTube") or "").strip()
+    if yt:
+        m = re.search(r'(?:youtu\.be/|youtube\.com/watch\?v=|youtube\.com/embed/)([\w-]+)', yt)
+        talk["youtube_embed_url"] = "https://www.youtube.com/embed/" + m.group(1) if m else ""
+    else:
+        talk["youtube_embed_url"] = ""
+    # smart line-breaking for speaker names on cards
+    # split on ", " and " & " keeping separators, one name per line
+    name = (talk.get("name") or "").strip()
+    MAX_SINGLE = 20  # if any part exceeds this, skip formatting
+    # split into tokens: [name, separator, name, separator, name, ...]
+    tokens = re.split(r'(,\s+|\s+&\s+)', name)
+    names = [tokens[k] for k in range(0, len(tokens), 2)]
+    seps = [tokens[k] for k in range(1, len(tokens), 2)]
+    if len(names) > 1 and all(len(n.strip()) <= MAX_SINGLE for n in names):
+        result = names[0]
+        for k, sep in enumerate(seps):
+            sep = sep.strip()
+            if sep == '&':
+                result += "<br>&amp; " + names[k + 1]
+            else:
+                # comma: put comma on current line, next name on new line
+                result += ",<br>" + names[k + 1]
+        talk["display_name"] = result
+    else:
+        talk["display_name"] = name
 
 # sort into talks and keynotes
 talks = [
@@ -152,6 +191,7 @@ for track in tracks:
         raw = talk.get("duration")
         talk["duration"] = int(raw) if raw is not None and raw != "" else DEFAULT_TALK_DURATION
         talk["start_time"] = current_time
+        talk["end_time"] = current_time + timedelta(minutes=talk["duration"])
         current_time += timedelta(minutes=talk["duration"])
 
 # synchronize break times across tracks
@@ -192,21 +232,8 @@ context["schedule_time_bracket"] = (
 for track in tracks:
     tracks[track] = [t for t in tracks[track] if not t.get("placeholder")]
 
-
 context["talks_by_tracks"] = tracks
 print("Loaded %d confirmed talks in %d tracks: %s" % (len(context["talks"]), len(tracks), tracks.keys()))
-
-# MAIN PAGES
-print(DIVIDER)
-pages = ["index.html"]
-print(f"Generating main pages: {pages}")
-for page in pages:
-    with open(BASE_FOLDER + "/" + page, "w", encoding="utf-8") as f:
-        print("Writing out", page)
-        template = env.get_template(page)
-        f.write(template.render(page=page, **context))
-        if page != "index.html":
-            SITEMAP_URLS.append((page.replace(".html",""), 0.75))
 
 # template each talk page for the event
 for talk in talks_raw:
@@ -215,7 +242,6 @@ for talk in talks_raw:
         template = env.get_template("talk.html")
         f.write(template.render(talk=talk, **context))
         SITEMAP_URLS.append((talk.get("short_url").replace(".html",""), 0.75))
-
 
 # ── SPONSORSHIP PAGE ─────────────────────────────────────────────────────────
 import os as _os
@@ -485,7 +511,7 @@ if _os.path.exists(_home_meta_path):
         with open(_he_meta_path, encoding='utf-8') as _hf2:
             _hem = yaml.load(_hf2, Loader=yaml.FullLoader)
         _loc = (_hem.get('location_string', '') + ' ' + _hem.get('city_name', '')).lower()
-        _flag = '\U0001f1fa\U0001f1f8'; _country_code = 'US'; _country = 'United States'
+        _flag = '🇺🇸'; _country_code = 'US'; _country = 'United States'
         for _kw, (_kf, _kc, _cn) in _flag_map.items():
             if _kw in _loc:
                 _flag = _kf; _country_code = _kc; _country = _cn
@@ -518,7 +544,7 @@ _timeline_events = _tl_past[-4:] + _tl_upcoming[:4]
 _amb_path = _os.path.join('..', 'home', '_db', 'ambassadors.csv')
 _total_ambassadors = len(read_csv(_amb_path)) if _os.path.exists(_amb_path) else 0
 
-# ── Per-city stats ────────────────────────────────────────────────────────────
+# ── Per-city stats (kept for backward compat) ────────────────────────────────
 _same_city = [
     f for f in _all_siblings
     if _city_slug in _os.path.basename(_os.path.normpath(f))
@@ -566,10 +592,25 @@ with open(BASE_FOLDER + '/sponsorship.html', 'w', encoding='utf-8') as _f:
         # sponsorship tiers
         sponsorship_tiers=_sponsorship_tiers,
         on_request_tiers=_on_request_tiers,
+        sister_brands=_sponsorship_config.get('sister_brands', []),
+        open_source_tools=_sponsorship_config.get('open_source_tools', []),
         **{**context, 'event_size': _event_size, 'sponsors': _confirmed_sponsors}
     ))
 print("Done: sponsorship.html")
 # ── END SPONSORSHIP PAGE ─────────────────────────────────────────────────────
+
+# MAIN PAGES (rendered after sponsorship so timeline_events is available)
+context["timeline_events"] = _timeline_events
+print(DIVIDER)
+pages = ["index.html"]
+print(f"Generating main pages: {pages}")
+for page in pages:
+    with open(BASE_FOLDER + "/" + page, "w", encoding="utf-8") as f:
+        print("Writing out", page)
+        template = env.get_template(page)
+        f.write(template.render(page=page, **context))
+        if page != "index.html":
+            SITEMAP_URLS.append((page.replace(".html",""), 0.75))
 
 # SITEMAP
 print(DIVIDER)
