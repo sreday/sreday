@@ -726,28 +726,6 @@ We’ll connect these patterns to lessons learned in other data-intensive system
             <div class="meta">
               <h4 class="time mb-3">11:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Sanjeev Sharma.png" alt=""></a>
-                <div class="name">Sanjeev Sharma</div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Keynote: 4-Body Problem: Building an Agentic OS for Autonomous SRE</a>
-              </h3>
-              <div class="location mb-3">StackGen</div>
-              <div class="desc schedule-abstract">The industry is currently racing to integrate AI agents into systems originally designed for human intervention, where reliability still hinges on "human glue"—tribal knowledge, outdated runbooks, and fragmented dashboards. This session posits that achieving trustworthy production autonomy requires a fundamental shift: a new operating layer for SRE. We will explore the concept of an Agentic OS grounded in four essential bodies of truth: code, infrastructure state, runtime signals, and operational knowledge. By moving beyond disconnected artifacts like Git repos, Terraform plans, and traces, we can create a live context graph that agents can query, update, and audit in real time.
-
-We will examine how an AI-native operations layer can be embedded directly into the delivery and runtime path. By continuously ingesting data from CI/CD pipelines, infrastructure drift, and SLO violations, this system produces durable decision traces rather than simple one-off automations. Grounded in real-world architectures and failure scenarios, this session focuses on the practical requirements for transitioning from manual scripts and alerts to truly trustworthy, autonomous SRE systems that provide a clear "why" behind every automated action.
-<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">11:30</h4>
-              <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
                 <div class="name"></div>
               </div>
@@ -762,16 +740,16 @@ We will examine how an AI-native operations layer can be embedded directly into 
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">12:00</h4>
+              <h4 class="time mb-3">11:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Jim Hirschauer.png" alt=""></a>
+                <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Jim Hirschauer.png" alt=""></a>
                 <div class="name">Jim Hirschauer</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">The Anatomy of a Bad Incident - Group Therapy</a>
+                <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">The Anatomy of a Bad Incident - Group Therapy</a>
               </h3>
               <div class="location mb-3">Xurrent</div>
               <div class="desc schedule-abstract">Every incident has the same bones: detection, declaration, assembly, diagnosis, resolution, postmortem. And every team bleeds in the same places.
@@ -780,7 +758,26 @@ This isn't a "presentation". It's a structured conversation. We'll walk through 
 
 No slides full of vendor claims. No theory. Just practitioners in a room being honest about what breaks, and what actually helps.
 
-Come ready to talk.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
+Come ready to talk.<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">12:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Michael Forrester.png" alt=""></a>
+                <div class="name">Michael Forrester</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">The Day an AI Agent Deleted My Cluster (And the Guardrails That Would Have Stopped It)</a>
+              </h3>
+              <div class="location mb-3">KodeKloud</div>
+              <div class="desc schedule-abstract">I gave Claude Code full Kubernetes cluster access and told it to fix a networking issue. It escalated through troubleshooting sessions, force-overrode etcd, and deleted netplan configurations across all control plane nodes. The cluster was gone. Forty minutes. No gate stopped it anywhere in the chain. This talk is the full incident: the actual command sequence, why the AI thought each escalation was reasonable, the moment I realized what was happening, and why the obvious fix (put a human back in the loop) is the wrong lesson. The whole point of AI agents in operations is autonomous speed. If you slow them down with manual approval on every action, you've just built an expensive autocomplete. The real question is: how do you let an agent operate fast inside a boundary it can't break out of? I spent the next six months answering that question. The result is an Eight Guardrails Framework enforced across multiple layers of the stack. I'll show you what those layers are, how they interact, where each one catches failures the others miss, and why the most important guardrail is the one most teams skip entirely. If your team is experimenting with AI agents in infrastructure, you're going to hit this wall. The question is whether you hit it in production or in this talk.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
               
             </div>
           </div>
@@ -789,33 +786,14 @@ Come ready to talk.<a class="schedule-abstract-read-more" href="#modal-speaker-3
             <div class="meta">
               <h4 class="time mb-3">12:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Michael Forrester.png" alt=""></a>
-                <div class="name">Michael Forrester</div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">The Day an AI Agent Deleted My Cluster (And the Guardrails That Would Have Stopped It)</a>
-              </h3>
-              <div class="location mb-3">KodeKloud</div>
-              <div class="desc schedule-abstract">I gave Claude Code full Kubernetes cluster access and told it to fix a networking issue. It escalated through troubleshooting sessions, force-overrode etcd, and deleted netplan configurations across all control plane nodes. The cluster was gone. Forty minutes. No gate stopped it anywhere in the chain. This talk is the full incident: the actual command sequence, why the AI thought each escalation was reasonable, the moment I realized what was happening, and why the obvious fix (put a human back in the loop) is the wrong lesson. The whole point of AI agents in operations is autonomous speed. If you slow them down with manual approval on every action, you've just built an expensive autocomplete. The real question is: how do you let an agent operate fast inside a boundary it can't break out of? I spent the next six months answering that question. The result is an Eight Guardrails Framework enforced across multiple layers of the stack. I'll show you what those layers are, how they interact, where each one catches failures the others miss, and why the most important guardrail is the one most teams skip entirely. If your team is experimenting with AI agents in infrastructure, you're going to hit this wall. The question is whether you hit it in production or in this talk.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">13:00</h4>
-              <div class="profile">
-                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Leila Anderson.png" alt=""></a>
+                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Leila Anderson.png" alt=""></a>
                 <div class="name">Leila Anderson</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Your On-Call System Is Making You Worse at Your Job</a>
+                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Your On-Call System Is Making You Worse at Your Job</a>
               </h3>
               <div class="location mb-3">Upheal</div>
               <div class="desc schedule-abstract">On-call exists to improve system reliability. But over time, many teams find the opposite happening: more pages, slower recovery, and engineers who are technically capable but increasingly reactive under pressure.
@@ -826,14 +804,14 @@ In this talk, I’ll introduce a pattern I call The On-Call Trap, a system dynam
 
 We’ll break down how this loop forms, why common fixes (more tooling, more alerts, more process) often make it worse, and what actually interrupts the cycle.
 
-You’ll leave with a mental model for recognizing when your team is entering this pattern, along with practical ways to restore capacity for proactive reliability work without sacrificing responsiveness.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+You’ll leave with a mental model for recognizing when your team is entering this pattern, along with practical ways to restore capacity for proactive reliability work without sacrificing responsiveness.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
               
             </div>
           </div>
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">13:30</h4>
+              <h4 class="time mb-3">13:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
                 <div class="name"></div>
@@ -843,6 +821,28 @@ You’ll leave with a mental model for recognizing when your team is entering th
               
               <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
               <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Sanjeev Sharma.png" alt=""></a>
+                <div class="name">Sanjeev Sharma</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Keynote: 4-Body Problem: Building an Agentic OS for Autonomous SRE</a>
+              </h3>
+              <div class="location mb-3">StackGen</div>
+              <div class="desc schedule-abstract">The industry is currently racing to integrate AI agents into systems originally designed for human intervention, where reliability still hinges on "human glue"—tribal knowledge, outdated runbooks, and fragmented dashboards. This session posits that achieving trustworthy production autonomy requires a fundamental shift: a new operating layer for SRE. We will explore the concept of an Agentic OS grounded in four essential bodies of truth: code, infrastructure state, runtime signals, and operational knowledge. By moving beyond disconnected artifacts like Git repos, Terraform plans, and traces, we can create a live context graph that agents can query, update, and audit in real time.
+
+We will examine how an AI-native operations layer can be embedded directly into the delivery and runtime path. By continuously ingesting data from CI/CD pipelines, infrastructure drift, and SLO violations, this system produces durable decision traces rather than simple one-off automations. Grounded in real-world architectures and failure scenarios, this session focuses on the practical requirements for transitioning from manual scripts and alerts to truly trustworthy, autonomous SRE systems that provide a clear "why" behind every automated action.
+<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
               
             </div>
           </div>
@@ -889,6 +889,22 @@ You’ll leave with a mental model for recognizing when your team is entering th
             <div class="meta">
               <h4 class="time mb-3">15:30</h4>
               <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:00</h4>
+              <div class="profile">
                 <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Aaron Hunter.png" alt=""></a>
                 <div class="name">Aaron Hunter</div>
               </div>
@@ -900,22 +916,6 @@ You’ll leave with a mental model for recognizing when your team is entering th
               </h3>
               <div class="location mb-3">AWS</div>
               <div class="desc schedule-abstract">My kids brought home spelling lists every week, but memorizing words wasn't improving their legibility or accuracy. So I built Bee Hunter... an app that uses computer vision to evaluate handwriting directly from a photo and provide real-time feedback. Building it meant applying the same reliability thinking used in production systems, but with a very different user base. When your users are in elementary school, you can't afford high latency or an outage. Here's what I learned designing for reliability when your error budget is a kid's attention span: * Why a spelling app taught me more about feedback loop latency than most production systems I've run * The observability patterns that helped me understand what was actually degrading the experience * What it looks like to define an SLO when your user can't file a ticket... they just quit * The edge cases I had to engineer around: varying lighting, backwards letters, kitchen table chaos I'll walk through the architecture decisions and the tradeoffs I made to keep it reliable under real-world conditions. You'll see what a reliability mindset looks like in practice... and how the lessons translate directly back to the systems you're running today. Sometimes the best reliability engineering happens outside the datacenter, with your kids by your side.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">16:00</h4>
-              <div class="profile">
-                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"></div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
-              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
               
             </div>
           </div>
@@ -1166,27 +1166,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
 
 
           <tr>
-            <td class="time-cell">11:00</td>
-            <td class="talk-cell" colspan="1">
-
-              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Keynote: 4-Body Problem: Building an Agentic OS for Autonomous SRE</a>
-              <div class="speaker-info">Sanjeev Sharma <span class="affiliation">• StackGen</span></div>
-
-            </td>
-          </tr>
-
-
-
-
-
-
-
-
-
-
-
-          <tr>
-            <td class="time-cell merged-cell">11:30</td>
+            <td class="time-cell merged-cell">11:00</td>
             <td class="talk-cell merged-cell" colspan="1">
 
               Coffee break
@@ -1205,11 +1185,31 @@ Attendees will leave with a new way to reason about failure propagation and a fe
 
 
           <tr>
+            <td class="time-cell">11:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">The Anatomy of a Bad Incident - Group Therapy</a>
+              <div class="speaker-info">Jim Hirschauer <span class="affiliation">• Xurrent</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
             <td class="time-cell">12:00</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">The Anatomy of a Bad Incident - Group Therapy</a>
-              <div class="speaker-info">Jim Hirschauer <span class="affiliation">• Xurrent</span></div>
+              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">The Day an AI Agent Deleted My Cluster (And the Guardrails That Would Have Stopped It)</a>
+              <div class="speaker-info">Michael Forrester <span class="affiliation">• KodeKloud</span></div>
 
             </td>
           </tr>
@@ -1228,27 +1228,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
             <td class="time-cell">12:30</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">The Day an AI Agent Deleted My Cluster (And the Guardrails That Would Have Stopped It)</a>
-              <div class="speaker-info">Michael Forrester <span class="affiliation">• KodeKloud</span></div>
-
-            </td>
-          </tr>
-
-
-
-
-
-
-
-
-
-
-
-          <tr>
-            <td class="time-cell">13:00</td>
-            <td class="talk-cell" colspan="1">
-
-              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Your On-Call System Is Making You Worse at Your Job</a>
+              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Your On-Call System Is Making You Worse at Your Job</a>
               <div class="speaker-info">Leila Anderson <span class="affiliation">• Upheal</span></div>
 
             </td>
@@ -1265,10 +1245,30 @@ Attendees will leave with a new way to reason about failure propagation and a fe
 
 
           <tr>
-            <td class="time-cell merged-cell">13:30</td>
+            <td class="time-cell merged-cell">13:00</td>
             <td class="talk-cell merged-cell" colspan="1">
 
               Lunch & networking
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">14:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Keynote: 4-Body Problem: Building an Agentic OS for Autonomous SRE</a>
+              <div class="speaker-info">Sanjeev Sharma <span class="affiliation">• StackGen</span></div>
 
             </td>
           </tr>
@@ -1324,11 +1324,10 @@ Attendees will leave with a new way to reason about failure propagation and a fe
 
 
           <tr>
-            <td class="time-cell">15:30</td>
-            <td class="talk-cell" colspan="1">
+            <td class="time-cell merged-cell">15:30</td>
+            <td class="talk-cell merged-cell" colspan="1">
 
-              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">My Kids Couldn't Spell "Because" So I Built an App That Couldn't Afford to Fail</a>
-              <div class="speaker-info">Aaron Hunter <span class="affiliation">• AWS</span></div>
+              Networking & sponsor crawl
 
             </td>
           </tr>
@@ -1344,10 +1343,11 @@ Attendees will leave with a new way to reason about failure propagation and a fe
 
 
           <tr>
-            <td class="time-cell merged-cell">16:00</td>
-            <td class="talk-cell merged-cell" colspan="1">
+            <td class="time-cell">16:00</td>
+            <td class="talk-cell" colspan="1">
 
-              Networking & sponsor crawl
+              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">My Kids Couldn't Spell "Because" So I Built an App That Couldn't Afford to Fail</a>
+              <div class="speaker-info">Aaron Hunter <span class="affiliation">• AWS</span></div>
 
             </td>
           </tr>
@@ -1577,7 +1577,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Jim Hirschauer.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Jim Hirschauer.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Jim Hirschauer</h5>
             <div class="card-text mb-3">
@@ -1603,7 +1603,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Leila Anderson.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Leila Anderson.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Leila Anderson</h5>
             <div class="card-text mb-3">
@@ -1655,7 +1655,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Michael Forrester.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Michael Forrester.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Michael Forrester</h5>
             <div class="card-text mb-3">
@@ -1707,7 +1707,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Sanjeev Sharma.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Sanjeev Sharma.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Sanjeev Sharma</h5>
             <div class="card-text mb-3">
@@ -1917,13 +1917,13 @@ Attendees will leave with a new way to reason about failure propagation and a fe
 </style>
 
 
-<!-- Modal Speaker 3 -->
-<div class="modal modal-speaker modal-speaker-3" id="modal-speaker-3" tabindex="-1" role="dialog" aria-labelledby="speaker-3-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 2 -->
+<div class="modal modal-speaker modal-speaker-2" id="modal-speaker-2" tabindex="-1" role="dialog" aria-labelledby="speaker-2-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 id="speaker-3-ModalLabel" class="modal-title sr-only"
+              <h4 id="speaker-2-ModalLabel" class="modal-title sr-only"
 >Jim Hirschauer</h4>
           </div>
           <div class="modal-body p-0">
@@ -1964,13 +1964,13 @@ Attendees will leave with a new way to reason about failure propagation and a fe
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 4 -->
-<div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 3 -->
+<div class="modal modal-speaker modal-speaker-3" id="modal-speaker-3" tabindex="-1" role="dialog" aria-labelledby="speaker-3-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 id="speaker-4-ModalLabel" class="modal-title sr-only"
+              <h4 id="speaker-3-ModalLabel" class="modal-title sr-only"
 >Michael Forrester</h4>
           </div>
           <div class="modal-body p-0">
@@ -2008,13 +2008,13 @@ Attendees will leave with a new way to reason about failure propagation and a fe
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 5 -->
-<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 4 -->
+<div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 id="speaker-5-ModalLabel" class="modal-title sr-only"
+              <h4 id="speaker-4-ModalLabel" class="modal-title sr-only"
 >Leila Anderson</h4>
           </div>
           <div class="modal-body p-0">
@@ -2051,6 +2051,51 @@ Attendees will leave with a new way to reason about failure propagation and a fe
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Leila Anderson studies failure in human systems.</p>
 <p>As a therapist and Clinical AI Prompt Engineer at Upheal, she works at the intersection of mental health, product design, and operational performance, with a focus on how high-performing individuals and teams break down under sustained pressure. Her work centers on identifying hidden feedback loops that drive reactivity, reduce adaptability, and quietly degrade reliability over time.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 5 -->
+<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-5-ModalLabel" class="modal-title sr-only"
+>Sanjeev Sharma</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Sanjeev Sharma.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Sanjeev Sharma</h2>
+                          <div class="meta mb-2">StackGen</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/realsanjeevsharma/ "><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>The industry is currently racing to integrate AI agents into systems originally designed for human intervention, where reliability still hinges on "human glue"—tribal knowledge, outdated runbooks, and fragmented dashboards. This session posits that achieving trustworthy production autonomy requires a fundamental shift: a new operating layer for SRE. We will explore the concept of an Agentic OS grounded in four essential bodies of truth: code, infrastructure state, runtime signals, and operational knowledge. By moving beyond disconnected artifacts like Git repos, Terraform plans, and traces, we can create a live context graph that agents can query, update, and audit in real time.</p>
+<p>We will examine how an AI-native operations layer can be embedded directly into the delivery and runtime path. By continuously ingesting data from CI/CD pipelines, infrastructure drift, and SLO violations, this system produces durable decision traces rather than simple one-off automations. Grounded in real-world architectures and failure scenarios, this session focuses on the practical requirements for transitioning from manual scripts and alerts to truly trustworthy, autonomous SRE systems that provide a clear "why" behind every automated action.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Sanjeev brings over 30 years of expertise in DevOps, SRE, Platform Engineering, and Cloud Architecture. As a pioneering leader at IBM, he became an IBM Distinguished Engineer and the company’s first Field CTO for DevOps. Most recently, Sanjeev served as Senior Vice President of Engineering and Developer Platforms at Dell Technologies, supporting more than 20,000 engineers worldwide. His prior leadership roles include SVP of Developer Platform at Truist Financial and Field CTO at Delphix. Sanjeev is also a noted author, having written the original edition of ‘DevOps For Dummies’ and the bestseller ‘The DevOps Adoption Playbook.’ He is an active voice in the industry through his blog on AI, DevOps, SRE, Cloud, and Data Modernization at http://sdarchitect.blog. Sanjeev is based in Virginia with his wife who is a school teacher, his son who works as an IT consultant, and daughter who is a college freshman. He is passionate about science fiction books and movies, travel, and astrophotography.</p></p>
               </div>
           </div><!--//modal-body-->
       </div><!--//modal-content-->
@@ -2459,51 +2504,6 @@ Attendees will leave with a new way to reason about failure propagation and a fe
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Eric is Chief Architect at Imply and a driving force behind Imply Lumi, an Observability Warehouse. His work focuses on keeping more data searchable at a lower cost while accelerating investigations with no workflow disruptions. Eric is one of the original authors of the open source Apache Druid® project. Eric's expertise spans his roles as a Fellow at Splunk, Distinguished Engineer at Yahoo Inc, member of the founding team at Tidepool, among other roles.</p></p>
-              </div>
-          </div><!--//modal-body-->
-      </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
-
-<!-- Modal Speaker 2 -->
-<div class="modal modal-speaker modal-speaker-2" id="modal-speaker-2" tabindex="-1" role="dialog" aria-labelledby="speaker-2-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 id="speaker-2-ModalLabel" class="modal-title sr-only"
->Sanjeev Sharma</h4>
-          </div>
-          <div class="modal-body p-0">
-              <div class="theme-bg-light p-5">
-                  <div class="row">
-                      <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Sanjeev Sharma.png" alt="" />
-                      </div>
-
-                      <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Sanjeev Sharma</h2>
-                          <div class="meta mb-2">StackGen</div>
-                          <ul class="social-list list-inline mb-0">
-                            
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/realsanjeevsharma/ "><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            
-                            
-                          </ul><!--//social-list-->
-                      </div><!--//col-->
-                  </div><!--//row-->
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>The industry is currently racing to integrate AI agents into systems originally designed for human intervention, where reliability still hinges on "human glue"—tribal knowledge, outdated runbooks, and fragmented dashboards. This session posits that achieving trustworthy production autonomy requires a fundamental shift: a new operating layer for SRE. We will explore the concept of an Agentic OS grounded in four essential bodies of truth: code, infrastructure state, runtime signals, and operational knowledge. By moving beyond disconnected artifacts like Git repos, Terraform plans, and traces, we can create a live context graph that agents can query, update, and audit in real time.</p>
-<p>We will examine how an AI-native operations layer can be embedded directly into the delivery and runtime path. By continuously ingesting data from CI/CD pipelines, infrastructure drift, and SLO violations, this system produces durable decision traces rather than simple one-off automations. Grounded in real-world architectures and failure scenarios, this session focuses on the practical requirements for transitioning from manual scripts and alerts to truly trustworthy, autonomous SRE systems that provide a clear "why" behind every automated action.</p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Sanjeev brings over 30 years of expertise in DevOps, SRE, Platform Engineering, and Cloud Architecture. As a pioneering leader at IBM, he became an IBM Distinguished Engineer and the company’s first Field CTO for DevOps. Most recently, Sanjeev served as Senior Vice President of Engineering and Developer Platforms at Dell Technologies, supporting more than 20,000 engineers worldwide. His prior leadership roles include SVP of Developer Platform at Truist Financial and Field CTO at Delphix. Sanjeev is also a noted author, having written the original edition of ‘DevOps For Dummies’ and the bestseller ‘The DevOps Adoption Playbook.’ He is an active voice in the industry through his blog on AI, DevOps, SRE, Cloud, and Data Modernization at http://sdarchitect.blog. Sanjeev is based in Virginia with his wife who is a school teacher, his son who works as an IT consultant, and daughter who is a college freshman. He is passionate about science fiction books and movies, travel, and astrophotography.</p></p>
               </div>
           </div><!--//modal-body-->
       </div><!--//modal-content-->
