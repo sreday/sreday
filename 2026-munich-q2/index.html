@@ -2453,18 +2453,19 @@ We'll also cover how LLM calls made cost invisible (and how a small in-cluster u
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
-  .modal-speaker .btn-close {
-    background-color: var(--brand);
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
-    opacity: 1;
+  .modal-speaker .modal-close-btn {
+    background: var(--brand);
+    color: #fff;
     border: none;
     border-radius: 4px;
-    padding: 0.75rem;
-    transition: background-color 0.2s ease;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0.25rem 0.6rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
   }
-  .modal-speaker .btn-close:hover {
-    background-color: var(--brand-light);
-    opacity: 1;
+  .modal-speaker .modal-close-btn:hover {
+    background: var(--brand-light);
   }
   .modal-speaker .talk-title-bar {
     background: var(--brand);
@@ -2481,7 +2482,7 @@ We'll also cover how LLM calls made cost invisible (and how a small in-cluster u
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-4-ModalLabel" class="modal-title sr-only"
 >Joshua Fox</h4>
           </div>
@@ -2526,7 +2527,7 @@ We'll also cover how LLM calls made cost invisible (and how a small in-cluster u
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-5-ModalLabel" class="modal-title sr-only"
 >Laysa Uchoa</h4>
           </div>
@@ -2574,7 +2575,7 @@ You will leave with the mental model that turns RAG from guesswork into engineer
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-6-ModalLabel" class="modal-title sr-only"
 >Stefan Lenz & Michele Dodic</h4>
           </div>
@@ -2620,7 +2621,7 @@ You will leave with the mental model that turns RAG from guesswork into engineer
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-7-ModalLabel" class="modal-title sr-only"
 >Josh Lee</h4>
           </div>
@@ -2665,7 +2666,7 @@ You will leave with the mental model that turns RAG from guesswork into engineer
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-8-ModalLabel" class="modal-title sr-only"
 >Andrea Valenti</h4>
           </div>
@@ -2710,7 +2711,7 @@ You will leave with the mental model that turns RAG from guesswork into engineer
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-9-ModalLabel" class="modal-title sr-only"
 >Simon Mayer</h4>
           </div>
@@ -2757,7 +2758,7 @@ We will also touch on what owning the complete stack means for SRE teams: from o
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-10-ModalLabel" class="modal-title sr-only"
 >Marcel Koert</h4>
           </div>
@@ -2802,7 +2803,7 @@ We will also touch on what owning the complete stack means for SRE teams: from o
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-11-ModalLabel" class="modal-title sr-only"
 >Boris Zaikin</h4>
           </div>
@@ -2847,7 +2848,7 @@ We will also touch on what owning the complete stack means for SRE teams: from o
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-12-ModalLabel" class="modal-title sr-only"
 >Thijs Feryn</h4>
           </div>
@@ -2892,7 +2893,7 @@ We will also touch on what owning the complete stack means for SRE teams: from o
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-13-ModalLabel" class="modal-title sr-only"
 >Julius Volz</h4>
           </div>
@@ -2937,7 +2938,7 @@ We will also touch on what owning the complete stack means for SRE teams: from o
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-14-ModalLabel" class="modal-title sr-only"
 >Arnaud Jean</h4>
           </div>
@@ -2985,7 +2986,7 @@ Whether you're a role-playing game fan or not, there will be things to learn dur
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-15-ModalLabel" class="modal-title sr-only"
 >Renato Losio</h4>
           </div>
@@ -3030,7 +3031,7 @@ Whether you're a role-playing game fan or not, there will be things to learn dur
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-16-ModalLabel" class="modal-title sr-only"
 >Dmytro Patserkovskyi</h4>
           </div>
@@ -3075,7 +3076,7 @@ Whether you're a role-playing game fan or not, there will be things to learn dur
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-17-ModalLabel" class="modal-title sr-only"
 >Vasil Kulakov</h4>
           </div>
@@ -3122,7 +3123,7 @@ We'll also cover how LLM calls made cost invisible (and how a small in-cluster u
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-0-ModalLabel" class="modal-title sr-only"
 >Benjamin Hofmann</h4>
           </div>
@@ -3171,7 +3172,7 @@ We'll also cover how LLM calls made cost invisible (and how a small in-cluster u
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-1-ModalLabel" class="modal-title sr-only"
 >Michael Harrer</h4>
           </div>
@@ -3219,7 +3220,7 @@ We'll also cover how LLM calls made cost invisible (and how a small in-cluster u
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-2-ModalLabel" class="modal-title sr-only"
 >Kyle Hoondert</h4>
           </div>
@@ -3266,7 +3267,7 @@ We'll also cover how LLM calls made cost invisible (and how a small in-cluster u
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-3-ModalLabel" class="modal-title sr-only"
 >Birol Yildiz</h4>
           </div>

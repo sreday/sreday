@@ -2828,18 +2828,19 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
-  .modal-speaker .btn-close {
-    background-color: var(--brand);
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
-    opacity: 1;
+  .modal-speaker .modal-close-btn {
+    background: var(--brand);
+    color: #fff;
     border: none;
     border-radius: 4px;
-    padding: 0.75rem;
-    transition: background-color 0.2s ease;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0.25rem 0.6rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
   }
-  .modal-speaker .btn-close:hover {
-    background-color: var(--brand-light);
-    opacity: 1;
+  .modal-speaker .modal-close-btn:hover {
+    background: var(--brand-light);
   }
   .modal-speaker .talk-title-bar {
     background: var(--brand);
@@ -2856,7 +2857,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-1-ModalLabel" class="modal-title sr-only"
 >Rod Anami</h4>
           </div>
@@ -2901,7 +2902,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-2-ModalLabel" class="modal-title sr-only"
 >Danne Aguiar</h4>
           </div>
@@ -2946,7 +2947,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-3-ModalLabel" class="modal-title sr-only"
 >Tiago Dias Generoso</h4>
           </div>
@@ -2994,7 +2995,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-4-ModalLabel" class="modal-title sr-only"
 >Joao Fernando Helena Filho & Gabriel Leite</h4>
           </div>
@@ -3041,7 +3042,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-5-ModalLabel" class="modal-title sr-only"
 >Douglas Bussoli Mugnos</h4>
           </div>
@@ -3086,7 +3087,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-6-ModalLabel" class="modal-title sr-only"
 >Miguel Di Ciurcio Filho</h4>
           </div>
@@ -3138,7 +3139,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-7-ModalLabel" class="modal-title sr-only"
 >Igor Eulalio Morgado Lopes</h4>
           </div>
@@ -3183,7 +3184,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-8-ModalLabel" class="modal-title sr-only"
 >Bruno Paiuca</h4>
           </div>
@@ -3230,7 +3231,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-9-ModalLabel" class="modal-title sr-only"
 >Gustavo Martins T Borges</h4>
           </div>
@@ -3275,7 +3276,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-10-ModalLabel" class="modal-title sr-only"
 >Rodrigo Candido Leme</h4>
           </div>
@@ -3320,7 +3321,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-11-ModalLabel" class="modal-title sr-only"
 >Levi Leopoldino Alves</h4>
           </div>
@@ -3389,7 +3390,7 @@ Chamada para ação</p>
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-12-ModalLabel" class="modal-title sr-only"
 >Alexandre Melo Ferreira</h4>
           </div>
@@ -3434,7 +3435,7 @@ Chamada para ação</p>
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-13-ModalLabel" class="modal-title sr-only"
 >Luiz Siqueira & Leonardo Marques</h4>
           </div>
@@ -3491,7 +3492,7 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-14-ModalLabel" class="modal-title sr-only"
 >Alexandre Tavares</h4>
           </div>
@@ -3540,7 +3541,7 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-15-ModalLabel" class="modal-title sr-only"
 >Andre Bonfa & Pedro Alex da Costa</h4>
           </div>
@@ -3585,7 +3586,7 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-16-ModalLabel" class="modal-title sr-only"
 >Anderson Dorigao, Willian Yamashita & Mateus Rodrigues</h4>
           </div>
@@ -3632,7 +3633,7 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-17-ModalLabel" class="modal-title sr-only"
 >Ademar Gregio Junior & Ramon Maia</h4>
           </div>
@@ -3677,7 +3678,7 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-18-ModalLabel" class="modal-title sr-only"
 >Felipe de Freitas Campos</h4>
           </div>
@@ -3722,7 +3723,7 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-19-ModalLabel" class="modal-title sr-only"
 >Emerson Silva</h4>
           </div>
@@ -3768,7 +3769,7 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-20-ModalLabel" class="modal-title sr-only"
 >Alan Delcaro</h4>
           </div>
@@ -3818,7 +3819,7 @@ Estratégias de confiabilidade e resiliência digital</p></p>
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-21-ModalLabel" class="modal-title sr-only"
 >Amaury Borges Souza</h4>
           </div>
@@ -3863,7 +3864,7 @@ Estratégias de confiabilidade e resiliência digital</p></p>
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-22-ModalLabel" class="modal-title sr-only"
 >Marcelo da Silva Pires</h4>
           </div>
@@ -3908,7 +3909,7 @@ Estratégias de confiabilidade e resiliência digital</p></p>
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-0-ModalLabel" class="modal-title sr-only"
 >Andre Murbach Maidl</h4>
           </div>

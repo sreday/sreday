@@ -3260,18 +3260,19 @@ This talk is aimed at practicing SREs and platform engineers looking for practic
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
-  .modal-speaker .btn-close {
-    background-color: var(--brand);
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
-    opacity: 1;
+  .modal-speaker .modal-close-btn {
+    background: var(--brand);
+    color: #fff;
     border: none;
     border-radius: 4px;
-    padding: 0.75rem;
-    transition: background-color 0.2s ease;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0.25rem 0.6rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
   }
-  .modal-speaker .btn-close:hover {
-    background-color: var(--brand-light);
-    opacity: 1;
+  .modal-speaker .modal-close-btn:hover {
+    background: var(--brand-light);
   }
   .modal-speaker .talk-title-bar {
     background: var(--brand);
@@ -3288,7 +3289,7 @@ This talk is aimed at practicing SREs and platform engineers looking for practic
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-3-ModalLabel" class="modal-title sr-only"
 >AJ Mejorado</h4>
           </div>
@@ -3335,7 +3336,7 @@ This talk is aimed at practicing SREs and platform engineers looking for practic
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-4-ModalLabel" class="modal-title sr-only"
 >Leon Adato</h4>
           </div>
@@ -3386,7 +3387,7 @@ Then, about 25 years ago, I got involved with monitoring. I've worked with a wid
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-5-ModalLabel" class="modal-title sr-only"
 >Khanh Nguyen</h4>
           </div>
@@ -3434,7 +3435,7 @@ This session is for SREs who are already crossing the boundary whether they mean
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-6-ModalLabel" class="modal-title sr-only"
 >Akriti Bhat & Krishna Madhuri Kompella</h4>
           </div>
@@ -3482,7 +3483,7 @@ These systems transform capacity planning from a reactive process into a proacti
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-7-ModalLabel" class="modal-title sr-only"
 >Roxane Fischer</h4>
           </div>
@@ -3527,7 +3528,7 @@ These systems transform capacity planning from a reactive process into a proacti
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-8-ModalLabel" class="modal-title sr-only"
 >Aimen Moten</h4>
           </div>
@@ -3590,7 +3591,7 @@ industry.</p></p>
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-9-ModalLabel" class="modal-title sr-only"
 >Geoff White</h4>
           </div>
@@ -3635,7 +3636,7 @@ industry.</p></p>
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-10-ModalLabel" class="modal-title sr-only"
 >Anastasiia Biloshytska</h4>
           </div>
@@ -3681,7 +3682,7 @@ LLMs are hitting production fast, and most teams aren't ready. In this talk, we'
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-11-ModalLabel" class="modal-title sr-only"
 >Amitkumar Rathi</h4>
           </div>
@@ -3728,7 +3729,7 @@ LLMs are hitting production fast, and most teams aren't ready. In this talk, we'
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-12-ModalLabel" class="modal-title sr-only"
 >Lakmal Warusawithana</h4>
           </div>
@@ -3781,7 +3782,7 @@ The session includes a live demo covering:
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-13-ModalLabel" class="modal-title sr-only"
 >Lior Mechlovich</h4>
           </div>
@@ -3826,7 +3827,7 @@ The session includes a live demo covering:
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-14-ModalLabel" class="modal-title sr-only"
 >Anjana Shree Sundar</h4>
           </div>
@@ -3875,7 +3876,7 @@ Anjana holds the AWS Certified Solutions Architect – Professional (valid throu
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-15-ModalLabel" class="modal-title sr-only"
 >Michael Jiang</h4>
           </div>
@@ -3922,7 +3923,7 @@ This is not a theoretical exploration. The architecture was validated in product
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-16-ModalLabel" class="modal-title sr-only"
 >Shri Lakshmi Rajagopal</h4>
           </div>
@@ -3967,7 +3968,7 @@ This is not a theoretical exploration. The architecture was validated in product
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-17-ModalLabel" class="modal-title sr-only"
 >Priya Ranjan Sahoo</h4>
           </div>
@@ -4012,7 +4013,7 @@ This is not a theoretical exploration. The architecture was validated in product
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-18-ModalLabel" class="modal-title sr-only"
 >YuZhao Zhang & Allen-Michael Grobelny</h4>
           </div>
@@ -4058,7 +4059,7 @@ This is not a theoretical exploration. The architecture was validated in product
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-19-ModalLabel" class="modal-title sr-only"
 >YuZhao Zhang & Allen-Michael Grobelny</h4>
           </div>
@@ -4104,7 +4105,7 @@ This is not a theoretical exploration. The architecture was validated in product
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-20-ModalLabel" class="modal-title sr-only"
 >James Duffy</h4>
           </div>
@@ -4149,7 +4150,7 @@ This is not a theoretical exploration. The architecture was validated in product
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-21-ModalLabel" class="modal-title sr-only"
 >Grant Griffiths</h4>
           </div>
@@ -4197,7 +4198,7 @@ In this talk, we'll examine how agentic AI systems apply context engineering to 
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-22-ModalLabel" class="modal-title sr-only"
 >Nishkarsh Raj</h4>
           </div>
@@ -4242,7 +4243,7 @@ In this talk, we'll examine how agentic AI systems apply context engineering to 
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-23-ModalLabel" class="modal-title sr-only"
 >Akshay Pratinav & Sahil Sabharwal</h4>
           </div>
@@ -4289,7 +4290,7 @@ Prior to Intuit, I worked at Nutanix, where I helped build the in-house private 
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-24-ModalLabel" class="modal-title sr-only"
 >Sangharsh Agarwal</h4>
           </div>
@@ -4334,7 +4335,7 @@ Prior to Intuit, I worked at Nutanix, where I helped build the in-house private 
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-25-ModalLabel" class="modal-title sr-only"
 >Charit Upadhyay</h4>
           </div>
@@ -4381,7 +4382,7 @@ This talk is aimed at practicing SREs and platform engineers looking for practic
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-26-ModalLabel" class="modal-title sr-only"
 >Nitish Mane</h4>
           </div>
@@ -4426,7 +4427,7 @@ This talk is aimed at practicing SREs and platform engineers looking for practic
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-27-ModalLabel" class="modal-title sr-only"
 >Shubham Srivastava</h4>
           </div>
@@ -4471,7 +4472,7 @@ This talk is aimed at practicing SREs and platform engineers looking for practic
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-28-ModalLabel" class="modal-title sr-only"
 >Saurav Goel</h4>
           </div>
@@ -4516,7 +4517,7 @@ This talk is aimed at practicing SREs and platform engineers looking for practic
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-0-ModalLabel" class="modal-title sr-only"
 >Matt Schillerstrom</h4>
           </div>
@@ -4564,7 +4565,7 @@ This session is a practical story of what it actually takes to own reliability. 
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-1-ModalLabel" class="modal-title sr-only"
 >Gian Merlino</h4>
           </div>
@@ -4612,7 +4613,7 @@ This session is a practical story of what it actually takes to own reliability. 
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <h4 id="speaker-2-ModalLabel" class="modal-title sr-only"
 >Bennett Gould</h4>
           </div>
