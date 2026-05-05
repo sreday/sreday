@@ -2090,18 +2090,28 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
     font-size: 0.95rem;
   }
   .modal-speaker .modal-close-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 1;
     background: var(--brand);
     color: #fff;
     border: none;
     border-radius: 4px;
-    font-size: 1.5rem;
+    font-size: 3rem;
     line-height: 1;
-    padding: 0.25rem 0.6rem;
+    padding: 0.25rem 0.75rem;
     cursor: pointer;
     transition: background 0.2s ease;
   }
   .modal-speaker .modal-close-btn:hover {
     background: var(--brand-light);
+  }
+  .modal-speaker .modal-header {
+    display: none;
+  }
+  .modal-speaker .modal-body {
+    position: relative;
   }
   .modal-speaker .talk-title-bar {
     background: var(--brand);
@@ -2121,12 +2131,8 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
 <div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-7-ModalLabel" class="modal-title sr-only"
->Yasmin Dunsky & Avner Yaacov</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -2168,12 +2174,8 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
 <div class="modal modal-speaker modal-speaker-8" id="modal-speaker-8" tabindex="-1" role="dialog" aria-labelledby="speaker-8-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-8-ModalLabel" class="modal-title sr-only"
->Mandi Walls</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -2215,12 +2217,8 @@ The Post-Incident Review is a story. Maybe it’s a bit of a mystery, maybe it�
 <div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-9-ModalLabel" class="modal-title sr-only"
->Jason Schechner</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -2263,12 +2261,8 @@ The Post-Incident Review is a story. Maybe it’s a bit of a mystery, maybe it�
 <div class="modal modal-speaker modal-speaker-10" id="modal-speaker-10" tabindex="-1" role="dialog" aria-labelledby="speaker-10-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-10-ModalLabel" class="modal-title sr-only"
->Maria Garcia Garcia & Lucia Lopez Barrero</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -2310,12 +2304,8 @@ The Post-Incident Review is a story. Maybe it’s a bit of a mystery, maybe it�
 <div class="modal modal-speaker modal-speaker-11" id="modal-speaker-11" tabindex="-1" role="dialog" aria-labelledby="speaker-11-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-11-ModalLabel" class="modal-title sr-only"
->Bryan Patton</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -2357,12 +2347,8 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
 <div class="modal modal-speaker modal-speaker-12" id="modal-speaker-12" tabindex="-1" role="dialog" aria-labelledby="speaker-12-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-12-ModalLabel" class="modal-title sr-only"
->Adna Zujo Lakisic</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -2402,12 +2388,8 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
 <div class="modal modal-speaker modal-speaker-13" id="modal-speaker-13" tabindex="-1" role="dialog" aria-labelledby="speaker-13-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-13-ModalLabel" class="modal-title sr-only"
->Leon Adato</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -2450,12 +2432,8 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
 <div class="modal modal-speaker modal-speaker-14" id="modal-speaker-14" tabindex="-1" role="dialog" aria-labelledby="speaker-14-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-14-ModalLabel" class="modal-title sr-only"
->Marcos Novelli Harispe</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -2495,12 +2473,8 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
 <div class="modal modal-speaker modal-speaker-0" id="modal-speaker-0" tabindex="-1" role="dialog" aria-labelledby="speaker-0-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-0-ModalLabel" class="modal-title sr-only"
->Dewan Ahmed</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -2542,12 +2516,8 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
 <div class="modal modal-speaker modal-speaker-1" id="modal-speaker-1" tabindex="-1" role="dialog" aria-labelledby="speaker-1-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-1-ModalLabel" class="modal-title sr-only"
->Birol Yildiz</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -2587,12 +2557,8 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
 <div class="modal modal-speaker modal-speaker-2" id="modal-speaker-2" tabindex="-1" role="dialog" aria-labelledby="speaker-2-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-2-ModalLabel" class="modal-title sr-only"
->Ben Hopp</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -2635,12 +2601,8 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
 <div class="modal modal-speaker modal-speaker-3" id="modal-speaker-3" tabindex="-1" role="dialog" aria-labelledby="speaker-3-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-3-ModalLabel" class="modal-title sr-only"
->AJ Mejorado</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -2682,12 +2644,8 @@ This session is about shifting CVE response left, shrinking the attack surface, 
 <div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-4-ModalLabel" class="modal-title sr-only"
->Michael Levan</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -2727,12 +2685,8 @@ This session is about shifting CVE response left, shrinking the attack surface, 
 <div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-5-ModalLabel" class="modal-title sr-only"
->Endre Sara</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -2774,12 +2728,8 @@ This session is about shifting CVE response left, shrinking the attack surface, 
 <div class="modal modal-speaker modal-speaker-6" id="modal-speaker-6" tabindex="-1" role="dialog" aria-labelledby="speaker-6-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-6-ModalLabel" class="modal-title sr-only"
->Francois Martel</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">

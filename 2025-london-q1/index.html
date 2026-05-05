@@ -5513,18 +5513,28 @@ I’ll take you behind the scenes — from early challenges and unexpected break
     font-size: 0.95rem;
   }
   .modal-speaker .modal-close-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 1;
     background: var(--brand);
     color: #fff;
     border: none;
     border-radius: 4px;
-    font-size: 1.5rem;
+    font-size: 3rem;
     line-height: 1;
-    padding: 0.25rem 0.6rem;
+    padding: 0.25rem 0.75rem;
     cursor: pointer;
     transition: background 0.2s ease;
   }
   .modal-speaker .modal-close-btn:hover {
     background: var(--brand-light);
+  }
+  .modal-speaker .modal-header {
+    display: none;
+  }
+  .modal-speaker .modal-body {
+    position: relative;
   }
   .modal-speaker .talk-title-bar {
     background: var(--brand);
@@ -5544,12 +5554,8 @@ I’ll take you behind the scenes — from early challenges and unexpected break
 <div class="modal modal-speaker modal-speaker-1" id="modal-speaker-1" tabindex="-1" role="dialog" aria-labelledby="speaker-1-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-1-ModalLabel" class="modal-title sr-only"
->Laura Thomson & Vladislav Nedosekin</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5590,12 +5596,8 @@ I’ll take you behind the scenes — from early challenges and unexpected break
 <div class="modal modal-speaker modal-speaker-2" id="modal-speaker-2" tabindex="-1" role="dialog" aria-labelledby="speaker-2-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-2-ModalLabel" class="modal-title sr-only"
->Simon Copsey</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5638,12 +5640,8 @@ I’ll take you behind the scenes — from early challenges and unexpected break
 <div class="modal modal-speaker modal-speaker-3" id="modal-speaker-3" tabindex="-1" role="dialog" aria-labelledby="speaker-3-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-3-ModalLabel" class="modal-title sr-only"
->Michael Cote</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5685,12 +5683,8 @@ I’ll take you behind the scenes — from early challenges and unexpected break
 <div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-4-ModalLabel" class="modal-title sr-only"
->Yan Cui</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5732,12 +5726,8 @@ Yan is an <a href="https://aws.amazon.com/developer/community/heroes/yan-cui/">A
 <div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-5-ModalLabel" class="modal-title sr-only"
->Steve Wade</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5780,12 +5770,8 @@ Whether you're a software engineer, technical leader, or anyone working at the i
 <div class="modal modal-speaker modal-speaker-6" id="modal-speaker-6" tabindex="-1" role="dialog" aria-labelledby="speaker-6-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-6-ModalLabel" class="modal-title sr-only"
->Pawel Hajdan</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5844,12 +5830,8 @@ Whether you're a software engineer, technical leader, or anyone working at the i
 <div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-7-ModalLabel" class="modal-title sr-only"
->Igor Baliuk</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5891,12 +5873,8 @@ Whether you're a software engineer, technical leader, or anyone working at the i
 <div class="modal modal-speaker modal-speaker-8" id="modal-speaker-8" tabindex="-1" role="dialog" aria-labelledby="speaker-8-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-8-ModalLabel" class="modal-title sr-only"
->James Eastham</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5939,12 +5917,8 @@ Whether you're a software engineer, technical leader, or anyone working at the i
 <div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-9-ModalLabel" class="modal-title sr-only"
->Yishai Beeri</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5986,12 +5960,8 @@ In 2014 I joined the CTO office of a fast-moving cloud security startup, which l
 <div class="modal modal-speaker modal-speaker-10" id="modal-speaker-10" tabindex="-1" role="dialog" aria-labelledby="speaker-10-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-10-ModalLabel" class="modal-title sr-only"
->Diego Nieto</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6032,12 +6002,8 @@ In 2014 I joined the CTO office of a fast-moving cloud security startup, which l
 <div class="modal modal-speaker modal-speaker-11" id="modal-speaker-11" tabindex="-1" role="dialog" aria-labelledby="speaker-11-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-11-ModalLabel" class="modal-title sr-only"
->Vladimir Klevko</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6081,12 +6047,8 @@ enterprise systems and emerging technologies. Working in close collaboration wit
 <div class="modal modal-speaker modal-speaker-12" id="modal-speaker-12" tabindex="-1" role="dialog" aria-labelledby="speaker-12-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-12-ModalLabel" class="modal-title sr-only"
->Aivars Kalvans</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6126,12 +6088,8 @@ enterprise systems and emerging technologies. Working in close collaboration wit
 <div class="modal modal-speaker modal-speaker-13" id="modal-speaker-13" tabindex="-1" role="dialog" aria-labelledby="speaker-13-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-13-ModalLabel" class="modal-title sr-only"
->Elad Leev</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6171,12 +6129,8 @@ enterprise systems and emerging technologies. Working in close collaboration wit
 <div class="modal modal-speaker modal-speaker-14" id="modal-speaker-14" tabindex="-1" role="dialog" aria-labelledby="speaker-14-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-14-ModalLabel" class="modal-title sr-only"
->Casey Wylie</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6216,12 +6170,8 @@ enterprise systems and emerging technologies. Working in close collaboration wit
 <div class="modal modal-speaker modal-speaker-15" id="modal-speaker-15" tabindex="-1" role="dialog" aria-labelledby="speaker-15-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-15-ModalLabel" class="modal-title sr-only"
->Hrittik Roy</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6261,12 +6211,8 @@ enterprise systems and emerging technologies. Working in close collaboration wit
 <div class="modal modal-speaker modal-speaker-16" id="modal-speaker-16" tabindex="-1" role="dialog" aria-labelledby="speaker-16-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-16-ModalLabel" class="modal-title sr-only"
->Mateusz Solnica</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6306,12 +6252,8 @@ enterprise systems and emerging technologies. Working in close collaboration wit
 <div class="modal modal-speaker modal-speaker-17" id="modal-speaker-17" tabindex="-1" role="dialog" aria-labelledby="speaker-17-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-17-ModalLabel" class="modal-title sr-only"
->Ilya Andreev</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6351,12 +6293,8 @@ enterprise systems and emerging technologies. Working in close collaboration wit
 <div class="modal modal-speaker modal-speaker-18" id="modal-speaker-18" tabindex="-1" role="dialog" aria-labelledby="speaker-18-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-18-ModalLabel" class="modal-title sr-only"
->Max Golionko</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6399,12 +6337,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-19" id="modal-speaker-19" tabindex="-1" role="dialog" aria-labelledby="speaker-19-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-19-ModalLabel" class="modal-title sr-only"
->Mark Faiers</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6444,12 +6378,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-20" id="modal-speaker-20" tabindex="-1" role="dialog" aria-labelledby="speaker-20-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-20-ModalLabel" class="modal-title sr-only"
->Rotem Tamir</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6490,12 +6420,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-21" id="modal-speaker-21" tabindex="-1" role="dialog" aria-labelledby="speaker-21-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-21-ModalLabel" class="modal-title sr-only"
->Tomasz Czajka, Ciaran Gaffney & Pascal Schlumpf</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6545,12 +6471,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-22" id="modal-speaker-22" tabindex="-1" role="dialog" aria-labelledby="speaker-22-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-22-ModalLabel" class="modal-title sr-only"
->Joshua Fox</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6590,12 +6512,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-23" id="modal-speaker-23" tabindex="-1" role="dialog" aria-labelledby="speaker-23-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-23-ModalLabel" class="modal-title sr-only"
->Chris Phillips & Simon Kapadia</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6637,12 +6555,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-24" id="modal-speaker-24" tabindex="-1" role="dialog" aria-labelledby="speaker-24-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-24-ModalLabel" class="modal-title sr-only"
->Kristina Kondrashevich & Gang Luo</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6683,12 +6597,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-25" id="modal-speaker-25" tabindex="-1" role="dialog" aria-labelledby="speaker-25-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-25-ModalLabel" class="modal-title sr-only"
->Pedro Ivo Raimundo</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6733,12 +6643,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-26" id="modal-speaker-26" tabindex="-1" role="dialog" aria-labelledby="speaker-26-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-26-ModalLabel" class="modal-title sr-only"
->Jorge Lainfiesta</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6778,12 +6684,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-28" id="modal-speaker-28" tabindex="-1" role="dialog" aria-labelledby="speaker-28-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-28-ModalLabel" class="modal-title sr-only"
->Harry Kimpel</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6823,12 +6725,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-29" id="modal-speaker-29" tabindex="-1" role="dialog" aria-labelledby="speaker-29-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-29-ModalLabel" class="modal-title sr-only"
->Harry Kimpel</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6868,12 +6766,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-30" id="modal-speaker-30" tabindex="-1" role="dialog" aria-labelledby="speaker-30-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-30-ModalLabel" class="modal-title sr-only"
->Harry Kimpel</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6913,12 +6807,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-31" id="modal-speaker-31" tabindex="-1" role="dialog" aria-labelledby="speaker-31-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-31-ModalLabel" class="modal-title sr-only"
->Harry Kimpel</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6958,12 +6848,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-32" id="modal-speaker-32" tabindex="-1" role="dialog" aria-labelledby="speaker-32-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-32-ModalLabel" class="modal-title sr-only"
->Alina Astapovich & Markus Makela</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7004,12 +6890,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-33" id="modal-speaker-33" tabindex="-1" role="dialog" aria-labelledby="speaker-33-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-33-ModalLabel" class="modal-title sr-only"
->Nick Taylor</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7050,12 +6932,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-34" id="modal-speaker-34" tabindex="-1" role="dialog" aria-labelledby="speaker-34-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-34-ModalLabel" class="modal-title sr-only"
->Stuart Rimell</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7095,12 +6973,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-35" id="modal-speaker-35" tabindex="-1" role="dialog" aria-labelledby="speaker-35-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-35-ModalLabel" class="modal-title sr-only"
->Prerit Munjal</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7141,12 +7015,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-36" id="modal-speaker-36" tabindex="-1" role="dialog" aria-labelledby="speaker-36-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-36-ModalLabel" class="modal-title sr-only"
->Alon Nisser</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7186,12 +7056,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-37" id="modal-speaker-37" tabindex="-1" role="dialog" aria-labelledby="speaker-37-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-37-ModalLabel" class="modal-title sr-only"
->Piotr Zaniewski</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7231,12 +7097,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-38" id="modal-speaker-38" tabindex="-1" role="dialog" aria-labelledby="speaker-38-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-38-ModalLabel" class="modal-title sr-only"
->Rob Charlwood</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7281,12 +7143,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-39" id="modal-speaker-39" tabindex="-1" role="dialog" aria-labelledby="speaker-39-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-39-ModalLabel" class="modal-title sr-only"
->Panagiotis Moustafellos</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7329,12 +7187,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-40" id="modal-speaker-40" tabindex="-1" role="dialog" aria-labelledby="speaker-40-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-40-ModalLabel" class="modal-title sr-only"
->Pawel Skrzypek</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7377,12 +7231,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-41" id="modal-speaker-41" tabindex="-1" role="dialog" aria-labelledby="speaker-41-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-41-ModalLabel" class="modal-title sr-only"
->Jonathan Perry</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7424,12 +7274,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-42" id="modal-speaker-42" tabindex="-1" role="dialog" aria-labelledby="speaker-42-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-42-ModalLabel" class="modal-title sr-only"
->Marius Kimmina</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7469,12 +7315,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-43" id="modal-speaker-43" tabindex="-1" role="dialog" aria-labelledby="speaker-43-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-43-ModalLabel" class="modal-title sr-only"
->Rajith Muditha Attapattu</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7517,12 +7359,8 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 <div class="modal modal-speaker modal-speaker-44" id="modal-speaker-44" tabindex="-1" role="dialog" aria-labelledby="speaker-44-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-44-ModalLabel" class="modal-title sr-only"
->Mykhaylo Rykmas</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7571,12 +7409,8 @@ Key Takeaway</li>
 <div class="modal modal-speaker modal-speaker-45" id="modal-speaker-45" tabindex="-1" role="dialog" aria-labelledby="speaker-45-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-45-ModalLabel" class="modal-title sr-only"
->Siddharth Vijay</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7629,12 +7463,8 @@ Key Takeaway</li>
 <div class="modal modal-speaker modal-speaker-46" id="modal-speaker-46" tabindex="-1" role="dialog" aria-labelledby="speaker-46-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-46-ModalLabel" class="modal-title sr-only"
->Carly Richmond</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7676,12 +7506,8 @@ Key Takeaway</li>
 <div class="modal modal-speaker modal-speaker-47" id="modal-speaker-47" tabindex="-1" role="dialog" aria-labelledby="speaker-47-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-47-ModalLabel" class="modal-title sr-only"
->Martin McLarnon</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7721,12 +7547,8 @@ Key Takeaway</li>
 <div class="modal modal-speaker modal-speaker-48" id="modal-speaker-48" tabindex="-1" role="dialog" aria-labelledby="speaker-48-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-48-ModalLabel" class="modal-title sr-only"
->Eric D. Schabell & Graziano Casto</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7768,12 +7590,8 @@ Key Takeaway</li>
 <div class="modal modal-speaker modal-speaker-49" id="modal-speaker-49" tabindex="-1" role="dialog" aria-labelledby="speaker-49-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-49-ModalLabel" class="modal-title sr-only"
->Agnieszka Welian</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7813,12 +7631,8 @@ Key Takeaway</li>
 <div class="modal modal-speaker modal-speaker-50" id="modal-speaker-50" tabindex="-1" role="dialog" aria-labelledby="speaker-50-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-50-ModalLabel" class="modal-title sr-only"
->Daniel Afonso</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7858,12 +7672,8 @@ Key Takeaway</li>
 <div class="modal modal-speaker modal-speaker-51" id="modal-speaker-51" tabindex="-1" role="dialog" aria-labelledby="speaker-51-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-51-ModalLabel" class="modal-title sr-only"
->Denys Vasyliev</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7908,12 +7718,8 @@ Key Takeaway</li>
 <div class="modal modal-speaker modal-speaker-52" id="modal-speaker-52" tabindex="-1" role="dialog" aria-labelledby="speaker-52-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-52-ModalLabel" class="modal-title sr-only"
->Dmytri Kleiner</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7955,12 +7761,8 @@ Key Takeaway</li>
 <div class="modal modal-speaker modal-speaker-53" id="modal-speaker-53" tabindex="-1" role="dialog" aria-labelledby="speaker-53-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-53-ModalLabel" class="modal-title sr-only"
->Victor Onyenagubom</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -8011,12 +7813,8 @@ Key Takeaway</li>
 <div class="modal modal-speaker modal-speaker-54" id="modal-speaker-54" tabindex="-1" role="dialog" aria-labelledby="speaker-54-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-54-ModalLabel" class="modal-title sr-only"
->Yongkang HE</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -8061,12 +7859,8 @@ Key Takeaway</li>
 <div class="modal modal-speaker modal-speaker-0" id="modal-speaker-0" tabindex="-1" role="dialog" aria-labelledby="speaker-0-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-0-ModalLabel" class="modal-title sr-only"
->Miko Pawlikowski</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -8106,12 +7900,8 @@ Key Takeaway</li>
 <div class="modal modal-speaker modal-speaker-27" id="modal-speaker-27" tabindex="-1" role="dialog" aria-labelledby="speaker-27-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-27-ModalLabel" class="modal-title sr-only"
->Harry Kimpel</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">

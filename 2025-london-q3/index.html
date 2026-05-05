@@ -5091,18 +5091,28 @@ Key Takeaways:
     font-size: 0.95rem;
   }
   .modal-speaker .modal-close-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 1;
     background: var(--brand);
     color: #fff;
     border: none;
     border-radius: 4px;
-    font-size: 1.5rem;
+    font-size: 3rem;
     line-height: 1;
-    padding: 0.25rem 0.6rem;
+    padding: 0.25rem 0.75rem;
     cursor: pointer;
     transition: background 0.2s ease;
   }
   .modal-speaker .modal-close-btn:hover {
     background: var(--brand-light);
+  }
+  .modal-speaker .modal-header {
+    display: none;
+  }
+  .modal-speaker .modal-body {
+    position: relative;
   }
   .modal-speaker .talk-title-bar {
     background: var(--brand);
@@ -5122,12 +5132,8 @@ Key Takeaways:
 <div class="modal modal-speaker modal-speaker-3" id="modal-speaker-3" tabindex="-1" role="dialog" aria-labelledby="speaker-3-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-3-ModalLabel" class="modal-title sr-only"
->Kim-Norman Sahm</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5167,12 +5173,8 @@ Key Takeaways:
 <div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-4-ModalLabel" class="modal-title sr-only"
->Divine Odazie & Shivadeep Gundoju</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5223,12 +5225,8 @@ Towards the end of the talk, <strong>Divine</strong> will share how DBAs can evo
 <div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-5-ModalLabel" class="modal-title sr-only"
->Dominik Süß</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5269,12 +5267,8 @@ Now he is working as a Developer Experience Engineer at Grafana Labs, building t
 <div class="modal modal-speaker modal-speaker-6" id="modal-speaker-6" tabindex="-1" role="dialog" aria-labelledby="speaker-6-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-6-ModalLabel" class="modal-title sr-only"
->Dheeraj Bandaru & Francois Martel</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5317,12 +5311,8 @@ Now he is working as a Developer Experience Engineer at Grafana Labs, building t
 <div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-7-ModalLabel" class="modal-title sr-only"
->Rory Crispin</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5370,12 +5360,8 @@ Join us to see how treating observability as a data warehouse problem, powered b
 <div class="modal modal-speaker modal-speaker-8" id="modal-speaker-8" tabindex="-1" role="dialog" aria-labelledby="speaker-8-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-8-ModalLabel" class="modal-title sr-only"
->Sean Behan</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5415,12 +5401,8 @@ Join us to see how treating observability as a data warehouse problem, powered b
 <div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-9-ModalLabel" class="modal-title sr-only"
->Ayd Asraf</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5461,12 +5443,8 @@ Join us to see how treating observability as a data warehouse problem, powered b
 <div class="modal modal-speaker modal-speaker-10" id="modal-speaker-10" tabindex="-1" role="dialog" aria-labelledby="speaker-10-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-10-ModalLabel" class="modal-title sr-only"
->Scott Rosenberg</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5506,12 +5484,8 @@ Join us to see how treating observability as a data warehouse problem, powered b
 <div class="modal modal-speaker modal-speaker-11" id="modal-speaker-11" tabindex="-1" role="dialog" aria-labelledby="speaker-11-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-11-ModalLabel" class="modal-title sr-only"
->Simon Hanmer</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5554,12 +5528,8 @@ Simon is a member of the AWS Community builder program, and these days enjoys co
 <div class="modal modal-speaker modal-speaker-12" id="modal-speaker-12" tabindex="-1" role="dialog" aria-labelledby="speaker-12-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-12-ModalLabel" class="modal-title sr-only"
->Stratos Kourtzanidis</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5606,12 +5576,8 @@ By the end of this session, attendees will understand how to design, implement, 
 <div class="modal modal-speaker modal-speaker-13" id="modal-speaker-13" tabindex="-1" role="dialog" aria-labelledby="speaker-13-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-13-ModalLabel" class="modal-title sr-only"
->Marcus Tenorio</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5653,12 +5619,8 @@ He enjoys playing with obscure technologies and trying to be a chef in his spare
 <div class="modal modal-speaker modal-speaker-14" id="modal-speaker-14" tabindex="-1" role="dialog" aria-labelledby="speaker-14-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-14-ModalLabel" class="modal-title sr-only"
->Bharav Patel</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5698,12 +5660,8 @@ He enjoys playing with obscure technologies and trying to be a chef in his spare
 <div class="modal modal-speaker modal-speaker-15" id="modal-speaker-15" tabindex="-1" role="dialog" aria-labelledby="speaker-15-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-15-ModalLabel" class="modal-title sr-only"
->Prithvi Raj</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5744,12 +5702,8 @@ He enjoys playing with obscure technologies and trying to be a chef in his spare
 <div class="modal modal-speaker modal-speaker-16" id="modal-speaker-16" tabindex="-1" role="dialog" aria-labelledby="speaker-16-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-16-ModalLabel" class="modal-title sr-only"
->Ceyda Duzgec</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5790,12 +5744,8 @@ He enjoys playing with obscure technologies and trying to be a chef in his spare
 <div class="modal modal-speaker modal-speaker-17" id="modal-speaker-17" tabindex="-1" role="dialog" aria-labelledby="speaker-17-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-17-ModalLabel" class="modal-title sr-only"
->Cynthia Akiotu</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5852,12 +5802,8 @@ He enjoys playing with obscure technologies and trying to be a chef in his spare
 <div class="modal modal-speaker modal-speaker-18" id="modal-speaker-18" tabindex="-1" role="dialog" aria-labelledby="speaker-18-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-18-ModalLabel" class="modal-title sr-only"
->Diana Todea</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5897,12 +5843,8 @@ He enjoys playing with obscure technologies and trying to be a chef in his spare
 <div class="modal modal-speaker modal-speaker-19" id="modal-speaker-19" tabindex="-1" role="dialog" aria-labelledby="speaker-19-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-19-ModalLabel" class="modal-title sr-only"
->Amit Kushwaha</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5944,12 +5886,8 @@ Join Amit Kushwaha, Director of AI Engineering, SambaNova, as he breaks down for
 <div class="modal modal-speaker modal-speaker-20" id="modal-speaker-20" tabindex="-1" role="dialog" aria-labelledby="speaker-20-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-20-ModalLabel" class="modal-title sr-only"
->Dima Malyshenko</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -5990,12 +5928,8 @@ Join Amit Kushwaha, Director of AI Engineering, SambaNova, as he breaks down for
 <div class="modal modal-speaker modal-speaker-24" id="modal-speaker-24" tabindex="-1" role="dialog" aria-labelledby="speaker-24-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-24-ModalLabel" class="modal-title sr-only"
->Pooja Mistry</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6039,12 +5973,8 @@ Before joining Postman, Pooja held several impactful roles at IBM, including lea
 <div class="modal modal-speaker modal-speaker-25" id="modal-speaker-25" tabindex="-1" role="dialog" aria-labelledby="speaker-25-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-25-ModalLabel" class="modal-title sr-only"
->Carly Richmond</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6086,12 +6016,8 @@ Before joining Postman, Pooja held several impactful roles at IBM, including lea
 <div class="modal modal-speaker modal-speaker-26" id="modal-speaker-26" tabindex="-1" role="dialog" aria-labelledby="speaker-26-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-26-ModalLabel" class="modal-title sr-only"
->Michael Cote</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6131,12 +6057,8 @@ Before joining Postman, Pooja held several impactful roles at IBM, including lea
 <div class="modal modal-speaker modal-speaker-27" id="modal-speaker-27" tabindex="-1" role="dialog" aria-labelledby="speaker-27-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-27-ModalLabel" class="modal-title sr-only"
->Mitul Jain</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6181,12 +6103,8 @@ I often speak on topics including digital transformation, reliability engineerin
 <div class="modal modal-speaker modal-speaker-28" id="modal-speaker-28" tabindex="-1" role="dialog" aria-labelledby="speaker-28-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-28-ModalLabel" class="modal-title sr-only"
->Ashish Upadhyay</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6226,12 +6144,8 @@ I often speak on topics including digital transformation, reliability engineerin
 <div class="modal modal-speaker modal-speaker-29" id="modal-speaker-29" tabindex="-1" role="dialog" aria-labelledby="speaker-29-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-29-ModalLabel" class="modal-title sr-only"
->Martin McLarnon</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6273,12 +6187,8 @@ I often speak on topics including digital transformation, reliability engineerin
 <div class="modal modal-speaker modal-speaker-30" id="modal-speaker-30" tabindex="-1" role="dialog" aria-labelledby="speaker-30-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-30-ModalLabel" class="modal-title sr-only"
->Roman Khavronenko</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6319,12 +6229,8 @@ I often speak on topics including digital transformation, reliability engineerin
 <div class="modal modal-speaker modal-speaker-31" id="modal-speaker-31" tabindex="-1" role="dialog" aria-labelledby="speaker-31-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-31-ModalLabel" class="modal-title sr-only"
->Joris Bonnefoy</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6368,12 +6274,8 @@ I often speak on topics including digital transformation, reliability engineerin
 <div class="modal modal-speaker modal-speaker-32" id="modal-speaker-32" tabindex="-1" role="dialog" aria-labelledby="speaker-32-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-32-ModalLabel" class="modal-title sr-only"
->Mayank Goyal</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6413,12 +6315,8 @@ I often speak on topics including digital transformation, reliability engineerin
 <div class="modal modal-speaker modal-speaker-33" id="modal-speaker-33" tabindex="-1" role="dialog" aria-labelledby="speaker-33-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-33-ModalLabel" class="modal-title sr-only"
->Jamie Pullinger</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6459,12 +6357,8 @@ I often speak on topics including digital transformation, reliability engineerin
 <div class="modal modal-speaker modal-speaker-34" id="modal-speaker-34" tabindex="-1" role="dialog" aria-labelledby="speaker-34-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-34-ModalLabel" class="modal-title sr-only"
->Stephan Mousset</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6510,12 +6404,8 @@ His talks focus on practical, platform-enabled approaches to making reliability 
 <div class="modal modal-speaker modal-speaker-35" id="modal-speaker-35" tabindex="-1" role="dialog" aria-labelledby="speaker-35-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-35-ModalLabel" class="modal-title sr-only"
->Alecia Cotterell</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6555,12 +6445,8 @@ His talks focus on practical, platform-enabled approaches to making reliability 
 <div class="modal modal-speaker modal-speaker-36" id="modal-speaker-36" tabindex="-1" role="dialog" aria-labelledby="speaker-36-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-36-ModalLabel" class="modal-title sr-only"
->Stuart Clark</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6619,12 +6505,8 @@ You'll leave with actionable insights for designing systems and tooling that sca
 <div class="modal modal-speaker modal-speaker-37" id="modal-speaker-37" tabindex="-1" role="dialog" aria-labelledby="speaker-37-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-37-ModalLabel" class="modal-title sr-only"
->Harel Safra</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6672,12 +6554,8 @@ You'll leave with actionable insights for designing systems and tooling that sca
 <div class="modal modal-speaker modal-speaker-38" id="modal-speaker-38" tabindex="-1" role="dialog" aria-labelledby="speaker-38-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-38-ModalLabel" class="modal-title sr-only"
->Federico Fregosi</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6719,12 +6597,8 @@ You'll leave with actionable insights for designing systems and tooling that sca
 <div class="modal modal-speaker modal-speaker-39" id="modal-speaker-39" tabindex="-1" role="dialog" aria-labelledby="speaker-39-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-39-ModalLabel" class="modal-title sr-only"
->Dale McDiarmid</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6764,12 +6638,8 @@ You'll leave with actionable insights for designing systems and tooling that sca
 <div class="modal modal-speaker modal-speaker-40" id="modal-speaker-40" tabindex="-1" role="dialog" aria-labelledby="speaker-40-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-40-ModalLabel" class="modal-title sr-only"
->Josh Lee</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6809,12 +6679,8 @@ You'll leave with actionable insights for designing systems and tooling that sca
 <div class="modal modal-speaker modal-speaker-41" id="modal-speaker-41" tabindex="-1" role="dialog" aria-labelledby="speaker-41-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-41-ModalLabel" class="modal-title sr-only"
->Marie Cruz</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6857,12 +6723,8 @@ This session requires no prior experience, just curiosity and a love of learning
 <div class="modal modal-speaker modal-speaker-42" id="modal-speaker-42" tabindex="-1" role="dialog" aria-labelledby="speaker-42-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-42-ModalLabel" class="modal-title sr-only"
->Dave McAllister</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6903,12 +6765,8 @@ Dave was named as one of the top ten pioneers in open source by Computer Busines
 <div class="modal modal-speaker modal-speaker-43" id="modal-speaker-43" tabindex="-1" role="dialog" aria-labelledby="speaker-43-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-43-ModalLabel" class="modal-title sr-only"
->Frederic G. Marand</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -6956,12 +6814,8 @@ Also, playing bass guitar with lots of distortion when I get the chance.</p></p>
 <div class="modal modal-speaker modal-speaker-44" id="modal-speaker-44" tabindex="-1" role="dialog" aria-labelledby="speaker-44-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-44-ModalLabel" class="modal-title sr-only"
->Meletius Mgbeodichimma Igbokwe</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7001,12 +6855,8 @@ Also, playing bass guitar with lots of distortion when I get the chance.</p></p>
 <div class="modal modal-speaker modal-speaker-0" id="modal-speaker-0" tabindex="-1" role="dialog" aria-labelledby="speaker-0-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-0-ModalLabel" class="modal-title sr-only"
->Miko Pawlikowski</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7048,12 +6898,8 @@ Also, playing bass guitar with lots of distortion when I get the chance.</p></p>
 <div class="modal modal-speaker modal-speaker-1" id="modal-speaker-1" tabindex="-1" role="dialog" aria-labelledby="speaker-1-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-1-ModalLabel" class="modal-title sr-only"
->Peter Marshall</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7095,12 +6941,8 @@ You’ll learn why decoupled observability architecture is essential for cost co
 <div class="modal modal-speaker modal-speaker-2" id="modal-speaker-2" tabindex="-1" role="dialog" aria-labelledby="speaker-2-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-2-ModalLabel" class="modal-title sr-only"
->Andrei Pokhilko</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7140,12 +6982,8 @@ You’ll learn why decoupled observability architecture is essential for cost co
 <div class="modal modal-speaker modal-speaker-21" id="modal-speaker-21" tabindex="-1" role="dialog" aria-labelledby="speaker-21-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-21-ModalLabel" class="modal-title sr-only"
->Leena Mooneeram & Jorge Lainfiesta</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7189,12 +7027,8 @@ We’ll walk through how we structure these short-term embed missions, what’s 
 <div class="modal modal-speaker modal-speaker-22" id="modal-speaker-22" tabindex="-1" role="dialog" aria-labelledby="speaker-22-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-22-ModalLabel" class="modal-title sr-only"
->Kim-Norman Sahm</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
@@ -7234,12 +7068,8 @@ We’ll walk through how we structure these short-term embed missions, what’s 
 <div class="modal modal-speaker modal-speaker-23" id="modal-speaker-23" tabindex="-1" role="dialog" aria-labelledby="speaker-23-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <h4 id="speaker-23-ModalLabel" class="modal-title sr-only"
->Piotr Zaniewski</h4>
-          </div>
           <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
