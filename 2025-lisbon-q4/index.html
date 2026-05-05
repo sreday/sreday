@@ -1860,6 +1860,27 @@ This talk shows how to design and ship a runbook platform where steps can be cli
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
+  .modal-speaker .btn-close {
+    background: var(--brand);
+    color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .btn-close:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
 </style>
 
 
@@ -1891,6 +1912,7 @@ This talk shows how to design and ship a runbook platform where steps can be cli
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Increase observability, not costs: controlling telemetry data ingestion at scale</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>At Mollie, as teams grow and new projects are launched, we experienced firsthand how quickly observability costs can start to grow unsustainably. As a response to the limited support from our vendor, we developed a, Vector-powered, telemetry data ingestion solution to help manage ingestion at scale.</p></p>
@@ -1939,6 +1961,7 @@ He earned his PhD in Informatics Engineering from the University of Coimbra, wit
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Beyond 'Done': Strategies for Improving OpenTelemetry Instrumentation Quality</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Many teams stop improving OpenTelemetry once basic data is collected, but low-quality instrumentation limits observability. This talk shares practical strategies to enhance signal consistency, completeness, and correlation, plus methods for validating and maintaining quality over time. Learn how to move beyond “done” to build reliable, insightful OpenTelemetry instrumentation.</p></p>
@@ -1983,6 +2006,7 @@ He earned his PhD in Informatics Engineering from the University of Coimbra, wit
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">FinOps at Scale: Lessons from Scaling Kubernetes Workloads</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>As organizations scale their Kubernetes workloads, they often encounter a painful truth: without a solid FinOps strategy, cloud costs can spiral out of control. In this session, we'll explore real-world lessons from scaling Kubernetes environments, and how applying FinOps principles early can avoid firefighting later. You'll learn practical strategies for improving cost visibility, allocating expenses, optimizing resources, and creating a culture of financial accountability. Whether you're just starting with Kubernetes or managing it at scale, this talk will equip you with the tools to align technical growth with business outcomes—without blowing your cloud budget.</p></p>
@@ -2027,6 +2051,7 @@ He earned his PhD in Informatics Engineering from the University of Coimbra, wit
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">When Infrastructure as Code Becomes a Product: Lessons from the Trenches</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Over the past two years, I’ve been part of building and maintaining a platform where Infrastructure as Code isn’t just a tool — it is the product. Along this journey, we’ve faced a unique set of challenges that go far beyond writing Terraform modules or defining cloud resources.
@@ -2075,6 +2100,7 @@ Outside of work, Luis is committed to knowledge sharing. He has published severa
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Building End-to-End  Observability for AI Agents</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>AI Agents are non-deterministic, tool-using systems, so typical unit tests and quality monitoring frameworks are not up to the task. In this talk, I will share a practical, end-to-end framework for evaluating our AI agents at PagerDuty, both offline and online.</p></p>
@@ -2120,6 +2146,7 @@ Outside of work, Luis is committed to knowledge sharing. He has published severa
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Building an Actionable Runbook Platform</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p><strong>Actionable runbooks</strong> close the gap between <em>“what to do”</em> and <em>“doing it.”</em><br />
@@ -2188,6 +2215,7 @@ This talk shows how to design and ship a runbook platform where steps can be cli
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Modular Terraform, Unit Testing  IaC, and CI/CD</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Terraform modules are the backbone of modern infrastructures, but, unit testing even in small DevOps teams is a challenge. In this talk I would like to present multiple approaches to address this challenge by deploying ephemeral environments using CI/CD.</p></p>
@@ -2235,6 +2263,7 @@ This talk shows how to design and ship a runbook platform where steps can be cli
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">The Augmented SRE Leader: Steering Human-Machine Synergy in the Age of AIOps</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>SRE leaders must move beyond automation to lead augmented teams. They must leverage human-AI collaboration and champion explainable AI along with upskilling teams to master this new symbiosis, ensuring AI becomes a reliable partner. The future is human-machine collaboration.</p></p>
@@ -2281,6 +2310,7 @@ This talk shows how to design and ship a runbook platform where steps can be cli
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Get More Bang for Your Error Budget's Buck: 3 Ways to Extend Reliability Without Changing Your SLOs</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>As an SRE, you rarely get to choose the SLO. But you can influence how the error budget is spent by making smaller, more frequent releases, testing in creative ways and learning to effectively nudge leadership to have a higher change tolerance, you can extend the value of your error budget.</p></p>
@@ -2327,6 +2357,7 @@ This talk shows how to design and ship a runbook platform where steps can be cli
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: The Rise of AI-driven SRE</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>As modern software systems become increasingly complex, Site Reliability Engineering (SRE) teams face mounting operational challenges. Traditional methods—manual triage, rule-based alerts, fragmented dashboards—are no longer sufficient to manage the scale and dynamism of today's distributed architectures. In response, the "AI-driven SRE" paradigm is emerging: agentic systems that emulate expert diagnostic reasoning, integrate service knowledge, and maintain a continuous improvement loop across the incident management lifecycle. Unlike legacy automation or general-purpose AI solutions, these SRE agents are tailored for the investigative, causal-analysis workflows unique to SRE—incorporating telemetry, change history, service topology, and post-incident knowledge. In their most advanced form, they transition from advising to semi-autonomous or fully autonomous operation, triaging incidents, hypothesizing root causes, executing remediation actions, and learning from outcomes in production.</p>
@@ -2372,6 +2403,7 @@ This talk shows how to design and ship a runbook platform where steps can be cli
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: Management is a Hard Job. That’s Why You Should Do It Like an Engineer</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Management feels messy, but it’s just another complex system - full of incidents, dependencies, and feedback loops. In this talk, we will discuss how to apply engineering principles to leadership: observability, reliability, and iterative improvement for people instead of servers.</p></p>
@@ -2416,6 +2448,7 @@ This talk shows how to design and ship a runbook platform where steps can be cli
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: When Incidents Fix Themselves: AI SRE in action</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The next evolution of incident response isn’t faster alerts, it’s autonomous resolution. Join ilert CEO Birol Yildiz as he shows how AI SRE agents now diagnose and remediate outages without waking anyone up. Learn how these systems combine observability data, deployment context, and code intelligence to restore services in minutes and hand over clean incident reports instead of 3 a.m. pages.</p></p>

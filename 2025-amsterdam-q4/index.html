@@ -2784,6 +2784,27 @@ It will be a theoretical, high-level session for SRE and DevOps leaders who want
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
+  .modal-speaker .btn-close {
+    background: var(--brand);
+    color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .btn-close:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
 </style>
 
 
@@ -2815,6 +2836,7 @@ It will be a theoretical, high-level session for SRE and DevOps leaders who want
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">SRE at Scale: Keeping e‑Commerce Alive Across 20+ Countries</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>A deep dive into how we ensure reliability and availability in a complex distributed environment, with lessons learned from real-world incidents and rollouts.</p></p>
@@ -2859,6 +2881,7 @@ It will be a theoretical, high-level session for SRE and DevOps leaders who want
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Cutting Through Metrics Cardinality Noise with VictoriaMetrics</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In high-scale environments, metrics cardinality isn’t just a resource concern, it’s an architectural challenge. Left unchecked, it can impact performance, query latency, and even system stability. This talk takes a deep technical dive into how VictoriaMetrics enables advanced observability practices with a strong focus on cardinality management. I’ll explore how to design efficient and scalable scrape configurations using Prometheus-compatible jobs and exporters, optimize your label strategies, and use built-in cardinality analysis tools within VictoriaMetrics to identify and mitigate high-cardinality patterns early. The session also covers integration with Grafana open source for visualizing metrics in a way that supports signal clarity and operational response, as well as setting up practical alerting strategies that minimize noise while ensuring fast issue detection. By the end of the talk, the audience will understand the engineering trade-offs of high-cardinality metrics and how to detect them, how VictoriaMetrics handles storage and querying at scale, how to build resilient and low-overhead scrape configs with Prometheus compatibility and how to use Grafana open source to highlight cardinality hot spots and improve alert signal quality.</p></p>
@@ -2903,6 +2926,7 @@ It will be a theoretical, high-level session for SRE and DevOps leaders who want
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Your AI Code Reviews Are Missing the Point (And How to Fix It)</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Most AI code review implementations focus on the wrong metrics—counting comments generated or code accepted rather than measuring developer velocity and code quality improvements. The real value lies in intelligent context integration and organizational learning at scale.
@@ -2950,6 +2974,7 @@ This isn't about replacing human reviewers—it's about building an intelligent 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">How We Built ClickStack - an open source, open telemetry native Observability stack</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Modern observability is built on a flawed foundation: three siloed pillars - logs, metrics, and traces - each powered by different engines with separate query models, storage formats, and operational costs. Users are forced to manually correlate across systems, accept duplication, or pay high SaaS bills. But what if observability is just a data problem? One that needs a general-purpose solution instead of purpose-built compromises? This talk argues that true observability requires fast, high-cardinality queries over unsampled data at scale and at low cost. Traditional search and metrics engines were not designed for this, but column-oriented databases are. We introduce ClickStack, a fully open source, OpenTelemetry-native observability stack built around ClickHouse. It provides fast, flexible querying and efficient storage, enabling real-time visibility without compromise.</p></p>
@@ -2994,6 +3019,7 @@ This isn't about replacing human reviewers—it's about building an intelligent 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Platform Engineering and AI - Two Buzzwords Finally Meet!</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Two Buzzwords Finally Meet! How should we manage AI in large organizations? What are the "services" developers need to add AI to enterprise apps, and what role do platform engineers take? Where do data scientists fit in? How does MCP, A2A, and whatever the latest AI API is fit in? There are so many questions because the field of managing AI in enterprises barely exists. We need to figure it out quickly however, before we see a repeat of a past patterns, like shadow AI and unmanageable apps in production. Based on real-world examples, this talk will go over what we currently know about using platform engineering to help developers use AI.</p></p>
@@ -3038,6 +3064,7 @@ This isn't about replacing human reviewers—it's about building an intelligent 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">The USB-c for your Copilot: Securing MCP Servers with API Management</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The Model Context Protocol (MCP) has seen a meteoric rise to become the de-facto connecting mycelium for GenAI models and applications. In this session, we will explore the critical role of API management in securing MCP servers. Learn how to leverage API management as the "USB-c" connector for your Copilot, ensuring seamless and secure integration. We will cover best practices, real-world examples, and practical tips to enhance your server security and streamline operations. Join us to discover how API management can be the key to unlocking robust security for your MCP servers.</p></p>
@@ -3082,6 +3109,7 @@ This isn't about replacing human reviewers—it's about building an intelligent 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">From Incident Response to Preventive Mitigation: Leveraging CodeQL and LLMs at Scale</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>After recovering from incidents, we must ensure that effective mitigation measures are in place to prevent similar issues in the future.</p>
@@ -3131,6 +3159,7 @@ This isn't about replacing human reviewers—it's about building an intelligent 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Full Service Ownership & The Lifecycle of a Service</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Services are the backbone of our systems. They are the pieces that make up our businesses—whether they are literal microservices or functional components of a traditional application, we can’t do the computer thing without services.</p>
@@ -3177,6 +3206,7 @@ This isn't about replacing human reviewers—it's about building an intelligent 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">From Spot Ocean to Karpenter - One Year Later</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Over One year of operating Karpenter in production across multiple Kubernetes Clusters has taught us at adjoe many valuable lessons that we want to share in this talk. We will talk about how we handled the migration process, why we build a custom controller to handle broken nodes as well as how we have optimized our nodepools to avoid too frequent disruptions and much more</p></p>
@@ -3221,6 +3251,7 @@ This isn't about replacing human reviewers—it's about building an intelligent 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Secure your cloud automation</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>So you decided to automate tasks in your Azure cloud platform? Are you sure this automation is secured properly and not causing any more attack surfaces for malicious actors?</p>
@@ -3267,6 +3298,7 @@ This isn't about replacing human reviewers—it's about building an intelligent 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Observability tools don't suck, you just have too many</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Does your organization collect observability solutions like they're pokemon cards? You're not alone. This happens teams think it's easier to buy their own tool than share. In this talk, we'll cover both WHY it's bad, and WHAT you can do.</p></p>
@@ -3314,6 +3346,7 @@ This isn't about replacing human reviewers—it's about building an intelligent 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">From experimentation to continuous verification: how to benefit from the entire spectrum of Chaos Engineering</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Chaos Engineering is often misunderstood as simply “breaking things on purpose.” This talk challenges that perception and repositions Chaos Engineering as a critical pillar of reliability and resilience engineering. Rather than focusing on failure injection alone, we explore how to leverage existing knowledge, validate known truths, and foster confidence in complex systems.</p>
@@ -3362,6 +3395,7 @@ This isn't about replacing human reviewers—it's about building an intelligent 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">How to set SLOs, drive improvements, and make friends with business stakeholders</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>We, tech people, have internalized the concept of reliability so deeply that we don't need an explanation for why it's bad to have services failing in production. It doesn't matter what your software is doing — whether it controls train schedules, allows people to make money transfers, or serves funny pictures online.</p>
@@ -3410,6 +3444,7 @@ This isn't about replacing human reviewers—it's about building an intelligent 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">It’s Not the Tools - It’s Us: How Human Biases Undermine Reliability</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In the world of DevOps and SRE, we pride ourselves on automation, observability, and engineering excellence. But even the most sophisticated infrastructure can be derailed by something far more human: our own brains.</p>
@@ -3463,6 +3498,7 @@ Connect with Me: I am always eager to connect with fellow professionals, share i
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Nobody Ever Got Fired for Implementing Multi-AZ</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Using multiple Availability Zones (AZs) is often seen as essential for building resilient and highly available cloud systems. This is true, until it is not. While Multi-AZ is a proven architectural choice, there are important drawbacks to consider and common assumptions that don’t always hold up. There are also different ways to implement it, each with its own trade-offs.</p>
@@ -3508,6 +3544,7 @@ Connect with Me: I am always eager to connect with fellow professionals, share i
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Patterns and Practices for Building Resilient AWS Serverless Applications</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Lambda provides multi-AZ support out of the box, but even then, things can still go wrong in production.</p>
@@ -3557,6 +3594,7 @@ Connect with Me: I am always eager to connect with fellow professionals, share i
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Gain confidence in your code with mutation testing</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>One of the best ways to assess if code is resilient against bugs is to break it on purpose and see how it reacts.</p>
@@ -3606,6 +3644,7 @@ Connect with Me: I am always eager to connect with fellow professionals, share i
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Strategic Observability, How to Design the Right Stack for Your Organization.</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Designing your observability stack the right way requires clarity of purpose and organizational alignment. This session will introduce a strategic framework for setting your observability direction: defining goals, identifying data priorities, and choosing technologies that serve your reliability vision. We’ll explore maturity stages, integration strategies, and the cultural shifts needed to make observability a shared responsibility.</p>
@@ -3651,6 +3690,7 @@ Connect with Me: I am always eager to connect with fellow professionals, share i
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: The accountability problem</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>When everyone owns reliability, does anyone truly feel accountable? Lets explore why extreme ownership is the cornerstone of resilient systems.</p></p>
@@ -3695,6 +3735,7 @@ Connect with Me: I am always eager to connect with fellow professionals, share i
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: What Observability Can Learn From BI: Decoupling for Speed, Scale, and Flexibility</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Today’s observability platforms are often vertically integrated—binding data storage, query, and visualization layers into a single stack. This tight coupling drives up costs, makes integrations painful, and slows teams down. But it doesn’t have to be this way.
@@ -3741,6 +3782,7 @@ You’ll learn why decoupled observability architecture is essential for cost co
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Panel Discussion</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Discover the reliability tech stack and practices behind top European institutions.</p></p>

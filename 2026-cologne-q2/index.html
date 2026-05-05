@@ -666,6 +666,27 @@
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
+  .modal-speaker .btn-close {
+    background: var(--brand);
+    color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .btn-close:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
 </style>
 
 
@@ -697,6 +718,7 @@
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Accelerate, control & secure your CI/CD artifacts with Varnish & Varnish Orca</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Slow CI/CD pipelines delay builds, releases and deployments. A lot of time is wasted waiting for external dependencies like Docker images, Helm Charts, Linux packages, NPM packages, Maven packages, Go modules, Python libraries, and any other artifact that is required in the software development process. The registries that host these artifacts become a bottleneck. Besides performance and scalability concerns, organizations also struggle with cost, resilience and security risks when operating artifact registries. In this session, Thijs will show how to regain control over your software supply chain by caching your artifacts in Varnish and by using a Virtual Registry like Varnish Orca. Orca is a specially packaged version of Varnish that abstracts direct access to artifact registries. Orca accelerates access to artifacts by caching them as close to the consumers as possible, and uses its role as a “reverse caching HTTP proxy” to enforce security policies at request time, eliminate registry rate limits, protect pipelines against registry outages, and provide meaningful insights through an OTEL observability layer.</p></p>
@@ -741,6 +763,7 @@
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: When Incidents Fix Themselves: AI SRE in action</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The next evolution of incident response isn’t faster alerts, it’s autonomous resolution. Join ilert CEO Birol Yildiz as he shows how AI SRE agents now diagnose and remediate outages without waking anyone up. Learn how these systems combine observability data, deployment context, and code intelligence to restore services in minutes and hand over clean incident reports instead of 3 a.m. pages.</p></p>
@@ -785,6 +808,7 @@
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: Decoupling Observability for Incident Response at Scale</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>On-call incidents don’t fail because teams lack dashboards. They fail because observability systems slow down under real investigative load</p>

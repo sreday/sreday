@@ -2726,6 +2726,27 @@ In my talk, I will deep dive into the following :
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
+  .modal-speaker .btn-close {
+    background: var(--brand);
+    color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .btn-close:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
 </style>
 
 
@@ -2757,6 +2778,7 @@ In my talk, I will deep dive into the following :
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">The Hidden Cost of Telemetry at Scale</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>OpenTelemetry makes observability simple—add an agent and instantly see every service interaction. But this ease creates a hidden trap: teams instrument everything without considering the cost impact, leading to observability bills that consume 10-30% of infrastructure budgets. This talk exposes the real cost crisis behind modern telemetry data. We’ll examine actual cases where companies faced million-dollar annual monitoring bills, break down why high-cardinality metrics create exponential cost growth, and show proven techniques to cut expenses by 60-90% while maintaining full visibility. Through live demonstrations with real production scenarios, you’ll see how simple configuration mistakes create massive data volumes, then learn practical solutions: smart sampling that captures 100% of errors while reducing normal traffic by 95%, edge filtering that stops expensive data before it hits backends, and retention strategies that slash storage costs 60-80%. This isn’t about avoiding OpenTelemetry—it’s about using it smartly. You’ll gain actionable frameworks for cost-controlled implementation, team accountability models, and monitoring tools to prevent bill shock. Leave with battle-tested strategies from companies handling massive scale while controlling costs, plus a practical toolkit for cost-effective observability that finance teams will approve.</p></p>
@@ -2801,6 +2823,7 @@ In my talk, I will deep dive into the following :
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Cloud Cost Optimization: What, Why, & How</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><ul>
@@ -2857,6 +2880,7 @@ In my talk, I will deep dive into the following :
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">"The Rise of SRE AI Agents" - How AI Agents Are Redefining Reliability</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In an era of increasingly complex, distributed systems, Site Reliability Engineering (SRE) teams are perpetually navigating a deluge of operational data, often battling manual toil, fragmented tools, and the relentless pressure of incident response. The traditional approach, while critical, often leaves SREs in a reactive stance, hindering proactive innovation and true operational excellence.</p>
@@ -2902,6 +2926,7 @@ In my talk, I will deep dive into the following :
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Observability 3.0: Where Human-Driven SRE Meets AIOps</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Modern systems are too dynamic for dashboards alone and too business-critical to leave to black-box automation. This session reframes “observability 3.0” as a sociotechnical practice that fuses human-driven SRE with pragmatic AIOps. We’ll explore how rich telemetry (metrics, logs, traces, profiles, and user signals) plus topology and domain context evolves from passive visibility into an active decision system. On the human side, SREs define intent via SLOs, failure hypotheses, and reliability narratives and design for explainability, guardrails, and post-incident learning. On the AI side, we’ll discuss how correlation, anomaly detection, event deduplication, and LLM-powered triage can cut noise and accelerate root-cause discovery, while runbook automation and safe auto-remediation handle the boring, reversible fixes.</p>
@@ -2947,6 +2972,7 @@ In my talk, I will deep dive into the following :
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Mastering ECS at Scale: A Journey from Chaos to Control on 100% Spot Instances</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This is a story from the trenches of running one of India’s largest ECS fleets—serving millions of requests entirely on infrastructure that can disappear with just two minutes’ notice. We began with the “easy path” of a third-party managed solution, but as we scaled, it quickly became our biggest bottleneck and a massive cost center.  </p>
@@ -2999,6 +3025,7 @@ In my talk, I will deep dive into the following :
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Tracing under the hood: Inspecting Kubernetes cluster with Inspektor Gadget</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><ul>
@@ -3065,6 +3092,7 @@ In my talk, I will deep dive into the following :
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">AI Beyond the Chat: MCP for Kubernetes</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Conversational AI has captured widespread attention, but the true potential of AI lies well beyond chatbots and dialogue systems. As enterprises look to build intelligent, adaptive systems, the ability to provide real-time, contextual understanding becomes essential. This is where Model Context Providers (MCPs) come in — systems designed to dynamically supply AI models with the contextual signals they need to make relevant, timely, and intelligent decisions.</p>
@@ -3111,6 +3139,7 @@ In my talk, I will deep dive into the following :
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Kubernetes Under Siege: How Network Policies Defend Your Cluster</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This session is for SREs, DevOps engineers, and platform teams who want to strengthen Kubernetes security at the network layer. While cloud providers offer firewalls and service meshes, the last line of defense inside the cluster is Network Policies.</p>
@@ -3157,6 +3186,7 @@ In my talk, I will deep dive into the following :
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">NightsWatch - The AI Assisted OnCall Triaging</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>NightsWatch is a CLI tool for managing lengthy SOP into executable commands. It simplifies on call operations for production infra. For devs, it is extensible, enabling to add new commands as SOPs evolve.During oncall triaging, who really wants read huge SOPs &amp; run commands without a single mistake?</p></p>
@@ -3202,6 +3232,7 @@ In my talk, I will deep dive into the following :
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Enterprise Observability at Scale: Metrics, Traces, and Profiling with Coroot</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Monitoring and observability at enterprise scale is challenging — especially when dealing with 500 VMs and 3 Kubernetes clusters totaling 1,500 nodes. In this session, I’ll share how we implemented full-stack observability using Coroot agents, collecting metrics, logs, traces, and CPU/memory profiles out-of-the-box with minimal operational overhead.</p></p>
@@ -3249,6 +3280,7 @@ In my talk, I will deep dive into the following :
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Seeing the Unseen: Observability with OTel</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In modern applications, observability is essential. OpenTelemetry (OTel) has emerged as the standard for telemetry data, providing a unified way to collect, process, and export logs, metrics, and traces. Beyond data collection, organizations need effective ways to store, analyze, and visualize this telemetry to drive actionable insights.</p>
@@ -3295,6 +3327,7 @@ In my talk, I will deep dive into the following :
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">STAMPing Out Outages: Applying MIT's STAMP/ STPA to Resilience Engineering in SRE</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>```markdown
@@ -3358,6 +3391,7 @@ Why should SREs care about systems thinking applied in aviation safety engineeri
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Is Your AI Agent a Black Box? Here’s How to Open It</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Why can't you just use your old monitoring tools for your new AI systems? This session answers that question by introducing AI Observability. You'll learn how to use AIOps to move beyond guesswork and effectively manage your AI agents and infrastructure</p></p>
@@ -3402,6 +3436,7 @@ Why should SREs care about systems thinking applied in aviation safety engineeri
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Supercharging Performance Pipelines: JMeter Automation Meets GenAI Observation</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>I’ve engineered an AI-powered Continuous Performance Testing pipeline: JMeter unleashed in GitLab CI/CD, Python-driven baseline magic, and Google Gemini LLM delivering smart insights. Real-time, action-ready alerts hit Slack—be the first to squash regressions! This talk reveals every step</p></p>
@@ -3446,6 +3481,7 @@ Why should SREs care about systems thinking applied in aviation safety engineeri
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Take Control of Your Runners: Architecting a 10× Cheaper, High‐Performance CI/CD Orchestrator</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>What We’ll Cover</p>
@@ -3554,6 +3590,7 @@ The talk emphasizes <strong>GitHub Actions as a single platform for CI/CD</stron
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Taming the Chaos: Avoiding Kubernetes Landmines with Observability & AIOps</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Kubernetes promises portability and scalability, but in reality, most production outages happen due to avoidable mistakes. Security gaps, misconfigured health checks, poor scaling strategies—all can derail even experienced teams.</p>
@@ -3609,6 +3646,7 @@ The talk emphasizes <strong>GitHub Actions as a single platform for CI/CD</stron
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Automating SRE with AI Agents</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Imagine an AI Agent that detects production incidents from logs, finds a resolution runbook and resolves it autonomously. In this session, we’ll walk through the Strands Agents SDK and show how to create such an agent. We will use the RAG pattern to create a repository of Runbook knowledge. Then take it one step further by enabling the agent to call the tools so that the agent can resolve incidents autonomously. Increasing your peace of mind and accuracy, and reducing the MTTR at the same time. Walk away with actionable insights and a demo.</p></p>
@@ -3653,6 +3691,7 @@ The talk emphasizes <strong>GitHub Actions as a single platform for CI/CD</stron
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">The Blameless Blueprint: Forging a Resilient SRE Culture</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Let's be honest: "blameless culture" is easy to say, but hard to do. We've all been in those post-mortems where the air is thick with unsaid accusations and the search for a root cause feels more like a search for a scapegoat. What happens when good intentions clash with the messy reality of a production outage?</p>
@@ -3700,6 +3739,7 @@ The talk emphasizes <strong>GitHub Actions as a single platform for CI/CD</stron
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Unlocking Effortless Cloud Deployments: Workload Identity Federation in Action</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Managing secrets on the CI/CD pipelines is a constant challenge in cloud reliability. What if you could eliminate long-lived service account keys and still maintain seamless, secure deployments? My talk uncovers how Workload Identity Federation lets to securely connect with GitHub Actions workflows directly to Google Cloud Platform without compromising security or convenience.</p>
@@ -3752,6 +3792,7 @@ The talk emphasizes <strong>GitHub Actions as a single platform for CI/CD</stron
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">From Blind Spots to Brilliance: The Evolving Landscape of Observability</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Ever wonder how top teams keep complex systems running smoothly? This keynote will explore the current landscape of observability, moving beyond traditional pillars to embrace advanced techniques and holistic insights. We'll discuss how SRE teams are leveraging emerging technologies to navigate increasingly complex systems, transforming reactive firefighting into proactive engineering.</p></p>

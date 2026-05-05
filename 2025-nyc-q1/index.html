@@ -1795,6 +1795,27 @@ This talk will explore why and how Bloomberg's cloud-native infrastructure engin
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
+  .modal-speaker .btn-close {
+    background: var(--brand);
+    color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .btn-close:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
 </style>
 
 
@@ -1826,6 +1847,7 @@ This talk will explore why and how Bloomberg's cloud-native infrastructure engin
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Stateful Workloads Made Easy: A Practical Demo of Live Migration</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>At Cast AI, we’ve developed Container Live Migration to automatically consolidate these workloads, ensuring continuous uptime, reducing resource fragmentation, and cutting costs. Join us to see how we’re making Kubernetes work for stateful applications in a practical demo.</p></p>
@@ -1871,6 +1893,7 @@ This talk will explore why and how Bloomberg's cloud-native infrastructure engin
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Streamlining Telemetry Data: Building a Telemetry Pipeline to Handle High-Cardinality Metrics</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>All services emit telemetry data, but ensuring it is useful can be challenging. Too much, and you have a lot of noise; too little, and you can’t properly identify and troubleshoot issues. In 2023, it became clear to us at Mezmo that we had complex high cardinality metrics, needed to improve our observability practices, and consolidate our multiple Prometheus instances. We wanted that elusive “single pane of glass” experience.</p>
@@ -1922,6 +1945,7 @@ This talk will explore why and how Bloomberg's cloud-native infrastructure engin
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">The Evolution of GitOps to OperatorOps</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>We SREs and infrastructure engineers love GitOps. After all, what’s not to love about declarative infrastructure-as-code, a single source-of-truth, change tracking, and automated CI/CD pipelines that make the magic happen?</p>
@@ -1970,6 +1994,7 @@ This talk will explore why and how Bloomberg's cloud-native infrastructure engin
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Serverless Chaos Engineering: AWS FIS Lambda Actions Under the Hood</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Fancy a peek into how AWS FIS bring Chaos Engineering into AWS Lambda? As usage of serverless technology grows, chaos engineering for serverless becomes even more crucial for ensuring reliable and available applications. Join us as we demo new capabilities for testing AWS Lambda, and unpack how these new faults have been built and run under the hood. Finally, learn valuable lessons gleaned from our customers' experiences with modern serverless applications.</p></p>
@@ -2015,6 +2040,7 @@ This talk will explore why and how Bloomberg's cloud-native infrastructure engin
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Mastering the DevOps Machine Learning Pipeline for Unrivaled Innovation - A CEO's Perspective on Cool DevOps</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>From a CEO's perspective, integrating DevOps with machine learning pipelines is key to strategic advantage, driving innovation, market agility, and operational efficiency. This presentation underscores real-world successes and views DevOps as crucial for future business growth.</p></p>
@@ -2061,6 +2087,7 @@ This talk will explore why and how Bloomberg's cloud-native infrastructure engin
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Turbocharging AI/ML workloads: Revving Up Speed and Resilience</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Race cars are built for speed, but a challenging track can hold them back. Is the network slowing down your AI/ML jobs? Join me to learn how to boost speed and resilience by tackling link flapping and network congestion. Turbocharge your AI/ML workloads, just like a race car at top speed.</p></p>
@@ -2105,6 +2132,7 @@ This talk will explore why and how Bloomberg's cloud-native infrastructure engin
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Managing Databases in the Cloud in Broken</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In this talk, Matan Nataf, co-founder, and CEO of Rapydo, addresses the complexities of managing relational databases in the cloud era. Focusing on the challenges brought by microservices and multi-tenant architectures, he underscores the limitations of current tools in achieving scalability and performance. Nataf highlights the key pillars for modern database management: observability, resiliency, and cost-efficiency. He introduces Rapido's solutions that offer consolidated visibility and automated query management to mitigate database issues. Finally, a live demo showcases Rapido's capabilities in optimizing database performance and stability.</p></p>
@@ -2149,6 +2177,7 @@ This talk will explore why and how Bloomberg's cloud-native infrastructure engin
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Which vault? Don’t tell me your secrets!</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Join for an interesting talk on 'Secret Management'. We'll dive into the challenges of protecting sensitive data in dynamic, distributed environments. Learn about tools that offer secure, scalable, and reliable solutions. Don't miss this opportunity to enhance your DevOps practices!</p></p>
@@ -2195,6 +2224,7 @@ In 2012, he received the IT Industry-recognized title of Oracle ACE for bein</p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Panel Discussion: Smart Deployments: The Intersection of IoT & SRE</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This panel will examine the challenges, lessons learned, and best practices around deploying, testing, troubleshooting, observability, and developer experience for large-scale IoT systems. We’ll demystify IoT + SRE/DevOps and showcase real-world perspectives.</p></p>
@@ -2242,6 +2272,7 @@ In 2012, he received the IT Industry-recognized title of Oracle ACE for bein</p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Incident Mgmt: IT Ops and DevOps Collide</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Customer impacting incidents happen.  No team knows where the bodies are buried better than DevOps and for that reason they are often called on to play a key role.   When incident response is fragmented however, teams struggle to respond quickly and effectively. Once the immediate issue is resolved, gaps in visibility, accountability, and responsibility remain, leaving leaders and teams unsure of how to prevent future incidents or improve outcomes. This keynote will explore how these shortcomings emerge during and after an incident, and provide Dev leaders with practical guidance on bridging the gaps between DevOps, ITOps, ITSM, and ITIM. Learn how to break down silos, streamline the incident management process, and create a unified approach that drives efficiency, accountability, and better long-term results.</p></p>
@@ -2286,6 +2317,7 @@ In 2012, he received the IT Industry-recognized title of Oracle ACE for bein</p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Tackling Alert Fatigue with SLOs, Automation, and Machine Learning</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>SLOs allow teams to prioritize the more impactful or important aspects of their services. Metrics that center the user experience gives teams focus and goals. Highlighting the metrics that matter most gives teams space to disable alerts that contribute nothing to overall customer happiness.</p>
@@ -2332,6 +2364,7 @@ In 2012, he received the IT Industry-recognized title of Oracle ACE for bein</p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Redefining The Software Testing Pyramid with AI-powered test generation</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>How should AI based automated test generation make us rethink the software testing pyramid?</p>

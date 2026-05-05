@@ -1912,6 +1912,27 @@ Attendees will leave with a new way to reason about failure propagation and a fe
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
+  .modal-speaker .btn-close {
+    background: var(--brand);
+    color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .btn-close:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
 </style>
 
 
@@ -1943,6 +1964,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">The Anatomy of a Bad Incident - Group Therapy</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Every incident has the same bones: detection, declaration, assembly, diagnosis, resolution, postmortem. And every team bleeds in the same places.</p>
@@ -1990,6 +2012,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">The Day an AI Agent Deleted My Cluster (And the Guardrails That Would Have Stopped It)</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>I gave Claude Code full Kubernetes cluster access and told it to fix a networking issue. It escalated through troubleshooting sessions, force-overrode etcd, and deleted netplan configurations across all control plane nodes. The cluster was gone. Forty minutes. No gate stopped it anywhere in the chain. This talk is the full incident: the actual command sequence, why the AI thought each escalation was reasonable, the moment I realized what was happening, and why the obvious fix (put a human back in the loop) is the wrong lesson. The whole point of AI agents in operations is autonomous speed. If you slow them down with manual approval on every action, you've just built an expensive autocomplete. The real question is: how do you let an agent operate fast inside a boundary it can't break out of? I spent the next six months answering that question. The result is an Eight Guardrails Framework enforced across multiple layers of the stack. I'll show you what those layers are, how they interact, where each one catches failures the others miss, and why the most important guardrail is the one most teams skip entirely. If your team is experimenting with AI agents in infrastructure, you're going to hit this wall. The question is whether you hit it in production or in this talk.</p></p>
@@ -2034,6 +2057,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Your On-Call System Is Making You Worse at Your Job</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>On-call exists to improve system reliability. But over time, many teams find the opposite happening: more pages, slower recovery, and engineers who are technically capable but increasingly reactive under pressure.</p>
@@ -2083,6 +2107,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: 4-Body Problem: Building an Agentic OS for Autonomous SRE</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The industry is currently racing to integrate AI agents into systems originally designed for human intervention, where reliability still hinges on "human glue"—tribal knowledge, outdated runbooks, and fragmented dashboards. This session posits that achieving trustworthy production autonomy requires a fundamental shift: a new operating layer for SRE. We will explore the concept of an Agentic OS grounded in four essential bodies of truth: code, infrastructure state, runtime signals, and operational knowledge. By moving beyond disconnected artifacts like Git repos, Terraform plans, and traces, we can create a live context graph that agents can query, update, and audit in real time.</p>
@@ -2128,6 +2153,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Killing the Cloud Sandbox: Secure AI Agents on WebAssembly</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Are your AI agents generating untrusted code, forcing you to spin up slow, expensive Docker containers or microVMs just to safely execute it? Have you looked at your AWS compute bill and realized that scaling agentic coding loops in the cloud is financially unsustainable? At LILO, we bypassed the cloud tax entirely by building a zero-cost execution engine using WebAssembly. In this talk, we will pop the hood on this architecture, showing you how to push compute to the edge for microsecond cold starts, mathematically proven memory isolation, and a zero-dollar infrastructure bill.</p></p>
@@ -2172,6 +2198,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Optimizing the Software Development Process with Internal Developer Platform and Kusion</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>With the rapid evolution of information technology, particularly the integration of new technologies and systems with cloud computing, the software development process has advanced significantly. This integration has resulted in enhancements in software quality and performance. However, the continuous introduction of new technologies and tools means that software engineers must continually acquire new skills, leading to potential delays in product launches and impacting business revenue. In this talk, I will present the following issues: Introducing Kusion - first-ever open-source project which included in both the CNCF SandBox and the Platform Tooling Landscape: An intent-driven Platform Orchestrator, that sits at the core of an Internal Developer Platform (IDP). With Kusion you can enable app-centric development, your developers only need to write a single application specification. It helps app developers who are responsible for creating applications and the platform engineers responsible for maintaining the infrastructure the applications run on. Internal Developer Platform (IDP) building solution to optimize the software development process with Cloud Native/Platform tools and integrate with cloud resources of all cloud providers with Kusion (Platform Orchestrator).</p></p>
@@ -2216,6 +2243,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">My Kids Couldn't Spell "Because" So I Built an App That Couldn't Afford to Fail</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>My kids brought home spelling lists every week, but memorizing words wasn't improving their legibility or accuracy. So I built Bee Hunter... an app that uses computer vision to evaluate handwriting directly from a photo and provide real-time feedback. Building it meant applying the same reliability thinking used in production systems, but with a very different user base. When your users are in elementary school, you can't afford high latency or an outage. Here's what I learned designing for reliability when your error budget is a kid's attention span: * Why a spelling app taught me more about feedback loop latency than most production systems I've run * The observability patterns that helped me understand what was actually degrading the experience * What it looks like to define an SLO when your user can't file a ticket... they just quit * The edge cases I had to engineer around: varying lighting, backwards letters, kitchen table chaos I'll walk through the architecture decisions and the tradeoffs I made to keep it reliable under real-world conditions. You'll see what a reliability mindset looks like in practice... and how the lessons translate directly back to the systems you're running today. Sometimes the best reliability engineering happens outside the datacenter, with your kids by your side.</p></p>
@@ -2260,6 +2288,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Model Evaluations Are Not Smoke Tests</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Deterministic infrastructure testing and probabilistic models are incongruent, yet must be reconciled. Model evaluations are the answer to this question, yet do not behave as unit tests or smoke tests because they require a large body of data that represents the phenomena being modeled. To make systems reliable with unwieldy, ever-changing data distributions, product-scope evaluations of machine learning systems, beyond the individual models, are a must.</p></p>
@@ -2304,6 +2333,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Kaldb: A polystore for logs and traces</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Observability data isn't homogeneous. Security logs require needle-in-haystack searches with multi-year compliance retention. Kernel logs are uncompressible text. Structured logs enable fast aggregations, while semi-structured logs explode cardinality. Traces demand different access patterns entirely.</p>
@@ -2352,6 +2382,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Your Internal Developer Platform's Next Interface Is an AI Agent</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Platform engineers provide capabilities to internal developers, and they build interfaces to those capabilities that meet developers where they are already working, be it web portal, CLI, or API. But lately, "where developers are already working" is alongside their AI coding assistant. Developers want to be able to ask the platform natural language questions like "Why won't my application deploy?" and "What types of databases are available to me?," and receive helpful answers. Developers want their coding assistant to investigate the platform's underlying Kubernetes cluster, surface the problem, and then apply fixes or recommend capabilities. This session is a live demo of exactly that: an AI agent that a coding assistant can use to interface with an internal platform on the developer's behalf. It is built from scratch with LangGraph, a vector database, and OpenTelemetry instrumentation. It is available to the coding assistant via MCP and CLI interfaces. LangGraph handles the Kubernetes cluster investigation tools. Then the vector database makes the cluster's capabilities searchable by natural language query. Finally, the traces help platform engineers understand how developers are using the agent: every LLM call, every tool execution, every reasoning step visible in an observability backend. This talk will show you why custom AI agents are wildly useful as a platform interface, and how to start building one at your organization.</p></p>
@@ -2396,6 +2427,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">From confusion to clarity - Detecting Hidden Downstream failures</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Time to clarity is the real incident bottleneck, and hidden downstream failures are a major reason why."</p>
@@ -2443,6 +2475,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: 7 Deadly Traps of SRE</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Site Reliability Engineering was never meant to be about firefighting, yet too many teams find themselves stuck in an endless cycle of pages, postmortems, and quick fixes. Why? Because SRE is full of hidden traps — patterns that look like best practices on the surface but slowly erode reliability, burn out engineers, and stall progress.</p>
@@ -2489,6 +2522,7 @@ Attendees will leave with a new way to reason about failure propagation and a fe
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: Decoupling Observability for Incident Response at Scale</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>On-call incidents don’t fail because teams lack dashboards. They fail because observability systems slow down under real investigative load.</p>

@@ -2688,6 +2688,27 @@ We’ll cover all parts of the ML process, including development, hypertuning, d
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
+  .modal-speaker .btn-close {
+    background: var(--brand);
+    color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .btn-close:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
 </style>
 
 
@@ -2719,6 +2740,7 @@ We’ll cover all parts of the ML process, including development, hypertuning, d
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">I’ll Be Backoff: Benchmarking AI-Powered Platform Engineering Tools</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>AI is making its way into platform engineering—not just as a workload, but as a smart automation layer for how platforms are built, operated, and optimized. Promises of intelligent autoscaling, self-tuning systems, and AI-assisted remediation are everywhere. But how do these claims hold up in real-world Kubernetes environments?</p>
@@ -2766,6 +2788,7 @@ We’ll cover all parts of the ML process, including development, hypertuning, d
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Getting Started with Reliable Load Testing</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Load testing doesn't have to be resource intensive or last minute. We will walk through how to set up a Gatling test, integrate it into CI/CD, and use observability data to make the results actionable. Learn how to add load testing by starting small, staying reliable, and scaling with confidence.</p></p>
@@ -2810,6 +2833,7 @@ We’ll cover all parts of the ML process, including development, hypertuning, d
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Crash-Proofing Your OpenTelemetry Collector</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>When planning observability for a distributed system, it's common to avoid having each microservice sending telemetry data directly to the backend. Instead, a Collector is typically deployed per host or node to receive, process, and forward telemetry data.</p>
@@ -2857,6 +2881,7 @@ We’ll cover all parts of the ML process, including development, hypertuning, d
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Instant KAI Sandboxes with vCluster: Multi-Tenant, Multi-Scheduler GPU Sharing</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p><strong>Session Overview</strong><br />
@@ -2915,6 +2940,7 @@ As GPU demand grows, platform engineers must balance cost efficiency with reliab
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Orchestrating the Edge: A Hybrid Kubernetes Journey</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This session explores how Happening completely revamped their edge Kubernetes infrastructure by implementing EKS Hybrid to centrally manage all their on-premise clusters across different markets. Faced with regulatory requirements to store data locally at the edge while maintaining operational efficiency, we designed a sophisticated hybrid architecture with a centralized AWS control plane to manage edge data planes. We'll dive deep into our technical implementation including our mixed-mode CNI setup with VPC-CNI and Cilium, multi-pool IPAM to handle cross-cloud networking, and how we leverage Kyverno policies to ensure workload placement across markets. Learn how we established seamless connectivity between AWS and on-premise environments through Wireguard VPN tunnels, coupled with BGP routing policies to efficiently route edge workloads. By centralizing management of geographically distributed Kubernetes clusters, we've reduced our on-premise management burden by 40%, resulting in substantial cost savings and dramatically decreased the team operational toil. Cluster upgrades which we were always tedious is now done in just a few hours across all environments simultaneously, significantly improving our maintenance windows and capacity management.</p></p>
@@ -2961,6 +2987,7 @@ As GPU demand grows, platform engineers must balance cost efficiency with reliab
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Plan for Unplanned Work: Game Days with Chaos Engineering</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>How do you plan for unplanned incidents? You practice with Chaos Engineering. Strong incident response doesn't just happen, you have to build the skills and train your team. Practicing for major incidents gives your team insight into how your applications will behave when something goes wrong as well as how the team will interact to solve problems. Combining your Incident Response practices with Chaos Engineering roots your response practice in real-world scenarios, helping your team build confidence.</p></p>
@@ -3005,6 +3032,7 @@ As GPU demand grows, platform engineers must balance cost efficiency with reliab
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Counting What You Care About in Your Security Data Pipeline</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Traditional syslog systems have long been opaque — exporting minimal, fixed-format metrics that rarely reflect what users actually care about. AxoSyslog, a high-performance fork of syslog-ng, has taken a different path: not only adopting native Prometheus metrics, but also enabling metric emission directly from the user’s log processing logic.</p>
@@ -3053,6 +3081,7 @@ As GPU demand grows, platform engineers must balance cost efficiency with reliab
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Telemetry as Code: Declarative Observability with OpenTelemetry</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This talk introduces telemetry as code**: bringing the same declarative principles that transformed infrastructure to your observability stack.  </p>
@@ -3110,6 +3139,7 @@ As GPU demand grows, platform engineers must balance cost efficiency with reliab
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Leveraging the edge for observability</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Most organizations adopt CDNs or HTTP caching proxies to boost the performance and scalability of their web platforms. But there’s another powerful advantage that often goes underused: centralized observability.</p>
@@ -3159,6 +3189,7 @@ As GPU demand grows, platform engineers must balance cost efficiency with reliab
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Schema driven Observability with OpenTelemetry Weaver</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>OpenTelemetry Semantic conventions cover many layers of your stack but fall flat when it comes to business logic. But this doesn’t have to be the case! The OpenTelemetry Weaver project gives you the tools to build your own semantic conventions. With auto generated instrumentation libraries and documentation, developers no longer have to worry about whether an attribute is called customer_id, customerID, accountNumber or something completely different - it’s all in the schema! Built-in support for policy validation also ensures your alerts never break because a metric has been renamed.</p></p>
@@ -3204,6 +3235,7 @@ Now he is working as a Developer Experience Engineer at Grafana Labs, building t
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">A History of Automatic Aggregations</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>At Criteo, we’ve relied on automatic aggregations for years. “Automatic aggregation” is the name we give to a system of recording rules that matches most metrics and removes certain dimensions, such as the instance emitting the metric, to reduce the cardinality (i.e. the number of metrics) and thus making queries faster.</p>
@@ -3250,6 +3282,7 @@ Now he is working as a Developer Experience Engineer at Grafana Labs, building t
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">The State of AI in Incident Management</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>How many times were you woken up during the night to either spend more time than you would like trying to figure out what exactly broke, or just bash your keyboard in frustration once you figure out it was actually a false positive? What if there was a better way? I mean, AI is everywhere nowadays, what if we used it to solve these problems? Let's talk about AIOps and, through real-world case studies and industry research, see why it enables companies to reduce their MTTR by 62%, cut their alert noise by 91%, and predict 87% of potential service degradations — before they impact customers. We will take a journey through the evolution of AIOps: from early AI analytics, to the rise of GenAI, and taking us to the latest promised savior: Agents. But how do Agents help us when incidents come to knock? Will they speed us up? Are they even able to fix incidents without having to wake us up? And even if Agents are here to change everything, where are the gaps? Can everything be "agentified"?</p></p>
@@ -3294,6 +3327,7 @@ Now he is working as a Developer Experience Engineer at Grafana Labs, building t
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Network Observability Overlooked, Underappreciated, and More Important Than Ever</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The network the metaphorical plumbing through which all your precious non-metaphorical observability and monitoring data flows;  it holds secrets you'll never find anywhere else. And it's more important today than ever before.</p></p>
@@ -3341,6 +3375,7 @@ Now he is working as a Developer Experience Engineer at Grafana Labs, building t
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">From Git Push to Exit: How Continuous Deployment Converted into Financial Success</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This talk presents the real-world story behind countX, a B2B fintech company that grew from first commit to successful private equity exit in under four years, without VC funding and with a lean, empowered team. From day one, we built on a fully serverless AWS-native architecture: Lambda, SNS/SQS, API Gateway, CloudFront, Cognito, and CDK. On top of that, we implemented a Continuous Deployment pipeline using GitHub, CodeBuild, and CodePipeline, enabling us to deploy to production dozens of times per week with high confidence and zero manual gates.</p>
@@ -3387,6 +3422,7 @@ Now he is working as a Developer Experience Engineer at Grafana Labs, building t
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Growing Machine Learning to production: Cloud MLOps for speed and efficiency</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Machine Learning (ML) solutions often start on a simple platform like a virtual machine, which is great for initial research. However, as the system scales and enters production, automation becomes crucial. Cloud suites such as Google Vertex AI, Azure Machine Learning, and AWS Sagemaker, can streamline this process.</p>
@@ -3433,6 +3469,7 @@ Now he is working as a Developer Experience Engineer at Grafana Labs, building t
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: What Observability Can Learn From BI: Decoupling for Speed, Scale, and Flexibility</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Today’s observability platforms are often vertically integrated—binding data storage, query, and visualization layers into a single stack. This tight coupling drives up costs, makes integrations painful, and slows teams down. But it doesn’t have to be this way.
@@ -3479,6 +3516,7 @@ You’ll learn why decoupled observability architecture is essential for cost co
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: The Infrastructure Renaissance: Security, Sustainability, and Scale</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>As infrastructure evolves from cost center to innovation engine, the stakes have never been higher. This keynote will unpack the forces reshaping the infrastructure landscape—from the rise of sovereign clouds and liquid cooling to the imperative of secure-by-default systems. Drawing on lessons from Criteo’s own transformation, this talk will highlight how infrastructure leaders must balance sustainability, performance, and security to thrive in a post-cloud, AI-accelerated world. It’s not just about uptime—it’s about impact.</p></p>
@@ -3523,6 +3561,7 @@ You’ll learn why decoupled observability architecture is essential for cost co
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: Listen to Production the Way It Deserves</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Production today is messy. There’s noise, complexity, and a constant stream of change. And while we’ve come a long way with observability, it still leans heavily on human foresight. Logs, metrics, alerts, they’re all things we had to think of ahead of time. But when we don’t? That’s where blind spots are born.</p>
@@ -3569,6 +3608,7 @@ You’ll learn why decoupled observability architecture is essential for cost co
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: Dependencies galore: Behind the scenes of large-scale multi-repository CI</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Setting up continuous integration is now a common practice in the industry. However, there are still only few effective solutions for doing so across hundreds of repositories encompassing thousands of projects. How do we manage dependencies between projects? How do we assess the quality of each one? How do we automate the validation of a project's clients even before merging a pull request? In this session, we’ll quickly revisit the fundamentals of the problem. Then, we’ll share Criteo's own journey on this topic, along with the pros and cons of the different approaches we explored.</p></p>
@@ -3613,6 +3653,7 @@ You’ll learn why decoupled observability architecture is essential for cost co
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: Production-Ready LangChain Agents - Multi-Tool Architectures for SRE Investigations</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In modern distributed systems, the volume and fragmentation of production data can easily and frequently overwhelm human operators. This talk introduces a LangChain agent built to autonomously investigate production issues by orchestrating multiple tools across organizations’ stacks. We'll walk through how to build a modular, composable multi-tool agent, dig deeper into real-world reliability challenges, and share strategies and lessons learned in making these agents production-ready.</p></p>
@@ -3658,6 +3699,7 @@ You’ll learn why decoupled observability architecture is essential for cost co
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: Optimizing Kubernetes with Container Live Migration</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Containers are immutable by design making Kubernetes the standard execution platorm for stateless workloads.</p>

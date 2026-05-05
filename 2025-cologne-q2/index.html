@@ -1753,6 +1753,27 @@ Join us to learn more about Grafana dashboards, community contributions and shar
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
+  .modal-speaker .btn-close {
+    background: var(--brand);
+    color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .btn-close:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
 </style>
 
 
@@ -1784,6 +1805,7 @@ Join us to learn more about Grafana dashboards, community contributions and shar
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Staying in your lane: incident response for leaders</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>During incident response, every second counts. As a leader, you're expected to have all the answers, and that pressure can make it very tempting to play the hero and take control of the response process. While "I'll just do it myself" may seem faster on occasion, this instinct can hinder your team's effectiveness and actually slow down resolution.</p>
@@ -1837,6 +1859,7 @@ Join us to learn more about Grafana dashboards, community contributions and shar
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Platform Engineering for Private Cloud</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p><em>Platform engineering</em> is the art of building and managing the infrastructure that powers your applications: a mix of cloud, a handful of DevOps, a pinch of SRE, and a thick glaze of product management. While it’s “nothing new,” many organizations are just starting to practice it—and for good reason. But what happens when your platform is running on private cloud?</p>
@@ -1883,6 +1906,7 @@ Join us to learn more about Grafana dashboards, community contributions and shar
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">DevOps XXL: How to Scale-up in Large Setups with SRE?</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This session derives Dos and Donts from very large setups. It aims to
@@ -1932,6 +1956,7 @@ research.</p></p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Automating SRE Operations with Multi-Agent AI: InfraAssistant Approach</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>SRE teams often face challenges with a high volume of routine tasks and requests, making it difficult to focus on critical, high-priority issues. At Electrolux, we faced the same challenge, which led us to develop InfraAssistant —a multi-agent AI-powered solution designed to automate key operational tasks such as infrastructure management, user onboarding, and responding to internal requests.</p>
@@ -1978,6 +2003,7 @@ research.</p></p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">From Code to Cluster: Orchestrating 10,000+ Kubernetes deployments with 1 pipeline</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>There is a sea of tools one can use for the critical phase of Deployment during your SDLC. To keep our environment secure and reliable, ING chose to work with Kubernetes and Azure DevOps. In this talk, we will share the success story of how 1200 in-house developed APIs reached 10 000+ Production deployments in half a year, using one single pipeline. In order to stay in control, we use Open Policy Agent. To ensure the reliability and the resilience of the APIs, we use tools like: QuotaAutoscaler (ING open source CRD) and HorizontalPodAustoscaler, native rollback mechanisms with Helm, automatic certificates using CertManager and Prometheus monitoring. The pipeline deploys code in Azure Kubernetes Service and on-prem Kubernetes clusters. This solution was built as a platform, designed to be agnostic to the target system, reducing the cognitive load on the teams and allowing them to focus on the application development. We call this The Kingsroad.</p></p>
@@ -2022,6 +2048,7 @@ research.</p></p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">How to tame chaos effectively?</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Imagine a self-healing system that handles surprises, letting you sleep peacefully. If that sounds appealing, chaos engineering could be the answer. Trusted by Netflix, LinkedIn, Google, and Facebook, it's key for business resilience. In this session, we'll explore its history, learn how to apply its principles to stress-test applications, and review tools for fault injection in real-world scenarios.</p></p>
@@ -2066,6 +2093,7 @@ research.</p></p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Cloud infrastructure with AWS Cloud Development Kit</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This hands-on workshop guides engineers in developing cloud infrastructure using AWS CDK to make a web application public. Participants will learn how to spin up, deploy, and tear down cloud resources with a few console commands. Key technologies include AWS (CDK, S3, Lambda, RDS) and Ruby on Rails with PostgreSQL. Attendees need AWS and GitHub accounts, CLI tools, and specific runtime environments. The session balances interactive deployments with insights into cloud architecture and best practices.</p>
@@ -2111,6 +2139,7 @@ research.</p></p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Things Fall Apart: Navigating Managed Databases for Over a Decade as a Non-DBA</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Learn to navigate database benchmarks wisely! From crashing managed instances to skyrocketing storage costs, I'll share hard-earned lessons from a decade of managing production databases on the cloud without DBA expertise.</p></p>
@@ -2155,6 +2184,8 @@ research.</p></p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">From Firefighting to Zero-Touch: How AIOps Empowers SREs to Build Resilient, Business-Driven Platforms
+ </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Explore how AIOps, combined with Observability and Chaos Engineering, is empowering SREs to transform IT operations into a strategic driver of business value. This session delves into strategies for achieving end-to-end visibility and resilience—from infrastructure and applications to business processes. Learn how advanced analytics, AI and automation can optimize the user journey, enhance customer experiences, and drive measurable business impact. Through real-world case studies and a zero-touch AIOps demo powered by GenAI, gain actionable insights to predict failures, address vulnerabilities, and ensure seamless system performance across the entire operational stack.</p></p>
@@ -2199,6 +2230,7 @@ research.</p></p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">From Text to Visuals: Observe your GitHub repos efficiently</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Whether you are just starting your journey as a DevOps Engineer or already an expert SRE, you need to use Git (e.g. GitHub, GtlLab) to maintain your code and track issues, PRs, commits, etc. You start with a few repositories but then it becomes difficult to get visibility into what's going on in a complex app when it's scattered across 20 different GitHub repos.</p>
@@ -2249,6 +2281,7 @@ research.</p></p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote:  AI Agents for Incident Management</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>AI agents are transforming incident management by automating detection, diagnosis, and response. This keynote explores how intelligent systems can reduce downtime, enhance decision-making, and streamline operations, offering a glimpse into the future of autonomous incident resolution.</p></p>

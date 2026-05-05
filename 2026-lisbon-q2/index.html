@@ -634,6 +634,27 @@
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
+  .modal-speaker .btn-close {
+    background: var(--brand);
+    color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .btn-close:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
 </style>
 
 
@@ -665,6 +686,7 @@
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Reliability Patterns for AI-Powered Apps in Azure AI Foundry</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>AI applications promise transformative capabilities but introduce unique failure modes, such as hallucinations, latency spikes, data drift, and cost overruns, that traditional SRE practices don't fully address. This session explores proven reliability patterns, retries with exponential backoff, circuit breakers, graceful degradation, and human-in-the-loop guardrails tailored for Microsoft Foundry workloads, where observability covers agent traces, quality metrics, and safety evaluations. You'll see live demos of implementing these in Foundry projects using zone-redundant storage, multi-region failover, and built-in content filters to achieve production-grade resilience while maintaining trust and compliance.</p></p>
@@ -709,6 +731,7 @@
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Observability Through Users' Eyes and How to Fix the Knowledge Disconnect</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Logs, metrics and traces nowadays are common words in every engineer's vocabulary, as Observability is everywhere with the rise of OpenTelemetry and improved standards. Instrumentation? No problem. Getting data from any system? Done. But then soon after, things start to fall apart, telemetry piles up unused, cloud bills soar, dashboards rot and alerts confuse even seasoned engineers. Clearly there is something missing. In this talk, Iris and Hélia share some experiences from building Observability platforms, patterns they have discovered of how users interact with telemetry data. From common questions across different teams and companies, pitfalls and also, strategies that empower teams to move from confusion to confidence. So get practical insights to bridge the gap between Observability data and User Knowledge, whether you're building platforms, supporting teams, or trying to make sense of your own telemetry chaos.</p></p>

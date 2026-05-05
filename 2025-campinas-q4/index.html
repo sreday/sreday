@@ -2828,6 +2828,27 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
+  .modal-speaker .btn-close {
+    background: var(--brand);
+    color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .btn-close:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
 </style>
 
 
@@ -2859,6 +2880,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Agentic AI for SREs: How I casually developed my first MCP server</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Agentic AI has become well-known in the world of hybrid cloud operations. Cloud, DevOps, Platform, and Site Reliability engineers are either currently utilizing it or plan to do so in the near future. A common question is the steepness of the learning curve for incorporating it into your utility belt. In this session, I will introduce Agentic AI and the widely adopted integration framework, the Model Context Protocol (MCP). I will also share my experience building my first MCP server, which integrates Generative AI (referred to as the brain for modern operations) with MCP tools for HashiCorp Vault Server. A secrets management platform plays a crucial role in securing modern workloads.</p></p>
@@ -2903,6 +2925,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Business Observability with Dynatrace</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Observabilty is well known for IT departments around the world. SRE relies over Observability data to ensure the systems are performing as it should be. Automations depends on Observability insights to accurately remediate events. What about bring the Observability to Business side of history? Application Performance Monitoring (APM) tools capture more than the only 4 Golden Signals, let's leverage this and provide insights to the Business. In this presentation, I will explain how the Business Events can be captured from monitored sytems, and how to handle them in order to be presented and monitored, providing a real time source of insights at Business level.</p></p>
@@ -2947,6 +2970,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Observability Strategy: From Metrics to Meaningful Reliability</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Observability isn’t about tools—it’s about strategy, people, and culture. Too often, organizations invest in “magic tools” expecting instant results, only to end up with dashboards no one uses, alerts no one trusts, and teams that feel more burdened than empowered. True observability must start with strategy: aligning telemetry with business outcomes, defining maturity models, and using benchmarks to guide the journey.</p>
@@ -2994,6 +3018,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Enhancing SRE with AI Agents on AWS: Intelligent Automation for Incident Response and Operations</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Transform your SRE with AWS GenAI solutions. From automated troubleshooting with Amazon Q to intelligent agents via Bedrock, we help teams automate tasks, detect anomalies, and streamline operations. Enhance efficiency with AI-powered assistance.</p></p>
@@ -3040,6 +3065,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Designing for Failure: Proven Techniques for Reliable Applications</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Failures are not a possibility — they are a certainty. What separates good systems from great ones is how they respond when things go wrong. In this talk, we’ll explore resilience at the heart of SRE: proven techniques such as load shedding, sharding, and deployment strategies that transform outages into controlled, predictable events. Attendees will walk away with understanding of patterns to minimize failure impact, protect user experience, and strengthen the reliability of their applications. If you care about building systems that survive chaos, this is the session you can’t miss!</p></p>
@@ -3084,6 +3110,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Staging Is Dead: How Ephemeral Environments Redefine Platform Engineering</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Static staging slows everything down. Ephemeral environments flip the model by creating production-like sandboxes for every branch. Learn how they accelerate feedback, cut friction, and boost reliability across your platform and teams.</p></p>
@@ -3135,6 +3162,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">eBPF: Why is everyone talking about it and what does that mean to you?</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In the rapidly evolving landscape of technology, a groundbreaking innovation has captured the attention of enthusiasts, developers, and industry pioneers. This presentation aims to demystify the buzz around eBPF, illustrating its potential in the realms of networking, security, and monitoring.</p></p>
@@ -3179,6 +3207,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">The Anatomy of a Secure Request: Ten Layers of Defense from DNS to Database</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Every HTTPS request tells a security story. Dissect the anatomy of an HTTPS request across ten layers of defense — from DNSSEC, TLS, WAF,  to Cedar-based authorization and beyond. Learn how Devs, DevOps, and SREs can weave security-by-design into every hop of modern, cloud-native systems.</p></p>
@@ -3225,6 +3254,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Hello World in Production: Building Cloud-Native applications that survive the real world.</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This talk you’ll see how small, practical steps can make your application resilient, scalable, and ready for production without overengineering. Perfect for developers, SREs, and DevOps engineers who want to understand what production-ready really means in cloud environments.</p></p>
@@ -3269,6 +3299,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Supercharging SRE with Azure’s AI-Powered Age</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>AI transforms Site Reliability Engineering by automating incident detection, accelerating root cause analysis, and predicting outages before they happen—boosting uptime, reducing toil, and empowering SREs to focus on strategic improvements.</p></p>
@@ -3313,6 +3344,7 @@ A definição e os objetivos de DevOps e DataOps. As principais diferenças entr
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Comunidades de SRE e DevOps: conectando pessoas, processos e propósito no Brasil</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Comunidades de SRE e DevOps: conectando pessoas, processos e propósito no Brasil<br />
@@ -3381,6 +3413,7 @@ Chamada para ação</p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Stack de Observabilidade com Grafana Cloud</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Nessa talk, vamos configurar um cluster Kubernetes para enviar telemetria para Grafana Cloud e monitorar de ponta a ponta nosso ambiente utilizando Métricas de K8S com componentes padrão como node_exporter e cadvisor, Traces no formato Opentelemetry e correlação com Logs e como bônus,Assistant de AI</p></p>
@@ -3425,6 +3458,7 @@ Chamada para ação</p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Chaos Engineering: Como Usar o Dynatrace para Transformar Falhas em Aprendizado</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Como o Bradesco transformou o Chaos Engineering em uma prática contínua e automatizada de experimentos controlados, integrando Dynatrace, Ansible e Azure Chaos Studio para validar hipóteses, fortalecer padrões de resiliência e acelerar o aprendizado das squads em ambientes cloud native.</p></p>
@@ -3481,6 +3515,7 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Diferencas entre DataOps e DevOps: Entendendo Práticas e Importancias na Era Digital</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Você está convidado para uma palestra imperdível que irá explorar as diferenças e similaridades entre DataOps e DevOps, duas práticas essenciais no desenvolvimento moderno de software e na gestão de dados.</p>
@@ -3529,6 +3564,7 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Preparar, Operar, Aprender: O Papel do PRR e do Postmortem na Engenharia de Confiabilidade</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>O desafio de transformar falhas em combustível para a excelência! Nesta palestra, exploramos como o PRR e Postmortems fortalecem a cultura de confiabilidade, aceleram aprendizados e elevam a maturidade da operação.</p></p>
@@ -3573,6 +3609,7 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Continuous profiling e resiliencia: Aplicando boas práticas de SRE no desenvolvimento Java</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Descubra como práticas de SRE aliadas ao continuous profiling elevam a resiliência de aplicações Java. Veja exemplos práticos com Dynatrace e Grafana para detectar gargalos e fortalecer a estabilidade dos seus sistemas.</p></p>
@@ -3619,6 +3656,7 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Conduzindo FinOps com Confiabilidade: Como os SREs Reduziram os Custos de Nuvem em 30% Sem Comprometer os SLAs</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Nossa equipe de SRE trabalhou em parceria com FinOps para automatizar otimizações de nuvem em tempo real no Kubernetes — redimensionando pods, reequilibrando clusters e ajustando dinamicamente os tipos de máquinas. Essa colaboração alcançou mais de 30% de redução de custos enquanto mantinha os SLAs, provando que confiabilidade e eficiência financeira podem andar juntas.</p></p>
@@ -3663,6 +3701,7 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Microserviços serverless: diferentes designs, mesmas dores</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>A adoção de microserviços serverless promete maior agilidade e escalabilidade, mas, apesar das diferentes abordagens de design, as equipes enfrentam desafios semelhantes. Questões como observabilidade, latência, custos imprevisíveis e complexidade de integração continuam sendo pontos críticos. Este trabalho discute como arquiteturas distintas convergem para os mesmos problemas e o que pode ser feito para mitigá-los.</p></p>
@@ -3707,6 +3746,7 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Kubernetes além do deploy: automação inteligente com K8sGPT e AIOps</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Nesta palestra, vamos explorar como aplicar AIOps no dia a dia da operação de clusters Kubernetes utilizando o K8sGPT. Mostrarei como SREs podem transformar ruído em insight, utilizando IA para interpretar sinais e sugerir correções automaticamente.</p></p>
@@ -3752,6 +3792,7 @@ Reconhecido por sua capacidade de conectar <strong>tecnologia e estratégia</str
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Platform Engineering with Dynatrace for SRE: Intelligent Automation and Observability</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Learn how Platform Engineering with Dynatrace empowers SRE teams to move beyond reactive dashboards. Discover practical ways to integrate observability and automation for proactive reliability, safe deployments, and continuous optimization.</p></p>
@@ -3801,6 +3842,7 @@ Estratégias de confiabilidade e resiliência digital</p></p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Proteja Pipelines de SRE Terraform e AWS: Aplicando o Shift Left na Confiabilidade</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Confiabilidade sem segurança é mera sorte. Nesta palestra, veja como as práticas do Shift Left capacitam SREs a automatizar a segurança, prevenir incidentes precocemente e entregar sistemas resilientes com confiança.</p></p>
@@ -3845,6 +3887,7 @@ Estratégias de confiabilidade e resiliência digital</p></p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Construindo um Operator para o DevLake</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Nesta talk mostrarei as motivações para a construção de um Operator para o Apache DevLake, como começar, lições aprendidas e etc.</p></p>
@@ -3889,6 +3932,7 @@ Estratégias de confiabilidade e resiliência digital</p></p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: How We Built ClickStack - an open source, open telemetry native Observability stack</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Observability was broken. How we built ClickStack - an open source, open telemetry native Observability stack.</p></p>

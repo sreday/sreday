@@ -2092,6 +2092,27 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
+  .modal-speaker .btn-close {
+    background: var(--brand);
+    color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .btn-close:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
 </style>
 
 
@@ -2123,6 +2144,7 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">What It Takes To Build Reliability as a System</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In this talk, Redis and Wild Moose share how they're approaching AI SRE as something that can be designed, automated, and continuously improved. We'll explore how to build AI SRE systems that teams can actually trust in production by applying the same standards used for observability systems: fast, testable, configurable, and transparent.</p>
@@ -2169,6 +2191,7 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Reevaluating Post-Incident Reviews</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Post-Incident Review. Postmortem. Incident Report. Whatever you call them, they take time and resources, and sometimes you’re not even sure if anyone reads them.
@@ -2215,6 +2238,7 @@ The Post-Incident Review is a story. Maybe it’s a bit of a mystery, maybe it�
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">What Makes an AI SRE Trustworthy? An SRE’s Take</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>On-call is stressful enough without worrying whether AI hallucinated the root cause.</p>
@@ -2262,6 +2286,7 @@ The Post-Incident Review is a story. Maybe it’s a bit of a mystery, maybe it�
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Responsible Kubernetes: clusters that don’t kill the planet (or your budget)</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This talk focuses on applying FinOps and sustainability (GreenOps) principles in Kubernetes, addressing very common challenges such as cluster overprovisioning, inefficient resource usage, lack of cost visibility, and the environmental impact of always-on infrastructure. We share real-world practices, common mistakes, and practical lessons on how to run Kubernetes in a more efficient, cost-aware, and sustainable way.</p>
@@ -2308,6 +2333,7 @@ The Post-Incident Review is a story. Maybe it’s a bit of a mystery, maybe it�
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">The "Supply Chain" Mindset: Why I hire Logistical Engineers, Not Just SREs</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This talk covers how we hire and run SRE, DevOps, and TechOps teams by treating infrastructure like a supply chain. Looking at systems this way makes bottlenecks, risk, and capacity limits easier to see before they cause outages.
@@ -2354,6 +2380,7 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Honey, the Audience Broke My App: Reproduce & Fix Live in Kubernetes with mirrord</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>A room of engineers breaks my live app and we fix it together. They scan a QR code which triggers a real failure in a Kubernetes staging environment. Together we reproduce, trace, patch, and validate the fix with kubectl debug and mirrord. A real breakage repaired live.</p></p>
@@ -2398,6 +2425,7 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Looking back at a lifetime of poor tech choices</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Watching your technology choice go down the drain - because of broken promises, vendor implosion, or obsolescence - can feel like a career-ending experience. But in my experience there's usually a lot of good that comes out of those seemingly bad tech choices.</p></p>
@@ -2445,6 +2473,7 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Making Life Easier for SREs with Ephemeral Environments</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>SREs often work under constant pressure, dealing with incidents and operational overhead. This talk explores how ephemeral environments can help make day-to-day SRE work easier, starting small and without disruptive changes.</p></p>
@@ -2489,6 +2518,7 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: Secure by Default: Building Confidence in AI-Driven Delivery</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The fastest way to break trust in DevSecOps is to automate insecurity at scale. As AI takes a central role in our pipelines, it is time to rethink what "secure by default" really means.</p>
@@ -2535,6 +2565,7 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: When Incidents Fix Themselves: AI SRE in action</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The next evolution of incident response isn’t faster alerts, it’s autonomous resolution. Join ilert CEO Birol Yildiz as he shows how AI SRE agents now diagnose and remediate outages without waking anyone up. Learn how these systems combine observability data, deployment context, and code intelligence to restore services in minutes and hand over clean incident reports instead of 3 a.m. pages.</p></p>
@@ -2579,6 +2610,7 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: Decoupling Observability for Incident Response at Scale</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>On-call incidents don’t fail because teams lack dashboards. They fail because observability systems slow down under real investigative load.</p>
@@ -2626,6 +2658,7 @@ I’ll explain what we look for when hiring, how we expect engineers to operate 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: The Best CVE Is the One You Never Patch: Removing Vulnerability Toil for SREs</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>For most SRE teams, CVE remediation has become a never-ending source of toil—rebuilds, backports, emergency releases, and late-night firefighting. This talk explores how Chainguard flips that model by removing vulnerability remediation from the SRE workload entirely.
@@ -2672,6 +2705,7 @@ This session is about shifting CVE response left, shrinking the attack surface, 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: Observing Agentic/MCP Traffic & Keeping Cost Low</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>You use an LLM, ask it some questions, have it write a little code for you, and before you know it, you're hit with a massive bill. Out of the box, there's zero way to see token usage, cost, and an overall ability to control it. In this talk, you'll learn exactly how to do that.</p></p>
@@ -2716,6 +2750,7 @@ This session is about shifting CVE response left, shrinking the attack surface, 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: The Missing Layer in AI-Driven Reliability </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>AI agents are entering incident response with powerful capabilities—detecting anomalies, summarizing logs, and suggesting fixes. Some even execute changes autonomously. The promise is compelling: fully autonomous resolution of production incidents in complex, constantly changing distributed systems. </p>
@@ -2762,6 +2797,7 @@ This session is about shifting CVE response left, shrinking the attack surface, 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: The AI SRE Landscape: From LLMs to Multi-Agent Ecosystems</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>With more than 15 vendors now claiming AI powered SRE capabilities, engineering leaders are facing a deafening amount of noise. Teams are asking hard questions. Is Datadog Bits AI the same thing as an AI agent? AWS just launched a DevOps Agent. Do we still need a vendor? Our ServiceNow rep says their AI can handle it all. How do you cut through the hype?</p>

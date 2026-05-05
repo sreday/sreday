@@ -5093,6 +5093,27 @@ Key Takeaways:
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
+  .modal-speaker .btn-close {
+    background: var(--brand);
+    color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .btn-close:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
 </style>
 
 
@@ -5124,6 +5145,7 @@ Key Takeaways:
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Optimizing Kubernetes and unlock blockers with Pod Live Migration</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Kubernetes is easy, isn't it? Creating Kubernetes cluster in public cloud take a few minutes, deploying an application it's like same. But how can we make sure that our cluster scales in an efficient way? And what can we do with workloads which are not really a good fit for Kubernetes?</p></p>
@@ -5168,6 +5190,7 @@ Key Takeaways:
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">A DBA's Surprising Journey To Databases On Kubernetes</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>If you ask 10 DBAs in a conference about putting data on Kubernetes, most will say that’s a bad idea – <strong>Divine</strong>.
@@ -5223,6 +5246,7 @@ Towards the end of the talk, <strong>Divine</strong> will share how DBAs can evo
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Automagic Observability with eBPF</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Instrumenting legacy or closed sourced applications can be a pain. But it doesn't have to be! This talk offers an introduction to the open source Beyla tool and shows you how to utilize it in order to instrument different types of applications without touching a single line of code. Beyla hooks into the kernel using eBPF and does the hard work for you. It's not only useful for services where you can't influence the underlying instrumentation, but it can help you establish a baseline level of observability in large scale deployments. We’ll also go over limitations, so you’ll leave the talk knowing if Beyla is right for you (spoiler: it probably is).</p></p>
@@ -5268,6 +5292,7 @@ Now he is working as a Developer Experience Engineer at Grafana Labs, building t
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Beyond Single-Cloud SRE: Live Multi-Agent Incident Investigation and Resolution Across Azure and Beyond</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Watch AI agents autonomously solve production crises! Azure SRE Agent and Hawkeye collaborate to investigate a critical error, diving into Azure and multi-cloud telemetry. See real-time coordination as agents leverage source code to deploy fixes, demonstrating the future of cross-cloud SRE.</p></p>
@@ -5315,6 +5340,7 @@ Now he is working as a Developer Experience Engineer at Grafana Labs, building t
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Beyond 100 Petabytes: Why We Built a Custom Exporter to Replace Our OTel Pipeline</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Are your observability signals trapped in separate pillars? Logs in one place, metrics in another, both losing context? At ClickHouse, we faced this challenge at a massive scale. Our solution was to abandon the traditional model and embrace a new philosophy: store everything, aggregate nothing.
@@ -5367,6 +5393,7 @@ Join us to see how treating observability as a data warehouse problem, powered b
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">The Airgap Paradox: Adversarial Tactics & Defensible Design</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Air-gapped systems are seen as the pinnacle of security, but are they truly untouchable? This talk explores real-world breaches—from Stuxnet to electromagnetic attacks—highlighting modern threats like supply chain risks and social engineering. Attendees will learn practical strategies to strengthen air-gapped environments through physical security, procedural controls, and advanced detection methods.</p></p>
@@ -5411,6 +5438,7 @@ Join us to see how treating observability as a data warehouse problem, powered b
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Automating Kibana Alerting: When GitOps meets UI</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Managing alerts across hundreds of services can quickly become a challenge — fragmented workflow, inconsistent configurations and high operational costs. In this session, we will share how we streamlined alerting by adopting Kibana Alerts and building a bidirectional automation on top of it, using a GitOps-driven approach. Our solution balances UI flexibility with Infrastructure as Code (IaC) principles, simplifying configuration while maintaining control and simplifying complex features at scale.  Discover how automation improved consistency, enabled version control, and reduced complexity.</p>
@@ -5456,6 +5484,7 @@ Join us to see how treating observability as a data warehouse problem, powered b
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Overcoming the Fallacies of Distributed Systems with Chaos Mesh and Kubernetes</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Platform engineering must embrace resilience, not just scale. This talk shows how Kubernetes, ArgoCD, Chaos Mesh, and Pixie, using eBPF, enable real-time observability, chaos testing, and automated deployments, making platforms stable, chaos-ready, and easy to manage.</p></p>
@@ -5500,6 +5529,7 @@ Join us to see how treating observability as a data warehouse problem, powered b
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Breaking Bad (Systems): a short journey through chaos engineering</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The shift from traditional testing to chaos engineering marks a revolution in building reliable systems.
@@ -5547,6 +5577,7 @@ Simon is a member of the AWS Community builder program, and these days enjoys co
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Making AI Accountable: Evaluators in Action with Azure AI Foundry</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>As AI systems scale in complexity and impact, observability becomes essential—not just for performance monitoring, but for ensuring quality, safety, and trust. In Azure AI Foundry, evaluators are the backbone of this observability layer, enabling continuous, automated assessments across the AI lifecycle.
@@ -5598,6 +5629,7 @@ By the end of this session, attendees will understand how to design, implement, 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Nanakorobi yaoki: Learnings from Attacking and Defending GPUs</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The main focus here is to truly teach the audience the mindset of attack/defence, especially in an environment as underexplored as GPUs and HPC as a whole. We will present real-life examples and have a small ecosystem in the cloud to demonstrate and raise awareness about this crucial topic. We will show here why the offensive mindset is a differentiator and how it helps us guide and build new security paths in Kubernetes, focusing on tools of our cloud-native ecosystem and creating a new path for newcomers who will eat GPUs for Breakfast and the rest of us.</p></p>
@@ -5644,6 +5676,7 @@ He enjoys playing with obscure technologies and trying to be a chef in his spare
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">From Blind Spots to Total Vision: Observability at Massive Scale</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In today's digital space, downtime adversely impacts customer trust and can lead to lost revenue. This session will show you how to rethink your infrastructure monitoring with logs, metrics, and traces for complete visibility. By utilizing better practices, applying machine learning for anomaly detection, and using AI assistance in place of human interactions with data, organizations can prevent and remediate issues before they lead to downtime, and to continue operating in reliable digital ecosystems. This session uses OpenSearch to present these platform-agnostic concepts.</p></p>
@@ -5688,6 +5721,7 @@ He enjoys playing with obscure technologies and trying to be a chef in his spare
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Echoes in the Core: Designing Resilient Platforms</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In complex platform environments, incidents don’t always begin with loud failures, they start with subtle drifts, degraded assumptions, and silent breaks in mental models. This talk tells the story of a narrative-driven coordination system inspired by Resilience Engineering principles, and how we can build a more adaptive, human-aware internal platform. We’ll explore building distributed container systems using k0rdent and implementing a resilient infrastructure tackling surfaced weak signals, mapped operator intent, and supported resilient behaviors not just at runtime, but across platform workflows. Along the way, we’ll unpack real patterns from platform SRE practice: designing for graceful failure, enabling improvisation, and embedding recovery capacity into developer tools. Whether you’re building golden paths or operating shared infrastructure, this talk will show how narrative, adaptation, and feedback loops are key to resilient platforms and the teams who build them.</p></p>
@@ -5733,6 +5767,7 @@ He enjoys playing with obscure technologies and trying to be a chef in his spare
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Beginner's Guide to Terragrunt</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>If you've worked with Terraform in production, you've likely encountered the pain of managing multiple environments, duplicate configuration files, and complex remote state setups. Terragrunt solves these common Infrastructure as Code challenges by providing a thin wrapper around Terraform that promotes DRY (Don't Repeat Yourself) principles and simplifies configuration management. This talk will take you from Terragrunt zero to hero, covering foundation and setup topics including what Terragrunt is and why it exists, key differences between Terraform and Terragrunt, and installation and initial configuration. Prerequisites include basic AWS knowledge and basic Terraform knowledge.</p>
@@ -5778,6 +5813,7 @@ He enjoys playing with obscure technologies and trying to be a chef in his spare
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Who Owns Your SRE Stack? The Rise of AI Agents</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>SREs are the guardians of reliability — we build for failover, redundancy, and scale. But in today’s AI-native systems, there’s a quiet shift happening: automation scripts, AI-driven agents, and machine identities are running critical operations with increasing autonomy.</p>
@@ -5839,6 +5875,7 @@ He enjoys playing with obscure technologies and trying to be a chef in his spare
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Cutting Through Metrics Cardinality Noise with VictoriaMetrics</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In high-scale environments, metrics cardinality isn’t just a resource concern, it’s an architectural challenge. Left unchecked, it can impact performance, query latency, and even system stability. This talk takes a deep technical dive into how VictoriaMetrics enables advanced observability practices with a strong focus on cardinality management. I’ll explore how to design efficient and scalable scrape configurations using Prometheus-compatible jobs and exporters, optimize your label strategies, and use built-in cardinality analysis tools within VictoriaMetrics to identify and mitigate high-cardinality patterns early. The session also covers integration with Grafana open source for visualizing metrics in a way that supports signal clarity and operational response, as well as setting up practical alerting strategies that minimize noise while ensuring fast issue detection. By the end of the talk, the audience will understand the engineering trade-offs of high-cardinality metrics and how to detect them, how VictoriaMetrics handles storage and querying at scale, how to build resilient and low-overhead scrape configs with Prometheus compatibility and how to use Grafana open source to highlight cardinality hot spots and improve alert signal quality.</p></p>
@@ -5883,6 +5920,7 @@ He enjoys playing with obscure technologies and trying to be a chef in his spare
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Empowering Developers through Open-Source AI</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In the ever evolving AI landscape, organizations are faced with the choice between open-source versus closed-source models. While many developers find it easier to get started in the closed source ecosystem, they quickly realize it is ultimately more expensive, inefficient, and doesn’t have the security and controls required for their applications. Alternatively, open source models have quickly caught up to their closed counterparts and now deliver a cheaper and just as accurate solution that provides organizations with the security they need to run their operations.
@@ -5929,6 +5967,7 @@ Join Amit Kushwaha, Director of AI Engineering, SambaNova, as he breaks down for
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">From Git Push to Exit</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>A real-world case study of a B2B fintech startup, powered by a lean team and a fully serverless, AWS-native architecture. Continuous Deployment was implemented from day one, enabling dozens of automated releases per week with minimal overhead. This delivery setup was tightly integrated with Continuous Discovery practices  - customer interviews, lightweight experiments, and outcome-driven KPIs - to ensure engineering velocity translated into real product value. Together, these practices created a compounding feedback loop that accelerated product–market fit, improved competitive positioning, and drove measurable financial results. The session will cover the tools, processes, and cultural choices that made this possible, in a journey that ultimately led to a successful private equity exit in under four years.</p></p>
@@ -5974,6 +6013,7 @@ Join Amit Kushwaha, Director of AI Engineering, SambaNova, as he breaks down for
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">There's no AI without APIs</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>We’re in the midst of an AI revolution—and APIs are its unsung heroes. While LLMs and AI agents grab headlines, it's APIs that power their ability. Behind every AI-generated insight, recommendation, or automated task is an API call connecting the model to the tools, services, and data it needs to get the job done.
@@ -6022,6 +6062,7 @@ Before joining Postman, Pooja held several impactful roles at IBM, including lea
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">OTel You It's Not Just for Backend!</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Observability is the ability to measure the current state of a system. SREs are familiar with OpenTelemetry signals and how they can be used to diagnose issues. Yet in the frontend world, we're behind the curve.</p>
@@ -6068,6 +6109,7 @@ Before joining Postman, Pooja held several impactful roles at IBM, including lea
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Platform Engineering and AI - Two Buzzwords Finally Meet!</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Two Buzzwords Finally Meet! How should we manage AI in large organizations? What are the "services" developers need to add AI to enterprise apps, and what role do platform engineers take? Where do data scientists fit in? How does MCP, A2A, and whatever the latest AI API is fit in? There are so many questions because the field of managing AI in enterprises barely exists. We need to figure it out quickly however, before we see a repeat of a past patterns, like shadow AI and unmanageable apps in production. Based on real-world examples, this talk will go over what we currently know about using platform engineering to help developers use AI.</p></p>
@@ -6112,6 +6154,7 @@ Before joining Postman, Pooja held several impactful roles at IBM, including lea
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Move from Traditional Ops to Integrated SRE Ops at a Retail organization</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>With our traditional operations setup supporting monolithic systems – as the tech implementation scaled, there was a proportionate increase in costs to support and maintain the systems. This had been primarily due to segregation in organization setup to deliver business outcomes. While one part of the tech organization was focused on build, the other part was focused on maintain. With differing goal-post and motivation to deliver around collective business impact, the focus was divergent which led to undesirable customer experience and unsustainable costs.
@@ -6161,6 +6204,7 @@ I often speak on topics including digital transformation, reliability engineerin
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">When PaaS isn’t enough: Building your own internal platform in Multi Cloud</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Multi-cloud adoption breaks the one-size-fits-all promise of traditional PaaS. This talk dives into how we built an internal developer platform that balances flexibility, control, and speed across clouds.</p></p>
@@ -6205,6 +6249,7 @@ I often speak on topics including digital transformation, reliability engineerin
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Using OpenTelemetry to Improve Service Level Objectives</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>As systems grow more complex, engineering teams must move beyond guesswork when resolving production issues and instead focus on delivering consistent, measurable user value. This talk explores how OpenTelemetry empowers teams to define, measure and improve Service Level Objectives with precision and confidence.</p>
@@ -6251,6 +6296,7 @@ I often speak on topics including digital transformation, reliability engineerin
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Aggregating Metrics In-Flight: Challenges and Opportunities</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>One of the common practices for improving the query speed in Prometheus is to create recording rules for commonly used queries. While this usually works great, recording rules have a cost: The raw metrics still need to be stored in the Prometheus, even if we don't need them Recording rule need to be executed on interval basis, putting extra pressure on the Prometheus Adding a recording rule always means storing&amp;processing more data</p>
@@ -6296,6 +6342,7 @@ I often speak on topics including digital transformation, reliability engineerin
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">From experimentation to continuous verification: how to benefit from the entire spectrum of Chaos Engineering</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Chaos Engineering is often misunderstood as simply “breaking things on purpose.” This talk challenges that perception and repositions Chaos Engineering as a critical pillar of reliability and resilience engineering. Rather than focusing on failure injection alone, we explore how to leverage existing knowledge, validate known truths, and foster confidence in complex systems.</p>
@@ -6344,6 +6391,7 @@ I often speak on topics including digital transformation, reliability engineerin
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Kepler - Optimized power usage monitoring for Kubernetes</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Sustainability is increasingly becoming a priority in the Information Technology sector, which has fueled the demand for energy-efficient solutions in all computing environments. Effective management of resources in Kubernetes environments requires proper monitoring and optimisation of power usage. Kepler (Kubernetes-based Efficient Power Level Exporter) solves this problem by offering a solid solution for energy monitoring at the pod level. Using software counters, tailored machine learning models, and the Cloud Native benchmark suite, Kepler provides accurate energy consumption estimations and detailed reports on power usage. Developers and system administrators can thus make informed choices towards environmentally friendly and energy-efficient Kubernetes operations.</p></p>
@@ -6388,6 +6436,7 @@ I often speak on topics including digital transformation, reliability engineerin
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">What's Happening AMBA?</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>AMBA is not my new AI assistant, but it does help me know what's going on in Azure.  Rapid cloud adoption has created a wealth and yet a gap on the essential visibility within environments and platforms.  In this talk we will cover how Azure Monitor Baseline Alerts (AMBA) can help you to kickstart your proactive and informed approach to cloud with Microsoft.</p></p>
@@ -6433,6 +6482,7 @@ I often speak on topics including digital transformation, reliability engineerin
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Going Beyond Code: Igniting Sociotechnical Systems through Reliability Advocacy</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In our world where everything is code, reliability extends beyond clean and reliable code running on the right infrastructure. It requires a robust sociotechnical system, the dynamic interplay between social and technical components. Our North Star is an engineering culture, built on shared beliefs, practices and behaviours that shape how we operate, solve problems, collaborate, innovate and continuously learn.
@@ -6483,6 +6533,7 @@ His talks focus on practical, platform-enabled approaches to making reliability 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Why internships and entry-level roles matter in Tech</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In the age of AI, efficiency and budget-cuts, the idea of hosting internships or early-career grads may seem in redundant - but this rhetoric couldn't be more misplaced! This session aims to demystify working with students, graduates and educational institutions. Instead, come prepared to discover the range of benefits businesses gain from collaborating in this way, in addition to resources and funding opportunities. Ever considered taking on an intern, but unsure where to start? Do you have projects that would thrive with the keen support of interns? … Then this talk is for you!</p></p>
@@ -6527,6 +6578,7 @@ His talks focus on practical, platform-enabled approaches to making reliability 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Scale or Fail as Spotify's Growth Exposed the Abstraction Paradox</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>When Spotify scaled from millions to hundreds of millions of users, we discovered that our carefully crafted abstractions—designed to simplify our systems—had become our biggest operational liability. New engineers could ship features but couldn't debug failures. Our beautiful, clean interfaces masked the very complexity that seasoned engineers needed to understand during critical incidents.
@@ -6590,6 +6642,7 @@ You'll leave with actionable insights for designing systems and tooling that sca
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">State in a stateless world: data serving in the cloud</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The promise of cloud computing—elasticity, agility, and reduced operational overhead—often hinges on the concept of stateless application design. Yet, every meaningful application relies on persistent data, creating a fundamental tension: how do you manage and serve "state" effectively in a "stateless" world? This 30-minute session will equip architects, developers, and operations professionals with the knowledge to navigate this critical challenge.</p>
@@ -6642,6 +6695,7 @@ You'll leave with actionable insights for designing systems and tooling that sca
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Kubernetes in Transit: Updated Best Practices for Smooth Cross-Cloud Migrations</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Engineers have long believed that managed Kubernetes services in the cloud would liberate them from vendor lock-in, but the reality is far from it. Most container platforms fall short of being feature-complete, leaving a trail of external concerns that can derail even the smoothest migration.</p>
@@ -6688,6 +6742,7 @@ You'll leave with actionable insights for designing systems and tooling that sca
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">How We Built ClickStack - an open source, open telemetry native Observability stack</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Modern observability is built on a flawed foundation: three siloed pillars - logs, metrics, and traces - each powered by different engines with separate query models, storage formats, and operational costs. Users are forced to manually correlate across systems, accept duplication, or pay high SaaS bills. But what if observability is just a data problem? One that needs a general-purpose solution instead of purpose-built compromises? This talk argues that true observability requires fast, high-cardinality queries over unsampled data at scale and at low cost. Traditional search and metrics engines were not designed for this, but column-oriented databases are. We introduce ClickStack, a fully open source, OpenTelemetry-native observability stack built around ClickHouse. It provides fast, flexible querying and efficient storage, enabling real-time visibility without compromise.</p></p>
@@ -6732,6 +6787,7 @@ You'll leave with actionable insights for designing systems and tooling that sca
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">O11y in One: Exploring ClickHouse as a Unified Telemetry Database</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>This talk showcases seamless integrations between ClickHouse and key tools like OpenTelemetry, Prometheus, and Grafana, fostering greater interoperability. It drives innovation in observability by addressing the challenge of fragmented monitoring systems through a unified telemetry solution.</p></p>
@@ -6776,6 +6832,7 @@ You'll leave with actionable insights for designing systems and tooling that sca
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Observability Made Simple: Monitoring Plants with IoT and Grafana</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Have you ever wondered what observability really means and how it can be useful, even if you’re just starting out? In this session, we’ll explore the basics of observability through a fun, relatable project: monitoring the health of plants using simple IoT sensors and Grafana dashboards.
@@ -6823,6 +6880,7 @@ This session requires no prior experience, just curiosity and a love of learning
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">15 NGINX Metrics to Monitor</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Let's take a look at some of the basic NGINX metrics to monitor and what they indicate. We start with the application layer and move down through process, server, hosting provider, external services, and user activity. With these metrics, you get coverage for active and incipient problems with NGINX</p></p>
@@ -6868,6 +6926,7 @@ Dave was named as one of the top ten pioneers in open source by Computer Busines
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">TLA+: Your Secret Weapon Against Concurrency Hell</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Let's be honest: writing correct concurrent and distributed code is hard. Race conditions? Deadlocks? They're the bane of modern software development, especially with tools like Kafka, Kubernetes, and microservices. Testing helps, but it rarely finds all the subtle, timing-dependent bugs.
@@ -6920,6 +6979,7 @@ Also, playing bass guitar with lots of distortion when I get the chance.</p></p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Inference is the New Exfil: How Cloud AI Leaks What It Learns</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Your AI might be the biggest insider threat you’ve ever deployed without even knowing it. As large language models (LLMs) become embedded in cloud-native apps and infrastructure, a new kind of risk is emerging: data leakage through inference. With the right prompt, an attacker can extract sensitive data, proprietary logic, or even credentials from your model’s responses bypassing traditional cloud and application security. In this talk, we’ll explore real-world examples of prompt injection, model inversion, and inference-time exfiltration attacks. You’ll learn why AI models running in Kubernetes, serverless, or SaaS environments introduce hidden exposure, and what to do about it. Whether you’re a security engineer, cloud architect, DevSecOps lead, or AI/ML practitioner, this session will equip you to recognize and defend against one of the fastest-evolving threats in modern cloud systems. Because in the age of AI, the model doesn’t need to be hacked to become the leak.</p></p>
@@ -6964,6 +7024,7 @@ Also, playing bass guitar with lots of distortion when I get the chance.</p></p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: 7 Deadly Traps of SRE</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Site Reliability Engineering was never meant to be about firefighting, yet too many teams find themselves stuck in an endless cycle of pages, postmortems, and quick fixes. Why? Because SRE is full of hidden traps — patterns that look like best practices on the surface but slowly erode reliability, burn out engineers, and stall progress.</p>
@@ -7010,6 +7071,7 @@ Also, playing bass guitar with lots of distortion when I get the chance.</p></p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: What Observability Can Learn From BI: Decoupling for Speed, Scale, and Flexibility</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Today’s observability platforms are often vertically integrated—binding data storage, query, and visualization layers into a single stack. This tight coupling drives up costs, makes integrations painful, and slows teams down. But it doesn’t have to be this way.
@@ -7056,6 +7118,7 @@ You’ll learn why decoupled observability architecture is essential for cost co
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: Strategic AI Agents for Kubernetes SRE: Beyond Ad-hoc Prompting</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>While LLMs make AI agent creation seem simple, building reliable production solutions requires structured methodology. This talk shares key insights from my year-long project developing an AI-powered root cause analysis system for Kubernetes clusters. I'll present three strategies that transformed our approach from experimentation to predictable success: Automated Iterative Context Building: Building context progressively rather than overwhelming LLMs with data upfront Standardized Prompt Architecture: Creating structured templates that simplify implementation across use cases Optimized Data Presentation: Formatting data to significantly improve accuracy and reduce hallucinations I'll demonstrate these through our "Kubernetes Deployment Failure Investigation" system, where our LLM approach outperformed traditional coding by considering a wider range of factors. Attendees will gain practical frameworks for systematic LLM application development applicable within and beyond Kubernetes, with opportunities to share experiences in this rapidly evolving field.</p></p>
@@ -7100,6 +7163,7 @@ You’ll learn why decoupled observability architecture is essential for cost co
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: Driving Platform Adoption with Embedded SREs</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Platform engineers work hard to build great tooling and automations for developers, but often struggle to get feature teams to adopt the platform to its full potential. Meanwhile, SREs are buried in incident firefighting and can’t keep up with onboarding new services or proactive reliability initiatives.
@@ -7148,6 +7212,7 @@ We’ll walk through how we structure these short-term embed missions, what’s 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: 10 Common Things People Do Wrong in Kubernetes Environments</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In this talk, we’ll explore ten frequent mistakes developers and operators make when working with Kubernetes. From misconfigured resources and insecure deployments to overlooked observability and poor scaling practices — this session will highlight real-world pitfalls and offer practical advice to help you build more reliable, secure, and efficient Kubernetes environments.</p></p>
@@ -7192,6 +7257,7 @@ We’ll walk through how we structure these short-term embed missions, what’s 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: Flexible Kubernetes Multitenancy with vCluster</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In this session, we'll explore how to implement flexible multitenancy in Kubernetes using <strong>vCluster</strong>. You'll learn how to design platforms that can adapt to different isolation requirements, resource sharing needs, and trust models within a single cluster.</p>

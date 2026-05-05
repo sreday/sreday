@@ -2689,6 +2689,27 @@ Key Takeaways How to evolve from passive observability to automated corrective a
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
+  .modal-speaker .btn-close {
+    background: var(--brand);
+    color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .btn-close:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
 </style>
 
 
@@ -2720,6 +2741,7 @@ Key Takeaways How to evolve from passive observability to automated corrective a
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Container Live Migration in Kubernetes: Why and How</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>What if Kubernetes could move a running container to another node without a single second of downtime? In this session, we’ll dive into Container Live Migration—a game-changing capability that brings a new level of availability to your workloads. Say goodbye to disruption from Spot instance terminations, node pressure, or scaling events—even for apps with long startup times like Java services, long-running jobs, or stateful workloads.</p>
@@ -2766,6 +2788,7 @@ Key Takeaways How to evolve from passive observability to automated corrective a
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">“We’re Down!” to “We’re Good.” — Shipping observability in 2 weeks</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p><strong>Many hyper-growth startups hit a point where the current systems just aren’t enough.</strong><br />
@@ -2834,6 +2857,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Rust-Powered Observability: The Language of Modern Observability</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Traditional observability tools built in C++, Java and Go often become part of the problem they're meant to solve, crashing under load, leaking memory during critical incidents, and introducing race conditions that corrupt data. Extremely high resource consumption leads to increased costs and complexity in managing infrastructure.</p>
@@ -2881,6 +2905,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">MCP Is Not Enough: Introducing, Data Containers for AI</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>LLMs are demanding data access, but they are like a toddler with a popsicle, always wanting more. We’ll tell you how to keep your toddlers sugar free and your LLMs in check, to make sure neither your house burns down or your company receives a massive lawsuit for a data leak.</p>
@@ -2928,6 +2953,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Shadow Dependencies - The Rising Role (Risk?) of Data</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Some of the largest outages on the internet can be traced back not only to changes in code, but also how the code changed underlying data models. Through countless discussions with software engineers, many noted the importance of the underlying data model for quality development, yet also highlighted the lack of incentives (or outright discouragement) by leadership to put in the extra effort to maintain it. Even more troubling, not only are applications impacted by data, but also downstream consumers within the business are taking major dependencies on the output of this data for business-critical workflows-- unbeknownst to the upstream engineers producing the data (i.e., shadow dependencies). In this talk, we highlight this growing problem, why engineer leadership is paying more attention to the risk of data, and how to surface and prevent these issues within the CI/CD workflow via an emerging pattern called "data contracts."</p></p>
@@ -2972,6 +2998,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Beyond 100 Petabytes: Why We Built a Custom Exporter to Replace Our OTel Pipeline</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Are your observability signals trapped in separate pillars? Logs in one place, metrics in another, both losing context? At ClickHouse, we faced this challenge at a massive scale. Our solution was to abandon the traditional model and embrace a new philosophy: store everything, aggregate nothing. This talk charts our journey to 100 PB and 500 trillion rows, centered on the concept of “wide events.” Instead of shipping a simple log message and a separate, pre-aggregated metric, we store a single, context-rich event containing every possible dimension. This shift from three pillars to a single warehouse of high-cardinality telemetry was a game-changer. The key to this model is using ClickHouse itself as our observability backend. This unlocks unbounded query flexibility through full SQL. When an engineer asks “what’s the p95 pod replacement time after termination?”, we don’t say “let me ship a new metric.” We write a SQL query.</p></p>
@@ -3016,6 +3043,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Transform chaos experiments into actionable insights using generative AI</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Tired of manual chaos experiment analysis? Discover how to leverage generative AI to analyze test results and validate experiment hypothesis. Learn to integrate Amazon Bedrock with AWS FIS to transform your chaos engineering experiments and game days into efficient, data-driven exercises that prove system resilience.</p></p>
@@ -3061,6 +3089,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">10 Billion Downloads: Insights and Trends in Open Source</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In this talk, we share the up-to-date results and fresh insights of an in-depth analysis of data gathered from over 10 billion events analyzed across thousands of projects. The analysis reveals a clearer view of the latest emerging trends.</p>
@@ -3108,6 +3137,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Secrets Security End-To-End</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Credentials allow human-to-machine and machine-to-machine communication. According to CyberArk's recent research, 93% of organizations had two or more identity-related breaches in the past year. It is clear that we need to address this growing issue. Unfortunately, many organizations are OK with using plaintext credentials, which we should all know not to do by now. Given the scope of the problem, what can we do? Let's make a plan! Secrets Detection Secrets Management Developer Workflows Secrets Scanning Automatic Rotation</p>
@@ -3153,6 +3183,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">The Human Factor in Site Reliability: Designing Automation That Amplifies Engineering</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>As automation sophistication increases across SRE practices, organizations face a critical inflection point: whether to pursue lights-out operations or embrace human-centered reliability engineering that delivers measurably superior outcomes. This presentation reveals how leading tech organizations achieve significantly higher system reliability and faster incident resolution by strategically designing automation as engineering amplification rather than replacement. Based on comprehensive analysis of incident response patterns and drawing from my experience implementing AI-powered operational workflows at SiriusXM, this session demonstrates how organizations adopting human-centered SRE practices achieve faster mean time to resolution (MTTR) and fewer repeat incidents compared to fully automated approaches. Real-world case studies examine intelligent alerting systems that provide contextual incident classification while preserving human expertise for complex failure mode analysis, and automated remediation tools that execute standard procedures while escalating edge cases requiring engineering judgment. The presentation addresses critical operational challenges including alert fatigue, over-automation risks that mask system complexity, and cognitive load management for on-call engineers. Attendees discover proven frameworks for designing multi-tiered incident response that achieves substantial efficiency gains while maintaining engineering situational awareness, and learn how strategic automation reduces toil while enhancing rather than replacing critical thinking skills. Key implementation strategies include developing runbook automation that educates while executing, establishing escalation frameworks that improve incident learning outcomes, and creating measurement systems that capture both operational metrics and engineer wellness indicators. Organizations following these human-centered reliability principles consistently achieve better uptime, faster recovery, and higher team satisfaction compared to automation-first approaches. This session provides SRE leaders with practical tools for building resilient operations that leverage automation strategically while preserving the engineering judgment essential for managing complex distributed systems.</p></p>
@@ -3197,6 +3228,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Data Lakehouse Architecture: Reducing Operational Complexity for SRE Teams</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Modern enterprise data infrastructure creates significant operational overhead for SRE teams, with organizations spending the majority of their engineering cycles managing ETL pipelines, data replication, and maintaining multiple storage systems across data warehouses, lakes, and specialized databases. This operational complexity directly impacts service reliability, increases mean time to recovery (MTTR), and creates numerous points of failure that challenge SLO achievement. This presentation demonstrates how data lakehouse architecture transforms operational paradigms by consolidating disparate data systems into unified, cloud-native platforms that dramatically reduce infrastructure complexity. Through practical implementation strategies, we explore how SRE teams can eliminate redundant data copies, reduce operational toil through automated governance frameworks, and achieve better observability through centralized metadata management. Key operational benefits include substantial reduction in data pipeline maintenance overhead, simplified monitoring through unified observability stacks, and improved incident response through consolidated failure domains. The architecture leverages open table formats like Delta Lake and Apache Iceberg to ensure vendor neutrality while enabling automated backup, recovery, and compliance workflows. We examine five critical architectural layers from an operational perspective: scalable cloud storage foundations with built-in redundancy, self-healing metadata catalogs that reduce manual intervention, automated semantic layers that abstract operational complexity, and optimized query engines that provide consistent performance under varying loads. Attendees will learn practical migration strategies for reducing operational complexity, frameworks for measuring reliability improvements through SLI/SLO metrics, and automation patterns for minimizing manual operational overhead. This session provides actionable insights for SRE teams seeking to modernize data infrastructure while improving service reliability and reducing operational burden.</p></p>
@@ -3241,6 +3273,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Migration from On-Prem Messaging System to The Cloud: What, How and Why</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The race to the cloud is on, with enterprises everywhere migrating core infrastructure to stay competitive and cost effective. But when it comes to the messaging systems that power cross-component communications, a simple "lift and shift" isn't adequate and can be a recipe for failure. The migration path is riddled with complex decisions and design pitfalls unique to every use case. In this session, AWS Cloud Support expert Tom will walk you through the critical stages of rehosting, replatforming, and refactoring, showing you how to unlock maximum performance and reliability for messaging systems. Additionally, Tom will compare traditional message brokers with more modernized serverless messaging services on AWS. By the end of the session, you will have a much more comprehensive understanding of the migration prcess, key questions to ask and some best practices for harnessing the benefits of Cloud.</p></p>
@@ -3285,6 +3318,7 @@ I’ll share tactics for keeping a <strong>bias toward action</strong> and stead
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">From Dashboard to Defense: Automating Resilience at Large Scale</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Modern production systems can no longer rely on static dashboards and reactive on-call rotations to ensure uptime. At large scale — with billions of requests flowing through mission-critical services — reliability must be engineered into the system through autonomous detection, mitigation, and recovery.
@@ -3343,6 +3377,7 @@ Passionate about knowledge-sharing, he mentors technologists, contributes to pee
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Building Bulletproof ML Inference Platforms: SRE Principles for Real-Time AI at Scale</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Real-time machine learning inference platforms present unique SRE challenges that traditional monitoring and reliability practices often can't address. This talk provides a comprehensive framework for applying SRE principles to ML inference systems, drawing from hands-on experience scaling platforms that serve billions of daily predictions with sub-100ms latency requirements. We'll explore how to establish meaningful SLIs and SLOs for ML systems, where traditional availability metrics fall short in capturing model performance degradation, data drift, and inference quality issues. Learn practical approaches to incident response for ML platforms, including automated fallback mechanisms, circuit breakers for model failures, and graceful degradation strategies that maintain user experience during outages. The session covers essential reliability patterns including blue-green deployments for model updates, canary releases with statistical significance testing, and rollback strategies that account for model warming and feature pipeline dependencies. We'll examine monitoring and observability strategies that go beyond traditional metrics, incorporating model performance tracking, feature drift detection, and business impact correlation. Infrastructure reliability techniques will be demonstrated through real-world examples: implementing request batching for throughput optimization while maintaining latency SLAs, designing feature stores for consistency and disaster recovery, and orchestrating Kubernetes-based serving infrastructure with proper resource allocation and auto-scaling policies. Critical operational aspects include capacity planning for ML workloads with variable computational requirements, managing dependencies between feature generation pipelines and serving systems, and implementing effective on-call procedures for ML-specific incidents. Attendees will gain practical tools for building resilient ML inference platforms including monitoring dashboards, alerting strategies, and runbook templates. This session bridges the gap between traditional SRE practices and modern ML operations, providing actionable frameworks for maintaining reliable AI systems that deliver consistent business value while meeting stringent performance requirements.</p></p>
@@ -3387,6 +3422,7 @@ Passionate about knowledge-sharing, he mentors technologists, contributes to pee
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Bulletproofing Trillion-Parameter Training: SRE Strategies for Ultra-Large AI Infrastructure at Scale</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Training trillion-parameter language models presents unique site reliability challenges that dwarf traditional distributed systems complexity. With training costs exceeding millions of dollars and runs spanning months across thousands of GPUs, even minor infrastructure failures can result in catastrophic business impact and resource waste. This presentation examines the SRE principles and practices essential for maintaining high uptime in distributed AI training environments. Drawing from real-world experience managing production AI infrastructure, the session explores how frameworks like NVIDIA's Megatron-LM, Microsoft's DeepSpeed, and UC Berkeley's Alpa introduce novel reliability challenges that traditional monitoring and alerting systems cannot adequately address. Key topics include implementing robust fault tolerance mechanisms for multi-week training jobs, designing effective checkpointing strategies that balance recovery speed with storage costs, and building comprehensive observability pipelines for distributed training workloads. The presentation examines how communication overhead between thousands of nodes creates cascading failure scenarios and demonstrates monitoring techniques for detecting performance degradation before it impacts model convergence. The session covers practical SRE implementations including automated failure recovery systems, capacity planning for massive memory requirements, and energy-aware resource allocation strategies. The discussion addresses the operational complexity of managing heterogeneous GPU clusters and the monitoring strategies needed to track model performance alongside traditional infrastructure metrics. Attendees will learn actionable SRE practices for large-scale AI infrastructure including incident response procedures for distributed training failures, reliability testing methodologies for AI workloads, and capacity forecasting techniques for rapidly evolving model architectures. This presentation addresses the critical reliability challenges that determine whether organizations can successfully operate next-generation AI systems in production environments.</p></p>
@@ -3431,6 +3467,7 @@ Passionate about knowledge-sharing, he mentors technologists, contributes to pee
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Microfrontend Reliability: SRE Strategies for Distributed Frontend Systems</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Microfrontend architectures with Module Federation introduce distributed system complexity to frontend applications, creating new reliability challenges that traditional SRE practices must adapt to address. This talk explores how to apply Site Reliability Engineering principles to microfrontend systems, ensuring high availability, performance, and operational excellence across independently deployed frontend modules. Unlike backend microservices, microfrontends face unique reliability challenges including runtime integration failures, cross-module dependency conflicts, and cascading failures that can break entire user experiences. We'll examine how to implement the four golden signals for microfrontend systems: measuring latency across module boundaries, tracking traffic patterns for federated modules, monitoring error rates in distributed frontend components, and managing saturation in shared resources and container applications. The session covers essential observability strategies including distributed tracing for microfrontend interactions, real user monitoring (RUM) for federated applications, and synthetic monitoring approaches that validate cross-module integrations. We'll explore how to implement effective circuit breakers for frontend modules, graceful degradation patterns when remote modules fail, and automated rollback strategies for problematic deployments. Attendees will learn production-tested techniques for capacity planning microfrontend systems, including CDN optimization strategies, bundle size monitoring, and performance budget enforcement across teams. The talk addresses critical operational concerns such as coordinated deployments across multiple frontend teams, dependency version management, and incident response procedures for distributed frontend failures. We'll also cover advanced reliability patterns including canary deployments for federated modules, A/B testing infrastructure for microfrontends, and automated performance regression detection. The session explores monitoring strategies for shared design systems, container application health checks, and cross-team SLO management in federated architectures. This session targets SREs, platform engineers, and DevOps professionals working with complex frontend architectures, providing practical frameworks for maintaining reliability, performance, and operational excellence in distributed frontend systems while avoiding common reliability pitfalls.</p></p>
@@ -3475,6 +3512,7 @@ Passionate about knowledge-sharing, he mentors technologists, contributes to pee
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">How We Built ClickStack - an open source, open telemetry native Observability stack</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Modern observability is built on a flawed foundation: three siloed pillars - logs, metrics, and traces - each powered by different engines with separate query models, storage formats, and operational costs. Users are forced to manually correlate across systems, accept duplication, or pay high SaaS bills. But what if observability is just a data problem? One that needs a general-purpose solution instead of purpose-built compromises? This talk argues that true observability requires fast, high-cardinality queries over unsampled data at scale and at low cost. Traditional search and metrics engines were not designed for this, but column-oriented databases are. We introduce ClickStack, a fully open source, OpenTelemetry-native observability stack built around ClickHouse. It provides fast, flexible querying and efficient storage, enabling real-time visibility without compromise.</p></p>
@@ -3519,6 +3557,7 @@ Passionate about knowledge-sharing, he mentors technologists, contributes to pee
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Data Lineage in the Era of AI: Solving One of Tech’s Biggest Challenges</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Modern enterprises can’t manage data they don’t understand – uncovering the code-to-data relationship is the missing link. As data ecosystems grow more complex, traditional approaches to tracking data lineage can’t keep up. This talk explores how AI-driven code analysis can automatically build end-to-end lineage graphs, giving engineers clear visibility into hidden dependencies across large, legacy, and regulated systems. We’ll show how AI enhances data catalogues and introduce Gable - a tool that helps teams map, validate, and monitor data flows at scale. A live demo on a large energy data codebase will highlight how AI transforms lineage tracking from a manual headache into an automated, scalable solution.</p></p>
@@ -3563,6 +3602,7 @@ Passionate about knowledge-sharing, he mentors technologists, contributes to pee
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: No Single Point of (AI) Failure: Agent Maintenance & Model Fallbacks</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>AI agents are only as reliable as the models they depend on, but what happens when capacity is maxed out, latency spikes, or a model becomes unavailable? In this keynote, we’ll explore SRE-grade approaches to agent maintenance and multi-LLM fallback strategies. You’ll learn how to design AI systems that gracefully switch between models, maintain reliability under pressure, and deliver consistent performance even when your primary model is unavailable. Think of it as applying tried-and-true SRE principles of failover, observability, and incident readiness now in the world of AI.</p></p>
@@ -3607,6 +3647,7 @@ Passionate about knowledge-sharing, he mentors technologists, contributes to pee
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: What Observability Can Learn From BI: Decoupling for Speed, Scale, and Flexibility</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Today’s observability platforms are often vertically integrated—binding data storage, query, and visualization layers into a single stack. This tight coupling drives up costs, makes integrations painful, and slows teams down. But it doesn’t have to be this way.

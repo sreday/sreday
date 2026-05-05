@@ -833,6 +833,27 @@
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
+  .modal-speaker .btn-close {
+    background: var(--brand);
+    color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .btn-close:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
 </style>
 
 
@@ -864,6 +885,7 @@
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Imperfect Is Fine (When It’s You)</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Humans hallucinate memories, forget decisions, and confidently state wrong facts - and we built entire civilizations around it. Yet when AI does the same, we call it broken. 
@@ -909,6 +931,7 @@ This talk uses cognitive science, live audience experiments, and real-world engi
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">The Missing Layer in Your Developer Platform Architecture</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>You deployed Backstage. Developers love the catalog. Golden path templates are shipping. Then the feature requests start: "Is my service actually running?" "Can I see logs here?" "Why do I need five tools to debug one deployment?"</p>
@@ -955,6 +978,7 @@ This talk uses cognitive science, live audience experiments, and real-world engi
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Your Outdated Docs are Costly: Why You should be writing tests for your docs</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Internal Developer Platforms aim to create golden paths, reduce cognitive load, and standardize how teams build and operate software. But there’s a blind spot: documentation. READMEs, onboarding guides, and operational runbooks are often treated as static artifacts. Over time they drift from reality, even as the platform itself evolves. The result is slower onboarding, brittle self-service workflows, and increased support burden on platform teams. In this talk, I’ll explore documentation as an unverified surface within Internal Developer Platforms, and introduce a practical approach to making it executable. By treating markdown instructions and runbooks as workflows that can be executed and validated inside CI or ephemeral environments, platform teams can detect drift automatically. Setup steps, service bootstrapping commands, and health checks become verifiable contracts rather than informal guidance. We’ll cover: • Why documentation drift increases cognitive load and support tickets • How to integrate executable documentation into platform pipelines • How this approach strengthens golden paths and reduces onboarding time • What changes in platform team workflows when documentation becomes testable Document drift is a universal problem, and a costly one. It's time we implmented an actual fix.</p></p>
@@ -999,6 +1023,7 @@ This talk uses cognitive science, live audience experiments, and real-world engi
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Who Watches the AI Agents? SRE for Non-Human Identity at Scale</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>AI agents (MCP servers, LangChain tools, autonomous coding assistants) are becoming production workloads that SREs own, but nobody’s treating their identities, secrets, or privilege escalation paths with the same rigor as human operators. Walk through real patterns: Conjur-brokered credentials for AI agents, JIT privilege grants scoped to agent tasks, and what an incident looks like when an agent’s session token gets over-permissioned.</p></p>
@@ -1043,6 +1068,7 @@ This talk uses cognitive science, live audience experiments, and real-world engi
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">How Cribl Showed Me Why Some Runs Suck</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>If you're a runner, chances are you're drowning in metrics - sleep scores, heart rate, temperature, pace, fueling, recovery. But what does all this data actually mean, and how do you use it to debug the most complex production system of all: your body?
@@ -1090,6 +1116,7 @@ This session is for anyone who generates a pile of data(fitness or otherwise) an
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">When Milliseconds Cost Millions: Designing Low-Latency AI Systems in Fintech</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In fintech systems, milliseconds don’t just impact performance — they directly translate into financial risk. AI-driven decisions such as fraud detection, credit scoring, and transaction authorization operate under strict latency budgets, often under 100 milliseconds. When these systems slow down, the consequences go beyond user experience: delayed decisions can increase exposure, impact compliance, and lead to measurable financial loss. This talk dives into the engineering challenges of running low-latency AI systems reliably in production. We’ll explore how to define meaningful SLOs for AI workloads, manage tail latency (p95/p99), and design resilient inference pipelines on Kubernetes. Through real-world scenarios, we’ll unpack trade-offs between model accuracy and response time, how bottlenecks emerge under scale, and what typically fails first in high-pressure environments. We’ll also cover observability patterns for AI systems — from detecting latency regressions early to maintaining consistent performance under fluctuating load. If you build or operate systems where delays are unacceptable, this session will provide practical insights to design AI platforms that are not only intelligent, but reliably fast under real-world conditions.</p></p>
@@ -1134,6 +1161,7 @@ This session is for anyone who generates a pile of data(fitness or otherwise) an
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Free Software Isn't Gratis: why companies should treat Open Source as part of your Infrastructure</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Maintaining an open source project is hard. It requires managing a group of people who are largely working for free to build something that other people profit off of, usually distributed across the globe, with limited resources. The whole time you’re doing this, you’re receiving demands from users and businesses alike for features or bug fixes on a timeline that works for them, not you and your (possibly very limited) group of contributors that you can’t exactly order around, since they aren’t being paid. It’s stressful, and it can be overwhelming. When one of these projects is the victim of an attack that takes advantage of the fact that there are only one or two maintainers, or eventually has to shut down due to rising technical debt and falling contributor numbers, the public blame falls on us, not on the businesses that didn’t offer contributors in time.</p></p>
@@ -1178,6 +1206,7 @@ This session is for anyone who generates a pile of data(fitness or otherwise) an
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">The Runtime Gap: Why Your AI Agents are Flying Blind and How to Fix It</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The adoption of Generative AI in the SDLC has created a paradox: code generation has outpaced safe production. As teams shift from coding to prompting, they now spend up to 70% of their time verifying and fixing bugs. Traditional observability often comes too late, requiring reactive redeployments that stall innovation.</p>
@@ -1229,6 +1258,7 @@ With deep technical expertise spanning medical research, logistics, and renewabl
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: Secure by Default: Building Confidence in AI-Driven Delivery</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>The fastest way to break trust in DevSecOps is to automate insecurity at scale. As AI takes a central role in our pipelines, it is time to rethink what "secure by default" really means.</p>
@@ -1275,6 +1305,7 @@ With deep technical expertise spanning medical research, logistics, and renewabl
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: 7 Deadly Traps of SRE</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Site Reliability Engineering was never meant to be about firefighting, yet too many teams find themselves stuck in an endless cycle of pages, postmortems, and quick fixes. Why? Because SRE is full of hidden traps — patterns that look like best practices on the surface but slowly erode reliability, burn out engineers, and stall progress.</p>

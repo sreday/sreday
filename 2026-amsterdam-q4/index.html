@@ -758,6 +758,27 @@
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
+  .modal-speaker .btn-close {
+    background: var(--brand);
+    color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .btn-close:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
 </style>
 
 
@@ -789,6 +810,7 @@
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">No 0-day required, just target the AI coding assistant!</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Do you trust your AI coding assistant? What if I told you that attackers have found ways to manipulate it and attack your code? With everyone now using AI coding assistants it’s time to look at the risks! During this talk I’ll show you several new techniques attackers are already using. This will range from hidden messages (ASCII smuggling) to abusing mistyping and characters that look the same (typosquatting). I will also show how an LLM can make mistakes when generating code (hallucinations). Did you know that a smart attacker can abuse this too? When you join this talk, you’ll learn how to spot hidden text in your instruction file and prompts. I will also explain how to set up a trusted dependency repository to prevent the malicious code from entering your production environment!</p></p>
@@ -833,6 +855,7 @@
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Beyond API Keys: Fine-Grained Authorization with OpenFGA</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Modern applications often outgrow simple API key or role-based access models, especially in multi-tenant and microservice environments. This talk explores how OpenFGA enables fine-grained, relationship-based authorization to model complex access patterns such as “user X can access resource Y because they belong to team Z.”
@@ -878,6 +901,7 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">What's new in Varnish: new features in the high-performance caching proxy</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Varnish is a well-known reverse open source HTTP caching proxy that accelerates websites, applications, files, and any other HTTP-base type of workload. The technology has been around for more than 15 years and powers millions of active websites. While Varnish is considered a stable and reliable piece of acceleration software, there hasn't been a lot of hype surrounding the project. The recent release of Varnish version 9 deserves a bit of hype. In this presentation, Thijs will explain the major new features of Varnish 9, which include TLS support, dynamic backends, OTEL support, and a wide range of exciting modules. He’ll show you how to use them to apply a more intelligent caching layer to your web stack. Thijs will also explain some major changes in the way the open source project is run, and will present some cloud-native additions to the project like Docker images, Helm Charts, and even a Varnish-powered Kubernetes Gateway Controller.</p></p>
@@ -922,6 +946,7 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">What If This Dependency Fails? Learning Reliability Through Chaos Engineering</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Teams spend a lot of time defining functional and non-functional requirements, writing acceptance criteria, and verifying behavior in controlled environments. That work matters, but it can also lead teams to optimize for test environments while real incidents emerge in production. Production is where systems meet latency, dependency failures, retries, partial outages, and degraded behavior. Most incidents do not come from one obviously broken service. They happen in the gaps between services, where assumptions were never made explicit and failure modes were never explored. In this talk, we give a practical introduction to chaos engineering as a way to close that gap. Not as a dramatic exercise in breaking everything, but as a disciplined way to learn how systems behave under stress. By running small, intentional experiments, teams can test assumptions, uncover weak spots before they become incidents, and better understand how their systems really behave in production. One of the biggest lessons is that reliability often improves before the first experiment even runs. As soon as teams start asking “what if?” questions together, they surface hidden assumptions and identify practical changes worth making immediately. Attendees will leave with a better understanding of why incidents emerge between systems, how chaos engineering connects to a Site Reliability Engineering (SRE) mindset, and how to start with safe, small experiments in their own environment.</p></p>
@@ -966,6 +991,7 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Five Hard Lessons from Five Years of So-Called Serverless Databases</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>After five years of managing serverless databases, I have learned that my rollercoaster journey is very similar to the CPU usage you dream of seeing in the console. This session shares five hard-earned lessons learned while working with so-called serverless databases.</p></p>
@@ -1010,6 +1036,7 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Understanding Performance Regression With APerf</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Finding performance issues in modern software is like finding a needle in a haystack and intuition on where to look first is often wrong. APerf is an open source tool we have used many times to help with performance debugging by looking “wide” before going “deep”. This session will present the tool along with an performance regression example</p></p>
@@ -1054,6 +1081,7 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Keynote: 7 Deadly Traps of SRE</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Site Reliability Engineering was never meant to be about firefighting, yet too many teams find themselves stuck in an endless cycle of pages, postmortems, and quick fixes. Why? Because SRE is full of hidden traps — patterns that look like best practices on the surface but slowly erode reliability, burn out engineers, and stall progress.</p>

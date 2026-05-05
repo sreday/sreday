@@ -1863,6 +1863,27 @@ Join me for this talk to explore real-world use cases, understand the Team Topol
   .modal-speaker .desc {
     padding-bottom: 0.25rem;
   }
+  .modal-speaker .btn-close {
+    background: var(--brand);
+    color: #fff;
+    opacity: 1;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .btn-close:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
 </style>
 
 
@@ -1894,6 +1915,7 @@ Join me for this talk to explore real-world use cases, understand the Team Topol
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">How Google built a Consistent, Global Authorization System (and you can too!)</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Google Zanzibar is the singular authorization service that powers permissions and sharing across all Google properties, including Docs, YouTube, and Cloud IAM. Creating a consistent, global-scale authorization system that can process "more than 10 million client queries per second” is not a trivial task. The talk will cover how the paper lays out an engineer-friendly blueprint for building a highly scalable distributed system with flexible consistency guarantees.
@@ -1939,6 +1961,7 @@ This talk will start with foundational knowledge of Relationship Based Access Co
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Governing the Cloud: A Guide to Data Sovereignty</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>With changing political relations and deteriorating trust in the large cloud providers, Data Sovereignty is on everyone’s mind. In this session, we will show you that the hard work you’ve already done on the road to DevOps and SRE will serve you just as well to make your systems sovereign by design. Join us to learn how to:
@@ -1989,6 +2012,7 @@ You’ll come away from this talk with a set of tweaks and changes to your curre
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">TLA+: Your Secret Weapon Against Concurrency Hell</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Let's be honest: writing correct concurrent and distributed code is hard. Race conditions? Deadlocks? They're the bane of modern software development, especially with tools like Kafka, Kubernetes, and microservices. Testing helps, but it rarely finds all the subtle, timing-dependent bugs.
@@ -2041,6 +2065,7 @@ Also, playing bass guitar with lots of distortion when I get the chance.</p></p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Using OpenTelemetry to Improve Service Level Objectives</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>As systems grow more complex, engineering teams must move beyond guesswork when resolving production issues and instead focus on delivering consistent, measurable user value. This talk explores how OpenTelemetry empowers teams to define, measure and improve Service Level Objectives with precision and confidence.
@@ -2087,6 +2112,7 @@ We’ll dive into hands-on examples using the OpenTelemetry Demo Application and
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">DevOps: Why do we keep messing up?</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Summary: DevOps isn't a new concept, but a lot of companies still struggle to get it right. Even when they think they've nailed it, they often run into some not-so-fun side effects, like unhappy developers or unexpected costs that sneak up on them. In this presentation, we'll see why this can happen and how to dodge these pitfalls.</p></p>
@@ -2132,6 +2158,7 @@ Previously, he played key roles at Rabobank, Philips, Itaú Unibanco, and WAES, 
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Platform as a Product: Drive Adoption for Your Internal Tools</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Are your platform team's brilliant ideas struggling for adoption and meeting resistance? Why do some internal platform tools thrive while others flop? Many technically sound SRE/DevOps initiatives fall short because they aren't treated as products with real users. This session cuts through the noise, revealing why a product mindset is crucial for platform success.
@@ -2179,6 +2206,7 @@ Known for his structured problem-solving and collaborative mindset, Mike thrives
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Lightning Thoughts: Charting the AlphaEvolve → OTel Journey</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>In this session, I invite you to join a thought experiment I conducted just after DeepMind AlphaEvolve reached the event horizon. I’ll explore how evolutionary AI usage architectures might weave into the OpenTelemetry‑powered observability landscape of the CNCF, turning runtime traces and static code into a self‑optimizing loop. No deep dives—just sparks of ideas to inspire the next steps in agent‑driven software evolution. I hope this quick sketch encourages questions and collaboration.</p></p>
@@ -2226,6 +2254,7 @@ Known for his structured problem-solving and collaborative mindset, Mike thrives
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Reliability at the Edge: Building SRE Culture in Resource-Constrained Environments</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>How do you build reliable systems where downtime is not just an inconvenience, but a threat to trust, income, and even safety? In this talk, Roosevelt Elias, founder of Payble, explores how to establish SRE principles in markets where infrastructure is unreliable, cloud access is intermittent, and talent pipelines are still emerging. Drawing from real-world experience building financial infrastructure in Africa, we’ll discuss culturally aware incident management, lightweight observability stacks, distributed troubleshooting with limited tooling, and what it means to bake resilience into the DNA of both product and process even when the odds are stacked against you.
@@ -2273,6 +2302,7 @@ He is a bold thinker, deeply rooted in service, faith, and sustainable impact, b
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Why Your DevOps Isn’t Reliable (And It’s Not the Tools)</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>We blame tools. Kubernetes crashed. Terraform misfired. Alerts didn’t trigger. But what if the real reason your DevOps isn’t reliable… is Dave?
@@ -2328,6 +2358,7 @@ Connect with Me: I am always eager to connect with fellow professionals, share i
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Building Platforms breaking code: how your org chart wrecks everything</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Do you wonder why your developers are slow to deliver? Are you stuck in an ever-growing loop of Jira tickets? Does communication break down as you scale? If your company's org chart is more complex than your product architecture, this talk is for you.
@@ -2375,6 +2406,7 @@ TL;DR; Sit back and relax and let me explain how we can use Conway's law and DDD
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Reducing Blast Radius</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>As site reliability / infrastructure engineers we do a lot of things for better reliability. Some of them are easy, especially if your cloud provider supports it, like adding HA to your database. And some of them require more thorough process and planning , for example reducing blast radius. You can start small with multi-zone / multi-region setup for your compute, but then you will most likely still end up with SPOFs like database and load balancer. Sharding is not new and there are many ways to accomplish it. We'll go over what Twingate did for it's own sharding strategy in this talk that eliminated all single point of failures and reduced the impact of database migrations and infrastructure changes.</p></p>
@@ -2419,6 +2451,7 @@ TL;DR; Sit back and relax and let me explain how we can use Conway's law and DDD
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">Leveraging Team Topologies for Software Evolution</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Have you ever encountered roadblocks in software development due to disjointed team structures or interactions? You’re not alone. Misalignments between software and the domain, siloed teams focusing on discrete tasks, or processes dictating software architecture often result in rigid software that fails to meet the customer's needs.
@@ -2465,6 +2498,7 @@ Join me for this talk to explore real-world use cases, understand the Team Topol
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
+              <div class="talk-title-bar">From Local to Cloud-Based Development: Our Migration Story</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>What does it take to move an entire engineering organization from traditional local development setups to developing directly in the cloud? At Catawiki, this shift was more than just swapping tools—it was a cultural and technical transformation aimed at improving reliability, feedback loops, and developer velocity.
