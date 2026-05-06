@@ -466,10 +466,855 @@
 </style>
 
 
+<style>
+  /* Track navigation */
+  .track-nav {
+    padding: 0.75rem 0;
+    margin-bottom: 1.5rem;
+  }
+  .track-nav-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .track-nav-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .track-nav-links a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--brand);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+  }
+  .track-nav-links a:hover {
+    background: var(--brand-light);
+    color: white;
+  }
+  .view-toggle-link {
+    color: var(--brand);
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--brand);
+    border-radius: 4px;
+    transition: all 0.2s;
+    min-width: 10rem;
+    text-align: center;
+  }
+  .view-toggle-link:hover {
+    background: var(--brand);
+    color: white;
+  }
+  .view-toggle-link.active {
+    background: var(--brand);
+    color: white;
+  }
+  /* Table view */
+  .schedule-table-view { display: none; }
+  .schedule-table-view.active { display: block; }
+  .schedule-timeline-view { display: block; }
+  .schedule-timeline-view.hidden { display: none; }
+  .schedule-grid-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+    table-layout: fixed;
+  }
+  .schedule-grid-table th {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: white;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .schedule-grid-table th:first-child {
+    width: 60px;
+  }
+  .schedule-grid-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--brand-lightest);
+    vertical-align: top;
+  }
+  .schedule-grid-table td.merged-cell {
+    text-align: center;
+    font-weight: 500;
+    color: #555;
+    background: var(--brand-lightest);
+  }
+  .schedule-grid-table .time-cell {
+    color: var(--brand);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .schedule-grid-table .talk-cell a {
+    color: #222;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .schedule-grid-table .talk-cell a:hover {
+    color: var(--brand);
+  }
+  .schedule-grid-table .speaker-info {
+    color: #444;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+  .schedule-grid-table .speaker-info .affiliation {
+    color: #666;
+  }
+  .schedule-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  .schedule-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.8rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .schedule-meta-divider {
+    color: #ccc;
+    font-weight: 300;
+  }
+  /* Track section header */
+  .track-section-header {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    margin: 2rem 0 0 0;
+    border-radius: 4px 4px 0 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  .track-section-header:first-of-type {
+    margin-top: 0;
+  }
+
+  .schedule-section.theme-bg-light { background-color: #f0faf5 !important; }
+</style>
+
 <section id="schedule" class="schedule-section section theme-bg-light">
   <div class="container">
-    <h2 class="section-heading text-center mb-5">Schedule</h2>
-    <h4 class="section-heading text-center mb-5">Coming soon</h4>
+    <h2 class="section-heading text-center mb-4">Schedule</h2>
+
+    <!-- Schedule meta info -->
+    <div class="schedule-meta">
+      <span class="schedule-meta-item">June 6, 2026</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">single track</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">9AM - 4PM</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">NYC, in-person</span>
+    </div>
+
+
+    
+
+    <!-- Track navigation -->
+    <div class="track-nav">
+      <div class="track-nav-inner">
+
+        <span class="view-toggle-link" id="view-toggle-0" onclick="toggleView(0)">view as table</span>
+      </div>
+    </div>
+
+    <!-- Timeline View (default) -->
+    <div id="timeline-view-0" class="schedule-timeline-view">
+
+      <div class="track-section-header" id="track-0-1">main room &bull; Track 1</div>
+      <div class="schedule-tab-content">
+        <div class="tab-pane active">
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">09:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle mb-2" src="../speakers/Dewan Ahmed.png" alt=""></a>
+                <div class="name">Dewan Ahmed</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: Secure by Default: Building Confidence in AI-Driven Delivery</a>
+              </h3>
+              <div class="location mb-3">Harness</div>
+              <div class="desc schedule-abstract">The fastest way to break trust in DevSecOps is to automate insecurity at scale. As AI takes a central role in our pipelines, it is time to rethink what "secure by default" really means.
+
+In this keynote, Dewan Ahmed will challenge the audience to look beyond vulnerability scanners and compliance gates. He will share a vision for intelligent security by design, where native intelligence within the delivery platform detects not only vulnerable code but risky delivery behavior such as misconfigured environments, suspicious artifact provenance, and drift between source and runtime.
+
+You will walk away with a framework for balancing automation with human oversight and examples from Harness’ work on building verifiable, auditable, AI-native delivery systems. In the new world of DevSecOps, safety is not a step; it is an outcome we continuously learn to improve.<a class="schedule-abstract-read-more" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">09:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle mb-2" src="../speakers/Miko Pawlikowski.png" alt=""></a>
+                <div class="name">Miko Pawlikowski</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Keynote: 7 Deadly Traps of SRE</a>
+              </h3>
+              <div class="location mb-3">SRE Author</div>
+              <div class="desc schedule-abstract">Site Reliability Engineering was never meant to be about firefighting, yet too many teams find themselves stuck in an endless cycle of pages, postmortems, and quick fixes. Why? Because SRE is full of hidden traps — patterns that look like best practices on the surface but slowly erode reliability, burn out engineers, and stall progress.
+
+In this talk, we’ll expose the 7 Deadly Traps of SRE, from the obsession with chasing “five nines,” to the cult of on-call heroism, to the false comfort of tooling and checklists. For each trap, we’ll unpack why it’s so seductive, how it quietly sabotages your team, and what to do instead.
+
+You’ll walk away with a clearer lens on the pitfalls holding SRE organizations back, and a practical playbook to help your team escape firefighting mode and reclaim the true purpose of SRE: building systems - and cultures - that are resilient, scalable, and human-friendly.<a class="schedule-abstract-read-more" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Coffee break</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Lev Andelman.png" alt=""></a>
+                <div class="name">Lev Andelman</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Imperfect Is Fine (When It’s You)</a>
+              </h3>
+              <div class="location mb-3">TeraSky</div>
+              <div class="desc schedule-abstract">Humans hallucinate memories, forget decisions, and confidently state wrong facts - and we built entire civilizations around it. Yet when AI does the same, we call it broken. 
+This talk uses cognitive science, live audience experiments, and real-world engineering failures to expose the double standard killing your AI adoption. You’ll leave with a practical framework: validate the output, not the process - and stop demanding perfection from AI that you never demanded from yourself.<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Sameera Jayasoma.png" alt=""></a>
+                <div class="name">Sameera Jayasoma</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">The Missing Layer in Your Developer Platform Architecture</a>
+              </h3>
+              <div class="location mb-3">WSO2</div>
+              <div class="desc schedule-abstract">You deployed Backstage. Developers love the catalog. Golden path templates are shipping. Then the feature requests start: "Is my service actually running?" "Can I see logs here?" "Why do I need five tools to debug one deployment?"
+
+I'll talk about the architectural gap most teams discover after adopting a developer portal and how to close it. This missing layer isn't just about developer experience. It's also critical for AI: both built-in agents and external agents need well-defined abstractions and aggregated runtime state to reason about your platform and act on it effectively.
+
+I'll wrap up with a live demo of OpenChoreo (CNCF Sandbox project), showing what becomes possible when this layer is in place: runtime state tied to abstractions, observability scoped to components, and AI agents surfacing root causes, all from a single portal.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Omari Gaskins Jr.png" alt=""></a>
+                <div class="name">Omari Gaskins Jr</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Your Outdated Docs are Costly: Why You should be writing tests for your docs</a>
+              </h3>
+              <div class="location mb-3">DocuSOR</div>
+              <div class="desc schedule-abstract">Internal Developer Platforms aim to create golden paths, reduce cognitive load, and standardize how teams build and operate software. But there’s a blind spot: documentation. READMEs, onboarding guides, and operational runbooks are often treated as static artifacts. Over time they drift from reality, even as the platform itself evolves. The result is slower onboarding, brittle self-service workflows, and increased support burden on platform teams. In this talk, I’ll explore documentation as an unverified surface within Internal Developer Platforms, and introduce a practical approach to making it executable. By treating markdown instructions and runbooks as workflows that can be executed and validated inside CI or ephemeral environments, platform teams can detect drift automatically. Setup steps, service bootstrapping commands, and health checks become verifiable contracts rather than informal guidance. We’ll cover: • Why documentation drift increases cognitive load and support tickets • How to integrate executable documentation into platform pipelines • How this approach strengthens golden paths and reduces onboarding time • What changes in platform team workflows when documentation becomes testable Document drift is a universal problem, and a costly one. It's time we implmented an actual fix.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">12:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Zachary Gruenberg.png" alt=""></a>
+                <div class="name">Zachary Gruenberg</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Who Watches the AI Agents? SRE for Non-Human Identity at Scale</a>
+              </h3>
+              <div class="location mb-3">Palo Alto Networks</div>
+              <div class="desc schedule-abstract">AI agents (MCP servers, LangChain tools, autonomous coding assistants) are becoming production workloads that SREs own, but nobody’s treating their identities, secrets, or privilege escalation paths with the same rigor as human operators. Walk through real patterns: Conjur-brokered credentials for AI agents, JIT privilege grants scoped to agent tasks, and what an incident looks like when an agent’s session token gets over-permissioned.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">12:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Aaron Zamora.png" alt=""></a>
+                <div class="name">Aaron Zamora</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">How Cribl Showed Me Why Some Runs Suck</a>
+              </h3>
+              <div class="location mb-3">Cribl</div>
+              <div class="desc schedule-abstract">If you're a runner, chances are you're drowning in metrics - sleep scores, heart rate, temperature, pace, fueling, recovery. But what does all this data actually mean, and how do you use it to debug the most complex production system of all: your body?
+This session takes years of tracking data collected while training for everything from half marathons to 10-milers to world major marathons and shows the patterns that emerged. Was the seemingly-easy run actually too hard? Did heat and humidity affect the outcome? Did the trail just suck? Was sleep the problem? Or was my love for craft beer finally catching up?
+By exploring the ways I converted data into information to show what made some runs suck and others click. I demonstrate the techniques you need to spot the signals in your own data.
+This session is for anyone who generates a pile of data(fitness or otherwise) and wants to actually learn something from it.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Anisha Manoharan.png" alt=""></a>
+                <div class="name">Anisha Manoharan</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">When Milliseconds Cost Millions: Designing Low-Latency AI Systems in Fintech</a>
+              </h3>
+              <div class="location mb-3">Bank Of JuliusBaer</div>
+              <div class="desc schedule-abstract">In fintech systems, milliseconds don’t just impact performance — they directly translate into financial risk. AI-driven decisions such as fraud detection, credit scoring, and transaction authorization operate under strict latency budgets, often under 100 milliseconds. When these systems slow down, the consequences go beyond user experience: delayed decisions can increase exposure, impact compliance, and lead to measurable financial loss. This talk dives into the engineering challenges of running low-latency AI systems reliably in production. We’ll explore how to define meaningful SLOs for AI workloads, manage tail latency (p95/p99), and design resilient inference pipelines on Kubernetes. Through real-world scenarios, we’ll unpack trade-offs between model accuracy and response time, how bottlenecks emerge under scale, and what typically fails first in high-pressure environments. We’ll also cover observability patterns for AI systems — from detecting latency regressions early to maintaining consistent performance under fluctuating load. If you build or operate systems where delays are unacceptable, this session will provide practical insights to design AI platforms that are not only intelligent, but reliably fast under real-world conditions.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Marcos Novelli Harispe.png" alt=""></a>
+                <div class="name">Marcos Novelli Harispe</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Beyond Prevention: Mastering Incident Response and Post-Mortems with Ephemeral Environments</a>
+              </h3>
+              <div class="location mb-3">LoopStudio</div>
+              <div class="desc schedule-abstract">We know Ephemeral Environments (EEs) reduce unexpected errors in production, but what happens when an issue inevitably slips through? In this follow-up to “Making Life Easier for SREs with EEs”, we shift our focus from prevention to the high-pressure world of incident response and post-mortems.
+This session explores how EEs can help us become faster firefighters and more effective investigators. We will walk through a live Kubernetes microservice demo to experience how EEs serve as a dual-purpose tool when facing real production failures: first, as a firefighting asset to quickly reproduce and mitigate production failures eliminating the “it only breaks in production” problem; and second, as a time machine to rebuild the exact configuration and code state that triggered the failure for deep debugging and root cause analysis leading to permanent fixes. We will also touch upon common concerns, including how to manage the cost and persistence of these temporary environments in a real-world SRE workflow.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Christopher Tineo.png" alt=""></a>
+                <div class="name">Christopher Tineo</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Free Software Isn't Gratis: why companies should treat Open Source as part of your Infrastructure</a>
+              </h3>
+              <div class="location mb-3">Game Plan Tech</div>
+              <div class="desc schedule-abstract">Maintaining an open source project is hard. It requires managing a group of people who are largely working for free to build something that other people profit off of, usually distributed across the globe, with limited resources. The whole time you’re doing this, you’re receiving demands from users and businesses alike for features or bug fixes on a timeline that works for them, not you and your (possibly very limited) group of contributors that you can’t exactly order around, since they aren’t being paid. It’s stressful, and it can be overwhelming. When one of these projects is the victim of an attack that takes advantage of the fact that there are only one or two maintainers, or eventually has to shut down due to rising technical debt and falling contributor numbers, the public blame falls on us, not on the businesses that didn’t offer contributors in time.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Dan Putman.png" alt=""></a>
+                <div class="name">Dan Putman</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">The Runtime Gap: Why Your AI Agents are Flying Blind and How to Fix It</a>
+              </h3>
+              <div class="location mb-3">Lightrun</div>
+              <div class="desc schedule-abstract">The adoption of Generative AI in the SDLC has created a paradox: code generation has outpaced safe production. As teams shift from coding to prompting, they now spend up to 70% of their time verifying and fixing bugs. Traditional observability often comes too late, requiring reactive redeployments that stall innovation.
+
+This session explores the mandatory shift toward AI Site Reliability Engineering. We will discuss how to move beyond "unknown unknowns" by providing AI agents with In-line Runtime Context. You will learn how to:
+
+* __Shift Left Reliability__ : Integrate real-time code insights into the design and early SDLC phases to prevent incidents before they occur.
+* __Empower AI Agents__: Use dynamic instrumentation to give agents line-level visibility, turning statistical guesses into verified root cause analysis.
+* __Eliminate Technical Toil__ : Slash MTTR by moving from weeks of troubleshooting to live resolution in minutes without redeploying code.<a class="schedule-abstract-read-more" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Wrap up</h3>
+              <div class="location mb-3" style="color:#098dcf;">Scan each other's QR codes & head to a nearby pub!</div>
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Table View -->
+    <div id="table-view-0" class="schedule-table-view">
+      <table class="schedule-grid-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+
+            <th style="width: calc((100% - 60px) / 1)">main room</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">09:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: Secure by Default: Building Confidence in AI-Driven Delivery</a>
+              <div class="speaker-info">Dewan Ahmed <span class="affiliation">• Harness</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">09:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Keynote: 7 Deadly Traps of SRE</a>
+              <div class="speaker-info">Miko Pawlikowski <span class="affiliation">• SRE Author</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">10:00</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Coffee break
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">10:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Imperfect Is Fine (When It’s You)</a>
+              <div class="speaker-info">Lev Andelman <span class="affiliation">• TeraSky</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">11:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">The Missing Layer in Your Developer Platform Architecture</a>
+              <div class="speaker-info">Sameera Jayasoma <span class="affiliation">• WSO2</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">11:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Your Outdated Docs are Costly: Why You should be writing tests for your docs</a>
+              <div class="speaker-info">Omari Gaskins Jr <span class="affiliation">• DocuSOR</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">12:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Who Watches the AI Agents? SRE for Non-Human Identity at Scale</a>
+              <div class="speaker-info">Zachary Gruenberg <span class="affiliation">• Palo Alto Networks</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">12:30</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Lunch & networking
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">13:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">How Cribl Showed Me Why Some Runs Suck</a>
+              <div class="speaker-info">Aaron Zamora <span class="affiliation">• Cribl</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">14:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">When Milliseconds Cost Millions: Designing Low-Latency AI Systems in Fintech</a>
+              <div class="speaker-info">Anisha Manoharan <span class="affiliation">• Bank Of JuliusBaer</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">14:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Beyond Prevention: Mastering Incident Response and Post-Mortems with Ephemeral Environments</a>
+              <div class="speaker-info">Marcos Novelli Harispe <span class="affiliation">• LoopStudio</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">15:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Free Software Isn't Gratis: why companies should treat Open Source as part of your Infrastructure</a>
+              <div class="speaker-info">Christopher Tineo <span class="affiliation">• Game Plan Tech</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">15:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">The Runtime Gap: Why Your AI Agents are Flying Blind and How to Fix It</a>
+              <div class="speaker-info">Dan Putman <span class="affiliation">• Lightrun</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">16:00</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Wrap up
+
+            </td>
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+    <script>
+    function toggleView(day) {
+      const timelineView = document.getElementById('timeline-view-' + day);
+      const tableView = document.getElementById('table-view-' + day);
+      const toggleBtn = document.getElementById('view-toggle-' + day);
+      const trackLinks = document.getElementById('track-links-' + day);
+
+      if (tableView.classList.contains('active')) {
+        tableView.classList.remove('active');
+        timelineView.classList.remove('hidden');
+        toggleBtn.textContent = 'view as table';
+        toggleBtn.classList.remove('active');
+        if (trackLinks) trackLinks.style.display = 'flex';
+      } else {
+        tableView.classList.add('active');
+        timelineView.classList.add('hidden');
+        toggleBtn.textContent = 'view as timeline';
+        toggleBtn.classList.add('active');
+        if (trackLinks) trackLinks.style.display = 'none';
+      }
+    }
+    </script>
+
+    
+    <div class="schedule-cta text-center mx-auto mt-4"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+    
   </div>
 </section>
 
@@ -768,16 +1613,6 @@
       </div><!--//col-->
 
       
-
-      
-
-      <div class="col mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h4>More coming soon</h4>
-          </div><!--//card-->
-        </div><!--//card-->
-      </div><!--//col-->
 
       
 
