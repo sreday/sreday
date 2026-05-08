@@ -278,22 +278,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">My Kids Couldn't Spell "Because" So I Built an App That Couldn't Afford to Fail</h1>
+    <h1 class="section-heading text-center mb-3">Your MLOps Pipeline is your Agentic AI Guardrail</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Aaron Hunter.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Michael Forrester.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Aaron Hunter</h5>
+            <h5 class="card-title mb-2">Michael Forrester</h5>
             <div class="card-text mb-3">
-              <div class="meta">AWS</div>
+              <div class="meta">KodeKloud</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/aaronshunter/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/michaelrishiforrester/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -307,14 +307,14 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>My kids brought home spelling lists every week, but memorizing words wasn't improving their legibility or accuracy. So I built Bee Hunter... an app that uses computer vision to evaluate handwriting directly from a photo and provide real-time feedback. Building it meant applying the same reliability thinking used in production systems, but with a very different user base. When your users are in elementary school, you can't afford high latency or an outage. Here's what I learned designing for reliability when your error budget is a kid's attention span: * Why a spelling app taught me more about feedback loop latency than most production systems I've run * The observability patterns that helped me understand what was actually degrading the experience * What it looks like to define an SLO when your user can't file a ticket... they just quit * The edge cases I had to engineer around: varying lighting, backwards letters, kitchen table chaos I'll walk through the architecture decisions and the tradeoffs I made to keep it reliable under real-world conditions. You'll see what a reliability mindset looks like in practice... and how the lessons translate directly back to the systems you're running today. Sometimes the best reliability engineering happens outside the datacenter, with your kids by your side.</p></p>
+                <p><p>In 2025 I gave an AI agent cluster-level permissions and walked away. Forty minutes later I had no cluster. The agent didn't hallucinate. It didn't go rogue. It force-refreshed etcd, then while trying to fix that, wiped the netplan configuration on every Linux node in the cluster. One bad decision made things worse. No gate stopped it anywhere in the chain. The instinct after an incident like that is to put humans back in the loop. That's the wrong lesson. The whole point of agentic AI is autonomous operation at machine speed. Slowing it down with manual approval gates defeats the purpose. The right fix is deterministic programmatic gates that let the agent move fast within a defined safe boundary. Most operations should never require a human. A deletion that meets the right criteria gets approved automatically. A deletion that doesn't gets blocked automatically. The safety guarantee comes from the gate logic, not from someone watching the terminal. This talk walks through the full failure chain and the Eight Guardrails Framework that came out of it: three enforcement layers spanning Claude Code pre-tool-use hooks, Git hooks, and Kubernetes infrastructure controls. These are not probabilistic guardrails. They are deterministic checks that fire before execution, enforce IaC-only infrastructure changes, apply least privilege so a dev-context agent can't reach control plane nodes, and trigger automated rollback when something goes wrong. The agent operates autonomously inside that boundary. Outside it, the pipeline stops it cold. The core principle: don't use probabilistic AI to enforce deterministic requirements. Build the gates programmatically, test them the same way you test your code, and let the agent run. Attendees will leave with the exact failure chain mapped to the gate that would have stopped it, the Eight Guardrails applied to concrete controls across their pipeline, and a gap checklist to find where their own setup lets agents operate outside a safe boundary.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Aaron is a Principal Developer Advocate at AWS based in Frisco, TX. With over 15 years of experience spanning system administration, networking, and training, he brings more than a decade of cloud expertise to help Engineers, Developers, Builders, and tech enthusiasts master AWS technologies. His philosophy is simple: always be learning something new, and have fun while doing it! Aaron shares his knowledge through workshops, online courses, mentoring, and live streaming – making complex cloud concepts accessible and enjoyable. When he's not building in the cloud, you'll find him exploring craft beer scenes in new cities or teaming up with friends in Marvel Rivals on his PlayStation, because even superheroes need good teammates!</p></p>
+                <p><p>Principal Training Architect with 30 years of infrastructure experience across federal, Fortune 50, and startup environments. Has personally taught over 100,000 engineers platform engineering and AI/ML infrastructure. Workshop ranked third most-selected at KCD Texas 2026. Speaker at KubeCon EU Cloud Native University and KubeAuto AI Day Europe, Amsterdam. The cluster deletion incident described in this talk actually happened.</p></p>
               </div>
 
               
