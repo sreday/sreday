@@ -254,23 +254,23 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3"></h1>
+    <h1 class="section-heading text-center mb-3">Finding the 33% Your Kubernetes Clusters Are Wasting</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Miko Pawlikowski.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Ozlem Tanrikulu.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Miko Pawlikowski</h5>
+            <h5 class="card-title mb-2">Ozlem Tanrikulu</h5>
             <div class="card-text mb-3">
-              <div class="meta">SRE Author</div>
+              <div class="meta">Near East University</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
-              <li class="list-inline-item"><a  href="https://twitter.com/Keynote: The Evolution of Ops"><i class="fab fa-twitter fa-fw"></i></a></li>
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/mikolajpawlikowski/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-              <li class="list-inline-item"><a  href="https://twitter.com/Let's explore how the Ops landscape has evolved in recent years and examine key trends shaping its future."><i class="fab fa-twitter fa-fw"></i></a></li>
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/ozlemtanrikulu/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
               
             </ul><!--//social-list-->
           </div>
@@ -283,14 +283,14 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>@mikopawlikowski</p></p>
+                <p><p>I kept asking this question on our EKS clusters. kubectl top gives percentages, not dollars. AWS Cost Explorer sees instances, not pods. Every tool that connects the two wanted me to deploy Helm charts, agents, and dashboards. I just wanted a number. So I built Burn, an open-source CLI that reads your kubeconfig, fetches real-time pricing from AWS and Azure APIs, and gives you per-namespace cost breakdown in 30 seconds. No agent, no dashboard, no cluster changes. Running it on production, I found 33% idle capacity ($117/month on a 5-node cluster), a pod requesting 500m CPU but using 0.12m, and debug pods nobody remembered deploying. I deleted the waste that same day. In this talk I'll cover: - How Burn splits node cost into CPU and RAM using ratio-based pricing - Why P95 metrics matter more than averages for rightsizing - How we detect Ingress-based load balancers that other tools miss - Honest trade-offs of an agentless approach vs full platforms like Kubecost Attendees will leave knowing how to identify idle resources, understand Kubernetes cost allocation math, and evaluate the right level of cost tooling for their clusters.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p></p>
+                <p><p>Cloud/DevOps Engineer who enjoys solving complex problems and building efficient, scalable systems. My expertise includes Kubernetes, AWS, and CI/CD pipelines, with a strong focus on automating processes to simplify developers' workflows. Additionally, I maintain a supercomputer (HPC) at NEU IBM Center, ensuring it runs at peak performance for high-demand tasks. Creator of Burn, an open-source Kubernetes FinOps CLI.</p></p>
               </div>
 
               
