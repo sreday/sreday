@@ -7,10 +7,22 @@
 :root { --sp-accent: #862f6e; }
 
 .sp-hero {
-  background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-              url('{{ hero_pictures[0] if hero_pictures else "" }}') center/cover no-repeat;
-  padding: 80px 0 60px;
-  color: #fff;
+  position: relative;
+  height: 620px;
+  padding-top: 125px;
+  overflow: hidden;
+  background: url('../photos/sreday-paint.png') center/cover no-repeat;
+}
+.sp-hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,.45);
+  z-index: 1;
+}
+.sp-hero .container {
+  position: relative;
+  z-index: 2;
 }
 .sp-badge-noindex {
   display: inline-block;
@@ -431,6 +443,22 @@
 </style>
 {% endblock %}
 
+{% block hero %}
+<div id="home" class="hero-block sp-hero">
+	<div class="sp-hero-overlay"></div>
+	<div class="container">
+		<div class="hero-text-block text-center" style="max-width: 100%;">
+			{% if logo_image %}<h1 class="logo retro"><img src="{{ logo_image }}" alt="{{ brand_name }}" style="max-width: 350px; height: auto;" /></h1>{% else %}<h1 class="logo retro"><img src="/assets/images/sreday_sticker.png" alt="SREday" style="height: 200px;"></h1>{% endif %}
+			<h2 class="text-white">Sponsorship Prospectus - {{ brand_name }} {{ city_name }}</h2>
+			<h3 class="text-white"><i class="far fa-calendar-alt me-2"></i>{{ date_string }} <i class="fas fa-map-marker-alt mx-2"></i>{{ location_string }}</h3>
+			<div class="hero-cta mt-5">
+				<a class="btn btn-danger btn-lg" href="#buy" style="text-decoration:none;">Secure your Sponsorship</a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
 {% block content %}
 <div id="sp-dark-body">
 
@@ -438,7 +466,7 @@
 <section class="sp-section" id="opportunities">
   <div class="container">
     <h2 class="sp-section-title text-center">Sponsorship opportunities</h2>
-    <p class="sp-gbp-note text-center" style="font-size:1.04rem;margin-top:-.8rem;margin-bottom:1.5rem;">Pricing in GBP — British Pound Sterling.<br>We are a London-based company organizing conferences worldwide.</p>
+    <p class="sp-gbp-note text-center" style="font-size:1.04rem;margin-top:-.8rem;margin-bottom:1.5rem;">Pricing in GBP / £ — British Pound Sterling.<br>We are a London-based company organizing conferences worldwide.</p>
     <div class="row justify-content-center g-4 mt-2">
       {% for tier in sponsorship_tiers %}
       <div class="col-12 col-md-4">
@@ -541,12 +569,11 @@
               </div>
             </div>
           </div>
-          <video src="/assets/sre monkeys.mp4" autoplay loop muted playsinline class="sp-stats-header-gif-img" style="width:588px; border-radius:12px; flex-shrink:0; aspect-ratio:16/9; object-fit:contain; display:none;"></video>
+          <video src="/assets/sre monkeys.mp4" autoplay loop muted playsinline class="sp-stats-header-gif-img" style="width:529px; border-radius:12px; flex-shrink:0; aspect-ratio:16/9; object-fit:contain; display:none;"></video>
         </div>
 
         <hr class="sp-stats-sep">
 
-        {# ── ATTENDEE PROFILE (static - update by running _build/analyze_attendees.py) ── #}
         <div class="sp-stats-s-title">Attendee profile</div>
         <div class="sp-stats-s-sub">Based on past attendee information across sampled events</div>
 
@@ -555,18 +582,18 @@
         </div>
 
         <div class="sp-stats-card" style="margin-bottom:32px">
-          <div class="sp-stats-card-title">Top attendee companies</div>
+          <div class="sp-stats-card-title">Top companies that have attended</div>
           <div class="sp-stats-pill-grid" style="margin-bottom:0">
-            <span class="sp-stats-pill">Kyndryl</span>
-            <span class="sp-stats-pill">Criteo</span>
-            <span class="sp-stats-pill">Imply</span>
-            <span class="sp-stats-pill">PagerDuty</span>
-            <span class="sp-stats-pill">Sky Portugal</span>
-            <span class="sp-stats-pill">Bradesco</span>
-            <span class="sp-stats-pill">CAST AI</span>
-            <span class="sp-stats-pill">Cribl</span>
-            <span class="sp-stats-pill">Chainguard</span>
-            <span class="sp-stats-pill">Banco Bradesco</span>
+            <span class="sp-stats-pill">AWS</span>
+            <span class="sp-stats-pill">Adobe</span>
+            <span class="sp-stats-pill">eBay</span>
+            <span class="sp-stats-pill">Google</span>
+            <span class="sp-stats-pill">IBM</span>
+            <span class="sp-stats-pill">ING</span>
+            <span class="sp-stats-pill">Lloyds</span>
+            <span class="sp-stats-pill">Microsoft</span>
+            <span class="sp-stats-pill">Oracle</span>
+            <span class="sp-stats-pill">Uber</span>
           </div>
         </div>
 
@@ -576,24 +603,20 @@
             <div class="sp-stats-card-title">Role breakdown</div>
             <ul class="sp-stats-bar-list">
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Software / Platform / DevOps</span><span class="sp-stats-bar-count">51%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:51%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Software / Platform / DevOps</span><span class="sp-stats-bar-count">59%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:59%"></div></div>
               </li>
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Executive / Founder / Leadership</span><span class="sp-stats-bar-count">20%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:20%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Founder / Executive / Leadership</span><span class="sp-stats-bar-count">22%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:22%"></div></div>
               </li>
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Independent / Job Seeker</span><span class="sp-stats-bar-count">14%</span></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Business / Consulting / Product</span><span class="sp-stats-bar-count">14%</span></div>
                 <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:14%"></div></div>
               </li>
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Business / Consulting / Product</span><span class="sp-stats-bar-count">12%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:12%"></div></div>
-              </li>
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">ML / AI / Data</span><span class="sp-stats-bar-count">2%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:2%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">ML / AI / Data</span><span class="sp-stats-bar-count">5%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:5%"></div></div>
               </li>
             </ul>
           </div>
@@ -602,20 +625,39 @@
             <div class="sp-stats-card-title">Company size</div>
             <ul class="sp-stats-bar-list">
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Startup (&lt;50)</span><span class="sp-stats-bar-count">77%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:77%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Medium &amp; Startup</span><span class="sp-stats-bar-count">48%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:48%"></div></div>
               </li>
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Enterprise (500+)</span><span class="sp-stats-bar-count">15%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:15%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Enterprise</span><span class="sp-stats-bar-count">42%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:42%"></div></div>
               </li>
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Solo Founder / Independent</span><span class="sp-stats-bar-count">8%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:8%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Solo Founders</span><span class="sp-stats-bar-count">10%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:10%"></div></div>
               </li>
             </ul>
           </div>
 
+          <div class="sp-stats-card">
+            <div class="sp-stats-card-title">Attendee seniority</div>
+            <ul class="sp-stats-bar-list">
+              <li class="sp-stats-bar-item">
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Mid-Level</span><span class="sp-stats-bar-count">62%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:62%"></div></div>
+              </li>
+              <li class="sp-stats-bar-item">
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Senior / Lead / Manager</span><span class="sp-stats-bar-count">23%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:23%"></div></div>
+              </li>
+              <li class="sp-stats-bar-item">
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Executive</span><span class="sp-stats-bar-count">14%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:14%"></div></div>
+              </li>
+            </ul>
+          </div>
+
+          {# ── ATTENDEE PROFILE (static - update by running _build/analyze_attendees.py) ── #}
           <div class="sp-stats-card">
             <div class="sp-stats-card-title">What they are working on</div>
             <div class="sp-stats-tag-cloud">
@@ -630,32 +672,6 @@
               <span class="sp-stats-tag">Security &amp; DevSecOps</span>
               <span class="sp-stats-tag">Chaos Engineering</span>
             </div>
-          </div>
-
-          <div class="sp-stats-card">
-            <div class="sp-stats-card-title">Attendee seniority</div>
-            <ul class="sp-stats-bar-list">
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Mid-Level</span><span class="sp-stats-bar-count">59%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:59%"></div></div>
-              </li>
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Executive</span><span class="sp-stats-bar-count">14%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:14%"></div></div>
-              </li>
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Senior</span><span class="sp-stats-bar-count">12%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:12%"></div></div>
-              </li>
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Lead / Manager</span><span class="sp-stats-bar-count">11%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:11%"></div></div>
-              </li>
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Junior</span><span class="sp-stats-bar-count">3%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:3%"></div></div>
-              </li>
-            </ul>
           </div>
 
         </div>
@@ -739,6 +755,20 @@ function spToggleStats() {
   btn.setAttribute('aria-expanded', String(open));
 }
 </script>
+
+{# ── Confirmed sponsors ─────────────────────────────── #}
+{% if sponsors %}
+<section class="sp-section" id="already-sponsoring" style="background:#1a1a1a;">
+  <div class="container">
+    <h2 class="sp-section-title text-center">Confirmed sponsors</h2>
+    <div class="row logos justify-content-center" style="background:#fff;border-radius:16px;padding:20px 28px;margin:0 auto;">
+      {% for sponsor in sponsors %}
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="{{ sponsor.url }}" target="_blank"><img src="../sponsors/{{ sponsor.logo }}" alt=""></a></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
 
 {# ── Get in touch ────────────────────────────────────── #}
 <section class="sp-section sp-section-alt" id="buy">
