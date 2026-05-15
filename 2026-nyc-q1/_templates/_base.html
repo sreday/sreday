@@ -86,6 +86,12 @@
 	.theme-bg-primary {
 		background: {{ brand_color }};
 	}
+	.hero-block .social-list li, footer .social-list li {
+		font-size: 1.75rem;
+	}
+	.hero-block .social-list li a, footer .social-list li a {
+		color: white;
+	}
 	html {
 		scroll-behavior: smooth;
 	}
@@ -94,6 +100,16 @@
 	}
 	#home {
 		scroll-margin-top: 70px;
+	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: {{ brand_color }};
+		--brand-light: color-mix(in srgb, {{ brand_color }} 70%, white);
+		--brand-lighter: color-mix(in srgb, {{ brand_color }} 45%, white);
+		--brand-lightest: color-mix(in srgb, {{ brand_color }} 15%, white);
+		--brand-pale: color-mix(in srgb, {{ brand_color }} 10%, white);
+		--brand-dark: color-mix(in srgb, {{ brand_color }} 100%, black 20%);
+		--brand-darker: color-mix(in srgb, {{ brand_color }} 100%, black 35%);
 	}
 </style>
 
@@ -107,7 +123,7 @@
                         <!-- <img class="logo-icon" src="assets/images/logo-white.svg" alt="logo"></a> -->
                     </div>
 
-					<div class="navbar-btn order-lg-2">{% if noindex %}<a class="btn btn-danger" href="#buy">Buy</a>{% else %}<a class="btn btn-secondary" href="#tickets">Tickets</a>{% endif %}</div>
+					{% if event_state != 'after' %}<div class="navbar-btn order-lg-2">{% if noindex %}<a class="btn btn-danger" href="#buy">Buy</a>{% else %}<a class="btn btn-secondary" href="#tickets">Tickets</a>{% endif %}</div>{% endif %}
 
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
@@ -125,7 +141,7 @@
 						<ul class="nav navbar-nav">
 
 							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="{{ 'index.html' if page != 'index.html' else '' }}#tickets">Tickets</a></li>
+							{% if event_state != 'after' %}<li class="nav-item"><a class="nav-link" href="{{ 'index.html' if page != 'index.html' else '' }}#tickets">Tickets</a></li>{% endif %}
 							<li class="nav-item"><a class="nav-link" href="{{ 'index.html' if page != 'index.html' else '' }}#schedule">Schedule</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ 'index.html' if page != 'index.html' else '' }}#speakers">Speakers</a></li>
 							<li class="nav-item"><a class="nav-link" href="{{ 'index.html' if page != 'index.html' else '' }}#venue">Venue</a></li>
@@ -170,13 +186,20 @@
 				<div class="hero-cta mt-5">
 					{% if youtube_playlist %}
 					<a class="btn btn-secondary btn-lg" href="{{ youtube_playlist }}" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="white" style="vertical-align:middle;margin-right:6px"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>Playlist</a>
-					{% else %}
+					{% elif event_state != 'after' %}
 					<a class="btn btn-secondary btn-lg" href="{% if talk %}./#tickets{% else %}#tickets{% endif %}">Get Tickets</a>
 					{% endif %}
 					{% if event_state != 'after' %}
 					<a class="btn btn-primary btn-lg" href="{{ cfp_url }}" target="_blank">CFP</a>
 					{% endif %}
 			    </div>
+					<ul class="social-list list-inline mt-4">
+						<li class="list-inline-item me-3"><a target="_blank" href="https://luma.com/sre" style="text-decoration:none;">✦</a></li>
+						<li class="list-inline-item me-3"><a target="_blank" href="https://chat.whatsapp.com/KS1ce0jAHmNGAiOAoZG6zo"><i class="fab fa-whatsapp fa-fw"></i></a></li>
+						<li class="list-inline-item me-3"><a target="_blank" href="{{ linkedin_url }}"><i class="fab fa-linkedin fa-fw"></i></a></li>
+						<li class="list-inline-item me-3"><a href="{{ mailto }}"><i class="fas fa-envelope fa-fw"></i></a></li>
+						<li class="list-inline-item me-0"><a target="_blank" rel="noopener noreferrer" href="{{ youtube_url }}"><i class="fab fa-youtube fa-fw"></i></a></li>
+					</ul>
 				{% endif %}
 			</div><!--//hero-text-block-->
 		</div><!--//container-->
@@ -207,7 +230,7 @@
 				</div><!--//col-->
 				<div class="col-6 col-md-3">
 					<div class="item">
-						<div class="number">{{ attendees }}+</div>
+						<div class="number">{{ attendees }}{% if '+' not in attendees|string %}+{% endif %}</div>
 						<div class="unit">{{ "Attendee" if attendees == 1 else "Attendees" }}</div>
 					</div><!--//item-->
 				</div><!--//col-->

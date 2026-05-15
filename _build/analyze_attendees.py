@@ -514,7 +514,6 @@ def top_n(counts, total, exclude_other=True):
     return [{"label": k, "pct": pct(v, total)} for k, v in items]
 
 
-TOP_COMPANIES_MAX = 10
 
 # Conference host companies — their attendees are "at home" so we count
 # them at 0.5× weight to avoid inflating the top-companies ranking.
@@ -605,23 +604,6 @@ def _company_weight(c_lower, display, single_event):
     return 1
 
 
-def extract_top_companies(rows, single_event):
-    """Return top attendee companies by headcount, excluding solo/empty.
-    Host companies and single-event-only companies are counted at 0.5x
-    to avoid inflated numbers from venue hosts or one-off spikes."""
-    counts = Counter()
-    for r in rows:
-        company = r.get('Company', '').strip()
-        c_lower = company.lower()
-        if not c_lower or c_lower in NO_COMPANY_VALUES or c_lower.startswith('looking for'):
-            continue
-        if any(x in c_lower for x in SOLO_SIGNALS):
-            continue
-        display = COMPANY_DISPLAY_NAMES.get(c_lower, company)
-        counts[display] += _company_weight(c_lower, display, single_event)
-    return [name for name, _ in counts.most_common(TOP_COMPANIES_MAX)]
-
-
 def print_section(title, items):
     print(f"\n{'='*52}")
     print(title)
@@ -635,80 +617,27 @@ def print_section(title, items):
 # SPONSORSHIP TEMPLATE PATCHER
 # ══════════════════════════════════════════════════════════════
 
-def render_attendee_profile_block(tldr, role_stats, size_stats, senior_stats, topic_pills, top_companies):
-    """Render the static attendee profile HTML block."""
+def render_attendee_profile_block(topic_pills):
+    """Render the dynamic "What they are working on" card.
 
-    def bar_item(label, p):
-        label_html = label.replace('<', '&lt;')
-        return (
-            f'              <li class="sp-stats-bar-item">\n'
-            f'                <div class="sp-stats-bar-header">'
-            f'<span class="sp-stats-bar-name">{label_html}</span>'
-            f'<span class="sp-stats-bar-count">{p}%</span></div>\n'
-            f'                <div class="sp-stats-bar-track">'
-            f'<div class="sp-stats-bar-fill" style="width:{p}%"></div></div>\n'
-            f'              </li>'
-        )
+    All other cards (top companies, role breakdown, company size, seniority)
+    are hard-baked in the template above the sentinel comment.
+    """
 
     def tag(label, hot):
         cls = 'sp-stats-tag hot' if hot else 'sp-stats-tag'
         label_html = label.replace('&', '&amp;')
         return f'              <span class="{cls}">{label_html}</span>'
 
-    role_bars   = '\n'.join(bar_item(r['label'], r['pct']) for r in role_stats)
-    size_bars   = '\n'.join(bar_item(r['label'], r['pct']) for r in size_stats)
-    senior_bars = '\n'.join(bar_item(r['label'], r['pct']) for r in senior_stats)
-    topic_tags  = '\n'.join(tag(p['label'], p['highlight']) for p in topic_pills)
-
-    company_pills = '\n'.join(
-        f'            <span class="sp-stats-pill">{name}</span>'
-        for name in top_companies
-    )
+    topic_tags = '\n'.join(tag(p['label'], p['highlight']) for p in topic_pills)
 
     return (
         '{# ── ATTENDEE PROFILE (static - update by running _build/analyze_attendees.py) ── #}\n'
-        '        <div class="sp-stats-s-title">Attendee profile</div>\n'
-        '        <div class="sp-stats-s-sub">Based on past attendee information across sampled events</div>\n'
-        '\n'
-        '        <div class="sp-stats-tldr">\n'
-        f'          <strong>TLDR:</strong> {tldr}\n'
-        '        </div>\n'
-        '\n'
-        '        <div class="sp-stats-card" style="margin-bottom:32px">\n'
-        '          <div class="sp-stats-card-title">Top attendee companies</div>\n'
-        '          <div class="sp-stats-pill-grid" style="margin-bottom:0">\n'
-        f'{company_pills}\n'
-        '          </div>\n'
-        '        </div>\n'
-        '\n'
-        '        <div class="sp-stats-grid-2">\n'
-        '\n'
-        '          <div class="sp-stats-card">\n'
-        '            <div class="sp-stats-card-title">Role breakdown</div>\n'
-        '            <ul class="sp-stats-bar-list">\n'
-        f'{role_bars}\n'
-        '            </ul>\n'
-        '          </div>\n'
-        '\n'
-        '          <div class="sp-stats-card">\n'
-        '            <div class="sp-stats-card-title">Company size</div>\n'
-        '            <ul class="sp-stats-bar-list">\n'
-        f'{size_bars}\n'
-        '            </ul>\n'
-        '          </div>\n'
-        '\n'
         '          <div class="sp-stats-card">\n'
         '            <div class="sp-stats-card-title">What they are working on</div>\n'
         '            <div class="sp-stats-tag-cloud">\n'
         f'{topic_tags}\n'
         '            </div>\n'
-        '          </div>\n'
-        '\n'
-        '          <div class="sp-stats-card">\n'
-        '            <div class="sp-stats-card-title">Attendee seniority</div>\n'
-        '            <ul class="sp-stats-bar-list">\n'
-        f'{senior_bars}\n'
-        '            </ul>\n'
         '          </div>\n'
         '\n'
         '        </div>\n'
@@ -719,7 +648,7 @@ def render_attendee_profile_block(tldr, role_stats, size_stats, senior_stats, to
     )
 
 
-def patch_sponsorship_template(repo_root, tldr, role_stats, size_stats, senior_stats, topic_pills, top_companies):
+def patch_sponsorship_template(repo_root, topic_pills):
     """
     Patch the static attendee profile block in
     _event_template/_templates/sponsorship.html in place.
@@ -749,9 +678,7 @@ def patch_sponsorship_template(repo_root, tldr, role_stats, size_stats, senior_s
         print(f"       '{end_sentinel}...'")
         return
 
-    new_block = render_attendee_profile_block(
-        tldr, role_stats, size_stats, senior_stats, topic_pills, top_companies
-    )
+    new_block = render_attendee_profile_block(topic_pills)
 
     patched = original[:start_idx] + new_block + original[end_idx:]
     template_path.write_text(patched, encoding='utf-8')
@@ -857,9 +784,6 @@ def main():
     size_stats   = top_n(size_counts,   size_total)
     senior_stats = top_n(senior_counts, total)
 
-    # ── Top attendee companies ────────────────────────────────
-    top_companies = extract_top_companies(rows, single_event)
-
     # ── Topics from talks.csv ─────────────────────────────────
     repo_root = Path(__file__).parent.parent
     topic_pills, talks_files = extract_topics(repo_root)
@@ -876,7 +800,6 @@ def main():
         "company_size":   size_stats,
         "seniority":      senior_stats,
         "working_on":     topic_pills,
-        "top_companies":  top_companies,
     }
 
     # ── Print summary ─────────────────────────────────────────
@@ -906,16 +829,8 @@ def main():
 
     print(f"\n  Stats written to {out_path}")
 
-    print(f"\n{'='*52}")
-    print("TOP ATTENDEE COMPANIES")
-    print('='*52)
-    for i, name in enumerate(top_companies, 1):
-        print(f"  {i:>2}. {name}")
-
     # ── Patch sponsorship template in place ───────────────────
-    patch_sponsorship_template(
-        repo_root, TLDR, role_stats, size_stats, senior_stats, topic_pills, top_companies
-    )
+    patch_sponsorship_template(repo_root, topic_pills)
     print("  Done. Commit and push to deploy.\n")
 
 
