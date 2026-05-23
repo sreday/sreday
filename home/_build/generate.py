@@ -165,10 +165,10 @@ print(f"  Total: {len(sponsor_logos)} sponsor logos, {len(partner_logos)} partne
 
 # MAIN PAGES
 print(DIVIDER)
-pages = ["index.html", "ambassadorship.html"]
+pages = ["index.html"]
 print(f"Generating main pages: {pages}")
 for page in pages:
-    with open(BASE_FOLDER + "/" + page, "w", encoding="utf-8") as f:
+    with open(BASE_FOLDER + "/" + page, "w") as f:
         print("Writing out", page)
         template = env.get_template(page)
         f.write(template.render(page=page, **context))
