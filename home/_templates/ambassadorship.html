@@ -1,0 +1,689 @@
+{% extends "_base.html" %}
+
+{% block head_extra %}
+<meta name="robots" content="noindex, nofollow">
+<style>
+/* ── Pastel Ambassador Page ───────────────────────────────────── */
+:root {
+  --amb-pink: #FFB5C2;
+  --amb-pink-light: #FFD6E0;
+  --amb-blue: #D6E6FF;
+  --amb-blue-light: #EAF1FF;
+  --amb-green: #C8F0D4;
+  --amb-green-light: #E2F8EA;
+  --amb-yellow: #FFF3C4;
+  --amb-orange: #FFE0C2;
+  --amb-lavender: #E8DEFF;
+  --amb-peach: #FFECD2;
+}
+
+/* Hide inherited hero and stats bar from _base.html */
+#home.hero-block { display: none !important; }
+.stats-block { display: none !important; }
+
+/* ── Hero ─────────────────────────────────────────────────────── */
+.amb-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--amb-blue-light) 0%, #fff 40%, var(--amb-pink-light) 100%);
+  padding: 140px 0 80px;
+  text-align: center;
+}
+.amb-hero::before {
+  content: '';
+  position: absolute; top: -60px; left: -80px;
+  width: 300px; height: 300px;
+  background: var(--amb-pink);
+  border-radius: 50%;
+  opacity: .35;
+}
+.amb-hero::after {
+  content: '';
+  position: absolute; top: -40px; right: -60px;
+  width: 250px; height: 250px;
+  background: var(--amb-yellow);
+  border-radius: 50%;
+  opacity: .4;
+}
+.amb-hero .blob-green {
+  position: absolute; bottom: -50px; left: 10%;
+  width: 200px; height: 200px;
+  background: var(--amb-green);
+  border-radius: 50%;
+  opacity: .35;
+}
+.amb-hero .blob-orange {
+  position: absolute; bottom: -30px; right: 15%;
+  width: 180px; height: 180px;
+  background: var(--amb-orange);
+  border-radius: 50%;
+  opacity: .3;
+}
+.amb-hero h1 {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #2d3436;
+  position: relative;
+  z-index: 1;
+}
+.amb-hero .subtitle {
+  font-size: 1.25rem;
+  color: #636e72;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.amb-hero .brand-logos {
+  position: relative;
+  z-index: 1;
+  margin-top: 30px;
+}
+.amb-hero .brand-logos img {
+  height: 90px;
+  margin: 0 14px;
+}
+
+/* ── Sections ─────────────────────────────────────────────────── */
+.amb-section {
+  padding: 70px 0;
+}
+.amb-section h2 {
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: #2d3436;
+  margin-bottom: 25px;
+}
+.amb-section .lead-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  max-width: 800px;
+}
+
+/* alternating pastel backgrounds */
+.amb-bg-white { background: #fff; }
+.amb-bg-blue  { background: var(--amb-blue-light); }
+.amb-bg-pink  { background: linear-gradient(135deg, #fff 0%, var(--amb-pink-light) 100%); }
+.amb-bg-green { background: linear-gradient(135deg, var(--amb-green-light) 0%, #fff 100%); }
+.amb-bg-peach { background: linear-gradient(135deg, #fff 0%, var(--amb-peach) 100%); }
+.amb-bg-lavender { background: linear-gradient(135deg, var(--amb-lavender) 0%, #fff 100%); }
+
+/* ── Team cards ───────────────────────────────────────────────── */
+.team-card {
+  text-align: center;
+  padding: 20px 10px;
+}
+.team-card img {
+  width: 130px; height: 130px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--amb-pink);
+  margin-bottom: 14px;
+}
+.team-card h5 { font-weight: 700; margin-bottom: 2px; }
+.team-card .role { color: #888; font-size: 0.9rem; }
+
+/* ── Conference cards ─────────────────────────────────────────── */
+.conf-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 30px 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+.conf-card img {
+  width: 100px; height: 100px;
+  border-radius: 14px;
+  object-fit: contain;
+  flex-shrink: 0;
+  background: var(--amb-blue-light);
+  padding: 10px;
+}
+.conf-card h5 { font-weight: 700; margin-bottom: 4px; }
+.conf-card .badge-type {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.badge-inperson { background: var(--amb-green); color: #2d6a4f; }
+.badge-online   { background: var(--amb-yellow); color: #7c6a0a; }
+.conf-card p { color: #666; font-size: 0.92rem; margin: 0; }
+
+/* ── Perks & Responsibilities tables ──────────────────────────── */
+.amb-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+.amb-table tr { border-radius: 12px; }
+.amb-table td {
+  padding: 16px 20px;
+  vertical-align: top;
+}
+.amb-table td:first-child {
+  font-weight: 700;
+  white-space: nowrap;
+  width: 280px;
+  border-radius: 12px 0 0 12px;
+}
+.amb-table td:last-child {
+  border-radius: 0 12px 12px 0;
+}
+.perks-table tr td:first-child { background: var(--amb-green-light); }
+.perks-table tr td:last-child  { background: var(--amb-green); }
+.resp-table tr td:first-child  { background: var(--amb-blue-light); }
+.resp-table tr td:last-child   { background: var(--amb-blue); }
+
+@media (max-width: 768px) {
+  .amb-table td:first-child {
+    white-space: normal;
+    width: auto;
+    border-radius: 12px 12px 0 0;
+    display: block;
+  }
+  .amb-table td:last-child {
+    border-radius: 0 0 12px 12px;
+    display: block;
+  }
+  .amb-table tr {
+    display: block;
+    margin-bottom: 12px;
+  }
+  .conf-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .amb-hero h1 { font-size: 2.4rem; }
+  .amb-hero .brand-logos img { height: 60px; margin: 6px 8px; }
+}
+
+/* ── Reassurance speech bubbles ───────────────────────────────── */
+.reassurance-bubbles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+.reassurance-bubbles li {
+  position: relative;
+  padding: 20px 26px;
+  border-radius: 22px;
+  font-size: 1.05rem;
+  color: #2d3436;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 400px;
+  flex: 1 1 280px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+}
+.reassurance-bubbles li::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+}
+.reassurance-bubbles li:nth-child(1) { background: var(--amb-pink-light); }
+.reassurance-bubbles li:nth-child(1)::after { border-top: 14px solid var(--amb-pink-light); }
+.reassurance-bubbles li:nth-child(2) { background: var(--amb-blue-light); }
+.reassurance-bubbles li:nth-child(2)::after { border-top: 14px solid var(--amb-blue-light); }
+.reassurance-bubbles li:nth-child(3) { background: var(--amb-green-light); }
+.reassurance-bubbles li:nth-child(3)::after { border-top: 14px solid var(--amb-green-light); }
+.reassurance-bubbles li:nth-child(4) { background: var(--amb-peach); }
+.reassurance-bubbles li:nth-child(4)::after { border-top: 14px solid var(--amb-peach); }
+.reassurance-bubbles li:nth-child(5) { background: var(--amb-yellow); }
+.reassurance-bubbles li:nth-child(5)::after { border-top: 14px solid var(--amb-yellow); }
+.reassurance-bubbles li:nth-child(6) { background: var(--amb-lavender); }
+.reassurance-bubbles li:nth-child(6)::after { border-top: 14px solid var(--amb-lavender); }
+
+/* ── CTA ──────────────────────────────────────────────────────── */
+.amb-cta {
+  background: linear-gradient(135deg, var(--amb-peach) 0%, var(--amb-pink-light) 50%, var(--amb-lavender) 100%);
+  padding: 80px 0;
+  text-align: center;
+}
+.amb-cta h2 { font-weight: 800; color: #2d3436; }
+.amb-cta .btn-amb {
+  display: inline-block;
+  padding: 14px 36px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  margin: 8px;
+  transition: transform .2s, box-shadow .2s;
+}
+.amb-cta .btn-amb:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,.12);
+}
+.btn-email  { background: var(--amb-green); color: #2d6a4f; }
+.btn-linkedin { background: var(--amb-blue); color: #1a5276; }
+
+/* ── Decorative bubbles (shared) ─────────────────────────────── */
+.amb-bubbles { position: relative; overflow: hidden; }
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: .3;
+  pointer-events: none;
+  z-index: 0;
+}
+.amb-bubbles > .container { position: relative; z-index: 1; }
+
+/* ── Cat graphics ─────────────────────────────────────────────── */
+.cat-graphic {
+  pointer-events: none;
+  z-index: 1;
+}
+.cat-graphic img {
+  max-width: 100%;
+  height: auto;
+}
+/* "why" section cat - right side */
+.cat-why {
+  position: absolute;
+  right: -20px;
+  bottom: -10px;
+  width: 220px;
+}
+/* perks section cat - bottom right peeking */
+.cat-perks {
+  position: absolute;
+  right: 20px;
+  bottom: -5px;
+  width: 180px;
+}
+/* responsibilities cat - bottom right */
+.cat-resp {
+  position: absolute;
+  right: 20px;
+  bottom: -5px;
+  width: 180px;
+}
+/* CTA celebrate cat - left side */
+.cat-cta {
+  position: absolute;
+  left: 30px;
+  bottom: 0;
+  width: 240px;
+}
+@media (max-width: 992px) {
+  .cat-why, .cat-perks, .cat-resp { width: 140px; }
+  .cat-cta { width: 180px; }
+}
+@media (max-width: 576px) {
+  .cat-why, .cat-perks, .cat-resp, .cat-cta {
+    position: static;
+    display: block;
+    margin: 30px auto 0;
+    width: 160px;
+  }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section class="amb-hero">
+  <div class="blob-green"></div>
+  <div class="blob-orange"></div>
+  <!-- extra hero bubbles -->
+  <div class="bubble" style="width:120px;height:120px;background:var(--amb-lavender);top:30%;left:5%;opacity:.25;"></div>
+  <div class="bubble" style="width:90px;height:90px;background:var(--amb-peach);top:15%;right:25%;opacity:.3;"></div>
+  <div class="bubble" style="width:60px;height:60px;background:var(--amb-green);top:60%;left:20%;opacity:.2;"></div>
+  <div class="bubble" style="width:70px;height:70px;background:var(--amb-pink);bottom:20%;right:8%;opacity:.25;"></div>
+  <div class="bubble" style="width:45px;height:45px;background:var(--amb-yellow);top:45%;right:12%;opacity:.35;"></div>
+  <div class="container">
+    <h1>Become an Ambassador!</h1>
+    <p class="subtitle">
+      Help us out with our series of <strong>worldwide tech conferences.</strong><br>
+      It's not only free swag!
+    </p>
+    <div class="brand-logos">
+      <img src="/assets/images/llmday_sticker_new.png" alt="LLMday">
+      <img src="/assets/images/sreday_sticker.png" alt="SREday">
+      <img src="/assets/images/platformday_sticker.png" alt="PLATFORMday">
+      <img src="/assets/images/conf42_sticker.png" alt="Conf42">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ WHO ARE WE ═════════════════════════════ -->
+<section id="who" class="amb-section amb-bg-blue amb-bubbles">
+  <div class="bubble" style="width:160px;height:160px;background:var(--amb-pink);top:-40px;right:5%;opacity:.2;"></div>
+  <div class="bubble" style="width:100px;height:100px;background:var(--amb-yellow);bottom:30px;left:3%;opacity:.25;"></div>
+  <div class="bubble" style="width:70px;height:70px;background:var(--amb-green);top:40%;left:8%;opacity:.2;"></div>
+  <div class="bubble" style="width:50px;height:50px;background:var(--amb-lavender);bottom:15%;right:12%;opacity:.3;"></div>
+  <div class="container">
+    <h2 class="text-center">Who are we?</h2>
+    <div class="lead-text mx-auto text-center mb-5">
+      <p>Miko (site reliability engineer) and Mark (festival organizer) joined forces in London back in 2019, bootstrapping a series of tech conferences. We build developer communities!</p>
+      <p>Both strictly in-person: <a href="https://sreday.com" target="_blank">sreday.com</a>, <a href="https://llmday.com" target="_blank">llmday.com</a>, <a href="https://platformday.com" target="_blank">platformday.com</a>, and online &mdash; <a href="https://conf42.com" target="_blank">conf42.com</a>.</p>
+      <p>We are a core team of 5 people, with the founders based in the United Kingdom:</p>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-6 col-md"><div class="team-card">
+        <img src="/assets/images/ambassadorship/Mark Pawlikowski.jpeg" alt="Mark Pawlikowski">
+        <h5>Mark Pawlikowski</h5>
+        <div class="role">Frontend Organizer</div>
+      </div></div>
+      <div class="col-6 col-md"><div class="team-card">
+        <img src="/assets/images/ambassadorship/Miko Pawlikowski.jpeg" alt="Miko Pawlikowski">
+        <h5>Miko Pawlikowski</h5>
+        <div class="role">Backend Organizer</div>
+      </div></div>
+      <div class="col-6 col-md"><div class="team-card">
+        <img src="/assets/images/ambassadorship/Aleksandra Los.png" alt="Aleksandra Los">
+        <h5>Aleksandra Los</h5>
+        <div class="role">Logistics &amp; Marketing</div>
+      </div></div>
+      <div class="col-6 col-md"><div class="team-card">
+        <img src="/assets/images/ambassadorship/Anna Andriushchenko.png" alt="Anna Andriushchenko">
+        <h5>Anna Andriushchenko</h5>
+        <div class="role">Marketing</div>
+      </div></div>
+      <div class="col-6 col-md"><div class="team-card">
+        <img src="/assets/images/ambassadorship/Magdalena Marcinkiewicz.png" alt="Magdalena Marcinkiewicz">
+        <h5>Magdalena Marcinkiewicz</h5>
+        <div class="role">Marketing</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CONFERENCES ════════════════════════════ -->
+<section id="conferences" class="amb-section amb-bg-white amb-bubbles">
+  <div class="bubble" style="width:130px;height:130px;background:var(--amb-peach);top:-30px;left:2%;opacity:.25;"></div>
+  <div class="bubble" style="width:80px;height:80px;background:var(--amb-blue);bottom:20px;right:5%;opacity:.2;"></div>
+  <div class="bubble" style="width:55px;height:55px;background:var(--amb-pink);top:50%;right:3%;opacity:.2;"></div>
+  <div class="bubble" style="width:40px;height:40px;background:var(--amb-green);top:20%;left:15%;opacity:.25;"></div>
+  <div class="container">
+    <h2 class="text-center">Our conferences</h2>
+    <div class="row g-4 mt-2">
+      <div class="col-12 col-md-6">
+        <div class="conf-card">
+          <img src="/assets/images/sreday_sticker.png" alt="SREday">
+          <div>
+            <h5>SREday</h5>
+            <span class="badge-type badge-inperson">in-person</span>
+            <p>Site Reliability, DevOps, Cloud, Observability &amp; Monitoring, Testing, Scalability, Security</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="conf-card">
+          <img src="/assets/images/llmday_sticker_new.png" alt="LLMday">
+          <div>
+            <h5>LLMday</h5>
+            <span class="badge-type badge-inperson">in-person</span>
+            <p>Large Language Models, AI, ML, GenAI, Cloud &amp; Local, Fine Tuning, Deploying, Prompt Engineering</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="conf-card">
+          <img src="/assets/images/platformday_sticker.png" alt="PLATFORMday">
+          <div>
+            <h5>PLATFORMday</h5>
+            <span class="badge-type badge-inperson">in-person</span>
+            <p>Platform Engineering, Internal Developer Platforms, DevOps, Infrastructure, Cloud Native</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="conf-card">
+          <img src="/assets/images/conf42_sticker.png" alt="Conf42">
+          <div>
+            <h5>Conf42</h5>
+            <span class="badge-type badge-online">online</span>
+            <p>A balanced mix of topics, 10-20 events every year</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ WHAT IS AN AMBASSADOR ══════════════════════ -->
+<section id="what" class="amb-section amb-bg-pink amb-bubbles">
+  <div class="bubble" style="width:180px;height:180px;background:var(--amb-orange);top:-50px;left:-30px;opacity:.25;"></div>
+  <div class="bubble" style="width:100px;height:100px;background:var(--amb-blue);bottom:-20px;right:8%;opacity:.2;"></div>
+  <div class="bubble" style="width:65px;height:65px;background:var(--amb-lavender);top:30%;right:5%;opacity:.25;"></div>
+  <div class="bubble" style="width:45px;height:45px;background:var(--amb-yellow);bottom:25%;left:12%;opacity:.3;"></div>
+  <div class="container">
+    <h2 class="text-center">Who's an Ambassador?</h2>
+    <div class="lead-text mx-auto">
+      <p><strong>Ambassador</strong> is someone who supports our community by spending a bit of their free time helping us grow our events locally. They're volunteers, not employees, people who genuinely care about sharing knowledge, connecting others, and building something positive around the community.</p>
+      <p>Many of them help shape the direction of the conferences by sharing ideas, feedback, and local perspective. Sometimes it's about improving the attendee experience, sometimes it's simply about making people feel welcome and included.</p>
+      <p>We truly appreciate everyone who helps us create spaces where people can learn, meet others, and enjoy the experience together.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ WHY? ═══════════════════════════════════ -->
+<section id="why" class="amb-section amb-bg-white amb-bubbles">
+  <div class="bubble" style="width:140px;height:140px;background:var(--amb-yellow);top:-30px;right:10%;opacity:.25;"></div>
+  <div class="bubble" style="width:90px;height:90px;background:var(--amb-pink);bottom:10%;left:5%;opacity:.2;"></div>
+  <div class="bubble" style="width:60px;height:60px;background:var(--amb-green);top:25%;left:3%;opacity:.25;"></div>
+  <div class="bubble" style="width:50px;height:50px;background:var(--amb-peach);top:50%;right:4%;opacity:.3;"></div>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-12 col-lg-8">
+        <h2>Why do we need you?</h2>
+        <div class="lead-text">
+          <p>There's only so much we can do as a small team. All of our conferences around the world started through invitations from friends in local communities: Matt &amp; Joyce in the US, Birol in Germany, William &amp; Bas in the Netherlands, Rod in Brazil, Poone &amp; Kini in France, Daniel &amp; Xenda in Portugal, Balaji, Siva &amp; Clarence in India&hellip; just to name a few!</p>
+          <p>Sometimes it's about helping with a key strategic decision. Sometimes it's just grabbing a coffee and brainstorming what we should do next. We want to work closely with people and create opportunities together.</p>
+          <p>That's the spirit behind our Ambassador program, and the kind of <strong>"let's go!"</strong> attitude we want to support and reward.</p>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 text-center">
+        <img src="/assets/images/ambassadorship/cat-huh.jpeg" alt="Curious cat" style="max-width:260px;width:100%;border-radius:20px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ PERKS ══════════════════════════════════ -->
+<section id="perks" class="amb-section amb-bg-green amb-bubbles">
+  <div class="bubble" style="width:150px;height:150px;background:var(--amb-yellow);top:-40px;left:5%;opacity:.25;"></div>
+  <div class="bubble" style="width:110px;height:110px;background:var(--amb-pink);bottom:-20px;right:3%;opacity:.2;"></div>
+  <div class="bubble" style="width:70px;height:70px;background:var(--amb-blue);top:30%;right:6%;opacity:.2;"></div>
+  <div class="bubble" style="width:50px;height:50px;background:var(--amb-orange);top:60%;left:2%;opacity:.25;"></div>
+  <div class="bubble" style="width:35px;height:35px;background:var(--amb-lavender);bottom:40%;left:15%;opacity:.3;"></div>
+  <div class="container">
+    <div class="text-end mb-3">
+      <img src="/assets/images/ambassadorship/cat-happy.jpeg" alt="Happy cat" style="width:180px;border-radius:16px;">
+    </div>
+    <h2 class="text-center">Perks</h2>
+    <div class="table-responsive mt-4">
+      <table class="amb-table perks-table">
+        <tr>
+          <td>Free conference admission</td>
+          <td><strong>Unlimited free access</strong> to all of our in-person events for every ambassador</td>
+        </tr>
+        <tr>
+          <td>Bring a +1 on us, plus friend discounts</td>
+          <td><strong>One free +1 at any conference</strong>, and a 50% off code for unlimited additional friends</td>
+        </tr>
+        <tr>
+          <td>Fast track CFP review</td>
+          <td><strong>Priority talk submissions</strong> with strong consideration for relevant topics</td>
+        </tr>
+        <tr>
+          <td>Employer sponsorship discounts</td>
+          <td><strong>20% off</strong> sponsorship opportunities for your company &amp; employer</td>
+        </tr>
+        <tr>
+          <td>Event hosting priority</td>
+          <td><strong>Propose new locations</strong> and hosting companies, free sponsorships for hosts</td>
+        </tr>
+        <tr>
+          <td>Speaker and ambassador recommendations</td>
+          <td><strong>Help shape the community</strong> by suggesting new speakers and ambassadors</td>
+        </tr>
+        <tr>
+          <td>Ambassador website feature &amp; digital badge</td>
+          <td>Highlighted as ambassador on our websites, get a <strong>certifier.io</strong> badge if requested</td>
+        </tr>
+        <tr>
+          <td>Monthly ambassador newsletter</td>
+          <td><strong>Stay in the loop</strong> on upcoming events and announcements</td>
+        </tr>
+        <tr>
+          <td>Social media guest spotlight</td>
+          <td>Take over our LinkedIn for a day once a year, post something cool</td>
+        </tr>
+        <tr>
+          <td>Exclusive ambassador swag</td>
+          <td><strong>Limited edition gear</strong> and personalized gifts, handed out at events</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ RESPONSIBILITIES ═══════════════════════════ -->
+<section id="responsibilities" class="amb-section amb-bg-white amb-bubbles">
+  <div class="bubble" style="width:120px;height:120px;background:var(--amb-lavender);top:-20px;right:8%;opacity:.2;"></div>
+  <div class="bubble" style="width:90px;height:90px;background:var(--amb-green);bottom:30px;left:4%;opacity:.25;"></div>
+  <div class="bubble" style="width:60px;height:60px;background:var(--amb-peach);top:40%;left:2%;opacity:.2;"></div>
+  <div class="bubble" style="width:45px;height:45px;background:var(--amb-pink);top:15%;right:3%;opacity:.25;"></div>
+  <div class="container">
+    <div class="text-end mb-3">
+      <img src="/assets/images/ambassadorship/cat-serious.jpeg" alt="Serious cat" style="width:180px;border-radius:16px;">
+    </div>
+    <h2 class="text-center">Responsibilities</h2>
+    <div class="table-responsive mt-4">
+      <table class="amb-table resp-table">
+        <tr>
+          <td>Regular LinkedIn posting</td>
+          <td><strong>Min. 1/month</strong> &mdash; help us promote an upcoming event relevant to your connections</td>
+        </tr>
+        <tr>
+          <td>Community hero</td>
+          <td><strong>Min. 1/month</strong> &mdash; impactful message on our community Discord / WhatsApp (job, news, interactions)</td>
+        </tr>
+        <tr>
+          <td>Event support when attending</td>
+          <td><strong>Min. 1/year</strong> &mdash; lend a hand at some events you are planning to attend (registration, MC, etc.)</td>
+        </tr>
+        <tr>
+          <td>International growth help</td>
+          <td>Assist with launching events in new locations, help us reach potential hosts / companies</td>
+        </tr>
+        <tr>
+          <td>Invite friends to attend</td>
+          <td>Look up the upcoming conferences, recommend them to your friends using your +1 or 50% codes</td>
+        </tr>
+        <tr>
+          <td>Job hunting help</td>
+          <td><strong>As needed</strong> &mdash; agree to do internal referrals for any other ambassador-in-good-standing</td>
+        </tr>
+        <tr>
+          <td>Annual event write up</td>
+          <td><strong>1/year</strong> &mdash; publish a personal blog / social post every year, reflecting on our collaboration</td>
+        </tr>
+        <tr>
+          <td>Leverage local meetups</td>
+          <td><strong>"I know a person who could help"</strong> &mdash; connecting with local meetups &amp; communities boosts growth</td>
+        </tr>
+        <tr>
+          <td>LinkedIn tag</td>
+          <td><strong>If allowed by employer</strong> &mdash; tag yourself as official conference ambassador on LinkedIn</td>
+        </tr>
+        <tr>
+          <td>Onboarding buddy</td>
+          <td><strong>As needed</strong> &mdash; help welcome and guide new ambassadors</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ REASSURANCE ════════════════════════════════ -->
+<section id="reassurance" class="amb-section amb-bg-lavender amb-bubbles">
+  <div class="bubble" style="width:140px;height:140px;background:var(--amb-orange);top:-30px;left:8%;opacity:.2;"></div>
+  <div class="bubble" style="width:100px;height:100px;background:var(--amb-green);bottom:-20px;right:10%;opacity:.25;"></div>
+  <div class="bubble" style="width:60px;height:60px;background:var(--amb-pink);top:50%;right:5%;opacity:.2;"></div>
+  <div class="bubble" style="width:40px;height:40px;background:var(--amb-yellow);top:20%;left:3%;opacity:.3;"></div>
+  <div class="bubble" style="width:75px;height:75px;background:var(--amb-blue);bottom:30%;left:6%;opacity:.2;"></div>
+  <div class="container text-center">
+    <h2>Final remarks</h2>
+    <ul class="reassurance-bubbles mt-4">
+      <li>This is very much an informal agreement, no ambassador contract will be required.</li>
+      <li>You will be able to provide feedback, and help us make the ambassador program better.</li>
+      <li>We want this to feel positive and fun, not deadline chasing or stress inducing.</li>
+      <li>You're welcome to opt out of some responsibilities if something is difficult to maintain on your end.</li>
+      <li>The Ambassador program is built on trust, so we won't be looking over your shoulder.</li>
+      <li>At the end of the day, this is about building a cool, supportive community together.</li>
+    </ul>
+    <p class="lead-text mx-auto mt-4" style="font-size:1.15rem; color:#555;">
+      We hope to work with you and are genuinely glad you're here!
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CTA ════════════════════════════════════ -->
+<section id="apply" class="amb-cta amb-bubbles">
+  <div class="bubble" style="width:180px;height:180px;background:var(--amb-yellow);top:-50px;right:5%;opacity:.25;"></div>
+  <div class="bubble" style="width:120px;height:120px;background:var(--amb-green);bottom:-30px;left:8%;opacity:.2;"></div>
+  <div class="bubble" style="width:80px;height:80px;background:var(--amb-blue);top:30%;left:3%;opacity:.25;"></div>
+  <div class="bubble" style="width:55px;height:55px;background:var(--amb-pink);bottom:25%;right:12%;opacity:.3;"></div>
+  <div class="bubble" style="width:40px;height:40px;background:var(--amb-orange);top:15%;left:20%;opacity:.2;"></div>
+  <div class="container">
+    <h2>Sounds like a win-win?</h2>
+    <p style="font-size:1.15rem; color:#555; margin-bottom:20px;">Email us, or ping Mark on LinkedIn</p>
+    <div class="mb-4">
+      <img src="/assets/images/ambassadorship/cat-uncle.png" alt="We want you!" style="max-width:280px;width:100%;border-radius:20px;">
+    </div>
+    <div>
+      <a href="mailto:hello@sreday.com?subject=Ambassador%20application" class="btn-amb btn-email">
+        <i class="fas fa-envelope me-2"></i>Email us
+      </a>
+      <a href="https://www.linkedin.com/in/marekpawlikowski/" target="_blank" class="btn-amb btn-linkedin">
+        <i class="fab fa-linkedin-in me-2"></i>Ping Mark on LinkedIn
+      </a>
+    </div>
+    <div class="brand-logos mt-5">
+      <img src="/assets/images/llmday_sticker_new.png" alt="LLMday" style="height:83px; margin:0 12px;">
+      <img src="/assets/images/sreday_sticker.png" alt="SREday" style="height:83px; margin:0 12px;">
+      <img src="/assets/images/platformday_sticker.png" alt="PLATFORMday" style="height:83px; margin:0 12px;">
+      <img src="/assets/images/conf42_sticker.png" alt="Conf42" style="height:83px; margin:0 12px;">
+    </div>
+  </div>
+</section>
+
+<!-- Replace nav links for this page -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var nav = document.querySelector('#navigation .navbar-nav');
+  if (!nav) return;
+  nav.innerHTML =
+    '<li class="nav-item"><a class="nav-link" href="/">Home</a></li>' +
+    '<li class="nav-item"><a class="nav-link scrollto" href="#who">Who are we</a></li>' +
+    '<li class="nav-item"><a class="nav-link scrollto" href="#conferences">Conferences</a></li>' +
+    '<li class="nav-item"><a class="nav-link scrollto" href="#perks">Perks</a></li>' +
+    '<li class="nav-item"><a class="nav-link scrollto" href="#responsibilities">Responsibilities</a></li>' +
+    '<li class="nav-item"><a class="nav-link scrollto" href="#apply">Apply</a></li>' +
+    '<li class="nav-item"><a class="nav-link" target="_blank" href="./assets/tnc.pdf">Terms &amp; Conditions</a></li>';
+});
+</script>
+
+{% endblock %}
