@@ -258,7 +258,7 @@
   <script>
     /* ======= Countdown ========= */
     // set the date we're counting down to
-    var target_date = new Date("2026-06-06T09:00:00-05:00").getTime();
+    var target_date = new Date("2026-06-06T09:30:00-05:00").getTime();
      
     // variables for time units
     var days, hours, minutes, seconds;
@@ -631,7 +631,7 @@
       <span class="schedule-meta-divider">•</span>
       <span class="schedule-meta-item">2 parallel tracks</span>
       <span class="schedule-meta-divider">•</span>
-      <span class="schedule-meta-item">9AM - 4PM</span>
+      <span class="schedule-meta-item">9:30AM - 4:30PM</span>
       <span class="schedule-meta-divider">•</span>
       <span class="schedule-meta-item">NYC, in-person</span>
     </div>
@@ -664,7 +664,7 @@
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">09:00</h4>
+              <h4 class="time mb-3">09:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle mb-2" src="../speakers/Ajuna Kyaruzi.png" alt=""></a>
                 <div class="name">Ajuna Kyaruzi</div>
@@ -683,7 +683,7 @@
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">09:30</h4>
+              <h4 class="time mb-3">10:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
                 <div class="name"></div>
@@ -699,7 +699,7 @@
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">10:00</h4>
+              <h4 class="time mb-3">10:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle mb-2" src="../speakers/Heather Thacker.png" alt=""></a>
                 <div class="name">Heather Thacker</div>
@@ -726,7 +726,7 @@ What you'll learn:
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">10:30</h4>
+              <h4 class="time mb-3">11:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Shreyas Iyer.png" alt=""></a>
                 <div class="name">Shreyas Iyer</div>
@@ -745,7 +745,7 @@ What you'll learn:
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">11:00</h4>
+              <h4 class="time mb-3">11:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Willem Pienaar.png" alt=""></a>
                 <div class="name">Willem Pienaar</div>
@@ -758,25 +758,6 @@ What you'll learn:
               </h3>
               <div class="location mb-3">Cleric</div>
               <div class="desc schedule-abstract">RLHF rewards confident, complete answers. Production incident investigation requires the opposite: withholding judgment, maintaining competing hypotheses, and seeking disconfirming evidence. The training incentive points directly away from the task. At Cleric, we built an AI agent that investigates production incidents. When a cascading failure produces dozens of correlated anomalies, the agent latches onto the loudest signal and builds a coherent narrative around it. The reasoning is sound. The answer is wrong. We taxonomized our agent's production failures and found that premature convergence (the agent finding a plausible answer and stopping) is one of the most common failure modes. Red herrings in production aren't random noise. They're symptoms that look like causes: a downstream service timing out because an upstream database is slow. The timeout is the loudest signal. The database is the root cause. This talk covers the architectural patterns we use to counteract it: forcing multiple competing hypotheses before commitment, requiring evidence that distinguishes between hypotheses rather than confirms the leading one, and a devil's advocate layer that argues against the top hypothesis. We also cover causal inference techniques that make the problem tractable, cascading failures propagate with measurable latency through dependency graphs, and dozens of anomalies collapse into a short causal chain when you follow timestamps instead of severity.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">11:30</h4>
-              <div class="profile">
-                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Josh Lee.png" alt=""></a>
-                <div class="name">Josh Lee</div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">OpenTelemetry: Playtime Is Over</a>
-              </h3>
-              <div class="location mb-3">Altinity</div>
-              <div class="desc schedule-abstract">So you finally got your organization to invest in OpenTelemetry. You carefully evaluated observability backends and picked the perfect one. Everything is awesome. Then twelve months later, your costs have skyrocketed and you can’t explain why. What happened? This talk examines how to emit meaningful telemetry while keeping costs under control, by exploring the following: - What to actually instrument - Which metrics to focus on - Pipeline efficiency with OTel Arrow Applying sampling, filtering, and intentional instrumentation to cut down on noise Schema management and validation with tools like Weaver We’ll review the ingredients of a mature observability implementation with OpenTelemetry: one that grows with you instead of overwhelming you. You’ll learn how to apply cost-effective techniques to achieve meaningful observability. Speaker Notes (visible to organizers only) As more organizations embrace OpenTelemetry and mature their Observability practice, we find ourselves coming out of that Observability and OpenTelemetry "honeymoon period". We've gone from, “We’re using OpenTelemetry, therefore we have Observability” to "How do we actually make this work for us?" This talk will equip organizations to build a sustainable and long-lasting observability practice built on OpenTelemetry.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
               
             </div>
           </div>
@@ -801,6 +782,25 @@ What you'll learn:
             <div class="meta">
               <h4 class="time mb-3">13:00</h4>
               <div class="profile">
+                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Josh Lee.png" alt=""></a>
+                <div class="name">Josh Lee</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">OpenTelemetry: Playtime Is Over</a>
+              </h3>
+              <div class="location mb-3">Altinity</div>
+              <div class="desc schedule-abstract">So you finally got your organization to invest in OpenTelemetry. You carefully evaluated observability backends and picked the perfect one. Everything is awesome. Then twelve months later, your costs have skyrocketed and you can’t explain why. What happened? This talk examines how to emit meaningful telemetry while keeping costs under control, by exploring the following: - What to actually instrument - Which metrics to focus on - Pipeline efficiency with OTel Arrow Applying sampling, filtering, and intentional instrumentation to cut down on noise Schema management and validation with tools like Weaver We’ll review the ingredients of a mature observability implementation with OpenTelemetry: one that grows with you instead of overwhelming you. You’ll learn how to apply cost-effective techniques to achieve meaningful observability. Speaker Notes (visible to organizers only) As more organizations embrace OpenTelemetry and mature their Observability practice, we find ourselves coming out of that Observability and OpenTelemetry "honeymoon period". We've gone from, “We’re using OpenTelemetry, therefore we have Observability” to "How do we actually make this work for us?" This talk will equip organizations to build a sustainable and long-lasting observability practice built on OpenTelemetry.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:30</h4>
+              <div class="profile">
                 <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Ian Miller.png" alt=""></a>
                 <div class="name">Ian Miller</div>
               </div>
@@ -818,7 +818,7 @@ What you'll learn:
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">13:30</h4>
+              <h4 class="time mb-3">14:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Edward Rodriguez.png" alt=""></a>
                 <div class="name">Edward Rodriguez</div>
@@ -841,7 +841,23 @@ The session is intended to be candid and technical, focused on lessons learned r
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">14:00</h4>
+              <h4 class="time mb-3">14:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Paul Caplan.png" alt=""></a>
                 <div class="name">Paul Caplan</div>
@@ -864,23 +880,7 @@ As many in the industry move toward “thin” harnesses, this talk argues for a
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">14:30</h4>
-              <div class="profile">
-                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"></div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
-              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">15:00</h4>
+              <h4 class="time mb-3">15:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Dwayne McDaniel.png" alt=""></a>
                 <div class="name">Dwayne McDaniel</div>
@@ -899,7 +899,7 @@ As many in the industry move toward “thin” harnesses, this talk argues for a
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">15:30</h4>
+              <h4 class="time mb-3">16:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Zachary Gruenberg.png" alt=""></a>
                 <div class="name">Zachary Gruenberg</div>
@@ -918,7 +918,7 @@ As many in the industry move toward “thin” harnesses, this talk argues for a
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">16:00</h4>
+              <h4 class="time mb-3">16:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
                 <div class="name"></div>
@@ -941,7 +941,7 @@ As many in the industry move toward “thin” harnesses, this talk argues for a
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">09:30</h4>
+              <h4 class="time mb-3">10:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
                 <div class="name"></div>
@@ -957,7 +957,7 @@ As many in the industry move toward “thin” harnesses, this talk argues for a
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">10:00</h4>
+              <h4 class="time mb-3">10:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Anisha Manoharan.png" alt=""></a>
                 <div class="name">Anisha Manoharan</div>
@@ -976,7 +976,7 @@ As many in the industry move toward “thin” harnesses, this talk argues for a
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">10:30</h4>
+              <h4 class="time mb-3">11:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img class="profile-image rounded-circle mb-2" src="../speakers/Aaron Hunter & Saurabh Rob Dahal.png" alt=""></a>
                 <div class="name">Aaron Hunter & Saurabh Rob Dahal</div>
@@ -997,7 +997,7 @@ Kiro is a new agentic IDE from AWS that turns your ideas into working software t
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">11:00</h4>
+              <h4 class="time mb-3">11:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img class="profile-image rounded-circle mb-2" src="../speakers/Aaron Hunter & Saurabh Rob Dahal.png" alt=""></a>
                 <div class="name">Aaron Hunter & Saurabh Rob Dahal</div>
@@ -1012,29 +1012,6 @@ Kiro is a new agentic IDE from AWS that turns your ideas into working software t
               <div class="desc schedule-abstract">####Free Kiro Access for Attendees####
 
 Kiro is a new agentic IDE from AWS that turns your ideas into working software through specs, not just prompts. In this hands-on workshop, you'll use Kiro to build a website from scratch using spec-driven development - where requirements, design, and tasks are generated before a single line of code is written. Then you'll use Kiro's agent skills to generate a polished, tailored resume in minutes. No prior Kiro experience needed. Every attendee gets a free Kiro Pro coupon<a class="schedule-abstract-read-more" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">... Read more</a></div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">11:30</h4>
-              <div class="profile">
-                <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img class="profile-image rounded-circle mb-2" src="../speakers/Sameera Jayasoma.png" alt=""></a>
-                <div class="name">Sameera Jayasoma</div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">The Missing Layer in Your Developer Platform Architecture</a>
-              </h3>
-              <div class="location mb-3">WSO2</div>
-              <div class="desc schedule-abstract">You deployed Backstage. Developers love the catalog. Golden path templates are shipping. Then the feature requests start: "Is my service actually running?" "Can I see logs here?" "Why do I need five tools to debug one deployment?"
-
-I'll talk about the architectural gap most teams discover after adopting a developer portal and how to close it. This missing layer isn't just about developer experience. It's also critical for AI: both built-in agents and external agents need well-defined abstractions and aggregated runtime state to reason about your platform and act on it effectively.
-
-I'll wrap up with a live demo of OpenChoreo (CNCF Sandbox project), showing what becomes possible when this layer is in place: runtime state tied to abstractions, observability scoped to components, and AI agents surfacing root causes, all from a single portal.<a class="schedule-abstract-read-more" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">... Read more</a></div>
               
             </div>
           </div>
@@ -1059,6 +1036,29 @@ I'll wrap up with a live demo of OpenChoreo (CNCF Sandbox project), showing what
             <div class="meta">
               <h4 class="time mb-3">13:00</h4>
               <div class="profile">
+                <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img class="profile-image rounded-circle mb-2" src="../speakers/Sameera Jayasoma.png" alt=""></a>
+                <div class="name">Sameera Jayasoma</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">The Missing Layer in Your Developer Platform Architecture</a>
+              </h3>
+              <div class="location mb-3">WSO2</div>
+              <div class="desc schedule-abstract">You deployed Backstage. Developers love the catalog. Golden path templates are shipping. Then the feature requests start: "Is my service actually running?" "Can I see logs here?" "Why do I need five tools to debug one deployment?"
+
+I'll talk about the architectural gap most teams discover after adopting a developer portal and how to close it. This missing layer isn't just about developer experience. It's also critical for AI: both built-in agents and external agents need well-defined abstractions and aggregated runtime state to reason about your platform and act on it effectively.
+
+I'll wrap up with a live demo of OpenChoreo (CNCF Sandbox project), showing what becomes possible when this layer is in place: runtime state tied to abstractions, observability scoped to components, and AI agents surfacing root causes, all from a single portal.<a class="schedule-abstract-read-more" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:30</h4>
+              <div class="profile">
                 <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14"><img class="profile-image rounded-circle mb-2" src="../speakers/Omari Gaskins Jr.png" alt=""></a>
                 <div class="name">Omari Gaskins Jr</div>
               </div>
@@ -1076,7 +1076,7 @@ I'll wrap up with a live demo of OpenChoreo (CNCF Sandbox project), showing what
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">13:30</h4>
+              <h4 class="time mb-3">14:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15"><img class="profile-image rounded-circle mb-2" src="../speakers/Vivek Shah.png" alt=""></a>
                 <div class="name">Vivek Shah</div>
@@ -1089,25 +1089,6 @@ I'll wrap up with a live demo of OpenChoreo (CNCF Sandbox project), showing what
               </h3>
               <div class="location mb-3">Providence</div>
               <div class="desc schedule-abstract">This presentation provides a comprehensive and engaging overview of Service Level Objectives (SLOs) and Service Level Agreements (SLAs), using a scroller game built in with HTML Canvas and Vanilla JS to illustrate the concepts. The three sections of the scroller game cover availability, latency, and error rate. For each metric, the accompanied presentation explains the math behind the metrics in an accessible way. It also reasons why certain percentiles or thresholds may be set based on situation. The talk ends with the exploration of case studies that illustrate how SLOs/SLAs have helped support the core values and product values of companies (ex, through supporting customer-first development and the delivery of high-quality results).<a class="schedule-abstract-read-more" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">... Read more</a></div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">14:00</h4>
-              <div class="profile">
-                <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img class="profile-image rounded-circle mb-2" src="../speakers/Shahram Anver.png" alt=""></a>
-                <div class="name">Shahram Anver</div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Agentic Learning Patterns for SRE</a>
-              </h3>
-              <div class="location mb-3">Cleric</div>
-              <div class="desc schedule-abstract">Most AI agents in production process each incident from scratch. No memory of what worked last time, no feedback loops, no adaptation. Stateless tools pretending to be smart. At Cleric, we build an autonomous AI SRE. Getting the agent to diagnose incidents was the easy part. Getting it to retain and apply what it learned from previous ones is where the real engineering problems lie. When one engineer figures out that an OOM spike is always the Redis sidecar, the agent should know that too. And it should know it across teams, across services, across time. We built a three-layer operational memory architecture — semantic, episodic, and procedural — that enables the agent to retain context across investigations and to improve over time. Semantic memory captures what the agent knows about infrastructure and relationships. Episodic memory records specific investigations and their outcomes. Procedural memory encodes the patterns that worked and when to apply them. But captured knowledge decays. The runbook from six months ago references a service that has since been decomposed into three microservices. The fix that worked in Q3 causes a different failure in Q1 because traffic patterns shifted. This talk covers how we detect and handle staleness, the feedback loops that update agent behavior based on resolution outcomes, and what we've learned about building agents that actually get better at their job over time.<a class="schedule-abstract-read-more" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">... Read more</a></div>
               
             </div>
           </div>
@@ -1132,6 +1113,25 @@ I'll wrap up with a live demo of OpenChoreo (CNCF Sandbox project), showing what
             <div class="meta">
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
+                <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img class="profile-image rounded-circle mb-2" src="../speakers/Shahram Anver.png" alt=""></a>
+                <div class="name">Shahram Anver</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Agentic Learning Patterns for SRE</a>
+              </h3>
+              <div class="location mb-3">Cleric</div>
+              <div class="desc schedule-abstract">Most AI agents in production process each incident from scratch. No memory of what worked last time, no feedback loops, no adaptation. Stateless tools pretending to be smart. At Cleric, we build an autonomous AI SRE. Getting the agent to diagnose incidents was the easy part. Getting it to retain and apply what it learned from previous ones is where the real engineering problems lie. When one engineer figures out that an OOM spike is always the Redis sidecar, the agent should know that too. And it should know it across teams, across services, across time. We built a three-layer operational memory architecture — semantic, episodic, and procedural — that enables the agent to retain context across investigations and to improve over time. Semantic memory captures what the agent knows about infrastructure and relationships. Episodic memory records specific investigations and their outcomes. Procedural memory encodes the patterns that worked and when to apply them. But captured knowledge decays. The runbook from six months ago references a service that has since been decomposed into three microservices. The fix that worked in Q3 causes a different failure in Q1 because traffic patterns shifted. This talk covers how we detect and handle staleness, the feedback loops that update agent behavior based on resolution outcomes, and what we've learned about building agents that actually get better at their job over time.<a class="schedule-abstract-read-more" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:30</h4>
+              <div class="profile">
                 <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17"><img class="profile-image rounded-circle mb-2" src="../speakers/Marcos Novelli Harispe.png" alt=""></a>
                 <div class="name">Marcos Novelli Harispe</div>
               </div>
@@ -1150,7 +1150,7 @@ This session explores how EEs can help us become faster firefighters and more ef
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">15:30</h4>
+              <h4 class="time mb-3">16:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18"><img class="profile-image rounded-circle mb-2" src="../speakers/Christopher Tineo.png" alt=""></a>
                 <div class="name">Christopher Tineo</div>
@@ -1169,7 +1169,7 @@ This session explores how EEs can help us become faster firefighters and more ef
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">16:00</h4>
+              <h4 class="time mb-3">16:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
                 <div class="name"></div>
@@ -1309,7 +1309,7 @@ This session explores how EEs can help us become faster firefighters and more ef
 
 
           <tr>
-            <td class="time-cell">09:00</td>
+            <td class="time-cell">09:30</td>
 
 
 
@@ -1347,7 +1347,7 @@ This session explores how EEs can help us become faster firefighters and more ef
 
 
           <tr>
-            <td class="time-cell merged-cell">09:30</td>
+            <td class="time-cell merged-cell">10:00</td>
             <td class="talk-cell merged-cell" colspan="2">
 
               Coffee break
@@ -1374,7 +1374,7 @@ This session explores how EEs can help us become faster firefighters and more ef
 
 
           <tr>
-            <td class="time-cell">10:00</td>
+            <td class="time-cell">10:30</td>
 
 
 
@@ -1419,7 +1419,7 @@ This session explores how EEs can help us become faster firefighters and more ef
 
 
           <tr>
-            <td class="time-cell">10:30</td>
+            <td class="time-cell">11:00</td>
 
 
 
@@ -1464,7 +1464,7 @@ This session explores how EEs can help us become faster firefighters and more ef
 
 
           <tr>
-            <td class="time-cell">11:00</td>
+            <td class="time-cell">11:30</td>
 
 
 
@@ -1485,51 +1485,6 @@ This session explores how EEs can help us become faster firefighters and more ef
             <td class="talk-cell">
               <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">1h Hands-On with Kiro: Use AI Agents to Build Your Website and Optimize Your Resume</a>
               <div class="speaker-info">Aaron Hunter & Saurabh Rob Dahal <span class="affiliation">• AWS</span></div>
-            </td>
-
-
-          </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          <tr>
-            <td class="time-cell">11:30</td>
-
-
-
-
-
-
-            <td class="talk-cell">
-              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">OpenTelemetry: Playtime Is Over</a>
-              <div class="speaker-info">Josh Lee <span class="affiliation">• Altinity</span></div>
-            </td>
-
-
-
-
-
-
-
-            <td class="talk-cell">
-              <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">The Missing Layer in Your Developer Platform Architecture</a>
-              <div class="speaker-info">Sameera Jayasoma <span class="affiliation">• WSO2</span></div>
             </td>
 
 
@@ -1587,6 +1542,51 @@ This session explores how EEs can help us become faster firefighters and more ef
 
 
             <td class="talk-cell">
+              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">OpenTelemetry: Playtime Is Over</a>
+              <div class="speaker-info">Josh Lee <span class="affiliation">• Altinity</span></div>
+            </td>
+
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">The Missing Layer in Your Developer Platform Architecture</a>
+              <div class="speaker-info">Sameera Jayasoma <span class="affiliation">• WSO2</span></div>
+            </td>
+
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">13:30</td>
+
+
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Shifting Left - Evolution of the Software Development Life Cycle</a>
               <div class="speaker-info">Ian Miller <span class="affiliation">• Seismic</span></div>
             </td>
@@ -1624,7 +1624,7 @@ This session explores how EEs can help us become faster firefighters and more ef
 
 
           <tr>
-            <td class="time-cell">13:30</td>
+            <td class="time-cell">14:00</td>
 
 
 
@@ -1645,51 +1645,6 @@ This session explores how EEs can help us become faster firefighters and more ef
             <td class="talk-cell">
               <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">99.9% Fun: A Game-Based Guide to SLOs and SLAs</a>
               <div class="speaker-info">Vivek Shah <span class="affiliation">• Providence</span></div>
-            </td>
-
-
-          </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          <tr>
-            <td class="time-cell">14:00</td>
-
-
-
-
-
-
-            <td class="talk-cell">
-              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Agent Harnesses: From Slot Machines to Safety Nets</a>
-              <div class="speaker-info">Paul Caplan <span class="affiliation">• Teladoc Health</span></div>
-            </td>
-
-
-
-
-
-
-
-            <td class="talk-cell">
-              <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Agentic Learning Patterns for SRE</a>
-              <div class="speaker-info">Shahram Anver <span class="affiliation">• Cleric</span></div>
             </td>
 
 
@@ -1747,6 +1702,51 @@ This session explores how EEs can help us become faster firefighters and more ef
 
 
             <td class="talk-cell">
+              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Agent Harnesses: From Slot Machines to Safety Nets</a>
+              <div class="speaker-info">Paul Caplan <span class="affiliation">• Teladoc Health</span></div>
+            </td>
+
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Agentic Learning Patterns for SRE</a>
+              <div class="speaker-info">Shahram Anver <span class="affiliation">• Cleric</span></div>
+            </td>
+
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">15:30</td>
+
+
+
+
+
+
+            <td class="talk-cell">
               <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">From Pets To Cattle To Agents: Evolving Identity And Security For Workloads</a>
               <div class="speaker-info">Dwayne McDaniel <span class="affiliation">• GitGuardian</span></div>
             </td>
@@ -1784,7 +1784,7 @@ This session explores how EEs can help us become faster firefighters and more ef
 
 
           <tr>
-            <td class="time-cell">15:30</td>
+            <td class="time-cell">16:00</td>
 
 
 
@@ -1827,7 +1827,7 @@ This session explores how EEs can help us become faster firefighters and more ef
 
 
           <tr>
-            <td class="time-cell merged-cell">16:00</td>
+            <td class="time-cell merged-cell">16:30</td>
             <td class="talk-cell merged-cell" colspan="2">
 
               Wrap up
