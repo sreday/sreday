@@ -260,24 +260,24 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">Observability Through Users' Eyes and How to Fix the Knowledge Disconnect</h1>
+    <h1 class="section-heading text-center mb-3">Teaching Your Agent's Search Engine to Listen: Fine Tuning Retrieval on Proprietary Data</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Helia Barroso & Iris Dyrmishi.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Philipp Pahl.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Helia Barroso & Iris Dyrmishi</h5>
+            <h5 class="card-title mb-2">Philipp Pahl</h5>
             <div class="card-text mb-3">
-              <div class="meta">Five9 & Miro</div>
+              <div class="meta">peachstone.ai</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/heliabarroso/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/philipppahl/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/iris-dyrmishi/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
             </ul><!--//social-list-->
           </div>
         </div><!--//card-->
@@ -289,14 +289,16 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Logs, metrics and traces nowadays are common words in every engineer's vocabulary, as Observability is everywhere with the rise of OpenTelemetry and improved standards. Instrumentation? No problem. Getting data from any system? Done. But then soon after, things start to fall apart, telemetry piles up unused, cloud bills soar, dashboards rot and alerts confuse even seasoned engineers. Clearly there is something missing. In this talk, Iris and Hélia share some experiences from building Observability platforms, patterns they have discovered of how users interact with telemetry data. From common questions across different teams and companies, pitfalls and also, strategies that empower teams to move from confusion to confidence. So get practical insights to bridge the gap between Observability data and User Knowledge, whether you're building platforms, supporting teams, or trying to make sense of your own telemetry chaos.</p></p>
+                <p><p>AI agents don't search like humans. They reason between every search call, and unlike humans, they're not lazy about spelling it out: what worked, what didn't, what to look for next. That chain of thought is rich retrieval signal that today's search engines throw away.</p>
+<p>Late interaction retrieval models can exploit that signal. Unlike single vector embeddings, which compress an entire document into one point in space, late interaction keeps a vector per token, capturing far more nuance with far smaller models. The tradeoff is more compute at search time, but efficient indexing techniques have largely solved that. And because these models are comparably small, they're fast and cheap to fine tune for your domain. That matters especially when you work with proprietary or specialized data where off the shelf models fall short: a generic retriever has never seen your internal documents, your terminology, your relevance criteria. Fine tuning bridges that gap.</p>
+<p>That's where frontier LLMs change the game. Training a retriever for your domain used to mean hiring annotators. Today, frontier models judge relevance at human evaluator quality and smaller, more affordable models can handle many of the same tasks at a fraction of the cost. I'll walk through a reproducible recipe: pool candidates with cheap retrievers, rerank them with LLM judges, extract training pairs. Then fine tune a late interaction model in minutes on a single rented GPU.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>DevOps/SRE with a background in Biotechnology and a strong passion for Observability. Maintainer of Prometheus Operator and active contributor to open source projects including Perses. Community organizer for Cloud Native Porto. Curious by nature, always learning and exploring new challenges in the cloud-native ecosystem.</p></p>
+                <p><p>Philipp Pahl is co-founder and technical lead at <a href="peachstone.ai">peachstone.ai</a>, an AI studio. He came to AI from a PhD in particle physics and years working with ML, large data and infrastructure projects in commercial settings. At Peachstone he and his team build AI solutions, agent and retrieval systems for production.</p></p>
               </div>
 
               
