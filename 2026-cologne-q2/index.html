@@ -496,10 +496,813 @@
 </style>
 
 
+<style>
+  /* Track navigation */
+  .track-nav {
+    padding: 0.75rem 0;
+    margin-bottom: 1.5rem;
+  }
+  .track-nav-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .track-nav-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .track-nav-links a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--brand);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+  }
+  .track-nav-links a:hover {
+    background: var(--brand-light);
+    color: white;
+  }
+  .view-toggle-link {
+    color: var(--brand);
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--brand);
+    border-radius: 4px;
+    transition: all 0.2s;
+    min-width: 10rem;
+    text-align: center;
+  }
+  .view-toggle-link:hover {
+    background: var(--brand);
+    color: white;
+  }
+  .view-toggle-link.active {
+    background: var(--brand);
+    color: white;
+  }
+  /* Table view */
+  .schedule-table-view { display: none; }
+  .schedule-table-view.active { display: block; }
+  .schedule-timeline-view { display: block; }
+  .schedule-timeline-view.hidden { display: none; }
+  .schedule-grid-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+    table-layout: fixed;
+  }
+  .schedule-grid-table th {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: white;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .schedule-grid-table th:first-child {
+    width: 60px;
+  }
+  .schedule-grid-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--brand-lightest);
+    vertical-align: top;
+  }
+  .schedule-grid-table td.merged-cell {
+    text-align: center;
+    font-weight: 500;
+    color: #555;
+    background: var(--brand-lightest);
+  }
+  .schedule-grid-table .time-cell {
+    color: var(--brand);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .schedule-grid-table .talk-cell a {
+    color: #222;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .schedule-grid-table .talk-cell a:hover {
+    color: var(--brand);
+  }
+  .schedule-grid-table .speaker-info {
+    color: #444;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+  .schedule-grid-table .speaker-info .affiliation {
+    color: #666;
+  }
+  .schedule-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  .schedule-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.8rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .schedule-meta-divider {
+    color: #ccc;
+    font-weight: 300;
+  }
+  /* Track section header */
+  .track-section-header {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    margin: 2rem 0 0 0;
+    border-radius: 4px 4px 0 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  .track-section-header:first-of-type {
+    margin-top: 0;
+  }
+
+  .schedule-section.theme-bg-light { background-color: #f0faf5 !important; }
+</style>
+
 <section id="schedule" class="schedule-section section theme-bg-light">
   <div class="container">
-    <h2 class="section-heading text-center mb-5">Schedule</h2>
-    <h4 class="section-heading text-center mb-5">Coming soon</h4>
+    <h2 class="section-heading text-center mb-4">Schedule</h2>
+
+    <!-- Schedule meta info -->
+    <div class="schedule-meta">
+      <span class="schedule-meta-item">June 11, 2026</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">single track</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">10AM - 4:30PM</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">Cologne, in-person</span>
+    </div>
+
+
+    
+
+    <!-- Track navigation -->
+    <div class="track-nav">
+      <div class="track-nav-inner">
+
+        <span class="view-toggle-link" id="view-toggle-0" onclick="toggleView(0)">view as table</span>
+      </div>
+    </div>
+
+    <!-- Timeline View (default) -->
+    <div id="timeline-view-0" class="schedule-timeline-view">
+
+      <div class="track-section-header" id="track-0-1">the room &bull; Track 1</div>
+      <div class="schedule-tab-content">
+        <div class="tab-pane active">
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle mb-2" src="../speakers/Birol Yildiz.png" alt=""></a>
+                <div class="name">Birol Yildiz</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: When Incidents Fix Themselves: AI SRE in action</a>
+              </h3>
+              <div class="location mb-3">ilert</div>
+              <div class="desc schedule-abstract">The next evolution of incident response isn’t faster alerts, it’s autonomous resolution. Join ilert CEO Birol Yildiz as he shows how AI SRE agents now diagnose and remediate outages without waking anyone up. Learn how these systems combine observability data, deployment context, and code intelligence to restore services in minutes and hand over clean incident reports instead of 3 a.m. pages.<a class="schedule-abstract-read-more" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle mb-2" src="../speakers/Ravin Trivedi.png" alt=""></a>
+                <div class="name">Ravin Trivedi</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Keynote: Decoupling Observability for Incident Response at Scale</a>
+              </h3>
+              <div class="location mb-3">Imply</div>
+              <div class="desc schedule-abstract">On-call incidents don’t fail because teams lack dashboards. They fail because observability systems slow down under real investigative load
+
+As telemetry volumes grow and retention windows expand, SRE teams are being asked to run deeper, broader investigations—often under time pressure—on platforms that were designed for steady-state monitoring, not bursty incident response. Tightly coupled observability stacks bind storage, compute, and query together, forcing teams to overprovision infrastructure, limit retention, or accept degraded performance during incidents.
+
+In this talk, we’ll explore why decoupling observability architectures is becoming essential for SRE teams operating at scale. Using a real incident investigation workflow, we’ll break down how separating data storage, compute, and interaction layers allows teams to keep fast, reliable monitoring while elastically scaling investigations when incidents occur.<a class="schedule-abstract-read-more" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Coffee break</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Katharina Burckhardt & Thomas Leyer.png" alt=""></a>
+                <div class="name">Katharina Burckhardt & Thomas Leyer</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">We Called It an Experiment: Two Perspectives on SRE in the Enterprise</a>
+              </h3>
+              <div class="location mb-3">AXA</div>
+              <div class="desc schedule-abstract">When given the opportunity to build a software engineering organisation from scratch, our vision was relatively solid — our structure solved many pain points we knew from earlier experiments. We had found a good balance between the people we could sustainably hire, the budget, and the products our research colleagues in a life science company needed. The thing we didn't have was a sustainable answer to: what do we do when we need to create more products and can't grow the staff linearly?
+
+We had worked with external partners in those situations before, but we kept thinking we could keep strategic products in better shape if we didn't have to hand them off — if we kept them in the teams that built them. SRE came up internally as the answer to the hardest part of that — operations eating the team. We framed the proposal as an experiment, and that framing got our product peers' buy-in.
+This talk is told from two sides of that experiment: the manager who proposed it and built the engineering organization, and the engineer who became the first SRE and shaped what the practice looked like inside the product teams. Teams were designed for independence — kept apart so each could move at its own speed. The surprise after three years: in an organisation built for vertical independence, the SREs became the horizontal connection — carrying not just reliability work but communication, synergies, even capacity relief between teams.<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">12:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Thijs Feryn.png" alt=""></a>
+                <div class="name">Thijs Feryn</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Accelerate, control & secure your CI/CD artifacts with Varnish & Varnish Orca</a>
+              </h3>
+              <div class="location mb-3">Varnish Software</div>
+              <div class="desc schedule-abstract">Slow CI/CD pipelines delay builds, releases and deployments. A lot of time is wasted waiting for external dependencies like Docker images, Helm Charts, Linux packages, NPM packages, Maven packages, Go modules, Python libraries, and any other artifact that is required in the software development process. The registries that host these artifacts become a bottleneck. Besides performance and scalability concerns, organizations also struggle with cost, resilience and security risks when operating artifact registries. In this session, Thijs will show how to regain control over your software supply chain by caching your artifacts in Varnish and by using a Virtual Registry like Varnish Orca. Orca is a specially packaged version of Varnish that abstracts direct access to artifact registries. Orca accelerates access to artifacts by caching them as close to the consumers as possible, and uses its role as a “reverse caching HTTP proxy” to enforce security policies at request time, eliminate registry rate limits, protect pipelines against registry outages, and provide meaningful insights through an OTEL observability layer.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">12:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Pavel Kovtun.png" alt=""></a>
+                <div class="name">Pavel Kovtun</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Building a DevOps Platform for GenAI at Enterprise Scale</a>
+              </h3>
+              <div class="location mb-3">MobiLab Solutions</div>
+              <div class="desc schedule-abstract">At enterprise scale, GenAI applications multiply the surface area of security and governance: across engineering teams, policy fragments into parallel implementations, spread across both the application platform and the data platform. A centralised DevOps platform consolidates that exposure into a single foundation: knowledge, security, and governance codified once into reusable CI/CD, IaC, and policy-as-code. A small central platform team then scales this across the organisation through blueprints and best practices.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Robert Markovski.png" alt=""></a>
+                <div class="name">Robert Markovski</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Self-Healing Software: Towards a World Without Software Bugs</a>
+              </h3>
+              <div class="location mb-3">Prilog</div>
+              <div class="desc schedule-abstract">Software systems today are still fundamentally reactive. Engineers wait for production incidents, investigate logs and traces, identify root causes, write fixes, review pull requests, deploy patches, and repeat the cycle endlessly.
+
+But what happens when software can repair itself?
+
+In this talk, Robert Markovski, Founder & CEO of Prilog, explores the emerging shift toward self-healing software systems powered by AI and autonomous remediation workflows. We’ll look at how modern observability, runtime telemetry, and AI agents can work together to automatically detect production issues, investigate failures, generate code fixes, validate changes, and propose pull requests with human-in-the-loop approval.
+
+The session will cover:
+• The evolution from monitoring to autonomous remediation
+• Why traditional observability still leaves engineers overwhelmed
+• Real-world architecture patterns for self-healing systems
+• Safety layers, validation, and trust challenges in AI-generated fixes
+• The long-term vision of a world where software bugs continuously repair themselves before users ever notice
+
+This talk is aimed at SREs, platform engineers, DevOps teams, and engineering leaders interested in the future of reliability engineering and AI-native infrastructure.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Umut Tuglu.png" alt=""></a>
+                <div class="name">Umut Tuglu</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">On-Prem AI Inferencing at Scale: Running NVIDIA DGX Workloads with Run:ai and Kubernetes</a>
+              </h3>
+              <div class="location mb-3">Fraunhofer-Gesellschaft </div>
+              <div class="desc schedule-abstract">When Fraunhofer invested in NVIDIA DGX systems to provide self-hosted AI inferencing to all Fraunhofer employees, the path from hardware to platform was full of pain points. This talk walks through our migration from NVIDIA's Base Command Manager to a Run:ai-based setup integrated into our existing Rancher-based Kubernetes infrastructure, covering the architecture on both sides: a custom stack handling GPU partitioning and inferencing through our own vLLM Helm charts before, and the Run:ai control plane after. We'll wrap up with a look at how the platform is put to use across Fraunhofer, from the FhGenie chatbot to a growing set of internal AI-powered applications.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Girish Kalamati.png" alt=""></a>
+                <div class="name">Girish Kalamati</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">The Observability Shift - How Modern SREs Build Reliable Systems in an Unpredictable World</a>
+              </h3>
+              <div class="location mb-3">Henkel</div>
+              <div class="desc schedule-abstract">Modern systems are too distributed, too dynamic, and too fast‑moving for traditional monitoring to keep up. In this talk, we explore how observability has evolved from a tooling problem into a core SRE capability that drives reliability, resilience, and engineering velocity. You’ll learn how high‑performing teams use telemetry to detect unknown failure modes, shorten incident response, and build systems that explain themselves. We’ll break down the observability‑SRE feedback loop, highlight real‑world anti‑patterns, and share a practical blueprint you can apply immediately in your own platform or cloud environment.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Temo Gabechava.png" alt=""></a>
+                <div class="name">Temo Gabechava</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Agentic AI for On-prem  and Cloud Operations </a>
+              </h3>
+              <div class="location mb-3">MobiLab Solutions</div>
+              <div class="desc schedule-abstract">With the boom of Agentic AI naturally comes a question - what can it do for infrastructure, be it cloud or on-premises solutions? And what exactly should its role be limited to - using Agentic AI tools for deployment and documentation solely, or can it also take on the role of an operator? During our latest development, In ot teams, we've experimented with the possibility of using Agentic AI for infrastructure operations and would like to share our learnings, achievements, and thoughts for the future.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Endah Bongo-Awah.png" alt=""></a>
+                <div class="name">Endah Bongo-Awah</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Reliability Has Two Layers - Most Teams Only Build One</a>
+              </h3>
+              <div class="location mb-3">Bedrock Streaming</div>
+              <div class="desc schedule-abstract">The SRE industry has built world-class system reliability. DORA metrics, SLOs, error budgets, automated recovery, the tooling layer has never been more sophisticated. Yet major incidents keep revealing the same pattern: technically excellent teams failing not because the system broke, but because the humans around the system couldn't coordinate effectively under pressure.
+
+This talk introduces a framework for the layer most engineering organisations have never deliberately built: human reliability. Drawing on direct experience building cloud communities in Germany and Cameroon, and grounded in DORA research and Crew Resource Management principles from aviation, the talk proposes a 6th reliability metric, Incident Response Reliability (IRR), and makes the case for treating human coordination under incident conditions as a hard engineering discipline, not a soft skill.
+
+Through a concrete case study of a Berlin fintech SRE team with elite DORA scores and a critical human reliability gap, the audience sees exactly what IRR reveals that DORA cannot, and how six months of tracking it dropped their MTTR from 29 minutes to 11 minutes without a single system change.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Wrap up</h3>
+              <div class="location mb-3" style="color:#098dcf;">Scan each other's QR codes & head to a nearby pub!</div>
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Table View -->
+    <div id="table-view-0" class="schedule-table-view">
+      <table class="schedule-grid-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+
+            <th style="width: calc((100% - 60px) / 1)">the room</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">10:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: When Incidents Fix Themselves: AI SRE in action</a>
+              <div class="speaker-info">Birol Yildiz <span class="affiliation">• ilert</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">10:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Keynote: Decoupling Observability for Incident Response at Scale</a>
+              <div class="speaker-info">Ravin Trivedi <span class="affiliation">• Imply</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">11:00</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Coffee break
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">11:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">We Called It an Experiment: Two Perspectives on SRE in the Enterprise</a>
+              <div class="speaker-info">Katharina Burckhardt & Thomas Leyer <span class="affiliation">• AXA</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">12:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Accelerate, control & secure your CI/CD artifacts with Varnish & Varnish Orca</a>
+              <div class="speaker-info">Thijs Feryn <span class="affiliation">• Varnish Software</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">12:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Building a DevOps Platform for GenAI at Enterprise Scale</a>
+              <div class="speaker-info">Pavel Kovtun <span class="affiliation">• MobiLab Solutions</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">13:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Self-Healing Software: Towards a World Without Software Bugs</a>
+              <div class="speaker-info">Robert Markovski <span class="affiliation">• Prilog</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">13:30</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Lunch & networking
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">14:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">On-Prem AI Inferencing at Scale: Running NVIDIA DGX Workloads with Run:ai and Kubernetes</a>
+              <div class="speaker-info">Umut Tuglu <span class="affiliation">• Fraunhofer-Gesellschaft </span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">15:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">The Observability Shift - How Modern SREs Build Reliable Systems in an Unpredictable World</a>
+              <div class="speaker-info">Girish Kalamati <span class="affiliation">• Henkel</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">15:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Agentic AI for On-prem  and Cloud Operations </a>
+              <div class="speaker-info">Temo Gabechava <span class="affiliation">• MobiLab Solutions</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">16:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Reliability Has Two Layers - Most Teams Only Build One</a>
+              <div class="speaker-info">Endah Bongo-Awah <span class="affiliation">• Bedrock Streaming</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">16:30</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Wrap up
+
+            </td>
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+    <script>
+    function toggleView(day) {
+      const timelineView = document.getElementById('timeline-view-' + day);
+      const tableView = document.getElementById('table-view-' + day);
+      const toggleBtn = document.getElementById('view-toggle-' + day);
+      const trackLinks = document.getElementById('track-links-' + day);
+
+      if (tableView.classList.contains('active')) {
+        tableView.classList.remove('active');
+        timelineView.classList.remove('hidden');
+        toggleBtn.textContent = 'view as table';
+        toggleBtn.classList.remove('active');
+        if (trackLinks) trackLinks.style.display = 'flex';
+      } else {
+        tableView.classList.add('active');
+        timelineView.classList.add('hidden');
+        toggleBtn.textContent = 'view as timeline';
+        toggleBtn.classList.add('active');
+        if (trackLinks) trackLinks.style.display = 'none';
+      }
+    }
+    </script>
+
+    
+    <div class="schedule-cta text-center mx-auto mt-4"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+    
   </div>
 </section>
 
@@ -772,16 +1575,6 @@
       </div><!--//col-->
 
       
-
-      
-
-      <div class="col mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h4>More coming soon</h4>
-          </div><!--//card-->
-        </div><!--//card-->
-      </div><!--//col-->
 
       
 
