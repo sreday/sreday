@@ -631,7 +631,7 @@
       <span class="schedule-meta-divider">•</span>
       <span class="schedule-meta-item">single track</span>
       <span class="schedule-meta-divider">•</span>
-      <span class="schedule-meta-item">9AM - 4:30PM</span>
+      <span class="schedule-meta-item">9AM - 5:30PM</span>
       <span class="schedule-meta-divider">•</span>
       <span class="schedule-meta-item">Paris, in-person</span>
     </div>
@@ -665,7 +665,7 @@
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Coming soon...</a>
+                <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: coming soon...</a>
               </h3>
               <div class="location mb-3">Criteo</div>
               <div class="desc schedule-abstract">Coming soon...<a class="schedule-abstract-read-more" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">... Read more</a></div>
@@ -766,17 +766,21 @@ To answer those questions, we will see in this talk how combine the standard orc
             <div class="meta">
               <h4 class="time mb-3">11:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Daniel Afonso.png" alt=""></a>
-                <div class="name">Daniel Afonso</div>
+                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Piotr Zaniewski.png" alt=""></a>
+                <div class="name">Piotr Zaniewski</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Incident Response Reimagined: Accelerating Resolution with AI Agents</a>
+                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Three Minutes Up, Thirty Seconds Down: Disposable GPU Clusters for AI Devs</a>
               </h3>
-              <div class="location mb-3">PagerDuty</div>
-              <div class="desc schedule-abstract">It’s 3:45 AM, and you get paged. Still half asleep, you reach for your laptop. Turns out something is wrong, so you acknowledge the incident and embark on a journey to figure out what is happening, mobilize the right people, and eventually fix the issue. But what if we could make it easier? In this talk, I’ll show how AI agents can help you fast-track triage, coordinate responses, debug problems, and run fixes. To wrap up, I will show how we can go even further and move from merely reacting to incidents to proactively preventing them. In the spirit of shifting left, let’s understand how we can track future incidents our code may cause, right before we commit it!<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+              <div class="location mb-3">vCluster</div>
+              <div class="desc schedule-abstract">AI developers want a GPU the way they want a kind cluster: kubectl apply and it's there, kubectl delete and it's gone, no console in between. The cloud default punishes that: provisioning latency, sticky nodes, per-tenant security setup. We give developers a kubectl context with an auto-provisioning GPU under it: a T4 or L4 in ~3 minutes, gone in ~30 seconds, zero infra to touch.
+
+Live demo: a dev creates a GPU-template tenant cluster, applies a pod, and a node auto-provisions in GCP. The pod runs, is deleted, the node disappears 30s later. Under the hood is a four-piece contract: tenant Kubernetes for isolated RBAC and node pools; Karpenter for auto-provisioning; an idle policy (consolidateAfter 30s) collapses nodes on idle, not on cluster delete; and a tunnel keeps the experience kubectl-native, not console-native.
+
+We close with the failure modes (Karpenter template/provider drift, NodeProvider creds silently disabled) and the GitOps boundary that keeps multi-team setups intact.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
               
             </div>
           </div>
@@ -801,21 +805,17 @@ To answer those questions, we will see in this talk how combine the standard orc
             <div class="meta">
               <h4 class="time mb-3">13:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Piotr Zaniewski.png" alt=""></a>
-                <div class="name">Piotr Zaniewski</div>
+                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Daniel Afonso.png" alt=""></a>
+                <div class="name">Daniel Afonso</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Three Minutes Up, Thirty Seconds Down: Disposable GPU Clusters for AI Devs</a>
+                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Incident Response Reimagined: Accelerating Resolution with AI Agents</a>
               </h3>
-              <div class="location mb-3">vCluster</div>
-              <div class="desc schedule-abstract">AI developers want a GPU the way they want a kind cluster: kubectl apply and it's there, kubectl delete and it's gone, no console in between. The cloud default punishes that: provisioning latency, sticky nodes, per-tenant security setup. We give developers a kubectl context with an auto-provisioning GPU under it: a T4 or L4 in ~3 minutes, gone in ~30 seconds, zero infra to touch.
-
-Live demo: a dev creates a GPU-template tenant cluster, applies a pod, and a node auto-provisions in GCP. The pod runs, is deleted, the node disappears 30s later. Under the hood is a four-piece contract: tenant Kubernetes for isolated RBAC and node pools; Karpenter for auto-provisioning; an idle policy (consolidateAfter 30s) collapses nodes on idle, not on cluster delete; and a tunnel keeps the experience kubectl-native, not console-native.
-
-We close with the failure modes (Karpenter template/provider drift, NodeProvider creds silently disabled) and the GitOps boundary that keeps multi-team setups intact.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              <div class="location mb-3">PagerDuty</div>
+              <div class="desc schedule-abstract">It’s 3:45 AM, and you get paged. Still half asleep, you reach for your laptop. Turns out something is wrong, so you acknowledge the incident and embark on a journey to figure out what is happening, mobilize the right people, and eventually fix the issue. But what if we could make it easier? In this talk, I’ll show how AI agents can help you fast-track triage, coordinate responses, debug problems, and run fixes. To wrap up, I will show how we can go even further and move from merely reacting to incidents to proactively preventing them. In the spirit of shifting left, let’s understand how we can track future incidents our code may cause, right before we commit it!<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
               
             </div>
           </div>
@@ -882,17 +882,17 @@ You’ll leave with concrete patterns to increase deploy frequency while reducin
             <div class="meta">
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Rodrigue NDE.png" alt=""></a>
-                <div class="name">Rodrigue NDE</div>
+                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Solvik Blum.png" alt=""></a>
+                <div class="name">Solvik Blum</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">FinOps Patterns for Kubernetes in Production - From Cost Blindness to -20% </a>
+                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">kube-image-keeper: keeping workloads alive when registries fail</a>
               </h3>
-              <div class="location mb-3">kladriva</div>
-              <div class="desc schedule-abstract">FinOps Patterns for Kubernetes in Production Running Kubernetes on AWS doesn't automatically mean running it efficiently. Most teams focus on stability and delivery and discover their cloud bill three months later, when the damage is done. In this talk, I share concrete lessons from optimizing EKS infrastructure costs in production: what to measure, where the waste actually hides, and which levers move the needle, without breaking anything. We'll cover: 1. Why standard cloud cost tools (Cost Explorer, Kubecost) only give you half the picture. The underestimated impact of Karpenter, instance diversification, and Spot strategy on real workloads. 2. How right-sizing Kubernetes requests saved more than any Reserved Instance commitment. 3. The FinOps discipline that stuck vs. the optimizations that quietly regressed No vendor pitch. No theoretical framework. Just patterns, numbers, and honest trade-offs from the field including a -20% reduction on a production EKS cluster. You'll leave with a checklist you can apply to your own cluster next week.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
+              <div class="location mb-3">Enix</div>
+              <div class="desc schedule-abstract">kube-image-keeper [kuik, https://github.com/enix/kube-image-keeper](https://github.com/enix/kube-image-keeper) makes sure that your workloads keep starting even when the upstream registry is down, Docker Hub rate-limits you, or an image tag gets deleted. It’s an open-source Kubernetes image resiliency solution that provides transparent image routing across multiple registries, as well as selective caching and replication of the images used by your workloads into local or external registries. On 100+ production clusters it has saved us countless incidents during registry outages and rate-limit storms, and made node autoscaling actually reliable. The talk covers the concrete usecases it solves, what we got wrong in v1, why we rewrote it as v2, and the edge cases that bit us along the way: mutating webhooks, garbage collection, and keeping the cache honest at scale.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
               
             </div>
           </div>
@@ -901,23 +901,19 @@ You’ll leave with concrete patterns to increase deploy frequency while reducin
             <div class="meta">
               <h4 class="time mb-3">15:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Brice Le Roux.png" alt=""></a>
-                <div class="name">Brice Le Roux</div>
+                <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Luckas Bosch.png" alt=""></a>
+                <div class="name">Luckas Bosch</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">The Art of Being Sober in an Age of Gluttony</a>
+                <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Are IT Certifications Actually Worth It?</a>
               </h3>
-              <div class="location mb-3">OCTO Technology</div>
-              <div class="desc schedule-abstract">Modern systems are built in a culture of technological excess: infinite scaling, endless tooling, growing abstraction layers, and permanent optimization.
+              <div class="location mb-3">Red Hat</div>
+              <div class="desc schedule-abstract">IT certifications are everywhere in today’s industry, especially around cloud, Kubernetes, Linux, security, and DevOps. Some engineers see them as valuable learning tools and career accelerators, while others consider them disconnected from real production work.
 
-For decades, the industry relied on Moore’s Law and continuous hardware growth. But as software complexity keeps increasing, SREs increasingly face the hidden costs of this gluttony: cognitive overload, operational fragility, rising cloud costs, operational entropy, and systems that nobody fully understands anymore.
-
-Drawing from real-world experience in SRE, GreenOps, and FinOps initiatives, this talk explores operational sobriety as an engineering discipline. Inspired in part by the “erooM” perspective, improving systems through software efficiency rather than endless hardware expansion, we will discuss how reducing unnecessary complexity can help build systems that remain understandable, resilient, and sustainable over time.
-
-The future of reliability may depend less on endless accumulation than on rediscovering the culture of economy, efficiency, and resilience that originally shaped engineering itself.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+In this talk, I will share a practical and balanced perspective based on both certification experience and real-world production environments. We will discuss what certifications are actually good for, where they fall short, and how engineers can use them effectively without relying on them blindly.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
               
             </div>
           </div>
@@ -926,21 +922,17 @@ The future of reliability may depend less on endless accumulation than on redisc
             <div class="meta">
               <h4 class="time mb-3">16:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Walid Mansia.png" alt=""></a>
-                <div class="name">Walid Mansia</div>
+                <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Rodrigue NDE.png" alt=""></a>
+                <div class="name">Rodrigue NDE</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">The SRE NightmareNobodyTalksAbout</a>
+                <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">FinOps Patterns for Kubernetes in Production - From Cost Blindness to -20% </a>
               </h3>
-              <div class="location mb-3">CANAL+ Group</div>
-              <div class="desc schedule-abstract">AI agents are no longer just chatbots. They now execute code, access infrastructure, call APIs, and trigger real production actions. What works perfectly in a demo can quickly become a reliability and security nightmare at scale.
-
-In this talk, Walid Mansia explores the hidden operational challenges behind autonomous agents, MCP servers, and LLM systems: infinite loops, hallucinated actions, exploding token costs, broken automations, and observability gaps traditional SRE tooling cannot explain.
-
-Walid will also share practical patterns for safely operating AI systems in production, including sandboxing, execution limits, least-privilege access, and AI-native observability.<a class="schedule-abstract-read-more" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">... Read more</a></div>
+              <div class="location mb-3">kladriva</div>
+              <div class="desc schedule-abstract">FinOps Patterns for Kubernetes in Production Running Kubernetes on AWS doesn't automatically mean running it efficiently. Most teams focus on stability and delivery and discover their cloud bill three months later, when the damage is done. In this talk, I share concrete lessons from optimizing EKS infrastructure costs in production: what to measure, where the waste actually hides, and which levers move the needle, without breaking anything. We'll cover: 1. Why standard cloud cost tools (Cost Explorer, Kubecost) only give you half the picture. The underestimated impact of Karpenter, instance diversification, and Spot strategy on real workloads. 2. How right-sizing Kubernetes requests saved more than any Reserved Instance commitment. 3. The FinOps discipline that stuck vs. the optimizations that quietly regressed No vendor pitch. No theoretical framework. Just patterns, numbers, and honest trade-offs from the field including a -20% reduction on a production EKS cluster. You'll leave with a checklist you can apply to your own cluster next week.<a class="schedule-abstract-read-more" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">... Read more</a></div>
               
             </div>
           </div>
@@ -948,6 +940,54 @@ Walid will also share practical patterns for safely operating AI systems in prod
           <div class="item item-talk">
             <div class="meta">
               <h4 class="time mb-3">16:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img class="profile-image rounded-circle mb-2" src="../speakers/Brice Le Roux.png" alt=""></a>
+                <div class="name">Brice Le Roux</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">The Art of Being Sober in an Age of Gluttony</a>
+              </h3>
+              <div class="location mb-3">OCTO Technology</div>
+              <div class="desc schedule-abstract">Modern systems are built in a culture of technological excess: infinite scaling, endless tooling, growing abstraction layers, and permanent optimization.
+
+For decades, the industry relied on Moore’s Law and continuous hardware growth. But as software complexity keeps increasing, SREs increasingly face the hidden costs of this gluttony: cognitive overload, operational fragility, rising cloud costs, operational entropy, and systems that nobody fully understands anymore.
+
+Drawing from real-world experience in SRE, GreenOps, and FinOps initiatives, this talk explores operational sobriety as an engineering discipline. Inspired in part by the “erooM” perspective, improving systems through software efficiency rather than endless hardware expansion, we will discuss how reducing unnecessary complexity can help build systems that remain understandable, resilient, and sustainable over time.
+
+The future of reliability may depend less on endless accumulation than on rediscovering the culture of economy, efficiency, and resilience that originally shaped engineering itself.<a class="schedule-abstract-read-more" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">17:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img class="profile-image rounded-circle mb-2" src="../speakers/Walid Mansia.png" alt=""></a>
+                <div class="name">Walid Mansia</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">The SRE NightmareNobodyTalksAbout</a>
+              </h3>
+              <div class="location mb-3">CANAL+ Group</div>
+              <div class="desc schedule-abstract">AI agents are no longer just chatbots. They now execute code, access infrastructure, call APIs, and trigger real production actions. What works perfectly in a demo can quickly become a reliability and security nightmare at scale.
+
+In this talk, Walid Mansia explores the hidden operational challenges behind autonomous agents, MCP servers, and LLM systems: infinite loops, hallucinated actions, exploding token costs, broken automations, and observability gaps traditional SRE tooling cannot explain.
+
+Walid will also share practical patterns for safely operating AI systems in production, including sandboxing, execution limits, least-privilege access, and AI-native observability.<a class="schedule-abstract-read-more" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">17:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
                 <div class="name"></div>
@@ -1052,11 +1092,19 @@ Walid will also share practical patterns for safely operating AI systems in prod
 
 
 
+
+
+
+
+
+
+
+
           <tr>
             <td class="time-cell">09:00</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Coming soon...</a>
+              <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Keynote: coming soon...</a>
               <div class="speaker-info">Maxime Brugidou <span class="affiliation">• Criteo</span></div>
 
             </td>
@@ -1155,8 +1203,8 @@ Walid will also share practical patterns for safely operating AI systems in prod
             <td class="time-cell">11:30</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Incident Response Reimagined: Accelerating Resolution with AI Agents</a>
-              <div class="speaker-info">Daniel Afonso <span class="affiliation">• PagerDuty</span></div>
+              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Three Minutes Up, Thirty Seconds Down: Disposable GPU Clusters for AI Devs</a>
+              <div class="speaker-info">Piotr Zaniewski <span class="affiliation">• vCluster</span></div>
 
             </td>
           </tr>
@@ -1194,8 +1242,8 @@ Walid will also share practical patterns for safely operating AI systems in prod
             <td class="time-cell">13:00</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Three Minutes Up, Thirty Seconds Down: Disposable GPU Clusters for AI Devs</a>
-              <div class="speaker-info">Piotr Zaniewski <span class="affiliation">• vCluster</span></div>
+              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Incident Response Reimagined: Accelerating Resolution with AI Agents</a>
+              <div class="speaker-info">Daniel Afonso <span class="affiliation">• PagerDuty</span></div>
 
             </td>
           </tr>
@@ -1273,8 +1321,8 @@ Walid will also share practical patterns for safely operating AI systems in prod
             <td class="time-cell">15:00</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">FinOps Patterns for Kubernetes in Production - From Cost Blindness to -20% </a>
-              <div class="speaker-info">Rodrigue NDE <span class="affiliation">• kladriva</span></div>
+              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">kube-image-keeper: keeping workloads alive when registries fail</a>
+              <div class="speaker-info">Solvik Blum <span class="affiliation">• Enix</span></div>
 
             </td>
           </tr>
@@ -1293,8 +1341,8 @@ Walid will also share practical patterns for safely operating AI systems in prod
             <td class="time-cell">15:30</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">The Art of Being Sober in an Age of Gluttony</a>
-              <div class="speaker-info">Brice Le Roux <span class="affiliation">• OCTO Technology</span></div>
+              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Are IT Certifications Actually Worth It?</a>
+              <div class="speaker-info">Luckas Bosch <span class="affiliation">• Red Hat</span></div>
 
             </td>
           </tr>
@@ -1313,7 +1361,47 @@ Walid will also share practical patterns for safely operating AI systems in prod
             <td class="time-cell">16:00</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">The SRE NightmareNobodyTalksAbout</a>
+              <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">FinOps Patterns for Kubernetes in Production - From Cost Blindness to -20% </a>
+              <div class="speaker-info">Rodrigue NDE <span class="affiliation">• kladriva</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">16:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">The Art of Being Sober in an Age of Gluttony</a>
+              <div class="speaker-info">Brice Le Roux <span class="affiliation">• OCTO Technology</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">17:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">The SRE NightmareNobodyTalksAbout</a>
               <div class="speaker-info">Walid Mansia <span class="affiliation">• CANAL+ Group</span></div>
 
             </td>
@@ -1330,7 +1418,7 @@ Walid will also share practical patterns for safely operating AI systems in prod
 
 
           <tr>
-            <td class="time-cell merged-cell">16:30</td>
+            <td class="time-cell merged-cell">17:30</td>
             <td class="talk-cell merged-cell" colspan="1">
 
               Wrap up
@@ -1412,7 +1500,7 @@ Walid will also share practical patterns for safely operating AI systems in prod
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Brice Le Roux.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img src="../speakers/Brice Le Roux.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Brice Le Roux</h5>
             <div class="card-text mb-3">
@@ -1438,7 +1526,7 @@ Walid will also share practical patterns for safely operating AI systems in prod
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Daniel Afonso.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Daniel Afonso.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Daniel Afonso</h5>
             <div class="card-text mb-3">
@@ -1516,6 +1604,32 @@ Walid will also share practical patterns for safely operating AI systems in prod
 
       <div class="col mb-4">
         <div class="card rounded">
+          <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Luckas Bosch.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Luckas Bosch</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Red Hat</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Luckas_Bosch_Red_Hat_Are_IT_Certifications_Actually_Worth_It#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/luckasbosch/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card rounded">
           <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Maxime Brugidou.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Maxime Brugidou</h5>
@@ -1523,7 +1637,7 @@ Walid will also share practical patterns for safely operating AI systems in prod
               <div class="meta">Criteo</div>
             </div><!--//card-text-->
             <div class="event-card-buttons">
-              <a href="./Maxime_Brugidou_Criteo_Coming_soon#speakers-section" class="event-read-more-btn">Read more</a>
+              <a href="./Maxime_Brugidou_Criteo_Keynote_coming_soon#speakers-section" class="event-read-more-btn">Read more</a>
               
             </div>
           </div><!--//card-->
@@ -1568,7 +1682,7 @@ Walid will also share practical patterns for safely operating AI systems in prod
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Piotr Zaniewski.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Piotr Zaniewski.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Piotr Zaniewski</h5>
             <div class="card-text mb-3">
@@ -1620,7 +1734,7 @@ Walid will also share practical patterns for safely operating AI systems in prod
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Rodrigue NDE.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Rodrigue NDE.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Rodrigue NDE</h5>
             <div class="card-text mb-3">
@@ -1646,7 +1760,33 @@ Walid will also share practical patterns for safely operating AI systems in prod
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Walid Mansia.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Solvik Blum.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Solvik Blum</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Enix</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Solvik_Blum_Enix_kubeimagekeeper_keeping_workloads_alive_when_registries_fail#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/solvikblum/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img src="../speakers/Walid Mansia.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Walid Mansia</h5>
             <div class="card-text mb-3">
@@ -1880,49 +2020,6 @@ Discovery takes time, and in production it is often the most expensive part of t
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Daniel Afonso.png" alt="" />
-                      </div>
-
-                      <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Daniel Afonso</h2>
-                          <div class="meta mb-2">PagerDuty</div>
-                          <ul class="social-list list-inline mb-0">
-                            
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/danieljcafonso"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            
-                            
-                          </ul><!--//social-list-->
-                      </div><!--//col-->
-                  </div><!--//row-->
-              </div>
-              <div class="talk-title-bar">Incident Response Reimagined: Accelerating Resolution with AI Agents</div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>It’s 3:45 AM, and you get paged. Still half asleep, you reach for your laptop. Turns out something is wrong, so you acknowledge the incident and embark on a journey to figure out what is happening, mobilize the right people, and eventually fix the issue. But what if we could make it easier? In this talk, I’ll show how AI agents can help you fast-track triage, coordinate responses, debug problems, and run fixes. To wrap up, I will show how we can go even further and move from merely reacting to incidents to proactively preventing them. In the spirit of shifting left, let’s understand how we can track future incidents our code may cause, right before we commit it!</p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <p></p>
-              </div>
-
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Daniel Afonso is a Senior Developer Advocate at PagerDuty, SolidJS DX team member, Instructor at Egghead.io, and Author of State Management with React Query. Daniel has a full-stack background, having worked with different languages and frameworks on various projects from IoT to Fraud Detection. He is passionate about learning and teaching and has spoken at multiple conferences around the world about topics he loves. In his free time, when he's not learning new technologies or writing about them, he's probably reading comics or watching superhero movies and shows.</p></p>
-              </div>
-
-          </div><!--//modal-body-->
-      </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
-
-<!-- Modal Speaker 5 -->
-<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-body p-0">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <div class="theme-bg-light p-5">
-                  <div class="row">
-                      <div class="col-12 col-md-auto text-center">
                           <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Piotr Zaniewski.png" alt="" />
                       </div>
 
@@ -1952,6 +2049,49 @@ Discovery takes time, and in production it is often the most expensive part of t
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>An active contributor to OpenSource projects on GitHub, blogger and content creator, focusing on practical, scalable solutions in cloud-native environments. DevOps and Platform Engineering practitioner and advocate. Visit: <a href="cloudrumble.net">cloudrumble.net</a></p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 5 -->
+<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Daniel Afonso.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Daniel Afonso</h2>
+                          <div class="meta mb-2">PagerDuty</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/danieljcafonso"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Incident Response Reimagined: Accelerating Resolution with AI Agents</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>It’s 3:45 AM, and you get paged. Still half asleep, you reach for your laptop. Turns out something is wrong, so you acknowledge the incident and embark on a journey to figure out what is happening, mobilize the right people, and eventually fix the issue. But what if we could make it easier? In this talk, I’ll show how AI agents can help you fast-track triage, coordinate responses, debug problems, and run fixes. To wrap up, I will show how we can go even further and move from merely reacting to incidents to proactively preventing them. In the spirit of shifting left, let’s understand how we can track future incidents our code may cause, right before we commit it!</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Daniel Afonso is a Senior Developer Advocate at PagerDuty, SolidJS DX team member, Instructor at Egghead.io, and Author of State Management with React Query. Daniel has a full-stack background, having worked with different languages and frameworks on various projects from IoT to Fraud Detection. He is passionate about learning and teaching and has spoken at multiple conferences around the world about topics he loves. In his free time, when he's not learning new technologies or writing about them, he's probably reading comics or watching superhero movies and shows.</p></p>
               </div>
 
           </div><!--//modal-body-->
@@ -2058,6 +2198,95 @@ You’ll leave with concrete patterns to increase deploy frequency while reducin
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Solvik Blum.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Solvik Blum</h2>
+                          <div class="meta mb-2">Enix</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/solvikblum/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">kube-image-keeper: keeping workloads alive when registries fail</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>kube-image-keeper <a href="https://github.com/enix/kube-image-keeper">kuik, https://github.com/enix/kube-image-keeper</a> makes sure that your workloads keep starting even when the upstream registry is down, Docker Hub rate-limits you, or an image tag gets deleted. It’s an open-source Kubernetes image resiliency solution that provides transparent image routing across multiple registries, as well as selective caching and replication of the images used by your workloads into local or external registries. On 100+ production clusters it has saved us countless incidents during registry outages and rate-limit storms, and made node autoscaling actually reliable. The talk covers the concrete usecases it solves, what we got wrong in v1, why we rewrote it as v2, and the edge cases that bit us along the way: mutating webhooks, garbage collection, and keeping the cache honest at scale.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>With over 15 years of experience in infrastructure and production engineering, Solvik has always worked in highly scalable and business-critical environments.
+He has worked at Scaleway and Dailymotion, where he designed, operated and secured large-scale cloud-native platforms, with a strong focus on Kubernetes, bare-metal infrastructure and production reliability.
+He has now joined Enix, where he leads Production and Security topics with a pragmatic approach focused on long-term operations, open source, bare metal and cost control.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 9 -->
+<div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Luckas Bosch.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Luckas Bosch</h2>
+                          <div class="meta mb-2">Red Hat</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/luckasbosch/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Are IT Certifications Actually Worth It?</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>IT certifications are everywhere in today’s industry, especially around cloud, Kubernetes, Linux, security, and DevOps. Some engineers see them as valuable learning tools and career accelerators, while others consider them disconnected from real production work.</p>
+<p>In this talk, I will share a practical and balanced perspective based on both certification experience and real-world production environments. We will discuss what certifications are actually good for, where they fall short, and how engineers can use them effectively without relying on them blindly.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Luckas Bosch is an OpenShift Consultant at Red Hat and a former Site Reliability Engineer with experience managing Kubernetes and cloud-native platforms in production environments, particularly for streaming and broadcasting workloads. He holds multiple certifications including CKA, CKS, RHCSA, RHCE, and Kubestronaut, and also hosts the French tech podcast La Tangente.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 10 -->
+<div class="modal modal-speaker modal-speaker-10" id="modal-speaker-10" tabindex="-1" role="dialog" aria-labelledby="speaker-10-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
                           <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Rodrigue NDE.png" alt="" />
                       </div>
 
@@ -2092,8 +2321,8 @@ You’ll leave with concrete patterns to increase deploy frequency while reducin
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 9 -->
-<div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 11 -->
+<div class="modal modal-speaker modal-speaker-11" id="modal-speaker-11" tabindex="-1" role="dialog" aria-labelledby="speaker-11-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -2139,8 +2368,8 @@ You’ll leave with concrete patterns to increase deploy frequency while reducin
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 10 -->
-<div class="modal modal-speaker modal-speaker-10" id="modal-speaker-10" tabindex="-1" role="dialog" aria-labelledby="speaker-10-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 12 -->
+<div class="modal modal-speaker modal-speaker-12" id="modal-speaker-12" tabindex="-1" role="dialog" aria-labelledby="speaker-12-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -2208,7 +2437,7 @@ You’ll leave with concrete patterns to increase deploy frequency while reducin
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
-              <div class="talk-title-bar">Coming soon...</div>
+              <div class="talk-title-bar">Keynote: coming soon...</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
                 <p><p>Coming soon...</p></p>
