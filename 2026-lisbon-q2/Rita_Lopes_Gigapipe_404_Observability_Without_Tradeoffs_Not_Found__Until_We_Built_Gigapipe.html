@@ -260,22 +260,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">Multi Agents on Autopilot - Letting Agents do the Coding Work</h1>
+    <h1 class="section-heading text-center mb-3">404: Observability Without Trade-offs Not Found - Until We Built Gigapipe</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Viktor Vasylkovskyi.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Rita Lopes.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Viktor Vasylkovskyi</h5>
+            <h5 class="card-title mb-2">Rita Lopes</h5>
             <div class="card-text mb-3">
-              <div class="meta">PagerDuty</div>
+              <div class="meta">Gigapipe</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/viktor-vasylkovskyi-708b1712b/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/rita7lopes/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -289,14 +289,14 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>I've been building with OpenClaw, Claude Code, and LangGraph - sometimes getting it right, often learning the hard way. This talk is about what I actually shipped, including a distributed multi-agent setup at PagerDuty. I'll break down the real tradeoffs between LLM-driven and deterministic orchestration, what broke, and how I'd approach it differently now.</p></p>
+                <p><p>Every SRE team knows the drill. Prometheus for metrics. Loki for logs. Jaeger or Tempo for traces. Pyroscope bolted on last for profiling. Four services, four storage backends, four things to scale, debug, and pay for. And when an incident hits, you're jumping between all of them trying to correlate signals that were never designed to live together.The trade-off is always the same: observe everything and pay an astronomical bill, or cut costs and fly blind precisely when it matters most. We got tired of it. So we built Gigapipe. Gigapipe is an open-source polyglot observability stack that unifies logs, metrics, traces, and profiles on a single backend, using ClickHouse as the database. It natively implements the industry standards like Prometheus, Loki, Jaeger, Tempo, Pyroscope, and OpenTelemetry APIs, just to name a few. Your existing agents, exporters, and Grafana dashboards work on day one, unchanged. In this talk, we'll cover three things: 1. Why we built it: the real pain that made four services feel unsustainable, 2. How it works: the architecture decisions behind native multi-protocol compatibility on a single storage engine, 3. How you can get involved or run it yourself today: Gigapipe is open-source, under AGPLv3 license, runs as a single binary, and is live in production environments. This is a talk for engineers who've felt the weight of their observability stack and wondered if there's a better way. Spoiler: There is! And you can run it tonight.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Viktor Vasylkovskyi is a Senior Software Engineer at PagerDuty, focused on AI systems and cloud infrastructure. With experience across enterprise platforms like Sky and product-driven teams such as Rely.io, he specializes in full stack engineering, AWS, Terraform, and AI-powered developer tooling. Viktor combines strong infrastructure expertise with hands-on work in modern AI applications and internal developer platforms. </p></p>
+                <p><p>I started my career staring at SIP traces at 2am wondering why calls were dropping. I spent years inside telecommunications and real-time communications infrastructure. From those years, I spent a lot of time looking at observability and monitoring tools. So, why not make the switch from the person who stares at those tools to the person who builds them? Joining QXIP (the team behind the coolest and most creative open-source code out there) was even better than I anticipated, because that was the decision that made Gigapipe possible. Why settle for a tool to observe RTC traffic if I can build one that does full-stack observability? And then there was Gigapipe. Gigapipe is an open-source polyglot observability solution: logs, metrics, traces and profiles. Your data, your infrastructure, your rules. Made by engineers for engineers. I still read the SIP traces. Old habits. MSc in Electrical and Computer Engineering. Certified in many things (I'm a sucker for certifications). Permanently curious.</p></p>
               </div>
 
               
