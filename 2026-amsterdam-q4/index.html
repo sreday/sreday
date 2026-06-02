@@ -495,7 +495,7 @@
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Ankit Asthana.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Ankit Asthana.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Ankit Asthana</h5>
             <div class="card-text mb-3">
@@ -521,7 +521,7 @@
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Jacob Duijzer.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Jacob Duijzer.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Jacob Duijzer</h5>
             <div class="card-text mb-3">
@@ -599,7 +599,7 @@
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Nati Cohen.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Nati Cohen.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Nati Cohen</h5>
             <div class="card-text mb-3">
@@ -625,7 +625,33 @@
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Renato Losio.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Ozlem Tanrikulu.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Ozlem Tanrikulu</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Near East University</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Ozlem_Tanrikulu_Near_East_University_Finding_the_33_Your_Kubernetes_Clusters_Are_Wasting#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/ozlemtanrikulu/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Renato Losio.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Renato Losio</h5>
             <div class="card-text mb-3">
@@ -651,7 +677,7 @@
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Thijs Feryn.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Thijs Feryn.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Thijs Feryn</h5>
             <div class="card-text mb-3">
@@ -849,6 +875,49 @@
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Ozlem Tanrikulu.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Ozlem Tanrikulu</h2>
+                          <div class="meta mb-2">Near East University</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/ozlemtanrikulu/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Finding the 33% Your Kubernetes Clusters Are Wasting</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Every SRE team knows their clusters are overprovisioned. But how much exactly, and where? I kept asking this question on our EKS clusters. kubectl top gives percentages, not dollars. AWS Cost Explorer sees instances, not pods. Every tool that connects the two wanted me to deploy Helm charts, agents, and dashboards. I just wanted a number. So I built Burn — an open-source CLI that reads your kubeconfig, fetches real-time pricing from AWS and Azure APIs, and gives you per-namespace cost breakdown in 30 seconds. No agent, no dashboard, no cluster changes. Running it on production, I found 33% idle capacity ($117/month on a 5-node cluster), a pod requesting 500m CPU but using 0.12m, and debug pods nobody remembered deploying. I deleted the waste that same day. In this talk I'll cover: - How Burn splits node cost into CPU and RAM using ratio-based pricing - Why P95 metrics matter more than averages for rightsizing - How we detect Ingress-based load balancers that other tools miss - Honest trade-offs of an agentless approach vs full platforms like Kubecost Attendees will leave knowing how to identify idle resources, understand Kubernetes cost allocation math, and evaluate the right level of cost tooling for their clusters.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Cloud/DevOps Engineer who enjoys solving complex problems and building efficient, scalable systems. My expertise includes Kubernetes, AWS, and CI/CD pipelines, with a strong focus on automating processes to simplify developers' workflows. Additionally, I maintain a supercomputer (HPC) at NEU IBM Center, ensuring it runs at peak performance for high-demand tasks. Creator of Burn, an open-source Kubernetes FinOps CLI.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 3 -->
+<div class="modal modal-speaker modal-speaker-3" id="modal-speaker-3" tabindex="-1" role="dialog" aria-labelledby="speaker-3-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
                           <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Ankit Asthana.png" alt="" />
                       </div>
 
@@ -884,8 +953,8 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 3 -->
-<div class="modal modal-speaker modal-speaker-3" id="modal-speaker-3" tabindex="-1" role="dialog" aria-labelledby="speaker-3-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 4 -->
+<div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -927,8 +996,8 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 4 -->
-<div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 5 -->
+<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -970,8 +1039,8 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 5 -->
-<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 6 -->
+<div class="modal modal-speaker modal-speaker-6" id="modal-speaker-6" tabindex="-1" role="dialog" aria-labelledby="speaker-6-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -1013,8 +1082,8 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 6 -->
-<div class="modal modal-speaker modal-speaker-6" id="modal-speaker-6" tabindex="-1" role="dialog" aria-labelledby="speaker-6-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 7 -->
+<div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
