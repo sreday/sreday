@@ -631,7 +631,7 @@
       <span class="schedule-meta-divider">•</span>
       <span class="schedule-meta-item">2 parallel tracks</span>
       <span class="schedule-meta-divider">•</span>
-      <span class="schedule-meta-item">10AM - 6:30PM</span>
+      <span class="schedule-meta-item">10AM - 6PM</span>
       <span class="schedule-meta-divider">•</span>
       <span class="schedule-meta-item">Bangalore, in-person</span>
     </div>
@@ -801,17 +801,17 @@ Attendees will learn how to evaluate scaling signals, understand the trade-offs 
             <div class="meta">
               <h4 class="time mb-3">13:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Vignesh Kumar S.png" alt=""></a>
-                <div class="name">Vignesh Kumar S</div>
+                <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Jones Zachariah Noel N.png" alt=""></a>
+                <div class="name">Jones Zachariah Noel N</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Turn It Off Without Breaking It: Safe Orchestration of AWS Environments</a>
+                <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Beyond the Hype: Building a Self-Healing Pipeline with Agentic AI</a>
               </h3>
-              <div class="location mb-3">GuhaTek</div>
-              <div class="desc schedule-abstract">Pre-production environments are often left running 24/7, leading to significant cloud waste—but safely automating their shutdown is more complex than it seems. Naive scheduling approaches can easily break dependencies, introduce inconsistent states, or make recovery unreliable. In this talk, I’ll present a real-world implementation of a scheduled, event-driven orchestration system on AWS that safely scales down and restores an entire pre-production environment. The solution uses EventBridge, Step Functions, and Lambda to coordinate state transitions across EC2, RDS, EBS, and application services. A key focus of this system is safe, state-aware execution. Each operation validates the current resource state before acting, ensuring that actions are effectively idempotent and safe to re-run. The workflow enforces dependency-aware sequencing and uses check/wait patterns to avoid acting on transitional or stale states, reducing the risk of unsafe shutdowns and restarts. Rather than relying on blind automation, this approach treats infrastructure changes as explicit, observable workflows, where failures are surfaced clearly and recovery paths are controlled. I’ll also share lessons learned around handling partial executions, the limitations of manual retry strategies, and why idempotency must be considered beyond individual steps. This session will provide practical insights into building reliable, cost-efficient infrastructure automation, along with design patterns that can be applied to any AWS-based environment.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
+              <div class="location mb-3">New Relic</div>
+              <div class="desc schedule-abstract">Traditional automated remediation (if-this-then-that) is brittle. It fails when faced with the "unknown-unknowns" of distributed systems. When a production incident occurs, the cognitive load on the on-call engineer to parse logs, traces, and metrics is the primary bottleneck for MTTR (Mean Time to Resolution). But with the rise of Agentic AI—LLMs that don't just "chat" but actually execute tools—the dream of a truly self-healing infrastructure is finally within reach. This session moves past the marketing slides to demonstrate how to build an autonomous remediation pipeline that thinks like an SRE. We will explore the architecture of an0 Agentic Observability Loop. Unlike static scripts, an AI Agent can: Observe: Interface with AI Agents to identify the root cause. Reason: Cross-reference telemetry with recent GitHub deployments and runbooks. Act: Execute safe, scoped operations—like rolling back a canary, scaling a K8s deployment, or flushing a cache—using verified toolsets.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
               
             </div>
           </div>
@@ -836,17 +836,17 @@ Attendees will learn how to evaluate scaling signals, understand the trade-offs 
             <div class="meta">
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Soham Chakraborty & Bikram Debnath.png" alt=""></a>
-                <div class="name">Soham Chakraborty & Bikram Debnath</div>
+                <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Harsha Dixit.png" alt=""></a>
+                <div class="name">Harsha Dixit</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Choosing the right database: Why ClickHouse has become the standard for storing observability data</a>
+                <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">The Invisible Unicode threat in YAML Configuration Files</a>
               </h3>
-              <div class="location mb-3">Sematext & IBM</div>
-              <div class="desc schedule-abstract">Observability data is hostile to general-purpose databases. Signals share a common profile: high write throughput, massive cardinality, time-series access patterns, and queries that scan billions of rows expecting sub-second answers. Most databases buckle under this combination. ClickHouse doesn't — but understanding why requires going deeper. In this session, we'll walk through the technical fundamentals that make ClickHouse uniquely suited for observability workloads: columnar storage and vectorised execution, the MergeTree family and TTL-based tiering, sparse indexing for time-range scans, and native ZSTD compression that routinely achieves 10–20× ratios on telemetry data. We will briefly touch the operational aspects of ClickHouse like shard topology and Replication. At the end of the session, the audience will leave with the takeaway of how to build and operate storage backend for modern observability data at scale.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
+              <div class="location mb-3">Kong</div>
+              <div class="desc schedule-abstract">YAML is popular as a language for declarative configurations because of it's readability, support for hierarchical structure, and comments. However, hidden Unicode characters, homoglyphs, and bidirectional text controls can silently alter the behavior of infrastructure definitions, and CI/CD pipelines written in YAML. These invisible characters can evade code review, and even enable attacks that exploit the gap between what developers see and what machines interpret. In this talk, we'll explore real-world examples of rogue Unicode characters in YAML files, understand how they work, and practical defences — from linting, editor configuration and automated detection tools that can prevent these issues from reaching production.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
               
             </div>
           </div>
@@ -855,17 +855,21 @@ Attendees will learn how to evaluate scaling signals, understand the trade-offs 
             <div class="meta">
               <h4 class="time mb-3">15:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Vishal Alhat.png" alt=""></a>
-                <div class="name">Vishal Alhat</div>
+                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Sudarshan Balakrishna.png" alt=""></a>
+                <div class="name">Sudarshan Balakrishna</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">AI Agents: The Next Evolution in DevOps and SRE Workflows</a>
+                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">The On-Call Apprentice</a>
               </h3>
-              <div class="location mb-3">AWS</div>
-              <div class="desc schedule-abstract">Site Reliability Engineering and DevOps teams are drowning in alerts, incidents, and repetitive tasks. What if AI agents could be your intelligent teammates, not just another tool in your stack? This talk explores the practical integration of AI agents into SRE and DevOps workflows, moving beyond hype to real-world implementation patterns. We'll examine how autonomous agents can transform incident response, automate runbook execution, and provide intelligent context during outages—all while maintaining the reliability standards SREs demand. Through live demonstrations and battle-tested patterns, you'll learn how to architect agent-based systems that integrate with your existing observability stack, handle multi-step troubleshooting workflows, and make decisions under pressure. We'll also explore AI DevOps Agent capabilities and how it helps teams reduce MTTR, automate toil, and scale operational excellence. Whether you're managing Kubernetes clusters, distributed systems, or cloud infrastructure, you'll leave with actionable strategies to augment your team with AI agents that actually work.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
+              <div class="location mb-3">Epsilon</div>
+              <div class="desc schedule-abstract">Most engineers dream of writing code - but who keeps the code alive at 3 AM, making sure a million users never see a 500 error? That's the SRE, and the world can't hire them fast enough. This talk is a field-tested roadmap into Site Reliability and Platform Engineering, drawn from two decades of building SRE teams from scratch across multiple organizations.
+
+We'll cover the two real paths in: the fresh graduate's 18-month journey from Linux fundamentals to first on-call rotation, and the career switcher's harder challenge - the mindset shift from "code is done when it compiles" to "code is done when it's observable in production." Attendees will walk away with the seven-pillar SRE competency matrix used in real hiring, the certifications that actually move the needle (and the ones that don't), and the interview signals that separate a true reliability engineer from a résumé.
+
+Backed by data - 73% of high-performing orgs now run formalized SRE practices (DORA/Gartner), 25% YoY job growth, and Amazon losing ~$220K per minute of downtime - this session reframes SRE as the role of the decade. You'll leave with a concrete Week 1 starter pack to launch your own SRE origin story before you get home.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
               
             </div>
           </div>
@@ -874,17 +878,36 @@ Attendees will learn how to evaluate scaling signals, understand the trade-offs 
             <div class="meta">
               <h4 class="time mb-3">16:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Jones Zachariah Noel N.png" alt=""></a>
-                <div class="name">Jones Zachariah Noel N</div>
+                <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Soham Chakraborty & Bikram Debnath.png" alt=""></a>
+                <div class="name">Soham Chakraborty & Bikram Debnath</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Beyond the Hype: Building a Self-Healing Pipeline with Agentic AI</a>
+                <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Choosing the right database: Why ClickHouse has become the standard for storing observability data</a>
               </h3>
-              <div class="location mb-3">New Relic</div>
-              <div class="desc schedule-abstract">Traditional automated remediation (if-this-then-that) is brittle. It fails when faced with the "unknown-unknowns" of distributed systems. When a production incident occurs, the cognitive load on the on-call engineer to parse logs, traces, and metrics is the primary bottleneck for MTTR (Mean Time to Resolution). But with the rise of Agentic AI—LLMs that don't just "chat" but actually execute tools—the dream of a truly self-healing infrastructure is finally within reach. This session moves past the marketing slides to demonstrate how to build an autonomous remediation pipeline that thinks like an SRE. We will explore the architecture of an0 Agentic Observability Loop. Unlike static scripts, an AI Agent can: Observe: Interface with AI Agents to identify the root cause. Reason: Cross-reference telemetry with recent GitHub deployments and runbooks. Act: Execute safe, scoped operations—like rolling back a canary, scaling a K8s deployment, or flushing a cache—using verified toolsets.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+              <div class="location mb-3">Sematext & IBM</div>
+              <div class="desc schedule-abstract">Observability data is hostile to general-purpose databases. Signals share a common profile: high write throughput, massive cardinality, time-series access patterns, and queries that scan billions of rows expecting sub-second answers. Most databases buckle under this combination. ClickHouse doesn't — but understanding why requires going deeper. In this session, we'll walk through the technical fundamentals that make ClickHouse uniquely suited for observability workloads: columnar storage and vectorised execution, the MergeTree family and TTL-based tiering, sparse indexing for time-range scans, and native ZSTD compression that routinely achieves 10–20× ratios on telemetry data. We will briefly touch the operational aspects of ClickHouse like shard topology and Replication. At the end of the session, the audience will leave with the takeaway of how to build and operate storage backend for modern observability data at scale.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Vishal Alhat.png" alt=""></a>
+                <div class="name">Vishal Alhat</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">AI Agents: The Next Evolution in DevOps and SRE Workflows</a>
+              </h3>
+              <div class="location mb-3">AWS</div>
+              <div class="desc schedule-abstract">Site Reliability Engineering and DevOps teams are drowning in alerts, incidents, and repetitive tasks. What if AI agents could be your intelligent teammates, not just another tool in your stack? This talk explores the practical integration of AI agents into SRE and DevOps workflows, moving beyond hype to real-world implementation patterns. We'll examine how autonomous agents can transform incident response, automate runbook execution, and provide intelligent context during outages—all while maintaining the reliability standards SREs demand. Through live demonstrations and battle-tested patterns, you'll learn how to architect agent-based systems that integrate with your existing observability stack, handle multi-step troubleshooting workflows, and make decisions under pressure. We'll also explore AI DevOps Agent capabilities and how it helps teams reduce MTTR, automate toil, and scale operational excellence. Whether you're managing Kubernetes clusters, distributed systems, or cloud infrastructure, you'll leave with actionable strategies to augment your team with AI agents that actually work.<a class="schedule-abstract-read-more" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">... Read more</a></div>
               
             </div>
           </div>
@@ -948,17 +971,17 @@ Attendees will learn how to evaluate scaling signals, understand the trade-offs 
             <div class="meta">
               <h4 class="time mb-3">12:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Harsha Dixit.png" alt=""></a>
-                <div class="name">Harsha Dixit</div>
+                <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img class="profile-image rounded-circle mb-2" src="../speakers/Vignesh Kumar S.png" alt=""></a>
+                <div class="name">Vignesh Kumar S</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">The Invisible Unicode threat in YAML Configuration Files</a>
+                <a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Turn It Off Without Breaking It: Safe Orchestration of AWS Environments</a>
               </h3>
-              <div class="location mb-3">Kong</div>
-              <div class="desc schedule-abstract">YAML is popular as a language for declarative configurations because of it's readability, support for hierarchical structure, and comments. However, hidden Unicode characters, homoglyphs, and bidirectional text controls can silently alter the behavior of infrastructure definitions, and CI/CD pipelines written in YAML. These invisible characters can evade code review, and even enable attacks that exploit the gap between what developers see and what machines interpret. In this talk, we'll explore real-world examples of rogue Unicode characters in YAML files, understand how they work, and practical defences — from linting, editor configuration and automated detection tools that can prevent these issues from reaching production.<a class="schedule-abstract-read-more" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">... Read more</a></div>
+              <div class="location mb-3">GuhaTek</div>
+              <div class="desc schedule-abstract">Pre-production environments are often left running 24/7, leading to significant cloud waste—but safely automating their shutdown is more complex than it seems. Naive scheduling approaches can easily break dependencies, introduce inconsistent states, or make recovery unreliable. In this talk, I’ll present a real-world implementation of a scheduled, event-driven orchestration system on AWS that safely scales down and restores an entire pre-production environment. The solution uses EventBridge, Step Functions, and Lambda to coordinate state transitions across EC2, RDS, EBS, and application services. A key focus of this system is safe, state-aware execution. Each operation validates the current resource state before acting, ensuring that actions are effectively idempotent and safe to re-run. The workflow enforces dependency-aware sequencing and uses check/wait patterns to avoid acting on transitional or stale states, reducing the risk of unsafe shutdowns and restarts. Rather than relying on blind automation, this approach treats infrastructure changes as explicit, observable workflows, where failures are surfaced clearly and recovery paths are controlled. I’ll also share lessons learned around handling partial executions, the limitations of manual retry strategies, and why idempotency must be considered beyond individual steps. This session will provide practical insights into building reliable, cost-efficient infrastructure automation, along with design patterns that can be applied to any AWS-based environment.<a class="schedule-abstract-read-more" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">... Read more</a></div>
               
             </div>
           </div>
@@ -966,29 +989,6 @@ Attendees will learn how to evaluate scaling signals, understand the trade-offs 
           <div class="item item-talk">
             <div class="meta">
               <h4 class="time mb-3">12:30</h4>
-              <div class="profile">
-                <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img class="profile-image rounded-circle mb-2" src="../speakers/Sudarshan Balakrishna.png" alt=""></a>
-                <div class="name">Sudarshan Balakrishna</div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">The On-Call Apprentice</a>
-              </h3>
-              <div class="location mb-3">Epsilon</div>
-              <div class="desc schedule-abstract">Most engineers dream of writing code - but who keeps the code alive at 3 AM, making sure a million users never see a 500 error? That's the SRE, and the world can't hire them fast enough. This talk is a field-tested roadmap into Site Reliability and Platform Engineering, drawn from two decades of building SRE teams from scratch across multiple organizations.
-
-We'll cover the two real paths in: the fresh graduate's 18-month journey from Linux fundamentals to first on-call rotation, and the career switcher's harder challenge - the mindset shift from "code is done when it compiles" to "code is done when it's observable in production." Attendees will walk away with the seven-pillar SRE competency matrix used in real hiring, the certifications that actually move the needle (and the ones that don't), and the interview signals that separate a true reliability engineer from a résumé.
-
-Backed by data - 73% of high-performing orgs now run formalized SRE practices (DORA/Gartner), 25% YoY job growth, and Amazon losing ~$220K per minute of downtime - this session reframes SRE as the role of the decade. You'll leave with a concrete Week 1 starter pack to launch your own SRE origin story before you get home.<a class="schedule-abstract-read-more" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">... Read more</a></div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">13:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img class="profile-image rounded-circle mb-2" src="../speakers/Amit Kothari.png" alt=""></a>
                 <div class="name">Amit Kothari</div>
@@ -1011,7 +1011,7 @@ All examples are composite and generalized.<a class="schedule-abstract-read-more
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">13:30</h4>
+              <h4 class="time mb-3">13:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img class="profile-image rounded-circle mb-2" src="../speakers/Shobhit Gupta.png" alt=""></a>
                 <div class="name">Shobhit Gupta</div>
@@ -1032,23 +1032,7 @@ This talk will be a look at what worked, what didn't, and what surprised us whil
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">14:00</h4>
-              <div class="profile">
-                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"></div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
-              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">15:00</h4>
+              <h4 class="time mb-3">13:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14"><img class="profile-image rounded-circle mb-2" src="../speakers/Thejaswi Mudda.png" alt=""></a>
                 <div class="name">Thejaswi Mudda</div>
@@ -1077,7 +1061,23 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">15:30</h4>
+              <h4 class="time mb-3">14:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15"><img class="profile-image rounded-circle mb-2" src="../speakers/G Saikrishna.png" alt=""></a>
                 <div class="name">G Saikrishna</div>
@@ -1096,7 +1096,7 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">16:00</h4>
+              <h4 class="time mb-3">15:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img class="profile-image rounded-circle mb-2" src="../speakers/Pratik Mahalle.png" alt=""></a>
                 <div class="name">Pratik Mahalle</div>
@@ -1115,7 +1115,7 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">16:30</h4>
+              <h4 class="time mb-3">16:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17"><img class="profile-image rounded-circle mb-2" src="../speakers/Priyank Upadhyay.png" alt=""></a>
                 <div class="name">Priyank Upadhyay</div>
@@ -1128,6 +1128,25 @@ The session will be practical, experience-driven, and focused on applying KPIx f
               </h3>
               <div class="location mb-3">RubixKube</div>
               <div class="desc schedule-abstract">Developers got disrupted by AI. They shrugged. SREs are next. They're terrified. The difference: a Copilot mistake is reverted in seconds. An autonomous AI system making remediation decisions in production is irreversible. One breaks a function. The other breaks trust in your infrastructure. But the real fear runs deeper. SREs have spent years building muscle memory around their systems—understanding failure modes, owning the reliability narrative. AI tooling promises to abstract that away. Use our platform. Upload your metrics. Trust our models. Your data lives in our cloud. Let us handle it. That's not autonomy. That's surrender. This talk cuts through the noise. We'll walk through why SRE fear of AI is rational, not paranoid. Why the current wave of 'AI SRE tools' are built for vendors, not operators. And why regulation (GDPR, data residency, compliance) is actually the key to building AI systems that SREs will adopt. The move: AI that lives where your systems live. On your infrastructure. Your data stays yours. Full transparency into every decision. Gradual autonomy—from suggest to execute-with-approval to autonomous. Built for regulated industries from day one. When privacy and control are baked in, AI stops being something that happens to you and becomes something you build. That's when SREs stop being scared and start being dangerous.<a class="schedule-abstract-read-more" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18"><img class="profile-image rounded-circle mb-2" src="../speakers/Vivek Anandaraman.png" alt=""></a>
+                <div class="name">Vivek Anandaraman</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">Moving from Telemetry Signal Correlation to Graph-Driven AI based RCA</a>
+              </h3>
+              <div class="location mb-3">Cloudelu Labs</div>
+              <div class="desc schedule-abstract">Modern production environments span Kubernetes, VMs, serverless, and event-driven systems, yet incident response still relies on manually stitching together dashboards, traces, and logs. While OpenTelemetry improves signal collection, it does not provide a consistent way to model dependencies across services, infrastructure, and asynchronous components. As a result, SREs spend valuable time correlating signals instead of identifying the root cause. This talk presents a graph-driven RCA approach built on a normalized observability layer that converts telemetry into relationships between services, infrastructure, and runtime events. Instead of treating traces, logs, and metrics independently, we derive a dependency graph enriched with time-based observations and health signals. This allows failures to be analyzed as propagation paths across systems rather than isolated alerts. We apply this approach to real-world scenarios across Kubernetes microservices, VM-based workloads, hybrid cloud environments, serverless platforms, and asynchronous systems such as Kafka. The graph highlights cascading failures, dependency latency, and hidden bottlenecks that are difficult to detect using traditional dashboards. We compare this workflow with trace-centric and metrics-first investigations, focusing on time-to-root-cause and operational effort during incidents. Attendees will learn how to build telemetry normalization layers, derive dependency graphs from observability data, and use graph-based reasoning to accelerate incident response. The session focuses on practical SRE workflows, design tradeoffs, and lessons learned from applying graph-driven RCA in distributed systems.<a class="schedule-abstract-read-more" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">... Read more</a></div>
               
             </div>
           </div>
@@ -1152,25 +1171,6 @@ The session will be practical, experience-driven, and focused on applying KPIx f
             <div class="meta">
               <h4 class="time mb-3">17:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18"><img class="profile-image rounded-circle mb-2" src="../speakers/Vivek Anandaraman.png" alt=""></a>
-                <div class="name">Vivek Anandaraman</div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">Moving from Telemetry Signal Correlation to Graph-Driven AI based RCA</a>
-              </h3>
-              <div class="location mb-3">Cloudelu Labs</div>
-              <div class="desc schedule-abstract">Modern production environments span Kubernetes, VMs, serverless, and event-driven systems, yet incident response still relies on manually stitching together dashboards, traces, and logs. While OpenTelemetry improves signal collection, it does not provide a consistent way to model dependencies across services, infrastructure, and asynchronous components. As a result, SREs spend valuable time correlating signals instead of identifying the root cause. This talk presents a graph-driven RCA approach built on a normalized observability layer that converts telemetry into relationships between services, infrastructure, and runtime events. Instead of treating traces, logs, and metrics independently, we derive a dependency graph enriched with time-based observations and health signals. This allows failures to be analyzed as propagation paths across systems rather than isolated alerts. We apply this approach to real-world scenarios across Kubernetes microservices, VM-based workloads, hybrid cloud environments, serverless platforms, and asynchronous systems such as Kafka. The graph highlights cascading failures, dependency latency, and hidden bottlenecks that are difficult to detect using traditional dashboards. We compare this workflow with trace-centric and metrics-first investigations, focusing on time-to-root-cause and operational effort during incidents. Attendees will learn how to build telemetry normalization layers, derive dependency graphs from observability data, and use graph-based reasoning to accelerate incident response. The session focuses on practical SRE workflows, design tradeoffs, and lessons learned from applying graph-driven RCA in distributed systems.<a class="schedule-abstract-read-more" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">... Read more</a></div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">18:00</h4>
-              <div class="profile">
                 <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19"><img class="profile-image rounded-circle mb-2" src="../speakers/Neel Shah.png" alt=""></a>
                 <div class="name">Neel Shah</div>
               </div>
@@ -1188,7 +1188,7 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">18:30</h4>
+              <h4 class="time mb-3">18:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
                 <div class="name"></div>
@@ -1221,8 +1221,6 @@ The session will be practical, experience-driven, and focused on applying KPIx f
           </tr>
         </thead>
         <tbody>
-
-
 
 
 
@@ -1500,8 +1498,8 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">The Invisible Unicode threat in YAML Configuration Files</a>
-              <div class="speaker-info">Harsha Dixit <span class="affiliation">• Kong</span></div>
+              <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Turn It Off Without Breaking It: Safe Orchestration of AWS Environments</a>
+              <div class="speaker-info">Vignesh Kumar S <span class="affiliation">• GuhaTek</span></div>
             </td>
 
 
@@ -1545,8 +1543,8 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">The On-Call Apprentice</a>
-              <div class="speaker-info">Sudarshan Balakrishna <span class="affiliation">• Epsilon</span></div>
+              <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Release Evidence, Not Release Dates: Turning reliability signals into release decisions before customers feel the failure</a>
+              <div class="speaker-info">Amit Kothari <span class="affiliation">• Razorpay</span></div>
             </td>
 
 
@@ -1590,8 +1588,8 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Release Evidence, Not Release Dates: Turning reliability signals into release decisions before customers feel the failure</a>
-              <div class="speaker-info">Amit Kothari <span class="affiliation">• Razorpay</span></div>
+              <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">What We Learned Running AI Agents in Production at Segwise AI</a>
+              <div class="speaker-info">Shobhit Gupta <span class="affiliation">• Segwise.ai </span></div>
             </td>
 
 
@@ -1624,8 +1622,8 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Turn It Off Without Breaking It: Safe Orchestration of AWS Environments</a>
-              <div class="speaker-info">Vignesh Kumar S <span class="affiliation">• GuhaTek</span></div>
+              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Beyond the Hype: Building a Self-Healing Pipeline with Agentic AI</a>
+              <div class="speaker-info">Jones Zachariah Noel N <span class="affiliation">• New Relic</span></div>
             </td>
 
 
@@ -1635,8 +1633,8 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">What We Learned Running AI Agents in Production at Segwise AI</a>
-              <div class="speaker-info">Shobhit Gupta <span class="affiliation">• Segwise.ai </span></div>
+              <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">KPIx Framework for Modern SRE and Engineering Organizations</a>
+              <div class="speaker-info">Thejaswi Mudda <span class="affiliation">• Qualcomm </span></div>
             </td>
 
 
@@ -1694,53 +1692,8 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Choosing the right database: Why ClickHouse has become the standard for storing observability data</a>
-              <div class="speaker-info">Soham Chakraborty & Bikram Debnath <span class="affiliation">• Sematext & IBM</span></div>
-            </td>
-
-
-
-
-
-
-
-            <td class="talk-cell">
-              <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">KPIx Framework for Modern SRE and Engineering Organizations</a>
-              <div class="speaker-info">Thejaswi Mudda <span class="affiliation">• Qualcomm </span></div>
-            </td>
-
-
-          </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          <tr>
-            <td class="time-cell">15:30</td>
-
-
-
-
-
-
-            <td class="talk-cell">
-              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">AI Agents: The Next Evolution in DevOps and SRE Workflows</a>
-              <div class="speaker-info">Vishal Alhat <span class="affiliation">• AWS</span></div>
+              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">The Invisible Unicode threat in YAML Configuration Files</a>
+              <div class="speaker-info">Harsha Dixit <span class="affiliation">• Kong</span></div>
             </td>
 
 
@@ -1776,7 +1729,7 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
 
           <tr>
-            <td class="time-cell">16:00</td>
+            <td class="time-cell">15:30</td>
 
 
 
@@ -1784,8 +1737,8 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Beyond the Hype: Building a Self-Healing Pipeline with Agentic AI</a>
-              <div class="speaker-info">Jones Zachariah Noel N <span class="affiliation">• New Relic</span></div>
+              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">The On-Call Apprentice</a>
+              <div class="speaker-info">Sudarshan Balakrishna <span class="affiliation">• Epsilon</span></div>
             </td>
 
 
@@ -1821,12 +1774,17 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
 
           <tr>
-            <td class="time-cell">16:30</td>
+            <td class="time-cell">16:00</td>
 
 
 
 
-            <td class="talk-cell"></td>
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Choosing the right database: Why ClickHouse has become the standard for storing observability data</a>
+              <div class="speaker-info">Soham Chakraborty & Bikram Debnath <span class="affiliation">• Sematext & IBM</span></div>
+            </td>
 
 
 
@@ -1837,6 +1795,51 @@ The session will be practical, experience-driven, and focused on applying KPIx f
             <td class="talk-cell">
               <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">The SRE Fear Paradox: Why AI Scares Operators More Than Outages</a>
               <div class="speaker-info">Priyank Upadhyay <span class="affiliation">• RubixKube</span></div>
+            </td>
+
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">16:30</td>
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">AI Agents: The Next Evolution in DevOps and SRE Workflows</a>
+              <div class="speaker-info">Vishal Alhat <span class="affiliation">• AWS</span></div>
+            </td>
+
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">Moving from Telemetry Signal Correlation to Graph-Driven AI based RCA</a>
+              <div class="speaker-info">Vivek Anandaraman <span class="affiliation">• Cloudelu Labs</span></div>
             </td>
 
 
@@ -1902,46 +1905,6 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">Moving from Telemetry Signal Correlation to Graph-Driven AI based RCA</a>
-              <div class="speaker-info">Vivek Anandaraman <span class="affiliation">• Cloudelu Labs</span></div>
-            </td>
-
-
-          </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          <tr>
-            <td class="time-cell">18:00</td>
-
-
-
-
-            <td class="talk-cell"></td>
-
-
-
-
-
-
-
-            <td class="talk-cell">
               <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">AIOps Day-to-Day: When AI Fixes Faster Than Humans (and When It Doesn't)</a>
               <div class="speaker-info">Neel Shah <span class="affiliation">• StackGen</span></div>
             </td>
@@ -1968,7 +1931,7 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
 
           <tr>
-            <td class="time-cell merged-cell">18:30</td>
+            <td class="time-cell merged-cell">18:00</td>
 
 
 
@@ -2112,7 +2075,7 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Harsha Dixit.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Harsha Dixit.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Harsha Dixit</h5>
             <div class="card-text mb-3">
@@ -2138,7 +2101,7 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Jones Zachariah Noel N.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Jones Zachariah Noel N.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Jones Zachariah Noel N</h5>
             <div class="card-text mb-3">
@@ -2372,7 +2335,7 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Soham Chakraborty & Bikram Debnath.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Soham Chakraborty & Bikram Debnath.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Soham Chakraborty<br>&amp; Bikram Debnath</h5>
             <div class="card-text mb-3">
@@ -2398,7 +2361,7 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img src="../speakers/Sudarshan Balakrishna.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Sudarshan Balakrishna.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Sudarshan Balakrishna</h5>
             <div class="card-text mb-3">
@@ -2476,7 +2439,7 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Vignesh Kumar S.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img src="../speakers/Vignesh Kumar S.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Vignesh Kumar S</h5>
             <div class="card-text mb-3">
@@ -2502,7 +2465,7 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Vishal Alhat.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Vishal Alhat.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Vishal Alhat</h5>
             <div class="card-text mb-3">
@@ -2806,25 +2769,25 @@ In this session, we'll explore how autoscaling behaves in real-world Kubernetes 
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Vignesh Kumar S.png" alt="" />
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Jones Zachariah Noel N.png" alt="" />
                       </div>
 
                       <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Vignesh Kumar S</h2>
-                          <div class="meta mb-2">GuhaTek</div>
+                          <h2 class="name mb-2">Jones Zachariah Noel N</h2>
+                          <div class="meta mb-2">New Relic</div>
                           <ul class="social-list list-inline mb-0">
                             
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/vigneshlinkdin/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/goabiaryan/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
                             
                             
                           </ul><!--//social-list-->
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
-              <div class="talk-title-bar">Turn It Off Without Breaking It: Safe Orchestration of AWS Environments</div>
+              <div class="talk-title-bar">Beyond the Hype: Building a Self-Healing Pipeline with Agentic AI</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Pre-production environments are often left running 24/7, leading to significant cloud waste—but safely automating their shutdown is more complex than it seems. Naive scheduling approaches can easily break dependencies, introduce inconsistent states, or make recovery unreliable. In this talk, I’ll present a real-world implementation of a scheduled, event-driven orchestration system on AWS that safely scales down and restores an entire pre-production environment. The solution uses EventBridge, Step Functions, and Lambda to coordinate state transitions across EC2, RDS, EBS, and application services. A key focus of this system is safe, state-aware execution. Each operation validates the current resource state before acting, ensuring that actions are effectively idempotent and safe to re-run. The workflow enforces dependency-aware sequencing and uses check/wait patterns to avoid acting on transitional or stale states, reducing the risk of unsafe shutdowns and restarts. Rather than relying on blind automation, this approach treats infrastructure changes as explicit, observable workflows, where failures are surfaced clearly and recovery paths are controlled. I’ll also share lessons learned around handling partial executions, the limitations of manual retry strategies, and why idempotency must be considered beyond individual steps. This session will provide practical insights into building reliable, cost-efficient infrastructure automation, along with design patterns that can be applied to any AWS-based environment.</p></p>
+                <p><p>Traditional automated remediation (if-this-then-that) is brittle. It fails when faced with the "unknown-unknowns" of distributed systems. When a production incident occurs, the cognitive load on the on-call engineer to parse logs, traces, and metrics is the primary bottleneck for MTTR (Mean Time to Resolution). But with the rise of Agentic AI—LLMs that don't just "chat" but actually execute tools—the dream of a truly self-healing infrastructure is finally within reach. This session moves past the marketing slides to demonstrate how to build an autonomous remediation pipeline that thinks like an SRE. We will explore the architecture of an0 Agentic Observability Loop. Unlike static scripts, an AI Agent can: Observe: Interface with AI Agents to identify the root cause. Reason: Cross-reference telemetry with recent GitHub deployments and runbooks. Act: Execute safe, scoped operations—like rolling back a canary, scaling a K8s deployment, or flushing a cache—using verified toolsets.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
@@ -2832,7 +2795,7 @@ In this session, we'll explore how autoscaling behaves in real-world Kubernetes 
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>I am a Site Reliability Engineer with experience in AWS and cloud-native environments, focusing on platform engineering and infrastructure automation. I have worked extensively with containerized systems using Docker and Kubernetes, along with building and operating CI/CD pipelines, and maintaining infrastructure using Terraform. My work centers on operating and improving existing systems, building reliable infrastructure, enhancing automation workflows, and handling real-world failure scenarios in distributed environments.</p></p>
+                <p><p>Jones is a seasoned developer turned architect who currently at New Relic being an observability advocate working as Senior Developer Relations Engineer and also focuses on infrastructure and development on cloud platforms like AWS and well into the Serverless ecosystem. Jones is also recognised as AWS Serverless Hero who is enabling the community with latest happenings in the Serverless space with his newsletter, blogs and podcast. Along with this, Jones also regularly shares the best of cloud + observability at multiple global forums and conferences.</p></p>
               </div>
 
           </div><!--//modal-body-->
@@ -2842,6 +2805,94 @@ In this session, we'll explore how autoscaling behaves in real-world Kubernetes 
 
 <!-- Modal Speaker 7 -->
 <div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Harsha Dixit.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Harsha Dixit</h2>
+                          <div class="meta mb-2">Kong</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/harshadixit12/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">The Invisible Unicode threat in YAML Configuration Files</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>YAML is popular as a language for declarative configurations because of it's readability, support for hierarchical structure, and comments. However, hidden Unicode characters, homoglyphs, and bidirectional text controls can silently alter the behavior of infrastructure definitions, and CI/CD pipelines written in YAML. These invisible characters can evade code review, and even enable attacks that exploit the gap between what developers see and what machines interpret. In this talk, we'll explore real-world examples of rogue Unicode characters in YAML files, understand how they work, and practical defences — from linting, editor configuration and automated detection tools that can prevent these issues from reaching production.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>I build tooling for declarative configuration management, and have previously built tools for API testing and Monitoring.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 8 -->
+<div class="modal modal-speaker modal-speaker-8" id="modal-speaker-8" tabindex="-1" role="dialog" aria-labelledby="speaker-8-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Sudarshan Balakrishna.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Sudarshan Balakrishna</h2>
+                          <div class="meta mb-2">Epsilon</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/sudarshanbalakrishna/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">The On-Call Apprentice</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Most engineers dream of writing code - but who keeps the code alive at 3 AM, making sure a million users never see a 500 error? That's the SRE, and the world can't hire them fast enough. This talk is a field-tested roadmap into Site Reliability and Platform Engineering, drawn from two decades of building SRE teams from scratch across multiple organizations.</p>
+<p>We'll cover the two real paths in: the fresh graduate's 18-month journey from Linux fundamentals to first on-call rotation, and the career switcher's harder challenge - the mindset shift from "code is done when it compiles" to "code is done when it's observable in production." Attendees will walk away with the seven-pillar SRE competency matrix used in real hiring, the certifications that actually move the needle (and the ones that don't), and the interview signals that separate a true reliability engineer from a résumé.</p>
+<p>Backed by data - 73% of high-performing orgs now run formalized SRE practices (DORA/Gartner), 25% YoY job growth, and Amazon losing ~$220K per minute of downtime - this session reframes SRE as the role of the decade. You'll leave with a concrete Week 1 starter pack to launch your own SRE origin story before you get home.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Sudarshan Balakrishna is VP of IT Operations at Epsilon India, with 20+ years building and scaling reliability engineering teams from the ground up. He leads multi-cloud operations, AIOps platform development, and SRE maturity initiatives, and is an active writer and thought leader on SRE, incident response, and operational excellence. He's passionate about turning production chaos into structured, observable, resilient systems — and about mentoring the next generation of on-call apprentices.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 9 -->
+<div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -2884,8 +2935,8 @@ Bikram Debnath is an Advisory Software Engineer at IBM Labs, 3× Patent Holder, 
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 8 -->
-<div class="modal modal-speaker modal-speaker-8" id="modal-speaker-8" tabindex="-1" role="dialog" aria-labelledby="speaker-8-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 10 -->
+<div class="modal modal-speaker modal-speaker-10" id="modal-speaker-10" tabindex="-1" role="dialog" aria-labelledby="speaker-10-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -2927,92 +2978,6 @@ Bikram Debnath is an Advisory Software Engineer at IBM Labs, 3× Patent Holder, 
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 9 -->
-<div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-body p-0">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <div class="theme-bg-light p-5">
-                  <div class="row">
-                      <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Jones Zachariah Noel N.png" alt="" />
-                      </div>
-
-                      <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Jones Zachariah Noel N</h2>
-                          <div class="meta mb-2">New Relic</div>
-                          <ul class="social-list list-inline mb-0">
-                            
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/goabiaryan/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            
-                            
-                          </ul><!--//social-list-->
-                      </div><!--//col-->
-                  </div><!--//row-->
-              </div>
-              <div class="talk-title-bar">Beyond the Hype: Building a Self-Healing Pipeline with Agentic AI</div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Traditional automated remediation (if-this-then-that) is brittle. It fails when faced with the "unknown-unknowns" of distributed systems. When a production incident occurs, the cognitive load on the on-call engineer to parse logs, traces, and metrics is the primary bottleneck for MTTR (Mean Time to Resolution). But with the rise of Agentic AI—LLMs that don't just "chat" but actually execute tools—the dream of a truly self-healing infrastructure is finally within reach. This session moves past the marketing slides to demonstrate how to build an autonomous remediation pipeline that thinks like an SRE. We will explore the architecture of an0 Agentic Observability Loop. Unlike static scripts, an AI Agent can: Observe: Interface with AI Agents to identify the root cause. Reason: Cross-reference telemetry with recent GitHub deployments and runbooks. Act: Execute safe, scoped operations—like rolling back a canary, scaling a K8s deployment, or flushing a cache—using verified toolsets.</p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <p></p>
-              </div>
-
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Jones is a seasoned developer turned architect who currently at New Relic being an observability advocate working as Senior Developer Relations Engineer and also focuses on infrastructure and development on cloud platforms like AWS and well into the Serverless ecosystem. Jones is also recognised as AWS Serverless Hero who is enabling the community with latest happenings in the Serverless space with his newsletter, blogs and podcast. Along with this, Jones also regularly shares the best of cloud + observability at multiple global forums and conferences.</p></p>
-              </div>
-
-          </div><!--//modal-body-->
-      </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
-
-<!-- Modal Speaker 10 -->
-<div class="modal modal-speaker modal-speaker-10" id="modal-speaker-10" tabindex="-1" role="dialog" aria-labelledby="speaker-10-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-body p-0">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <div class="theme-bg-light p-5">
-                  <div class="row">
-                      <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Harsha Dixit.png" alt="" />
-                      </div>
-
-                      <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Harsha Dixit</h2>
-                          <div class="meta mb-2">Kong</div>
-                          <ul class="social-list list-inline mb-0">
-                            
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/harshadixit12/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            
-                            
-                          </ul><!--//social-list-->
-                      </div><!--//col-->
-                  </div><!--//row-->
-              </div>
-              <div class="talk-title-bar">The Invisible Unicode threat in YAML Configuration Files</div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>YAML is popular as a language for declarative configurations because of it's readability, support for hierarchical structure, and comments. However, hidden Unicode characters, homoglyphs, and bidirectional text controls can silently alter the behavior of infrastructure definitions, and CI/CD pipelines written in YAML. These invisible characters can evade code review, and even enable attacks that exploit the gap between what developers see and what machines interpret. In this talk, we'll explore real-world examples of rogue Unicode characters in YAML files, understand how they work, and practical defences — from linting, editor configuration and automated detection tools that can prevent these issues from reaching production.</p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <p></p>
-              </div>
-
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>I build tooling for declarative configuration management, and have previously built tools for API testing and Monitoring.</p></p>
-              </div>
-
-          </div><!--//modal-body-->
-      </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
-
 <!-- Modal Speaker 11 -->
 <div class="modal modal-speaker modal-speaker-11" id="modal-speaker-11" tabindex="-1" role="dialog" aria-labelledby="speaker-11-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -3022,27 +2987,25 @@ Bikram Debnath is an Advisory Software Engineer at IBM Labs, 3× Patent Holder, 
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Sudarshan Balakrishna.png" alt="" />
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Vignesh Kumar S.png" alt="" />
                       </div>
 
                       <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Sudarshan Balakrishna</h2>
-                          <div class="meta mb-2">Epsilon</div>
+                          <h2 class="name mb-2">Vignesh Kumar S</h2>
+                          <div class="meta mb-2">GuhaTek</div>
                           <ul class="social-list list-inline mb-0">
                             
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/sudarshanbalakrishna/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/vigneshlinkdin/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
                             
                             
                           </ul><!--//social-list-->
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
-              <div class="talk-title-bar">The On-Call Apprentice</div>
+              <div class="talk-title-bar">Turn It Off Without Breaking It: Safe Orchestration of AWS Environments</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Most engineers dream of writing code - but who keeps the code alive at 3 AM, making sure a million users never see a 500 error? That's the SRE, and the world can't hire them fast enough. This talk is a field-tested roadmap into Site Reliability and Platform Engineering, drawn from two decades of building SRE teams from scratch across multiple organizations.</p>
-<p>We'll cover the two real paths in: the fresh graduate's 18-month journey from Linux fundamentals to first on-call rotation, and the career switcher's harder challenge - the mindset shift from "code is done when it compiles" to "code is done when it's observable in production." Attendees will walk away with the seven-pillar SRE competency matrix used in real hiring, the certifications that actually move the needle (and the ones that don't), and the interview signals that separate a true reliability engineer from a résumé.</p>
-<p>Backed by data - 73% of high-performing orgs now run formalized SRE practices (DORA/Gartner), 25% YoY job growth, and Amazon losing ~$220K per minute of downtime - this session reframes SRE as the role of the decade. You'll leave with a concrete Week 1 starter pack to launch your own SRE origin story before you get home.</p></p>
+                <p><p>Pre-production environments are often left running 24/7, leading to significant cloud waste—but safely automating their shutdown is more complex than it seems. Naive scheduling approaches can easily break dependencies, introduce inconsistent states, or make recovery unreliable. In this talk, I’ll present a real-world implementation of a scheduled, event-driven orchestration system on AWS that safely scales down and restores an entire pre-production environment. The solution uses EventBridge, Step Functions, and Lambda to coordinate state transitions across EC2, RDS, EBS, and application services. A key focus of this system is safe, state-aware execution. Each operation validates the current resource state before acting, ensuring that actions are effectively idempotent and safe to re-run. The workflow enforces dependency-aware sequencing and uses check/wait patterns to avoid acting on transitional or stale states, reducing the risk of unsafe shutdowns and restarts. Rather than relying on blind automation, this approach treats infrastructure changes as explicit, observable workflows, where failures are surfaced clearly and recovery paths are controlled. I’ll also share lessons learned around handling partial executions, the limitations of manual retry strategies, and why idempotency must be considered beyond individual steps. This session will provide practical insights into building reliable, cost-efficient infrastructure automation, along with design patterns that can be applied to any AWS-based environment.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
@@ -3050,7 +3013,7 @@ Bikram Debnath is an Advisory Software Engineer at IBM Labs, 3× Patent Holder, 
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Sudarshan Balakrishna is VP of IT Operations at Epsilon India, with 20+ years building and scaling reliability engineering teams from the ground up. He leads multi-cloud operations, AIOps platform development, and SRE maturity initiatives, and is an active writer and thought leader on SRE, incident response, and operational excellence. He's passionate about turning production chaos into structured, observable, resilient systems — and about mentoring the next generation of on-call apprentices.</p></p>
+                <p><p>I am a Site Reliability Engineer with experience in AWS and cloud-native environments, focusing on platform engineering and infrastructure automation. I have worked extensively with containerized systems using Docker and Kubernetes, along with building and operating CI/CD pipelines, and maintaining infrastructure using Terraform. My work centers on operating and improving existing systems, building reliable infrastructure, enhancing automation workflows, and handling real-world failure scenarios in distributed environments.</p></p>
               </div>
 
           </div><!--//modal-body-->
