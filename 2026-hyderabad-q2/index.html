@@ -712,17 +712,17 @@
             <div class="meta">
               <h4 class="time mb-3">10:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Sathpal Singh.png" alt=""></a>
-                <div class="name">Sathpal Singh</div>
+                <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Chakravarthy Komaravolu.png" alt=""></a>
+                <div class="name">Chakravarthy Komaravolu</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">SENTINEL - Autonomous Multi-Agent SRE Brain for Kubernetes Incident Diagnosis & Human-Gated Remediation</a>
+                <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Addressing the gaps between theoretical promises vs practical outcomes of SRE practice</a>
               </h3>
-              <div class="location mb-3">UBS</div>
-              <div class="desc schedule-abstract">PROBLEM On-call SREs drown in alerts. A single Kubernetes incident throws signals across pods, app runtimes, dependencies (Kafka/Redis/DB), traces, recent deploys and history and a human has to correlate all of it under pressure, while most pages are noise. Single-LLM "AIOps" tools hallucinate confident root causes from one slice of data and erode trust. SENTINEL SENTINEL is an autonomous, multi-agent SRE brain that reasons about production incidents the way a senior on-call engineer does but in parallel and with discipline. A fleet of SEVEN specialist agents each independently investigates ONLY its own data slice and votes on the failure signatures it can justify: • Kubernetes (pods, OOMKills, CrashLoops, scheduling, probes) • App Runtime (logs, JVM/Go/Node runtime errors) • Dependency (Kafka lag, Redis/DB saturation, downstream APIs) • Observability (golden signals, SLO burn, traces) • Change Correlation ("what changed right before this started?") • Runbook (matches vetted procedures) • Historical Memory (recurrence of past incidents) THE MULTI-SIGNAL RULE (the core reasoning idea) An Evidence Correlation Engine confirms a signature ONLY when ≥2 INDEPENDENT telemetry agents agree on it. One agent shouting is noise; two independent agents agreeing is signal worth paging a human for. This single rule is what makes the system trustworthy and kills false positives every confirmed cause carries its corroboration count and the agents that voted. It then ranks root-cause hypotheses with a precise confidence qualifier (confirmed / most-likely / possible / needs-more-evidence), proposes remediations pulled ONLY from a vetted knowledge base (never free-form), risk-classifies them, and forces human approval for anything medium-risk or above. The agent proposes; the human disposes. SENTINEL never auto-closes or runs high-risk changes alone. MICROSOFT IQ - FOUNDRY IQ Foundry IQ is SENTINEL's knowledge & grounding layer. The Historical Memory and Runbook agents ground their reasoning through Foundry IQ's agentic retrieval over the organization's incident history, runbooks and service docs, so diagnoses are grounded in what THIS org has actually seen and fixed, not generic web knowledge. Every resolved incident is written back, so the system compounds institutional knowledge: the next similar incident is recognized instantly. HOW IT'S BUILT (real, running system not a mock) • A distributed microservices system: a gateway, an orchestrator that runs the diagnostic saga, a 7-agent fan-out over a Redis Streams event bus (one consumer group per role), and a stateful memory tier deployable as a right-sized 14-container stack or a full per-stage split. • Full OpenTelemetry instrumentation across every service → an LGTM stack (Tempo/Loki/Prometheus/ Grafana). Trace context propagates across the async bus, so one /analyze is a single connected distributed trace; per-agent latency, anomalies and corroboration are live Grafana metrics. • Event-driven ingestion: point Alertmanager or a Kubernetes event stream at it and the fleet auto-triages, debounced against flapping. • A live "mission-control" UI: a real incident lights up each component of the pipeline as it executes every stage activates, stays lit, shows its real findings, and is clickable for a full drill-down (agent evidence, the correlation table, the verdict, the gated remediations, or the failure error). An interactive knowledge graph of services, dependencies, teams and incidents. A system-architecture view of how it all connects.<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
+              <div class="location mb-3">Tech Mahindra</div>
+              <div class="desc schedule-abstract">Addressing the gap between Site Reliability Engineering (SRE) theory and practical outcomes is highly critical. It directly determines whether SRE acts as an engine for velocity and resilience or decays into a glorified "ops team". Failing to address this divide leads to rampant team burnout, ballooning technical debt, and misaligned business goals.<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
               
             </div>
           </div>
@@ -731,17 +731,17 @@
             <div class="meta">
               <h4 class="time mb-3">11:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Anush Arvind & Keerthivaasan K.png" alt=""></a>
-                <div class="name">Anush Arvind & Keerthivaasan K</div>
+                <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Sathpal Singh.png" alt=""></a>
+                <div class="name">Sathpal Singh</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">App aware infra, Infra aware app</a>
+                <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">SENTINEL - Autonomous Multi-Agent SRE Brain for Kubernetes Incident Diagnosis & Human-Gated Remediation</a>
               </h3>
-              <div class="location mb-3">Freshworks</div>
-              <div class="desc schedule-abstract">The need for a symbiotic relationship between app and infra: Application aware infrastructure goes beyond simply provisioning resources and instead focuses on optimizing the infra to meet the specific needs of each app. This involves monitoring the performance, understanding the dependencies, and dynamically adjusting infra specifications to ensure optimal application performance and availability. Infrastructure aware applications are designed and built to be aware of the underlying infra on which they run. They can dynamically adapt their behavior, resource consumption, and performance based on the infra's capabilities, limitations, and current state. They actively monitor and respond to changes in the infrastructure, such as network bandwidth, storage capacity, CPU availability, and latency. This session explores the strategies and tools used to optimize infra responsiveness to app needs, and application's elasticity based on infra, to create a more resilient and efficient system.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
+              <div class="location mb-3">UBS</div>
+              <div class="desc schedule-abstract">PROBLEM On-call SREs drown in alerts. A single Kubernetes incident throws signals across pods, app runtimes, dependencies (Kafka/Redis/DB), traces, recent deploys and history and a human has to correlate all of it under pressure, while most pages are noise. Single-LLM "AIOps" tools hallucinate confident root causes from one slice of data and erode trust. SENTINEL SENTINEL is an autonomous, multi-agent SRE brain that reasons about production incidents the way a senior on-call engineer does but in parallel and with discipline. A fleet of SEVEN specialist agents each independently investigates ONLY its own data slice and votes on the failure signatures it can justify: • Kubernetes (pods, OOMKills, CrashLoops, scheduling, probes) • App Runtime (logs, JVM/Go/Node runtime errors) • Dependency (Kafka lag, Redis/DB saturation, downstream APIs) • Observability (golden signals, SLO burn, traces) • Change Correlation ("what changed right before this started?") • Runbook (matches vetted procedures) • Historical Memory (recurrence of past incidents) THE MULTI-SIGNAL RULE (the core reasoning idea) An Evidence Correlation Engine confirms a signature ONLY when ≥2 INDEPENDENT telemetry agents agree on it. One agent shouting is noise; two independent agents agreeing is signal worth paging a human for. This single rule is what makes the system trustworthy and kills false positives every confirmed cause carries its corroboration count and the agents that voted. It then ranks root-cause hypotheses with a precise confidence qualifier (confirmed / most-likely / possible / needs-more-evidence), proposes remediations pulled ONLY from a vetted knowledge base (never free-form), risk-classifies them, and forces human approval for anything medium-risk or above. The agent proposes; the human disposes. SENTINEL never auto-closes or runs high-risk changes alone. MICROSOFT IQ - FOUNDRY IQ Foundry IQ is SENTINEL's knowledge & grounding layer. The Historical Memory and Runbook agents ground their reasoning through Foundry IQ's agentic retrieval over the organization's incident history, runbooks and service docs, so diagnoses are grounded in what THIS org has actually seen and fixed, not generic web knowledge. Every resolved incident is written back, so the system compounds institutional knowledge: the next similar incident is recognized instantly. HOW IT'S BUILT (real, running system not a mock) • A distributed microservices system: a gateway, an orchestrator that runs the diagnostic saga, a 7-agent fan-out over a Redis Streams event bus (one consumer group per role), and a stateful memory tier deployable as a right-sized 14-container stack or a full per-stage split. • Full OpenTelemetry instrumentation across every service → an LGTM stack (Tempo/Loki/Prometheus/ Grafana). Trace context propagates across the async bus, so one /analyze is a single connected distributed trace; per-agent latency, anomalies and corroboration are live Grafana metrics. • Event-driven ingestion: point Alertmanager or a Kubernetes event stream at it and the fleet auto-triages, debounced against flapping. • A live "mission-control" UI: a real incident lights up each component of the pipeline as it executes every stage activates, stays lit, shows its real findings, and is clickable for a full drill-down (agent evidence, the correlation table, the verdict, the gated remediations, or the failure error). An interactive knowledge graph of services, dependencies, teams and incidents. A system-architecture view of how it all connects.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
               
             </div>
           </div>
@@ -750,17 +750,17 @@
             <div class="meta">
               <h4 class="time mb-3">11:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Dipesh Mittal.png" alt=""></a>
-                <div class="name">Dipesh Mittal</div>
+                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Anush Arvind & Keerthivaasan K.png" alt=""></a>
+                <div class="name">Anush Arvind & Keerthivaasan K</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Memory Management for SRE Agents</a>
+                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">App aware infra, Infra aware app</a>
               </h3>
-              <div class="location mb-3">Doctor Droid</div>
-              <div class="desc schedule-abstract">AI agents are showing up in on-call workflows. They triage alerts, pull runbooks, correlate metrics and forget everything the moment an incident closes. That's a problem. SRE agents need more than fast inference. They need context that persists across incidents, spans multiple tools, and doesn't bloat every prompt with the entire history of your system. That's memory management, and most teams aren't thinking about it yet. In this talk, I'll walk through how memory works (and breaks) in agentic SRE workflows, the difference between short-term context, episodic recall across incidents, and shared memory across a team of agent. You'll leave with a mental model for designing memory into your SRE agents from day one, not bolting it on after your agent confidently recommends the same wrong fix three incidents in a row.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+              <div class="location mb-3">Freshworks</div>
+              <div class="desc schedule-abstract">The need for a symbiotic relationship between app and infra: Application aware infrastructure goes beyond simply provisioning resources and instead focuses on optimizing the infra to meet the specific needs of each app. This involves monitoring the performance, understanding the dependencies, and dynamically adjusting infra specifications to ensure optimal application performance and availability. Infrastructure aware applications are designed and built to be aware of the underlying infra on which they run. They can dynamically adapt their behavior, resource consumption, and performance based on the infra's capabilities, limitations, and current state. They actively monitor and respond to changes in the infrastructure, such as network bandwidth, storage capacity, CPU availability, and latency. This session explores the strategies and tools used to optimize infra responsiveness to app needs, and application's elasticity based on infra, to create a more resilient and efficient system.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
               
             </div>
           </div>
@@ -785,17 +785,17 @@
             <div class="meta">
               <h4 class="time mb-3">13:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Ram Iyengar.png" alt=""></a>
-                <div class="name">Ram Iyengar</div>
+                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Dipesh Mittal.png" alt=""></a>
+                <div class="name">Dipesh Mittal</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Old Dog, New Tricks: SREs Catching Up To AI-defined Ops</a>
+                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Memory Management for SRE Agents</a>
               </h3>
-              <div class="location mb-3">OpenSSF</div>
-              <div class="desc schedule-abstract">The way we write software has changed in the past couple of years. Completely. The way we operate it in production has had to play catch up. Toil is still a thing. Pager alerts too, although those are happening on the phone. Email notification about outages are still filtered and routed to a folder which no one checks. Atleast some thing remains unchanged. In the face of dramatically new ops workflows, what's the role of an SRE? Are they finding ways to cope or reaching the end of the proverbial rope? Come to this talk to see how each AI "black box" is being instrumented and operated in production. Let's explore new tools and techniques together in this new AI-driven landscape. Let's learn from each other about how AI is helping SREs in ways we hadn't thought of before. Let's all develop a shared understanding about what the future is expected to bring for the SRE community.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              <div class="location mb-3">Doctor Droid</div>
+              <div class="desc schedule-abstract">AI agents are showing up in on-call workflows. They triage alerts, pull runbooks, correlate metrics and forget everything the moment an incident closes. That's a problem. SRE agents need more than fast inference. They need context that persists across incidents, spans multiple tools, and doesn't bloat every prompt with the entire history of your system. That's memory management, and most teams aren't thinking about it yet. In this talk, I'll walk through how memory works (and breaks) in agentic SRE workflows, the difference between short-term context, episodic recall across incidents, and shared memory across a team of agent. You'll leave with a mental model for designing memory into your SRE agents from day one, not bolting it on after your agent confidently recommends the same wrong fix three incidents in a row.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
               
             </div>
           </div>
@@ -804,17 +804,17 @@
             <div class="meta">
               <h4 class="time mb-3">13:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Atulpriya Sharma.png" alt=""></a>
-                <div class="name">Atulpriya Sharma</div>
+                <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Ram Iyengar.png" alt=""></a>
+                <div class="name">Ram Iyengar</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Why Your Developer Platform Is Making Your SRE's Life Harder</a>
+                <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Old Dog, New Tricks: SREs Catching Up To AI-defined Ops</a>
               </h3>
-              <div class="location mb-3">Improving</div>
-              <div class="desc schedule-abstract">A developer deploys a service in five minutes. The platform team celebrates another adoption win. Three weeks later, the service degrades in production. The SRE on call has no idea who owns it, what healthy looks like, or why the alerts aren't useful. The platform worked. The deployment succeeded. The SRE is still doing archaeology instead of debugging. Developer platforms reduce friction for developers — golden paths, self-service workflows, automated deployments. All stop at deployment. Ownership, SLOs, meaningful alert thresholds — none are required outputs. So they don't exist when someone needs them most. With AI-assisted development, this gap is getting worse. More services ship faster, with less tribal knowledge baked in. The developer who wrote it may not fully understand it. The SRE inheriting it definitely doesn't. The fix isn't better tooling or more runbooks. It starts at the platform — treating operational context as a required output of every deployment, not an optional annotation added later. Attendees leave with a concrete view of what that looks like, and a starting point for closing the gap between developer experience and operator experience in their own platform.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
+              <div class="location mb-3">OpenSSF</div>
+              <div class="desc schedule-abstract">The way we write software has changed in the past couple of years. Completely. The way we operate it in production has had to play catch up. Toil is still a thing. Pager alerts too, although those are happening on the phone. Email notification about outages are still filtered and routed to a folder which no one checks. Atleast some thing remains unchanged. In the face of dramatically new ops workflows, what's the role of an SRE? Are they finding ways to cope or reaching the end of the proverbial rope? Come to this talk to see how each AI "black box" is being instrumented and operated in production. Let's explore new tools and techniques together in this new AI-driven landscape. Let's learn from each other about how AI is helping SREs in ways we hadn't thought of before. Let's all develop a shared understanding about what the future is expected to bring for the SRE community.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
               
             </div>
           </div>
@@ -823,17 +823,17 @@
             <div class="meta">
               <h4 class="time mb-3">14:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Praveen Singampalli.png" alt=""></a>
-                <div class="name">Praveen Singampalli</div>
+                <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Atulpriya Sharma.png" alt=""></a>
+                <div class="name">Atulpriya Sharma</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">From Reactive Ops to Agentic Reliability: Integrating SRE Systems with AI for Autonomous Operations</a>
+                <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Why Your Developer Platform Is Making Your SRE's Life Harder</a>
               </h3>
-              <div class="location mb-3">HeyDevOps</div>
-              <div class="desc schedule-abstract">Modern SRE teams are surrounded by powerful tools—monitoring platforms, CI/CD pipelines, ticketing systems, cloud infrastructure, incident management suites, and observability stacks. Yet, despite this ecosystem, engineers still spend countless hours correlating alerts, troubleshooting incidents, and executing repetitive operational workflows. This session explores how AI-driven integrations are transforming traditional SRE practices into intelligent, autonomous reliability systems. Through real-world operational scenarios, we will demonstrate how AI can seamlessly integrate with observability platforms, Kubernetes environments, cloud services, deployment pipelines, and support systems to reduce toil, accelerate incident response, and improve operational decision-making. The session will showcase how intelligent agents can analyze telemetry, correlate incidents across systems, recommend remediation steps, automate runbooks, and proactively prevent outages before they impact users. As organizations move toward “Agentic SRE,” this talk provides a practical blueprint for integrating AI into existing reliability engineering workflows without replacing the human expertise at the center of operations. Attendees will learn how to build scalable AI-assisted SRE ecosystems, codify operational intelligence into reusable workflows, and create smarter, self-healing infrastructure strategies for the future of reliability engineering.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
+              <div class="location mb-3">Improving</div>
+              <div class="desc schedule-abstract">A developer deploys a service in five minutes. The platform team celebrates another adoption win. Three weeks later, the service degrades in production. The SRE on call has no idea who owns it, what healthy looks like, or why the alerts aren't useful. The platform worked. The deployment succeeded. The SRE is still doing archaeology instead of debugging. Developer platforms reduce friction for developers — golden paths, self-service workflows, automated deployments. All stop at deployment. Ownership, SLOs, meaningful alert thresholds — none are required outputs. So they don't exist when someone needs them most. With AI-assisted development, this gap is getting worse. More services ship faster, with less tribal knowledge baked in. The developer who wrote it may not fully understand it. The SRE inheriting it definitely doesn't. The fix isn't better tooling or more runbooks. It starts at the platform — treating operational context as a required output of every deployment, not an optional annotation added later. Attendees leave with a concrete view of what that looks like, and a starting point for closing the gap between developer experience and operator experience in their own platform.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
               
             </div>
           </div>
@@ -842,17 +842,17 @@
             <div class="meta">
               <h4 class="time mb-3">14:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Rajani Ekunde.png" alt=""></a>
-                <div class="name">Rajani Ekunde</div>
+                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Praveen Singampalli.png" alt=""></a>
+                <div class="name">Praveen Singampalli</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">From Chaos to Control: Guardrails for AI-Driven SRE Systems with Google Cloud</a>
+                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">From Reactive Ops to Agentic Reliability: Integrating SRE Systems with AI for Autonomous Operations</a>
               </h3>
-              <div class="location mb-3">Okta</div>
-              <div class="desc schedule-abstract">Debugging containerized applications often requires intrusive access, restarts, or adding instrumentation—impacting production systems. In this talk, I’ll demonstrate how eBPF enables deep, real-time visibility into Docker workloads without modifying containers or code. We’ll explore how to trace system calls, monitor network activity, and diagnose performance issues directly from the host. Through practical scenarios, you’ll learn how SREs can debug faster, reduce downtime, and gain production-level insights without disrupting running services.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
+              <div class="location mb-3">HeyDevOps</div>
+              <div class="desc schedule-abstract">Modern SRE teams are surrounded by powerful tools—monitoring platforms, CI/CD pipelines, ticketing systems, cloud infrastructure, incident management suites, and observability stacks. Yet, despite this ecosystem, engineers still spend countless hours correlating alerts, troubleshooting incidents, and executing repetitive operational workflows. This session explores how AI-driven integrations are transforming traditional SRE practices into intelligent, autonomous reliability systems. Through real-world operational scenarios, we will demonstrate how AI can seamlessly integrate with observability platforms, Kubernetes environments, cloud services, deployment pipelines, and support systems to reduce toil, accelerate incident response, and improve operational decision-making. The session will showcase how intelligent agents can analyze telemetry, correlate incidents across systems, recommend remediation steps, automate runbooks, and proactively prevent outages before they impact users. As organizations move toward “Agentic SRE,” this talk provides a practical blueprint for integrating AI into existing reliability engineering workflows without replacing the human expertise at the center of operations. Attendees will learn how to build scalable AI-assisted SRE ecosystems, codify operational intelligence into reusable workflows, and create smarter, self-healing infrastructure strategies for the future of reliability engineering.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
               
             </div>
           </div>
@@ -877,17 +877,17 @@
             <div class="meta">
               <h4 class="time mb-3">15:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Chakravarthy Komaravolu.png" alt=""></a>
-                <div class="name">Chakravarthy Komaravolu</div>
+                <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Rajani Ekunde.png" alt=""></a>
+                <div class="name">Rajani Ekunde</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Addressing the gaps between theoretical promises vs practical outcomes of SRE practice</a>
+                <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">From Chaos to Control: Guardrails for AI-Driven SRE Systems with Google Cloud</a>
               </h3>
-              <div class="location mb-3">Tech Mahindra</div>
-              <div class="desc schedule-abstract">Addressing the gap between Site Reliability Engineering (SRE) theory and practical outcomes is highly critical. It directly determines whether SRE acts as an engine for velocity and resilience or decays into a glorified "ops team". Failing to address this divide leads to rampant team burnout, ballooning technical debt, and misaligned business goals.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+              <div class="location mb-3">Okta</div>
+              <div class="desc schedule-abstract">Debugging containerized applications often requires intrusive access, restarts, or adding instrumentation—impacting production systems. In this talk, I’ll demonstrate how eBPF enables deep, real-time visibility into Docker workloads without modifying containers or code. We’ll explore how to trace system calls, monitor network activity, and diagnose performance issues directly from the host. Through practical scenarios, you’ll learn how SREs can debug faster, reduce downtime, and gain production-level insights without disrupting running services.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
               
             </div>
           </div>
@@ -1058,8 +1058,8 @@
             <td class="time-cell">10:30</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">SENTINEL - Autonomous Multi-Agent SRE Brain for Kubernetes Incident Diagnosis & Human-Gated Remediation</a>
-              <div class="speaker-info">Sathpal Singh <span class="affiliation">• UBS</span></div>
+              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Addressing the gaps between theoretical promises vs practical outcomes of SRE practice</a>
+              <div class="speaker-info">Chakravarthy Komaravolu <span class="affiliation">• Tech Mahindra</span></div>
 
             </td>
           </tr>
@@ -1078,8 +1078,8 @@
             <td class="time-cell">11:00</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">App aware infra, Infra aware app</a>
-              <div class="speaker-info">Anush Arvind & Keerthivaasan K <span class="affiliation">• Freshworks</span></div>
+              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">SENTINEL - Autonomous Multi-Agent SRE Brain for Kubernetes Incident Diagnosis & Human-Gated Remediation</a>
+              <div class="speaker-info">Sathpal Singh <span class="affiliation">• UBS</span></div>
 
             </td>
           </tr>
@@ -1098,8 +1098,8 @@
             <td class="time-cell">11:30</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Memory Management for SRE Agents</a>
-              <div class="speaker-info">Dipesh Mittal <span class="affiliation">• Doctor Droid</span></div>
+              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">App aware infra, Infra aware app</a>
+              <div class="speaker-info">Anush Arvind & Keerthivaasan K <span class="affiliation">• Freshworks</span></div>
 
             </td>
           </tr>
@@ -1137,8 +1137,8 @@
             <td class="time-cell">13:00</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Old Dog, New Tricks: SREs Catching Up To AI-defined Ops</a>
-              <div class="speaker-info">Ram Iyengar <span class="affiliation">• OpenSSF</span></div>
+              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Memory Management for SRE Agents</a>
+              <div class="speaker-info">Dipesh Mittal <span class="affiliation">• Doctor Droid</span></div>
 
             </td>
           </tr>
@@ -1157,8 +1157,8 @@
             <td class="time-cell">13:30</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Why Your Developer Platform Is Making Your SRE's Life Harder</a>
-              <div class="speaker-info">Atulpriya Sharma <span class="affiliation">• Improving</span></div>
+              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Old Dog, New Tricks: SREs Catching Up To AI-defined Ops</a>
+              <div class="speaker-info">Ram Iyengar <span class="affiliation">• OpenSSF</span></div>
 
             </td>
           </tr>
@@ -1177,8 +1177,8 @@
             <td class="time-cell">14:00</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">From Reactive Ops to Agentic Reliability: Integrating SRE Systems with AI for Autonomous Operations</a>
-              <div class="speaker-info">Praveen Singampalli <span class="affiliation">• HeyDevOps</span></div>
+              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Why Your Developer Platform Is Making Your SRE's Life Harder</a>
+              <div class="speaker-info">Atulpriya Sharma <span class="affiliation">• Improving</span></div>
 
             </td>
           </tr>
@@ -1197,8 +1197,8 @@
             <td class="time-cell">14:30</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">From Chaos to Control: Guardrails for AI-Driven SRE Systems with Google Cloud</a>
-              <div class="speaker-info">Rajani Ekunde <span class="affiliation">• Okta</span></div>
+              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">From Reactive Ops to Agentic Reliability: Integrating SRE Systems with AI for Autonomous Operations</a>
+              <div class="speaker-info">Praveen Singampalli <span class="affiliation">• HeyDevOps</span></div>
 
             </td>
           </tr>
@@ -1236,8 +1236,8 @@
             <td class="time-cell">15:30</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Addressing the gaps between theoretical promises vs practical outcomes of SRE practice</a>
-              <div class="speaker-info">Chakravarthy Komaravolu <span class="affiliation">• Tech Mahindra</span></div>
+              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">From Chaos to Control: Guardrails for AI-Driven SRE Systems with Google Cloud</a>
+              <div class="speaker-info">Rajani Ekunde <span class="affiliation">• Okta</span></div>
 
             </td>
           </tr>
@@ -1309,7 +1309,7 @@
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Anush Arvind & Keerthivaasan K.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Anush Arvind & Keerthivaasan K.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Anush Arvind<br>&amp; Keerthivaasan K</h5>
             <div class="card-text mb-3">
@@ -1335,7 +1335,7 @@
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Atulpriya Sharma.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Atulpriya Sharma.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Atulpriya Sharma</h5>
             <div class="card-text mb-3">
@@ -1361,7 +1361,7 @@
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Chakravarthy Komaravolu.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Chakravarthy Komaravolu.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Chakravarthy Komaravolu</h5>
             <div class="card-text mb-3">
@@ -1387,7 +1387,7 @@
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Dipesh Mittal.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Dipesh Mittal.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Dipesh Mittal</h5>
             <div class="card-text mb-3">
@@ -1413,7 +1413,7 @@
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Praveen Singampalli.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Praveen Singampalli.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Praveen Singampalli</h5>
             <div class="card-text mb-3">
@@ -1439,7 +1439,7 @@
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Rajani Ekunde.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Rajani Ekunde.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Rajani Ekunde</h5>
             <div class="card-text mb-3">
@@ -1465,7 +1465,7 @@
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Ram Iyengar.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Ram Iyengar.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Ram Iyengar</h5>
             <div class="card-text mb-3">
@@ -1491,7 +1491,7 @@
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Sathpal Singh.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Sathpal Singh.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Sathpal Singh</h5>
             <div class="card-text mb-3">
@@ -1731,6 +1731,49 @@
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Chakravarthy Komaravolu.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Chakravarthy Komaravolu</h2>
+                          <div class="meta mb-2">Tech Mahindra</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/chakravarthy-komaravolu-115a9313/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Addressing the gaps between theoretical promises vs practical outcomes of SRE practice</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Addressing the gap between Site Reliability Engineering (SRE) theory and practical outcomes is highly critical. It directly determines whether SRE acts as an engine for velocity and resilience or decays into a glorified "ops team". Failing to address this divide leads to rampant team burnout, ballooning technical debt, and misaligned business goals.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Chakravarthy (Chakri) is a seasoned technology leader with 27 years of extensive experience in the IT industry, spanning project delivery, product engineering, technology solutions, and large-scale practice development.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 3 -->
+<div class="modal modal-speaker modal-speaker-3" id="modal-speaker-3" tabindex="-1" role="dialog" aria-labelledby="speaker-3-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
                           <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Sathpal Singh.png" alt="" />
                       </div>
 
@@ -1765,8 +1808,8 @@
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 3 -->
-<div class="modal modal-speaker modal-speaker-3" id="modal-speaker-3" tabindex="-1" role="dialog" aria-labelledby="speaker-3-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 4 -->
+<div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -1808,8 +1851,8 @@
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 4 -->
-<div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 5 -->
+<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -1851,8 +1894,8 @@
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 5 -->
-<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 6 -->
+<div class="modal modal-speaker modal-speaker-6" id="modal-speaker-6" tabindex="-1" role="dialog" aria-labelledby="speaker-6-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -1894,8 +1937,8 @@
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 6 -->
-<div class="modal modal-speaker modal-speaker-6" id="modal-speaker-6" tabindex="-1" role="dialog" aria-labelledby="speaker-6-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 7 -->
+<div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -1937,8 +1980,8 @@
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 7 -->
-<div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 8 -->
+<div class="modal modal-speaker modal-speaker-8" id="modal-speaker-8" tabindex="-1" role="dialog" aria-labelledby="speaker-8-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -1980,8 +2023,8 @@
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 8 -->
-<div class="modal modal-speaker modal-speaker-8" id="modal-speaker-8" tabindex="-1" role="dialog" aria-labelledby="speaker-8-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 9 -->
+<div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -2016,51 +2059,6 @@
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Rajani is a DevOps and Site Reliability Engineer (SRE) with over 4 years of experience in cloud infrastructure, automation, and platform engineering. She is a Google Developer Expert (GDE) for Google Cloud, a Docker Captain, and a Women Techmakers (WTM) Ambassador, actively contributing to the global tech community. Rajani is a frequent speaker at major cloud and DevOps conferences, where she shares practical insights on modern infrastructure and emerging technologies. Passionate about knowledge sharing, Rajani aims to inspire and empower developers to build scalable, reliable systems.</p></p>
-              </div>
-
-          </div><!--//modal-body-->
-      </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
-
-<!-- Modal Speaker 9 -->
-<div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-body p-0">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <div class="theme-bg-light p-5">
-                  <div class="row">
-                      <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Chakravarthy Komaravolu.png" alt="" />
-                      </div>
-
-                      <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Chakravarthy Komaravolu</h2>
-                          <div class="meta mb-2">Tech Mahindra</div>
-                          <ul class="social-list list-inline mb-0">
-                            
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/chakravarthy-komaravolu-115a9313/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            
-                            
-                          </ul><!--//social-list-->
-                      </div><!--//col-->
-                  </div><!--//row-->
-              </div>
-              <div class="talk-title-bar">Addressing the gaps between theoretical promises vs practical outcomes of SRE practice</div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Addressing the gap between Site Reliability Engineering (SRE) theory and practical outcomes is highly critical. It directly determines whether SRE acts as an engine for velocity and resilience or decays into a glorified "ops team". Failing to address this divide leads to rampant team burnout, ballooning technical debt, and misaligned business goals.</p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <p></p>
-              </div>
-
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Chakravarthy (Chakri) is a seasoned technology leader with 27 years of extensive experience in the IT industry, spanning project delivery, product engineering, technology solutions, and large-scale practice development.
-He is an established Senior Cloud Solutions Architect, Practice Leader, and academically holds a Master of Engineering degree from the Indian Institute of Science, Bangalore, reflecting a strong foundation of technical excellence.
-A highly differentiated professional, he brings a unique combination of deep technical expertise, business acumen, strategic thinking, and a strong consulting mindset.</p></p>
               </div>
 
           </div><!--//modal-body-->
