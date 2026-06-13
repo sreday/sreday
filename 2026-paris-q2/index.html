@@ -740,14 +740,37 @@ In this talk, we’ll explore why decoupling observability architectures is beco
             <div class="meta">
               <h4 class="time mb-3">11:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Amine Saboni.png" alt=""></a>
+                <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Piotr Zaniewski.png" alt=""></a>
+                <div class="name">Piotr Zaniewski</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Three Minutes Up, Thirty Seconds Down: Disposable GPU Clusters for AI Devs</a>
+              </h3>
+              <div class="location mb-3">vCluster</div>
+              <div class="desc schedule-abstract">AI developers want a GPU the way they want a kind cluster: kubectl apply and it's there, kubectl delete and it's gone, no console in between. The cloud default punishes that: provisioning latency, sticky nodes, per-tenant security setup. We give developers a kubectl context with an auto-provisioning GPU under it: a T4 or L4 in ~3 minutes, gone in ~30 seconds, zero infra to touch.
+
+Live demo: a dev creates a GPU-template tenant cluster, applies a pod, and a node auto-provisions in GCP. The pod runs, is deleted, the node disappears 30s later. Under the hood is a four-piece contract: tenant Kubernetes for isolated RBAC and node pools; Karpenter for auto-provisioning; an idle policy (consolidateAfter 30s) collapses nodes on idle, not on cluster delete; and a tunnel keeps the experience kubectl-native, not console-native.
+
+We close with the failure modes (Karpenter template/provider drift, NodeProvider creds silently disabled) and the GitOps boundary that keeps multi-team setups intact.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Amine Saboni.png" alt=""></a>
                 <div class="name">Amine Saboni</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"> Scale your GPU workloads with Karpenter and Argo Workflows</a>
+                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"> Scale your GPU workloads with Karpenter and Argo Workflows</a>
               </h3>
               <div class="location mb-3">Pruna AI</div>
               <div class="desc schedule-abstract">Running ML workloads on Kubernetes can be a burden to manage, especially when the usages tend to diversify. Batch inference will involve different constraints as experimentation, evaluation or serving ML models for user-facing applications.
@@ -757,27 +780,7 @@ In this talk, we’ll explore why decoupling observability architectures is beco
 * How to efficiently scale down to 0, when no GPUs are needed ?
 
 To answer those questions, we will see in this talk how combine the standard orchestration approach of Argo Workflows with the autoscaling super powers of Karpenter, a tool developed by AWS and given back to the community. We'll dig into the difficulties of scaling GPUs and how Karpenter solves them, with a return of experience of Pruna's computing platform.
-<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">11:30</h4>
-              <div class="profile">
-                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Paul-Henri Pillet.png" alt=""></a>
-                <div class="name">Paul-Henri Pillet</div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Don't RTFM, use AI instead for your first Gatling tests!</a>
-              </h3>
-              <div class="location mb-3">Gatling</div>
-              <div class="desc schedule-abstract">AI has dramatically reduced the complexity of starting a new code project. Today, you don't read the docs first - you ask your coding agent.
-In this talk, we'll show how this applies to performance testing. How developers with zero Gatling experience can write realistic load tests in minutes, using AI as their entry point instead of documentation, and why this changes how teams adopt performance testing altogether.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
               
             </div>
           </div>
@@ -786,21 +789,18 @@ In this talk, we'll show how this applies to performance testing. How developers
             <div class="meta">
               <h4 class="time mb-3">12:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Piotr Zaniewski.png" alt=""></a>
-                <div class="name">Piotr Zaniewski</div>
+                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Paul-Henri Pillet.png" alt=""></a>
+                <div class="name">Paul-Henri Pillet</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Three Minutes Up, Thirty Seconds Down: Disposable GPU Clusters for AI Devs</a>
+                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Don't RTFM, use AI instead for your first Gatling tests!</a>
               </h3>
-              <div class="location mb-3">vCluster</div>
-              <div class="desc schedule-abstract">AI developers want a GPU the way they want a kind cluster: kubectl apply and it's there, kubectl delete and it's gone, no console in between. The cloud default punishes that: provisioning latency, sticky nodes, per-tenant security setup. We give developers a kubectl context with an auto-provisioning GPU under it: a T4 or L4 in ~3 minutes, gone in ~30 seconds, zero infra to touch.
-
-Live demo: a dev creates a GPU-template tenant cluster, applies a pod, and a node auto-provisions in GCP. The pod runs, is deleted, the node disappears 30s later. Under the hood is a four-piece contract: tenant Kubernetes for isolated RBAC and node pools; Karpenter for auto-provisioning; an idle policy (consolidateAfter 30s) collapses nodes on idle, not on cluster delete; and a tunnel keeps the experience kubectl-native, not console-native.
-
-We close with the failure modes (Karpenter template/provider drift, NodeProvider creds silently disabled) and the GitOps boundary that keeps multi-team setups intact.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              <div class="location mb-3">Gatling</div>
+              <div class="desc schedule-abstract">AI has dramatically reduced the complexity of starting a new code project. Today, you don't read the docs first - you ask your coding agent.
+In this talk, we'll show how this applies to performance testing. How developers with zero Gatling experience can write realistic load tests in minutes, using AI as their entry point instead of documentation, and why this changes how teams adopt performance testing altogether.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
               
             </div>
           </div>
@@ -1265,8 +1265,8 @@ Walid will also share practical patterns for safely operating AI systems in prod
             <td class="time-cell">11:00</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"> Scale your GPU workloads with Karpenter and Argo Workflows</a>
-              <div class="speaker-info">Amine Saboni <span class="affiliation">• Pruna AI</span></div>
+              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">Three Minutes Up, Thirty Seconds Down: Disposable GPU Clusters for AI Devs</a>
+              <div class="speaker-info">Piotr Zaniewski <span class="affiliation">• vCluster</span></div>
 
             </td>
           </tr>
@@ -1285,8 +1285,8 @@ Walid will also share practical patterns for safely operating AI systems in prod
             <td class="time-cell">11:30</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Don't RTFM, use AI instead for your first Gatling tests!</a>
-              <div class="speaker-info">Paul-Henri Pillet <span class="affiliation">• Gatling</span></div>
+              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"> Scale your GPU workloads with Karpenter and Argo Workflows</a>
+              <div class="speaker-info">Amine Saboni <span class="affiliation">• Pruna AI</span></div>
 
             </td>
           </tr>
@@ -1305,8 +1305,8 @@ Walid will also share practical patterns for safely operating AI systems in prod
             <td class="time-cell">12:00</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Three Minutes Up, Thirty Seconds Down: Disposable GPU Clusters for AI Devs</a>
-              <div class="speaker-info">Piotr Zaniewski <span class="affiliation">• vCluster</span></div>
+              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Don't RTFM, use AI instead for your first Gatling tests!</a>
+              <div class="speaker-info">Paul-Henri Pillet <span class="affiliation">• Gatling</span></div>
 
             </td>
           </tr>
@@ -1616,7 +1616,7 @@ Walid will also share practical patterns for safely operating AI systems in prod
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Amine Saboni.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Amine Saboni.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Amine Saboni</h5>
             <div class="card-text mb-3">
@@ -1824,7 +1824,7 @@ Walid will also share practical patterns for safely operating AI systems in prod
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Paul-Henri Pillet.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Paul-Henri Pillet.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Paul-Henri Pillet</h5>
             <div class="card-text mb-3">
@@ -1876,7 +1876,7 @@ Walid will also share practical patterns for safely operating AI systems in prod
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Piotr Zaniewski.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Piotr Zaniewski.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Piotr Zaniewski</h5>
             <div class="card-text mb-3">
@@ -2145,6 +2145,51 @@ Walid will also share practical patterns for safely operating AI systems in prod
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Piotr Zaniewski.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Piotr Zaniewski</h2>
+                          <div class="meta mb-2">vCluster</div>
+                          <ul class="social-list list-inline mb-0">
+                            <li class="list-inline-item"><a  href="https://twitter.com/Piotr1215"><i class="fab fa-twitter fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/piotr-zaniewski/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Three Minutes Up, Thirty Seconds Down: Disposable GPU Clusters for AI Devs</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>AI developers want a GPU the way they want a kind cluster: kubectl apply and it's there, kubectl delete and it's gone, no console in between. The cloud default punishes that: provisioning latency, sticky nodes, per-tenant security setup. We give developers a kubectl context with an auto-provisioning GPU under it: a T4 or L4 in ~3 minutes, gone in ~30 seconds, zero infra to touch.</p>
+<p>Live demo: a dev creates a GPU-template tenant cluster, applies a pod, and a node auto-provisions in GCP. The pod runs, is deleted, the node disappears 30s later. Under the hood is a four-piece contract: tenant Kubernetes for isolated RBAC and node pools; Karpenter for auto-provisioning; an idle policy (consolidateAfter 30s) collapses nodes on idle, not on cluster delete; and a tunnel keeps the experience kubectl-native, not console-native.</p>
+<p>We close with the failure modes (Karpenter template/provider drift, NodeProvider creds silently disabled) and the GitOps boundary that keeps multi-team setups intact.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>An active contributor to OpenSource projects on GitHub, blogger and content creator, focusing on practical, scalable solutions in cloud-native environments. DevOps and Platform Engineering practitioner and advocate. Visit: <a href="cloudrumble.net">cloudrumble.net</a></p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 4 -->
+<div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
                           <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Amine Saboni.png" alt="" />
                       </div>
 
@@ -2185,8 +2230,8 @@ Walid will also share practical patterns for safely operating AI systems in prod
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 4 -->
-<div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 5 -->
+<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -2222,51 +2267,6 @@ In this talk, we'll show how this applies to performance testing. How developers
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Paul-Henri Pillet is the CEO of Gatling, one of France’s most successful open source technology companies and a leading provider of high performance load testing solutions. Since joining Gatling in 2014, he has helped grow the platform into a globally trusted tool used by hundreds of thousands of organizations to ensure the scalability and reliability of their applications. Based in Paris, Paul-Henri combines a background in business, public policy, and entrepreneurship, with degrees from HEC Paris and Freie Universität Berlin. </p></p>
-              </div>
-
-          </div><!--//modal-body-->
-      </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
-
-<!-- Modal Speaker 5 -->
-<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-body p-0">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <div class="theme-bg-light p-5">
-                  <div class="row">
-                      <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Piotr Zaniewski.png" alt="" />
-                      </div>
-
-                      <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Piotr Zaniewski</h2>
-                          <div class="meta mb-2">vCluster</div>
-                          <ul class="social-list list-inline mb-0">
-                            <li class="list-inline-item"><a  href="https://twitter.com/Piotr1215"><i class="fab fa-twitter fa-fw"></i></a></li>
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/piotr-zaniewski/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            
-                            
-                          </ul><!--//social-list-->
-                      </div><!--//col-->
-                  </div><!--//row-->
-              </div>
-              <div class="talk-title-bar">Three Minutes Up, Thirty Seconds Down: Disposable GPU Clusters for AI Devs</div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>AI developers want a GPU the way they want a kind cluster: kubectl apply and it's there, kubectl delete and it's gone, no console in between. The cloud default punishes that: provisioning latency, sticky nodes, per-tenant security setup. We give developers a kubectl context with an auto-provisioning GPU under it: a T4 or L4 in ~3 minutes, gone in ~30 seconds, zero infra to touch.</p>
-<p>Live demo: a dev creates a GPU-template tenant cluster, applies a pod, and a node auto-provisions in GCP. The pod runs, is deleted, the node disappears 30s later. Under the hood is a four-piece contract: tenant Kubernetes for isolated RBAC and node pools; Karpenter for auto-provisioning; an idle policy (consolidateAfter 30s) collapses nodes on idle, not on cluster delete; and a tunnel keeps the experience kubectl-native, not console-native.</p>
-<p>We close with the failure modes (Karpenter template/provider drift, NodeProvider creds silently disabled) and the GitOps boundary that keeps multi-team setups intact.</p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <p></p>
-              </div>
-
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>An active contributor to OpenSource projects on GitHub, blogger and content creator, focusing on practical, scalable solutions in cloud-native environments. DevOps and Platform Engineering practitioner and advocate. Visit: <a href="cloudrumble.net">cloudrumble.net</a></p></p>
               </div>
 
           </div><!--//modal-body-->
