@@ -260,22 +260,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">Release Evidence, Not Release Dates: Turning reliability signals into release decisions before customers feel the failure</h1>
+    <h1 class="section-heading text-center mb-3">SENTINEL - Autonomous Multi-Agent SRE Brain for Kubernetes Incident Diagnosis & Human-Gated Remediation</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Amit Kothari.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Sathpal Singh.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Amit Kothari</h5>
+            <h5 class="card-title mb-2">Sathpal Singh</h5>
             <div class="card-text mb-3">
-              <div class="meta">Razorpay</div>
+              <div class="meta">UBS</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/amitkpm/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/sathpalsingh/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -289,16 +289,14 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>You have the SLOs, dashboards, and canaries. Risky releases can still slip through. Google SRE found that roughly 70% of outages come from changes to a live system, so the problem is rarely missing monitoring. It is that reliability signals do not become release decisions early enough to matter.</p>
-<p>This talk reframes production readiness for high-stakes distributed systems as release evidence: not a date on a calendar, but a decision you can defend at 2 AM. From an operator’s seat alongside SRE, engineering, and product, I will share a practical model covering signal-to-decision contracts, error budget policy as a release input, exercised rollback, and a named blast radius. I will walk through one generalized pattern and leave the audience with five questions to ask before the next launch.</p>
-<p>All examples are composite and generalized.</p></p>
+                <p><p>PROBLEM On-call SREs drown in alerts. A single Kubernetes incident throws signals across pods, app runtimes, dependencies (Kafka/Redis/DB), traces, recent deploys and history and a human has to correlate all of it under pressure, while most pages are noise. Single-LLM "AIOps" tools hallucinate confident root causes from one slice of data and erode trust. SENTINEL SENTINEL is an autonomous, multi-agent SRE brain that reasons about production incidents the way a senior on-call engineer does but in parallel and with discipline. A fleet of SEVEN specialist agents each independently investigates ONLY its own data slice and votes on the failure signatures it can justify: • Kubernetes (pods, OOMKills, CrashLoops, scheduling, probes) • App Runtime (logs, JVM/Go/Node runtime errors) • Dependency (Kafka lag, Redis/DB saturation, downstream APIs) • Observability (golden signals, SLO burn, traces) • Change Correlation ("what changed right before this started?") • Runbook (matches vetted procedures) • Historical Memory (recurrence of past incidents) THE MULTI-SIGNAL RULE (the core reasoning idea) An Evidence Correlation Engine confirms a signature ONLY when ≥2 INDEPENDENT telemetry agents agree on it. One agent shouting is noise; two independent agents agreeing is signal worth paging a human for. This single rule is what makes the system trustworthy and kills false positives every confirmed cause carries its corroboration count and the agents that voted. It then ranks root-cause hypotheses with a precise confidence qualifier (confirmed / most-likely / possible / needs-more-evidence), proposes remediations pulled ONLY from a vetted knowledge base (never free-form), risk-classifies them, and forces human approval for anything medium-risk or above. The agent proposes; the human disposes. SENTINEL never auto-closes or runs high-risk changes alone. MICROSOFT IQ - FOUNDRY IQ Foundry IQ is SENTINEL's knowledge &amp; grounding layer. The Historical Memory and Runbook agents ground their reasoning through Foundry IQ's agentic retrieval over the organization's incident history, runbooks and service docs, so diagnoses are grounded in what THIS org has actually seen and fixed, not generic web knowledge. Every resolved incident is written back, so the system compounds institutional knowledge: the next similar incident is recognized instantly. HOW IT'S BUILT (real, running system not a mock) • A distributed microservices system: a gateway, an orchestrator that runs the diagnostic saga, a 7-agent fan-out over a Redis Streams event bus (one consumer group per role), and a stateful memory tier deployable as a right-sized 14-container stack or a full per-stage split. • Full OpenTelemetry instrumentation across every service → an LGTM stack (Tempo/Loki/Prometheus/ Grafana). Trace context propagates across the async bus, so one /analyze is a single connected distributed trace; per-agent latency, anomalies and corroboration are live Grafana metrics. • Event-driven ingestion: point Alertmanager or a Kubernetes event stream at it and the fleet auto-triages, debounced against flapping. • A live "mission-control" UI: a real incident lights up each component of the pipeline as it executes every stage activates, stays lit, shows its real findings, and is clickable for a full drill-down (agent evidence, the correlation table, the verdict, the gated remediations, or the failure error). An interactive knowledge graph of services, dependencies, teams and incidents. A system-architecture view of how it all connects.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Amit Kothari is a Technical Program Management leader with 13+ years across fintech, banking, platform engineering, and large-scale distributed systems. His work sits at the seam where reliability signals become release decisions: production readiness, release governance, incident learning, and operational risk in high-stakes environments. He partners closely with SRE, platform, product, and engineering teams to make operational risk visible before customer impact and to help complex engineering programs move from status reporting to defensible release decisions.</p></p>
+                <p><p>A Multi Cloud, AI &amp; Observability Architect specializing in cloud-native observability solutions with a deep understanding of distributed systems and modern DevOps practices. Key contributions in automating infrastructure operations, improving self-service workflows for developers, extending platform functionalities and accelerating software delivery velocity through effective toolchain and workflow enhancements.</p></p>
               </div>
 
               
