@@ -258,7 +258,7 @@
   <script>
     /* ======= Countdown ========= */
     // set the date we're counting down to
-    var target_date = new Date("2026-06-25T09:30:00+01:00").getTime();
+    var target_date = new Date("2026-06-25T10:00:00+01:00").getTime();
      
     // variables for time units
     var days, hours, minutes, seconds;
@@ -472,10 +472,813 @@
 </style>
 
 
+<style>
+  /* Track navigation */
+  .track-nav {
+    padding: 0.75rem 0;
+    margin-bottom: 1.5rem;
+  }
+  .track-nav-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .track-nav-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .track-nav-links a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--brand);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+  }
+  .track-nav-links a:hover {
+    background: var(--brand-light);
+    color: white;
+  }
+  .view-toggle-link {
+    color: var(--brand);
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--brand);
+    border-radius: 4px;
+    transition: all 0.2s;
+    min-width: 10rem;
+    text-align: center;
+  }
+  .view-toggle-link:hover {
+    background: var(--brand);
+    color: white;
+  }
+  .view-toggle-link.active {
+    background: var(--brand);
+    color: white;
+  }
+  /* Table view */
+  .schedule-table-view { display: none; }
+  .schedule-table-view.active { display: block; }
+  .schedule-timeline-view { display: block; }
+  .schedule-timeline-view.hidden { display: none; }
+  .schedule-grid-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+    table-layout: fixed;
+  }
+  .schedule-grid-table th {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: white;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .schedule-grid-table th:first-child {
+    width: 60px;
+  }
+  .schedule-grid-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--brand-lightest);
+    vertical-align: top;
+  }
+  .schedule-grid-table td.merged-cell {
+    text-align: center;
+    font-weight: 500;
+    color: #555;
+    background: var(--brand-lightest);
+  }
+  .schedule-grid-table .time-cell {
+    color: var(--brand);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .schedule-grid-table .talk-cell a {
+    color: #222;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .schedule-grid-table .talk-cell a:hover {
+    color: var(--brand);
+  }
+  .schedule-grid-table .speaker-info {
+    color: #444;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+  .schedule-grid-table .speaker-info .affiliation {
+    color: #666;
+  }
+  .schedule-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  .schedule-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.8rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .schedule-meta-divider {
+    color: #ccc;
+    font-weight: 300;
+  }
+  /* Track section header */
+  .track-section-header {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    margin: 2rem 0 0 0;
+    border-radius: 4px 4px 0 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  .track-section-header:first-of-type {
+    margin-top: 0;
+  }
+
+  .schedule-section.theme-bg-light { background-color: #f0faf5 !important; }
+</style>
+
 <section id="schedule" class="schedule-section section theme-bg-light">
   <div class="container">
-    <h2 class="section-heading text-center mb-5">Schedule</h2>
-    <h4 class="section-heading text-center mb-5">Coming soon</h4>
+    <h2 class="section-heading text-center mb-4">Schedule</h2>
+
+    <!-- Schedule meta info -->
+    <div class="schedule-meta">
+      <span class="schedule-meta-item">June 25, 2026</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">single track</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">10AM - 4:30PM</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">Lisbon, in-person</span>
+    </div>
+
+
+    
+
+    <!-- Track navigation -->
+    <div class="track-nav">
+      <div class="track-nav-inner">
+
+        <span class="view-toggle-link" id="view-toggle-0" onclick="toggleView(0)">view as table</span>
+      </div>
+    </div>
+
+    <!-- Timeline View (default) -->
+    <div id="timeline-view-0" class="schedule-timeline-view">
+
+      <div class="track-section-header" id="track-0-1">main room &bull; Track 1</div>
+      <div class="schedule-tab-content">
+        <div class="tab-pane active">
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle mb-2" src="../speakers/Ralph Bird.png" alt=""></a>
+                <div class="name">Ralph Bird</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">AI Coded It, AI Shipped It, Who Owns It? The Future of SREs in Agentic Operations</a>
+              </h3>
+              <div class="location mb-3">PagerDuty</div>
+              <div class="desc schedule-abstract">As AI agents increasingly generate and deploy code into production, the traditional DevOps mantra "Code it. Ship it. Own it." is being disrupted. In this talk, I will explore how agentic AI is changing the software development lifecycle and what happens when AI “owns” large portions of the pipeline.
+
+Code development, operational knowledge and even incident response are increasingly being delegated to AI systems, but that doesn't guarantee infallibility! What happens when it breaks and nobody has seen the code before?
+
+I will examine how AI is already changing both software engineering and SRE practices, where the advances are effective and where human expertise remains critical. I will challenge you to rethink how we do service ownership, what skills are required for SREs in the agentic age, and how to collaborate with AI to ensure resilient, trustworthy systems.
+
+Is the DevOps revolution over, or are we simply at its next frontier?<a class="schedule-abstract-read-more" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Coffee break</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle mb-2" src="../speakers/Tiago Costa.png" alt=""></a>
+                <div class="name">Tiago Costa</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Reliability Patterns for AI-Powered Apps in Azure AI Foundry</a>
+              </h3>
+              <div class="location mb-3">Azure Cloud & AI Architect and Advisor</div>
+              <div class="desc schedule-abstract">AI applications promise transformative capabilities but introduce unique failure modes, such as hallucinations, latency spikes, data drift, and cost overruns, that traditional SRE practices don't fully address. This session explores proven reliability patterns, retries with exponential backoff, circuit breakers, graceful degradation, and human-in-the-loop guardrails tailored for Microsoft Foundry workloads, where observability covers agent traces, quality metrics, and safety evaluations. You'll see live demos of implementing these in Foundry projects using zone-redundant storage, multi-region failover, and built-in content filters to achieve production-grade resilience while maintaining trust and compliance.<a class="schedule-abstract-read-more" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/David Jacovkis.png" alt=""></a>
+                <div class="name">David Jacovkis</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">DevOps in Space: Lessons from Low Earth Orbit</a>
+              </h3>
+              <div class="location mb-3">Sateliot</div>
+              <div class="desc schedule-abstract">Remember when you knew all your servers by name and deployed changes with a single SSH command? Now imagine doing that when your link comes in 10-minute windows every few hours, and bandwidth is a precious commodity measured in kbps. Welcome to DevOps in Space. At Sateliot, our Infrastructure & Software Engineering team works at the intersection of aerospace, telecommunications and software. We build modern distributed systems and then send them to an environment where normal expectations -low latency, immediate feedback, up-to-date systems- simply don’t apply. In this talk I’ll give a high-level tour of the challenges that make space and telco different: intermittent and low-bandwidth connectivity, long feedback loops, constrained devices, and the cultural gaps between aerospace, telco and software teams. I'll also share some adaptations that allow us to apply some of the DevOps processes and tools that have become industry standards.<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">12:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Rita Lopes.png" alt=""></a>
+                <div class="name">Rita Lopes</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">404: Observability Without Trade-offs Not Found - Until We Built Gigapipe</a>
+              </h3>
+              <div class="location mb-3">Gigapipe</div>
+              <div class="desc schedule-abstract">Every SRE team knows the drill. Prometheus for metrics. Loki for logs. Jaeger or Tempo for traces. Pyroscope bolted on last for profiling. Four services, four storage backends, four things to scale, debug, and pay for. And when an incident hits, you're jumping between all of them trying to correlate signals that were never designed to live together.The trade-off is always the same: observe everything and pay an astronomical bill, or cut costs and fly blind precisely when it matters most. We got tired of it. So we built Gigapipe. Gigapipe is an open-source polyglot observability stack that unifies logs, metrics, traces, and profiles on a single backend, using ClickHouse as the database. It natively implements the industry standards like Prometheus, Loki, Jaeger, Tempo, Pyroscope, and OpenTelemetry APIs, just to name a few. Your existing agents, exporters, and Grafana dashboards work on day one, unchanged. In this talk, we'll cover three things: 1. Why we built it: the real pain that made four services feel unsustainable, 2. How it works: the architecture decisions behind native multi-protocol compatibility on a single storage engine, 3. How you can get involved or run it yourself today: Gigapipe is open-source, under AGPLv3 license, runs as a single binary, and is live in production environments. This is a talk for engineers who've felt the weight of their observability stack and wondered if there's a better way. Spoiler: There is! And you can run it tonight.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">12:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Mauro Morales.png" alt=""></a>
+                <div class="name">Mauro Morales</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">From Boot to Rollback: How Image-Based Operating Systems Change Kubernetes Operations</a>
+              </h3>
+              <div class="location mb-3">Spectro Cloud</div>
+              <div class="desc schedule-abstract">You replace pods instead of patching them. So why is the OS underneath your nodes still the last hand-patched snowflake in an otherwise declarative stack? Image-based operating systems turn nodes into versioned artifacts that can be upgraded and rolled back predictably, reducing drift and making failure recovery part of the platform design rather than an incident-time improvisation. As a Kairos maintainer, I will show how this model works in practice: what remains immutable, what persists, how atomic upgrades and rollback work, and what happens when a node fails to boot. We will then use Kubernetes to drive an upgrade and rollback of an immutable node. Because application reliability is difficult enough without discovering during an incident that no one knows exactly what the node underneath it has become.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Helia Barroso & Iris Dyrmishi.png" alt=""></a>
+                <div class="name">Helia Barroso & Iris Dyrmishi</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Observability Through Users' Eyes and How to Fix the Knowledge Disconnect</a>
+              </h3>
+              <div class="location mb-3">Five9 & Miro</div>
+              <div class="desc schedule-abstract">Logs, metrics and traces nowadays are common words in every engineer's vocabulary, as Observability is everywhere with the rise of OpenTelemetry and improved standards. Instrumentation? No problem. Getting data from any system? Done. But then soon after, things start to fall apart, telemetry piles up unused, cloud bills soar, dashboards rot and alerts confuse even seasoned engineers. Clearly there is something missing. In this talk, Iris and Hélia share some experiences from building Observability platforms, patterns they have discovered of how users interact with telemetry data. From common questions across different teams and companies, pitfalls and also, strategies that empower teams to move from confusion to confidence. So get practical insights to bridge the gap between Observability data and User Knowledge, whether you're building platforms, supporting teams, or trying to make sense of your own telemetry chaos.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Pooria Ghaedi.png" alt=""></a>
+                <div class="name">Pooria Ghaedi</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">AI-Assisted Cloud Troubleshooting</a>
+              </h3>
+              <div class="location mb-3">Miniclip</div>
+              <div class="desc schedule-abstract">Cloud infrastructure incidents are often hard to troubleshoot because the problem is not always visible from the application layer. A service may look healthy, the instances may be running, and the dashboards may not clearly show the issue, but connectivity can still fail because of routing, security rules, DNS, or cloud configuration problems.
+
+
+
+In this talk, I will show how AI-assisted workflows can support SREs and cloud engineers during infrastructure troubleshooting. The focus is not on using AI to replace engineering judgment, but on using it to investigate faster, ask better questions, review configuration, interpret CLI output, and reduce the time spent jumping between documentation, consoles, and logs.
+
+
+
+As a practical demo, I will use AWS MCP servers to investigate a real-world style cloud connectivity issue and work toward the root cause. We will look at what context is useful to give the AI assistant, how MCP can help connect the assistant to AWS documentation and environment information, and where the engineer still needs to validate the output.
+
+
+
+The goal is to give attendees a realistic view of what AI can and cannot do during real infrastructure incidents. The session will focus on practical troubleshooting patterns, safe usage of AI during production-like investigations, and the importance of human validation when dealing with cloud reliability and infrastructure security.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Afgan Isazade.png" alt=""></a>
+                <div class="name">Afgan Isazade</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Your SLO is a Random Variable: AI and the Mathematics of Reliability</a>
+              </h3>
+              <div class="location mb-3">BNP Paribas</div>
+              <div class="desc schedule-abstract">Modern production systems do not behave deterministically. Traffic patterns, deployments, infrastructure changes, user behavior, and operational noise continuously shape the reliability of distributed systems. Yet SLIs, SLAs, and SLOs are often treated as fixed numbers rather than probabilistic systems.
+
+This talk explores how statistical and econometric thinking can improve reliability engineering and operational decision-making. Using practical SRE examples, we will examine how concepts such as probability distributions, confidence intervals, z-scores, t-distributions, and seasonal models help explain uptime behavior, latency anomalies, incident frequency, and alert noise.
+We will also explore how AI and machine learning are becoming operational layers on top of observability platforms through anomaly detection, time-series forecasting, and intelligent interpretation of telemetry data.
+Rather than treating reliability as a static KPI, this session reframes it as a system of statistical inference supported by AI-driven analysis. Attendees will leave with practical ideas for thinking about reliability, alerting, forecasting, and SLO evaluation through the lens of mathematics and modern AI-assisted operations.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Vasil Kulakov.png" alt=""></a>
+                <div class="name">Vasil Kulakov</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Stop Prototyping Start Shipping</a>
+              </h3>
+              <div class="location mb-3">Team Lead, SRE</div>
+              <div class="desc schedule-abstract">Most AI projects never make it past the demo stage. The prototype looks impressive, but once real users, real costs, and real edge cases appear, everything starts breaking down.
+
+In this talk, we’ll go through the practical side of building production-ready LLM systems. We’ll cover how to choose the right models for different tasks, manage context windows without losing coherence, design reliable prompting strategies, and avoid common pitfalls like prompt injection and malformed outputs. The session also explores structured outputs, hybrid memory approaches, feature-based model routing, and ways to build abstractions that work across multiple AI providers.
+
+Rather than focusing on hype, this lecture is about the engineering tradeoffs behind shipping AI products that are fast, affordable, maintainable, and reliable in production.
+
+Expect practical examples, architecture patterns, code snippets, and lessons learned from building real-world LLM workflows beyond the prototype phase.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Wrap up</h3>
+              <div class="location mb-3" style="color:#098dcf;">Scan each other's QR codes & head to a nearby pub!</div>
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Table View -->
+    <div id="table-view-0" class="schedule-table-view">
+      <table class="schedule-grid-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+
+            <th style="width: calc((100% - 60px) / 1)">main room</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">10:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">AI Coded It, AI Shipped It, Who Owns It? The Future of SREs in Agentic Operations</a>
+              <div class="speaker-info">Ralph Bird <span class="affiliation">• PagerDuty</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">10:30</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Coffee break
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">11:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Reliability Patterns for AI-Powered Apps in Azure AI Foundry</a>
+              <div class="speaker-info">Tiago Costa <span class="affiliation">• Azure Cloud & AI Architect and Advisor</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">11:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">DevOps in Space: Lessons from Low Earth Orbit</a>
+              <div class="speaker-info">David Jacovkis <span class="affiliation">• Sateliot</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">12:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">404: Observability Without Trade-offs Not Found - Until We Built Gigapipe</a>
+              <div class="speaker-info">Rita Lopes <span class="affiliation">• Gigapipe</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">12:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">From Boot to Rollback: How Image-Based Operating Systems Change Kubernetes Operations</a>
+              <div class="speaker-info">Mauro Morales <span class="affiliation">• Spectro Cloud</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">13:00</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Lunch & networking
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">14:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Observability Through Users' Eyes and How to Fix the Knowledge Disconnect</a>
+              <div class="speaker-info">Helia Barroso & Iris Dyrmishi <span class="affiliation">• Five9 & Miro</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">14:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">AI-Assisted Cloud Troubleshooting</a>
+              <div class="speaker-info">Pooria Ghaedi <span class="affiliation">• Miniclip</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">15:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Your SLO is a Random Variable: AI and the Mathematics of Reliability</a>
+              <div class="speaker-info">Afgan Isazade <span class="affiliation">• BNP Paribas</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">15:30</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Networking & sponsor crawl
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">16:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Stop Prototyping Start Shipping</a>
+              <div class="speaker-info">Vasil Kulakov <span class="affiliation">• Team Lead, SRE</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">16:30</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Wrap up
+
+            </td>
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+    <script>
+    function toggleView(day) {
+      const timelineView = document.getElementById('timeline-view-' + day);
+      const tableView = document.getElementById('table-view-' + day);
+      const toggleBtn = document.getElementById('view-toggle-' + day);
+      const trackLinks = document.getElementById('track-links-' + day);
+
+      if (tableView.classList.contains('active')) {
+        tableView.classList.remove('active');
+        timelineView.classList.remove('hidden');
+        toggleBtn.textContent = 'view as table';
+        toggleBtn.classList.remove('active');
+        if (trackLinks) trackLinks.style.display = 'flex';
+      } else {
+        tableView.classList.add('active');
+        timelineView.classList.add('hidden');
+        toggleBtn.textContent = 'view as timeline';
+        toggleBtn.classList.add('active');
+        if (trackLinks) trackLinks.style.display = 'none';
+      }
+    }
+    </script>
+
+    
+    <div class="schedule-cta text-center mx-auto mt-4"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+    
   </div>
 </section>
 
@@ -722,16 +1525,6 @@
       </div><!--//col-->
 
       
-
-      
-
-      <div class="col mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h4>More coming soon</h4>
-          </div><!--//card-->
-        </div><!--//card-->
-      </div><!--//col-->
 
       
 
