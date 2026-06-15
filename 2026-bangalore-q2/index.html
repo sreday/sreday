@@ -711,12 +711,18 @@
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Observability 3.0: Where Human-Driven SRE Meets AIOps</a>
+                <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Keynote: What Breaks First When Scaling to 30 Million Users? </a>
               </h3>
               <div class="location mb-3">GuhaTek</div>
-              <div class="desc schedule-abstract">Modern systems are too dynamic for dashboards alone and too business-critical to leave to black-box automation. This session reframes “observability 3.0” as a sociotechnical practice that fuses human-driven SRE with pragmatic AIOps. We’ll explore how rich telemetry (metrics, logs, traces, profiles, and user signals) plus topology and domain context evolves from passive visibility into an active decision system. On the human side, SREs define intent via SLOs, failure hypotheses, and reliability narratives and design for explainability, guardrails, and post-incident learning. On the AI side, we’ll discuss how correlation, anomaly detection, event deduplication, and LLM-powered triage can cut noise and accelerate root-cause discovery, while runbook automation and safe auto-remediation handle the boring, reversible fixes.
+              <div class="desc schedule-abstract">Everyone talks about scaling systems to millions of users. Few talk about what actually breaks first.
 
-Expect concrete patterns: telemetry pipelines that feed feature stores, knowledge graphs that reflect real service topology, feedback loops that keep models honest, and governance that ensures AI augments not overrides SRE judgment. We’ll also cover common traps (data debt, alert fatigue, overfitting to incidents) and a rollout playbook that starts small and proves value quickly.<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
+As organizations grow, the first bottlenecks rarely appear where expected. Databases run out of connections before they run out of CPU. Message queues quietly become storage systems. Observability platforms generate more data than the applications they monitor. Infrastructure scales, but operations struggle to keep pace.
+
+In this session, we present a Reliability Scaling Framework based on real-world experiences navigating the journey from one million to thirty million users. Through practical examples and lessons learned, we explore how teams can identify and eliminate reliability bottlenecks across applications, data platforms, messaging systems, Kubernetes, observability, and operational workflows.
+
+Beyond technology, we discuss why successful scaling requires organizational coordination and why the modern SRE must act as the captain of reliability—aligning engineers, architects, product teams, and executives toward a common goal while balancing availability, performance, and cost.
+
+Attendees will gain a repeatable framework for assessing scalability readiness, preventing common reliability pitfalls, and building systems—and organizations—that can confidently support the next order of magnitude in growth.<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
               
             </div>
           </div>
@@ -1195,17 +1201,27 @@ The session will be practical, experience-driven, and focused on applying KPIx f
             <div class="meta">
               <h4 class="time mb-3">16:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20"><img class="profile-image rounded-circle mb-2" src="../speakers/Priyank Upadhyay.png" alt=""></a>
-                <div class="name">Priyank Upadhyay</div>
+                <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20"><img class="profile-image rounded-circle mb-2" src="../speakers/Saurabh Hirani .png" alt=""></a>
+                <div class="name">Saurabh Hirani </div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">The SRE Fear Paradox: Why AI Scares Operators More Than Outages</a>
+                <a class="theme-link" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">Observability Maturity Model for AI Applications</a>
               </h3>
-              <div class="location mb-3">RubixKube</div>
-              <div class="desc schedule-abstract">Developers got disrupted by AI. They shrugged. SREs are next. They're terrified. The difference: a Copilot mistake is reverted in seconds. An autonomous AI system making remediation decisions in production is irreversible. One breaks a function. The other breaks trust in your infrastructure. But the real fear runs deeper. SREs have spent years building muscle memory around their systems—understanding failure modes, owning the reliability narrative. AI tooling promises to abstract that away. Use our platform. Upload your metrics. Trust our models. Your data lives in our cloud. Let us handle it. That's not autonomy. That's surrender. This talk cuts through the noise. We'll walk through why SRE fear of AI is rational, not paranoid. Why the current wave of 'AI SRE tools' are built for vendors, not operators. And why regulation (GDPR, data residency, compliance) is actually the key to building AI systems that SREs will adopt. The move: AI that lives where your systems live. On your infrastructure. Your data stays yours. Full transparency into every decision. Gradual autonomy—from suggest to execute-with-approval to autonomous. Built for regulated industries from day one. When privacy and control are baked in, AI stops being something that happens to you and becomes something you build. That's when SREs stop being scared and start being dangerous.<a class="schedule-abstract-read-more" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">... Read more</a></div>
+              <div class="location mb-3">One2N</div>
+              <div class="desc schedule-abstract">While working with our customers, we are seeing that teams are shipping AI features fast but skipping the instrumentation that tells them what's actually happening in production.
+
+ AI applications fail differently from traditional services. Token exhaustion, retrieval quality drift, and provider outages don't show up in HTTP status codes. But how much instrumentation do you actually need, and when does the effort stop paying off?
+
+ To distill what we've learned from instrumenting customer AI applications, we built a reference RAG app and applied four levels of instrumentation: zero-code auto instrumentation, manual OTel spans, AI-native telemetry libraries, and an external AI gateway. Each level adds visibility but also adds effort, from zero lines of code to a production grade telemetry pipeline setup.
+
+ This talk presents a practical maturity model. For each level, we show: what you can now see, what failure modes you can catch, what's still invisible, and what it costs in engineering time. We use real traces and dashboards from a running system to ground the comparison.
+
+ Along the way, we bust some practical myths: why standard percentile calculations silently produce garbage for RAG similarity scores, and why "cheaper" models can end up costlier than premium ones in specific situations.
+
+ Whether you're deciding where to start or evaluating whether the next level of investment is worth it, you'll leave with a clear framework mapping effort to observability payoff, and a working open-source repo to validate it yourself.<a class="schedule-abstract-read-more" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">... Read more</a></div>
               
             </div>
           </div>
@@ -1214,17 +1230,17 @@ The session will be practical, experience-driven, and focused on applying KPIx f
             <div class="meta">
               <h4 class="time mb-3">17:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21"><img class="profile-image rounded-circle mb-2" src="../speakers/Vivek Anandaraman.png" alt=""></a>
-                <div class="name">Vivek Anandaraman</div>
+                <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21"><img class="profile-image rounded-circle mb-2" src="../speakers/Priyank Upadhyay.png" alt=""></a>
+                <div class="name">Priyank Upadhyay</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">Moving from Telemetry Signal Correlation to Graph-Driven AI based RCA</a>
+                <a class="theme-link" href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">The SRE Fear Paradox: Why AI Scares Operators More Than Outages</a>
               </h3>
-              <div class="location mb-3">Cloudelu Labs</div>
-              <div class="desc schedule-abstract">Modern production environments span Kubernetes, VMs, serverless, and event-driven systems, yet incident response still relies on manually stitching together dashboards, traces, and logs. While OpenTelemetry improves signal collection, it does not provide a consistent way to model dependencies across services, infrastructure, and asynchronous components. As a result, SREs spend valuable time correlating signals instead of identifying the root cause. This talk presents a graph-driven RCA approach built on a normalized observability layer that converts telemetry into relationships between services, infrastructure, and runtime events. Instead of treating traces, logs, and metrics independently, we derive a dependency graph enriched with time-based observations and health signals. This allows failures to be analyzed as propagation paths across systems rather than isolated alerts. We apply this approach to real-world scenarios across Kubernetes microservices, VM-based workloads, hybrid cloud environments, serverless platforms, and asynchronous systems such as Kafka. The graph highlights cascading failures, dependency latency, and hidden bottlenecks that are difficult to detect using traditional dashboards. We compare this workflow with trace-centric and metrics-first investigations, focusing on time-to-root-cause and operational effort during incidents. Attendees will learn how to build telemetry normalization layers, derive dependency graphs from observability data, and use graph-based reasoning to accelerate incident response. The session focuses on practical SRE workflows, design tradeoffs, and lessons learned from applying graph-driven RCA in distributed systems.<a class="schedule-abstract-read-more" href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">... Read more</a></div>
+              <div class="location mb-3">RubixKube</div>
+              <div class="desc schedule-abstract">Developers got disrupted by AI. They shrugged. SREs are next. They're terrified. The difference: a Copilot mistake is reverted in seconds. An autonomous AI system making remediation decisions in production is irreversible. One breaks a function. The other breaks trust in your infrastructure. But the real fear runs deeper. SREs have spent years building muscle memory around their systems—understanding failure modes, owning the reliability narrative. AI tooling promises to abstract that away. Use our platform. Upload your metrics. Trust our models. Your data lives in our cloud. Let us handle it. That's not autonomy. That's surrender. This talk cuts through the noise. We'll walk through why SRE fear of AI is rational, not paranoid. Why the current wave of 'AI SRE tools' are built for vendors, not operators. And why regulation (GDPR, data residency, compliance) is actually the key to building AI systems that SREs will adopt. The move: AI that lives where your systems live. On your infrastructure. Your data stays yours. Full transparency into every decision. Gradual autonomy—from suggest to execute-with-approval to autonomous. Built for regulated industries from day one. When privacy and control are baked in, AI stops being something that happens to you and becomes something you build. That's when SREs stop being scared and start being dangerous.<a class="schedule-abstract-read-more" href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">... Read more</a></div>
               
             </div>
           </div>
@@ -1232,6 +1248,25 @@ The session will be practical, experience-driven, and focused on applying KPIx f
           <div class="item item-talk">
             <div class="meta">
               <h4 class="time mb-3">17:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22"><img class="profile-image rounded-circle mb-2" src="../speakers/Vivek Anandaraman.png" alt=""></a>
+                <div class="name">Vivek Anandaraman</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22">Moving from Telemetry Signal Correlation to Graph-Driven AI based RCA</a>
+              </h3>
+              <div class="location mb-3">Cloudelu Labs</div>
+              <div class="desc schedule-abstract">Modern production environments span Kubernetes, VMs, serverless, and event-driven systems, yet incident response still relies on manually stitching together dashboards, traces, and logs. While OpenTelemetry improves signal collection, it does not provide a consistent way to model dependencies across services, infrastructure, and asynchronous components. As a result, SREs spend valuable time correlating signals instead of identifying the root cause. This talk presents a graph-driven RCA approach built on a normalized observability layer that converts telemetry into relationships between services, infrastructure, and runtime events. Instead of treating traces, logs, and metrics independently, we derive a dependency graph enriched with time-based observations and health signals. This allows failures to be analyzed as propagation paths across systems rather than isolated alerts. We apply this approach to real-world scenarios across Kubernetes microservices, VM-based workloads, hybrid cloud environments, serverless platforms, and asynchronous systems such as Kafka. The graph highlights cascading failures, dependency latency, and hidden bottlenecks that are difficult to detect using traditional dashboards. We compare this workflow with trace-centric and metrics-first investigations, focusing on time-to-root-cause and operational effort during incidents. Attendees will learn how to build telemetry normalization layers, derive dependency graphs from observability data, and use graph-based reasoning to accelerate incident response. The session focuses on practical SRE workflows, design tradeoffs, and lessons learned from applying graph-driven RCA in distributed systems.<a class="schedule-abstract-read-more" href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">18:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
                 <div class="name"></div>
@@ -1264,6 +1299,8 @@ The session will be practical, experience-driven, and focused on applying KPIx f
           </tr>
         </thead>
         <tbody>
+
+
 
 
 
@@ -1471,7 +1508,7 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Observability 3.0: Where Human-Driven SRE Meets AIOps</a>
+              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Keynote: What Breaks First When Scaling to 30 Million Users? </a>
               <div class="speaker-info">Siva Bagavathi & Balaji Venkatesan <span class="affiliation">• GuhaTek</span></div>
             </td>
 
@@ -1912,8 +1949,8 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">The SRE Fear Paradox: Why AI Scares Operators More Than Outages</a>
-              <div class="speaker-info">Priyank Upadhyay <span class="affiliation">• RubixKube</span></div>
+              <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">Observability Maturity Model for AI Applications</a>
+              <div class="speaker-info">Saurabh Hirani  <span class="affiliation">• One2N</span></div>
             </td>
 
 
@@ -1957,8 +1994,8 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">Moving from Telemetry Signal Correlation to Graph-Driven AI based RCA</a>
-              <div class="speaker-info">Vivek Anandaraman <span class="affiliation">• Cloudelu Labs</span></div>
+              <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">The SRE Fear Paradox: Why AI Scares Operators More Than Outages</a>
+              <div class="speaker-info">Priyank Upadhyay <span class="affiliation">• RubixKube</span></div>
             </td>
 
 
@@ -2001,7 +2038,10 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
 
 
-            <td class="talk-cell merged-cell">Wrap up</td>
+            <td class="talk-cell">
+              <a href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22">Moving from Telemetry Signal Correlation to Graph-Driven AI based RCA</a>
+              <div class="speaker-info">Vivek Anandaraman <span class="affiliation">• Cloudelu Labs</span></div>
+            </td>
 
 
           </tr>
@@ -2022,25 +2062,13 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
 
 
-
-
           <tr>
             <td class="time-cell merged-cell">18:00</td>
+            <td class="talk-cell merged-cell" colspan="2">
 
+              Wrap up
 
-
-
-
-
-            <td class="talk-cell merged-cell">Wrap up</td>
-
-
-
-
-
-            <td class="talk-cell merged-cell"></td>
-
-
+            </td>
           </tr>
 
 
@@ -2351,7 +2379,7 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20"><img src="../speakers/Priyank Upadhyay.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21"><img src="../speakers/Priyank Upadhyay.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Priyank Upadhyay</h5>
             <div class="card-text mb-3">
@@ -2403,6 +2431,32 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
       <div class="col mb-4">
         <div class="card rounded">
+          <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20"><img src="../speakers/Saurabh Hirani .png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Saurabh Hirani</h5>
+            <div class="card-text mb-3">
+              <div class="meta">One2N</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Saurabh_Hirani__One2N_Observability_Maturity_Model_for_AI_Applications#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/shirani/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card rounded">
           <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img src="../speakers/Shobhit Gupta.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Shobhit Gupta</h5>
@@ -2436,7 +2490,7 @@ The session will be practical, experience-driven, and focused on applying KPIx f
               <div class="meta">GuhaTek</div>
             </div><!--//card-text-->
             <div class="event-card-buttons">
-              <a href="./Siva_Bagavathi__Balaji_Venkatesan_GuhaTek_Observability_30_Where_HumanDriven_SRE_Meets_AIOps#speakers-section" class="event-read-more-btn">Read more</a>
+              <a href="./Siva_Bagavathi__Balaji_Venkatesan_GuhaTek_Keynote_What_Breaks_First_When_Scaling_to_30_Million_Users#speakers-section" class="event-read-more-btn">Read more</a>
               
             </div>
           </div><!--//card-->
@@ -2637,7 +2691,7 @@ The session will be practical, experience-driven, and focused on applying KPIx f
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21"><img src="../speakers/Vivek Anandaraman.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22"><img src="../speakers/Vivek Anandaraman.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Vivek Anandaraman</h5>
             <div class="card-text mb-3">
@@ -3538,6 +3592,55 @@ Key discussion areas include:</p>
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Saurabh Hirani .png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Saurabh Hirani </h2>
+                          <div class="meta mb-2">One2N</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/shirani/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Observability Maturity Model for AI Applications</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>While working with our customers, we are seeing that teams are shipping AI features fast but skipping the instrumentation that tells them what's actually happening in production.</p>
+<p>AI applications fail differently from traditional services. Token exhaustion, retrieval quality drift, and provider outages don't show up in HTTP status codes. But how much instrumentation do you actually need, and when does the effort stop paying off?</p>
+<p>To distill what we've learned from instrumenting customer AI applications, we built a reference RAG app and applied four levels of instrumentation: zero-code auto instrumentation, manual OTel spans, AI-native telemetry libraries, and an external AI gateway. Each level adds visibility but also adds effort, from zero lines of code to a production grade telemetry pipeline setup.</p>
+<p>This talk presents a practical maturity model. For each level, we show: what you can now see, what failure modes you can catch, what's still invisible, and what it costs in engineering time. We use real traces and dashboards from a running system to ground the comparison.</p>
+<p>Along the way, we bust some practical myths: why standard percentile calculations silently produce garbage for RAG similarity scores, and why "cheaper" models can end up costlier than premium ones in specific situations.</p>
+<p>Whether you're deciding where to start or evaluating whether the next level of investment is worth it, you'll leave with a clear framework mapping effort to observability payoff, and a working open-source repo to validate it yourself.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Saurabh Hirani is a Principal SRE at One2N with 20+ years of experience in infrastructure, operations, and reliability engineering. He has worked with startups and enterprises to build production-grade monitoring systems with a focus on automation and minimalism.</p>
+<p>Previously, he led customer success teams for observability products and architected resilient telemetry ingestion pipelines for JioHotstar during major IPL events. Currently, he works with customers to instrument and observe their AI applications in production.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 21 -->
+<div class="modal modal-speaker modal-speaker-21" id="modal-speaker-21" tabindex="-1" role="dialog" aria-labelledby="speaker-21-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
                           <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Priyank Upadhyay.png" alt="" />
                       </div>
 
@@ -3572,8 +3675,8 @@ Key discussion areas include:</p>
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 21 -->
-<div class="modal modal-speaker modal-speaker-21" id="modal-speaker-21" tabindex="-1" role="dialog" aria-labelledby="speaker-21-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 22 -->
+<div class="modal modal-speaker modal-speaker-22" id="modal-speaker-22" tabindex="-1" role="dialog" aria-labelledby="speaker-22-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -3725,11 +3828,14 @@ Key discussion areas include:</p>
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
-              <div class="talk-title-bar">Observability 3.0: Where Human-Driven SRE Meets AIOps</div>
+              <div class="talk-title-bar">Keynote: What Breaks First When Scaling to 30 Million Users? </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Modern systems are too dynamic for dashboards alone and too business-critical to leave to black-box automation. This session reframes “observability 3.0” as a sociotechnical practice that fuses human-driven SRE with pragmatic AIOps. We’ll explore how rich telemetry (metrics, logs, traces, profiles, and user signals) plus topology and domain context evolves from passive visibility into an active decision system. On the human side, SREs define intent via SLOs, failure hypotheses, and reliability narratives and design for explainability, guardrails, and post-incident learning. On the AI side, we’ll discuss how correlation, anomaly detection, event deduplication, and LLM-powered triage can cut noise and accelerate root-cause discovery, while runbook automation and safe auto-remediation handle the boring, reversible fixes.</p>
-<p>Expect concrete patterns: telemetry pipelines that feed feature stores, knowledge graphs that reflect real service topology, feedback loops that keep models honest, and governance that ensures AI augments not overrides SRE judgment. We’ll also cover common traps (data debt, alert fatigue, overfitting to incidents) and a rollout playbook that starts small and proves value quickly.</p></p>
+                <p><p>Everyone talks about scaling systems to millions of users. Few talk about what actually breaks first.</p>
+<p>As organizations grow, the first bottlenecks rarely appear where expected. Databases run out of connections before they run out of CPU. Message queues quietly become storage systems. Observability platforms generate more data than the applications they monitor. Infrastructure scales, but operations struggle to keep pace.</p>
+<p>In this session, we present a Reliability Scaling Framework based on real-world experiences navigating the journey from one million to thirty million users. Through practical examples and lessons learned, we explore how teams can identify and eliminate reliability bottlenecks across applications, data platforms, messaging systems, Kubernetes, observability, and operational workflows.</p>
+<p>Beyond technology, we discuss why successful scaling requires organizational coordination and why the modern SRE must act as the captain of reliability—aligning engineers, architects, product teams, and executives toward a common goal while balancing availability, performance, and cost.</p>
+<p>Attendees will gain a repeatable framework for assessing scalability readiness, preventing common reliability pitfalls, and building systems—and organizations—that can confidently support the next order of magnitude in growth.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
