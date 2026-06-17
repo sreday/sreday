@@ -753,17 +753,19 @@ Is the DevOps revolution over, or are we simply at its next frontier?<a class="s
             <div class="meta">
               <h4 class="time mb-3">12:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Rita Lopes.png" alt=""></a>
-                <div class="name">Rita Lopes</div>
+                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Vasil Kulakov.png" alt=""></a>
+                <div class="name">Vasil Kulakov</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">404: Observability Without Trade-offs Not Found - Until We Built Gigapipe</a>
+                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Scaling an AI Bot in the Age of Blockages</a>
               </h3>
-              <div class="location mb-3">Gigapipe</div>
-              <div class="desc schedule-abstract">Every SRE team knows the drill. Prometheus for metrics. Loki for logs. Jaeger or Tempo for traces. Pyroscope bolted on last for profiling. Four services, four storage backends, four things to scale, debug, and pay for. And when an incident hits, you're jumping between all of them trying to correlate signals that were never designed to live together.The trade-off is always the same: observe everything and pay an astronomical bill, or cut costs and fly blind precisely when it matters most. We got tired of it. So we built Gigapipe. Gigapipe is an open-source polyglot observability stack that unifies logs, metrics, traces, and profiles on a single backend, using ClickHouse as the database. It natively implements the industry standards like Prometheus, Loki, Jaeger, Tempo, Pyroscope, and OpenTelemetry APIs, just to name a few. Your existing agents, exporters, and Grafana dashboards work on day one, unchanged. In this talk, we'll cover three things: 1. Why we built it: the real pain that made four services feel unsustainable, 2. How it works: the architecture decisions behind native multi-protocol compatibility on a single storage engine, 3. How you can get involved or run it yourself today: Gigapipe is open-source, under AGPLv3 license, runs as a single binary, and is live in production environments. This is a talk for engineers who've felt the weight of their observability stack and wondered if there's a better way. Spoiler: There is! And you can run it tonight.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+              <div class="location mb-3">Team Lead, SRE</div>
+              <div class="desc schedule-abstract">Scaling an AI bot is hard. Scaling one through regional blockages is harder. A production language tutor's journey from one pod to a multi-tenant platform — every wall we hit, in the order we hit them.In this talk, we’ll go through the practical side of building production-ready LLM systems. We’ll cover how to choose the right models for different tasks, manage context windows without losing coherence, design reliable prompting strategies, and avoid common pitfalls like prompt injection and malformed outputs. The session also explores structured outputs, hybrid memory approaches, feature-based model routing, and ways to build abstractions that work across multiple AI providers.
+Rather than focusing on hype, this lecture is about the engineering tradeoffs behind shipping AI products that are fast, affordable, maintainable, and reliable in production.
+Expect practical examples, architecture patterns, code snippets, and lessons learned from building real-world LLM workflows beyond the prototype phase.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
               
             </div>
           </div>
@@ -772,17 +774,17 @@ Is the DevOps revolution over, or are we simply at its next frontier?<a class="s
             <div class="meta">
               <h4 class="time mb-3">12:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Mauro Morales.png" alt=""></a>
-                <div class="name">Mauro Morales</div>
+                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Rita Lopes.png" alt=""></a>
+                <div class="name">Rita Lopes</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">From Boot to Rollback: How Image-Based Operating Systems Change Kubernetes Operations</a>
+                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">404: Observability Without Trade-offs Not Found - Until We Built Gigapipe</a>
               </h3>
-              <div class="location mb-3">Spectro Cloud</div>
-              <div class="desc schedule-abstract">You replace pods instead of patching them. So why is the OS underneath your nodes still the last hand-patched snowflake in an otherwise declarative stack? Image-based operating systems turn nodes into versioned artifacts that can be upgraded and rolled back predictably, reducing drift and making failure recovery part of the platform design rather than an incident-time improvisation. As a Kairos maintainer, I will show how this model works in practice: what remains immutable, what persists, how atomic upgrades and rollback work, and what happens when a node fails to boot. We will then use Kubernetes to drive an upgrade and rollback of an immutable node. Because application reliability is difficult enough without discovering during an incident that no one knows exactly what the node underneath it has become.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              <div class="location mb-3">Gigapipe</div>
+              <div class="desc schedule-abstract">Every SRE team knows the drill. Prometheus for metrics. Loki for logs. Jaeger or Tempo for traces. Pyroscope bolted on last for profiling. Four services, four storage backends, four things to scale, debug, and pay for. And when an incident hits, you're jumping between all of them trying to correlate signals that were never designed to live together.The trade-off is always the same: observe everything and pay an astronomical bill, or cut costs and fly blind precisely when it matters most. We got tired of it. So we built Gigapipe. Gigapipe is an open-source polyglot observability stack that unifies logs, metrics, traces, and profiles on a single backend, using ClickHouse as the database. It natively implements the industry standards like Prometheus, Loki, Jaeger, Tempo, Pyroscope, and OpenTelemetry APIs, just to name a few. Your existing agents, exporters, and Grafana dashboards work on day one, unchanged. In this talk, we'll cover three things: 1. Why we built it: the real pain that made four services feel unsustainable, 2. How it works: the architecture decisions behind native multi-protocol compatibility on a single storage engine, 3. How you can get involved or run it yourself today: Gigapipe is open-source, under AGPLv3 license, runs as a single binary, and is live in production environments. This is a talk for engineers who've felt the weight of their observability stack and wondered if there's a better way. Spoiler: There is! And you can run it tonight.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
               
             </div>
           </div>
@@ -807,17 +809,17 @@ Is the DevOps revolution over, or are we simply at its next frontier?<a class="s
             <div class="meta">
               <h4 class="time mb-3">14:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Helia Barroso & Iris Dyrmishi.png" alt=""></a>
-                <div class="name">Helia Barroso & Iris Dyrmishi</div>
+                <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Mauro Morales.png" alt=""></a>
+                <div class="name">Mauro Morales</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Observability Through Users' Eyes and How to Fix the Knowledge Disconnect</a>
+                <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">From Boot to Rollback: How Image-Based Operating Systems Change Kubernetes Operations</a>
               </h3>
-              <div class="location mb-3">Five9 & Miro</div>
-              <div class="desc schedule-abstract">Logs, metrics and traces nowadays are common words in every engineer's vocabulary, as Observability is everywhere with the rise of OpenTelemetry and improved standards. Instrumentation? No problem. Getting data from any system? Done. But then soon after, things start to fall apart, telemetry piles up unused, cloud bills soar, dashboards rot and alerts confuse even seasoned engineers. Clearly there is something missing. In this talk, Iris and Hélia share some experiences from building Observability platforms, patterns they have discovered of how users interact with telemetry data. From common questions across different teams and companies, pitfalls and also, strategies that empower teams to move from confusion to confidence. So get practical insights to bridge the gap between Observability data and User Knowledge, whether you're building platforms, supporting teams, or trying to make sense of your own telemetry chaos.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
+              <div class="location mb-3">Spectro Cloud</div>
+              <div class="desc schedule-abstract">You replace pods instead of patching them. So why is the OS underneath your nodes still the last hand-patched snowflake in an otherwise declarative stack? Image-based operating systems turn nodes into versioned artifacts that can be upgraded and rolled back predictably, reducing drift and making failure recovery part of the platform design rather than an incident-time improvisation. As a Kairos maintainer, I will show how this model works in practice: what remains immutable, what persists, how atomic upgrades and rollback work, and what happens when a node fails to boot. We will then use Kubernetes to drive an upgrade and rollback of an immutable node. Because application reliability is difficult enough without discovering during an incident that no one knows exactly what the node underneath it has become.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
               
             </div>
           </div>
@@ -826,20 +828,17 @@ Is the DevOps revolution over, or are we simply at its next frontier?<a class="s
             <div class="meta">
               <h4 class="time mb-3">14:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Pooria Ghaedi.png" alt=""></a>
-                <div class="name">Pooria Ghaedi</div>
+                <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Helia Barroso & Iris Dyrmishi.png" alt=""></a>
+                <div class="name">Helia Barroso & Iris Dyrmishi</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">AI-Assisted Cloud Troubleshooting</a>
+                <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Observability Through Users' Eyes and How to Fix the Knowledge Disconnect</a>
               </h3>
-              <div class="location mb-3">Miniclip</div>
-              <div class="desc schedule-abstract">Cloud infrastructure incidents are often hard to troubleshoot because the problem is not always visible from the application layer. A service may look healthy, the instances may be running, and the dashboards may not clearly show the issue, but connectivity can still fail because of routing, security rules, DNS, or cloud configuration problems.
-In this talk, I will show how AI-assisted workflows can support SREs and cloud engineers during infrastructure troubleshooting. The focus is not on using AI to replace engineering judgment, but on using it to investigate faster, ask better questions, review configuration, interpret CLI output, and reduce the time spent jumping between documentation, consoles, and logs.
-As a practical demo, I will use AWS MCP servers to investigate a real-world style cloud connectivity issue and work toward the root cause. We will look at what context is useful to give the AI assistant, how MCP can help connect the assistant to AWS documentation and environment information, and where the engineer still needs to validate the output.
-The goal is to give attendees a realistic view of what AI can and cannot do during real infrastructure incidents. The session will focus on practical troubleshooting patterns, safe usage of AI during production-like investigations, and the importance of human validation when dealing with cloud reliability and infrastructure security.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
+              <div class="location mb-3">Five9 & Miro</div>
+              <div class="desc schedule-abstract">Logs, metrics and traces nowadays are common words in every engineer's vocabulary, as Observability is everywhere with the rise of OpenTelemetry and improved standards. Instrumentation? No problem. Getting data from any system? Done. But then soon after, things start to fall apart, telemetry piles up unused, cloud bills soar, dashboards rot and alerts confuse even seasoned engineers. Clearly there is something missing. In this talk, Iris and Hélia share some experiences from building Observability platforms, patterns they have discovered of how users interact with telemetry data. From common questions across different teams and companies, pitfalls and also, strategies that empower teams to move from confusion to confidence. So get practical insights to bridge the gap between Observability data and User Knowledge, whether you're building platforms, supporting teams, or trying to make sense of your own telemetry chaos.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
               
             </div>
           </div>
@@ -848,20 +847,20 @@ The goal is to give attendees a realistic view of what AI can and cannot do duri
             <div class="meta">
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Afgan Isazade.png" alt=""></a>
-                <div class="name">Afgan Isazade</div>
+                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Pooria Ghaedi.png" alt=""></a>
+                <div class="name">Pooria Ghaedi</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Your SLO is a Random Variable: AI and the Mathematics of Reliability</a>
+                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">AI-Assisted Cloud Troubleshooting</a>
               </h3>
-              <div class="location mb-3">BNP Paribas</div>
-              <div class="desc schedule-abstract">Modern production systems do not behave deterministically. Traffic patterns, deployments, infrastructure changes, user behavior, and operational noise continuously shape the reliability of distributed systems. Yet SLIs, SLAs, and SLOs are often treated as fixed numbers rather than probabilistic systems.
-This talk explores how statistical and econometric thinking can improve reliability engineering and operational decision-making. Using practical SRE examples, we will examine how concepts such as probability distributions, confidence intervals, z-scores, t-distributions, and seasonal models help explain uptime behavior, latency anomalies, incident frequency, and alert noise.
-We will also explore how AI and machine learning are becoming operational layers on top of observability platforms through anomaly detection, time-series forecasting, and intelligent interpretation of telemetry data.
-Rather than treating reliability as a static KPI, this session reframes it as a system of statistical inference supported by AI-driven analysis. Attendees will leave with practical ideas for thinking about reliability, alerting, forecasting, and SLO evaluation through the lens of mathematics and modern AI-assisted operations.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
+              <div class="location mb-3">Miniclip</div>
+              <div class="desc schedule-abstract">Cloud infrastructure incidents are often hard to troubleshoot because the problem is not always visible from the application layer. A service may look healthy, the instances may be running, and the dashboards may not clearly show the issue, but connectivity can still fail because of routing, security rules, DNS, or cloud configuration problems.
+In this talk, I will show how AI-assisted workflows can support SREs and cloud engineers during infrastructure troubleshooting. The focus is not on using AI to replace engineering judgment, but on using it to investigate faster, ask better questions, review configuration, interpret CLI output, and reduce the time spent jumping between documentation, consoles, and logs.
+As a practical demo, I will use AWS MCP servers to investigate a real-world style cloud connectivity issue and work toward the root cause. We will look at what context is useful to give the AI assistant, how MCP can help connect the assistant to AWS documentation and environment information, and where the engineer still needs to validate the output.
+The goal is to give attendees a realistic view of what AI can and cannot do during real infrastructure incidents. The session will focus on practical troubleshooting patterns, safe usage of AI during production-like investigations, and the importance of human validation when dealing with cloud reliability and infrastructure security.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
               
             </div>
           </div>
@@ -886,19 +885,20 @@ Rather than treating reliability as a static KPI, this session reframes it as a 
             <div class="meta">
               <h4 class="time mb-3">16:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Vasil Kulakov.png" alt=""></a>
-                <div class="name">Vasil Kulakov</div>
+                <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Afgan Isazade.png" alt=""></a>
+                <div class="name">Afgan Isazade</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Scaling an AI Bot in the Age of Blockages</a>
+                <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Your SLO is a Random Variable: AI and the Mathematics of Reliability</a>
               </h3>
-              <div class="location mb-3">Team Lead, SRE</div>
-              <div class="desc schedule-abstract">Scaling an AI bot is hard. Scaling one through regional blockages is harder. A production language tutor's journey from one pod to a multi-tenant platform — every wall we hit, in the order we hit them.In this talk, we’ll go through the practical side of building production-ready LLM systems. We’ll cover how to choose the right models for different tasks, manage context windows without losing coherence, design reliable prompting strategies, and avoid common pitfalls like prompt injection and malformed outputs. The session also explores structured outputs, hybrid memory approaches, feature-based model routing, and ways to build abstractions that work across multiple AI providers.
-Rather than focusing on hype, this lecture is about the engineering tradeoffs behind shipping AI products that are fast, affordable, maintainable, and reliable in production.
-Expect practical examples, architecture patterns, code snippets, and lessons learned from building real-world LLM workflows beyond the prototype phase.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+              <div class="location mb-3">BNP Paribas</div>
+              <div class="desc schedule-abstract">Modern production systems do not behave deterministically. Traffic patterns, deployments, infrastructure changes, user behavior, and operational noise continuously shape the reliability of distributed systems. Yet SLIs, SLAs, and SLOs are often treated as fixed numbers rather than probabilistic systems.
+This talk explores how statistical and econometric thinking can improve reliability engineering and operational decision-making. Using practical SRE examples, we will examine how concepts such as probability distributions, confidence intervals, z-scores, t-distributions, and seasonal models help explain uptime behavior, latency anomalies, incident frequency, and alert noise.
+We will also explore how AI and machine learning are becoming operational layers on top of observability platforms through anomaly detection, time-series forecasting, and intelligent interpretation of telemetry data.
+Rather than treating reliability as a static KPI, this session reframes it as a system of statistical inference supported by AI-driven analysis. Attendees will leave with practical ideas for thinking about reliability, alerting, forecasting, and SLO evaluation through the lens of mathematics and modern AI-assisted operations.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
               
             </div>
           </div>
@@ -1109,8 +1109,8 @@ Expect practical examples, architecture patterns, code snippets, and lessons lea
             <td class="time-cell">12:00</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">404: Observability Without Trade-offs Not Found - Until We Built Gigapipe</a>
-              <div class="speaker-info">Rita Lopes <span class="affiliation">• Gigapipe</span></div>
+              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Scaling an AI Bot in the Age of Blockages</a>
+              <div class="speaker-info">Vasil Kulakov <span class="affiliation">• Team Lead, SRE</span></div>
 
             </td>
           </tr>
@@ -1129,8 +1129,8 @@ Expect practical examples, architecture patterns, code snippets, and lessons lea
             <td class="time-cell">12:30</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">From Boot to Rollback: How Image-Based Operating Systems Change Kubernetes Operations</a>
-              <div class="speaker-info">Mauro Morales <span class="affiliation">• Spectro Cloud</span></div>
+              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">404: Observability Without Trade-offs Not Found - Until We Built Gigapipe</a>
+              <div class="speaker-info">Rita Lopes <span class="affiliation">• Gigapipe</span></div>
 
             </td>
           </tr>
@@ -1168,8 +1168,8 @@ Expect practical examples, architecture patterns, code snippets, and lessons lea
             <td class="time-cell">14:00</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Observability Through Users' Eyes and How to Fix the Knowledge Disconnect</a>
-              <div class="speaker-info">Helia Barroso & Iris Dyrmishi <span class="affiliation">• Five9 & Miro</span></div>
+              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">From Boot to Rollback: How Image-Based Operating Systems Change Kubernetes Operations</a>
+              <div class="speaker-info">Mauro Morales <span class="affiliation">• Spectro Cloud</span></div>
 
             </td>
           </tr>
@@ -1188,8 +1188,8 @@ Expect practical examples, architecture patterns, code snippets, and lessons lea
             <td class="time-cell">14:30</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">AI-Assisted Cloud Troubleshooting</a>
-              <div class="speaker-info">Pooria Ghaedi <span class="affiliation">• Miniclip</span></div>
+              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Observability Through Users' Eyes and How to Fix the Knowledge Disconnect</a>
+              <div class="speaker-info">Helia Barroso & Iris Dyrmishi <span class="affiliation">• Five9 & Miro</span></div>
 
             </td>
           </tr>
@@ -1208,8 +1208,8 @@ Expect practical examples, architecture patterns, code snippets, and lessons lea
             <td class="time-cell">15:00</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Your SLO is a Random Variable: AI and the Mathematics of Reliability</a>
-              <div class="speaker-info">Afgan Isazade <span class="affiliation">• BNP Paribas</span></div>
+              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">AI-Assisted Cloud Troubleshooting</a>
+              <div class="speaker-info">Pooria Ghaedi <span class="affiliation">• Miniclip</span></div>
 
             </td>
           </tr>
@@ -1247,8 +1247,8 @@ Expect practical examples, architecture patterns, code snippets, and lessons lea
             <td class="time-cell">16:00</td>
             <td class="talk-cell" colspan="1">
 
-              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Scaling an AI Bot in the Age of Blockages</a>
-              <div class="speaker-info">Vasil Kulakov <span class="affiliation">• Team Lead, SRE</span></div>
+              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Your SLO is a Random Variable: AI and the Mathematics of Reliability</a>
+              <div class="speaker-info">Afgan Isazade <span class="affiliation">• BNP Paribas</span></div>
 
             </td>
           </tr>
@@ -1320,7 +1320,7 @@ Expect practical examples, architecture patterns, code snippets, and lessons lea
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Afgan Isazade.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Afgan Isazade.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Afgan Isazade</h5>
             <div class="card-text mb-3">
@@ -1372,7 +1372,7 @@ Expect practical examples, architecture patterns, code snippets, and lessons lea
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Helia Barroso & Iris Dyrmishi.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Helia Barroso & Iris Dyrmishi.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Helia Barroso<br>&amp; Iris Dyrmishi</h5>
             <div class="card-text mb-3">
@@ -1424,7 +1424,7 @@ Expect practical examples, architecture patterns, code snippets, and lessons lea
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Mauro Morales.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Mauro Morales.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Mauro Morales</h5>
             <div class="card-text mb-3">
@@ -1450,7 +1450,7 @@ Expect practical examples, architecture patterns, code snippets, and lessons lea
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Pooria Ghaedi.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Pooria Ghaedi.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Pooria Ghaedi</h5>
             <div class="card-text mb-3">
@@ -1502,7 +1502,7 @@ Expect practical examples, architecture patterns, code snippets, and lessons lea
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Rita Lopes.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Rita Lopes.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Rita Lopes</h5>
             <div class="card-text mb-3">
@@ -1554,7 +1554,7 @@ Expect practical examples, architecture patterns, code snippets, and lessons lea
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Vasil Kulakov.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Vasil Kulakov.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Vasil Kulakov</h5>
             <div class="card-text mb-3">
@@ -1797,6 +1797,51 @@ Expect practical examples, architecture patterns, code snippets, and lessons lea
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Vasil Kulakov.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Vasil Kulakov</h2>
+                          <div class="meta mb-2">Team Lead, SRE</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/vasiliy-kulakov/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Scaling an AI Bot in the Age of Blockages</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Scaling an AI bot is hard. Scaling one through regional blockages is harder. A production language tutor's journey from one pod to a multi-tenant platform — every wall we hit, in the order we hit them.In this talk, we’ll go through the practical side of building production-ready LLM systems. We’ll cover how to choose the right models for different tasks, manage context windows without losing coherence, design reliable prompting strategies, and avoid common pitfalls like prompt injection and malformed outputs. The session also explores structured outputs, hybrid memory approaches, feature-based model routing, and ways to build abstractions that work across multiple AI providers.
+Rather than focusing on hype, this lecture is about the engineering tradeoffs behind shipping AI products that are fast, affordable, maintainable, and reliable in production.
+Expect practical examples, architecture patterns, code snippets, and lessons learned from building real-world LLM workflows beyond the prototype phase.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Vasil Kulakov is a Staff Engineer in Site Reliability Engineering with a strong focus on building and scaling production infrastructure. Currently at snappyloop.work, he has helped establish the backbone for an AI-driven language learning platform, supporting rapid user growth. Previously, he led SRE teams at CHECK24, combining hands-on engineering with leadership across high-performance systems. His work spans Go, PHP, and modern cloud-native tooling, with a practical, execution-first approach to reliability and scale.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 5 -->
+<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
                           <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Rita Lopes.png" alt="" />
                       </div>
 
@@ -1831,8 +1876,8 @@ Expect practical examples, architecture patterns, code snippets, and lessons lea
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 5 -->
-<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 6 -->
+<div class="modal modal-speaker modal-speaker-6" id="modal-speaker-6" tabindex="-1" role="dialog" aria-labelledby="speaker-6-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -1874,8 +1919,8 @@ Expect practical examples, architecture patterns, code snippets, and lessons lea
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 6 -->
-<div class="modal modal-speaker modal-speaker-6" id="modal-speaker-6" tabindex="-1" role="dialog" aria-labelledby="speaker-6-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 7 -->
+<div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -1917,8 +1962,8 @@ Expect practical examples, architecture patterns, code snippets, and lessons lea
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 7 -->
-<div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 8 -->
+<div class="modal modal-speaker modal-speaker-8" id="modal-speaker-8" tabindex="-1" role="dialog" aria-labelledby="speaker-8-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -1963,8 +2008,8 @@ The goal is to give attendees a realistic view of what AI can and cannot do duri
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 8 -->
-<div class="modal modal-speaker modal-speaker-8" id="modal-speaker-8" tabindex="-1" role="dialog" aria-labelledby="speaker-8-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 9 -->
+<div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -2002,51 +2047,6 @@ Rather than treating reliability as a static KPI, this session reframes it as a 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Afgan Isazade is a Senior Developer at BNP Paribas and a DevOps &amp; Infrastructure Architect specializing in AI/ML, cloud-native platforms, High Frequency Trading (HFT) environments, and large-scale distributed systems. With more than 8 years of experience across fintech, enterprise infrastructure, Big Data, and platform engineering, he works at the intersection of reliability engineering, observability, automation, and intelligent operations.</p></p>
-              </div>
-
-          </div><!--//modal-body-->
-      </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
-
-<!-- Modal Speaker 9 -->
-<div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-body p-0">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <div class="theme-bg-light p-5">
-                  <div class="row">
-                      <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Vasil Kulakov.png" alt="" />
-                      </div>
-
-                      <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Vasil Kulakov</h2>
-                          <div class="meta mb-2">Team Lead, SRE</div>
-                          <ul class="social-list list-inline mb-0">
-                            
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/vasiliy-kulakov/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            
-                            
-                          </ul><!--//social-list-->
-                      </div><!--//col-->
-                  </div><!--//row-->
-              </div>
-              <div class="talk-title-bar">Scaling an AI Bot in the Age of Blockages</div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Scaling an AI bot is hard. Scaling one through regional blockages is harder. A production language tutor's journey from one pod to a multi-tenant platform — every wall we hit, in the order we hit them.In this talk, we’ll go through the practical side of building production-ready LLM systems. We’ll cover how to choose the right models for different tasks, manage context windows without losing coherence, design reliable prompting strategies, and avoid common pitfalls like prompt injection and malformed outputs. The session also explores structured outputs, hybrid memory approaches, feature-based model routing, and ways to build abstractions that work across multiple AI providers.
-Rather than focusing on hype, this lecture is about the engineering tradeoffs behind shipping AI products that are fast, affordable, maintainable, and reliable in production.
-Expect practical examples, architecture patterns, code snippets, and lessons learned from building real-world LLM workflows beyond the prototype phase.</p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <p></p>
-              </div>
-
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Vasil Kulakov is a Staff Engineer in Site Reliability Engineering with a strong focus on building and scaling production infrastructure. Currently at snappyloop.work, he has helped establish the backbone for an AI-driven language learning platform, supporting rapid user growth. Previously, he led SRE teams at CHECK24, combining hands-on engineering with leadership across high-performance systems. His work spans Go, PHP, and modern cloud-native tooling, with a practical, execution-first approach to reliability and scale.</p></p>
               </div>
 
           </div><!--//modal-body-->
