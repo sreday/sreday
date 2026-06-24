@@ -543,6 +543,32 @@
 
       <div class="col mb-4">
         <div class="card rounded">
+          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Louis Fradin.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Louis Fradin</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Anyshift</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Louis_Fradin_Anyshift_Topology__Not_Telemetry_Tracing_Cascading_Cloud_Failures_From_the_500_to_the_C#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/louisfradin/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card rounded">
           <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Miko Pawlikowski.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Miko Pawlikowski</h5>
@@ -595,7 +621,7 @@
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Ricard Bejarano & Josep Medialdea.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Ricard Bejarano & Josep Medialdea.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Ricard Bejarano<br>&amp; Josep Medialdea</h5>
             <div class="card-text mb-3">
@@ -869,6 +895,49 @@
 
 <!-- Modal Speaker 4 -->
 <div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Louis Fradin.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Louis Fradin</h2>
+                          <div class="meta mb-2">Anyshift</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/louisfradin/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Topology, Not Telemetry: Tracing Cascading Cloud Failures From the 500 to the Commit</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>On 18 November 2025, a permissions change in one internal database took down Cloudflare's Workers KV, Access, Turnstile, and Dashboard for over three hours, and a large slice of the web that sits behind Cloudflare went dark with it. Monitoring caught the spike in seconds. Finding the lead still took hours, because the real chain ran from that permissions change, through a feature file that quietly doubled in size, into the Bot Management engine, and out to every product downstream. That chain wasn't in the telemetry. It was in the topology. Most London platform teams know the smaller version of this every week: ten teams ship into one shared platform inside the same hour, the board lights up, and not one dashboard tells you which deploy lit it. The dependency graph is the data source that does. We'll walk the Cloudflare outage with a reconstructed topology in hand, next to the official postmortem. That means building the graph from what you already run, AWS, Kubernetes, Terraform, GitHub, and your monitoring, then versioning it through time, so "what changed between 14:23 and 14:47?" becomes a query instead of a guess. Once it's there, an AI agent can walk a graph it didn't invent, getting from alert to the breaking commit in seconds with the affected customers already attached. In one customer's production graph, that walk took about thirty seconds, against the twenty minutes to two hours a human familiar with the code needs to do it by hand.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Louis Fradin is a Developer Advocate &amp; Backend Engineer at Anyshift, where he's helping build the AI context layer for production systems, giving teams the infrastructure graph they need so AI agents can actually understand what's running in prod. His path to SRE started deep in the stack: four years writing Linux drivers and managing HPC infrastructure for the French Ministry of Armed Forces, followed by three and a half years at Ubisoft building and operating Kubernetes clusters at scale for game servers with Go, Temporal, Talos, and OpenTelemetry. He speaks regularly about this work: Context Engineering for DevOps: How Agents Learn Your Infrastructure at DevOpsCon Amsterdam 2026, 25,000 servers at Ubisoft (with Vincent Behar) at TalosCon 2024 in London, Talos chez Ubisoft pour nos serveurs de jeux at Cloud Native Paris 2024, and Continuous Container Checkup at CloudNord 2023. For this talk in particular: I've spent the last year building and operating Annie, Anyshift's AI-SRE agent, and the temporal graph engine that feeds it. The Cloudflare case study is one I've walked through with our own customers on their own graphs, including the MotherDuck team, whose Head of Infra, Hilary Brennan-Marquez, put the speed-up this way: "a process that would have taken a human familiar with the code 20 minutes to 2 hours, Annie did in 30 seconds.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 5 -->
+<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
