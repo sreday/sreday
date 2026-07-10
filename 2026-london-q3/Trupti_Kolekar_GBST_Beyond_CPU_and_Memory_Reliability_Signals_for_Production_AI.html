@@ -260,22 +260,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">The Hypervisor Hunger Games: Protecting VMs, DevOps Tooling, and State via GitOps</h1>
+    <h1 class="section-heading text-center mb-3">Beyond CPU and Memory: Reliability Signals for Production AI</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Michael Cade.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Trupti Kolekar.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Michael Cade</h5>
+            <h5 class="card-title mb-2">Trupti Kolekar</h5>
             <div class="card-text mb-3">
-              <div class="meta">Veeam Software</div>
+              <div class="meta">GBST</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/michaelcade1/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/truptikolekar/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -289,17 +289,20 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Kubernetes has officially evolved from an application platform into the core operating system for enterprise infrastructure. With the rise of VMs on Kubernetes through projects like KubeVirt, SREs are now managing massive legacy virtual machines right alongside ephemeral containerised microservices and critical DevOps control planes like GitHub and Jira. When your entire engineering velocity depends on this unified stack, treating data protection as an afterthought or a manual checkbox is an operational hazard. This session outlines a modern strategy for data resilience, demonstrating how to treat your backup infrastructure entirely as code. We will walk through how to integrate immutable data protection policies directly into your declarative GitOps pipelines (ArgoCD). You will learn how to handle the massive data footprints of KubeVirt VMs, safeguard your vital DevOps tooling registries, and automate multi-cluster recovery workflows so that when disaster strikes, your state restores just as quickly as your code.</p></p>
+                <p><p>AI systems are moving from demos into production, but operating them reliably requires more than the traditional CPU, memory, uptime, and error-rate signals.
+As LLMs, RAG systems, vector databases, AI agents, and GPU-backed inference services become part of real customer-facing environments, SRE teams are being asked to support a new class of workload. These systems do not always fail like traditional web applications. A request can return HTTP 200 while the user still experiences slow token generation, poor retrieval quality, broken tool calls, model rate limits, fallback failures, or unexpected cost spikes.
+This talk looks at AI workloads through an SRE lens. Instead of focusing on whether AI will replace SREs, it explores the opposite problem: what happens when AI itself becomes the production system that SRE teams must keep reliable?
+We will walk through the reliability path of a modern AI application, including the API layer, prompt gateway, model server, vector database, external model provider, GPU infrastructure, queues, fallbacks, and agent/tool-call workflows. From there, we will map traditional SRE concepts such as SLIs, SLOs, observability, capacity planning, progressive rollout, rollback, and incident response to AI-specific production risks.
+The session will cover practical AI workload indicators such as Time to First Token, end-to-end inference latency, tokens per second, queue depth, GPU saturation, retrieval success, fallback success, rate-limit errors, and cost per request. We will also discuss why CPU and memory alone are often not enough for scaling LLM inference, and why AI systems need visibility across infrastructure health, model-serving behaviour, retrieval quality, dependency health, and user experience.
+Attendees will leave with a simple production readiness framework for AI workloads: define the user journey, choose meaningful SLIs, set realistic SLOs, observe the full inference path, plan for capacity and cost, design safe fallbacks, prepare rollback strategies, and treat AI systems as critical production services rather than impressive demos.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Michael Cade is a seasoned technology executive with over 20 years of experience in the data protection space. He is currently serving as the Global Field CTO for a leading cloud-native and open-source data protection company.
-Exploring the world of Cloud-Native and OSS software and raising awareness that there is still very much a requirement to protect data and workloads within these platforms.
-Prior to this role, Michael held various technical roles within Veeam joining in 2013 as a Systems Engineer and then moving to the product strategy team to focus on the wider Veeam strategy of creating content and sharing within the community.
-A big focus for Michael has been based on 3 things, Raising Awareness, Driving Adoption and showing the Art of the possible.</p></p>
+                <p><p>Trupti is a Senior Site Reliability Engineer and Co-Founder of OpsCortex Labs, focused on Kubernetes, SRE, observability, cloud infrastructure, and AIOps. She creates practical engineering content that simplifies production reliability concepts using diagrams, real-world examples, and incident-focused explanations. Her work has reached 100K+ engineers across the DevOps and SRE community, with 1M+ impressions on technical content.
+She holds certifications including CKA, AWS, Linux, and HashiCorp, and is passionate about helping engineers understand complex production systems with clarity, strong fundamentals, and practical automation.</p></p>
               </div>
 
               
