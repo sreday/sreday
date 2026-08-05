@@ -247,8 +247,8 @@
 				</div><!--//col-->
 				<div class="col-6 col-md-3">
 					<div class="item">
-						<div class="number">3</div>
-						<div class="unit">Tracks</div>
+						<div class="number">1</div>
+						<div class="unit">Track</div>
 					</div><!--//item-->
 				</div><!--//col-->
 				<div class="col-6 col-md-3">
@@ -280,22 +280,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">Beyond CPU and Memory: Reliability Signals for Production AI</h1>
+    <h1 class="section-heading text-center mb-3">Kaldb: A polystore for logs and traces</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Trupti Kolekar.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Suman Karumuri.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Trupti Kolekar</h5>
+            <h5 class="card-title mb-2">Suman Karumuri</h5>
             <div class="card-text mb-3">
-              <div class="meta">GBST</div>
+              <div class="meta">KalDB</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/truptikolekar/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/mansu/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -309,22 +309,27 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>AI systems are moving from demos into production, but operating them reliably requires more than the traditional CPU, memory, uptime, and error-rate signals.
-As LLMs, RAG systems, vector databases, AI agents, and GPU-backed inference services become part of real customer-facing environments, SRE teams are being asked to support a new class of workload. These systems do not always fail like traditional web applications. A request can return HTTP 200 while the user still experiences slow token generation, poor retrieval quality, broken tool calls, model rate limits, fallback failures, or unexpected cost spikes.
-This talk looks at AI workloads through an SRE lens. Instead of focusing on whether AI will replace SREs, it explores the opposite problem: what happens when AI itself becomes the production system that SRE teams must keep reliable?
-We will walk through the reliability path of a modern AI application, including the API layer, prompt gateway, model server, vector database, external model provider, GPU infrastructure, queues, fallbacks, and agent/tool-call workflows. From there, we will map traditional SRE concepts such as SLIs, SLOs, observability, capacity planning, progressive rollout, rollback, and incident response to AI-specific production risks.
-The session will cover practical AI workload indicators such as Time to First Token, end-to-end inference latency, tokens per second, queue depth, GPU saturation, retrieval success, fallback success, rate-limit errors, and cost per request. We will also discuss why CPU and memory alone are often not enough for scaling LLM inference, and why AI systems need visibility across infrastructure health, model-serving behaviour, retrieval quality, dependency health, and user experience.
-Attendees will leave with a simple production readiness framework for AI workloads: define the user journey, choose meaningful SLIs, set realistic SLOs, observe the full inference path, plan for capacity and cost, design safe fallbacks, prepare rollback strategies, and treat AI systems as critical production services rather than impressive demos.</p></p>
+                <p><p>Observability data isn't homogeneous. Security logs require needle-in-haystack searches with multi-year compliance retention. Kernel logs are uncompressible text. Structured logs enable fast aggregations, while semi-structured logs explode cardinality. Traces demand different access patterns entirely.</p>
+<p>Modern requirements compound this. Observability must join with other data sources. Agentic AI systems generate massive volumes of unstructured and semi-structured logs and traces. Big data platforms have emerged as popular storage alternatives.</p>
+<p>Forcing everything into one system creates impossible tradeoffs: slow queries, runaway costs, frustrated users.</p>
+<p>At Airbnb and Slack, operating thousands of tenants across hundreds of clusters, we built a polystore architecture routing workloads to specialized engines, unified behind a single query interface. This required changes across the entire stack: instrumentation, collection, storage, and query layers.</p>
+<p>This talk shares routing criteria, backend tradeoffs, and techniques for unified querying. Attendees will learn to optimize observability for better performance and lower costs.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Trupti is a Senior Site Reliability Engineer and Co-Founder of OpsCortex Labs, focused on Kubernetes, SRE, observability, cloud infrastructure, and AIOps. She creates practical engineering content that simplifies production reliability concepts using diagrams, real-world examples, and incident-focused explanations. Her work has reached 100K+ engineers across the DevOps and SRE community, with 1M+ impressions on technical content.
-She holds certifications including CKA, AWS, Linux, and HashiCorp, and is passionate about helping engineers understand complex production systems with clarity, strong fundamentals, and practical automation.</p></p>
+                <p><p>Suman Karumuri is a systems and infrastructure engineer focused on observability and distributed systems. He is the founder of KalDB, a serverless observability platform for agentic workloads. Previously, he was a Principal Engineer at Airbnb, where he led observability and reliability efforts, and held engineering roles at Slack, Pinterest, and Twitter, building large-scale logging, metrics, and tracing systems.</p></p>
               </div>
 
+              
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Video</h5>
+                <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+                  <iframe src="https://www.youtube.com/embed/7iYYO8yYYGU" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+              </div>
               
 
           </div><!--//card-->
