@@ -247,8 +247,8 @@
 				</div><!--//col-->
 				<div class="col-6 col-md-3">
 					<div class="item">
-						<div class="number">1</div>
-						<div class="unit">Track</div>
+						<div class="number">3</div>
+						<div class="unit">Tracks</div>
 					</div><!--//item-->
 				</div><!--//col-->
 				<div class="col-6 col-md-3">
@@ -280,22 +280,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">Your Internal Developer Platform's Next Interface Is an AI Agent</h1>
+    <h1 class="section-heading text-center mb-3">Topology, Not Telemetry: Tracing Cascading Cloud Failures From the 500 to the Commit</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Whitney Lee.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Louis Fradin.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Whitney Lee</h5>
+            <h5 class="card-title mb-2">Louis Fradin</h5>
             <div class="card-text mb-3">
-              <div class="meta">Datadog</div>
+              <div class="meta">AIS</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/whitneylee/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/louisfradin/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -309,14 +309,14 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Platform engineers provide capabilities to internal developers, and they build interfaces to those capabilities that meet developers where they are already working, be it web portal, CLI, or API. But lately, "where developers are already working" is alongside their AI coding assistant. Developers want to be able to ask the platform natural language questions like "Why won't my application deploy?" and "What types of databases are available to me?," and receive helpful answers. Developers want their coding assistant to investigate the platform's underlying Kubernetes cluster, surface the problem, and then apply fixes or recommend capabilities. This session is a live demo of exactly that: an AI agent that a coding assistant can use to interface with an internal platform on the developer's behalf. It is built from scratch with LangGraph, a vector database, and OpenTelemetry instrumentation. It is available to the coding assistant via MCP and CLI interfaces. LangGraph handles the Kubernetes cluster investigation tools. Then the vector database makes the cluster's capabilities searchable by natural language query. Finally, the traces help platform engineers understand how developers are using the agent: every LLM call, every tool execution, every reasoning step visible in an observability backend. This talk will show you why custom AI agents are wildly useful as a platform interface, and how to start building one at your organization.</p></p>
+                <p><p>On 18 November 2025, a permissions change in one internal database took down Cloudflare's Workers KV, Access, Turnstile, and Dashboard for over three hours, and a large slice of the web that sits behind Cloudflare went dark with it. Monitoring caught the spike in seconds. Finding the lead still took hours, because the real chain ran from that permissions change, through a feature file that quietly doubled in size, into the Bot Management engine, and out to every product downstream. That chain wasn't in the telemetry. It was in the topology. Most London platform teams know the smaller version of this every week: ten teams ship into one shared platform inside the same hour, the board lights up, and not one dashboard tells you which deploy lit it. The dependency graph is the data source that does. We'll walk the Cloudflare outage with a reconstructed topology in hand, next to the official postmortem. That means building the graph from what you already run, AWS, Kubernetes, Terraform, GitHub, and your monitoring, then versioning it through time, so "what changed between 14:23 and 14:47?" becomes a query instead of a guess. Once it's there, an AI agent can walk a graph it didn't invent, getting from alert to the breaking commit in seconds with the affected customers already attached. In one customer's production graph, that walk took about thirty seconds, against the twenty minutes to two hours a human familiar with the code needs to do it by hand.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Whitney Lee is a creator and systems thinker who explores how observability, AI, and platform engineering connect across the cloud native ecosystem. She brings humor, depth, and clarity to complex technologies while building original frameworks that help others understand how systems fit together. She runs a vibrant YouTube channel, hosts Datadog Illuminated and Software Defined Interviews, has delivered two KubeCon keynotes and countless breakout talks, and combines storytelling and technical rigor to illuminate the human side of cloud native engineering.</p></p>
+                <p><p>Louis Fradin is a Developer Advocate &amp; Backend Engineer at Anyshift, where he's helping build the AI context layer for production systems, giving teams the infrastructure graph they need so AI agents can actually understand what's running in prod. His path to SRE started deep in the stack: four years writing Linux drivers and managing HPC infrastructure for the French Ministry of Armed Forces, followed by three and a half years at Ubisoft building and operating Kubernetes clusters at scale for game servers with Go, Temporal, Talos, and OpenTelemetry. He speaks regularly about this work: Context Engineering for DevOps: How Agents Learn Your Infrastructure at DevOpsCon Amsterdam 2026, 25,000 servers at Ubisoft (with Vincent Behar) at TalosCon 2024 in London, Talos chez Ubisoft pour nos serveurs de jeux at Cloud Native Paris 2024, and Continuous Container Checkup at CloudNord 2023. For this talk in particular: I've spent the last year building and operating Annie, Anyshift's AI-SRE agent, and the temporal graph engine that feeds it. The Cloudflare case study is one I've walked through with our own customers on their own graphs, including the MotherDuck team, whose Head of Infra, Hilary Brennan-Marquez, put the speed-up this way: "a process that would have taken a human familiar with the code 20 minutes to 2 hours, Annie did in 30 seconds.</p></p>
               </div>
 
               
