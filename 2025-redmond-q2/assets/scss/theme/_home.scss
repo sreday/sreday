@@ -217,9 +217,8 @@
 	}
 	
 	.card-img-top {
-		transition: filter .2s ease;
 		&:hover {
-			filter: brightness(1.15);
+			@include opacity(0.9);
 		}
 	}
 
@@ -439,10 +438,7 @@
 		img {
 			border: 10px solid #fff;
 			max-width: 100%;
-			transition: filter .2s ease;
-			&:hover {
-				filter: brightness(1.15);
-			}
+			
 		}
 		&.figure-1 {
 			z-index: 1;
@@ -482,10 +478,6 @@
 	margin-bottom: 1rem;
 	img {
 		max-width: 100%;
-		transition: filter .2s ease;
-		&:hover {
-			filter: brightness(1.2) saturate(0.85);
-		}
 	}
 }
 /* footer */
