@@ -494,22 +494,22 @@
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Miko Pawlikowski.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Aliaksandr Valialkin.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
-            <h5 class="card-title mb-2">Miko Pawlikowski</h5>
+            <h5 class="card-title mb-2">Aliaksandr Valialkin</h5>
             <div class="card-text mb-3">
-              <div class="meta">SRE Author</div>
+              <div class="meta">VictoriaMetrics</div>
             </div><!--//card-text-->
             <div class="event-card-buttons">
-              <a href="./Miko_Pawlikowski_SRE_Author#speakers-section" class="event-read-more-btn">Read more</a>
+              <a href="./Aliaksandr_Valialkin_VictoriaMetrics_How_to_Create_a_Database_Optimized_for_Petabytes_of_Logs_and_Wi#speakers-section" class="event-read-more-btn">Read more</a>
               
             </div>
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
-              <li class="list-inline-item"><a  href="https://twitter.com/Keynote: The Evolution of Ops"><i class="fab fa-twitter fa-fw"></i></a></li>
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/mikolajpawlikowski/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-              <li class="list-inline-item"><a  href="https://twitter.com/Let's explore how the Ops landscape has evolved in recent years and examine key trends shaping its future."><i class="fab fa-twitter fa-fw"></i></a></li>
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/valyala/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
               
             </ul><!--//social-list-->
           </div>
@@ -641,28 +641,33 @@
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Miko Pawlikowski.png" alt="" />
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Aliaksandr Valialkin.png" alt="" />
                       </div>
 
                       <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Miko Pawlikowski</h2>
-                          <div class="meta mb-2">SRE Author</div>
+                          <h2 class="name mb-2">Aliaksandr Valialkin</h2>
+                          <div class="meta mb-2">VictoriaMetrics</div>
                           <ul class="social-list list-inline mb-0">
-                            <li class="list-inline-item"><a  href="https://twitter.com/Keynote: The Evolution of Ops"><i class="fab fa-twitter fa-fw"></i></a></li>
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/mikolajpawlikowski/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            <li class="list-inline-item"><a  href="https://twitter.com/Let's explore how the Ops landscape has evolved in recent years and examine key trends shaping its future."><i class="fab fa-twitter fa-fw"></i></a></li>
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/valyala/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
                             
                           </ul><!--//social-list-->
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
-              <div class="talk-title-bar"></div>
+              <div class="talk-title-bar">How to Create a Database Optimized for Petabytes of Logs and Wide Events</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>@mikopawlikowski</p></p>
+                <p><p>Databases for logs are usually forced to pick a side: build heavy inverted indexes for the ingested logs and pay for them on every write, or ingest raw data cheaply and pay with slow queries later. Is there a better approach? Yes - to make brute-force scanning so selective that most data is never read. This approach is taken by VictoriaLogs. This talk follows a log entry through the VictoriaLogs engine: how it is ingested with no upfront schema, how it lands in an immutable LSM-like compressed column-oriented storage, and how queries run the same structure in reverse, applying a stack of pruning mechanisms based on time, stream labels, and bloom filters so that only the data that can actually match is ever read. Beyond one system's internals, this is a talk about a design stance: when you specialize in one kind of data and know exactly how it is laid out and how it will be consumed, you can be smarter about what you build, sometimes discarding indexes entirely, and avoiding reading most of the data at all. You leave with a concrete set of patterns you can apply to your own storage problems, whether the data is logs or something else entirely.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Aliaksandr is a co-founder and the principal architect of VictoriaMetrics. He is also a well-known author of the popular performance-oriented libraries: fasthttp, fastcache and quicktemplate. Prior to VictoriaMetrics, Aliaksandr held CTO and Architect roles with adtech companies serving high volumes of traffic. He holds a Master’s Degree in Computer Software Engineering. He decided to found VictoriaMetrics after experiencing the shortcomings of all available time series databases and monitoring solutions.</p></p>
               </div>
 
           </div><!--//modal-body-->
