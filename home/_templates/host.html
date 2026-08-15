@@ -1,0 +1,727 @@
+{% extends "_base.html" %}
+
+{% block head_extra %}
+<meta name="robots" content="noindex, nofollow">
+<style>
+/* ── Host Us Page — brand-tint palette ────────────────────────── */
+:root {
+  /* LLMday green */
+  --host-green: #279D70;
+  --host-green-mid: #BFE7D4;
+  --host-green-light: #E5F5EE;
+  /* PLATFORMday orange */
+  --host-orange: #E99A17;
+  --host-orange-mid: #F8DFAE;
+  --host-orange-light: #FDF3E0;
+  /* SREday purple */
+  --host-purple: #646083;
+  --host-purple-mid: #CFCDE0;
+  --host-purple-light: #ECEBF3;
+  --host-ink: #2d3436;
+}
+
+/* Hide inherited hero and stats bar from _base.html */
+#home.hero-block { display: none !important; }
+.stats-block { display: none !important; }
+
+/* ── Hero ─────────────────────────────────────────────────────── */
+.host-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--host-green-light) 0%, #fff 45%, var(--host-purple-light) 100%);
+  padding: 140px 0 80px;
+  text-align: center;
+}
+.host-hero::before {
+  content: '';
+  position: absolute; top: -60px; left: -80px;
+  width: 300px; height: 300px;
+  background: var(--host-green-mid);
+  border-radius: 50%;
+  opacity: .45;
+}
+.host-hero::after {
+  content: '';
+  position: absolute; top: -40px; right: -60px;
+  width: 250px; height: 250px;
+  background: var(--host-orange-mid);
+  border-radius: 50%;
+  opacity: .45;
+}
+.host-hero .blob-purple {
+  position: absolute; bottom: -50px; right: 12%;
+  width: 200px; height: 200px;
+  background: var(--host-purple-mid);
+  border-radius: 50%;
+  opacity: .4;
+}
+.host-hero h1 {
+  font-size: 2.56rem;
+  font-weight: 800;
+  color: var(--host-ink);
+  position: relative;
+  z-index: 1;
+}
+.host-hero .subtitle {
+  font-size: 1.15rem;
+  color: #636e72;
+  max-width: 640px;
+  margin: 14px auto 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Sections ─────────────────────────────────────────────────── */
+.host-section { padding: 70px 0; }
+.host-section h2 {
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--host-ink);
+  margin-bottom: 25px;
+}
+.host-section .lead-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  max-width: 800px;
+}
+.host-bg-white  { background: #fff; }
+.host-bg-green  { background: linear-gradient(135deg, var(--host-green-light) 0%, #fff 100%); }
+.host-bg-orange { background: linear-gradient(135deg, #fff 0%, var(--host-orange-light) 100%); }
+.host-bg-purple { background: linear-gradient(135deg, var(--host-purple-light) 0%, #fff 100%); }
+
+/* decorative bubbles */
+.host-bubbles { position: relative; overflow: hidden; }
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: .3;
+  pointer-events: none;
+  z-index: 0;
+}
+.host-bubbles > .container { position: relative; z-index: 1; }
+
+/* ── Trinity cards ────────────────────────────────────────────── */
+.trinity-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+  height: 100%;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: transform .2s, box-shadow .2s;
+}
+.trinity-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.12);
+  text-decoration: none;
+}
+.trinity-card .trinity-head {
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: .08em;
+  padding: 12px 10px;
+}
+.trinity-green  .trinity-head { background: var(--host-green); }
+.trinity-orange .trinity-head { background: var(--host-orange); }
+.trinity-purple .trinity-head { background: var(--host-purple); }
+.trinity-card .trinity-body {
+  padding: 24px 22px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex-grow: 1;
+}
+.trinity-card img { height: 96px; }
+.trinity-card h5 { font-weight: 800; margin: 0; font-size: 1.25rem; color: var(--host-ink); }
+.trinity-card p { color: #666; font-size: 0.95rem; margin: 0; }
+
+/* ── Logo marquee pill ("in good company") ────────────────────── */
+.host-logo-pill {
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.07);
+  padding: 28px 0;
+  overflow: hidden;
+}
+.host-logo-track {
+  display: flex;
+  align-items: center;
+  gap: 4.5rem;
+  width: max-content;
+  animation: host-logo-scroll 40s linear infinite;
+}
+.host-logo-pill:hover .host-logo-track { animation-play-state: paused; }
+.host-logo-item img {
+  height: 114px;
+  width: auto;
+  max-width: 364px;
+  object-fit: contain;
+}
+@keyframes host-logo-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── World map ("28 cities and counting") ─────────────────────── */
+.map-wrap { position: relative; }
+.map-wrap .map-svg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1000 / 463; /* ~15% vertical stretch vs the 402.8-tall viewBox */
+  display: block;
+}
+.map-svg path {
+  fill: #C9E2F6;
+  transition: fill .15s;
+}
+.map-svg path:hover,
+.map-svg path.country-hover { fill: #9CC7EC; }
+.map-dot {
+  position: absolute;
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 1px 4px rgba(0,0,0,.3);
+}
+.map-wrap .map-dot:hover { z-index: 5; }
+.map-wrap .map-dot::after {
+  content: attr(data-city);
+  position: absolute;
+  bottom: calc(100% + 7px);
+  left: 50%;
+  transform: translateX(-50%) translateY(3px);
+  background: var(--host-ink);
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 6px 11px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s, transform .15s;
+}
+.map-wrap .map-dot:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.map-dot-green  { background: var(--host-green); }
+.map-dot-purple { background: var(--host-purple); }
+.map-dot-dual   { background: linear-gradient(135deg, var(--host-green) 50%, var(--host-purple) 50%); }
+.map-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 20px;
+  font-weight: 700;
+  color: var(--host-ink);
+}
+.map-legend .legend-dot {
+  position: static;
+  display: inline-block;
+  transform: none;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* ── Stat pills ("a typical conference") ──────────────────────── */
+.stat-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin: 10px 0 20px;
+}
+.stat-pills span {
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: .95rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--host-ink);
+}
+.stat-pills span:nth-child(3n+1) { background: var(--host-green-mid); }
+.stat-pills span:nth-child(3n+2) { background: var(--host-orange-mid); }
+.stat-pills span:nth-child(3n)   { background: var(--host-purple-mid); }
+
+/* ── Who does what card ───────────────────────────────────────── */
+.who-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+  padding: 36px 40px;
+}
+.who-card h4 {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--host-ink);
+  margin-bottom: 16px;
+}
+.who-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.who-list li {
+  position: relative;
+  padding: 7px 0 7px 26px;
+  font-size: 1.02rem;
+  color: var(--host-ink);
+}
+.who-list li::before {
+  content: '';
+  position: absolute;
+  left: 4px; top: 15px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+.we-list li::before  { background: var(--host-green); }
+.you-list li::before { background: var(--host-orange); }
+
+/* ── Trio cards (thank-you / break-even / small team) ─────────── */
+.trio-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.trio-card .trio-bar { height: 10px; }
+.trio-bar-purple { background: var(--host-purple); }
+.trio-bar-orange { background: var(--host-orange); }
+.trio-bar-green  { background: var(--host-green); }
+.trio-card .trio-body {
+  padding: 26px 26px 30px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.trio-card h4 {
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: var(--host-ink);
+  margin-bottom: 12px;
+}
+.trio-card p {
+  color: #555;
+  font-size: .98rem;
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+.trio-card .perk-line {
+  font-weight: 700;
+  color: var(--host-ink);
+}
+.trio-card .trio-link {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn-host {
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: none;
+  margin: 8px;
+  color: #fff;
+  transition: transform .2s, box-shadow .2s;
+}
+.btn-host-sm {
+  padding: 11px 24px;
+  font-size: .95rem;
+  margin: 0;
+}
+.btn-host:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,.25);
+  color: #fff;
+  text-decoration: none;
+}
+.btn-host-green  { background: var(--host-green); }
+.btn-host-coral  { background: #EC645E; }
+.btn-host-orange { background: var(--host-orange); }
+.btn-host-purple { background: var(--host-purple); }
+
+/* ── Dark "let's get started" panel ───────────────────────────── */
+.host-dark-panel {
+  background: #161d27;
+  border-radius: 26px;
+  padding: 56px 48px;
+  color: #fff;
+}
+.host-dark-panel h2 {
+  color: #fff;
+  margin-bottom: 30px;
+}
+.host-dark-panel .host-step { text-align: center; padding: 10px 16px; }
+.host-dark-panel .step-num {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 auto 16px;
+}
+.step-1 .step-num { background: var(--host-green); }
+.step-2 .step-num { background: var(--host-orange); }
+.step-3 .step-num { background: var(--host-purple); }
+.host-dark-panel .host-step h5 { font-weight: 800; margin-bottom: 6px; color: #fff; }
+.host-dark-panel .host-step p { color: #aeb7c2; margin: 0; font-size: .95rem; }
+@media (max-width: 768px) {
+  .host-hero h1 { font-size: 1.92rem; }
+  .host-section h2 { font-size: 2rem; }
+  .who-card { padding: 28px 24px; }
+  .host-dark-panel { padding: 40px 26px; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section class="host-hero">
+  <div class="blob-purple"></div>
+  <div class="bubble" style="width:120px;height:120px;background:var(--host-purple-mid);top:30%;left:5%;opacity:.3;"></div>
+  <div class="bubble" style="width:90px;height:90px;background:var(--host-orange-mid);top:15%;right:25%;opacity:.35;"></div>
+  <div class="bubble" style="width:60px;height:60px;background:var(--host-green-mid);top:60%;left:18%;opacity:.3;"></div>
+  <div class="bubble" style="width:70px;height:70px;background:var(--host-green-mid);bottom:18%;right:6%;opacity:.3;"></div>
+  <div class="container">
+    <h1>Host us at your office</h1>
+    <p class="subtitle">
+      We run three global conference brands, all built by the same team. You can host the ones that best fit your people, location and goals.
+    </p>
+    <div class="mt-4" style="position:relative;z-index:1;">
+      <a href="#start" class="btn-host btn-host-coral scrollto">Let's do this!</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ TRINITY CARDS ══════════════════════════ -->
+<section id="conferences" class="host-section host-bg-white host-bubbles">
+  <div class="bubble" style="width:130px;height:130px;background:var(--host-orange-mid);top:-30px;left:2%;"></div>
+  <div class="bubble" style="width:80px;height:80px;background:var(--host-purple-mid);bottom:20px;right:5%;"></div>
+  <div class="container">
+    <div class="row g-4 justify-content-center">
+      <div class="col-12 col-md-4">
+        <a class="trinity-card trinity-green" href="https://www.llmday.com" target="_blank" rel="noopener noreferrer">
+          <div class="trinity-head">BUILD IT</div>
+          <div class="trinity-body">
+            <img src="/assets/images/llmday_sticker_new.png" alt="LLMday">
+            <h5>LLMday</h5>
+            <p>Large Language Models, AI agents and machine learning.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 col-md-4">
+        <a class="trinity-card trinity-orange" href="https://platformday.com" target="_blank" rel="noopener noreferrer">
+          <div class="trinity-head">SHIP IT</div>
+          <div class="trinity-body">
+            <img src="/assets/images/platformday_sticker.png" alt="PLATFORMday">
+            <h5>PLATFORMday</h5>
+            <p>Platform engineering, DevOps and DevEx.</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 col-md-4">
+        <a class="trinity-card trinity-purple" href="https://sreday.com" target="_blank" rel="noopener noreferrer">
+          <div class="trinity-head">RUN IT</div>
+          <div class="trinity-body">
+            <img src="/assets/images/sreday_sticker.png" alt="SREday">
+            <h5>SREday</h5>
+            <p>Reliability, cloud, observability and production systems.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="lead-text mx-auto text-center mt-5">
+      <p>Each community is built for practitioners: the engineers who build, ship and run modern software systems in the age of AI. Our mission is to create places where they can share what works, learn from each other and strengthen the engineering communities around them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ GOOD COMPANY ═══════════════════════════════ -->
+<section id="company" class="host-section host-bg-orange host-bubbles">
+  <div class="bubble" style="width:140px;height:140px;background:var(--host-orange-mid);top:-30px;left:6%;"></div>
+  <div class="bubble" style="width:90px;height:90px;background:var(--host-green-mid);bottom:10%;right:4%;"></div>
+  <div class="container">
+    {% set host_logos = ['catawiki', 'criteo', 'datadog', 'dynatrace', 'evolv', 'ford', 'gable', 'google', 'harness', 'houseofai', 'ilert', 'ing', 'kyndryl', 'maibornwolff', 'microsoft', 'monday', 'pagerduty', 'viam', 'xurrent'] %}
+    <h2 class="text-center">We're in good company</h2>
+    <div class="lead-text mx-auto text-center mb-4">
+      <p>We've been hosted by {{ host_logos|length }} companies worldwide</p>
+    </div>
+    <div class="host-logo-pill">
+      <div class="host-logo-track">
+        {% for logo in host_logos %}
+        <div class="host-logo-item"><img src="/assets/images/hosts/{{ logo }}.png" alt="{{ logo }}"></div>
+        {% endfor %}
+        {% for logo in host_logos %}
+        <div class="host-logo-item"><img src="/assets/images/hosts/{{ logo }}.png" alt="{{ logo }}"></div>
+        {% endfor %}
+      </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var track = document.querySelector('.host-logo-track');
+      if (track) {
+        var SPEED = 30; // pixels per second
+        var totalWidth = track.scrollWidth / 2;
+        track.style.animationDuration = (totalWidth / SPEED) + 's';
+      }
+    });
+    </script>
+  </div>
+</section>
+
+<!-- ═══════════════════════ WORLD MAP ══════════════════════════════════ -->
+<section id="map" class="host-section host-bg-white host-bubbles">
+  <div class="bubble" style="width:120px;height:120px;background:var(--host-green-mid);top:-30px;left:4%;"></div>
+  <div class="bubble" style="width:80px;height:80px;background:var(--host-purple-mid);bottom:15%;right:5%;"></div>
+  <div class="container">
+    {#- (name, country, lat, lon, brand, dlon) — one dot per city; 'dual' = LLMday + SREday split dot; dlon nudges near-neighbor cities apart; country must match the SVG path <title>; map spans lat 85..-60, lon -180..180 -#}
+    {% set map_cities = [
+      ('London', 'United Kingdom', 51.51, -0.13, 'dual', 0),
+      ('NYC', 'United States of America', 40.71, -74.01, 'dual', 0),
+      ('San Francisco', 'United States of America', 37.77, -122.42, 'dual', -1),
+      ('Redwood City', 'United States of America', 37.49, -122.23, 'green', 2),
+      ('Austin', 'United States of America', 30.27, -97.74, 'dual', 0),
+      ('Warsaw', 'Poland', 52.23, 21.01, 'dual', 0),
+      ('Lisbon', 'Portugal', 38.72, -9.14, 'dual', 0),
+      ('Bangalore', 'India', 12.97, 77.59, 'dual', 0),
+      ('Hamburg', 'Germany', 53.55, 9.99, 'green', 0),
+      ('Montevideo', 'Uruguay', -34.90, -56.19, 'green', 0),
+      ('Amsterdam', 'Netherlands', 52.37, 4.90, 'purple', 0),
+      ('Cologne', 'Germany', 50.94, 6.96, 'purple', 0),
+      ('Paris', 'France', 48.86, 2.35, 'purple', 0),
+      ('Munich', 'Germany', 48.14, 11.58, 'purple', 0),
+      ('Barcelona', 'Spain', 41.39, 2.17, 'purple', 0),
+      ('Katowice', 'Poland', 50.26, 19.02, 'purple', 0),
+      ('Seattle', 'United States of America', 47.61, -122.33, 'purple', -1),
+      ('Redmond', 'United States of America', 47.67, -122.12, 'purple', 2),
+      ('Dallas', 'United States of America', 32.78, -96.80, 'purple', 0),
+      ('Campinas', 'Brazil', -22.91, -47.06, 'purple', 0),
+      ('Chennai', 'India', 13.08, 80.27, 'purple', 2),
+      ('Hyderabad', 'India', 17.39, 78.49, 'purple', 0),
+    ] %}
+    {% set map_countries = [] %}
+    {% for name, country, lat, lon, brand, dlon in map_cities %}{% if country not in map_countries %}{% set _ = map_countries.append(country) %}{% endif %}{% endfor %}
+    <h2 class="text-center">{{ map_cities|length }} cities, {{ map_countries|length }} countries</h2>
+    <div>
+      <div class="map-wrap">
+        {% include "_world_map_svg.html" %}
+        {% for name, country, lat, lon, brand, dlon in map_cities %}
+        <span class="map-dot map-dot-{{ brand }}" data-city="{{ name }}" data-country="{{ country }}" style="left:{{ '%.2f'|format((lon + dlon + 180) / 3.6) }}%;top:{{ '%.2f'|format((85 - lat) / 1.45) }}%;"></span>
+        {% endfor %}
+      </div>
+      <div class="map-legend">
+        <span><span class="map-dot map-dot-green legend-dot"></span>LLMday</span>
+        <span><span class="map-dot map-dot-purple legend-dot"></span>SREday</span>
+        <span><span class="map-dot map-dot-dual legend-dot"></span>Both</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ TYPICAL CONFERENCE ═════════════════════════ -->
+<section id="typical" class="host-section host-bg-white host-bubbles">
+  <div class="bubble" style="width:110px;height:110px;background:var(--host-purple-mid);top:-20px;right:8%;"></div>
+  <div class="bubble" style="width:70px;height:70px;background:var(--host-green-mid);bottom:15%;left:4%;"></div>
+  <div class="container text-center">
+    <h2>A typical conference</h2>
+    <div class="stat-pills">
+      <span>Single day</span>
+      <span>9AM &ndash; 5PM</span>
+      <span>80&ndash;150 attendees</span>
+      <span>1&ndash;3 tracks</span>
+      <span>15&ndash;40 sessions</span>
+    </div>
+    <p class="lead-text mx-auto">Keynotes, talks, workshops, panels and plenty of time to network.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ WHO DOES WHAT ══════════════════════════ -->
+<section id="responsibilities" class="host-section host-bg-purple host-bubbles">
+  <div class="bubble" style="width:150px;height:150px;background:var(--host-purple-mid);top:-40px;left:5%;"></div>
+  <div class="bubble" style="width:100px;height:100px;background:var(--host-orange-mid);bottom:-20px;right:3%;"></div>
+  <div class="bubble" style="width:60px;height:60px;background:var(--host-green-mid);top:35%;right:7%;"></div>
+  <div class="container">
+    <h2 class="text-center">Who does what?</h2>
+    <div class="who-card">
+      <div class="row g-4">
+        <div class="col-12 col-md-7">
+          <h4>We take care of</h4>
+          <ul class="who-list we-list">
+            <li>Backend: website, ticketing, call for papers, agenda</li>
+            <li>Organic promotion</li>
+            <li>Our own logistics</li>
+            <li>On-site event coordination</li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-5">
+          <h4>You take care of</h4>
+          <ul class="who-list you-list">
+            <li>The venue</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="lead-text mx-auto text-center mt-4">
+      <p>A suitable office or event space with working A/V, preferably available on a weekday.</p>
+      <p>We'll cover simple food and beverage options by default. If your company can (co)finance catering for the event, that's a big plus.</p>
+      <p>You know your city. Get us in touch with friendly companies, local communities, and important personas to make the event even more relevant!</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ THANK YOU / BREAK EVEN / SMALL TEAM ════════════════ -->
+<section id="details" class="host-section host-bg-white host-bubbles">
+  <div class="bubble" style="width:130px;height:130px;background:var(--host-green-mid);top:-30px;right:10%;"></div>
+  <div class="bubble" style="width:80px;height:80px;background:var(--host-purple-mid);bottom:20px;left:5%;"></div>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-12 col-lg-4">
+        <div class="trio-card">
+          <div class="trio-bar trio-bar-purple"></div>
+          <div class="trio-body">
+            <h4>FREE Sponsorship</h4>
+            <p>Hosting 80+ people in your space takes work. <strong>We appreciate it.</strong></p>
+            <p>That's why hosts get <strong>FREE</strong> sponsorship benefits we'd normally charge for.</p>
+            <p class="perk-line">Conference leads | Keynote | Panel | Booth</p>
+            <a class="trio-link btn-host btn-host-purple btn-host-sm" href="/2026-london-q3/sponsorship#opportunities" target="_blank">See what we normally charge &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="trio-card">
+          <div class="trio-bar trio-bar-orange"></div>
+          <div class="trio-body">
+            <h4>How do we break even?</h4>
+            <p>Mostly with <strong>tickets and other sponsors.</strong></p>
+            <p>We like to be able to sell tickets and invite a small number of relevant external sponsors. <strong>You remain the host and the main brand.</strong></p>
+            <p>Need free tickets? No competing sponsors? <strong>No problem. We adapt the model together.</strong></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="trio-card">
+          <div class="trio-bar trio-bar-green"></div>
+          <div class="trio-body">
+            <h4>Underdog Style</h4>
+            <p>We're a <strong>small London-based team</strong>, supported by ambassadors around the world.</p>
+            <p>We travel light and keep overhead low.</p>
+            <p>That lets us <strong>test new cities and unconventional venues</strong> that traditional conferences often skip.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ COMMUNITY + STATS ══════════════════════════ -->
+<section id="communities" class="host-section host-bg-orange host-bubbles">
+  <div class="bubble" style="width:150px;height:150px;background:var(--host-orange-mid);top:-40px;right:4%;"></div>
+  <div class="bubble" style="width:90px;height:90px;background:var(--host-purple-mid);bottom:10px;left:6%;"></div>
+  <div class="container">
+    <h2 class="text-center">Dev Communities rock!</h2>
+    <div class="lead-text mx-auto text-center mb-5">
+      <p>Our communities grow through <strong>attendees, speakers and ambassadors.</strong> Host an event and put your company on the map as a genuine community supporter.</p>
+    </div>
+    <div class="text-center">
+      <a href="https://llmday.com/2026-london-q4/sponsorship#stats" target="_blank" class="btn-host btn-host-green">LLMday community stats</a>
+      <a href="https://platformday.com" target="_blank" class="btn-host btn-host-orange">PLATFORMday community stats</a>
+      <a href="/2026-london-q3/sponsorship#stats" target="_blank" class="btn-host btn-host-purple">SREday community stats</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ GET STARTED ════════════════════════════ -->
+<section id="start" class="host-section host-bg-white host-bubbles">
+  <div class="bubble" style="width:180px;height:180px;background:var(--host-green-mid);top:-50px;right:5%;"></div>
+  <div class="bubble" style="width:120px;height:120px;background:var(--host-purple-mid);bottom:-30px;left:8%;"></div>
+  <div class="container">
+    <div class="host-dark-panel text-center">
+      <h2>Ready to host?</h2>
+      <div class="row g-4 justify-content-center">
+        <div class="col-12 col-md-4">
+          <div class="host-step step-1">
+            <div class="step-num">1</div>
+            <h5>You have the space</h5>
+            <p>Share the address, capacity and a few possible dates.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="host-step step-2">
+            <div class="step-num">2</div>
+            <h5>We check the fit</h5>
+            <p>Existing communities, our calendar and basic logistics.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="host-step step-3">
+            <div class="step-num">3</div>
+            <h5>Let's do this!</h5>
+            <p>You host the conference. We make it awesome.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4">
+        <a href="https://calendly.com/sreday/30min" target="_blank" rel="noopener noreferrer" class="btn-host btn-host-orange">Hop on a call</a>
+        <a href="mailto:hello@sreday.com?subject=Hosting%20inquiry" class="btn-host btn-host-purple"><i class="fas fa-envelope me-2"></i>Email Mark</a>
+        <a href="https://wa.me/447307415008" target="_blank" rel="noopener noreferrer" class="btn-host btn-host-green"><i class="fab fa-whatsapp me-2"></i>DM Mark</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Dim the country while hovering its city dot -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var countryPaths = {};
+  document.querySelectorAll('.map-svg path').forEach(function(path) {
+    var title = path.querySelector('title');
+    if (title) countryPaths[title.textContent] = path;
+  });
+  document.querySelectorAll('.map-wrap .map-dot').forEach(function(dot) {
+    var path = countryPaths[dot.getAttribute('data-country')];
+    if (!path) return;
+    dot.addEventListener('mouseenter', function() { path.classList.add('country-hover'); });
+    dot.addEventListener('mouseleave', function() { path.classList.remove('country-hover'); });
+  });
+});
+</script>
+
+<!-- Replace nav links for this page -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var nav = document.querySelector('#navigation .navbar-nav');
+  if (!nav) return;
+  nav.innerHTML =
+    '<li class="nav-item"><a class="nav-link" href="/">Home</a></li>' +
+    '<li class="nav-item"><a class="nav-link" href="https://sreday.com/host">Host us</a></li>' +
+    '<li class="nav-item"><a class="nav-link scrollto" href="#responsibilities">Responsibilities</a></li>' +
+    '<li class="nav-item"><a class="nav-link scrollto" href="#details">Details</a></li>' +
+    '<li class="nav-item"><a class="nav-link scrollto" href="#communities">Communities</a></li>' +
+    '<li class="nav-item"><a class="nav-link scrollto" href="#start">Get started</a></li>';
+});
+</script>
+
+{% endblock %}
