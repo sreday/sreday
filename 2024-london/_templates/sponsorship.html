@@ -7,10 +7,22 @@
 :root { --sp-accent: #862f6e; }
 
 .sp-hero {
-  background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-              url('{{ hero_pictures[0] if hero_pictures else "" }}') center/cover no-repeat;
-  padding: 80px 0 60px;
-  color: #fff;
+  position: relative;
+  height: 620px;
+  padding-top: 125px;
+  overflow: hidden;
+  background: url('../photos/sreday-paint.png') center/cover no-repeat;
+}
+.sp-hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,.45);
+  z-index: 1;
+}
+.sp-hero .container {
+  position: relative;
+  z-index: 2;
 }
 .sp-badge-noindex {
   display: inline-block;
@@ -40,6 +52,47 @@
 #sp-dark-body .sp-section-alt { background: #0d0d0d; }
 #sp-dark-body .sp-section-title { color: #fff; }
 #sp-dark-body .sp-gbp-note    { color: #666; }
+
+/* ── Currency toggle ────────────────────────────────── */
+.sp-currency-toggle {
+  display: inline-flex;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+  vertical-align: middle;
+  position: relative;
+}
+.sp-currency-slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  height: calc(100% - 6px);
+  border-radius: 999px;
+  background: var(--sp-accent);
+  transition: transform .3s cubic-bezier(.4,0,.2,1), width .3s cubic-bezier(.4,0,.2,1);
+  pointer-events: none;
+  z-index: 0;
+}
+.sp-currency-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: .85rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color .2s;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+.sp-currency-btn:hover { color: #ccc; }
+.sp-currency-btn.active {
+  color: #fff;
+}
 
 /* ── Sponsor pills ───────────────────────────────────── */
 .sp-pill {
@@ -142,15 +195,15 @@
 .sp-stats-s-sub   { font-size: .9rem; color: #555; margin-bottom: 24px; }
 
 /* big number pills */
-.sp-stats-big-numbers { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+.sp-stats-big-numbers { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
 .sp-stats-big-num {
   display: inline-flex; flex-direction: column; align-items: center;
-  padding: 14px 24px; border: 1px solid var(--spi-green-mid);
+  padding: 11px 19px; border: 1px solid var(--spi-green-mid);
   border-radius: 999px; background: var(--spi-green-light); text-align: center;
 }
-.sp-stats-big-num-value { font-family: 'Montserrat', sans-serif; font-size: 1.9rem; font-weight: 700; color: #4a1f3a; line-height: 1; letter-spacing: -.01em; }
-.sp-stats-big-num-value sup { font-size: .9rem; color: var(--spi-green); vertical-align: super; font-weight: 700; }
-.sp-stats-big-num-label { font-size: .72rem; color: #8a4a72; text-transform: uppercase; letter-spacing: .07em; margin-top: 5px; }
+.sp-stats-big-num-value { font-family: 'Montserrat', sans-serif; font-size: 1.52rem; font-weight: 700; color: #4a1f3a; line-height: 1; letter-spacing: -.01em; }
+.sp-stats-big-num-value sup { font-size: .72rem; color: var(--spi-green); vertical-align: super; font-weight: 700; }
+.sp-stats-big-num-label { font-size: .58rem; color: #8a4a72; text-transform: uppercase; letter-spacing: .07em; margin-top: 4px; }
 
 /* TLDR pill */
 .sp-stats-tldr {
@@ -291,6 +344,8 @@
 }
 .sp-custom-ideas li { font-size: .9rem; color: #d0d0d0; padding: 4px 0; }
 .sp-custom-ideas li::before { content: "✓ "; color: #26986A; font-weight: 700; }
+.sp-custom-ideas a { color: inherit; text-decoration: underline; }
+.sp-custom-ideas a:hover { color: #fff; }
 @media (max-width: 640px) {
   .sp-custom-card { grid-template-columns: 1fr; }
   .sp-custom-card-left { border-right: none; border-bottom: 1px solid rgba(113,54,96,.3); padding-right: 0; padding-bottom: 20px; margin-bottom: 20px; }
@@ -303,7 +358,7 @@
 .sp-tier-card {
   border: 1px solid rgba(255,255,255,.08);
   border-radius: 12px;
-  padding: 32px 24px;
+  padding: 26px 24px;
   background: #1e1e1e;
   height: 100%;
   position: relative;
@@ -339,21 +394,81 @@
   white-space: nowrap;
 }
 .sp-tier-name     { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; color: #fff; }
-.sp-tier-price    { font-size: 2.2rem; font-weight: 800; color: #fff; }
+.sp-tier-subtitle { font-size: .85rem; color: #999; margin-bottom: 2px; }
+.sp-tier-price    { font-size: 2.2rem; font-weight: 800; color: #fff; transition: opacity .18s ease; }
+.sp-tier-price.sp-fade { opacity: 0; }
+.sp-tier-price.sp-discounted { color: #4adb8b; }
+
+/* Currency symbol slide/fade on currency switch */
+.sp-cur-sym { display: inline-block; transition: transform .18s ease, opacity .18s ease; }
+.sp-cur-sym.sp-sym-out  { transform: translateY(-10px); opacity: 0; }
+.sp-cur-sym.sp-sym-prep { transition: none; transform: translateY(10px); opacity: 0; }
+.sp-num { display: inline-block; }
+
+/* ── Discount toggle switch ────────────────────────── */
+.sp-discount-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 2.2rem;
+  font-weight: 800;
+  user-select: none;
+}
+.sp-discount-check { display: none; }
+.sp-discount-switch {
+  width: 44px; height: 24px;
+  background: #444;
+  border-radius: 12px;
+  position: relative;
+  transition: background .2s;
+  flex-shrink: 0;
+}
+.sp-discount-switch::after {
+  content: '';
+  width: 20px; height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px; left: 2px;
+  transition: transform .2s;
+}
+.sp-discount-check:checked + .sp-discount-switch {
+  background: var(--sp-accent);
+}
+.sp-discount-check:checked + .sp-discount-switch::after {
+  transform: translateX(20px);
+}
+
+/* Strikethrough original price */
+.sp-tier-original {
+  display: none;
+  float: right;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #888;
+  text-decoration: line-through;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity .3s ease, transform .3s ease;
+}
+.sp-tier-original.sp-slide-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Active discount card glow */
+.sp-discount-card-active {
+  border-color: var(--sp-accent) !important;
+  box-shadow: 0 0 20px rgba(134,47,110,.25) !important;
+  background: #2d1e2a !important;
+}
 .sp-tier-body     { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 .sp-tier-benefits { list-style: none; padding: 0; margin: 0 0 12px; }
 .sp-tier-benefits li { padding: 5px 0; font-size: .9rem; color: #d0d0d0; }
 .sp-tier-benefits li::before { content: "✓ "; color: #26986A; font-weight: 700; }
-.sp-tier-requires {
-  font-size: .9rem;
-  color: #f5d800;
-  margin-top: 5px;
-  padding: 6px 10px;
-  background: rgba(245,216,0,.1);
-  border: 1px solid rgba(245,216,0,.3);
-  border-radius: 6px;
-  text-align: center;
-}
+.sp-tier-benefits li.sp-tier-warn { color: #f5d800; }
+.sp-tier-benefits li.sp-tier-warn::before { content: "⚠ "; color: #f5d800; }
 
 /* ── Get in touch / CTA buttons ──────────────────────── */
 #sp-dark-body .btn-outline-secondary {
@@ -431,6 +546,22 @@
 </style>
 {% endblock %}
 
+{% block hero %}
+<div id="home" class="hero-block sp-hero">
+	<div class="sp-hero-overlay"></div>
+	<div class="container">
+		<div class="hero-text-block text-center" style="max-width: 100%;">
+			{% if logo_image %}<h1 class="logo retro"><img src="{{ logo_image }}" alt="{{ brand_name }}" style="max-width: 350px; height: auto;" /></h1>{% else %}<h1 class="logo retro"><img src="/assets/images/sreday_sticker.png" alt="SREday" style="height: 200px;"></h1>{% endif %}
+			<h2 class="text-white">Sponsorship Prospectus - {{ brand_name }} {{ city_name }}</h2>
+			<h3 class="text-white"><i class="far fa-calendar-alt me-2"></i>{{ date_string }} <i class="fas fa-map-marker-alt mx-2"></i>{{ location_string }}</h3>
+			<div class="hero-cta mt-5">
+				<a class="btn btn-danger btn-lg" href="#buy" style="text-decoration:none;">Secure your Sponsorship</a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
 {% block content %}
 <div id="sp-dark-body">
 
@@ -438,28 +569,50 @@
 <section class="sp-section" id="opportunities">
   <div class="container">
     <h2 class="sp-section-title text-center">Sponsorship opportunities</h2>
-    <p class="sp-gbp-note text-center" style="font-size:1.04rem;margin-top:-.8rem;margin-bottom:1.5rem;">Pricing in GBP — British Pound Sterling.<br>We are a London-based company organizing conferences worldwide.</p>
+    <p class="sp-gbp-note text-center" style="font-size:1.04rem;margin-top:-.8rem;margin-bottom:1.5rem;">
+      We are a London-based company organizing conferences worldwide.<br>
+      Sponsors are invoiced in GBP / £ &mdash; British Pound Sterling.<br>
+      The conversions are for reference and may not be 100% accurate.
+    </p>
+    <p class="sp-gbp-note text-center" style="font-size:1.04rem;margin-top:-.5rem;margin-bottom:1.5rem;">
+      Convert:
+      <span class="sp-currency-toggle">
+        <span class="sp-currency-slider"></span>
+        {% for cur_code, cur_info in exchange_rates.items() %}<button class="sp-currency-btn{% if cur_code == 'GBP' %} active{% endif %}" data-currency="{{ cur_code }}" onclick="spSwitchCurrency('{{ cur_code }}')">{{ cur_code }}</button>{% endfor %}
+      </span>
+    </p>
     <div class="row justify-content-center g-4 mt-2">
       {% for tier in sponsorship_tiers %}
       <div class="col-12 col-md-4">
-        <div class="sp-tier-card {% if tier.highlight %}sp-tier-highlight{% endif %}">
+        <div class="sp-tier-card {% if tier.highlight %}sp-tier-highlight{% endif %}" data-tier-id="{{ tier.id }}">
           {% if tier.highlight %}
           <div class="sp-popular-badge">⭐ Most popular</div>
           {% endif %}
-          <div class="sp-tier-name">{{ tier.name }}</div>
+          <div class="sp-tier-name">{{ tier.name }}{% if tier.id not in ('startup_discount', 'food', 'clothing') %}<span class="sp-tier-original"></span>{% endif %}</div>
+          {% if tier.subtitle %}<div class="sp-tier-subtitle">{{ tier.subtitle }}</div>{% endif %}
+          {% if tier.id == 'startup_discount' %}
           <div class="sp-tier-price">
+            <label class="sp-discount-toggle-label">
+              <input type="checkbox" class="sp-discount-check" onchange="spToggleDiscount(this.checked)">
+              <span class="sp-discount-switch"></span>
+              {{ tier.price_label }}
+            </label>
+          </div>
+          {% else %}
+          <div class="sp-tier-price"{% for cur_code, cur_data in tier.currencies.items() %} data-price-{{ cur_code|lower }}="{% if cur_data.price_label is defined %}{% if cur_data.price_label is mapping %}{{ cur_data.price_label[event_size] }}{% else %}{{ cur_data.price_label }}{% endif %}{% elif cur_data.price is defined %}{{ cur_data.symbol }}{{ cur_data.price[event_size] }}{% endif %}" data-dprice-{{ cur_code|lower }}="{% if cur_data.discounted_price_label is defined %}{% if cur_data.discounted_price_label is mapping %}{{ cur_data.discounted_price_label[event_size] }}{% else %}{{ cur_data.discounted_price_label }}{% endif %}{% elif cur_data.discounted_price is defined %}{{ cur_data.symbol }}{{ cur_data.discounted_price[event_size] }}{% endif %}"{% endfor %}>
             {% if tier.price_label %}{% if tier.price_label is mapping %}{{ tier.price_label[event_size] }}{% else %}{{ tier.price_label }}{% endif %}{% else %}£{{ tier.price[event_size] }}{% endif %}
           </div>
+          {% endif %}
           <div class="sp-tier-body">
-            {% if tier.benefits %}
+            {% if tier.benefits or tier.requires %}
             <ul class="sp-tier-benefits">
               {% for b in tier.benefits %}
               <li>{{ b }}</li>
               {% endfor %}
+              {% if tier.requires %}
+              <li class="sp-tier-warn">{{ tier.requires }}</li>
+              {% endif %}
             </ul>
-            {% endif %}
-            {% if tier.requires %}
-            <div class="sp-tier-requires">⚠ {{ tier.requires }} ⚠</div>
             {% endif %}
           </div>
         </div>
@@ -474,12 +627,12 @@
           </div>
           <ul class="sp-custom-ideas">
             {% for tier in on_request_tiers[:3] %}
-            <li>{{ tier.name }}</li>
+            <li>{% if tier.url %}<a href="{{ tier.url }}" target="_blank">{{ tier.name }}</a>{% else %}{{ tier.name }}{% endif %}</li>
             {% endfor %}
           </ul>
           <ul class="sp-custom-ideas">
             {% for tier in on_request_tiers[3:] %}
-            <li>{{ tier.name }}</li>
+            <li>{% if tier.url %}<a href="{{ tier.url }}" target="_blank">{{ tier.name }}</a>{% else %}{{ tier.name }}{% endif %}</li>
             {% endfor %}
           </ul>
         </div>
@@ -488,6 +641,193 @@
     </div>
   </div>
 </section>
+
+<script>
+(function() {
+  var spCurrentCurrency = 'GBP';
+  var spDiscountActive = false;
+
+  /* ── Tokenize a price string into symbol / number / text tokens ── */
+  function spTokenize(text) {
+    var tokens = [];
+    var re = /([£$€])|(\d+)/g;
+    var last = 0, m;
+    while ((m = re.exec(text)) !== null) {
+      if (m.index > last) tokens.push({ t: 'txt', v: text.slice(last, m.index) });
+      if (m[1]) tokens.push({ t: 'sym', v: m[1] });
+      else tokens.push({ t: 'num', v: m[2] });
+      last = re.lastIndex;
+    }
+    if (last < text.length) tokens.push({ t: 'txt', v: text.slice(last) });
+    return tokens;
+  }
+
+  /* ── Render a price as structure-preserving spans ──────────────── */
+  function spRenderStructure(el, text) {
+    var tokens = spTokenize(text);
+    el.textContent = '';
+    for (var i = 0; i < tokens.length; i++) {
+      var tk = tokens[i];
+      if (tk.t === 'txt') {
+        el.appendChild(document.createTextNode(tk.v));
+      } else {
+        var s = document.createElement('span');
+        s.className = tk.t === 'sym' ? 'sp-cur-sym' : 'sp-num';
+        s.textContent = tk.v;
+        el.appendChild(s);
+      }
+    }
+  }
+
+  function spShape(tokens) {
+    var shape = '';
+    for (var i = 0; i < tokens.length; i++) shape += tokens[i].t + ',';
+    return shape;
+  }
+
+  /* ── Animate a price element to newText ────────────────────────────
+     Digits roll (countdown); currency symbols slide up & fade out,
+     then the new symbol slides up into place — only when the symbol
+     actually changes (currency switch, not discount toggle). ── */
+  function spAnimatePrice(el, newText, duration, symbolChange) {
+    if (el._countdownId) { cancelAnimationFrame(el._countdownId); el._countdownId = null; }
+    if (!el.querySelector('.sp-num')) spRenderStructure(el, el.textContent.trim());
+    var newTokens = spTokenize(newText);
+    var oldTokens = spTokenize(el.textContent.trim());
+    var numSpans = el.querySelectorAll('.sp-num');
+    var symSpans = el.querySelectorAll('.sp-cur-sym');
+    var newNums = [], newSyms = [];
+    for (var i = 0; i < newTokens.length; i++) {
+      if (newTokens[i].t === 'num') newNums.push(newTokens[i].v);
+      if (newTokens[i].t === 'sym') newSyms.push(newTokens[i].v);
+    }
+    if (spShape(oldTokens) !== spShape(newTokens) ||
+        numSpans.length !== newNums.length ||
+        symSpans.length !== newSyms.length ||
+        newNums.length === 0) {
+      spRenderStructure(el, newText);
+      return;
+    }
+
+    /* symbols: slide out, swap character, slide back in */
+    if (symbolChange) {
+      for (var s = 0; s < symSpans.length; s++) {
+        (function(span, ch) {
+          if (span.textContent === ch) return;
+          if (span._symTimer) clearTimeout(span._symTimer);
+          span.classList.add('sp-sym-out');
+          span._symTimer = setTimeout(function() {
+            span.textContent = ch;
+            span.classList.remove('sp-sym-out');
+            span.classList.add('sp-sym-prep');
+            void span.offsetWidth; /* force reflow so the prep position applies */
+            span.classList.remove('sp-sym-prep');
+            span._symTimer = null;
+          }, 180);
+        })(symSpans[s], newSyms[s]);
+      }
+    }
+
+    /* digits: rolling countdown per number span */
+    var oldVals = [], newVals = [];
+    for (var n = 0; n < numSpans.length; n++) {
+      oldVals.push(parseInt(numSpans[n].textContent, 10) || 0);
+      newVals.push(parseInt(newNums[n], 10));
+    }
+    var start = performance.now();
+    function step(now) {
+      var t = Math.min((now - start) / duration, 1);
+      var ease = 1 - Math.pow(1 - t, 3);
+      for (var k = 0; k < numSpans.length; k++) {
+        numSpans[k].textContent = String(Math.round(oldVals[k] + (newVals[k] - oldVals[k]) * ease));
+      }
+      if (t < 1) el._countdownId = requestAnimationFrame(step);
+      else el._countdownId = null;
+    }
+    el._countdownId = requestAnimationFrame(step);
+  }
+
+  function spMoveSlider(btn) {
+    var slider = document.querySelector('.sp-currency-slider');
+    if (!slider || !btn) return;
+    var toggle = btn.parentElement;
+    var tRect = toggle.getBoundingClientRect();
+    var bRect = btn.getBoundingClientRect();
+    slider.style.width = bRect.width + 'px';
+    slider.style.transform = 'translateX(' + (bRect.left - tRect.left - 3) + 'px)';
+  }
+
+  // Position slider on load
+  requestAnimationFrame(function() {
+    spMoveSlider(document.querySelector('.sp-currency-btn.active'));
+  });
+
+  // Wrap initial price text into symbol/number spans
+  var spPriceEls = document.querySelectorAll('.sp-tier-price[data-price-gbp]');
+  for (var p = 0; p < spPriceEls.length; p++) {
+    spRenderStructure(spPriceEls[p], spPriceEls[p].textContent.trim());
+  }
+
+  window.spSwitchCurrency = function(code) {
+    spCurrentCurrency = code;
+    var priceAttr = spDiscountActive ? 'data-dprice-' : 'data-price-';
+    var attr = priceAttr + code.toLowerCase();
+    var origAttr = 'data-price-' + code.toLowerCase();
+    var btns = document.querySelectorAll('.sp-currency-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].classList.toggle('active', btns[i].getAttribute('data-currency') === code);
+      if (btns[i].getAttribute('data-currency') === code) spMoveSlider(btns[i]);
+    }
+    var els = document.querySelectorAll('.sp-tier-price[' + attr + ']');
+    for (var j = 0; j < els.length; j++) {
+      var el = els[j];
+      var newPrice = el.getAttribute(attr);
+      var origPrice = el.getAttribute(origAttr);
+      spAnimatePrice(el, newPrice, 400, true);
+      var card = el.closest('.sp-tier-card');
+      var origSpan = card ? card.querySelector('.sp-tier-original') : null;
+      if (origSpan) {
+        if (spDiscountActive && origPrice !== newPrice) {
+          origSpan.textContent = origPrice;
+          origSpan.style.display = 'inline';
+        } else {
+          origSpan.style.display = 'none';
+        }
+      }
+    }
+  };
+
+  /* ── Countdown + slide transition for discount toggle ────────── */
+  window.spToggleDiscount = function(on) {
+    spDiscountActive = on;
+    var cc = spCurrentCurrency.toLowerCase();
+    var priceAttr = on ? 'data-dprice-' + cc : 'data-price-' + cc;
+    var origAttr = 'data-price-' + cc;
+    var els = document.querySelectorAll('.sp-tier-price[data-dprice-' + cc + ']');
+    for (var j = 0; j < els.length; j++) {
+      var el = els[j];
+      var newPrice = el.getAttribute(priceAttr);
+      var origPrice = el.getAttribute(origAttr);
+      spAnimatePrice(el, newPrice, 400, false);
+      el.classList.toggle('sp-discounted', on && origPrice !== newPrice);
+      var card = el.closest('.sp-tier-card');
+      var origSpan = card ? card.querySelector('.sp-tier-original') : null;
+      if (origSpan) {
+        if (on && origPrice !== newPrice) {
+          origSpan.textContent = origPrice;
+          origSpan.style.display = 'inline';
+          requestAnimationFrame(function(s) { return function() { s.classList.add('sp-slide-in'); }; }(origSpan));
+        } else {
+          origSpan.classList.remove('sp-slide-in');
+          setTimeout(function(s) { return function() { s.style.display = 'none'; }; }(origSpan), 300);
+        }
+      }
+    }
+    var sdCard = document.querySelector('.sp-tier-card[data-tier-id="startup_discount"]');
+    if (sdCard) sdCard.classList.toggle('sp-discount-card-active', on);
+  };
+})();
+</script>
 
 {# ── Conference stats button + expandable panel ──────── #}
 <section class="sp-section" id="stats" style="padding-top: 0; padding-bottom: 40px;">
@@ -541,12 +881,11 @@
               </div>
             </div>
           </div>
-          <video src="/assets/sre monkeys.mp4" autoplay loop muted playsinline class="sp-stats-header-gif-img" style="width:588px; border-radius:12px; flex-shrink:0; aspect-ratio:16/9; object-fit:contain; display:none;"></video>
+          <video src="/assets/sre monkeys.mp4" autoplay loop muted playsinline class="sp-stats-header-gif-img" style="width:529px; border-radius:12px; flex-shrink:0; aspect-ratio:16/9; object-fit:contain; display:none;"></video>
         </div>
 
         <hr class="sp-stats-sep">
 
-        {# ── ATTENDEE PROFILE (static - update by running _build/analyze_attendees.py) ── #}
         <div class="sp-stats-s-title">Attendee profile</div>
         <div class="sp-stats-s-sub">Based on past attendee information across sampled events</div>
 
@@ -555,18 +894,18 @@
         </div>
 
         <div class="sp-stats-card" style="margin-bottom:32px">
-          <div class="sp-stats-card-title">Top attendee companies</div>
+          <div class="sp-stats-card-title">Top companies that have attended</div>
           <div class="sp-stats-pill-grid" style="margin-bottom:0">
-            <span class="sp-stats-pill">Kyndryl</span>
-            <span class="sp-stats-pill">Criteo</span>
-            <span class="sp-stats-pill">Imply</span>
-            <span class="sp-stats-pill">PagerDuty</span>
-            <span class="sp-stats-pill">Sky Portugal</span>
-            <span class="sp-stats-pill">Bradesco</span>
-            <span class="sp-stats-pill">CAST AI</span>
-            <span class="sp-stats-pill">Cribl</span>
-            <span class="sp-stats-pill">Chainguard</span>
-            <span class="sp-stats-pill">Banco Bradesco</span>
+            <span class="sp-stats-pill">AWS</span>
+            <span class="sp-stats-pill">Adobe</span>
+            <span class="sp-stats-pill">eBay</span>
+            <span class="sp-stats-pill">Google</span>
+            <span class="sp-stats-pill">IBM</span>
+            <span class="sp-stats-pill">ING</span>
+            <span class="sp-stats-pill">Lloyds</span>
+            <span class="sp-stats-pill">Microsoft</span>
+            <span class="sp-stats-pill">Oracle</span>
+            <span class="sp-stats-pill">Uber</span>
           </div>
         </div>
 
@@ -576,24 +915,20 @@
             <div class="sp-stats-card-title">Role breakdown</div>
             <ul class="sp-stats-bar-list">
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Software / Platform / DevOps</span><span class="sp-stats-bar-count">51%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:51%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Software / Platform / DevOps</span><span class="sp-stats-bar-count">59%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:59%"></div></div>
               </li>
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Executive / Founder / Leadership</span><span class="sp-stats-bar-count">20%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:20%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Founder / Executive / Leadership</span><span class="sp-stats-bar-count">22%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:22%"></div></div>
               </li>
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Independent / Job Seeker</span><span class="sp-stats-bar-count">14%</span></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Business / Consulting / Product</span><span class="sp-stats-bar-count">14%</span></div>
                 <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:14%"></div></div>
               </li>
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Business / Consulting / Product</span><span class="sp-stats-bar-count">12%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:12%"></div></div>
-              </li>
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">ML / AI / Data</span><span class="sp-stats-bar-count">2%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:2%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">ML / AI / Data</span><span class="sp-stats-bar-count">5%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:5%"></div></div>
               </li>
             </ul>
           </div>
@@ -602,20 +937,39 @@
             <div class="sp-stats-card-title">Company size</div>
             <ul class="sp-stats-bar-list">
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Startup (&lt;50)</span><span class="sp-stats-bar-count">77%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:77%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Medium &amp; Startup</span><span class="sp-stats-bar-count">48%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:48%"></div></div>
               </li>
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Enterprise (500+)</span><span class="sp-stats-bar-count">15%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:15%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Enterprise</span><span class="sp-stats-bar-count">42%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:42%"></div></div>
               </li>
               <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Solo Founder / Independent</span><span class="sp-stats-bar-count">8%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:8%"></div></div>
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Solo Founders</span><span class="sp-stats-bar-count">10%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:10%"></div></div>
               </li>
             </ul>
           </div>
 
+          <div class="sp-stats-card">
+            <div class="sp-stats-card-title">Attendee seniority</div>
+            <ul class="sp-stats-bar-list">
+              <li class="sp-stats-bar-item">
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Mid-Level</span><span class="sp-stats-bar-count">62%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:62%"></div></div>
+              </li>
+              <li class="sp-stats-bar-item">
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Senior / Lead / Manager</span><span class="sp-stats-bar-count">23%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:23%"></div></div>
+              </li>
+              <li class="sp-stats-bar-item">
+                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Executive</span><span class="sp-stats-bar-count">14%</span></div>
+                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:14%"></div></div>
+              </li>
+            </ul>
+          </div>
+
+          {# ── ATTENDEE PROFILE (static - update by running _build/analyze_attendees.py) ── #}
           <div class="sp-stats-card">
             <div class="sp-stats-card-title">What they are working on</div>
             <div class="sp-stats-tag-cloud">
@@ -630,32 +984,6 @@
               <span class="sp-stats-tag">Security &amp; DevSecOps</span>
               <span class="sp-stats-tag">Chaos Engineering</span>
             </div>
-          </div>
-
-          <div class="sp-stats-card">
-            <div class="sp-stats-card-title">Attendee seniority</div>
-            <ul class="sp-stats-bar-list">
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Mid-Level</span><span class="sp-stats-bar-count">59%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:59%"></div></div>
-              </li>
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Executive</span><span class="sp-stats-bar-count">14%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:14%"></div></div>
-              </li>
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Senior</span><span class="sp-stats-bar-count">12%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:12%"></div></div>
-              </li>
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Lead / Manager</span><span class="sp-stats-bar-count">11%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:11%"></div></div>
-              </li>
-              <li class="sp-stats-bar-item">
-                <div class="sp-stats-bar-header"><span class="sp-stats-bar-name">Junior</span><span class="sp-stats-bar-count">3%</span></div>
-                <div class="sp-stats-bar-track"><div class="sp-stats-bar-fill" style="width:3%"></div></div>
-              </li>
-            </ul>
           </div>
 
         </div>
@@ -739,6 +1067,20 @@ function spToggleStats() {
   btn.setAttribute('aria-expanded', String(open));
 }
 </script>
+
+{# ── Confirmed sponsors ─────────────────────────────── #}
+{% if sponsors %}
+<section class="sp-section" id="already-sponsoring" style="background:#1a1a1a;">
+  <div class="container">
+    <h2 class="sp-section-title text-center">Confirmed sponsors</h2>
+    <div class="row logos justify-content-center" style="background:#fff;border-radius:16px;padding:20px 28px;margin:0 auto;">
+      {% for sponsor in sponsors %}
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="{{ sponsor.url }}" target="_blank"><img src="../sponsors/{{ sponsor.logo }}" alt=""></a></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
 
 {# ── Get in touch ────────────────────────────────────── #}
 <section class="sp-section sp-section-alt" id="buy">
@@ -828,9 +1170,6 @@ function spToggleFaq() {
     <h2 class="sp-section-title text-center">Sister brands</h2>
     <p class="text-center" style="color:#aaa;margin-top:-.6rem;margin-bottom:1.5rem;">Other conferences we organize: in-person & online</p>
     <div class="sp-sisters">
-      <a href="https://devopsnotdead.com" target="_blank" rel="noopener noreferrer">
-        <img src="/assets/images/devopsnotdead_sticker.png" alt="DevOpsNotDead">
-      </a>
       <a href="https://llmday.com" target="_blank" rel="noopener noreferrer">
         <img src="/assets/images/llmday_sticker.png" alt="LLMday">
       </a>
