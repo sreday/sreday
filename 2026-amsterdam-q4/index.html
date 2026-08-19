@@ -236,99 +236,19 @@
 <!-- CONTENT -->
 
 
-<section id="about" class="about-section section">
+<!-- ── ABOUT THE CONFERENCE (expandable) ─────────────────────────────────── -->
 
-  <div class="container">
-    <div class="event-countdown text-center mb-3">
-    
-      <h4 class="countdown-intro mb-2 text-center mb-3">Event Starts In:</h4>
-      <div id="countdown-box" class="countdown-box"></div>
-    
-    </div>
-  </div>
-  <style>
-    /* ======= Countdown pill ========= */
-    .countdown-box {
-      display: inline-flex;
-      background: #2f2f2f;
-      border-radius: 999px;
-      padding: 10px 30px;
-      box-shadow: 0 6px 24px rgba(0,0,0,.18);
-    }
-    .countdown-box .number { color: #fff; }
-    .countdown-box .unit { color: rgba(255,255,255,.7); }
-    @media (max-width: 575px) {
-      .countdown-box { padding: 8px 14px; }
-      .countdown-box span { min-width: 62px; padding: .5rem .25rem; }
-    }
-  </style>
-  <script>
-    /* ======= Countdown ========= */
-    // set the date we're counting down to
-    var target_date = new Date("2026-11-02T09:30:00+01:00").getTime();
-
-    // get tag element (absent on past events)
-    var countdown = document.getElementById("countdown-box");
-    if (countdown) {
-      var makeUnit = function (cls, label) {
-        var wrap = document.createElement("SPAN");
-        wrap.className = cls;
-        var num = document.createElement("SPAN");
-        num.className = "number";
-        num.textContent = "0";
-        var unit = document.createElement("SPAN");
-        unit.className = "unit";
-        unit.textContent = label;
-        wrap.appendChild(num);
-        wrap.appendChild(unit);
-        countdown.appendChild(wrap);
-        return num;
-      };
-      var days_el = makeUnit("days", "Days");
-      var hours_el = makeUnit("hours", "Hrs");
-      var minutes_el = makeUnit("minutes", "Mins");
-      var secs_el = makeUnit("secs", "Secs");
-
-      // roll a number to its new value (same countdown tween as the
-      // sponsorship page's currency switch)
-      var setNum = function (el, v) {
-        v = parseInt(v, 10);
-        var cur = parseInt(el.textContent, 10) || 0;
-        if (cur === v) return;
-        if (el._rollId) cancelAnimationFrame(el._rollId);
-        var start = performance.now();
-        var step = function (now) {
-          var t = Math.min((now - start) / 400, 1);
-          var ease = 1 - Math.pow(1 - t, 3);
-          el.textContent = String(Math.round(cur + (v - cur) * ease));
-          if (t < 1) el._rollId = requestAnimationFrame(step);
-          else el._rollId = null;
-        };
-        el._rollId = requestAnimationFrame(step);
-      };
-
-      var tick = function () {
-        var seconds_left = Math.max(0, (target_date - new Date().getTime()) / 1000);
-        setNum(days_el, parseInt(seconds_left / 86400));
-        seconds_left = seconds_left % 86400;
-        setNum(hours_el, parseInt(seconds_left / 3600));
-        seconds_left = seconds_left % 3600;
-        setNum(minutes_el, parseInt(seconds_left / 60));
-        setNum(secs_el, parseInt(seconds_left % 60));
-      };
-      tick();
-      setInterval(tick, 1000);
-    }
-    </script>
-</section>
-
-<!-- ── ABOUT THE CONFERENCE (expandable) ─────────────────────────────── -->
-
-<section id="about-conf" class="section pt-0 pb-4">
+<section id="about-conf" class="section pt-4 pb-0">
   <div class="container text-center">
     <button class="btn-about-conf" type="button" aria-expanded="false"
             aria-controls="about-conf-panel" onclick="acToggle(this)">
-      About the conference <span class="ac-chevron">&#9662;</span>
+      About the conference
+      <span class="ac-chevron" aria-hidden="true">
+        <svg width="17" height="10" viewBox="0 0 14 8" fill="none"
+             stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="1,1 7,7 13,1"/>
+        </svg>
+      </span>
     </button>
     <div id="about-conf-panel" class="ac-panel mx-auto text-start">
       <div class="ac-panel-inner">
@@ -430,25 +350,42 @@
         </div>
         
         
+        <div class="text-center" style="margin-top:24px;">
+          <button class="btn-about-close" type="button" onclick="acClose()">
+            Close
+            <span style="display:flex;align-items:center;" aria-hidden="true">
+              <svg width="17" height="10" viewBox="0 0 14 8" fill="none"
+                   stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                   style="transform:rotate(180deg);">
+                <polyline points="1,1 7,7 13,1"/>
+              </svg>
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </section>
 <style>
   .btn-about-conf {
-    background: transparent;
-    border: 1px solid var(--brand);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #e8e8e8;
     color: var(--brand-dark);
+    border: none;
     border-radius: 999px;
-    padding: 8px 24px;
+    padding: 13px 34px;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: .9rem;
-    transition: background .2s, color .2s;
+    font-size: 1.14rem;
+    font-weight: 600;
+    letter-spacing: .01em;
+    cursor: pointer;
+    transition: background .2s, box-shadow .2s;
   }
-  .btn-about-conf:hover { background: var(--brand-pale); }
-  .btn-about-conf[aria-expanded="true"] { background: var(--brand); color: #fff; }
-  .ac-chevron { display: inline-block; margin-left: 6px; transition: transform .3s; }
+  .btn-about-conf:hover { background: #dedede; box-shadow: 0 4px 18px rgba(0,0,0,.12); }
+  .btn-about-conf:active { transform: scale(.97); }
+  .ac-chevron { display: flex; align-items: center; transition: transform .3s ease; }
   .btn-about-conf[aria-expanded="true"] .ac-chevron { transform: rotate(180deg); }
   .ac-panel { max-width: 800px; overflow: hidden; max-height: 0; transition: max-height .585s cubic-bezier(.4,0,.2,1); }
   .ac-panel-inner { padding: 18px 4px 6px; }
@@ -457,6 +394,22 @@
   .ac-topic-group { margin-top: 10px; }
   .ac-topic-name { font-weight: 700; color: var(--brand); }
   .ac-topic-talks { margin: 4px 0 0; padding-left: 20px; color: #555; font-size: .9rem; }
+  .btn-about-close {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #888;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 13px 34px;
+    font-size: 1.14rem;
+    font-weight: 600;
+    letter-spacing: .01em;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .btn-about-close:hover { background: #777; }
 </style>
 <script>
   function acToggle(btn) {
@@ -465,9 +418,102 @@
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0';
   }
+  function acClose() {
+    acToggle(document.querySelector('#about-conf .btn-about-conf'));
+    setTimeout(function() { document.getElementById('about-conf').scrollIntoView({behavior: 'smooth'}); }, 10);
+  }
 </script>
 
-<!-- ── END ABOUT THE CONFERENCE ──────────────────────────────────────── -->
+<!-- ── END ABOUT THE CONFERENCE ────────────────────────────────────── -->
+
+<section id="about" class="about-section section">
+
+  <div class="container">
+    <div class="event-countdown text-center mb-3">
+    
+      <h4 class="countdown-intro mb-2 text-center mb-3">Event Starts In:</h4>
+      <div id="countdown-box" class="countdown-box"></div>
+    
+    </div>
+  </div>
+  <style>
+    /* ======= Countdown pill ========= */
+    .countdown-box {
+      display: inline-flex;
+      background: #2f2f2f;
+      border-radius: 999px;
+      padding: 10px 30px;
+      box-shadow: 0 6px 24px rgba(0,0,0,.18);
+    }
+    .countdown-box .number { color: #fff; }
+    .countdown-box .unit { color: rgba(255,255,255,.7); }
+    @media (max-width: 575px) {
+      .countdown-box { padding: 8px 14px; }
+      .countdown-box span { min-width: 62px; padding: .5rem .25rem; }
+    }
+  </style>
+  <script>
+    /* ======= Countdown ========= */
+    // set the date we're counting down to
+    var target_date = new Date("2026-11-02T09:30:00+01:00").getTime();
+
+    // get tag element (absent on past events)
+    var countdown = document.getElementById("countdown-box");
+    if (countdown) {
+      var makeUnit = function (cls, label) {
+        var wrap = document.createElement("SPAN");
+        wrap.className = cls;
+        var num = document.createElement("SPAN");
+        num.className = "number";
+        num.textContent = "0";
+        var unit = document.createElement("SPAN");
+        unit.className = "unit";
+        unit.textContent = label;
+        wrap.appendChild(num);
+        wrap.appendChild(unit);
+        countdown.appendChild(wrap);
+        return num;
+      };
+      var days_el = makeUnit("days", "Days");
+      var hours_el = makeUnit("hours", "Hrs");
+      var minutes_el = makeUnit("minutes", "Mins");
+      var secs_el = makeUnit("secs", "Secs");
+
+      // roll a number to its new value (same countdown tween as the
+      // sponsorship page's currency switch)
+      var setNum = function (el, v) {
+        v = parseInt(v, 10);
+        var cur = parseInt(el.textContent, 10) || 0;
+        if (cur === v) return;
+        if (el._rollId) cancelAnimationFrame(el._rollId);
+        var start = performance.now();
+        var step = function (now) {
+          var t = Math.min((now - start) / 400, 1);
+          var ease = 1 - Math.pow(1 - t, 3);
+          el.textContent = String(Math.round(cur + (v - cur) * ease));
+          if (t < 1) el._rollId = requestAnimationFrame(step);
+          else el._rollId = null;
+        };
+        el._rollId = requestAnimationFrame(step);
+      };
+
+      var tick = function () {
+        var seconds_left = Math.max(0, (target_date - new Date().getTime()) / 1000);
+        setNum(days_el, parseInt(seconds_left / 86400));
+        seconds_left = seconds_left % 86400;
+        setNum(hours_el, parseInt(seconds_left / 3600));
+        seconds_left = seconds_left % 3600;
+        setNum(minutes_el, parseInt(seconds_left / 60));
+        setNum(secs_el, parseInt(seconds_left % 60));
+      };
+      tick();
+      setInterval(tick, 1000);
+    }
+    </script>
+</section>
+
+
+
 
 
 <section id="tickets" class="tickets-section section">
