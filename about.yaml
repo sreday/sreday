@@ -1,0 +1,38 @@
+# "About the conference" panel on every event index page.
+# blurb: paragraph shown when the panel is expanded.
+# categories: the buckets under "Topics so far:" (order = display order AND
+#   tiebreak priority). Keyword matching (see the ABOUT block in generate.py):
+#   - case-insensitive; keywords of <=3 chars match whole words only (plus
+#     optional plural "s"); longer keywords are word-boundary prefix matches
+#     ("observab" matches "observability")
+#   - a title hit scores 3, an abstract hit 1; multi-word phrases count double
+#   - each talk lands in exactly one category (highest score; earlier category
+#     wins ties); unmatched talks go under "...and more"
+blurb: >-
+  SREday is a worldwide series of community events for engineers who build,
+  ship and run modern software systems. Across cities around the world, we
+  bring together people working in reliability, cloud, DevOps, observability
+  and production engineering to share real-world experience, connect with
+  their local community and explore how these disciplines are evolving in
+  the age of AI.
+categories:
+  - name: Site Reliability Engineering
+    keywords: [sre, site reliability, reliability engineering, slo, sli, error budget, toil]
+  - name: Observability & Monitoring
+    keywords: [observab, monitoring, telemetry, opentelemetry, tracing, metrics, logging, alert]
+  - name: Incident Management
+    keywords: [incident, on-call, oncall, postmortem, post-mortem, outage, mttr, escalation]
+  - name: Resilience & Chaos Engineering
+    keywords: [chaos, resilien, fault injection, failure mode, game day, disaster recovery, graceful degradation]
+  - name: Cloud Infrastructure
+    keywords: [cloud, aws, azure, gcp, kubernetes, k8s, serverless, multi-cloud]
+  - name: DevOps & Automation
+    keywords: [devops, automation, ci/cd, cicd, pipeline, gitops, terraform, platform engineering]
+  - name: Performance & Scalability
+    keywords: [performance, scalab, latency, scaling, throughput, load test, capacity, optimi]
+  - name: Production Engineering
+    keywords: [production, deploy, release, rollout, feature flag, canary, migration]
+  - name: Security & Reliability
+    keywords: [security, vulnerab, compliance, zero trust, secrets, supply chain, threat]
+  - name: AI for Operations
+    keywords: [aiops, llm, genai, machine learning, ai-powered, ai agent, anomaly detection, copilot]
