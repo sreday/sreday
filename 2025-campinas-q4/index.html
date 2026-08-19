@@ -427,6 +427,139 @@
     </script>
 </section>
 
+<!-- ── ABOUT THE CONFERENCE (expandable) ─────────────────────────────── -->
+
+<section id="about-conf" class="section pt-0 pb-4">
+  <div class="container text-center">
+    <button class="btn-about-conf" type="button" aria-expanded="false"
+            aria-controls="about-conf-panel" onclick="acToggle(this)">
+      About the conference <span class="ac-chevron">&#9662;</span>
+    </button>
+    <div id="about-conf-panel" class="ac-panel mx-auto text-start">
+      <div class="ac-panel-inner">
+        <p class="ac-blurb">SREday is a worldwide series of community events for engineers who build, ship and run modern software systems. Across cities around the world, we bring together people working in reliability, cloud, DevOps, observability and production engineering to share real-world experience, connect with their local community and explore how these disciplines are evolving in the age of AI.</p>
+        
+        <h5 class="ac-topics-heading">Topics so far:</h5>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Site Reliability Engineering</div>
+          <ul class="ac-topic-talks">
+            <li>Agentic AI for SREs: How I casually developed my first MCP server</li>
+            <li>The Anatomy of a Secure Request: Ten Layers of Defense from DNS to Database</li>
+            <li>Supercharging SRE with Azure’s AI-Powered Age</li>
+            <li>Comunidades de SRE e DevOps: conectando pessoas, processos e propósito no Brasil</li>
+            <li>Continuous profiling e resiliencia: Aplicando boas práticas de SRE no desenvolvimento Java</li>
+            <li>Conduzindo FinOps com Confiabilidade: Como os SREs Reduziram os Custos de Nuvem em 30% Sem Comprometer os SLAs</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Observability & Monitoring</div>
+          <ul class="ac-topic-talks">
+            <li>Business Observability with Dynatrace</li>
+            <li>Observability Strategy: From Metrics to Meaningful Reliability</li>
+            <li>eBPF: Why is everyone talking about it and what does that mean to you?</li>
+            <li>Keynote: How We Built ClickStack - an open source, open telemetry native Observability stack</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Incident Management</div>
+          <ul class="ac-topic-talks">
+            <li>Preparar, Operar, Aprender: O Papel do PRR e do Postmortem na Engenharia de Confiabilidade</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Resilience & Chaos Engineering</div>
+          <ul class="ac-topic-talks">
+            <li>Designing for Failure: Proven Techniques for Reliable Applications</li>
+            <li>Chaos Engineering: Como Usar o Dynatrace para Transformar Falhas em Aprendizado</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Cloud Infrastructure</div>
+          <ul class="ac-topic-talks">
+            <li>Hello World in Production: Building Cloud-Native applications that survive the real world.</li>
+            <li>Stack de Observabilidade com Grafana Cloud</li>
+            <li>Microserviços serverless: diferentes designs, mesmas dores</li>
+            <li>Kubernetes além do deploy: automação inteligente com K8sGPT e AIOps</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">DevOps & Automation</div>
+          <ul class="ac-topic-talks">
+            <li>Staging Is Dead: How Ephemeral Environments Redefine Platform Engineering</li>
+            <li>Diferencas entre DataOps e DevOps: Entendendo Práticas e Importancias na Era Digital</li>
+            <li>Platform Engineering with Dynatrace for SRE: Intelligent Automation and Observability</li>
+            <li>Proteja Pipelines de SRE Terraform e AWS: Aplicando o Shift Left na Confiabilidade</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">AI for Operations</div>
+          <ul class="ac-topic-talks">
+            <li>Enhancing SRE with AI Agents on AWS: Intelligent Automation for Incident Response and Operations</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">...and more</div>
+          <ul class="ac-topic-talks">
+            <li>Construindo um Operator para o DevLake</li>
+            
+          </ul>
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .btn-about-conf {
+    background: transparent;
+    border: 1px solid var(--brand);
+    color: var(--brand-dark);
+    border-radius: 999px;
+    padding: 8px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .9rem;
+    transition: background .2s, color .2s;
+  }
+  .btn-about-conf:hover { background: var(--brand-pale); }
+  .btn-about-conf[aria-expanded="true"] { background: var(--brand); color: #fff; }
+  .ac-chevron { display: inline-block; margin-left: 6px; transition: transform .3s; }
+  .btn-about-conf[aria-expanded="true"] .ac-chevron { transform: rotate(180deg); }
+  .ac-panel { max-width: 800px; overflow: hidden; max-height: 0; transition: max-height .585s cubic-bezier(.4,0,.2,1); }
+  .ac-panel-inner { padding: 18px 4px 6px; }
+  .ac-blurb { color: #555; }
+  .ac-topics-heading { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--brand-dark); margin-top: 16px; }
+  .ac-topic-group { margin-top: 10px; }
+  .ac-topic-name { font-weight: 700; color: var(--brand); }
+  .ac-topic-talks { margin: 4px 0 0; padding-left: 20px; color: #555; font-size: .9rem; }
+</style>
+<script>
+  function acToggle(btn) {
+    var panel = document.getElementById('about-conf-panel');
+    var open = btn.getAttribute('aria-expanded') !== 'true';
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0';
+  }
+</script>
+
+<!-- ── END ABOUT THE CONFERENCE ──────────────────────────────────────── -->
+
 
 
 <style>

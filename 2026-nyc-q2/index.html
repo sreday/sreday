@@ -427,6 +427,156 @@
     </script>
 </section>
 
+<!-- ── ABOUT THE CONFERENCE (expandable) ─────────────────────────────── -->
+
+<section id="about-conf" class="section pt-0 pb-4">
+  <div class="container text-center">
+    <button class="btn-about-conf" type="button" aria-expanded="false"
+            aria-controls="about-conf-panel" onclick="acToggle(this)">
+      About the conference <span class="ac-chevron">&#9662;</span>
+    </button>
+    <div id="about-conf-panel" class="ac-panel mx-auto text-start">
+      <div class="ac-panel-inner">
+        <p class="ac-blurb">SREday is a worldwide series of community events for engineers who build, ship and run modern software systems. Across cities around the world, we bring together people working in reliability, cloud, DevOps, observability and production engineering to share real-world experience, connect with their local community and explore how these disciplines are evolving in the age of AI.</p>
+        
+        <h5 class="ac-topics-heading">Topics so far:</h5>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Site Reliability Engineering</div>
+          <ul class="ac-topic-talks">
+            <li>Shifting Left - Evolution of the Software Development Life Cycle</li>
+            <li>Agentic Learning Patterns for SRE</li>
+            <li>99.9% Fun: A Game-Based Guide to SLOs and SLAs</li>
+            <li>Observability and SRE in the AI Era</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Observability & Monitoring</div>
+          <ul class="ac-topic-talks">
+            <li>OpenTelemetry: Playtime Is Over</li>
+            <li>Agent Harnesses: From Slot Machines to Safety Nets</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Incident Management</div>
+          <ul class="ac-topic-talks">
+            <li>Beyond Prevention: Mastering Incident Response and Post-Mortems with Ephemeral Environments</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Resilience & Chaos Engineering</div>
+          <ul class="ac-topic-talks">
+            <li>Perfect Reasoning, Wrong Answer</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Cloud Infrastructure</div>
+          <ul class="ac-topic-talks">
+            <li>Kubernetes at the Edge: SRE Lessons from Disconnected Clusters</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">DevOps & Automation</div>
+          <ul class="ac-topic-talks">
+            <li>Your Outdated Docs are Costly: Why You should be writing tests for your docs</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Performance & Scalability</div>
+          <ul class="ac-topic-talks">
+            <li>Choose Your Weapon: The Performance Testing Arsenal</li>
+            <li>When Milliseconds Cost Millions: Designing Low-Latency AI Systems in Fintech</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Production Engineering</div>
+          <ul class="ac-topic-talks">
+            <li>Building a World Model for Production</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Security & Reliability</div>
+          <ul class="ac-topic-talks">
+            <li>From Pets To Cattle To Agents: Evolving Identity And Security For Workloads</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">AI for Operations</div>
+          <ul class="ac-topic-talks">
+            <li>1h Hands-On with Kiro: Use AI Agents to Build Your Website and Optimize Your Resume</li>
+            <li>Who Watches the AI Agents? SRE for Non-Human Identity at Scale</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">...and more</div>
+          <ul class="ac-topic-talks">
+            <li>AI for Product Management: Working Faster, Smarter, and More Strategically</li>
+            <li>Free Software Isn&#39;t Gratis: why companies should treat Open Source as part of their Infrastructure</li>
+            <li>Intro by Mark Pawlikowski</li>
+            
+          </ul>
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .btn-about-conf {
+    background: transparent;
+    border: 1px solid var(--brand);
+    color: var(--brand-dark);
+    border-radius: 999px;
+    padding: 8px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .9rem;
+    transition: background .2s, color .2s;
+  }
+  .btn-about-conf:hover { background: var(--brand-pale); }
+  .btn-about-conf[aria-expanded="true"] { background: var(--brand); color: #fff; }
+  .ac-chevron { display: inline-block; margin-left: 6px; transition: transform .3s; }
+  .btn-about-conf[aria-expanded="true"] .ac-chevron { transform: rotate(180deg); }
+  .ac-panel { max-width: 800px; overflow: hidden; max-height: 0; transition: max-height .585s cubic-bezier(.4,0,.2,1); }
+  .ac-panel-inner { padding: 18px 4px 6px; }
+  .ac-blurb { color: #555; }
+  .ac-topics-heading { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--brand-dark); margin-top: 16px; }
+  .ac-topic-group { margin-top: 10px; }
+  .ac-topic-name { font-weight: 700; color: var(--brand); }
+  .ac-topic-talks { margin: 4px 0 0; padding-left: 20px; color: #555; font-size: .9rem; }
+</style>
+<script>
+  function acToggle(btn) {
+    var panel = document.getElementById('about-conf-panel');
+    var open = btn.getAttribute('aria-expanded') !== 'true';
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0';
+  }
+</script>
+
+<!-- ── END ABOUT THE CONFERENCE ──────────────────────────────────────── -->
+
 
 
 <style>

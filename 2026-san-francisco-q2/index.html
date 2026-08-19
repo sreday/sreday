@@ -439,6 +439,151 @@
     </script>
 </section>
 
+<!-- ── ABOUT THE CONFERENCE (expandable) ─────────────────────────────── -->
+
+<section id="about-conf" class="section pt-0 pb-4">
+  <div class="container text-center">
+    <button class="btn-about-conf" type="button" aria-expanded="false"
+            aria-controls="about-conf-panel" onclick="acToggle(this)">
+      About the conference <span class="ac-chevron">&#9662;</span>
+    </button>
+    <div id="about-conf-panel" class="ac-panel mx-auto text-start">
+      <div class="ac-panel-inner">
+        <p class="ac-blurb">SREday is a worldwide series of community events for engineers who build, ship and run modern software systems. Across cities around the world, we bring together people working in reliability, cloud, DevOps, observability and production engineering to share real-world experience, connect with their local community and explore how these disciplines are evolving in the age of AI.</p>
+        
+        <h5 class="ac-topics-heading">Topics so far:</h5>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Site Reliability Engineering</div>
+          <ul class="ac-topic-talks">
+            <li>SLOs can&#39;t catch a Black Swan</li>
+            <li>From Signals to Systems: Rethinking Observability for SREs</li>
+            <li>OpenChoreo: Building AI-Native, Kubernetes-First Platforms for PEs, SREs, and Developers</li>
+            <li>Engineering Predictive, AI-Driven Reliability: Transforming Verizon Global Infrastructure Operations with SRE Automation and Digital Twin Intelligence</li>
+            <li>SRE in a Multicloud World: Engineering Reliability Beyond a Single Cloud</li>
+            <li>Keynote: The Reliability Development Lifecycle</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Observability & Monitoring</div>
+          <ul class="ac-topic-talks">
+            <li>Full Stack O11y? In THIS Economy?</li>
+            <li>Engineering Your Career Like a System</li>
+            <li>Tackling Observability Scale with Context Engineering</li>
+            <li>Keynote: Decoupled Observability - Observability Architectures for Reliability and Control</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Incident Management</div>
+          <ul class="ac-topic-talks">
+            <li>The SRE &amp; Developer Convergence in Modern Incident Response</li>
+            <li>Building a Temporal Infrastructure Graph for AI-Driven Incident Response</li>
+            <li>Designing Incident Response That Doesn’t Break Your Team</li>
+            <li>From Compute to Datastores: Predictable Region Failover for Microservice Stacks</li>
+            <li>AI-Augmented Incident Response: From Alert Fatigue to Faster Root Cause at Scale</li>
+            <li>Your Worst Outage Could Be Your Best Customer Experience</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Cloud Infrastructure</div>
+          <ul class="ac-topic-talks">
+            <li>Taming Giants: Managing 70B+ Param Models in Air-Gapped Clouds</li>
+            <li>Q the Savings: How We Built a $2M/Year FinOps Platform in 2 Weeks</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">DevOps & Automation</div>
+          <ul class="ac-topic-talks">
+            <li>Engineering Reliability Through Intelligent Test Automation</li>
+            <li>1h Workshop: A Casual Introduction To DevOps, But Make It A Contest</li>
+            <li>AI-Driven Platform Engineering with MCP</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Performance & Scalability</div>
+          <ul class="ac-topic-talks">
+            <li>AI-Driven Capacity Planning at Planet Scale</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Production Engineering</div>
+          <ul class="ac-topic-talks">
+            <li>Ephemeral Environments (Technology Agnostic)</li>
+            <li>Reliability at Planetary Scale: Lessons from Gmail</li>
+            <li>Keynote: You Build It, You Own It: Reducing Cost Without Trading Away Reliability</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Security & Reliability</div>
+          <ul class="ac-topic-talks">
+            <li>The True Cost of Building at Machine Speed</li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">AI for Operations</div>
+          <ul class="ac-topic-talks">
+            <li>Reliable AI Agents in Production</li>
+            <li>From Scripted to Smart: How to Systematically Humanize Your AI Agent</li>
+            
+          </ul>
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .btn-about-conf {
+    background: transparent;
+    border: 1px solid var(--brand);
+    color: var(--brand-dark);
+    border-radius: 999px;
+    padding: 8px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: .9rem;
+    transition: background .2s, color .2s;
+  }
+  .btn-about-conf:hover { background: var(--brand-pale); }
+  .btn-about-conf[aria-expanded="true"] { background: var(--brand); color: #fff; }
+  .ac-chevron { display: inline-block; margin-left: 6px; transition: transform .3s; }
+  .btn-about-conf[aria-expanded="true"] .ac-chevron { transform: rotate(180deg); }
+  .ac-panel { max-width: 800px; overflow: hidden; max-height: 0; transition: max-height .585s cubic-bezier(.4,0,.2,1); }
+  .ac-panel-inner { padding: 18px 4px 6px; }
+  .ac-blurb { color: #555; }
+  .ac-topics-heading { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--brand-dark); margin-top: 16px; }
+  .ac-topic-group { margin-top: 10px; }
+  .ac-topic-name { font-weight: 700; color: var(--brand); }
+  .ac-topic-talks { margin: 4px 0 0; padding-left: 20px; color: #555; font-size: .9rem; }
+</style>
+<script>
+  function acToggle(btn) {
+    var panel = document.getElementById('about-conf-panel');
+    var open = btn.getAttribute('aria-expanded') !== 'true';
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0';
+  }
+</script>
+
+<!-- ── END ABOUT THE CONFERENCE ──────────────────────────────────────── -->
+
 
 
 <style>
