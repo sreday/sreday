@@ -253,6 +253,36 @@
       <div class="ac-panel-inner">
         <p class="ac-blurb"><strong>SREday</strong> is a worldwide series of community events for engineers who build, ship and run modern software systems. Across cities around the world, we bring together people working in reliability, cloud, DevOps, observability and production engineering to share real-world experience, connect with their local community and explore how these disciplines are evolving in the age of AI.</p>
         
+        <h5 class="ac-topics-heading">Companies presenting:</h5>
+        <p class="ac-companies">Incredibuild, Mirror Panel Inc., Qovery</p>
+        
+        
+        <h5 class="ac-topics-heading">Topics so far:</h5>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Site Reliability Engineering</div>
+          <ul class="ac-topic-talks">
+            <li><a href="Romaric_Philogene_Qovery_SRE_in_the_Era_of_AI_Lessons_Learned_from_Hundreds_of_Teams_Ive_met_Over_3_.html#speakers-section">SRE in the Era of AI: Lessons Learned from Hundreds of Teams I&#39;ve met Over 3 Years</a></li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Observability & Monitoring</div>
+          <ul class="ac-topic-talks">
+            <li><a href="Elliot_Gardiner_Mirror_Panel_Inc_Production_Has_Observability_Your_Coding_Agent_Doesnt.html#speakers-section">Production Has Observability. Your Coding Agent Doesn’t</a></li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">AI for Operations</div>
+          <ul class="ac-topic-talks">
+            <li><a href="Yossi_Eliaz_Incredibuild_Reliability_Lessons_from_Building_Sandboxes_for_AI_Agents.html#speakers-section">Reliability Lessons from Building Sandboxes for AI Agents</a></li>
+            
+          </ul>
+        </div>
+        
         
         
         <p class="ac-more-soon">We'll announce more talks soon, stay tuned!</p>
@@ -641,6 +671,32 @@
 
       <div class="col mb-4">
         <div class="card rounded">
+          <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Elliot Gardiner.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Elliot Gardiner</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Mirror Panel Inc.</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Elliot_Gardiner_Mirror_Panel_Inc_Production_Has_Observability_Your_Coding_Agent_Doesnt#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/elliotgardiner/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card rounded">
           <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Romaric Philogene.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Romaric Philogene</h5>
@@ -888,6 +944,49 @@ AI SRE: What's real, and what's just hype</p></p>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Yossi Eliaz is a Principal Engineer, AI Systems at Incredibuild, building secure execution infrastructure for AI workloads: CI runners, sandboxes, snapshots, caching, and reproducible environments. He previously worked on container security at Twistlock. He holds a PhD in Physics and an MSc in Computer Science.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 2 -->
+<div class="modal modal-speaker modal-speaker-2" id="modal-speaker-2" tabindex="-1" role="dialog" aria-labelledby="speaker-2-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Elliot Gardiner.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Elliot Gardiner</h2>
+                          <div class="meta mb-2">Mirror Panel Inc.</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/elliotgardiner/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Production Has Observability. Your Coding Agent Doesn’t</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Claude Code, Codex, and other coding agents are becoming long-running, tool-using systems that read repositories, execute commands, modify code, call external services, and make decisions with limited human supervision. Yet most teams observe them primarily through token counts and final pull requests. This talk applies familiar SRE practices to agentic development. We’ll instrument a coding-agent workflow with OpenTelemetry, examine traces of tool calls, failures, retries, tests and code changes, and look at what those traces reveal about reliability that the final output hides. We’ll cover practical failure patterns, useful signals, and where traditional observability concepts translate well - and where they don’t.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Elliot Gardiner is a software engineer and former principal SRE with 13 years of experience building and operating large-scale systems. He is the founder of Code Telemetry, an observability platform for AI coding agents, and co-founder of Mirror Panel, a synthetic research platform focused on measuring and improving the reliability of AI-generated audience insight. His current work sits at the intersection of AI systems, observability, developer infrastructure, and reliability.</p></p>
               </div>
 
           </div><!--//modal-body-->
