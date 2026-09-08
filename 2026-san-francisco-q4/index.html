@@ -266,7 +266,7 @@
         <p class="ac-blurb"><strong>SREday</strong> is a worldwide series of community events for engineers who build, ship and run modern software systems. Across cities around the world, we bring together people working in reliability, cloud, DevOps, observability and production engineering to share real-world experience, connect with their local community and explore how these disciplines are evolving in the age of AI.</p>
         
         <h5 class="ac-topics-heading">Companies presenting:</h5>
-        <p class="ac-companies">FoxCommand, Google, Hotdata, NOFire AI, ViralCircle, Walmart Global Tech</p>
+        <p class="ac-companies">FoxCommand, Google, Hotdata, NOFire AI, PayPal, ViralCircle, Walmart Global Tech</p>
         
         
         <h5 class="ac-topics-heading">Topics so far:</h5>
@@ -275,6 +275,7 @@
           <div class="ac-topic-name">Site Reliability Engineering</div>
           <ul class="ac-topic-talks">
             <li><a href="Aron_Eidelman_Google_Dont_Let_Your_AIs_Patch_Break_Prod_SRE_Patterns_for_Autonomous_Remediation.html#speakers-section">Don&#39;t Let Your AI&#39;s Patch Break Prod: SRE Patterns for Autonomous Remediation</a></li>
+            <li><a href="Ishan_Shah_PayPal_AI_Gardening_for_SRE_Managing_Context__Memory__and_Entropy_in_LongRunning_Agents.html#speakers-section">AI Gardening for SRE: Managing Context, Memory, and Entropy in Long-Running Agents</a></li>
             
           </ul>
         </div>
@@ -797,6 +798,32 @@
 
       <div class="col mb-4">
         <div class="card rounded">
+          <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Ishan Shah.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Ishan Shah</h5>
+            <div class="card-text mb-3">
+              <div class="meta">PayPal</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Ishan_Shah_PayPal_AI_Gardening_for_SRE_Managing_Context__Memory__and_Entropy_in_LongRunning_Agents#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/ishandshah/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card rounded">
           <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img src="../speakers/Joel Lipton.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Joel Lipton</h5>
@@ -1225,6 +1252,49 @@ This talk presents a shared data bus where agents exchange a database ID. Using 
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Vanshika Gupta is the founder of ViralCircle, a marketing agency that helps AI and tech companies turn founder-led content into a growth and customer acquisition channel.
 Previously, she worked in marketing at YC-backed Julius AI. With a background in computer science and technology management, she brings together technical understanding and creative marketing for the AI and startup ecosystem.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 6 -->
+<div class="modal modal-speaker modal-speaker-6" id="modal-speaker-6" tabindex="-1" role="dialog" aria-labelledby="speaker-6-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Ishan Shah.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Ishan Shah</h2>
+                          <div class="meta mb-2">PayPal</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/ishandshah/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">AI Gardening for SRE: Managing Context, Memory, and Entropy in Long-Running Agents</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Traditional systems fail through code paths, dependencies, resource limits, and bad assumptions. AI-assisted systems add another failure surface: context. Long-running agents accumulate instructions, retrieved documents, tool outputs, incident notes, partial plans, stale assumptions, and memory from prior work. None of that looks like CPU saturation or a 500 rate spike, but it can still change production behavior. An agent can remain available, pass health checks, and slowly become less reliable because the context around it has drifted. This talk introduces AI Gardening as an operational discipline for teams building or adopting agentic engineering systems. We will look at practical SRE questions for agent reliability: what context is allowed into a workflow, what should expire, what must be preserved for audit, when should memory be scoped or reset, how do we detect contradictory instructions, and how do we keep an agent's working state reviewable during incidents, deployments, and maintenance tasks? The goal is not to make probabilistic systems pretend to be deterministic. It is to make the operational environment around them maintainable: bounded context windows, explicit memory ownership, reset boundaries, retrieval evaluation, artifact handoffs, and post-run evidence that lets humans understand why an agent behaved the way it did. Attendees will leave with a reliability checklist for agentic workflows: treat context as production input, separate durable knowledge from temporary working state, make memory auditable, design reset paths before drift becomes an incident, and give on-call engineers tools to inspect the agent's state instead of trusting a transcript.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Ishan Shah is a Staff Software Engineer based in San Jose, California, with 10+ years of experience designing and delivering distributed systems, cloud-native services, event-driven platforms, real-time data pipelines, billing systems, supply chain platforms, and security analytics infrastructure. His work spans PayPal, Nordstrom, and Securonix, with recurring focus on Java, Kafka, AWS, Kubernetes, observability, CI/CD, and resilient multi-tenant architecture. His public technical work includes writing and speaking on replayable event-driven systems, AI SRE, agent security, and operationally reviewable AI-assisted engineering workflows.</p></p>
               </div>
 
           </div><!--//modal-body-->
