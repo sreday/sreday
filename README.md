@@ -65,3 +65,24 @@ repo root (home page only - conference pages are unaffected):
   in `partners.yaml` - it shows up in the Partner carousel instead.
 - **Duplicates**: if a company has more than one logo file, list the extra
   variants under `hidden_duplicates` so it only appears once on the home page.
+
+## Sponsor lead form
+
+The home page `#sponsor` section has an "Email us" expandable form under the Calendly widget
+(`home/_templates/index.html`). It posts JSON to a Google Apps Script web app whose source lives in
+`_build/lead-form.gs` (kept in the llmday repo; one deployment serves all brands); the script emails `hello@sreday.com` **and** the sponsor in one message
+(from `mark@llmday.com`) so the thread is open for both sides immediately.
+
+- The deployed `/exec` URL lives in `home/metadata.yml` -> `lead_form_url`. When it is empty the form
+  falls back to a prefilled `mailto:` link, so the UI can ship before the script is deployed.
+- Deploy / re-deploy steps are in the header comment of `_build/lead-form.gs` (kept in the llmday repo; one deployment serves all brands) (Web app, Execute as: Me,
+  Who has access: Anyone). Editing the script needs a new deployment *version*; the URL stays the same.
+- Same deployment can serve sreday/platformday: the form sends `brand`, the script maps it to inbox + alias.
+- The email lists `Form sent from: <page URL>` (home page -> `https://sreday.com/`, event page -> its folder URL).
+- Event pages (event index + talk pages) use the same form as the "Become A Sponsor" pill via
+  `_event_template/_templates/_lead_form.html` (propagated into every `20*/_templates/`); the event build
+  reads `lead_form_url` from `home/metadata.yml`. That partial is a deliberate COPY of the home-page block in
+  `home/_templates/index.html` (label, pill colour, card border and navbar hash differ) - when changing fields
+  or copy, edit both, then propagate the partial to all event folders.
+- Brand colours come from the single `.lead-scope { --lead-accent ... }` line at the top of each form block;
+  the rest of the block/partial is byte-identical to llmday's. Sync from llmday when the form changes.
