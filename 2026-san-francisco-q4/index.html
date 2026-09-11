@@ -266,7 +266,7 @@
         <p class="ac-blurb"><strong>SREday</strong> is a worldwide series of community events for engineers who build, ship and run modern software systems. Across cities around the world, we bring together people working in reliability, cloud, DevOps, observability and production engineering to share real-world experience, connect with their local community and explore how these disciplines are evolving in the age of AI.</p>
         
         <h5 class="ac-topics-heading">Companies presenting:</h5>
-        <p class="ac-companies">AWS, FoxCommand, Google, Hotdata, NOFire AI, PayPal, ViralCircle, Wack Incorporated, Walmart Global Tech</p>
+        <p class="ac-companies">AWS, FoxCommand, Google, Hotdata, Microsoft, NOFire AI, PayPal, ViralCircle, Wack Incorporated, Walmart Global Tech</p>
         
         
         <h5 class="ac-topics-heading">Topics so far:</h5>
@@ -286,6 +286,7 @@
           <ul class="ac-topic-talks">
             <li><a href="Joel_Lipton_FoxCommand_Reliable_AI_Needs_More_Than_Observability.html#speakers-section">Reliable AI Needs More Than Observability</a></li>
             <li><a href="Eddie_Tejeda_Hotdata_The_Agent_Data_Bus_Shared_State_for_MultiAgent_Systems.html#speakers-section">The Agent Data Bus: Shared State for Multi-Agent Systems</a></li>
+            <li><a href="Girish_Konda_Microsoft_A_Thousand_Alerts_a_Day__and_One_Real_Incident_Hiding_In_Them.html#speakers-section">A Thousand Alerts a Day, and One Real Incident Hiding In Them</a></li>
             
           </ul>
         </div>
@@ -316,8 +317,6 @@
         </div>
         
         
-        
-        <p class="ac-more-soon">We'll announce more talks soon, stay tuned!</p>
         
         <button class="ac-close-row" type="button" onclick="acClose()" aria-label="Close About the conference">
           <span class="ac-close-chip">Close
@@ -822,6 +821,32 @@
             <ul class="social-list list-inline mb-0">
               
               <li class="list-inline-item"><a  href="https://www.linkedin.com/in/eborukhov/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Girish Konda.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Girish Konda</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Microsoft</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Girish_Konda_Microsoft_A_Thousand_Alerts_a_Day__and_One_Real_Incident_Hiding_In_Them#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/venkatasaigirishkonda/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -1751,6 +1776,55 @@ Previously, she worked in marketing at YC-backed Julius AI. With a background in
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Aaron Hunter is a Principal Developer Advocate at AWS based in Frisco, TX. With over 15 years of experience spanning system administration, networking, and training, he brings more than a decade of cloud expertise to help Engineers, Developers, Builders, and tech enthusiasts master AWS technologies. His philosophy is simple: always be learning something new, and have fun while doing it! Aaron shares his knowledge through workshops, online courses, mentoring, and live streaming – making complex cloud concepts accessible and enjoyable. When he's not building in the cloud, you'll find him exploring craft beer scenes in new cities or teaming up with friends in Marvel Rivals on his PlayStation, because even superheroes need good teammates!</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 9 -->
+<div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Girish Konda.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Girish Konda</h2>
+                          <div class="meta mb-2">Microsoft</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/venkatasaigirishkonda/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">A Thousand Alerts a Day, and One Real Incident Hiding In Them</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>A monitoring stack that fires a thousand alerts a day does not have a monitoring problem. It has a reading problem. Nearly all of it is benign and repeats the same twenty shapes - and somewhere in there is a real incident that looks exactly like the rest until someone digs.</p>
+<p>The obvious fix is to point an agent at the queue and let it triage. We tried that. It is confidently wrong, and the confidence is the dangerous part: it returns a fluent, well-argued verdict on every alert at the same level of certainty, whether it pulled real evidence or just pattern-matched the title. At a thousand a day, even a small confidently-wrong rate is dozens of silent misfilings - and the ones it buries are the unfamiliar ones, which is exactly where the real incidents live.</p>
+<p>I am a Principal Engineer in Microsoft Fabric, where I am the tech lead and architect for capacity management. What finally worked was refusing to let one agent do both jobs.</p>
+<p>Triage got cut back until routing is all it can do. It groups by signature and hands off. It is not allowed to conclude, to close, or to declare anything benign - that is the judgement it is worst at and the one with the worst downside.</p>
+<p>Investigation was then split across dedicated agents, one per failure domain. Each knows only its own telemetry, its own known-benign patterns, and its own escalation bar. That narrow hypothesis space is what makes "I could not find evidence for this" an answer the agent will actually give, instead of a plausible story. It also means each one can be tested on its own against past incidents, which a single generalist triager never can be.</p>
+<p>The metric that matters is recall on the rare real incident, not how much of the queue got closed.</p>
+<p>I will go through the routing design, how the investigation agents are kept honest, what is escalated to a human on purpose, and the real problems we only caught because a specialist refused to answer.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Girish Konda is a Principal Software Engineer at Microsoft with over eight years of experience building scalable distributed systems and machine learning platforms. He has led large scale engineering projects and backend teams, with previous experience at Amazon and AWS.</p></p>
               </div>
 
           </div><!--//modal-body-->
