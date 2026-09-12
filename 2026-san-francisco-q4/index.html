@@ -266,7 +266,7 @@
         <p class="ac-blurb"><strong>SREday</strong> is a worldwide series of community events for engineers who build, ship and run modern software systems. Across cities around the world, we bring together people working in reliability, cloud, DevOps, observability and production engineering to share real-world experience, connect with their local community and explore how these disciplines are evolving in the age of AI.</p>
         
         <h5 class="ac-topics-heading">Companies presenting:</h5>
-        <p class="ac-companies">AWS, FoxCommand, Google, Hotdata, Microsoft, NOFire AI, PayPal, ViralCircle, Wack Incorporated, Walmart Global Tech</p>
+        <p class="ac-companies">AWS, FoxCommand, Google, Grafana Labs, Hotdata, Microsoft, NOFire AI, PayPal, ViralCircle, Wack Incorporated, Walmart Global Tech</p>
         
         
         <h5 class="ac-topics-heading">Topics so far:</h5>
@@ -312,6 +312,7 @@
           <div class="ac-topic-name">AI for Operations</div>
           <ul class="ac-topic-talks">
             <li><a href="Aaron_Hunter_AWS_The_tokenomics_of_Model_Context_Protocol_at_scale.html#speakers-section">The tokenomics of Model Context Protocol at scale</a></li>
+            <li><a href="WeiChin_Call_Grafana_Labs_From_ThumbsDown_to_RCA_Closing_the_Loop_on_AI_Agents.html#speakers-section">From Thumbs-Down to RCA: Closing the Loop on AI Agents</a></li>
             
           </ul>
         </div>
@@ -832,7 +833,7 @@
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Girish Konda.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Girish Konda.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Girish Konda</h5>
             <div class="card-text mb-3">
@@ -951,6 +952,32 @@
             <ul class="social-list list-inline mb-0">
               
               <li class="list-inline-item"><a  href="https://www.linkedin.com/in/vanshikaguptapm"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Wei-Chin Call.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Wei-Chin Call</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Grafana Labs</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./WeiChin_Call_Grafana_Labs_From_ThumbsDown_to_RCA_Closing_the_Loop_on_AI_Agents#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/wei-chincall/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -1785,6 +1812,55 @@ Previously, she worked in marketing at YC-backed Julius AI. With a background in
 
 <!-- Modal Speaker 9 -->
 <div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Wei-Chin Call.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Wei-Chin Call</h2>
+                          <div class="meta mb-2">Grafana Labs</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/wei-chincall/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">From Thumbs-Down to RCA: Closing the Loop on AI Agents</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Your on-call rotation doesn't page you when an AI agent gives a customer bad advice, but it should.</p>
+<p>As LLM-powered agents move from chatbot novelty into production systems that make decisions, recommend actions, and interact directly with users, SRE practices built around traditional services need to evolve to account for non-deterministic, natural-language behavior.</p>
+<p>In this talk, I’ll walk through a live AI agent, an intentionally “broken” education assistant, to demonstrate what agent observability looks like in practice. We’ll follow distributed traces across the LLM call and its downstream tool calls, see an automated evaluator catch a harmful response before it reaches a real audience, and trace a deliberate service outage end-to-end through the agent’s error-handling path.</p>
+<p>I’ll then close the loop the way an SRE would: a simple thumbs-up/down control on every agent response feeds directly into a conversation-rating signal. A dissatisfied user is no longer just a qualitative complaint. It becomes a queryable, traceable signal that can be correlated with the trace that produced it.</p>
+<p>Finally, we’ll explore what familiar SRE concepts such as SLOs, error budgets, and incident response begin to look like when a language model becomes part of the production service.</p>
+<p>Attendees will leave with a practical framework for instrumenting and operating AI agents as production dependencies, and a healthy skepticism toward the idea that AI agents somehow don't need SREs.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Wei-Chin Call is a Staff Emerging Products Manager at Grafana Labs, where she helps shape the company's next generation of agentic, full-stack observability products. She joined Grafana Labs as a Senior Solutions Engineer, partnering with customers on technical proof-of-concepts and driving adoption of the Grafana Cloud stack.</p>
+<p>Prior to Grafana Labs, Wei-Chin managed a Solutions Engineering team at Cribl and held technical evangelism and sales engineering leadership roles at AppDynamics, where she built sales enablement curricula and led cloud-native training initiatives. She holds certifications in OpenTelemetry (OTCA), Kubernetes (CKAD, CKA), and Prometheus (PCA).</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 10 -->
+<div class="modal modal-speaker modal-speaker-10" id="modal-speaker-10" tabindex="-1" role="dialog" aria-labelledby="speaker-10-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
