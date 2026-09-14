@@ -291,13 +291,13 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>A monitoring stack that fires a thousand alerts a day does not have a monitoring problem. It has a reading problem. Nearly all of it is benign and repeats the same twenty shapes - and somewhere in there is a real incident that looks exactly like the rest until someone digs.</p>
-<p>The obvious fix is to point an agent at the queue and let it triage. We tried that. It is confidently wrong, and the confidence is the dangerous part: it returns a fluent, well-argued verdict on every alert at the same level of certainty, whether it pulled real evidence or just pattern-matched the title. At a thousand a day, even a small confidently-wrong rate is dozens of silent misfilings - and the ones it buries are the unfamiliar ones, which is exactly where the real incidents live.</p>
-<p>I am a Principal Engineer in Microsoft Fabric, where I am the tech lead and architect for capacity management. What finally worked was refusing to let one agent do both jobs.</p>
-<p>Triage got cut back until routing is all it can do. It groups by signature and hands off. It is not allowed to conclude, to close, or to declare anything benign - that is the judgement it is worst at and the one with the worst downside.</p>
-<p>Investigation was then split across dedicated agents, one per failure domain. Each knows only its own telemetry, its own known-benign patterns, and its own escalation bar. That narrow hypothesis space is what makes "I could not find evidence for this" an answer the agent will actually give, instead of a plausible story. It also means each one can be tested on its own against past incidents, which a single generalist triager never can be.</p>
-<p>The metric that matters is recall on the rare real incident, not how much of the queue got closed.</p>
-<p>I will go through the routing design, how the investigation agents are kept honest, what is escalated to a human on purpose, and the real problems we only caught because a specialist refused to answer.</p></p>
+                <p><p>A monitoring stack that fires a thousand alerts a day does not have a monitoring problem. It has a reading problem. Nearly all of it is benign and repeats the same twenty shapes - and somewhere in there is a real incident that looks exactly like the rest until someone digs.
+The obvious fix is to point an agent at the queue and let it triage. We tried that. It is confidently wrong, and the confidence is the dangerous part: it returns a fluent, well-argued verdict on every alert at the same level of certainty, whether it pulled real evidence or just pattern-matched the title. At a thousand a day, even a small confidently-wrong rate is dozens of silent misfilings - and the ones it buries are the unfamiliar ones, which is exactly where the real incidents live.
+I am a Principal Engineer in Microsoft Fabric, where I am the tech lead and architect for capacity management. What finally worked was refusing to let one agent do both jobs.
+Triage got cut back until routing is all it can do. It groups by signature and hands off. It is not allowed to conclude, to close, or to declare anything benign - that is the judgement it is worst at and the one with the worst downside.
+Investigation was then split across dedicated agents, one per failure domain. Each knows only its own telemetry, its own known-benign patterns, and its own escalation bar. That narrow hypothesis space is what makes "I could not find evidence for this" an answer the agent will actually give, instead of a plausible story. It also means each one can be tested on its own against past incidents, which a single generalist triager never can be.
+The metric that matters is recall on the rare real incident, not how much of the queue got closed.
+I will go through the routing design, how the investigation agents are kept honest, what is escalated to a human on purpose, and the real problems we only caught because a specialist refused to answer.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
