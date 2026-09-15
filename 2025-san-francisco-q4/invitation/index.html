@@ -42,8 +42,15 @@
     .iv-chip.bad { border-color: #f0b4ae; background: #fdecea; color: var(--iv-danger); text-decoration: line-through; }
     .iv-tier { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: .78rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; color: #fff; background: #9aa0a6; vertical-align: middle; }
     .iv-tier.strong { background: #2ecc40; } .iv-tier.building { background: #e6b400; } .iv-tier.early { background: #9aa0a6; }
-    .iv-status { font-size: .9rem; color: #555; margin-bottom: 18px; line-height: 1.6; }
-    .iv-status b { color: #222; }
+    .iv-status { margin-bottom: 22px; }
+    .iv-status { --iv-tc: #9aa0a6; }
+    .iv-status.strong { --iv-tc: #2ecc40; } .iv-status.building { --iv-tc: #e6b400; } .iv-status.early { --iv-tc: #9aa0a6; }
+    .iv-stats { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 10px; }
+    .iv-stat { display: inline-flex; align-items: baseline; gap: 5px; padding: 4px 12px; border-radius: 999px; font-family: 'Montserrat', sans-serif; font-size: .8rem; font-weight: 600; letter-spacing: .02em; color: #fff; background: var(--iv-tc); white-space: nowrap; }
+    .iv-stat b { font-weight: 700; }
+    .iv-stat span { font-weight: 500; opacity: .92; }
+    .iv-prev { font-size: .9rem; color: #555; line-height: 1.5; }
+    .iv-prev b { color: #222; }
     details.iv-facts { margin-top: 14px; font-size: .88rem; color: #555; }
     details.iv-facts summary { cursor: pointer; color: #666; }
     details.iv-facts pre { background: #f7f7f9; border: 1px solid #eee; border-radius: 10px; padding: 12px 14px; font-size: .8rem; overflow-x: auto; margin-top: 8px; max-height: 380px; }
@@ -66,7 +73,7 @@
 
   
   <form class="iv-card" id="iv-gate" novalidate>
-    <label class="iv-field"><span>Passphrase <small>(same as onboarding)</small></span><input type="password" name="pass" autocomplete="current-password" autofocus></label>
+    <label class="iv-field"><span>Passphrase</span><input type="password" name="pass" autocomplete="current-password" autofocus></label>
     <div class="iv-row">
       <button type="submit" class="btn-iv btn-iv-primary" id="iv-unlock">Unlock</button>
       <div class="iv-error" id="iv-gate-error" hidden></div>
@@ -77,10 +84,10 @@
   <form class="iv-card" id="iv-form" hidden novalidate>
     <div class="iv-status" id="iv-status"></div>
     <div class="iv-grid">
-      <label class="iv-field"><span>Speaker first name</span><input type="text" name="speaker_name" autocomplete="off" maxlength="60"></label>
-      <label class="iv-field"><span>Speaker email</span><input type="email" name="speaker_email" autocomplete="off" spellcheck="false"></label>
+      <label class="iv-field"><span>Speaker's full name</span><input type="text" name="speaker_name" autocomplete="off" maxlength="80"></label>
+      <label class="iv-field"><span>Speaker's email</span><input type="email" name="speaker_email" autocomplete="off" spellcheck="false"></label>
     </div>
-    <label class="iv-field"><span>Cc <small>(optional: their marketing / comms / manager, comma separated - adds the "your team" and sponsorship lines)</small></span><textarea name="cc_emails" spellcheck="false" autocomplete="off"></textarea></label>
+    <label class="iv-field"><span>Marketing / comms / manager / team <small>(optional, comma separated - they will be added in Cc)</small></span><textarea name="cc_emails" spellcheck="false" autocomplete="off"></textarea></label>
     <div class="iv-chips" id="iv-chips"></div>
     <div class="iv-hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
     <div class="iv-row">
@@ -104,12 +111,12 @@
   <div class="iv-card iv-done" id="iv-done" hidden></div>
 
   <div class="iv-muted" id="iv-locked-note">This is a tool for organizers. Nothing to see here for attendees, speakers and sponsors.</div>
-  <div class="iv-muted" id="iv-footer" hidden>Sent from the brand alias straight to the speaker, Cc as given. The thread is filed unread in the inbox under the "Speaker invitations" label; replies join it.</div>
+  <div class="iv-muted" id="iv-footer" hidden>Sent from mark's email straight to the speaker, with optional team members in cc. The thread is filed unread in the inbox under the "Speaker invitations" label; replies join it.</div>
 </main>
 
 <script>
-var IV_URL   = "";
-var IV_EVENT = {"attendees": 100, "brand": "sreday", "brand_name": "SREday", "calendly_url": "https://calendly.com/sreday/30min", "city": "San Francisco", "companies": ["AlienGiraffe", "AWS", "CAST AI", "Castlight Health", "ClickHouse", "Cortex", "eBay", "Gable.ai", "GitGuardian", "Harness", "Imply", "Meta", "Microsoft", "OpenObserve", "Scarf", "SiriusXM", "Starbucks"], "confirmed": 20, "date": "October 3, 2025", "event_name": "SREday San Francisco 2025 Q4", "event_url": "https://www.sreday.com/2025-san-francisco-q4/", "fasttrack_url": "https://www.sreday.com/2025-san-francisco-q4/fasttrack/", "fill_pct": 83, "previous": {"companies": ["Adobe", "Anyshift.io", "AWS", "Chainguard", "Cribl", "Deloitte", "Galileo AI", "Google", "Harness", "HashiCorp", "Imply", "Infosys", "Intuit", "Lantern", "Meta", "NeuBird AI", "Nexsys Systems", "Oracle", "Philo", "Salespeak", "Sentry.io", "StatusNeo", "Virtana", "WSO2", "Xurrent"], "date": "April 17, 2026", "event_name": "SREday San Francisco 2026 Q2", "same_city": true, "talks": 29}, "slot_minutes": 30, "slug": "2025-san-francisco-q4", "sponsor_page_url": "https://www.sreday.com/2025-san-francisco-q4/#sponsors", "sponsors": ["Harness", "Aliengiraffe", "Cast Ai", "Imply", "Openobserve"], "talks_target": 24, "tier": "strong", "topics": [{"count": 4, "name": "Site Reliability Engineering"}, {"count": 6, "name": "Observability \u0026 Monitoring"}, {"count": 1, "name": "Incident Management"}, {"count": 1, "name": "Resilience \u0026 Chaos Engineering"}, {"count": 2, "name": "Cloud Infrastructure"}, {"count": 4, "name": "Performance \u0026 Scalability"}, {"count": 1, "name": "Security \u0026 Reliability"}, {"count": 1, "name": "AI for Operations"}], "tracks": 2, "venue_name": "The offices of Harness.io", "youtube_url": "https://www.youtube.com/@sreday"};
+var IV_URL   = "https://script.google.com/macros/s/AKfycbwf8_4TeXxjnsu5zfQ5DrX50ydRKWC4nA6FWsA_cuFZ9bsPNQanC0as3fMD-RMVPO0_fw/exec";
+var IV_EVENT = {"attendees": 100, "brand": "sreday", "brand_name": "SREday", "calendly_url": "https://calendly.com/sreday/30min", "city": "San Francisco", "companies": ["AlienGiraffe", "AWS", "CAST AI", "Castlight Health", "ClickHouse", "Cortex", "eBay", "Gable.ai", "GitGuardian", "Harness", "Imply", "Meta", "Microsoft", "OpenObserve", "Scarf", "SiriusXM", "Starbucks"], "confirmed": 20, "date": "October 3, 2025", "event_name": "SREday San Francisco 2025 Q4", "event_url": "https://www.sreday.com/2025-san-francisco-q4/", "fasttrack_url": "https://www.sreday.com/2025-san-francisco-q4/fasttrack/", "fill_pct": 83, "host_company": "Harness", "previous": {"companies": ["Adobe", "Anyshift.io", "AWS", "Chainguard", "Cribl", "Deloitte", "Galileo AI", "Google", "Harness", "HashiCorp", "Imply", "Infosys", "Intuit", "Lantern", "Meta", "NeuBird AI", "Nexsys Systems", "Oracle", "Philo", "Salespeak", "Sentry.io", "StatusNeo", "Virtana", "WSO2", "Xurrent"], "date": "April 17, 2026", "event_name": "SREday San Francisco 2026 Q2", "same_city": true, "talks": 29, "url": "https://www.sreday.com/2026-san-francisco-q2/"}, "slot_minutes": 30, "slug": "2025-san-francisco-q4", "sponsor_page_url": "https://www.sreday.com/2025-san-francisco-q4/sponsorship.html", "sponsors": ["Harness", "Aliengiraffe", "Cast Ai", "Imply", "Openobserve"], "talks_target": 24, "tier": "strong", "topics": [{"count": 4, "name": "Site Reliability Engineering"}, {"count": 6, "name": "Observability \u0026 Monitoring"}, {"count": 1, "name": "Incident Management"}, {"count": 1, "name": "Resilience \u0026 Chaos Engineering"}, {"count": 2, "name": "Cloud Infrastructure"}, {"count": 4, "name": "Performance \u0026 Scalability"}, {"count": 1, "name": "Security \u0026 Reliability"}, {"count": 1, "name": "AI for Operations"}], "tracks": 2, "venue_name": "The offices of Harness.io", "youtube_url": "https://www.youtube.com/@sreday"};
 var IV_KEY   = 'onboarding_pass_' + IV_EVENT.brand;   // shared with /onboarding/: unlock once, use both
 var IV_MAX_CC = 5;
 
@@ -130,10 +137,13 @@ function showGate(msg) {
 function showForm() {
   gate.hidden = true; form.hidden = false; done.hidden = true; $('iv-footer').hidden = false; $('iv-locked-note').hidden = true;
   $('iv-facts').textContent = JSON.stringify(IV_EVENT, null, 2);
-  var prev = IV_EVENT.previous ? ' · previous edition: <b>' + IV_EVENT.previous.event_name + '</b> (' + IV_EVENT.previous.talks + ' talks)' : ' · no previous edition found';
-  $('iv-status').innerHTML = '<span class="iv-tier ' + IV_EVENT.tier + '">' + tierLabel(IV_EVENT.tier) + '</span> &nbsp;<b>' + IV_EVENT.confirmed + '</b> of ' + IV_EVENT.talks_target +
-    ' talks (' + IV_EVENT.fill_pct + '%) · ' + IV_EVENT.tracks + ' track' + (IV_EVENT.tracks === 1 ? '' : 's') + ' · ' + IV_EVENT.companies.length + ' companies · ' +
-    IV_EVENT.sponsors.length + ' sponsor' + (IV_EVENT.sponsors.length === 1 ? '' : 's') + prev;
+  function stat(value, label) { return '<span class="iv-stat"><b>' + value + '</b><span>' + label + '</span></span>'; }
+  $('iv-status').className = 'iv-status ' + IV_EVENT.tier;
+  var prev = IV_EVENT.previous ? 'Previous edition: <b>' + IV_EVENT.previous.event_name + '</b>, ' + IV_EVENT.previous.talks + ' talks' : 'No previous edition found';
+  $('iv-status').innerHTML = '<span class="iv-tier ' + IV_EVENT.tier + '">' + tierLabel(IV_EVENT.tier) + '</span>' +
+    '<div class="iv-stats">' + stat(IV_EVENT.confirmed + ' of ' + IV_EVENT.talks_target, 'talks · ' + IV_EVENT.fill_pct + '%') + stat(IV_EVENT.tracks, 'track' + (IV_EVENT.tracks === 1 ? '' : 's')) +
+    stat(IV_EVENT.companies.length, 'companies') + stat(IV_EVENT.sponsors.length, 'sponsor' + (IV_EVENT.sponsors.length === 1 ? '' : 's')) + '</div>' +
+    '<div class="iv-prev">' + prev + '</div>';
   validate();
   setTimeout(function() { nameInput.focus(); }, 0);
 }
@@ -150,6 +160,7 @@ function parseEmails(text) {
   });
   return { valid: valid, invalid: invalid };
 }
+function firstName(full) { return String(full || '').trim().split(/\s+/)[0] || ''; }
 function validate() {
   var cc = parseEmails(ccInput.value), chips = $('iv-chips');
   var speaker = emailInput.value.trim().toLowerCase();
@@ -167,7 +178,7 @@ function validate() {
 // ---- transport -------------------------------------------------------------
 function post(action, v) {
   if (!IV_URL) return Promise.reject(new Error('invitation_form_url is not configured in home/metadata.yml'));
-  var body = { action: action, pass: storedPass(), brand: IV_EVENT.brand, speaker_name: v.name, speaker_email: v.email, cc_emails: v.cc,
+  var body = { action: action, pass: storedPass(), brand: IV_EVENT.brand, speaker_name: firstName(v.name), speaker_full_name: v.name, speaker_email: v.email, cc_emails: v.cc,
                event: IV_EVENT, website: form.elements['website'].value || '', page: location.href };
   var ctrl = ('AbortController' in window) ? new AbortController() : null;
   var timer = ctrl ? setTimeout(function() { ctrl.abort(); }, 25000) : null;
@@ -220,7 +231,10 @@ $('iv-preview').addEventListener('click', function() {
   busy(btn, 'Loading...');
   post('preview', v).then(function(res) {
     idle(btn);
-    $('iv-from').textContent = res.from || ''; $('iv-to').textContent = res.to || v.email;
+    $('iv-from').textContent = res.from || '';
+    // an empty / invalid speaker email previews with a placeholder server-side, but the To line says so in red (Marek 2026-09-14)
+    if (EMAIL_RE.test(emailInput.value.trim())) { $('iv-to').textContent = res.to || v.email; }
+    else { $('iv-to').innerHTML = '<span style="color:var(--iv-danger)">(email required)</span>'; }
     $('iv-cc').textContent = v.cc.length ? v.cc.join(', ') : '(none)';
     $('iv-subject').textContent = res.subject || '';
     $('iv-html').srcdoc = res.html || '';
