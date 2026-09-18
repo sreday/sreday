@@ -268,7 +268,7 @@
         <p class="ac-blurb"><strong>SREday</strong> is a worldwide series of community events for engineers who build, ship and run modern software systems. Across cities around the world, we bring together people working in reliability, cloud, DevOps, observability and production engineering to share real-world experience, connect with their local community and explore how these disciplines are evolving in the age of AI.</p>
         
         <h5 class="ac-topics-heading">Companies presenting:</h5>
-        <p class="ac-companies">AppMaster, AWS, Fidian, FoxCommand, Garner Health, Google, Grafana Labs, Hippo Harvest, Hotdata, LangChain, Microsoft, Nexsys Systems LLC, NOFire AI, PayPal, Red Hat, Serra Labs, Signadot, Socket, SpaceXAI, ViralCircle, Wack Incorporated, Walmart Global Tech, WSO2</p>
+        <p class="ac-companies">AppMaster, Autolake, AWS, Fidian, FoxCommand, Garner Health, Google, Grafana Labs, Hippo Harvest, Hotdata, LangChain, Microsoft, Nexsys Systems LLC, NOFire AI, PayPal, Red Hat, Serra Labs, Signadot, Socket, SpaceXAI, ViralCircle, Wack Incorporated, Walmart Global Tech, WSO2</p>
         
         
         <h5 class="ac-topics-heading">Topics so far:</h5>
@@ -281,6 +281,7 @@
             <li><a href="Robbie_McKinstry_Wack_Incorporated_Overcoming_the_Trust_Deficit_with_SRE_Agents.html#speakers-section">Overcoming the Trust Deficit with SRE Agents</a></li>
             <li><a href="Geoff_White_Nexsys_Systems_LLC_Open_Source_SRE_Agents_for_your_internal_Labs.html#speakers-section">Open Source SRE Agents for your internal Labs</a></li>
             <li><a href="An_Phan_Hippo_Harvest_When_the_Site_Is_Actually_a_Site_Rethinking_Site_Reliability_for_the_Physical_.html#speakers-section">When the Site Is Actually a Site: Rethinking Site Reliability for the Physical World</a></li>
+            <li><a href="Ganesh_Nathan_Autolake_Your_Bill_Is_an_SLO_Reliability_for_a_Data_Platform_With_No_Servers.html#speakers-section">Your Bill Is an SLO: Reliability for a Data Platform With No Servers</a></li>
             <li><a href="Arjun_Iyer_Signadot_10x_the_PRs__Same_Error_Budget_Validating_AgentWritten_Code_Before_Prod.html#speakers-section">10x the PRs, Same Error Budget: Validating Agent-Written Code Before Prod</a></li>
             
           </ul>
@@ -887,7 +888,7 @@
       <span class="schedule-meta-divider">•</span>
       <span class="schedule-meta-item">2 parallel tracks</span>
       <span class="schedule-meta-divider">•</span>
-      <span class="schedule-meta-item">9AM - 5PM</span>
+      <span class="schedule-meta-item">9AM - 5:30PM</span>
       <span class="schedule-meta-divider">•</span>
       <span class="schedule-meta-item">San Francisco, in-person</span>
     </div>
@@ -1523,6 +1524,25 @@ We’ll follow a release through our deployment pipeline: validating changes, ro
             <div class="meta">
               <h4 class="time mb-3">17:00</h4>
               <div class="profile">
+                <a href="#modal-speaker-23" data-bs-toggle="modal" data-bs-target="#modal-speaker-23"><img class="profile-image rounded-circle mb-2" src="../speakers/Ganesh Nathan.png" alt=""></a>
+                <div class="name">Ganesh Nathan</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-23" data-bs-toggle="modal" data-bs-target="#modal-speaker-23">Your Bill Is an SLO: Reliability for a Data Platform With No Servers</a>
+              </h3>
+              <div class="location mb-3">Autolake</div>
+              <div class="desc schedule-abstract">We run a multi-tenant data lakehouse for higher education and public sector organizations on AWS serverless services only: S3, Glue, Athena, Lambda, Step Functions, and Iceberg tables. No cluster, no Kubernetes, and no on-call rotation. That changes what reliability means, because the signals SREs usually rely on, CPU, memory, pod health, do not exist. Our answer is that cost is the most honest signal you have. A query that returns the right answer at ten times the expected cost is a degradation, and we treat it like one. This talk walks through the SLOs we built around cost per query, file count per partition, and snapshot age, and how those SLOs drive automated remediation: compaction, snapshot expiry, catalog reconciliation, and retention enforcement that run themselves and report back. We will also cover the guardrails that keep petabyte-scale storage healthy without a human in the loop: hidden partitioning so users cannot write expensive queries by accident, and per-tenant cost limits that stop a runaway workload before it becomes a bill. You will leave with a working model for SRE on serverless data infrastructure and a checklist you can apply to any Iceberg on S3 deployment.<a class="schedule-abstract-read-more" href="#modal-speaker-23" data-bs-toggle="modal" data-bs-target="#modal-speaker-23">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">17:30</h4>
+              <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
                 <div class="name"></div>
               </div>
@@ -1554,6 +1574,10 @@ We’ll follow a release through our deployment pipeline: validating changes, ro
           </tr>
         </thead>
         <tbody>
+
+
+
+
 
 
 
@@ -2280,13 +2304,67 @@ We’ll follow a release through our deployment pipeline: validating changes, ro
 
 
 
+
+
           <tr>
-            <td class="time-cell merged-cell">17:00</td>
-            <td class="talk-cell merged-cell" colspan="2">
+            <td class="time-cell">17:00</td>
 
-              Wrap up
 
+
+
+
+
+            <td class="talk-cell merged-cell">Wrap up</td>
+
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-23" data-bs-toggle="modal" data-bs-target="#modal-speaker-23">Your Bill Is an SLO: Reliability for a Data Platform With No Servers</a>
+              <div class="speaker-info">Ganesh Nathan <span class="affiliation">• Autolake</span></div>
             </td>
+
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">17:30</td>
+
+
+
+
+            <td class="talk-cell merged-cell"></td>
+
+
+
+
+
+
+
+            <td class="talk-cell merged-cell">Wrap up</td>
+
+
           </tr>
 
 
@@ -2534,6 +2612,32 @@ We’ll follow a release through our deployment pipeline: validating changes, ro
             <ul class="social-list list-inline mb-0">
               
               <li class="list-inline-item"><a  href="https://www.linkedin.com/in/forrestbthomas/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-23" data-bs-toggle="modal" data-bs-target="#modal-speaker-23"><img src="../speakers/Ganesh Nathan.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Ganesh Nathan</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Autolake</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Ganesh_Nathan_Autolake_Your_Bill_Is_an_SLO_Reliability_for_a_Data_Platform_With_No_Servers#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/ganeshnathan/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -4335,6 +4439,49 @@ We’ll follow a release through our deployment pipeline: validating changes, ro
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Romain Priour is a software engineer on LangChain’s infrastructure team, where he leads the team behind LangSmith’s Bring Your Own Cloud (BYOC) platform. Previously, he helped build an intelligent log compression engine at Grepr and worked on SAP Business Network at SAP. Romain studied computer science at UC Berkeley. Go Bears!</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 23 -->
+<div class="modal modal-speaker modal-speaker-23" id="modal-speaker-23" tabindex="-1" role="dialog" aria-labelledby="speaker-23-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Ganesh Nathan.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Ganesh Nathan</h2>
+                          <div class="meta mb-2">Autolake</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/ganeshnathan/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Your Bill Is an SLO: Reliability for a Data Platform With No Servers</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>We run a multi-tenant data lakehouse for higher education and public sector organizations on AWS serverless services only: S3, Glue, Athena, Lambda, Step Functions, and Iceberg tables. No cluster, no Kubernetes, and no on-call rotation. That changes what reliability means, because the signals SREs usually rely on, CPU, memory, pod health, do not exist. Our answer is that cost is the most honest signal you have. A query that returns the right answer at ten times the expected cost is a degradation, and we treat it like one. This talk walks through the SLOs we built around cost per query, file count per partition, and snapshot age, and how those SLOs drive automated remediation: compaction, snapshot expiry, catalog reconciliation, and retention enforcement that run themselves and report back. We will also cover the guardrails that keep petabyte-scale storage healthy without a human in the loop: hidden partitioning so users cannot write expensive queries by accident, and per-tenant cost limits that stop a runaway workload before it becomes a bill. You will leave with a working model for SRE on serverless data infrastructure and a checklist you can apply to any Iceberg on S3 deployment.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Ganesh Nathan is co-founder of Autolake, a serverless data lakehouse platform built entirely on AWS native services for higher education and public sector organizations. He has spent 30 years building data infrastructure across public sector and enterprise environments, and currently runs multi-tenant, petabyte-scale Iceberg on S3 deployments with no clusters and no on-call rotation. His work focuses on what reliability, governance, and cost control look like when there are no servers to watch.</p></p>
               </div>
 
           </div><!--//modal-body-->
