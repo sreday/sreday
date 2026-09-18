@@ -104,6 +104,9 @@
     .day li:first-child { border-top: none; padding-top: 2px; }
     .day li a { color: #111; font-weight: 600; text-decoration: none; }
     .day li a:hover { color: var(--accent); }
+    .day li.removed { color: var(--critical); }                /* gone from the lineup: red, nothing to click, the talk page no longer exists */
+    .day li.removed strong { font-weight: 600; }
+    .day li.removed::before { content: "\2212"; display: inline-block; width: 14px; font-weight: 700; }
     .day li small { color: #aaa; font-size: .76rem; margin-left: 8px; font-variant-numeric: tabular-nums; }
     .day .none { color: #bbb; font-size: .88rem; padding-top: 5px; font-style: italic; }
     .added-note { color: #888; font-size: .82rem; margin-top: 10px; font-style: italic; }
@@ -387,7 +390,7 @@
 
   <section class="regs">
     <h2>Registrations</h2>
-    <div class="sub">NOT LIVE, updates when the website is built. Last update: <span data-ts-full="2026-09-18T15:03:09+00:00">2026-09-18 15:03 UTC</span>. Ring colour = registered vs expected, same health logic as the talks above.</div>
+    <div class="sub">NOT LIVE, updates when the website is built. Last update: <span data-ts-full="2026-09-18T15:14:27+00:00">2026-09-18 15:14 UTC</span>. Ring colour = registered vs expected, same health logic as the talks above.</div>
     
     
     <div class="reg-overall"><strong>518</strong> registered / 950 expected across all upcoming events · <strong>55%</strong></div>
@@ -595,7 +598,7 @@
 
   <section class="added">
     <h2>Speakers on the website</h2>
-    <div class="sub">Who was added when, and to which conference.</div>
+    <div class="sub">Who was added when, and to which conference. Red = a fully entered speaker who is no longer in the lineup (back within 2 days = ignored).</div>
     
     <div class="days">
       
@@ -605,6 +608,7 @@
         <ul>
           <li><a href="/2026-dallas-q4/Austin_Sutterfield_Celestica_Who_Owns_the_Gaps.html">Austin Sutterfield</a> added to <a href="/2026-dallas-q4/">SREday Dallas 2026 Q4</a><small data-ts="2026-09-18T03:53:29+01:00" title="03:53 Europe/London">03:53</small></li>
           <li><a href="/2026-london-q3/Shyam_Sreevalsan_Netdata_Agentic_Observability__The_Path_to_AI_CoSRE.html">Shyam Sreevalsan</a> added to <a href="/2026-london-q3/">SREday London 2026 Q3</a><small data-ts="2026-09-18T04:03:22+01:00" title="04:03 Europe/London">04:03</small></li>
+          <li class="removed" title="Agentic Observability | The Path to AI Co-SRE · Netdata"><strong>Costa Tsaousis</strong> removed from SREday London 2026 Q3<small data-ts="2026-09-18T04:03:22+01:00" title="04:03 Europe/London">04:03</small></li>
           <li><a href="/2026-san-francisco-q4/Hilliary_Lipsig_Red_Hat_Burning_the_Ships_Migrating_Our_Core_Logging_Stack_with_No_Way_Back.html">Hilliary Lipsig</a> added to <a href="/2026-san-francisco-q4/">SREday San Francisco 2026 Q4</a><small data-ts="2026-09-18T07:02:28+01:00" title="07:02 Europe/London">07:02</small></li>
           <li><a href="/2026-san-francisco-q4/Oleg_Sotnikov_AppMaster_One_Container__One_Database_per_Tenant_Running_Hundreds_of_Thousands_of_AIGe.html">Oleg Sotnikov</a> added to <a href="/2026-san-francisco-q4/">SREday San Francisco 2026 Q4</a><small data-ts="2026-09-18T07:02:28+01:00" title="07:02 Europe/London">07:02</small></li>
           <li><a href="/2026-san-francisco-q4/Hubert_Chen_Fidian_Beyond_Unit_Tests_Bringing_Intelligent_Agent_Evals_into_CICD_Pipelines.html">Hubert Chen</a> added to <a href="/2026-san-francisco-q4/">SREday San Francisco 2026 Q4</a><small data-ts="2026-09-18T07:02:28+01:00" title="07:02 Europe/London">07:02</small></li>
@@ -617,7 +621,7 @@
       
       <div class="day">
         <div class="day-head"><span class="pill" style="--c: #9aa0a6">THURSDAY</span><small>17 Sep</small></div>
-        <div class="none">no speakers added</div>
+        <div class="none">no changes</div>
       </div>
       
       <div class="day">
@@ -634,7 +638,7 @@
       
       <div class="day">
         <div class="day-head"><span class="pill" style="--c: #9aa0a6">TUESDAY</span><small>15 Sep</small></div>
-        <div class="none">no speakers added</div>
+        <div class="none">no changes</div>
       </div>
       
       <div class="day">
@@ -654,6 +658,7 @@
         <div class="day-head"><span class="pill" style="--c: #9aa0a6">SUNDAY</span><small>13 Sep</small></div>
         
         <ul>
+          <li class="removed" title="Rapid Root-Cause Analysis or How to Keep Developers’ Sleep Schedules Intact · DevSecOps Consultant"><strong>Anton Bohatiuk</strong> removed from SREday Warsaw 2026 Q4<small data-ts="2026-09-13T22:30:23+01:00" title="22:30 Europe/London">22:30</small></li>
           <li><a href="/2026-warsaw-q4/Alex_Dainiak_Aram_Meem_Incremental_Refactoring_of_Legacy_Systems_Under_Load.html">Alex Dainiak</a> added to <a href="/2026-warsaw-q4/">SREday Warsaw 2026 Q4</a><small data-ts="2026-09-13T22:30:23+01:00" title="22:30 Europe/London">22:30</small></li>
           
         </ul>
@@ -711,6 +716,7 @@
         <ul>
           <li><a href="/2026-san-francisco-q4/Eddie_Tejeda_Hotdata_The_Agent_Data_Bus_Shared_State_for_MultiAgent_Systems.html">Eddie Tejeda</a> added to <a href="/2026-san-francisco-q4/">SREday San Francisco 2026 Q4</a><small data-ts="2026-09-08T00:59:07+01:00" title="00:59 Europe/London">00:59</small></li>
           <li><a href="/2026-san-francisco-q4/Vanshika_Gupta_ViralCircle_How_to_Turn_LinkedIn_Into_Your_1_B2B_GTM_Channel.html">Vanshika Gupta</a> added to <a href="/2026-san-francisco-q4/">SREday San Francisco 2026 Q4</a><small data-ts="2026-09-08T00:59:07+01:00" title="00:59 Europe/London">00:59</small></li>
+          <li class="removed" title="Keynote: 7 Deadly Traps of SRE · SRE Author"><strong>Miko Pawlikowski</strong> removed from SREday San Francisco 2026 Q4<small data-ts="2026-09-08T00:59:07+01:00" title="00:59 Europe/London">00:59</small></li>
           <li><a href="/2026-san-francisco-q4/Ishan_Shah_PayPal_AI_Gardening_for_SRE_Managing_Context__Memory__and_Entropy_in_LongRunning_Agents.html">Ishan Shah</a> added to <a href="/2026-san-francisco-q4/">SREday San Francisco 2026 Q4</a><small data-ts="2026-09-08T01:27:11+01:00" title="01:27 Europe/London">01:27</small></li>
           
         </ul>
@@ -734,12 +740,12 @@
       
       <div class="day older">
         <div class="day-head"><span class="pill" style="--c: #9aa0a6">SUNDAY</span><small>6 Sep</small></div>
-        <div class="none">no speakers added</div>
+        <div class="none">no changes</div>
       </div>
       
       <div class="day older">
         <div class="day-head"><span class="pill" style="--c: #9aa0a6">SATURDAY</span><small>5 Sep</small></div>
-        <div class="none">no speakers added</div>
+        <div class="none">no changes</div>
       </div>
       
       <div class="day older">
@@ -748,6 +754,7 @@
         <ul>
           <li><a href="/2026-campinas-q4/Thiago_Rodrigues_Silva_Bosch_Digital_From_Prompt_to_Production_Speeding_Up_AI_Agents_Deployment_on_G.html">Thiago Rodrigues Silva</a> added to <a href="/2026-campinas-q4/">SREday Campinas 2026 Q4</a><small data-ts="2026-09-04T00:53:58+01:00" title="00:53 Europe/London">00:53</small></li>
           <li><a href="/2026-campinas-q4/Felipe_Pereira_Mquina_de_Dados_Harness_Engineering_for_Real_Building_the_Environment_Where_AI_Can_Ac.html">Felipe Pereira</a> added to <a href="/2026-campinas-q4/">SREday Campinas 2026 Q4</a><small data-ts="2026-09-04T00:53:58+01:00" title="00:53 Europe/London">00:53</small></li>
+          <li class="removed" title="From Legacy to Cloud Native: Modernizing Telecom Platforms · Ericsson"><strong>Renault Setyo Utomo</strong> removed from SREday London 2026 Q3<small data-ts="2026-09-04T17:45:38+01:00" title="17:45 Europe/London">17:45</small></li>
           <li><a href="/2026-london-q3/Gena_Frangina_IT_Stress_Relief_Human_SRE_Applying_Reliability_Engineering_to_the_System_Behind_the_S.html">Gena Frangina</a> added to <a href="/2026-london-q3/">SREday London 2026 Q3</a><small data-ts="2026-09-04T21:24:32+01:00" title="21:24 Europe/London">21:24</small></li>
           
         </ul>
@@ -768,9 +775,11 @@
         <div class="day-head"><span class="pill" style="--c: #9aa0a6">WEDNESDAY</span><small>2 Sep</small></div>
         
         <ul>
+          <li class="removed" title="Beyond Alerts: Building an Observability Strategy That Drives SRE Ac=on · LTIMindtree"><strong>Toluwani Mary Adeseluka</strong> removed from SREday Warsaw 2026 Q4<small data-ts="2026-09-02T00:21:18+01:00" title="00:21 Europe/London">00:21</small></li>
           <li><a href="/2026-warsaw-q4/Mary_Adeseluka_LTIMindtree_Beyond_Alerts_Building_an_Observability_Strategy_That_Drives_SRE_Action.html">Mary Adeseluka</a> added to <a href="/2026-warsaw-q4/">SREday Warsaw 2026 Q4</a><small data-ts="2026-09-02T00:21:18+01:00" title="00:21 Europe/London">00:21</small></li>
           <li><a href="/2026-warsaw-q4/Felix_Masomera_Bentley_Systems_When_Reliability_Becomes_the_Problem_The_SRE_Traps_Nobody_Talks_About.html">Felix Masomera</a> added to <a href="/2026-warsaw-q4/">SREday Warsaw 2026 Q4</a><small data-ts="2026-09-02T00:59:25+01:00" title="00:59 Europe/London">00:59</small></li>
           <li><a href="/2026-dallas-q4/Jason_Kallner_JPMorganChase_Why_Enterprise_SLO_Programs_Fail.html">Jason Kallner</a> added to <a href="/2026-dallas-q4/">SREday Dallas 2026 Q4</a><small data-ts="2026-09-02T01:36:59+01:00" title="01:36 Europe/London">01:36</small></li>
+          <li class="removed" title="Scheduling Non-Human Developers: The Operations Model for Coding Agents · Incredibuild"><strong>Yossi Eliaz</strong> removed from SREday Dallas 2026 Q4<small data-ts="2026-09-02T11:41:09+01:00" title="11:41 Europe/London">11:41</small></li>
           
         </ul>
         
@@ -793,12 +802,12 @@
       
       <div class="day older">
         <div class="day-head"><span class="pill" style="--c: #9aa0a6">MONDAY</span><small>31 Aug</small></div>
-        <div class="none">no speakers added</div>
+        <div class="none">no changes</div>
       </div>
       
       <div class="day older">
         <div class="day-head"><span class="pill" style="--c: #9aa0a6">SUNDAY</span><small>30 Aug</small></div>
-        <div class="none">no speakers added</div>
+        <div class="none">no changes</div>
       </div>
       
       <div class="day older">
@@ -827,7 +836,7 @@
       
       <div class="day older">
         <div class="day-head"><span class="pill" style="--c: #9aa0a6">THURSDAY</span><small>27 Aug</small></div>
-        <div class="none">no speakers added</div>
+        <div class="none">no changes</div>
       </div>
       
       <div class="day older">
@@ -838,7 +847,6 @@
           <li><a href="/2026-london-q3/Harness_Keynote_Harness_Harness_Keynote.html">Harness Keynote</a> added to <a href="/2026-london-q3/">SREday London 2026 Q3</a><small data-ts="2026-08-26T21:01:49+01:00" title="21:01 Europe/London">21:01</small></li>
           <li><a href="/2026-london-q3/Teleport_Keynote_Teleport_Teleport_Keynote.html">Teleport Keynote</a> added to <a href="/2026-london-q3/">SREday London 2026 Q3</a><small data-ts="2026-08-26T21:01:49+01:00" title="21:01 Europe/London">21:01</small></li>
           <li><a href="/2026-san-francisco-q4/Artemis_Leonardou_NOFire_AI_The_Junior_Engineer_Is_Gone_and_Your_OnCall_Has_Not_Noticed.html">Artemis Leonardou</a> added to <a href="/2026-san-francisco-q4/">SREday San Francisco 2026 Q4</a><small data-ts="2026-08-26T21:24:02+01:00" title="21:24 Europe/London">21:24</small></li>
-          <li><a href="/2026-warsaw-q4/Toluwani_Mary_Adeseluka_LTIMindtree_Beyond_Alerts_Building_an_Observability_Strategy_That_Drives_SRE.html">Toluwani Mary Adeseluka</a> added to <a href="/2026-warsaw-q4/">SREday Warsaw 2026 Q4</a><small data-ts="2026-08-26T23:07:08+01:00" title="23:07 Europe/London">23:07</small></li>
           
         </ul>
         
@@ -846,7 +854,7 @@
       
       <div class="day older">
         <div class="day-head"><span class="pill" style="--c: #9aa0a6">TUESDAY</span><small>25 Aug</small></div>
-        <div class="none">no speakers added</div>
+        <div class="none">no changes</div>
       </div>
       
       <div class="day older">
@@ -854,6 +862,7 @@
         
         <ul>
           <li><a href="/2026-london-q3/Richard_Simon_TSystems_SRE_State_Of_Play.html">Richard Simon</a> added to <a href="/2026-london-q3/">SREday London 2026 Q3</a><small data-ts="2026-08-24T18:47:46+01:00" title="18:47 Europe/London">18:47</small></li>
+          <li class="removed" title="The Runtime Boundary for AI Agents: Safer Autonomy with Sandboxes · Cloudflare"><strong>Khushboo Verma</strong> removed from SREday London 2026 Q3<small data-ts="2026-08-24T18:47:46+01:00" title="18:47 Europe/London">18:47</small></li>
           
         </ul>
         
@@ -861,17 +870,12 @@
       
       <div class="day older">
         <div class="day-head"><span class="pill" style="--c: #9aa0a6">SUNDAY</span><small>23 Aug</small></div>
-        <div class="none">no speakers added</div>
+        <div class="none">no changes</div>
       </div>
       
       <div class="day older">
         <div class="day-head"><span class="pill" style="--c: #9aa0a6">SATURDAY</span><small>22 Aug</small></div>
-        
-        <ul>
-          <li><a href="/2026-warsaw-q4/Anton_Bohatiuk_SwingDeva_hippo_company_Rapid_RootCause_Analysis_or_How_to_Keep_Developers_Sleep_Sche.html">Anton Bohatiuk</a> added to <a href="/2026-warsaw-q4/">SREday Warsaw 2026 Q4</a><small data-ts="2026-08-22T01:31:10+01:00" title="01:31 Europe/London">01:31</small></li>
-          
-        </ul>
-        
+        <div class="none">no changes</div>
       </div>
       
       <div class="day older">
@@ -881,6 +885,7 @@
           <li><a href="/2026-san-francisco-q4/Aron_Eidelman_Google_Dont_Let_Your_AIs_Patch_Break_Prod_SRE_Patterns_for_Autonomous_Remediation.html">Aron Eidelman</a> added to <a href="/2026-san-francisco-q4/">SREday San Francisco 2026 Q4</a><small data-ts="2026-08-21T18:18:38+01:00" title="18:18 Europe/London">18:18</small></li>
           <li><a href="/2026-san-francisco-q4/Joel_Lipton_FoxCommand_Reliable_AI_Needs_More_Than_Observability.html">Joel Lipton</a> added to <a href="/2026-san-francisco-q4/">SREday San Francisco 2026 Q4</a><small data-ts="2026-08-21T18:18:38+01:00" title="18:18 Europe/London">18:18</small></li>
           <li><a href="/2026-amsterdam-q4/Ralph_Meijer_Netdata_Your_Dashboards_Are_Lying_to_You_And_How_to_Make_Them_Tell_the_Truth.html">Ralph Meijer</a> added to <a href="/2026-amsterdam-q4/">SREday Amsterdam 2026 Q4</a><small data-ts="2026-08-21T18:51:42+01:00" title="18:51 Europe/London">18:51</small></li>
+          <li class="removed" title="Your Dashboards Are Lying to You (And How to Make Them Tell the Truth) · Netdata"><strong>Shyam Sreevalsan</strong> removed from SREday Amsterdam 2026 Q4<small data-ts="2026-08-21T18:51:42+01:00" title="18:51 Europe/London">18:51</small></li>
           <li><a href="/2026-warsaw-q4/Kirill_Solovei_Replika_Centralized_crossaccount_EKS_observability.html">​Kirill Solovei</a> added to <a href="/2026-warsaw-q4/">SREday Warsaw 2026 Q4</a><small data-ts="2026-08-21T21:32:35+01:00" title="21:32 Europe/London">21:32</small></li>
           <li><a href="/2026-warsaw-q4/Michal_Gawron_Novo_Nordisk_Beyond_the_Golden_Image_Continuous_Compliance_for_a_Hybrid_Server_Fleet.html">Michal Gawron</a> added to <a href="/2026-warsaw-q4/">SREday Warsaw 2026 Q4</a><small data-ts="2026-08-21T21:32:35+01:00" title="21:32 Europe/London">21:32</small></li>
           
@@ -1253,7 +1258,7 @@
   </section>
   
 
-  <div class="foot">Generated 2026-09-18 15:03 UTC at build time. Organizer tool, not linked from the site.</div>
+  <div class="foot">Generated 2026-09-18 15:14 UTC at build time. Organizer tool, not linked from the site.</div>
 </main>
 <script>
 (function () {                                     // Registrations / Speakers / Sponsors / Data checks as tabs (Marek 2026-09-17)
