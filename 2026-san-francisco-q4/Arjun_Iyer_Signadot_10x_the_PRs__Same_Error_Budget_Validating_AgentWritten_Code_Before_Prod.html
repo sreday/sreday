@@ -264,22 +264,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">Running Untrusted Agents in Production</h1>
+    <h1 class="section-heading text-center mb-3">10x the PRs, Same Error Budget: Validating Agent-Written Code Before Prod</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Larsen Cundric.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Arjun Iyer.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Larsen Cundric</h5>
+            <h5 class="card-title mb-2">Arjun Iyer</h5>
             <div class="card-text mb-3">
-              <div class="meta">SpaceXAI</div>
+              <div class="meta">Signadot</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/larsencundric/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/arjun-iyer-916332/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -293,16 +293,18 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Giving an AI agent the ability to execute code changes the infrastructure it needs. When I was working at Browser Use, that meant rethinking where agents ran, which credentials they could access, and how their work survived a process dying.
-I'll walk through the architecture we built: isolated agent runtimes, scoped access through a control plane, and state stored outside the worker. Then I'll cover what still went wrong, including a failed state restore that was mistaken for a fresh session and allowed blank state to replace valid conversation history. We'll look at the recovery changes that followed and the operational tradeoffs we encountered moving between runtimes.
-The talk draws on publicly documented Browser Use work. Attendees will leave with practical lessons for isolating untrusted workloads, distinguishing missing state from unavailable storage, and deciding which parts of an agent platform they need to operate themselves.</p></p>
+                <p><p>Coding agents changed the math on software delivery. Teams that shipped ten PRs a day now see a hundred, and most of that code was never run by a human before it hit CI. The error budget didn't grow with it.</p>
+<p>Change is still the leading cause of incidents. When change volume goes up an order of magnitude and validation stays flat, one of two things happens. The pipeline backs up, or teams cut corners to clear it. Either way, the risk lands in production and on the people who run it.</p>
+<p>The usual fixes (more CI runners, more mocks, test in prod) don't hold at this scale. In a microservices system, the failures that reach production are rarely unit-level. Integration failures across services, queues, and data stores are the ones that slip into production, and the only way to catch them before merge is to run the change in an environment against real dependencies.</p>
+<p>Teams build them two ways today: shared or fully duplicated stacks. I'll show why neither can absorb 10x the change, then walk through a third approach that gives every PR its own isolated environment without duplicating the stack.</p>
+<p>You'll leave with a framework for what to verify before merge, what to leave to production, and how to keep the error budget intact when agents write most of the code.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Larsen Cundric works on Grok at SpaceXAI. Previously, he was a founding engineer at Browser Use, where he worked on browser agent infrastructure, sandboxing, and control planes. He writes about the architecture and operational tradeoffs behind running agents in production.</p></p>
+                <p><p>Arjun Iyer is the CEO and Co-founder of Signadot. Signadot helps engineering teams verify code before it merges, at the volume coding agents now produce it. Before Signadot, he spent nearly six years at AppDynamics, where he launched the BusinessIQ business unit and led the company's data science organization. He holds an MS in Computer Science from the University of Illinois Urbana-Champaign.</p></p>
               </div>
 
               
