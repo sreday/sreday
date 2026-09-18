@@ -183,6 +183,12 @@ for _page, _folder in (("host.html", "host"), ("ambassadorship.html", "ambassado
         print("Writing out", f.name)
         f.write(_html)
 
+# Root 404.html (GitHub Pages serves it for any missing path): the lost-mascot page, home/assets/images/404.png
+print(DIVIDER)
+with open(BASE_FOLDER + "/404.html", "w", encoding="utf-8") as f:
+    print("Writing out 404.html")
+    f.write(env.get_template("404.html").render(**{**context, "brand_color": "#713660", "redirects": []}))
+
 # STATUS PAGE (hidden, /status/): lineup + sponsor progress of every upcoming event.
 # Talks: rows of ../<event>/_db/talks.csv whose status contains "confirmed" or "keynote", against 12 slots
 # per track (tracks from the event metadata). Sponsors: the event's sponsors list minus the partner
