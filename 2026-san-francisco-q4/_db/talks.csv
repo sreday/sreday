@@ -8,6 +8,25 @@ The usual fixes (more CI runners, more mocks, test in prod) don't hold at this s
 Teams build them two ways today: shared or fully duplicated stacks. I'll show why neither can absorb 10x the change, then walk through a third approach that gives every PR its own isolated environment without duplicating the stack.
 
 You'll leave with a framework for what to verify before merge, what to leave to production, and how to keep the error budget intact when agents write most of the code.",,"Arjun Iyer is the CEO and Co-founder of Signadot. Signadot helps engineering teams verify code before it merges, at the volume coding agents now produce it. Before Signadot, he spent nearly six years at AppDynamics, where he launched the BusinessIQ business unit and led the company's data science organization. He holds an MS in Computer Science from the University of Illinois Urbana-Champaign."
+,confirmed,Smita Pasumarthi & Chandan Chilumula,1,1,TruffleRoot,Smita Pasumarthi & Chandan Chilumula.png,https://www.linkedin.com/in/smita-pasumarthi/,https://www.linkedin.com/in/chandanchilumula/,,,From Observability to Causality: Teaching Machines How Your System Fails,"Modern observability is very good at telling us what is unhealthy. It is much worse at telling us why.
+
+
+
+A database can be on fire because it caused an incident—or because something several hops away made it the place where the damage accumulated. An LLM can read all of the telemetry and still make the same mistake. The problem is not always a lack of data or intelligence. Sometimes what is missing is an understanding of how this particular system behaves when things go wrong.
+
+
+
+While building TruffleRoot, we’ve been exploring a different approach: give machines an explicit, evolving model of an environment—how it is connected, what changes over time, how failures can propagate, and what evidence supports or contradicts an explanation.
+
+
+
+This talk is about that shift from observability to causality: why generic assumptions about failure break down in real systems, what it means for a system to learn how your system fails, and where deterministic reasoning and LLMs each fit into that picture.
+
+
+
+The goal isn’t an AI that tells a better story about an outage. It’s a system that learns how your system fails and can show its work.",,"**[Smita Pasumarthi](https://www.linkedin.com/in/smita-pasumarthi/)** builds enterprise AI applications at truffleroot.ai, drawing on extensive experience in enterprise integration and automation. Her expertise spans generative AI, LLMs, AI infrastructure, MuleSoft, Boomi, Workato, and Python.
+
+**[Chandan Chilumula](https://www.linkedin.com/in/chandanchilumula/)** is a technology professional based in the San Francisco Bay Area, with experience in software solutions and enterprise technology."
 ,confirmed,Aron Eidelman,1,1,Google,Aron Eidelman.png,https://www.linkedin.com/in/aroneidelman/,,,,Don't Let Your AI's Patch Break Prod: SRE Patterns for Autonomous Remediation,"Software and security teams have never had to patch so much code so quickly. AI agents can generate vulnerability fixes in seconds, but pushing unverified, machine-authored code to production has led to trading a CVE for a production outage.
 To solve this problem, SRE principles are now gaining new traction in application security and development teams that realize mitigating one risk shouldn't create another. To benefit at all from agents in SSDLC, we need operational cultures that recognize reliability as a combined social and technical measure, rather than just another tooling challenge.
 In this talk, we’ll walk through the practical mechanics of safely remediating vulnerabilities with agents. We’ll cover how TDD provides the baseline contract to keep patches from breaking existing features, why symptom-based test coverage catches regressions traditional tests miss, and how sandboxed runtimes isolate untrusted agent execution. Finally, we’ll look at closing the loop with automated canary analysis and SLO-driven rollbacks so fixes can deploy without risking production.
