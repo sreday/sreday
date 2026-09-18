@@ -256,7 +256,7 @@
         <p class="ac-blurb"><strong>SREday</strong> is a worldwide series of community events for engineers who build, ship and run modern software systems. Across cities around the world, we bring together people working in reliability, cloud, DevOps, observability and production engineering to share real-world experience, connect with their local community and explore how these disciplines are evolving in the age of AI.</p>
         
         <h5 class="ac-topics-heading">Companies presenting:</h5>
-        <p class="ac-companies">AWS, Bellevue College, Check Point Software, HedgeServ, JPMorganChase, Kyndryl, Microsoft, Traceway</p>
+        <p class="ac-companies">AWS, Bellevue College, Celestica, Check Point Software, HedgeServ, JPMorganChase, Kyndryl, Microsoft, Traceway</p>
         
         
         <h5 class="ac-topics-heading">Topics so far:</h5>
@@ -293,6 +293,14 @@
           <ul class="ac-topic-talks">
             <li><a href="Krishna_Reddy_HedgeServ_Secure_Context_Cache_for_Reliable_AI_Agents.html#speakers-section">Secure Context Cache for Reliable AI Agents</a></li>
             <li><a href="Aaron_Hunter_AWS_The_tokenomics_of_Model_Context_Protocol_at_scale.html#speakers-section">The tokenomics of Model Context Protocol at scale</a></li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">...and more</div>
+          <ul class="ac-topic-talks">
+            <li><a href="Austin_Sutterfield_Celestica_Who_Owns_the_Gaps.html#speakers-section">Who Owns the Gaps?</a></li>
             
           </ul>
         </div>
@@ -700,6 +708,32 @@
             <ul class="social-list list-inline mb-0">
               
               <li class="list-inline-item"><a  href="https://www.linkedin.com/in/aaronshunter/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Austin Sutterfield.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Austin Sutterfield</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Celestica</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Austin_Sutterfield_Celestica_Who_Owns_the_Gaps#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="linkedin.com/in/austinsutterfield"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -1516,13 +1550,13 @@ This talk explores how to build a production-ready orchestration environment for
               <div class="talk-title-bar">A Thousand Alerts a Day, and One Real Incident Hiding In Them</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>A monitoring stack that fires a thousand alerts a day does not have a monitoring problem. It has a reading problem. Nearly all of it is benign and repeats the same twenty shapes - and somewhere in there is a real incident that looks exactly like the rest until someone digs.</p>
-<p>The obvious fix is to point an agent at the queue and let it triage. We tried that. It is confidently wrong, and the confidence is the dangerous part: it returns a fluent, well-argued verdict on every alert at the same level of certainty, whether it pulled real evidence or just pattern-matched the title. At a thousand a day, even a small confidently-wrong rate is dozens of silent misfilings - and the ones it buries are the unfamiliar ones, which is exactly where the real incidents live.</p>
-<p>I am a Principal Engineer in Microsoft Fabric, where I am the tech lead and architect for capacity management. What finally worked was refusing to let one agent do both jobs.</p>
-<p>Triage got cut back until routing is all it can do. It groups by signature and hands off. It is not allowed to conclude, to close, or to declare anything benign - that is the judgement it is worst at and the one with the worst downside.</p>
-<p>Investigation was then split across dedicated agents, one per failure domain. Each knows only its own telemetry, its own known-benign patterns, and its own escalation bar. That narrow hypothesis space is what makes "I could not find evidence for this" an answer the agent will actually give, instead of a plausible story. It also means each one can be tested on its own against past incidents, which a single generalist triager never can be.</p>
-<p>The metric that matters is recall on the rare real incident, not how much of the queue got closed.</p>
-<p>I will go through the routing design, how the investigation agents are kept honest, what is escalated to a human on purpose, and the real problems we only caught because a specialist refused to answer.</p></p>
+                <p><p>A monitoring stack that fires a thousand alerts a day does not have a monitoring problem. It has a reading problem. Nearly all of it is benign and repeats the same twenty shapes - and somewhere in there is a real incident that looks exactly like the rest until someone digs.
+The obvious fix is to point an agent at the queue and let it triage. We tried that. It is confidently wrong, and the confidence is the dangerous part: it returns a fluent, well-argued verdict on every alert at the same level of certainty, whether it pulled real evidence or just pattern-matched the title. At a thousand a day, even a small confidently-wrong rate is dozens of silent misfilings - and the ones it buries are the unfamiliar ones, which is exactly where the real incidents live.
+I am a Principal Engineer in Microsoft Fabric, where I am the tech lead and architect for capacity management. What finally worked was refusing to let one agent do both jobs.
+Triage got cut back until routing is all it can do. It groups by signature and hands off. It is not allowed to conclude, to close, or to declare anything benign - that is the judgement it is worst at and the one with the worst downside.
+Investigation was then split across dedicated agents, one per failure domain. Each knows only its own telemetry, its own known-benign patterns, and its own escalation bar. That narrow hypothesis space is what makes "I could not find evidence for this" an answer the agent will actually give, instead of a plausible story. It also means each one can be tested on its own against past incidents, which a single generalist triager never can be.
+The metric that matters is recall on the rare real incident, not how much of the queue got closed.
+I will go through the routing design, how the investigation agents are kept honest, what is escalated to a human on purpose, and the real problems we only caught because a specialist refused to answer.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
@@ -1670,6 +1704,49 @@ If you see yourself, your team, or your organization in any of this — good. Yo
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Aaron Hunter is a Principal Developer Advocate at AWS based in Frisco, TX. With over 15 years of experience spanning system administration, networking, and training, he brings more than a decade of cloud expertise to help Engineers, Developers, Builders, and tech enthusiasts master AWS technologies. His philosophy is simple: always be learning something new, and have fun while doing it! Aaron shares his knowledge through workshops, online courses, mentoring, and live streaming – making complex cloud concepts accessible and enjoyable. When he's not building in the cloud, you'll find him exploring craft beer scenes in new cities or teaming up with friends in Marvel Rivals on his PlayStation, because even superheroes need good teammates!</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 8 -->
+<div class="modal modal-speaker modal-speaker-8" id="modal-speaker-8" tabindex="-1" role="dialog" aria-labelledby="speaker-8-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Austin Sutterfield.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Austin Sutterfield</h2>
+                          <div class="meta mb-2">Celestica</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="linkedin.com/in/austinsutterfield"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Who Owns the Gaps?</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Every team has finished its part—but is the whole system ready? This talk explores closing the gaps between design, delivery, and operations so what gets built is ready for the people who run it. Drawing on real-world infrastructure and commissioning examples, I’ll discuss agreeing on what “ready” means, verifying dependencies between teams and systems, and clarifying who makes the call when issues remain. Attendees will leave with three practical questions to bring into their next project or readiness review.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Austin Sutterfield is a Staff Engineer in Infrastructure Engineering at Celestica, with a background in refrigeration, controls, and commissioning. His work spans mission-critical infrastructure, liquid cooling, engineering standards, and project delivery, with a focus on connecting engineering decisions with operational needs.</p></p>
               </div>
 
           </div><!--//modal-body-->
