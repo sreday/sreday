@@ -256,7 +256,7 @@
         <p class="ac-blurb"><strong>SREday</strong> is a worldwide series of community events for engineers who build, ship and run modern software systems. Across cities around the world, we bring together people working in reliability, cloud, DevOps, observability and production engineering to share real-world experience, connect with their local community and explore how these disciplines are evolving in the age of AI.</p>
         
         <h5 class="ac-topics-heading">Companies presenting:</h5>
-        <p class="ac-companies">AWS, Incredibuild, Mirror Panel Inc., Qovery</p>
+        <p class="ac-companies">AWS, Imubit, Incredibuild, Mirror Panel Inc., Qovery</p>
         
         
         <h5 class="ac-topics-heading">Topics so far:</h5>
@@ -273,6 +273,14 @@
           <div class="ac-topic-name">Observability & Monitoring</div>
           <ul class="ac-topic-talks">
             <li><a href="Elliot_Gardiner_Mirror_Panel_Inc_Production_Has_Observability_Your_Coding_Agent_Doesnt.html#speakers-section">Production Has Observability. Your Coding Agent Doesn’t</a></li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Cloud Infrastructure</div>
+          <ul class="ac-topic-talks">
+            <li><a href="Denys_Zhak_Imubit_What_AWS_Lambda_Was_Hiding_Runtime_Assumptions_Exposed_by_a_Migration.html#speakers-section">What AWS Lambda Was Hiding: Runtime Assumptions Exposed by a Migration</a></li>
             
           </ul>
         </div>
@@ -691,6 +699,32 @@
             <ul class="social-list list-inline mb-0">
               
               <li class="list-inline-item"><a  href="https://www.linkedin.com/in/aaronshunter/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Denys Zhak.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Denys Zhak</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Imubit</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Denys_Zhak_Imubit_What_AWS_Lambda_Was_Hiding_Runtime_Assumptions_Exposed_by_a_Migration#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/denyszhak/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -1370,6 +1404,49 @@ AI SRE: What's real, and what's just hype</p></p>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Aaron Hunter is a Principal Developer Advocate at AWS based in Frisco, TX. With over 15 years of experience spanning system administration, networking, and training, he brings more than a decade of cloud expertise to help Engineers, Developers, Builders, and tech enthusiasts master AWS technologies. His philosophy is simple: always be learning something new, and have fun while doing it! Aaron shares his knowledge through workshops, online courses, mentoring, and live streaming – making complex cloud concepts accessible and enjoyable. When he's not building in the cloud, you'll find him exploring craft beer scenes in new cities or teaming up with friends in Marvel Rivals on his PlayStation, because even superheroes need good teammates!</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 4 -->
+<div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Denys Zhak.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Denys Zhak</h2>
+                          <div class="meta mb-2">Imubit</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/denyszhak/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">What AWS Lambda Was Hiding: Runtime Assumptions Exposed by a Migration</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Earlier this year, I wrapped up a six-month migration of seven Python data-ingestion Lambdas into services. Most of the code moved unchanged into an environment where concurrent deliveries shared a filesystem, memory space, and process. I’ll use five cases to show what changed in practice. Duplicate deliveries collided in <code>/tmp</code>. Six SQLAlchemy engines created per request eventually filled a 4 GiB process. Lambda’s async invocation retries disappeared when the same work moved behind RabbitMQ. A blocking database call caused liveness probes to fail. A DLQ replay kept taking its pod down. In each case, application code depended on behavior supplied by the runtime. Filesystem isolation, process lifetime, delivery semantics, network topology, and resource boundaries formed the runtime contract around our code. The services had a runtime contract of their own. We had to identify which guarantees carried over and which responsibilities now belonged in the application. I’ll finish with a checklist engineers can use to find those dependencies before moving a workload between managed runtimes.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Denys Zhak is a software engineer with nine years of experience in backend engineering and distributed systems, focused on production reliability. At Imubit, he builds cloud and on-prem software for industrial machine-learning deployments. He led the six-month migration of seven Python ingestion Lambdas into services described in this talk. Outside work, he contributes to open source. Much of that work has been on Astral’s Ruff and ty. He writes about production engineering at denyszhak.com.</p></p>
               </div>
 
           </div><!--//modal-body-->
