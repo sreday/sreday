@@ -251,22 +251,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">AI Gardening for SRE: Managing Context, Memory, and Entropy in Long-Running Agents</h1>
+    <h1 class="section-heading text-center mb-3">Topology, Not Telemetry: Tracing Cascading Cloud Failures From the 500 to the Commit</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Ishan Shah.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Louis Fradin.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Ishan Shah</h5>
+            <h5 class="card-title mb-2">Louis Fradin</h5>
             <div class="card-text mb-3">
-              <div class="meta">PayPal</div>
+              <div class="meta">Anyshift.io</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/ishandshah/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/louis-fradin/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -280,14 +280,14 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Traditional systems fail through code paths, dependencies, resource limits, and bad assumptions. AI-assisted systems add another failure surface: context. Long-running agents accumulate instructions, retrieved documents, tool outputs, incident notes, partial plans, stale assumptions, and memory from prior work. None of that looks like CPU saturation or a 500 rate spike, but it can still change production behavior. An agent can remain available, pass health checks, and slowly become less reliable because the context around it has drifted. This talk introduces AI Gardening as an operational discipline for teams building or adopting agentic engineering systems. We will look at practical SRE questions for agent reliability: what context is allowed into a workflow, what should expire, what must be preserved for audit, when should memory be scoped or reset, how do we detect contradictory instructions, and how do we keep an agent's working state reviewable during incidents, deployments, and maintenance tasks? The goal is not to make probabilistic systems pretend to be deterministic. It is to make the operational environment around them maintainable: bounded context windows, explicit memory ownership, reset boundaries, retrieval evaluation, artifact handoffs, and post-run evidence that lets humans understand why an agent behaved the way it did. Attendees will leave with a reliability checklist for agentic workflows: treat context as production input, separate durable knowledge from temporary working state, make memory auditable, design reset paths before drift becomes an incident, and give on-call engineers tools to inspect the agent's state instead of trusting a transcript.</p></p>
+                <p><p>On 18 November 2025, a permissions change in one internal database took down Cloudflare's Workers KV, Access, Turnstile, and Dashboard for over three hours, and a large slice of the web that sits behind Cloudflare went dark with it. Monitoring caught the spike in seconds. Finding the lead still took hours, because the real chain ran from that permissions change, through a feature file that quietly doubled in size, into the Bot Management engine, and out to every product downstream. That chain wasn't in the telemetry. It was in the topology. Most London platform teams know the smaller version of this every week: ten teams ship into one shared platform inside the same hour, the board lights up, and not one dashboard tells you which deploy lit it. The dependency graph is the data source that does. We'll walk the Cloudflare outage with a reconstructed topology in hand, next to the official postmortem. That means building the graph from what you already run, AWS, Kubernetes, Terraform, GitHub, and your monitoring, then versioning it through time, so "what changed between 14:23 and 14:47?" becomes a query instead of a guess. Once it's there, an AI agent can walk a graph it didn't invent, getting from alert to the breaking commit in seconds with the affected customers already attached. In one customer's production graph, that walk took about thirty seconds, against the twenty minutes to two hours a human familiar with the code needs to do it by hand.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Ishan Shah is a Staff Software Engineer based in San Jose, California, with 10+ years of experience designing and delivering distributed systems, cloud-native services, event-driven platforms, real-time data pipelines, billing systems, supply chain platforms, and security analytics infrastructure. His work spans PayPal, Nordstrom, and Securonix, with recurring focus on Java, Kafka, AWS, Kubernetes, observability, CI/CD, and resilient multi-tenant architecture. His public technical work includes writing and speaking on replayable event-driven systems, AI SRE, agent security, and operationally reviewable AI-assisted engineering workflows.</p></p>
+                <p><p>Louis Fradin is a Developer Advocate &amp; Backend Engineer at Anyshift, where he's helping build the AI context layer for production systems, giving teams the infrastructure graph they need so AI agents can actually understand what's running in prod. His path to SRE started deep in the stack: four years writing Linux drivers and managing HPC infrastructure for the French Ministry of Armed Forces, followed by three and a half years at Ubisoft building and operating Kubernetes clusters at scale for game servers with Go, Temporal, Talos, and OpenTelemetry. He speaks regularly about this work: Context Engineering for DevOps: How Agents Learn Your Infrastructure at DevOpsCon Amsterdam 2026, 25,000 servers at Ubisoft (with Vincent Behar) at TalosCon 2024 in London, Talos chez Ubisoft pour nos serveurs de jeux at Cloud Native Paris 2024, and Continuous Container Checkup at CloudNord 2023. For this talk in particular: I've spent the last year building and operating Annie, Anyshift's AI-SRE agent, and the temporal graph engine that feeds it. The Cloudflare case study is one I've walked through with our own customers on their own graphs, including the MotherDuck team, whose Head of Infra, Hilary Brennan-Marquez, put the speed-up this way: "a process that would have taken a human familiar with the code 20 minutes to 2 hours, Annie did in 30 seconds.</p></p>
               </div>
 
               

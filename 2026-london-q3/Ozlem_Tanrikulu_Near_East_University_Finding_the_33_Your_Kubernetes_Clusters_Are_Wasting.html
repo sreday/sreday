@@ -251,22 +251,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">The Junior Engineer Is Gone and Your On-Call Has Not Noticed</h1>
+    <h1 class="section-heading text-center mb-3">Finding the 33% Your Kubernetes Clusters Are Wasting</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Artemis Leonardou.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Ozlem Tanrikulu.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Artemis Leonardou</h5>
+            <h5 class="card-title mb-2">Ozlem Tanrikulu</h5>
             <div class="card-text mb-3">
-              <div class="meta">NOFire AI</div>
+              <div class="meta">Near East University</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/artemisln/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/ozlemtanrikulu/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -280,14 +280,14 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>The career ladder most teams still hire into does not really describe the people joining them now, and on-call is where that gap shows up first. I started shipping production code at fourteen. I never got the version of this job where someone walks you through syntax and then slowly widens your scope, because by the time I started, that was not how anyone around me was learning. We went from tutorials straight to orchestrating systems with agents. That produces engineers who move unusually fast and who have real gaps in unusual places, and most runbooks and escalation paths assume neither of those things. In fifteen minutes I want to be specific about what that looks like from the inside. Where we are genuinely faster, where we are genuinely worse, and the two things I would change about code review and on-call rotation if you are hiring people like me. You would probably rather hear it from someone currently living it than from a report about us.</p></p>
+                <p><p>I kept asking this question on our EKS clusters. kubectl top gives percentages, not dollars. AWS Cost Explorer sees instances, not pods. Every tool that connects the two wanted me to deploy Helm charts, agents, and dashboards. I just wanted a number. So I built Burn, an open-source CLI that reads your kubeconfig, fetches real-time pricing from AWS and Azure APIs, and gives you per-namespace cost breakdown in 30 seconds. No agent, no dashboard, no cluster changes. Running it on production, I found 33% idle capacity ($117/month on a 5-node cluster), a pod requesting 500m CPU but using 0.12m, and debug pods nobody remembered deploying. I deleted the waste that same day. In this talk I'll cover: - How Burn splits node cost into CPU and RAM using ratio-based pricing - Why P95 metrics matter more than averages for rightsizing - How we detect Ingress-based load balancers that other tools miss - Honest trade-offs of an agentless approach vs full platforms like Kubecost Attendees will leave knowing how to identify idle resources, understand Kubernetes cost allocation math, and evaluate the right level of cost tooling for their clusters.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Artemis Leonardou is a software engineer and DevRel at NOFire AI. She has been building since she was 14 and now ships AI-generated code to production as a matter of routine, which is where most of what she talks about comes from. She was selected among the top 2000 global CS talents for Y Combinator's AI Startup School, has won first place in three hackathons, and her technical content has crossed 2 million views as Artemis Codes. She has spoken at React Summit and TechBiz, speaks at DevConf.US in September 2026, and leads a hands-on workshop at Open Conf in November. She is 19 and still a full-time student.</p></p>
+                <p><p>Cloud/DevOps Engineer who enjoys solving complex problems and building efficient, scalable systems. My expertise includes Kubernetes, AWS, and CI/CD pipelines, with a strong focus on automating processes to simplify developers' workflows. Additionally, I maintain a supercomputer (HPC) at NEU IBM Center, ensuring it runs at peak performance for high-demand tasks. Creator of Burn, an open-source Kubernetes FinOps CLI.</p></p>
               </div>
 
               
