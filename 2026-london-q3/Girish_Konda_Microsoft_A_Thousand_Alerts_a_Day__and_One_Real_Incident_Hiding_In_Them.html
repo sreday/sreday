@@ -251,22 +251,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">From Waterfall to Cloudburst</h1>
+    <h1 class="section-heading text-center mb-3">A Thousand Alerts a Day, and One Real Incident Hiding In Them</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Alttaf Hussain.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Girish Konda.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Alttaf Hussain</h5>
+            <h5 class="card-title mb-2">Girish Konda</h5>
             <div class="card-text mb-3">
-              <div class="meta">Yoti</div>
+              <div class="meta">Microsoft</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/alttaf/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/venkatasaigirishkonda/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -280,16 +280,20 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>The SDLC has compressed. Waterfall gave us months between intention and production, Agile gave us weeks. AI-assisted development gives us the cloudburst: intention becomes shipped code almost immediately. Most organisations are absorbing this flood with drainage systems designed for drizzle.
-This talk introduces a practical framework for AI adoption built on one governing rule: no compression capability unlocks until its matching reservoir exists. Compression (spec-driven development, agentic loops, AI-generated code at volume) creates velocity. Reservoirs (review architecture, policy-as-code, feature flags, chaos engineering) create the capacity to absorb it safely. Teams that build compression without reservoirs don't move faster; they flood.
-Drawing on experience shipping regulated digital identity products at Yoti, including production AI evaluation systems combining deterministic checks, LLM-as-judge, and human-in-the-loop validation, I'll close with the emerging accountability gap when AI agents act on behalf of humans, and why SREs will feel it first.</p></p>
+                <p><p>A monitoring stack that fires a thousand alerts a day does not have a monitoring problem. It has a reading problem. Nearly all of it is benign and repeats the same twenty shapes - and somewhere in there is a real incident that looks exactly like the rest until someone digs.
+The obvious fix is to point an agent at the queue and let it triage. We tried that. It is confidently wrong, and the confidence is the dangerous part: it returns a fluent, well-argued verdict on every alert at the same level of certainty, whether it pulled real evidence or just pattern-matched the title. At a thousand a day, even a small confidently-wrong rate is dozens of silent misfilings - and the ones it buries are the unfamiliar ones, which is exactly where the real incidents live.
+I am a Principal Engineer in Microsoft Fabric, where I am the tech lead and architect for capacity management. What finally worked was refusing to let one agent do both jobs.
+Triage got cut back until routing is all it can do. It groups by signature and hands off. It is not allowed to conclude, to close, or to declare anything benign - that is the judgement it is worst at and the one with the worst downside.
+Investigation was then split across dedicated agents, one per failure domain. Each knows only its own telemetry, its own known-benign patterns, and its own escalation bar. That narrow hypothesis space is what makes "I could not find evidence for this" an answer the agent will actually give, instead of a plausible story. It also means each one can be tested on its own against past incidents, which a single generalist triager never can be.
+The metric that matters is recall on the rare real incident, not how much of the queue got closed.
+I will go through the routing design, how the investigation agents are kept honest, what is escalated to a human on purpose, and the real problems we only caught because a specialist refused to answer.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Alttaf is Director of Engineering &amp; AI Innovation at Yoti, where he has spent nearly a decade shipping regulated digital identity products including eSignatures, verifiable credentials, and verified calls. He holds a patent in the eSignature space and has built production AI evaluation systems for regulatory monitoring. His work focuses on how engineering teams adopt AI safely: compressing delivery without outrunning their capacity to absorb it.</p></p>
+                <p><p>Girish Konda is a Principal Software Engineer at Microsoft with over eight years of experience building scalable distributed systems and machine learning platforms. He has led large scale engineering projects and backend teams, with previous experience at Amazon and AWS.</p></p>
               </div>
 
               
