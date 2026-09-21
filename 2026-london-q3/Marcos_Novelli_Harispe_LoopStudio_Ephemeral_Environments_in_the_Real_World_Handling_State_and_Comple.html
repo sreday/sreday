@@ -251,22 +251,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">From Thumbs-Down to RCA: Closing the Loop on AI Agents</h1>
+    <h1 class="section-heading text-center mb-3">Ephemeral Environments in the Real World: Handling State and Complex Architectures</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Wei-Chin Call.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Marcos Novelli Harispe.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Wei-Chin Call</h5>
+            <h5 class="card-title mb-2">Marcos Novelli Harispe</h5>
             <div class="card-text mb-3">
-              <div class="meta">Grafana Labs</div>
+              <div class="meta">LoopStudio</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/wei-chincall/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/marcos-novelli-harispe-a6339a129/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -280,20 +280,25 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Your on-call rotation doesn't page you when an AI agent gives a customer bad advice, but it should.
-As LLM-powered agents move from chatbot novelty into production systems that make decisions, recommend actions, and interact directly with users, SRE practices built around traditional services need to evolve to account for non-deterministic, natural-language behavior.
-In this talk, I’ll walk through a live AI agent, an intentionally “broken” education assistant, to demonstrate what agent observability looks like in practice. We’ll follow distributed traces across the LLM call and its downstream tool calls, see an automated evaluator catch a harmful response before it reaches a real audience, and trace a deliberate service outage end-to-end through the agent’s error-handling path.
-I’ll then close the loop the way an SRE would: a simple thumbs-up/down control on every agent response feeds directly into a conversation-rating signal. A dissatisfied user is no longer just a qualitative complaint. It becomes a queryable, traceable signal that can be correlated with the trace that produced it.
-Finally, we’ll explore what familiar SRE concepts such as SLOs, error budgets, and incident response begin to look like when a language model becomes part of the production service.
-Attendees will leave with a practical framework for instrumenting and operating AI agents as production dependencies, and a healthy skepticism toward the idea that AI agents somehow don't need SREs.</p></p>
+                <p><p>Ephemeral Environments (EEs) can dramatically improve reliability: they help prevent
+issues from reaching production, reduce shared environment failures, and enable
+safer debugging when incidents happen.
+But what happens when we want to incorporate this strategy on complex
+architectures? At that point, interesting challenges start to appear: stateful systems
+and databases, long environment startup times, multiple dependent services,
+different use cases (PR validation vs release-level testing), and so on.
+In this talk, we’ll explore how EEs behave outside the happy path. We’ll look at real
+architectural trade-offs and patterns, including hybrid approaches where ephemeral
+services interact with controlled data layers.
+Rather than presenting a perfect solution, this session focuses on the decisions and
+compromises required to adopt EEs beyond simple use cases.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Wei-Chin Call is a Staff Emerging Products Manager at Grafana Labs, where she helps shape the company's next generation of agentic, full-stack observability products. She joined Grafana Labs as a Senior Solutions Engineer, partnering with customers on technical proof-of-concepts and driving adoption of the Grafana Cloud stack.
-Prior to Grafana Labs, Wei-Chin managed a Solutions Engineering team at Cribl and held technical evangelism and sales engineering leadership roles at AppDynamics, where she built sales enablement curricula and led cloud-native training initiatives. She holds certifications in OpenTelemetry (OTCA), Kubernetes (CKAD, CKA), and Prometheus (PCA).</p></p>
+                <p><p>Marcos Novelli Harispe is a Fullstack Engineer and ORT University Lecturer focused on scalable AWS cloud systems. He specializes in event-driven architectures, Data Lakes, and infrastructure as code (Terraform), with extensive experience migrating production microservices to serverless. Equal parts hands-on engineer and educator, Marcos is passionate about reliability, observability, and mentoring the next generation of tech talent.</p></p>
               </div>
 
               
