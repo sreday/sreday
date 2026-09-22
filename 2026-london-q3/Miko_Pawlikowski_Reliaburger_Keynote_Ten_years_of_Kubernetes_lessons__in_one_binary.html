@@ -281,16 +281,17 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Site Reliability Engineering was never meant to be about firefighting, yet too many teams find themselves stuck in an endless cycle of pages, postmortems, and quick fixes. Why? Because SRE is full of hidden traps — patterns that look like best practices on the surface but slowly erode reliability, burn out engineers, and stall progress.
-In this talk, we’ll expose the 7 Deadly Traps of SRE, from the obsession with chasing “five nines,” to the cult of on-call heroism, to the false comfort of tooling and checklists. For each trap, we’ll unpack why it’s so seductive, how it quietly sabotages your team, and what to do instead.
-You’ll walk away with a clearer lens on the pitfalls holding SRE organizations back, and a practical playbook to help your team escape firefighting mode and reclaim the true purpose of SRE: building systems - and cultures - that are resilient, scalable, and human-friendly.</p></p>
+                <p><p>Before your first container hits production on Kubernetes you install a distro, a CNI, an ingress, cert-manager, Prometheus, Grafana, Loki, ArgoCD and Harbor. None of them is your app. 57% of Kubernetes users run more than 11 separate components, the control plane is a pet that needs restoring from backup at 3am, and "why can't A talk to B?" sends you through DNS, Endpoints, kube-proxy, iptables, CNI logs and NetworkPolicy.</p>
+<p>I have been evaluating, running and being paged for Kubernetes since 1.0 in late 2015, and I kept notes. This year I stopped complaining and built the thing: Reliaburger, a container orchestrator in Rust that ships scheduling, gossip membership, Raft, eBPF service discovery, ingress, mTLS, an image registry, metrics, logs, GitOps and chaos testing in one binary, driven by TOML. An app with health checks, ingress and autoscaling is twelve lines. There is no overlay network, no CNI and no kube-proxy: a name, a virtual IP and about 390 lines of C in the kernel.</p>
+<p>The talk covers the four scars and what Reliaburger does about each: apps instead of pods, a control plane that is elected rather than installed, SWIM gossip on one slide, and one connection from web to redis step by step. It also covers what it cost to build with Claude and Codex (200 hours and about a thousand pounds for roughly 220k lines of Rust), the rules that kept the models from doubling the codebase every week, the design we got wrong, and what Reliaburger deliberately does not do. Then a live demo, if the demo gods allow.</p>
+<p>It is 0.1.0, free and Apache 2.0. Download it, break it, tell me.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Miko Pawlikowski is an SRE Author and a platform engineer at Quadrature. He has led large-scale infrastructure and SRE initiatives at Citadel and Bloomberg, with deep expertise in Kubernetes, cloud computing, and chaos engineering. Passionate about building resilient systems and communities, he brings together engineers worldwide through conferences and media projects.</p></p>
+                <p><p><a href="https://www.linkedin.com/in/mikolajpawlikowski/">Miko Pawlikowski</a> has been running platform teams on top of Kubernetes since version 1.0, and has the scars to show for it. He is the author of <a href="https://www.manning.com/books/chaos-engineering">Chaos Engineering</a> (Manning) and of <a href="https://reliaburger.com/">Reliaburger</a>, a batteries-included container orchestrator written in Rust, along with the book <a href="https://github.com/reliaburger/reliaburger/tree/main/docs/book">Building Reliaburger</a> that documents how every subsystem was designed and built.</p></p>
               </div>
 
               
