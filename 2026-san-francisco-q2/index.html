@@ -851,6 +851,8 @@
     color: #555;
     background: var(--brand-lightest);
   }
+  /* A track with nothing on at this time (e.g. keynotes running on screen 1 only) gets the break colour (Marek 2026-09-22) */
+  .schedule-grid-table td.empty-cell { background: var(--brand-lightest); }
   .schedule-grid-table .time-cell {
     color: var(--brand);
     font-weight: 600;
@@ -1868,7 +1870,7 @@ This talk is aimed at practicing SREs and platform engineers looking for practic
 
 
 
-            <td class="talk-cell"></td>
+            <td class="talk-cell empty-cell"></td>
 
 
           </tr>
@@ -1908,7 +1910,7 @@ This talk is aimed at practicing SREs and platform engineers looking for practic
 
 
 
-            <td class="talk-cell"></td>
+            <td class="talk-cell empty-cell"></td>
 
 
           </tr>
@@ -1948,7 +1950,7 @@ This talk is aimed at practicing SREs and platform engineers looking for practic
 
 
 
-            <td class="talk-cell"></td>
+            <td class="talk-cell empty-cell"></td>
 
 
           </tr>
