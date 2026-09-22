@@ -703,10 +703,1452 @@
 </style>
 
 
+<style>
+  /* Track navigation */
+  .track-nav {
+    padding: 0.75rem 0;
+    margin-bottom: 1.5rem;
+  }
+  .track-nav-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .track-nav-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .track-nav-links a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--brand);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+  }
+  .track-nav-links a:hover {
+    background: var(--brand-light);
+    color: white;
+  }
+  .view-toggle-link {
+    color: var(--brand);
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--brand);
+    border-radius: 4px;
+    transition: all 0.2s;
+    min-width: 10rem;
+    text-align: center;
+  }
+  .view-toggle-link:hover {
+    background: var(--brand);
+    color: white;
+  }
+  .view-toggle-link.active {
+    background: var(--brand);
+    color: white;
+  }
+  /* Table view */
+  .schedule-table-view { display: none; }
+  .schedule-table-view.active { display: block; }
+  .schedule-timeline-view { display: block; }
+  .schedule-timeline-view.hidden { display: none; }
+  .schedule-grid-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+    table-layout: fixed;
+  }
+  .schedule-grid-table th {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: white;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .schedule-grid-table th:first-child {
+    width: 60px;
+  }
+  .schedule-grid-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--brand-lightest);
+    vertical-align: top;
+  }
+  .schedule-grid-table td.merged-cell {
+    text-align: center;
+    font-weight: 500;
+    color: #555;
+    background: var(--brand-lightest);
+  }
+  /* A track with nothing on at this time (e.g. keynotes running on screen 1 only) gets the break colour (Marek 2026-09-22) */
+  .schedule-grid-table td.empty-cell { background: var(--brand-lightest); }
+  .schedule-grid-table .time-cell {
+    color: var(--brand);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .schedule-grid-table .talk-cell a {
+    color: #222;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .schedule-grid-table .talk-cell a:hover {
+    color: var(--brand);
+  }
+  .schedule-grid-table .speaker-info {
+    color: #444;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+  .schedule-grid-table .speaker-info .affiliation {
+    color: #666;
+  }
+  .schedule-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  .schedule-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.8rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .schedule-meta-divider {
+    color: #ccc;
+    font-weight: 300;
+  }
+  /* Track section header */
+  .track-section-header {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    margin: 2rem 0 0 0;
+    border-radius: 4px 4px 0 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  .track-section-header:first-of-type {
+    margin-top: 0;
+  }
+
+  .schedule-section.theme-bg-light { background-color: #f0faf5 !important; }
+</style>
+
 <section id="schedule" class="schedule-section section theme-bg-light">
   <div class="container">
-    <h2 class="section-heading text-center mb-5">Schedule</h2>
-    <h4 class="section-heading text-center mb-5">Coming soon</h4>
+    <h2 class="section-heading text-center mb-4">Schedule</h2>
+
+    <!-- Schedule meta info -->
+    <div class="schedule-meta">
+      <span class="schedule-meta-item">October 22, 2026</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">2 parallel tracks</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">9AM - 5PM</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">Warsaw, in-person</span>
+    </div>
+
+
+    
+
+    <!-- Track navigation -->
+    <div class="track-nav">
+      <div class="track-nav-inner">
+
+        <div class="track-nav-links" id="track-links-0">
+
+          <a href="#track-0-1">main room</a>
+
+          <a href="#track-0-2">secondary room</a>
+
+        </div>
+
+        <span class="view-toggle-link" id="view-toggle-0" onclick="toggleView(0)">view as table</span>
+      </div>
+    </div>
+
+    <!-- Timeline View (default) -->
+    <div id="timeline-view-0" class="schedule-timeline-view">
+
+      <div class="track-section-header" id="track-0-1">main room &bull; Track 1</div>
+      <div class="schedule-tab-content">
+        <div class="tab-pane active">
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">09:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle mb-2" src="../speakers/Riccardo Carlesso.png" alt=""></a>
+                <div class="name">Riccardo Carlesso</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Stop Grepping, Start Reasoning: Skill-Based Agentic SRE 🐉</a>
+              </h3>
+              <div class="location mb-3">Google</div>
+              <div class="desc schedule-abstract">Let’s be honest: debugging production at scale is soul-crushing manual labor. At Google, we decided making thousands of SREs act like human search engines in 2026 was a bug, not a feature. Enter the Agentic SRE Extension — a skill-based framework that lives in your terminal and actually knows its way around Kubernetes. In this high-energy deep dive, I’m showing you exactly how we use modular skills and MCP to chain diagnostic tools, analyze metric regressions, and execute safe mitigations (Rollbacks, Throttling) without the "deleted production" anxiety. We’ll dissect the "Outage Investigator" agent's logic loop, see it draft a technical postmortem in seconds, and discuss why we built this as a portable framework whose skills can be easily leveraged by any modern AI harness. You’ll leave with the code to wire up your own Kubernetes stack and let the agent's skills do the heavy lifting while you drink espresso. No fluff, no 101s. Just AI agents, specialized skills, and less toil.<a class="schedule-abstract-read-more" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">09:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Coffee break</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle mb-2" src="../speakers/Joshua Borkowski-Clark.png" alt=""></a>
+                <div class="name">Joshua Borkowski-Clark</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Incident Management at Google</a>
+              </h3>
+              <div class="location mb-3">Google</div>
+              <div class="desc schedule-abstract">This presentation provides a high level overview of Incident Management, the practice of responding to an incident in a structured way. It talks about the general incident lifecycle, the Incident Command System framework, and some general how-to tips on applying it.
+
+The talk is aimed at those who are typically on call, or are responsible for resolving a incident when things go wrong. By the end of the presentation, the audience should have a practical understanding of how to manage a incident.<a class="schedule-abstract-read-more" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Yernar Kenzhetayev.png" alt=""></a>
+                <div class="name">Yernar Kenzhetayev</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">On-call health: The Human Side of Reliability</a>
+              </h3>
+              <div class="location mb-3">Netflix</div>
+              <div class="desc schedule-abstract">Every Engineer knows the feeling: your phone pages at 3am, your heart rate spikes before you've even read the alert, and you're debugging a production issue half-asleep. We treat this as normal. It shouldn't be.
+
+This talk is about on-call health. I'll talk about the different shapes on-call can take and why the structure itself can make burnout better or worse. I'll get into the psychological toll, the anxiety of carrying a pager, the burnout that builds quietly over months, and what actually helps: real training, runbooks people trust, and practice before the real incident hits.<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Aliaksandr Valialkin.png" alt=""></a>
+                <div class="name">Aliaksandr Valialkin</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">How to Create a Database Optimized for Petabytes of Logs and Wide Events</a>
+              </h3>
+              <div class="location mb-3">VictoriaMetrics</div>
+              <div class="desc schedule-abstract">Databases for logs are usually forced to pick a side: build heavy inverted indexes for the ingested logs and pay for them on every write, or ingest raw data cheaply and pay with slow queries later. Is there a better approach? Yes - to make brute-force scanning so selective that most data is never read. This approach is taken by VictoriaLogs. This talk follows a log entry through the VictoriaLogs engine: how it is ingested with no upfront schema, how it lands in an immutable LSM-like compressed column-oriented storage, and how queries run the same structure in reverse, applying a stack of pruning mechanisms based on time, stream labels, and bloom filters so that only the data that can actually match is ever read. Beyond one system's internals, this is a talk about a design stance: when you specialize in one kind of data and know exactly how it is laid out and how it will be consumed, you can be smarter about what you build, sometimes discarding indexes entirely, and avoiding reading most of the data at all. You leave with a concrete set of patterns you can apply to your own storage problems, whether the data is logs or something else entirely.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Kuba Rachwalski.png" alt=""></a>
+                <div class="name">Kuba Rachwalski</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Observability Isn't a Tool Problem. It's an Org Problem.</a>
+              </h3>
+              <div class="location mb-3">Cisco</div>
+              <div class="desc schedule-abstract"> Most organizations invest in an observability solution and assume the results will follow. Six months later the tool is deployed, but alert noise is worse than before, nobody outside the platform team logs in, and the number of incidents hasn't changed. The missing piece is never the technology: it's the operating model around it. I lead the team that has helped several hundred large enterprises across EMEA make their observability actually work, and I'll share what the successful implementations did differently: how they structured the team, how they standardized, and how they proved the value to the business. You'll leave with a checklist of what to get right first.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">12:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Ali Ogun.png" alt=""></a>
+                <div class="name">Ali Ogun</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Mission (A)Impossible: AWS DevOps Agent Meets AFT</a>
+              </h3>
+              <div class="location mb-3">Hyland</div>
+              <div class="desc schedule-abstract">WS Control Tower Account Factory for Terraform (AFT) brings the flexibility of Terraform and the GitOps to governed AWS account provisioning. But AFT is a black box and there's no single dashboard to explain pipeline failures.
+In this talk, we follow a failure back to its source and ask the real question of the new SRE era: could AWS DevOps Agent actually investigate and trace it home?
+The answer reveals something important about AI operations.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Hanna Novikava.png" alt=""></a>
+                <div class="name">Hanna Novikava</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Your Observability Bill Is a Design Problem, Not a Vendor Problem</a>
+              </h3>
+              <div class="location mb-3">SRE/DevOps Engineer</div>
+              <div class="desc schedule-abstract">Observability costs tend to grow faster than traffic, and the usual response, renegotiating with the vendor or cutting retention, treats the symptom rather than the cause. The real driver is almost always a small set of design decisions: unbounded label cardinality, logs carrying work that belongs to metrics, and instrumentation added by default rather than by intent. This talk breaks down where the money actually goes in a modern telemetry pipeline, from the moment a signal is emitted to the moment someone queries it, and shows which changes cut cost without cutting visibility. Drawing on patterns common across platform teams, it covers which changes pay off, which turn out not to be worth the effort, and which trade-offs are worth accepting deliberately. It also covers the point at which sampling stops being safe.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Piotr Wojcikowski.png" alt=""></a>
+                <div class="name">Piotr Wojcikowski</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">"Response Code: Burnout" — How to Survive On-Call in SRE</a>
+              </h3>
+              <div class="location mb-3">Inter Cars S.A.</div>
+              <div class="desc schedule-abstract">At Inter Cars, our SRE team keeps e-Catalog running — a B2B e-commerce platform serving customers across 20+ European markets. Engineers work on-call shifts 24/7/365, picking up alerts and responding to malfunctions whenever they hit, day or night. This talk is a practical, honest look at what on-call actually feels like: what causes the frustration and stress, and what — if anything — actually helps. Drawing on real experience running a critical B2B platform, we'll dig into whether burnout can really be managed at all, or whether we just get better at living with it.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Mateusz Kulewicz.png" alt=""></a>
+                <div class="name">Mateusz Kulewicz</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Observing Coding Agents</a>
+              </h3>
+              <div class="location mb-3">Canonical</div>
+              <div class="desc schedule-abstract">A significant shift in the software engineering industry is happening right now. More and more people are using agents in their workflows to write code - either under close supervision or completely autonomously. Pull requests are written, reviewed, and sometimes even merged without any human involvement. New tools and models are released every week, and there's lots of interest in completely autonomous agents such as OpenClaw and Hermes.
+As an observability engineer, my main focus is on making sure I know what's going on in my systems. How to observe coding agents? Do traditional observability principles and techniques still matter in this new stochastic paradigm?
+In this talk, I will show you how to keep track what your agents are doing and some of the practices that are forming in the industry as we speak - and whether you can use the tools you already have. If you know the basic observability terms, you are the right person to be in the audience.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Ilia Matytcin.png" alt=""></a>
+                <div class="name">Ilia Matytcin</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">SRE at Scale: How We Standardized Reliability Across 20+ Teams</a>
+              </h3>
+              <div class="location mb-3">EPAM Systems</div>
+              <div class="desc schedule-abstract">Scaling SRE practices from a single team to an entire engineering organization of 20+ teams is rarely just a technical challenge — it is a cultural one.
+In this talk, I will share a real-world case study of how we rolled out standardized SLOs, unified observability dashboards, and actionable alerting across dozens of autonomous delivery teams without creating a central bottleneck. I will cover what worked, what didn't, and the hard-earned lessons from fighting alert fatigue, defining meaningful SLOs, and getting teams to truly own the reliability of their services.
+Attendees will leave with a practical playbook for driving a reliability-first culture at scale — and a list of pitfalls to avoid along the way.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/​Kirill Solovei.png" alt=""></a>
+                <div class="name">​Kirill Solovei</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Centralized cross-account EKS observability</a>
+              </h3>
+              <div class="location mb-3">Replika</div>
+              <div class="desc schedule-abstract">Complex systems require extensive monitoring and observability. Systems as complex as Kubernetes clusters have so many moving parts that sometimes it's a task and a half just to configure their monitoring properly. This talk is a deep dive into cross-account observability for multiple EKS clusters, exploring various implementation options, outline the pros and cons of each approach, and explanation of one of them in close detail. Whether you're an aspiring engineer seeking best-practice advice, a seasoned professional ready to disagree with everything, or a manager looking for ways to optimize costs -- this talk might be just right for you.<a class="schedule-abstract-read-more" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img class="profile-image rounded-circle mb-2" src="../speakers/Mary Adeseluka.png" alt=""></a>
+                <div class="name">Mary Adeseluka</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Beyond Alerts: Building an Observability Strategy That Drives SRE Action</a>
+              </h3>
+              <div class="location mb-3">LTIMindtree</div>
+              <div class="desc schedule-abstract">Today's SRE teams have a lot of data coming in, but just having more information doesn't always mean they can improve system reliability. When observability is all about dashboards, alerts, and increasing numbers of signals, engineers may find themselves spending too much time dealing with noise rather than making systems better.
+This discussion explores how to move beyond alerts and build an observability strategy designed around action. We'll explore how to link metrics, logs, traces, events, and business context to the real decisions SREs need to make like spotting new issues, understanding how they affect things, speeding up how we handle incidents, and stopping them from happening again. The aim is not to gather more data, but to make observability a real part of how teams work. This helps them find issues quicker, learn more about what's happening, make decisions with confidence, and keep improving how reliable their systems are.<a class="schedule-abstract-read-more" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">17:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Wrap up</h3>
+              <div class="location mb-3" style="color:#098dcf;">Scan each other's QR codes & head to a nearby pub!</div>
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="track-section-header" id="track-0-2">secondary room &bull; Track 2</div>
+      <div class="schedule-tab-content">
+        <div class="tab-pane active">
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">09:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Coffee break</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img class="profile-image rounded-circle mb-2" src="../speakers/Michal Gawron.png" alt=""></a>
+                <div class="name">Michal Gawron</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Beyond the Golden Image: Continuous Compliance for a Hybrid Server Fleet</a>
+              </h3>
+              <div class="location mb-3">Novo Nordisk</div>
+              <div class="desc schedule-abstract">A golden image gives you a compliant server on the day it is deployed. It does not keep it compliant for the next three years - patches, agent versions, manual changes and ownership all drift on independent clocks, and at fleet scale that stops being a technical problem and becomes an operating-model problem. This talk presents a lifecycle architecture that treats image build, onboarding, desired-state assessment, controlled remediation and centralised patching as a single control loop across hybrid Windows and Linux estates, and shows where the boundary between each layer belongs. I will cover why assessment and remediation need different risk models, why patching is a separate control plane from configuration, and why a machine that has stopped reporting is a bigger problem than a machine reporting non-compliance.<a class="schedule-abstract-read-more" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img class="profile-image rounded-circle mb-2" src="../speakers/Hubert Poznanski.png" alt=""></a>
+                <div class="name">Hubert Poznanski</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">Faster, Smarter, Fragile: The human cost of AI Boom</a>
+              </h3>
+              <div class="location mb-3">Senior DevOps Engineer</div>
+              <div class="desc schedule-abstract">AI has made engineering teams genuinely faster - but the bill is coming, and it will be paid in more than money. This talk looks at what happens when AI budgets get cut in half: workflows with AI stitched into their spine, engineers who have never debugged without an assistant, and codebases full of generated code that no one truly owns. Skill atrophy is technical debt stored in people, and it has no refactoring. Finally, we'll cover how platform teams can build AI as a detachable dependency rather than a foundation - including one concrete practice you can take back to your team.<a class="schedule-abstract-read-more" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14"><img class="profile-image rounded-circle mb-2" src="../speakers/Artur Polek.png" alt=""></a>
+                <div class="name">Artur Polek</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">The Black Box Strategy: Building SRE Infrastructure for Unknown Applications</a>
+              </h3>
+              <div class="location mb-3">Akamai Technologies</div>
+              <div class="desc schedule-abstract">When I joined a team of 8 developers, their Linode Kubernetes Engine infrastructure was built through UI clicks, manual helm deployments, and YAML manifests scattered across environments - and I didn't understand what their application actually did.<a class="schedule-abstract-read-more" href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15"><img class="profile-image rounded-circle mb-2" src="../speakers/Oleksandr Zhyhalo.png" alt=""></a>
+                <div class="name">Oleksandr Zhyhalo</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Observability for IoT Fleets Without Going Bankrupt</a>
+              </h3>
+              <div class="location mb-3">Beewise</div>
+              <div class="desc schedule-abstract">Running observability for devices in the field is a different problem from running it for services on your PaaS. Power, bandwidth and update cadence are fixed by physics, and each one rules out tooling that would be the obvious pick anywhere else. This talk works through the decisions an IoT fleet forces on you: what to collect, where to process it when every byte is metered, how to index without labels, and why storage architecture—not query speed—determines your long-term costs.<a class="schedule-abstract-read-more" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">12:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img class="profile-image rounded-circle mb-2" src="../speakers/Alex Dainiak.png" alt=""></a>
+                <div class="name">Alex Dainiak</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Incremental Refactoring of Legacy Systems Under Load</a>
+              </h3>
+              <div class="location mb-3">Aram Meem</div>
+              <div class="desc schedule-abstract">Replacing or refactoring a legacy system while it handles live high-throughput traffic is akin to replacing an airplane engine in mid-flight. In high-load environments where even minutes of downtime result in direct revenue loss, full rewrites are often too risky, making incremental refactoring the only viable path. I will provide real-world engineering strategies for safely modernizing legacy monolithic services under active load without breaching SLAs or risking data integrity. I am going to cover practical execution patterns: isolating legacy boundaries, leveraging the Strangler Fig pattern, deploying feature flags, and executing shadow reads and dual-writes for data storage migrations. Special emphasis is placed on observability and SRE guardrails — how to structure telemetry, automated circuit breakers, and canary deployments to catch performance regressions instantly during transition phases. The audience will gain hard-earned insights into balancing architectural evolution, system stability, and continuous delivery.<a class="schedule-abstract-read-more" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17"><img class="profile-image rounded-circle mb-2" src="../speakers/Felix Masomera.png" alt=""></a>
+                <div class="name">Felix Masomera</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">When Reliability Becomes the Problem: The SRE Traps Nobody Talks About</a>
+              </h3>
+              <div class="location mb-3">Site Reliability Engineer</div>
+              <div class="desc schedule-abstract">SRE is about making systems reliable, but our efforts to improve reliability can sometimes introduce complexity of their own. This talk explores common SRE traps, including alert fatigue, over-automation, excessive tooling, overengineering, and reliance on “hero” engineers. Through practical examples and real-world lessons, we’ll examine how these challenges can affect the reliability and operability of our systems and how to build systems that are not only reliable, but also maintainable, understandable, and easier to operate.<a class="schedule-abstract-read-more" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Wrap up</h3>
+              <div class="location mb-3" style="color:#098dcf;">Scan each other's QR codes & head to a nearby pub!</div>
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Table View -->
+    <div id="table-view-0" class="schedule-table-view">
+      <table class="schedule-grid-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+
+            <th style="width: calc((100% - 60px) / 2)">main room</th>
+
+            <th style="width: calc((100% - 60px) / 2)">secondary room</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">09:00</td>
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Stop Grepping, Start Reasoning: Skill-Based Agentic SRE 🐉</a>
+              <div class="speaker-info">Riccardo Carlesso <span class="affiliation">• Google</span></div>
+            </td>
+
+
+
+
+
+            <td class="talk-cell empty-cell"></td>
+
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">09:30</td>
+            <td class="talk-cell merged-cell" colspan="2">
+
+              Coffee break
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">10:00</td>
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Incident Management at Google</a>
+              <div class="speaker-info">Joshua Borkowski-Clark <span class="affiliation">• Google</span></div>
+            </td>
+
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Beyond the Golden Image: Continuous Compliance for a Hybrid Server Fleet</a>
+              <div class="speaker-info">Michal Gawron <span class="affiliation">• Novo Nordisk</span></div>
+            </td>
+
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">10:30</td>
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">On-call health: The Human Side of Reliability</a>
+              <div class="speaker-info">Yernar Kenzhetayev <span class="affiliation">• Netflix</span></div>
+            </td>
+
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">Faster, Smarter, Fragile: The human cost of AI Boom</a>
+              <div class="speaker-info">Hubert Poznanski <span class="affiliation">• Senior DevOps Engineer</span></div>
+            </td>
+
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">11:00</td>
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">How to Create a Database Optimized for Petabytes of Logs and Wide Events</a>
+              <div class="speaker-info">Aliaksandr Valialkin <span class="affiliation">• VictoriaMetrics</span></div>
+            </td>
+
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14">The Black Box Strategy: Building SRE Infrastructure for Unknown Applications</a>
+              <div class="speaker-info">Artur Polek <span class="affiliation">• Akamai Technologies</span></div>
+            </td>
+
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">11:30</td>
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">Observability Isn't a Tool Problem. It's an Org Problem.</a>
+              <div class="speaker-info">Kuba Rachwalski <span class="affiliation">• Cisco</span></div>
+            </td>
+
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Observability for IoT Fleets Without Going Bankrupt</a>
+              <div class="speaker-info">Oleksandr Zhyhalo <span class="affiliation">• Beewise</span></div>
+            </td>
+
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">12:00</td>
+            <td class="talk-cell merged-cell" colspan="2">
+
+              Lunch & networking
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">13:00</td>
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Mission (A)Impossible: AWS DevOps Agent Meets AFT</a>
+              <div class="speaker-info">Ali Ogun <span class="affiliation">• Hyland</span></div>
+            </td>
+
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Incremental Refactoring of Legacy Systems Under Load</a>
+              <div class="speaker-info">Alex Dainiak <span class="affiliation">• Aram Meem</span></div>
+            </td>
+
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">13:30</td>
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Your Observability Bill Is a Design Problem, Not a Vendor Problem</a>
+              <div class="speaker-info">Hanna Novikava <span class="affiliation">• SRE/DevOps Engineer</span></div>
+            </td>
+
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">When Reliability Becomes the Problem: The SRE Traps Nobody Talks About</a>
+              <div class="speaker-info">Felix Masomera <span class="affiliation">• Site Reliability Engineer</span></div>
+            </td>
+
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">14:00</td>
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">"Response Code: Burnout" — How to Survive On-Call in SRE</a>
+              <div class="speaker-info">Piotr Wojcikowski <span class="affiliation">• Inter Cars S.A.</span></div>
+            </td>
+
+
+
+
+
+            <td class="talk-cell empty-cell"></td>
+
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">14:30</td>
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Observing Coding Agents</a>
+              <div class="speaker-info">Mateusz Kulewicz <span class="affiliation">• Canonical</span></div>
+            </td>
+
+
+
+
+
+            <td class="talk-cell empty-cell"></td>
+
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">15:00</td>
+            <td class="talk-cell merged-cell" colspan="2">
+
+              Networking & sponsor crawl
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">15:30</td>
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">SRE at Scale: How We Standardized Reliability Across 20+ Teams</a>
+              <div class="speaker-info">Ilia Matytcin <span class="affiliation">• EPAM Systems</span></div>
+            </td>
+
+
+
+
+
+
+
+            <td class="talk-cell merged-cell">Wrap up</td>
+
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">16:00</td>
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Centralized cross-account EKS observability</a>
+              <div class="speaker-info">​Kirill Solovei <span class="affiliation">• Replika</span></div>
+            </td>
+
+
+
+
+
+            <td class="talk-cell empty-cell"></td>
+
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">16:30</td>
+
+
+
+
+
+
+            <td class="talk-cell">
+              <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Beyond Alerts: Building an Observability Strategy That Drives SRE Action</a>
+              <div class="speaker-info">Mary Adeseluka <span class="affiliation">• LTIMindtree</span></div>
+            </td>
+
+
+
+
+
+            <td class="talk-cell empty-cell"></td>
+
+
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">17:00</td>
+
+
+
+
+
+
+            <td class="talk-cell merged-cell">Wrap up</td>
+
+
+
+
+
+            <td class="talk-cell merged-cell"></td>
+
+
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+    <script>
+    function toggleView(day) {
+      const timelineView = document.getElementById('timeline-view-' + day);
+      const tableView = document.getElementById('table-view-' + day);
+      const toggleBtn = document.getElementById('view-toggle-' + day);
+      const trackLinks = document.getElementById('track-links-' + day);
+
+      if (tableView.classList.contains('active')) {
+        tableView.classList.remove('active');
+        timelineView.classList.remove('hidden');
+        toggleBtn.textContent = 'view as table';
+        toggleBtn.classList.remove('active');
+        if (trackLinks) trackLinks.style.display = 'flex';
+      } else {
+        tableView.classList.add('active');
+        timelineView.classList.add('hidden');
+        toggleBtn.textContent = 'view as timeline';
+        toggleBtn.classList.add('active');
+        if (trackLinks) trackLinks.style.display = 'none';
+      }
+    }
+    </script>
+
+    
+    <div class="schedule-cta text-center mx-auto mt-4"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+    
   </div>
 </section>
 
@@ -1187,16 +2629,6 @@
       </div><!--//col-->
 
       
-
-      
-
-      <div class="col mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h4>More coming soon</h4>
-          </div><!--//card-->
-        </div><!--//card-->
-      </div><!--//col-->
 
       
 
