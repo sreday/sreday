@@ -257,22 +257,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">Your Bill Is an SLO: Reliability for a Data Platform With No Servers</h1>
+    <h1 class="section-heading text-center mb-3">Rust-Powered Observability: The Language of Modern Observability</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Ganesh Nathan.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Prabhat Sharma.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Ganesh Nathan</h5>
+            <h5 class="card-title mb-2">Prabhat Sharma</h5>
             <div class="card-text mb-3">
-              <div class="meta">Autolake</div>
+              <div class="meta">OpenObserve</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/ganeshnathan/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/hiprabhat/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -286,14 +286,17 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>We run a multi-tenant data lakehouse for higher education and public sector organizations on AWS serverless services only: S3, Glue, Athena, Lambda, Step Functions, and Iceberg tables. No cluster, no Kubernetes, and no on-call rotation. That changes what reliability means, because the signals SREs usually rely on, CPU, memory, pod health, do not exist. Our answer is that cost is the most honest signal you have. A query that returns the right answer at ten times the expected cost is a degradation, and we treat it like one. This talk walks through the SLOs we built around cost per query, file count per partition, and snapshot age, and how those SLOs drive automated remediation: compaction, snapshot expiry, catalog reconciliation, and retention enforcement that run themselves and report back. We will also cover the guardrails that keep petabyte-scale storage healthy without a human in the loop: hidden partitioning so users cannot write expensive queries by accident, and per-tenant cost limits that stop a runaway workload before it becomes a bill. You will leave with a working model for SRE on serverless data infrastructure and a checklist you can apply to any Iceberg on S3 deployment.</p></p>
+                <p><p>Traditional observability tools built in C++, Java and Go often become part of the problem they're meant to solve, crashing under load, leaking memory during critical incidents, and introducing race conditions that corrupt data. Extremely high resource consumption leads to increased costs and complexity in managing infrastructure.</p>
+<p>Rust offers a compelling alternative, providing memory safety without a garbage collector, which translates to more reliable and efficient observability systems. Coupled with its strong ecosystem for building high-performance data processing pipelines, Rust enables the creation of observability tools that are not only robust, highly performant and also cost-effective.</p>
+<p>This session explains how we used rust to build a next-generation observability platform that addresses the shortcomings of existing solutions.</p>
+<p>You will see real world examples on how Rust's unique features lead to significant improvements in reliability, performance, and cost-efficiency for observability systems.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Ganesh Nathan is co-founder of Autolake, a serverless data lakehouse platform built entirely on AWS native services for higher education and public sector organizations. He has spent 30 years building data infrastructure across public sector and enterprise environments, and currently runs multi-tenant, petabyte-scale Iceberg on S3 deployments with no clusters and no on-call rotation. His work focuses on what reliability, governance, and cost control look like when there are no servers to watch.</p></p>
+                <p><p>Prabhat Sharma is the founder of OpenObserve, bringing extensive expertise in cloud computing, Kubernetes, and observability. His interests also encompass machine learning, liberal arts, economics, and systems architecture. </p></p>
               </div>
 
               

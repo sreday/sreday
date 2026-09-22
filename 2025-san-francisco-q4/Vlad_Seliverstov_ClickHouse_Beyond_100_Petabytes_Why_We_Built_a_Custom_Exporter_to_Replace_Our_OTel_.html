@@ -257,22 +257,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">Kill It and Watch It Come Back: Hands-on with Reliaburger</h1>
+    <h1 class="section-heading text-center mb-3">Beyond 100 Petabytes: Why We Built a Custom Exporter to Replace Our OTel Pipeline</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Mark Pawlikowski.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Vlad Seliverstov.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Mark Pawlikowski</h5>
+            <h5 class="card-title mb-2">Vlad Seliverstov</h5>
             <div class="card-text mb-3">
-              <div class="meta">Reliaburger</div>
+              <div class="meta">ClickHouse</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/marek-pawlikowski/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/behemot/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -286,30 +286,14 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>I have never run a Kubernetes cluster. Yes, I said it.</p>
-<p>Are you still with me? Cool!</p>
-<p>Over the past last five years I talked to thousands of SREs and platform engineers at the conferences I run with my team: <a href="https://sreday.com/">SREday</a>, <a href="https://llmday.com/">LLMday</a>, <a href="https://platformday.com/">PLATFORMday</a> and <a href="https://www.conf42.com/">Conf42</a>. </p>
-<p>The same story keeps coming back. Before the first container hits production you step into the world of Kubernetes, and then you need to build a whole team just to keep it running. A kolljoy for many smaller teams. We started talking with my brother, <a href="https://www.linkedin.com/in/mikolajpawlikowski/">Miko Pawlikowski</a>, how we could help the community ease some of these pains. </p>
-<p>Miko has been running platform teams on Kubernetes for 10+ years, leading him to start writing Reliaburger: one Rust binary with the scheduler, gossip, Raft, eBPF service discovery, ingress, mTLS, registry, metrics, logs, GitOps and chaos testing inside, driven by TOML. An app with health checks, ingress and autoscaling is twelve lines. He wrote the software. I am here to hand it to the community and see what you do with it.</p>
-<p>This is a hands-on session, so bring a laptop (macOS on Apple silicon or Linux; Windows is not supported yet).</p>
-<p>In 30 minutes you will:</p>
-<ol>
-<li>Install Reliaburger with one command and start a node on your laptop. No container runtime, no root, no VMs: the built-in process runtime runs plain binaries.</li>
-<li>Deploy an app from a twelve-line TOML file and watch it in the terminal dashboard and the web UI.</li>
-<li>Ship a deliberately sick version and watch the health checker restart it, then roll back with one command.</li>
-<li>Break it on purpose with the built-in fault injector: kill an instance, freeze another, and let <code>relish wtf</code> explain what just happened.</li>
-<li>Read the manual and the source code from inside the binary, so you can keep going after the session.</li>
-<li>Tell us what broke and what you liked.</li>
-</ol>
-<p>Reliaburger is free and open source (Apache 2.0), and it is version 0.1.0, so it will break. That is where you come in. We are looking for helpers, burger ambassadors and contributors: people who will run it, break it, file the issues, write the docs and tell their teams. There are millions of practitioners running parts of Kubernetes they do not need, with more people than they should need to run it. We want this to become a community-driven project, just as our conferences are.</p>
-<p>Everyone who makes it through the six steps and gives feedback goes into a raffle at the end. There is hardware on the table, and it is worth your 30 minutes.</p></p>
+                <p><p>Are your observability signals trapped in separate pillars? Logs in one place, metrics in another, both losing context? At ClickHouse, we faced this challenge at a massive scale. Our solution was to abandon the traditional model and embrace a new philosophy: store everything, aggregate nothing. This talk charts our journey to 100 PB and 500 trillion rows, centered on the concept of “wide events.” Instead of shipping a simple log message and a separate, pre-aggregated metric, we store a single, context-rich event containing every possible dimension. This shift from three pillars to a single warehouse of high-cardinality telemetry was a game-changer. The key to this model is using ClickHouse itself as our observability backend. This unlocks unbounded query flexibility through full SQL. When an engineer asks “what’s the p95 pod replacement time after termination?”, we don’t say “let me ship a new metric.” We write a SQL query.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Mark Pawlikowski runs SREday, LLMday and PLATFORMday, in-person conferences for the people who keep production up, and Conf42 online. He is not an engineer. He has spent the last five years listening to SREs and platform engineers describe what their work is actually like, and now brings Reliaburger, his brother Miko's batteries-included container orchestrator, to that community to play with, break and build on.</p></p>
+                <p><p>Vlad Seliverstov leads the internal observability team at ClickHouse, overseeing the monitoring of ClickHouse Cloud, which handles over 100 petabytes of data and 500 trillion events. With more than a decade of SRE experience at Datadog, Dropbox, and Facebook, Vlad now focuses on building and scaling ClickHouse’s in-house observability platform.</p></p>
               </div>
 
               
