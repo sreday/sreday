@@ -257,22 +257,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">Shadow Dependencies - The Rising Role (Risk?) of Data</h1>
+    <h1 class="section-heading text-center mb-3">Overcoming the Trust Deficit with SRE Agents</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Mark Freeman.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Robbie McKinstry.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Mark Freeman</h5>
+            <h5 class="card-title mb-2">Robbie McKinstry</h5>
             <div class="card-text mb-3">
-              <div class="meta">Gable.ai</div>
+              <div class="meta">Wack Incorporated</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/mafreeman2/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/robert-mckinstry/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -286,14 +286,14 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Some of the largest outages on the internet can be traced back not only to changes in code, but also how the code changed underlying data models. Through countless discussions with software engineers, many noted the importance of the underlying data model for quality development, yet also highlighted the lack of incentives (or outright discouragement) by leadership to put in the extra effort to maintain it. Even more troubling, not only are applications impacted by data, but also downstream consumers within the business are taking major dependencies on the output of this data for business-critical workflows-- unbeknownst to the upstream engineers producing the data (i.e., shadow dependencies). In this talk, we highlight this growing problem, why engineer leadership is paying more attention to the risk of data, and how to surface and prevent these issues within the CI/CD workflow via an emerging pattern called "data contracts."</p></p>
+                <p><p>Most SRE agents only do half of the job: they wait for an incident to occur, then hand off diagnostics. While that’s better than nothing, it stops short of resolving the incident. The flipside is that no one actually wants an agent to autonomously resolve incidents if it can only deliver 90% of the time. That would mean for the other 10%, the agent has made the wrong call on business-impacting systems, exacerbating conditions and making a postmortem more difficult to conduct. While <em>coding</em> agents are allowed to act autonomously since bad output can be caught in review, incident response doesn’t have that luxury, leaving SRE agents to watch instead of act. This talk covers the limitations of bleeding-edge incident response agents, and provides a roadmap toward trustworthy, verified, and independent agent playbooks. Playbooks require agents to show their work to an independent oracle that judges whether the case they’ve made is plausible or flimsy. Only once a check passes does the agent move to the next step in the playbook, with each step gating the tools it's allowed to touch. What you end up with is your existing runbook turned into a state machine, where every transition locks down what the agent can do next. I'll walk through the architecture, what actually counts as evidence to a judge, as well as the weaknesses of this approach.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Mark Freeman, co-author of the upcoming O’Reilly book "Data Contracts: Developing Production-Grade Pipelines at Scale," has spent the past two years collaborating with organizations to implement data contracts and refine best practices. Previously, he was a data scientist turned data engineer with experience in building, putting into production, and maintaining data products across the entire development lifecycle, such as consumer-facing algorithms, personalized insights, and machine learning models. This work has put him at the intersection of software and data teams, where he has become obsessed with the translation between both technical fields.</p></p>
+                <p><p>Robbie McKinstry is the founder and CEO of Wack where he’s building MultiTool, an observability tool that provides intelligent, thresholdless alerts on top of your existing telemetry. Before MultiTool Robbie was on the OSS core team at Pulumi, and before that an early employee and research scientist in HashiCorp's office of the CTO. His career has focused on taking hard ideas off paper and turning them into usable developer tools.</p></p>
               </div>
 
               

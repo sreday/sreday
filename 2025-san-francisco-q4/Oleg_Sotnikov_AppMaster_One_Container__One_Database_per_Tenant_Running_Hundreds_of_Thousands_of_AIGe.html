@@ -257,22 +257,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">How We Built ClickStack - an open source, open telemetry native Observability stack</h1>
+    <h1 class="section-heading text-center mb-3">One Container, One Database per Tenant: Running Hundreds of Thousands of AI-Generated Apps</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Mike Shi.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Oleg Sotnikov.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Mike Shi</h5>
+            <h5 class="card-title mb-2">Oleg Sotnikov</h5>
             <div class="card-text mb-3">
-              <div class="meta">ClickHouse</div>
+              <div class="meta">AppMaster</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/mikeshi42/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/olegsotnikov/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -286,14 +286,14 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Modern observability is built on a flawed foundation: three siloed pillars - logs, metrics, and traces - each powered by different engines with separate query models, storage formats, and operational costs. Users are forced to manually correlate across systems, accept duplication, or pay high SaaS bills. But what if observability is just a data problem? One that needs a general-purpose solution instead of purpose-built compromises? This talk argues that true observability requires fast, high-cardinality queries over unsampled data at scale and at low cost. Traditional search and metrics engines were not designed for this, but column-oriented databases are. We introduce ClickStack, a fully open source, OpenTelemetry-native observability stack built around ClickHouse. It provides fast, flexible querying and efficient storage, enabling real-time visibility without compromise.</p></p>
+                <p><p>When your platform generates your customers' applications, every incident in their production is your incident. This talk is a field report from running a no-code platform's runtime plane at a peak of 250,000 concurrently hosted containers: one container and one PostgreSQL database per tenant app across multiple regions, with a control plane and a build plane feeding it. The applications themselves are produced by an AI-driven generator from customers' blueprints, which adds a failure class most fleets never see — code that nobody reviewed, regenerated on demand. I'll cover the reliability model we settled on and why: blast-radius isolation vs. density, per-tenant observability, fleet-wide regeneration and redeploy when the generator itself changes, noisy-neighbor handling on shared hosts, and the failure modes that only exist when the code in production was compiled from a customer's blueprint 10 minutes ago. Practical patterns for anyone operating a fleet of workloads you don't control.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Mike Shi is Head of Observability at ClickHouse building ClickStack, the open source observability stack built on ClickHouse and OpenTelemetry. He co-founded HyperDX, acquired by ClickHouse. Mike remains a hands-on developer, contributes to the OpenTelemetry and ClickStack ecosystems, and speaks regularly at observability-focused events.</p></p>
+                <p><p>Oleg has 25+ years in software development and shipped his first commercial app in 2003. He holds 50+ professional certifications from Microsoft, Cisco, IBM, Dell, EC-Council and others, and has built 9 startups over the past 17 years, with 2 exits. Since 2020 he has been CTO and Co-Founder of AppMaster, an AI code-generation platform launched before ChatGPT became a thing. Since 2025 he works as a Fractional CTO with 20+ companies across 12 countries, helping them transition to AI-native software engineering and SRE.</p></p>
               </div>
 
               

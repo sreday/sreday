@@ -257,22 +257,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">Microfrontend Reliability: SRE Strategies for Distributed Frontend Systems</h1>
+    <h1 class="section-heading text-center mb-3">Don't Let Your AI's Patch Break Prod: SRE Patterns for Autonomous Remediation</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Justin Davis.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Aron Eidelman.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Justin Davis</h5>
+            <h5 class="card-title mb-2">Aron Eidelman</h5>
             <div class="card-text mb-3">
-              <div class="meta">Castlight Health</div>
+              <div class="meta">Google</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/justin-davis-15565128/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/aroneidelman/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -286,14 +286,18 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Microfrontend architectures with Module Federation introduce distributed system complexity to frontend applications, creating new reliability challenges that traditional SRE practices must adapt to address. This talk explores how to apply Site Reliability Engineering principles to microfrontend systems, ensuring high availability, performance, and operational excellence across independently deployed frontend modules. Unlike backend microservices, microfrontends face unique reliability challenges including runtime integration failures, cross-module dependency conflicts, and cascading failures that can break entire user experiences. We'll examine how to implement the four golden signals for microfrontend systems: measuring latency across module boundaries, tracking traffic patterns for federated modules, monitoring error rates in distributed frontend components, and managing saturation in shared resources and container applications. The session covers essential observability strategies including distributed tracing for microfrontend interactions, real user monitoring (RUM) for federated applications, and synthetic monitoring approaches that validate cross-module integrations. We'll explore how to implement effective circuit breakers for frontend modules, graceful degradation patterns when remote modules fail, and automated rollback strategies for problematic deployments. Attendees will learn production-tested techniques for capacity planning microfrontend systems, including CDN optimization strategies, bundle size monitoring, and performance budget enforcement across teams. The talk addresses critical operational concerns such as coordinated deployments across multiple frontend teams, dependency version management, and incident response procedures for distributed frontend failures. We'll also cover advanced reliability patterns including canary deployments for federated modules, A/B testing infrastructure for microfrontends, and automated performance regression detection. The session explores monitoring strategies for shared design systems, container application health checks, and cross-team SLO management in federated architectures. This session targets SREs, platform engineers, and DevOps professionals working with complex frontend architectures, providing practical frameworks for maintaining reliability, performance, and operational excellence in distributed frontend systems while avoiding common reliability pitfalls.</p></p>
+                <p><p>Software and security teams have never had to patch so much code so quickly. AI agents can generate vulnerability fixes in seconds, but pushing unverified, machine-authored code to production has led to trading a CVE for a production outage.
+To solve this problem, SRE principles are now gaining new traction in application security and development teams that realize mitigating one risk shouldn't create another. To benefit at all from agents in SSDLC, we need operational cultures that recognize reliability as a combined social and technical measure, rather than just another tooling challenge.
+In this talk, we’ll walk through the practical mechanics of safely remediating vulnerabilities with agents. We’ll cover how TDD provides the baseline contract to keep patches from breaking existing features, why symptom-based test coverage catches regressions traditional tests miss, and how sandboxed runtimes isolate untrusted agent execution. Finally, we’ll look at closing the loop with automated canary analysis and SLO-driven rollbacks so fixes can deploy without risking production.
+We'll stick to real scenarios that helped us patch hundreds of repositories without breaking any relying applications (at least as far as users could tell).</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Justin Davis is an innovative Principal Engineer and UI Architect with over 17 years of experience delivering scalable, user-centric digital solutions across healthcare, finance, retail, and media sectors. Currently serving as Principal Engineer at Castlight Health since September 2019, he specializes in full-stack development, modern frontend frameworks, authentication systems, and microservices architecture. At Castlight Health, he has led multiple high-impact projects that enhanced platform capabilities and user experience, including architecting and implementing a multi-tenant OpenID authentication system and leading the migration of a legacy Reporting application to a modern microfrontend architecture using Angular. Prior to his current role, Justin served as UI Architect at Solgenie Technologies from September 2017 to July 2019, where he spearheaded digital transformation initiatives for global clients. His notable achievements include leading the end-to-end development of SAGE, a portfolio management system for BNY Mellon, where he unified multiple legacy systems into a single Angular-based application for portfolio managers overseeing 401k and retirement funds. He also led the migration of DIRECTV's NFL Sunday Ticket platform from Flash/Flex to modern Angular 5, HTML5, and CSS stack, transforming the experience for millions of users. From August 2016 to September 2017, Justin worked as UI Architect and Technical Director at Amazecodes Solutions, leading development projects for Deluxe Corporation and SoulCafe. His responsibilities included creating comprehensive product suites, developing scalable email marketing solutions, and implementing advanced image processing services. During his tenure at Target Corporation from August 2014 to August 2016 as Lead Interactive Specialist, he led UI engineering for the Guest Profile Recommendation Engine and developed a custom jQuery-based product image zoom plugin that replaced the legacy Adobe Scene7 solution. Justin holds a B.Tech in Computer Science Engineering from Calicut University, Kerala, India, completed in May 2007. His technical expertise encompasses JavaScript, Angular, React, Android, iOS, Ionic, Node.js, Java Spring Boot, PHP, Docker, Kubernetes, and Jenkins. He is experienced in DevOps and CI/CD pipelines, cross-functional team leadership, performance optimization, and Agile/Scrum project management, consistently driving projects that align technology strategy with business objectives.</p></p>
+                <p><p>Aron Eidelman is a Senior Developer Relations Engineer and Security Advocate at Google. He works on AI software security, leading developer enablement for Google's AI Threat Defense program, CodeMender, and Antigravity security skills. He co-authored Kaggle's "5 Days of AI Agents" curriculum, which trained over 350,000 developers globally in secure coding. Aron is a frequent speaker on secure software development, with recent talks at Google Cloud Next '26 and the Zenity AI Agent Security Summit.
+Outside of Google, Aron serves as the Chairman of Azure Printed Homes. The company 3D prints modular housing from recycled plastic, repurposing 150,000 plastic bottles per unit for wildfire recovery projects in LA and a new 62-unit housing village in San Luis Obispo.</p></p>
               </div>
 
               
