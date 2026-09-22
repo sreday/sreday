@@ -182,7 +182,8 @@
     html.tabbed .tabs { display: flex; flex-wrap: wrap; position: relative; }
     /* The accent pill is one element that HOVERS ABOVE the buttons (it carries the active label itself), slides between
        the tabs and overshoots a fixed few px before settling (the bounce, JS keyframes). Clicks pass through it. */
-    .tab-pill { position: absolute; left: 0; top: 0; z-index: 5; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: var(--accent); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.02rem; white-space: nowrap; box-shadow: 0 10px 22px rgba(0,0,0,.28), 0 2px 5px rgba(0,0,0,.2); pointer-events: none; will-change: transform; }
+    .tab-pill { position: absolute; left: 0; top: 0; z-index: 5; display: grid; place-items: center; overflow: hidden; border-radius: 12px; background: var(--accent); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.02rem; white-space: nowrap; box-shadow: 0 10px 22px rgba(0,0,0,.28), 0 2px 5px rgba(0,0,0,.2); pointer-events: none; will-change: transform; }
+    .tab-pill .lbl { grid-area: 1 / 1; white-space: nowrap; will-change: opacity, filter, transform; }   /* old + new label share the cell during the morph */
     .tab-pill.squash { animation: tab-squash .6s ease-out; }
     @keyframes tab-squash { 0% { scale: 1 1; } 30% { scale: 1.06 .86; } 62% { scale: .97 1.06; } 82% { scale: 1.01 .98; } 100% { scale: 1 1; } }
     .tabs.has-pill button.is-active, .tabs.has-pill button.is-active:hover { background: #f1f2f4; color: #333; box-shadow: none; }
@@ -480,28 +481,28 @@
 
   <section class="regs">
     <h2>Registrations</h2>
-    <div class="fresh" data-built="2026-09-22T09:06:39+00:00" title="Not live: the numbers refresh every time the website is built">
-      <span class="pill fresh-pill">Last build</span><span class="fresh-text">2026-09-22 09:06 UTC</span>
+    <div class="fresh" data-built="2026-09-22T11:16:53+00:00" title="Not live: the numbers refresh every time the website is built">
+      <span class="pill fresh-pill">Last build</span><span class="fresh-text">2026-09-22 11:16 UTC</span>
     </div>
     
     
-    <div class="reg-overall" title="562 registered of 950 expected across all upcoming events">
-      <span class="nums">562 <i>/ 950</i></span>
+    <div class="reg-overall" title="573 registered of 950 expected across all upcoming events">
+      <span class="nums">573 <i>/ 950</i></span>
       <span class="lbl">registered / expected<br>across all upcoming events</span>
-      <span class="obar"><b style="width: 59%"></b></span>
-      <span class="pct">59%</span>
+      <span class="obar"><b style="width: 60%"></b></span>
+      <span class="pct">60%</span>
     </div>
     
     
     <div class="reg">
       <div class="reg-alert alert-freebies" tabindex="0" role="note" aria-label="50%+ tickets are freebies"><span>50%+ tickets are freebies</span></div>
       
-      <div class="reg-ring nailed" title="Full!: 176 registered of 150 expected, 2 days to go">
+      <div class="reg-ring nailed" title="Full!: 185 registered of 150 expected, 2 days to go">
         <div class="ring">
           <svg viewBox="0 0 36 36" aria-hidden="true"><circle class="track" cx="18" cy="18" r="15.9155"/><circle class="fill" cx="18" cy="18" r="15.9155" stroke-dasharray="100 100"/></svg>
-          <span>117%</span>
+          <span>123%</span>
         </div>
-        <div class="nums"><strong>176 <i>/ 150</i></strong>registered / expected</div>
+        <div class="nums"><strong>185 <i>/ 150</i></strong>registered / expected</div>
       </div>
       <div class="reg-body">
       <div class="reg-head">
@@ -509,12 +510,12 @@
         
         
         <span class="spacer"></span>
-        <small>+56 in 7 days · 1 pending · <a href="https://luma.com/sreday-2026-london-q3">Luma</a></small>
+        <small>+65 in 7 days · 2 pending · <a href="https://luma.com/sreday-2026-london-q3">Luma</a></small>
         
       </div>
       
-      <div class="reg-bar"><i class="paid" style="width: 14.2%" title="Paid attendees: 25 (14% of registered)"></i><i class="free" style="width: 64.77%" title="Freebies: 114 (65% of registered)"></i><i class="speakers" style="width: 14.2%" title="Speakers: 25 (14% of registered)"></i><i class="sponsors" style="width: 6.82%" title="Sponsors: 12 (7% of registered)"></i></div>
-      <div class="reg-cats"><span class="paid"><b></b>Paid attendees <strong>25</strong><em>14%</em></span><span class="free"><b></b>Freebies <strong>114</strong><em>65%</em></span><span class="speakers"><b></b>Speakers <strong>25</strong><u title="32 speakers on the website, co-presenters counted individually">(32)</u><em>14%</em></span><span class="sponsors"><b></b>Sponsors <strong>12</strong><em>7%</em></span></div>
+      <div class="reg-bar"><i class="paid" style="width: 15.68%" title="Paid attendees: 29 (16% of registered)"></i><i class="free" style="width: 64.32%" title="Freebies: 119 (64% of registered)"></i><i class="speakers" style="width: 13.51%" title="Speakers: 25 (14% of registered)"></i><i class="sponsors" style="width: 6.49%" title="Sponsors: 12 (6% of registered)"></i></div>
+      <div class="reg-cats"><span class="paid"><b></b>Paid attendees <strong>29</strong><em>16%</em></span><span class="free"><b></b>Freebies <strong>119</strong><em>64%</em></span><span class="speakers"><b></b>Speakers <strong>25</strong><u title="32 speakers on the website, co-presenters counted individually">(32)</u><em>14%</em></span><span class="sponsors"><b></b>Sponsors <strong>12</strong><em>6%</em></span></div>
       
       </div>
     </div>
@@ -535,7 +536,7 @@
         
         
         <span class="spacer"></span>
-        <small>+13 in 7 days · <a href="https://luma.com/sreday-san-francisco-2026-q4">Luma</a></small>
+        <small>+12 in 7 days · <a href="https://luma.com/sreday-san-francisco-2026-q4">Luma</a></small>
         
       </div>
       
@@ -548,12 +549,12 @@
     <div class="reg">
       <div class="reg-alert alert-free" tabindex="0" role="note" aria-label="Free event - 50% show up rate"><span>Free event - 50% show up rate</span></div>
       
-      <div class="reg-ring good" title="Good: 82 registered of 100 expected, 30 days to go">
+      <div class="reg-ring good" title="Good: 83 registered of 100 expected, 30 days to go">
         <div class="ring">
-          <svg viewBox="0 0 36 36" aria-hidden="true"><circle class="track" cx="18" cy="18" r="15.9155"/><circle class="fill" cx="18" cy="18" r="15.9155" stroke-dasharray="82 100"/></svg>
-          <span>82%</span>
+          <svg viewBox="0 0 36 36" aria-hidden="true"><circle class="track" cx="18" cy="18" r="15.9155"/><circle class="fill" cx="18" cy="18" r="15.9155" stroke-dasharray="83 100"/></svg>
+          <span>83%</span>
         </div>
-        <div class="nums"><strong>82 <i>/ 100</i></strong>registered / expected</div>
+        <div class="nums"><strong>83 <i>/ 100</i></strong>registered / expected</div>
       </div>
       <div class="reg-body">
       <div class="reg-head">
@@ -561,12 +562,12 @@
         
         
         <span class="spacer"></span>
-        <small>+13 in 7 days · <a href="https://luma.com/sreday-warsaw-2026-q4">Luma</a></small>
+        <small>+14 in 7 days · <a href="https://luma.com/sreday-warsaw-2026-q4">Luma</a></small>
         
       </div>
       
-      <div class="reg-bar"><i class="free" style="width: 70.0%" title="Freebies: 70 (85% of registered)"></i><i class="speakers" style="width: 10.0%" title="Speakers: 10 (12% of registered)"></i><i class="sponsors" style="width: 2.0%" title="Sponsors: 2 (2% of registered)"></i></div>
-      <div class="reg-cats"><span class="free"><b></b>Freebies <strong>70</strong><em>85%</em></span><span class="speakers"><b></b>Speakers <strong>10</strong><u title="18 speakers on the website, co-presenters counted individually">(18)</u><em>12%</em></span><span class="sponsors"><b></b>Sponsors <strong>2</strong><em>2%</em></span><span class="togo"><b></b>To goal <strong>18</strong></span></div>
+      <div class="reg-bar"><i class="free" style="width: 71.0%" title="Freebies: 71 (86% of registered)"></i><i class="speakers" style="width: 10.0%" title="Speakers: 10 (12% of registered)"></i><i class="sponsors" style="width: 2.0%" title="Sponsors: 2 (2% of registered)"></i></div>
+      <div class="reg-cats"><span class="free"><b></b>Freebies <strong>71</strong><em>86%</em></span><span class="speakers"><b></b>Speakers <strong>10</strong><u title="18 speakers on the website, co-presenters counted individually">(18)</u><em>12%</em></span><span class="sponsors"><b></b>Sponsors <strong>2</strong><em>2%</em></span><span class="togo"><b></b>To goal <strong>17</strong></span></div>
       
       </div>
     </div>
@@ -600,12 +601,12 @@
     <div class="reg">
       <div class="reg-alert alert-free" tabindex="0" role="note" aria-label="Free event - 50% show up rate"><span>Free event - 50% show up rate</span></div>
       
-      <div class="reg-ring nailed" title="Full!: 239 registered of 200 expected, 41 days to go">
+      <div class="reg-ring nailed" title="Full!: 240 registered of 200 expected, 41 days to go">
         <div class="ring">
           <svg viewBox="0 0 36 36" aria-hidden="true"><circle class="track" cx="18" cy="18" r="15.9155"/><circle class="fill" cx="18" cy="18" r="15.9155" stroke-dasharray="100 100"/></svg>
           <span>120%</span>
         </div>
-        <div class="nums"><strong>239 <i>/ 200</i></strong>registered / expected</div>
+        <div class="nums"><strong>240 <i>/ 200</i></strong>registered / expected</div>
       </div>
       <div class="reg-body">
       <div class="reg-head">
@@ -613,12 +614,12 @@
         
         
         <span class="spacer"></span>
-        <small>+15 in 7 days · <a href="https://luma.com/sreday-amsterdam-2026-q4">Luma</a></small>
+        <small>+16 in 7 days · <a href="https://luma.com/sreday-amsterdam-2026-q4">Luma</a></small>
         
       </div>
       
-      <div class="reg-bar"><i class="free" style="width: 81.59%" title="Freebies: 195 (82% of registered)"></i><i class="speakers" style="width: 8.79%" title="Speakers: 21 (9% of registered)"></i><i class="sponsors" style="width: 9.62%" title="Sponsors: 23 (10% of registered)"></i></div>
-      <div class="reg-cats"><span class="free"><b></b>Freebies <strong>195</strong><em>82%</em></span><span class="speakers"><b></b>Speakers <strong>21</strong><u title="34 speakers on the website, co-presenters counted individually">(34)</u><em>9%</em></span><span class="sponsors"><b></b>Sponsors <strong>23</strong><em>10%</em></span></div>
+      <div class="reg-bar"><i class="free" style="width: 81.67%" title="Freebies: 196 (82% of registered)"></i><i class="speakers" style="width: 8.75%" title="Speakers: 21 (9% of registered)"></i><i class="sponsors" style="width: 9.58%" title="Sponsors: 23 (10% of registered)"></i></div>
+      <div class="reg-cats"><span class="free"><b></b>Freebies <strong>196</strong><em>82%</em></span><span class="speakers"><b></b>Speakers <strong>21</strong><u title="34 speakers on the website, co-presenters counted individually">(34)</u><em>9%</em></span><span class="sponsors"><b></b>Sponsors <strong>23</strong><em>10%</em></span></div>
       
       </div>
     </div>
@@ -1338,7 +1339,7 @@
   </section>
   
 
-  <div class="foot">Generated 2026-09-22 09:06 UTC at build time. Organizer tool, not linked from the site.</div>
+  <div class="foot">Generated 2026-09-22 11:16 UTC at build time. Organizer tool, not linked from the site.</div>
 </main>
 <script>
 (function () {                                     // Registrations / Speakers / Sponsors / Data checks as tabs (Marek 2026-09-17)
@@ -1349,23 +1350,35 @@
   pill.className = 'tab-pill'; pill.setAttribute('aria-hidden', 'true');
   nav.insertBefore(pill, nav.firstChild); nav.classList.add('has-pill');
   var GROW = 3, reduceTabs = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches, run = null;
+  var lbl = document.createElement('span'); lbl.className = 'lbl'; pill.appendChild(lbl);
+  function morph(text) {                          // label morph (Marek 2026-09-22): old text blurs + shrinks away, new text blurs in
+    var olds = pill.querySelectorAll('.lbl.out'); for (var i = 0; i < olds.length; i++) olds[i].remove();
+    var old = lbl; old.className = 'lbl out';
+    lbl = document.createElement('span'); lbl.className = 'lbl'; lbl.textContent = text; pill.appendChild(lbl);
+    old.animate([{ opacity: 1, filter: 'blur(0)', transform: 'scale(1)' }, { opacity: 0, filter: 'blur(6px)', transform: 'scale(.78)' }],
+      { duration: 260, easing: 'ease-in', fill: 'forwards' }).onfinish = function () { old.remove(); };
+    lbl.animate([{ opacity: 0, filter: 'blur(6px)', transform: 'scale(1.18)' }, { opacity: 1, filter: 'blur(0)', transform: 'scale(1)' }],
+      { duration: 380, delay: 130, easing: 'cubic-bezier(.2, .7, .3, 1)', fill: 'backwards' });
+  }
   function place(animate) {                          // the pill floats above the buttons, 3px larger on every side
     var b = nav.querySelector('button.is-active'); if (!b) return;
     var nr = nav.getBoundingClientRect(), pr = pill.getBoundingClientRect();
     var fx = pr.left - nr.left - nav.clientLeft, fy = pr.top - nr.top - nav.clientTop;   // where it is right now (mid-flight too)
     var tx = b.offsetLeft - GROW, ty = b.offsetTop - GROW;
     if (run) { run.cancel(); run = null; }
-    pill.textContent = b.textContent;
-    pill.style.width = (b.offsetWidth + 2 * GROW) + 'px'; pill.style.height = (b.offsetHeight + 2 * GROW) + 'px';
+    var fw = pr.width, fh = pr.height, tw = b.offsetWidth + 2 * GROW, th = b.offsetHeight + 2 * GROW;   // size now -> size at the target tab
+    var moving = animate && !reduceTabs && !!pill.animate;
+    if (moving && lbl.textContent !== b.textContent) morph(b.textContent); else lbl.textContent = b.textContent;
+    pill.style.width = tw + 'px'; pill.style.height = th + 'px';
     pill.style.transform = 'translate(' + tx + 'px,' + ty + 'px)';
-    if (!animate || reduceTabs || !pill.animate) return;
+    if (!moving) return;
     var dx = tx - fx, dy = ty - fy, d = Math.sqrt(dx * dx + dy * dy); if (d < 1) return;
     var ux = dx / d, uy = dy / d, T = function (x, y) { return 'translate(' + x + 'px,' + y + 'px)'; };
     run = pill.animate([                             // fixed overshoot, whatever the distance: 14px past, 5px back, settle
-      { transform: T(fx, fy), easing: 'cubic-bezier(.3, 0, .3, 1)' },
+      { transform: T(fx, fy), width: fw + 'px', height: fh + 'px', easing: 'cubic-bezier(.3, 0, .3, 1)' },
       { transform: T(tx + ux * 14, ty + uy * 14), offset: .55, easing: 'ease-in-out' },
       { transform: T(tx - ux * 5, ty - uy * 5), offset: .78, easing: 'ease-in-out' },
-      { transform: T(tx, ty) }
+      { transform: T(tx, ty), width: tw + 'px', height: th + 'px' }
     ], { duration: 600 });
     pill.classList.remove('squash'); void pill.offsetWidth; pill.classList.add('squash');
   }
