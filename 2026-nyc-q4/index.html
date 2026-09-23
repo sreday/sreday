@@ -255,7 +255,7 @@
         <p class="ac-blurb"><strong>SREday</strong> is a worldwide series of community events for engineers who build, ship and run modern software systems. Across cities around the world, we bring together people working in reliability, cloud, DevOps, observability and production engineering to share real-world experience, connect with their local community and explore how these disciplines are evolving in the age of AI.</p>
         
         <h5 class="ac-topics-heading">Companies presenting:</h5>
-        <p class="ac-companies">AWS, Imubit, Incredibuild, Mirror Panel Inc., Qovery</p>
+        <p class="ac-companies">AWS, Imubit, Incredibuild, Mirror Panel Inc., Qovery, Tiger Data</p>
         
         
         <h5 class="ac-topics-heading">Topics so far:</h5>
@@ -280,6 +280,14 @@
           <div class="ac-topic-name">Cloud Infrastructure</div>
           <ul class="ac-topic-talks">
             <li><a href="Denys_Zhak_Imubit_What_AWS_Lambda_Was_Hiding_Runtime_Assumptions_Exposed_by_a_Migration.html#speakers-section">What AWS Lambda Was Hiding: Runtime Assumptions Exposed by a Migration</a></li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Production Engineering</div>
+          <ul class="ac-topic-talks">
+            <li><a href="Giovanni_Martinez_Tiger_Data_Agents_Can_Write_Migrations_They_Shouldnt_Ship_Them.html#speakers-section">Agents Can Write Migrations. They Shouldn’t Ship Them.</a></li>
             
           </ul>
         </div>
@@ -750,6 +758,32 @@
             <ul class="social-list list-inline mb-0">
               
               <li class="list-inline-item"><a  href="https://www.linkedin.com/in/elliotgardiner/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Giovanni Martinez.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Giovanni Martinez</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Tiger Data</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Giovanni_Martinez_Tiger_Data_Agents_Can_Write_Migrations_They_Shouldnt_Ship_Them#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/thepostgresguy/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -1448,6 +1482,49 @@ AI SRE: What's real, and what's just hype</p></p>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Denys Zhak is a software engineer with nine years of experience in backend engineering and distributed systems, focused on production reliability. At Imubit, he builds cloud and on-prem software for industrial machine-learning deployments. He led the six-month migration of seven Python ingestion Lambdas into services described in this talk. Outside work, he contributes to open source. Much of that work has been on Astral’s Ruff and ty. He writes about production engineering at denyszhak.com.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 5 -->
+<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Giovanni Martinez.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Giovanni Martinez</h2>
+                          <div class="meta mb-2">Tiger Data</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/thepostgresguy/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Agents Can Write Migrations. They Shouldn’t Ship Them.</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>AI agents can write SQL, modify schemas, and optimize queries in seconds. The dangerous part begins when those changes approach production. This session demonstrates a complete agent-assisted DataOps workflow for PostgreSQL. Starting with a database change request, an agent creates an isolated Ghost database, inspects the schema, generates a versioned migration, tests it with representative data, and validates correctness and performance. The change then moves through automated checks and human review before deployment to Tiger Cloud, where database and application signals determine whether it remains in production or is rolled back. Through a live demonstration, we will examine the controls that make this workflow reliable: scoped credentials, migration linting, idempotency checks, execution-plan comparisons, lock and rewrite detection, approval gates, deployment observability, and rollback criteria. Attendees will leave with a practical blueprint for using agents to accelerate database delivery without giving them unchecked authority over production.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Giovanni Martinez is a Database Support Engineer at Tiger Data and an AWS Community Builder with more than 10 years of PostgreSQL experience. He specializes in database performance, production reliability, cloud-native PostgreSQL, TimescaleDB, and agent-assisted database operations. Through The Postgres Guy and his open-source iqtoolkit project, Giovanni creates practical tools and educational content that help engineers troubleshoot, optimize, and operate PostgreSQL systems safely.</p></p>
               </div>
 
           </div><!--//modal-body-->
