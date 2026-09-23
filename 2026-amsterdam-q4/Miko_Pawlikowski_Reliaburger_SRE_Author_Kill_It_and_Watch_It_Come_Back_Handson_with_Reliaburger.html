@@ -253,7 +253,7 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">Keynote: 7 Deadly Traps of SRE</h1>
+    <h1 class="section-heading text-center mb-3">Kill It and Watch It Come Back: Hands-on with Reliaburger</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
@@ -262,7 +262,7 @@
           <div class="card-body">
             <h5 class="card-title mb-2">Miko Pawlikowski</h5>
             <div class="card-text mb-3">
-              <div class="meta">SRE Author</div>
+              <div class="meta">Reliaburger, SRE Author</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
@@ -282,16 +282,22 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Site Reliability Engineering was never meant to be about firefighting, yet too many teams find themselves stuck in an endless cycle of pages, postmortems, and quick fixes. Why? Because SRE is full of hidden traps — patterns that look like best practices on the surface but slowly erode reliability, burn out engineers, and stall progress.
-In this talk, we’ll expose the 7 Deadly Traps of SRE, from the obsession with chasing “five nines,” to the cult of on-call heroism, to the false comfort of tooling and checklists. For each trap, we’ll unpack why it’s so seductive, how it quietly sabotages your team, and what to do instead.
-You’ll walk away with a clearer lens on the pitfalls holding SRE organizations back, and a practical playbook to help your team escape firefighting mode and reclaim the true purpose of SRE: building systems - and cultures - that are resilient, scalable, and human-friendly.</p></p>
+                <p><p>Before your first container hits production on Kubernetes you install a distro, a CNI, an ingress, cert-manager, Prometheus, Loki and ArgoCD. None of them is your app. After ten years of running platform teams on Kubernetes, I built <a href="https://reliaburger.com/">Reliaburger</a> to put the lot into one Rust binary: scheduler, gossip, Raft, eBPF service discovery, ingress, mTLS, registry, metrics, logs, GitOps and chaos testing, driven by TOML. An app with health checks, ingress and autoscaling is twelve lines.
+This is a hands-on session, so bring a laptop (macOS on Apple silicon or Linux; Windows is not supported yet). In 60 minutes you will:
+1. Install Reliaburger with one command and start a node on your laptop. No container runtime, no root, no VMs: the built-in process runtime runs plain binaries.
+2. Deploy an app from a twelve-line TOML file and watch it in the terminal dashboard and the web UI.
+3. Ship a deliberately sick version and watch the health checker restart it, then roll back with one command.
+4. Break it on purpose with the built-in fault injector: kill an instance, freeze another, and let <code>relish wtf</code> explain what just happened.
+5. Read the manual and the source code from inside the binary. I will be next to you for the questions the manual does not answer.
+6. Provide feedback!
+It is 0.1.0. It will break. That is the point, and I want to hear about it.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Miko Pawlikowski is an SRE Author and a platform engineer at Quadrature. He has led large-scale infrastructure and SRE initiatives at Citadel and Bloomberg, with deep expertise in Kubernetes, cloud computing, and chaos engineering. Passionate about building resilient systems and communities, he brings together engineers worldwide through conferences and media projects.</p></p>
+                <p><p><a href="https://www.linkedin.com/in/mikolajpawlikowski/">Miko Pawlikowski</a> has been running platform teams on top of Kubernetes since version 1.0, and has the scars to show for it. He is the author of <a href="https://www.manning.com/books/chaos-engineering">Chaos Engineering</a> (Manning) and of <a href="https://reliaburger.com/">Reliaburger</a>, a batteries-included container orchestrator written in Rust, along with the book <a href="https://github.com/reliaburger/reliaburger/tree/main/docs/book">Building Reliaburger</a> that documents how every subsystem was designed and built.</p></p>
               </div>
 
               
