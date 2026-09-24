@@ -1,0 +1,1681 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Teasers: SREday London 2025 Q3</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #713660;
+      --accent: color-mix(in srgb, var(--brand) 45%, #9d7cff);          /* vivid line / icon purple */
+      --accent-soft: color-mix(in srgb, var(--brand) 25%, #e6d6ff);     /* light text purple */
+      --ink: #0e0d1f;
+    }
+    html, body { margin: 0; background: #f3f2f6; color: #111; font-family: 'Roboto', sans-serif; }
+    .tz-page { max-width: 1320px; margin: 0 auto; padding: 36px 20px 80px; }
+    .tz-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 24px; margin-bottom: 22px; }
+    .tz-brand { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--brand); font-size: .9rem; letter-spacing: .08em; text-transform: uppercase; }
+    .tz-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.7rem; margin: 4px 0 0; line-height: 1.2; }
+    .tz-sub { color: #555; font-size: .95rem; margin-top: 4px; }
+    .tz-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .tz-controls label { font-size: .8rem; color: #555; display: flex; flex-direction: column; gap: 3px; }
+    .tz-controls input { font: 500 .95rem 'Roboto', sans-serif; padding: 7px 10px; border: 1px solid #cfcfd6; border-radius: 8px; width: 130px; }
+    .tz-btn { font: 600 .9rem 'Montserrat', sans-serif; padding: 10px 18px; border-radius: 999px; border: 0; background: var(--brand); color: #fff; cursor: pointer; }
+    .tz-btn:disabled { opacity: .5; cursor: default; }
+    .tz-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 26px; }
+    .tz-slot { display: flex; flex-direction: column; gap: 10px; }
+    /* the preview shows the 1200px card scaled to the column width; the export renders the unscaled card */
+    .tz-frame { position: relative; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.14); background: var(--ink); }
+    .tz-frame .tz-card { position: absolute; top: 0; left: 0; transform-origin: 0 0; }
+    .tz-meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: .85rem; color: #555; }
+    .tz-meta b { color: #222; font-weight: 600; }
+    .tz-dl { font: 600 .8rem 'Montserrat', sans-serif; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--brand); background: #fff; color: var(--brand); cursor: pointer; white-space: nowrap; }
+    .tz-dl:hover { background: var(--brand); color: #fff; }
+
+    /* ── the card, 1200 x 1200 ────────────────────────────────────────────── */
+    .tz-card { width: 1200px; height: 1200px; position: relative; overflow: hidden; color: #fff; font-family: 'Montserrat', sans-serif;
+      background:
+        radial-gradient(60% 55% at 92% 70%, color-mix(in srgb, #c62a4a 70%, transparent) 0%, transparent 70%),
+        radial-gradient(55% 55% at 70% 20%, color-mix(in srgb, var(--brand) 85%, #6b2fd6) 0%, transparent 65%),
+        linear-gradient(160deg, #0a0c2a 0%, #171633 45%, #2a1440 100%); }
+    .tz-card::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(70% 60% at 30% 75%, rgba(10,10,30,.55), transparent 70%); }
+    .tz-card > * { position: relative; z-index: 1; }
+    .tz-logo { position: absolute; top: 60px; left: 90px; width: 820px; }
+    .tz-wordmark { font-weight: 800; font-size: 150px; line-height: 1; letter-spacing: .02em; color: transparent; -webkit-text-stroke: 4px #fff; text-transform: uppercase; white-space: nowrap; }
+    .tz-wordmark.tz-wm-long { font-size: 104px; }
+    .tz-wordmark.tz-wm-xlong { font-size: 60px; white-space: normal; line-height: 1.05; -webkit-text-stroke-width: 2.5px; letter-spacing: .04em; }
+    .tz-rule { width: 500px; height: 6px; background: var(--accent); margin: 26px 0 26px; border-radius: 3px; }
+    .tz-tagline { font-weight: 600; font-size: 36px; letter-spacing: .04em; text-transform: uppercase; color: #f1eaff; line-height: 1.15; }
+    .tz-kind { font-weight: 600; font-size: 34px; letter-spacing: .04em; text-transform: uppercase; color: var(--accent-soft); margin-top: 6px; }
+    .tz-badge { position: absolute; top: -70px; right: -70px; width: 320px; height: 320px; border-radius: 50%; background: color-mix(in srgb, var(--brand) 55%, #5b2bd6);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 70px 40px 0; box-sizing: border-box; font-weight: 800; font-size: 44px; line-height: 1.15; }
+    .tz-badge[hidden] { display: none; }
+    .tz-badge small { display: block; font-size: 40px; font-weight: 700; }
+    .tz-talk { position: absolute; top: 445px; left: 90px; right: 90px; text-align: center; font-weight: 800; font-size: 66px; line-height: 1.12; color: #e9dcff;
+      text-shadow: 0 0 28px color-mix(in srgb, var(--accent) 65%, transparent), 0 2px 6px rgba(0,0,0,.35); }
+    .tz-talk.tz-long { font-size: 54px; }
+    .tz-talk.tz-xlong { font-size: 46px; }
+    .tz-by { position: absolute; right: 420px; top: 665px; width: 520px; text-align: right; }
+    .tz-by .tz-rule { width: 280px; margin: 0 0 24px auto; }
+    .tz-by-label { font-weight: 500; font-size: 36px; color: #e6d6ff; }
+    .tz-by-name { font-weight: 800; font-size: 46px; line-height: 1.15; margin-top: 8px; }
+    .tz-by-org { font-weight: 500; font-size: 36px; color: #f1eaff; margin-top: 2px; }
+    .tz-photo { position: absolute; right: 100px; top: 590px; width: 300px; height: 300px; border-radius: 50%; overflow: hidden; background: #2b2b3c; box-shadow: 0 0 0 6px rgba(255,255,255,.08), 0 20px 50px rgba(0,0,0,.45); }
+    .tz-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; filter: grayscale(1); display: block; }
+    .tz-foot { position: absolute; left: 60px; right: 60px; bottom: 60px; height: 210px; border: 3px solid var(--accent); border-radius: 44px; background: rgba(40,20,80,.35);
+      display: flex; align-items: center; padding: 0 44px; box-sizing: border-box; gap: 28px; }
+    .tz-foot-item { display: flex; align-items: center; gap: 22px; flex: 0 0 auto; }
+    .tz-foot-item.tz-foot-place { flex: 1 1 0; min-width: 0; }
+    .tz-foot-item svg { width: 92px; height: 92px; flex: 0 0 auto; stroke: var(--accent); fill: none; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+    .tz-foot-date { font-weight: 700; font-size: 34px; white-space: nowrap; }
+    .tz-foot-sep { width: 3px; height: 130px; background: var(--accent); border-radius: 2px; flex: 0 0 auto; }
+    .tz-foot-venue { font-weight: 500; font-size: 28px; line-height: 1.2; min-width: 0; flex: 1 1 auto; }
+    .tz-foot-venue .tz-foot-street { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .tz-foot-venue b { font-weight: 800; }
+    @media (max-width: 575.98px) { .tz-grid { grid-template-columns: 1fr; } .tz-controls input { width: 110px; } }
+  </style>
+</head>
+<body>
+  <div class="tz-page">
+    <div class="tz-head">
+      <div>
+        <div class="tz-brand">SREday · teasers</div>
+        <h1 class="tz-title">SREday London 2025 Q3</h1>
+        <div class="tz-sub">September 18-19, 2025 · Everyman Canary Wharf · one card per session, exported as 1500 x 1500 px PNG. Rebuilt from talks.csv on every site build. Hidden page for the team.</div>
+      </div>
+      <div class="tz-controls">
+        <label>Badge line 1<input id="tz-discount" value="" placeholder="20% OFF"></label>
+        <label>Badge line 2<input id="tz-code" value="" placeholder="SRE20"></label>
+        <button class="tz-btn" id="tz-all" type="button">Download all PNGs</button>
+      </div>
+    </div>
+
+    <div class="tz-grid">
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-1" data-file="sreday-2025-london-q3-miko-pawlikowski.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">7 Deadly Traps of SRE</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Miko Pawlikowski</div>
+              <div class="tz-by-org">SRE Author</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Miko Pawlikowski.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Miko Pawlikowski</b> · SRE Author · keynote</span><button class="tz-dl" type="button" data-download="1">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-2" data-file="sreday-2025-london-q3-peter-marshall.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">What Observability Can Learn From BI: Decoupling for Speed, Scale, and Flexibility</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Peter Marshall</div>
+              <div class="tz-by-org">Imply</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Peter Marshall.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Peter Marshall</b> · Imply · keynote</span><button class="tz-dl" type="button" data-download="2">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-3" data-file="sreday-2025-london-q3-andrei-pokhilko.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Strategic AI Agents for Kubernetes SRE: Beyond Ad-hoc Prompting</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Andrei Pokhilko</div>
+              <div class="tz-by-org">Komodor</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Andrei Pokhilko.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Andrei Pokhilko</b> · Komodor · keynote</span><button class="tz-dl" type="button" data-download="3">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-4" data-file="sreday-2025-london-q3-leena-mooneeram-jorge-lainfiesta.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">Driving Platform Adoption with Embedded SREs</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Leena Mooneeram & Jorge Lainfiesta</div>
+              <div class="tz-by-org">Chainalysis & Rootly</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Leena Mooneeram & Jorge Lainfiesta.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Leena Mooneeram & Jorge Lainfiesta</b> · Chainalysis & Rootly · keynote</span><button class="tz-dl" type="button" data-download="4">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-5" data-file="sreday-2025-london-q3-kim-norman-sahm.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">10 Common Things People Do Wrong in Kubernetes Environments</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Kim-Norman Sahm</div>
+              <div class="tz-by-org">CAST AI</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Kim-Norman Sahm.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Kim-Norman Sahm</b> · CAST AI · keynote</span><button class="tz-dl" type="button" data-download="5">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-6" data-file="sreday-2025-london-q3-piotr-zaniewski.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Flexible Kubernetes Multitenancy with vCluster</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Piotr Zaniewski</div>
+              <div class="tz-by-org">vCluster Labs</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Piotr Zaniewski.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Piotr Zaniewski</b> · vCluster Labs · keynote</span><button class="tz-dl" type="button" data-download="6">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-7" data-file="sreday-2025-london-q3-kim-norman-sahm.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Optimizing Kubernetes and unlock blockers with Pod Live Migration</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Kim-Norman Sahm</div>
+              <div class="tz-by-org">CAST AI</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Kim-Norman Sahm.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Kim-Norman Sahm</b> · CAST AI</span><button class="tz-dl" type="button" data-download="7">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-8" data-file="sreday-2025-london-q3-divine-odazie-shivadeep-gundoju.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">A DBA's Surprising Journey To Databases On Kubernetes</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Divine Odazie & Shivadeep Gundoju</div>
+              <div class="tz-by-org">EverythingDevOps & ING</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Divine Odazie & Shivadeep Gundoju.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Divine Odazie & Shivadeep Gundoju</b> · EverythingDevOps & ING</span><button class="tz-dl" type="button" data-download="8">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-9" data-file="sreday-2025-london-q3-dominik-s.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">Automagic Observability with eBPF</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Dominik Süß</div>
+              <div class="tz-by-org">Grafana Labs</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Dominik SuB.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Dominik Süß</b> · Grafana Labs</span><button class="tz-dl" type="button" data-download="9">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-10" data-file="sreday-2025-london-q3-dheeraj-bandaru-francois-martel.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">Beyond Single-Cloud SRE: Live Multi-Agent Incident Investigation and Resolution Across Azure and Beyond</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Dheeraj Bandaru & Francois Martel</div>
+              <div class="tz-by-org">Microsoft & Neubird.ai</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Dheeraj Bandaru & Francois Martel.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Dheeraj Bandaru & Francois Martel</b> · Microsoft & Neubird.ai</span><button class="tz-dl" type="button" data-download="10">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-11" data-file="sreday-2025-london-q3-rory-crispin.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">Beyond 100 Petabytes: Why We Built a Custom Exporter to Replace Our OTel Pipeline</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Rory Crispin</div>
+              <div class="tz-by-org">ClickHouse</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Rory Crispin.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Rory Crispin</b> · ClickHouse</span><button class="tz-dl" type="button" data-download="11">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-12" data-file="sreday-2025-london-q3-sean-behan.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">The Airgap Paradox: Adversarial Tactics & Defensible Design</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Sean Behan</div>
+              <div class="tz-by-org">Independent</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Sean Behan.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Sean Behan</b> · Independent</span><button class="tz-dl" type="button" data-download="12">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-13" data-file="sreday-2025-london-q3-ayd-asraf.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Automating Kibana Alerting: When GitOps meets UI</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Ayd Asraf</div>
+              <div class="tz-by-org">Auto1 Group</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Ayd Asraf.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Ayd Asraf</b> · Auto1 Group</span><button class="tz-dl" type="button" data-download="13">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-14" data-file="sreday-2025-london-q3-scott-rosenberg.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">Overcoming the Fallacies of Distributed Systems with Chaos Mesh and Kubernetes</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Scott Rosenberg</div>
+              <div class="tz-by-org">TeraSky</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Scott Rosenberg.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Scott Rosenberg</b> · TeraSky</span><button class="tz-dl" type="button" data-download="14">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-15" data-file="sreday-2025-london-q3-simon-hanmer.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Breaking Bad (Systems): a short journey through chaos engineering</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Simon Hanmer</div>
+              <div class="tz-by-org">GlobalLogic</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Simon Hanmer.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Simon Hanmer</b> · GlobalLogic</span><button class="tz-dl" type="button" data-download="15">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-16" data-file="sreday-2025-london-q3-stratos-kourtzanidis.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Making AI Accountable: Evaluators in Action with Azure AI Foundry</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Stratos Kourtzanidis</div>
+              <div class="tz-by-org">Microsoft</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Stratos Kourtzanidis.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Stratos Kourtzanidis</b> · Microsoft</span><button class="tz-dl" type="button" data-download="16">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-17" data-file="sreday-2025-london-q3-marcus-tenorio.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Nanakorobi yaoki: Learnings from Attacking and Defending GPUs</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Marcus Tenorio</div>
+              <div class="tz-by-org">Bitso</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Marcus Tenorio.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Marcus Tenorio</b> · Bitso</span><button class="tz-dl" type="button" data-download="17">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-18" data-file="sreday-2025-london-q3-bharav-patel.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">From Blind Spots to Total Vision: Observability at Massive Scale</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Bharav Patel</div>
+              <div class="tz-by-org">AWS</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Bharav Patel.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Bharav Patel</b> · AWS</span><button class="tz-dl" type="button" data-download="18">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-19" data-file="sreday-2025-london-q3-prithvi-raj.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Echoes in the Core: Designing Resilient Platforms</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Prithvi Raj</div>
+              <div class="tz-by-org">Mirantis</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Prithvi Raj.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Prithvi Raj</b> · Mirantis</span><button class="tz-dl" type="button" data-download="19">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-20" data-file="sreday-2025-london-q3-ceyda-duzgec.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">Beginner's Guide to Terragrunt</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Ceyda Duzgec</div>
+              <div class="tz-by-org">Sufle</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Ceyda Duzgec.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Ceyda Duzgec</b> · Sufle</span><button class="tz-dl" type="button" data-download="20">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-21" data-file="sreday-2025-london-q3-cynthia-akiotu.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Who Owns Your SRE Stack? The Rise of AI Agents</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Cynthia Akiotu</div>
+              <div class="tz-by-org">Independent</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Cynthia Akiotu.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Cynthia Akiotu</b> · Independent</span><button class="tz-dl" type="button" data-download="21">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-22" data-file="sreday-2025-london-q3-diana-todea.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Cutting Through Metrics Cardinality Noise with VictoriaMetrics</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Diana Todea</div>
+              <div class="tz-by-org">VictoriaMetrics</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Diana Todea.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Diana Todea</b> · VictoriaMetrics</span><button class="tz-dl" type="button" data-download="22">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-23" data-file="sreday-2025-london-q3-amit-kushwaha.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">Empowering Developers through Open-Source AI</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Amit Kushwaha</div>
+              <div class="tz-by-org">SambaNova Systems</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Amit Kushwaha.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Amit Kushwaha</b> · SambaNova Systems</span><button class="tz-dl" type="button" data-download="23">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-24" data-file="sreday-2025-london-q3-dima-malyshenko.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">From Git Push to Exit</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Dima Malyshenko</div>
+              <div class="tz-by-org">countX</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Dima Malyshenko.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Dima Malyshenko</b> · countX</span><button class="tz-dl" type="button" data-download="24">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-25" data-file="sreday-2025-london-q3-pooja-mistry.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">There's no AI without APIs</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Pooja Mistry</div>
+              <div class="tz-by-org">Postman</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Pooja Mistry.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Pooja Mistry</b> · Postman</span><button class="tz-dl" type="button" data-download="25">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-26" data-file="sreday-2025-london-q3-carly-richmond.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">OTel You It's Not Just for Backend!</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Carly Richmond</div>
+              <div class="tz-by-org">Elastic</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Carly Richmond.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Carly Richmond</b> · Elastic</span><button class="tz-dl" type="button" data-download="26">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-27" data-file="sreday-2025-london-q3-michael-cote.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Platform Engineering and AI - Two Buzzwords Finally Meet!</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Michael Cote</div>
+              <div class="tz-by-org">Tanzu</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Michael Cote.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Michael Cote</b> · Tanzu</span><button class="tz-dl" type="button" data-download="27">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-28" data-file="sreday-2025-london-q3-mitul-jain.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">Move from Traditional Ops to Integrated SRE Ops at a Retail organization</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Mitul Jain</div>
+              <div class="tz-by-org">H&M Group</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Mitul Jain.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Mitul Jain</b> · H&M Group</span><button class="tz-dl" type="button" data-download="28">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-29" data-file="sreday-2025-london-q3-ashish-upadhyay.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">When PaaS isn’t enough: Building your own internal platform in Multi Cloud</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Ashish Upadhyay</div>
+              <div class="tz-by-org">Ministry of Housing, Communities and Local Government</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Ashish Upadhyay.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Ashish Upadhyay</b> · Ministry of Housing, Communities and Local Government</span><button class="tz-dl" type="button" data-download="29">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-30" data-file="sreday-2025-london-q3-martin-mclarnon.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Using OpenTelemetry to Improve Service Level Objectives</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Martin McLarnon</div>
+              <div class="tz-by-org">Coralogix</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Martin McLarnon.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Martin McLarnon</b> · Coralogix</span><button class="tz-dl" type="button" data-download="30">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-31" data-file="sreday-2025-london-q3-roman-khavronenko.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Aggregating Metrics In-Flight: Challenges and Opportunities</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Roman Khavronenko</div>
+              <div class="tz-by-org">VictoriaMetrics</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Roman Khavronenko.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Roman Khavronenko</b> · VictoriaMetrics</span><button class="tz-dl" type="button" data-download="31">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-32" data-file="sreday-2025-london-q3-joris-bonnefoy.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">From experimentation to continuous verification: how to benefit from the entire spectrum of Chaos Engineering</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Joris Bonnefoy</div>
+              <div class="tz-by-org">Datadog</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Joris Bonnefoy.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Joris Bonnefoy</b> · Datadog</span><button class="tz-dl" type="button" data-download="32">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-33" data-file="sreday-2025-london-q3-mayank-goyal.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Kepler - Optimized power usage monitoring for Kubernetes</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Mayank Goyal</div>
+              <div class="tz-by-org">Okta</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Mayank Goyal.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Mayank Goyal</b> · Okta</span><button class="tz-dl" type="button" data-download="33">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-34" data-file="sreday-2025-london-q3-jamie-pullinger.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">What's Happening AMBA?</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Jamie Pullinger</div>
+              <div class="tz-by-org">Telefonica Tech</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Jamie Pullinger.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Jamie Pullinger</b> · Telefonica Tech</span><button class="tz-dl" type="button" data-download="34">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-35" data-file="sreday-2025-london-q3-stephan-mousset.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">Going Beyond Code: Igniting Sociotechnical Systems through Reliability Advocacy</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Stephan Mousset</div>
+              <div class="tz-by-org">ING</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Stephan Mousset.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Stephan Mousset</b> · ING</span><button class="tz-dl" type="button" data-download="35">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-36" data-file="sreday-2025-london-q3-alecia-cotterell.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Why internships and entry-level roles matter in Tech</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Alecia Cotterell</div>
+              <div class="tz-by-org">Teesside University London</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Alecia Cotterell.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Alecia Cotterell</b> · Teesside University London</span><button class="tz-dl" type="button" data-download="36">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-37" data-file="sreday-2025-london-q3-stuart-clark.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Scale or Fail as Spotify's Growth Exposed the Abstraction Paradox</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Stuart Clark</div>
+              <div class="tz-by-org">Spotify</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Stuart Clark.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Stuart Clark</b> · Spotify</span><button class="tz-dl" type="button" data-download="37">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-38" data-file="sreday-2025-london-q3-harel-safra.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">State in a stateless world: data serving in the cloud</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Harel Safra</div>
+              <div class="tz-by-org">Riskified</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Harel Safra.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Harel Safra</b> · Riskified</span><button class="tz-dl" type="button" data-download="38">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-39" data-file="sreday-2025-london-q3-federico-fregosi.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">Kubernetes in Transit: Updated Best Practices for Smooth Cross-Cloud Migrations</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Federico Fregosi</div>
+              <div class="tz-by-org">Wise</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Federico Fregosi.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Federico Fregosi</b> · Wise</span><button class="tz-dl" type="button" data-download="39">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-40" data-file="sreday-2025-london-q3-dale-mcdiarmid.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">How We Built ClickStack - an open source, open telemetry native Observability stack</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Dale McDiarmid</div>
+              <div class="tz-by-org">ClickHouse</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Dale McDiarmid.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Dale McDiarmid</b> · ClickHouse</span><button class="tz-dl" type="button" data-download="40">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-41" data-file="sreday-2025-london-q3-josh-lee.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">O11y in One: Exploring ClickHouse as a Unified Telemetry Database</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Josh Lee</div>
+              <div class="tz-by-org">Altinity</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Josh Lee.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Josh Lee</b> · Altinity</span><button class="tz-dl" type="button" data-download="41">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-42" data-file="sreday-2025-london-q3-marie-cruz.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Observability Made Simple: Monitoring Plants with IoT and Grafana</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Marie Cruz</div>
+              <div class="tz-by-org">Grafana Labs</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Marie Cruz.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Marie Cruz</b> · Grafana Labs</span><button class="tz-dl" type="button" data-download="42">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-43" data-file="sreday-2025-london-q3-dave-mcallister.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">15 NGINX Metrics to Monitor</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Dave McAllister</div>
+              <div class="tz-by-org">NGINX</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Dave McAllister.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Dave McAllister</b> · NGINX</span><button class="tz-dl" type="button" data-download="43">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-44" data-file="sreday-2025-london-q3-frederic-g-marand.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">TLA+: Your Secret Weapon Against Concurrency Hell</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Frederic G. Marand</div>
+              <div class="tz-by-org">OSInet</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Frederic G. Marand.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Frederic G. Marand</b> · OSInet</span><button class="tz-dl" type="button" data-download="44">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-45" data-file="sreday-2025-london-q3-meletius-mgbeodichimma-igbokwe.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Inference is the New Exfil: How Cloud AI Leaks What It Learns</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Meletius Mgbeodichimma Igbokwe</div>
+              
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Meletius Mgbeodichimma Igbokwe.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">September 18-19, 2025</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>Everyman Canary Wharf</div><div class="tz-foot-street">Crossrail Place, Canary Wharf, E14 5AR, Level -2</div><b>LONDON, UK</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Meletius Mgbeodichimma Igbokwe</b></span><button class="tz-dl" type="button" data-download="45">Download PNG</button></div>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    (function () {
+      // scale every 1200px card into its preview frame
+      function fit() {
+        document.querySelectorAll('.tz-frame').forEach(function (f) {
+          var w = f.clientWidth; if (!w) return;
+          f.querySelector('.tz-card').style.transform = 'scale(' + (w / 1200) + ')';
+        });
+      }
+      fit(); window.addEventListener('resize', fit); window.addEventListener('load', fit);
+      if (window.ResizeObserver) { var ro = new ResizeObserver(fit); document.querySelectorAll('.tz-frame').forEach(function (f) { ro.observe(f); }); }
+
+      // badge: both lines typed at the top, applied to every card; empty = no badge
+      var d = document.getElementById('tz-discount'), c = document.getElementById('tz-code');
+      function badge() {
+        var a = d.value.trim(), b = c.value.trim();
+        document.querySelectorAll('[data-badge]').forEach(function (el) {
+          el.hidden = !(a || b);
+          el.querySelector('[data-badge-1]').textContent = a;
+          el.querySelector('[data-badge-2]').textContent = b;
+        });
+      }
+      d.addEventListener('input', badge); c.addEventListener('input', badge); badge();
+
+      // export: render the unscaled card off-screen at its true size
+      function download(i) {
+        var card = document.getElementById('tz-card-' + i);
+        var clone = card.cloneNode(true);
+        clone.style.transform = 'none'; clone.style.position = 'fixed'; clone.style.left = '-2400px'; clone.style.top = '0';
+        document.body.appendChild(clone);
+        // scale 1.25: the 1200 px card comes out as a 1500 x 1500 PNG
+        return html2canvas(clone, { width: 1200, height: 1200, scale: 1.25, backgroundColor: null, useCORS: true }).then(function (canvas) {
+          var a = document.createElement('a'); a.download = card.getAttribute('data-file'); a.href = canvas.toDataURL('image/png'); a.click();
+        }).finally(function () { clone.remove(); });
+      }
+      document.querySelectorAll('[data-download]').forEach(function (b) {
+        b.addEventListener('click', function () { b.disabled = true; download(b.getAttribute('data-download')).finally(function () { b.disabled = false; }); });
+      });
+      var all = document.getElementById('tz-all');
+      all.addEventListener('click', function () {
+        all.disabled = true; var ids = [].map.call(document.querySelectorAll('.tz-card'), function (el) { return el.id.replace('tz-card-', ''); });
+        ids.reduce(function (p, i) { return p.then(function () { return download(i); }); }, Promise.resolve()).finally(function () { all.disabled = false; });
+      });
+    })();
+  </script>
+</body>
+</html>

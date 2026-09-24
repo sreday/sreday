@@ -1,0 +1,1341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Teasers: SREday Amsterdam 2026 Q4</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #713660;
+      --accent: color-mix(in srgb, var(--brand) 45%, #9d7cff);          /* vivid line / icon purple */
+      --accent-soft: color-mix(in srgb, var(--brand) 25%, #e6d6ff);     /* light text purple */
+      --ink: #0e0d1f;
+    }
+    html, body { margin: 0; background: #f3f2f6; color: #111; font-family: 'Roboto', sans-serif; }
+    .tz-page { max-width: 1320px; margin: 0 auto; padding: 36px 20px 80px; }
+    .tz-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 24px; margin-bottom: 22px; }
+    .tz-brand { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--brand); font-size: .9rem; letter-spacing: .08em; text-transform: uppercase; }
+    .tz-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.7rem; margin: 4px 0 0; line-height: 1.2; }
+    .tz-sub { color: #555; font-size: .95rem; margin-top: 4px; }
+    .tz-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .tz-controls label { font-size: .8rem; color: #555; display: flex; flex-direction: column; gap: 3px; }
+    .tz-controls input { font: 500 .95rem 'Roboto', sans-serif; padding: 7px 10px; border: 1px solid #cfcfd6; border-radius: 8px; width: 130px; }
+    .tz-btn { font: 600 .9rem 'Montserrat', sans-serif; padding: 10px 18px; border-radius: 999px; border: 0; background: var(--brand); color: #fff; cursor: pointer; }
+    .tz-btn:disabled { opacity: .5; cursor: default; }
+    .tz-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 26px; }
+    .tz-slot { display: flex; flex-direction: column; gap: 10px; }
+    /* the preview shows the 1200px card scaled to the column width; the export renders the unscaled card */
+    .tz-frame { position: relative; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.14); background: var(--ink); }
+    .tz-frame .tz-card { position: absolute; top: 0; left: 0; transform-origin: 0 0; }
+    .tz-meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: .85rem; color: #555; }
+    .tz-meta b { color: #222; font-weight: 600; }
+    .tz-dl { font: 600 .8rem 'Montserrat', sans-serif; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--brand); background: #fff; color: var(--brand); cursor: pointer; white-space: nowrap; }
+    .tz-dl:hover { background: var(--brand); color: #fff; }
+
+    /* ── the card, 1200 x 1200 ────────────────────────────────────────────── */
+    .tz-card { width: 1200px; height: 1200px; position: relative; overflow: hidden; color: #fff; font-family: 'Montserrat', sans-serif;
+      background:
+        radial-gradient(60% 55% at 92% 70%, color-mix(in srgb, #c62a4a 70%, transparent) 0%, transparent 70%),
+        radial-gradient(55% 55% at 70% 20%, color-mix(in srgb, var(--brand) 85%, #6b2fd6) 0%, transparent 65%),
+        linear-gradient(160deg, #0a0c2a 0%, #171633 45%, #2a1440 100%); }
+    .tz-card::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(70% 60% at 30% 75%, rgba(10,10,30,.55), transparent 70%); }
+    .tz-card > * { position: relative; z-index: 1; }
+    .tz-logo { position: absolute; top: 60px; left: 90px; width: 820px; }
+    .tz-wordmark { font-weight: 800; font-size: 150px; line-height: 1; letter-spacing: .02em; color: transparent; -webkit-text-stroke: 4px #fff; text-transform: uppercase; white-space: nowrap; }
+    .tz-wordmark.tz-wm-long { font-size: 104px; }
+    .tz-wordmark.tz-wm-xlong { font-size: 60px; white-space: normal; line-height: 1.05; -webkit-text-stroke-width: 2.5px; letter-spacing: .04em; }
+    .tz-rule { width: 500px; height: 6px; background: var(--accent); margin: 26px 0 26px; border-radius: 3px; }
+    .tz-tagline { font-weight: 600; font-size: 36px; letter-spacing: .04em; text-transform: uppercase; color: #f1eaff; line-height: 1.15; }
+    .tz-kind { font-weight: 600; font-size: 34px; letter-spacing: .04em; text-transform: uppercase; color: var(--accent-soft); margin-top: 6px; }
+    .tz-badge { position: absolute; top: -70px; right: -70px; width: 320px; height: 320px; border-radius: 50%; background: color-mix(in srgb, var(--brand) 55%, #5b2bd6);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 70px 40px 0; box-sizing: border-box; font-weight: 800; font-size: 44px; line-height: 1.15; }
+    .tz-badge[hidden] { display: none; }
+    .tz-badge small { display: block; font-size: 40px; font-weight: 700; }
+    .tz-talk { position: absolute; top: 445px; left: 90px; right: 90px; text-align: center; font-weight: 800; font-size: 66px; line-height: 1.12; color: #e9dcff;
+      text-shadow: 0 0 28px color-mix(in srgb, var(--accent) 65%, transparent), 0 2px 6px rgba(0,0,0,.35); }
+    .tz-talk.tz-long { font-size: 54px; }
+    .tz-talk.tz-xlong { font-size: 46px; }
+    .tz-by { position: absolute; right: 420px; top: 665px; width: 520px; text-align: right; }
+    .tz-by .tz-rule { width: 280px; margin: 0 0 24px auto; }
+    .tz-by-label { font-weight: 500; font-size: 36px; color: #e6d6ff; }
+    .tz-by-name { font-weight: 800; font-size: 46px; line-height: 1.15; margin-top: 8px; }
+    .tz-by-org { font-weight: 500; font-size: 36px; color: #f1eaff; margin-top: 2px; }
+    .tz-photo { position: absolute; right: 100px; top: 590px; width: 300px; height: 300px; border-radius: 50%; overflow: hidden; background: #2b2b3c; box-shadow: 0 0 0 6px rgba(255,255,255,.08), 0 20px 50px rgba(0,0,0,.45); }
+    .tz-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; filter: grayscale(1); display: block; }
+    .tz-foot { position: absolute; left: 60px; right: 60px; bottom: 60px; height: 210px; border: 3px solid var(--accent); border-radius: 44px; background: rgba(40,20,80,.35);
+      display: flex; align-items: center; padding: 0 44px; box-sizing: border-box; gap: 28px; }
+    .tz-foot-item { display: flex; align-items: center; gap: 22px; flex: 0 0 auto; }
+    .tz-foot-item.tz-foot-place { flex: 1 1 0; min-width: 0; }
+    .tz-foot-item svg { width: 92px; height: 92px; flex: 0 0 auto; stroke: var(--accent); fill: none; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+    .tz-foot-date { font-weight: 700; font-size: 34px; white-space: nowrap; }
+    .tz-foot-sep { width: 3px; height: 130px; background: var(--accent); border-radius: 2px; flex: 0 0 auto; }
+    .tz-foot-venue { font-weight: 500; font-size: 28px; line-height: 1.2; min-width: 0; flex: 1 1 auto; }
+    .tz-foot-venue .tz-foot-street { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .tz-foot-venue b { font-weight: 800; }
+    @media (max-width: 575.98px) { .tz-grid { grid-template-columns: 1fr; } .tz-controls input { width: 110px; } }
+  </style>
+</head>
+<body>
+  <div class="tz-page">
+    <div class="tz-head">
+      <div>
+        <div class="tz-brand">SREday · teasers</div>
+        <h1 class="tz-title">SREday Amsterdam 2026 Q4</h1>
+        <div class="tz-sub">November 2, 2026 · ING Cedar - Hosting Sponsor · one card per session, exported as 1500 x 1500 px PNG. Rebuilt from talks.csv on every site build. Hidden page for the team.</div>
+      </div>
+      <div class="tz-controls">
+        <label>Badge line 1<input id="tz-discount" value="" placeholder="20% OFF"></label>
+        <label>Badge line 2<input id="tz-code" value="" placeholder="SRE20"></label>
+        <button class="tz-btn" id="tz-all" type="button">Download all PNGs</button>
+      </div>
+    </div>
+
+    <div class="tz-grid">
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-1" data-file="sreday-2026-amsterdam-q4-miko-pawlikowski.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Ten years of Kubernetes lessons, in one binary</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Miko Pawlikowski</div>
+              <div class="tz-by-org">Reliaburger</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Miko Pawlikowski.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Miko Pawlikowski</b> · Reliaburger · keynote</span><button class="tz-dl" type="button" data-download="1">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-2" data-file="sreday-2026-amsterdam-q4-ralph-meijer.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Your Dashboards Are Lying to You (And How to Make Them Tell the Truth)</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Ralph Meijer</div>
+              <div class="tz-by-org">Netdata</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Ralph Meijer.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Ralph Meijer</b> · Netdata</span><button class="tz-dl" type="button" data-download="2">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-3" data-file="sreday-2026-amsterdam-q4-costa-tsaousis.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">The Death of the Dashboard</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Costa Tsaousis</div>
+              <div class="tz-by-org">Netdata</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Costa Tsaousis.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Costa Tsaousis</b> · Netdata</span><button class="tz-dl" type="button" data-download="3">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-4" data-file="sreday-2026-amsterdam-q4-roman-gorge.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">AI-Assisted Operations for Platform Teams</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Roman Gorge</div>
+              <div class="tz-by-org">Andersen Lab</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Roman Gorge.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Roman Gorge</b> · Andersen Lab</span><button class="tz-dl" type="button" data-download="4">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-5" data-file="sreday-2026-amsterdam-q4-leo-visser.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">No 0-day required, just target the AI coding assistant!</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Leo Visser</div>
+              <div class="tz-by-org">OGD ICT-diensten</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Leo Visser.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Leo Visser</b> · OGD ICT-diensten</span><button class="tz-dl" type="button" data-download="5">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-6" data-file="sreday-2026-amsterdam-q4-daniel-afonso.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Plan for Unplanned Work: Game Days with Chaos Engineering</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Daniel Afonso</div>
+              <div class="tz-by-org">PagerDuty</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Daniel Afonso.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Daniel Afonso</b> · PagerDuty</span><button class="tz-dl" type="button" data-download="6">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-7" data-file="sreday-2026-amsterdam-q4-marcos-novelli-harispe.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">The Cost of Ephemerality: FinOps Trade-offs for Ephemeral Environments</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Marcos Novelli Harispe</div>
+              <div class="tz-by-org">LoopStudio</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Marcos Novelli Harispe.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Marcos Novelli Harispe</b> · LoopStudio</span><button class="tz-dl" type="button" data-download="7">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-8" data-file="sreday-2026-amsterdam-q4-teresa-lopes.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Operational hazards of managing PostgreSQL DBs over 100TB</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Teresa Lopes</div>
+              <div class="tz-by-org">Adyen</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Teresa Lopes.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Teresa Lopes</b> · Adyen</span><button class="tz-dl" type="button" data-download="8">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-9" data-file="sreday-2026-amsterdam-q4-bajric-sanel.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">Who Authorizes the Agent? Non-Human Identity, Trust Boundaries and Failure Containment in Autonomous Production Operations</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Bajric Sanel</div>
+              <div class="tz-by-org">VendoQ</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Bajric Sanel.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Bajric Sanel</b> · VendoQ</span><button class="tz-dl" type="button" data-download="9">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-10" data-file="sreday-2026-amsterdam-q4-gergely-daroczi.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">Data-Driven Instance Selection</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Gergely Daroczi</div>
+              <div class="tz-by-org">Spare Cores</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Gergely Daroczi.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Gergely Daroczi</b> · Spare Cores</span><button class="tz-dl" type="button" data-download="10">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-11" data-file="sreday-2026-amsterdam-q4-miko-pawlikowski.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Kill It and Watch It Come Back: Hands-on with Reliaburger</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Miko Pawlikowski</div>
+              <div class="tz-by-org">Reliaburger, SRE Author</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Miko Pawlikowski.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Miko Pawlikowski</b> · Reliaburger, SRE Author</span><button class="tz-dl" type="button" data-download="11">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-12" data-file="sreday-2026-amsterdam-q4-miko-pawlikowski.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Kill It and Watch It Come Back: Hands-on with Reliaburger</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Miko Pawlikowski</div>
+              <div class="tz-by-org">Reliaburger, SRE Author</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Miko Pawlikowski.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Miko Pawlikowski</b> · Reliaburger, SRE Author</span><button class="tz-dl" type="button" data-download="12">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-13" data-file="sreday-2026-amsterdam-q4-niek-van-raaij.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">Rehearse the Worst Day</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Niek van Raaij</div>
+              <div class="tz-by-org">Reliability Engineering Lab</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Niek van Raaij.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Niek van Raaij</b> · Reliability Engineering Lab</span><button class="tz-dl" type="button" data-download="13">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-14" data-file="sreday-2026-amsterdam-q4-ozlem-tanrikulu.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Finding the 33% Your Kubernetes Clusters Are Wasting</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Ozlem Tanrikulu</div>
+              <div class="tz-by-org">Near East University</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Ozlem Tanrikulu.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Ozlem Tanrikulu</b> · Near East University</span><button class="tz-dl" type="button" data-download="14">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-15" data-file="sreday-2026-amsterdam-q4-ankit-asthana-dastan-oryngali.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Beyond API Keys: Fine-Grained Authorization with OpenFGA</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Ankit Asthana & Dastan Oryngali</div>
+              <div class="tz-by-org">SQUER</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Ankit Asthana & Dastan Oryngali.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Ankit Asthana & Dastan Oryngali</b> · SQUER</span><button class="tz-dl" type="button" data-download="15">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-16" data-file="sreday-2026-amsterdam-q4-caner-sahan.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">AskPeter: Turning Production Data into Engineering Decisions</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Caner Sahan</div>
+              <div class="tz-by-org">NCR Voyix</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Caner Sahan.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Caner Sahan</b> · NCR Voyix</span><button class="tz-dl" type="button" data-download="16">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-17" data-file="sreday-2026-amsterdam-q4-diego-braga.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">Questions to Ask Before You Buy an SRE Agent</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Diego Braga</div>
+              <div class="tz-by-org">Krateo</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Diego Braga.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Diego Braga</b> · Krateo</span><button class="tz-dl" type="button" data-download="17">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-18" data-file="sreday-2026-amsterdam-q4-maxim-schepelin.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">SRE concents every engineering leader should know</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Maxim Schepelin</div>
+              <div class="tz-by-org">Booking.com</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Maxim Schepelin.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Maxim Schepelin</b> · Booking.com</span><button class="tz-dl" type="button" data-download="18">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-19" data-file="sreday-2026-amsterdam-q4-thijs-feryn.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">What's new in Varnish: new features in the high-performance caching proxy</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Thijs Feryn</div>
+              <div class="tz-by-org">Varnish Software</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Thijs Feryn.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Thijs Feryn</b> · Varnish Software</span><button class="tz-dl" type="button" data-download="19">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-20" data-file="sreday-2026-amsterdam-q4-judith-redi.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">Opentelemetery as the standard for Agentic Observability & moving to self healing systems</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Judith Redi</div>
+              <div class="tz-by-org">Dash0</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Judith Redi.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Judith Redi</b> · Dash0</span><button class="tz-dl" type="button" data-download="20">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-21" data-file="sreday-2026-amsterdam-q4-muharrem-burak-unuvar.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">Agentic Infra Ops & SRE Agents in Action</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Muharrem Burak Unuvar</div>
+              <div class="tz-by-org">Microsoft</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Muharrem Burak Unuvar.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Muharrem Burak Unuvar</b> · Microsoft</span><button class="tz-dl" type="button" data-download="21">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-22" data-file="sreday-2026-amsterdam-q4-ario-afrashteh.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Engineering the Harness: From Vibe Coding to Verified Code Generation</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Ario Afrashteh</div>
+              <div class="tz-by-org">Rabobank</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Ario Afrashteh.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Ario Afrashteh</b> · Rabobank</span><button class="tz-dl" type="button" data-download="22">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-23" data-file="sreday-2026-amsterdam-q4-iulian-meghea.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">Secrets are just encrypted config</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Iulian Meghea</div>
+              <div class="tz-by-org">Plumelo</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Iulian Meghea.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Iulian Meghea</b> · Plumelo</span><button class="tz-dl" type="button" data-download="23">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-24" data-file="sreday-2026-amsterdam-q4-jacob-duijzer.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">What If This Dependency Fails? Learning Reliability Through Chaos Engineering</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Jacob Duijzer</div>
+              <div class="tz-by-org">BIMcollab</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Jacob Duijzer.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Jacob Duijzer</b> · BIMcollab</span><button class="tz-dl" type="button" data-download="24">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-25" data-file="sreday-2026-amsterdam-q4-ricard-bejarano.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk">SRE for the homelab</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Ricard Bejarano</div>
+              <div class="tz-by-org">Cisco</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Ricard Bejarano.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Ricard Bejarano</b> · Cisco</span><button class="tz-dl" type="button" data-download="25">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-26" data-file="sreday-2026-amsterdam-q4-renato-losio.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Five Hard Lessons from Five Years of So-Called Serverless Databases</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Renato Losio</div>
+              <div class="tz-by-org">Funambol</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Renato Losio.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Renato Losio</b> · Funambol</span><button class="tz-dl" type="button" data-download="26">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-27" data-file="sreday-2026-amsterdam-q4-albert-tanure.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">The Agent That Prevents Incidents, Not Just Fixes Them</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Albert Tanure</div>
+              <div class="tz-by-org">Microsoft</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Albert Tanure.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Albert Tanure</b> · Microsoft</span><button class="tz-dl" type="button" data-download="27">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-28" data-file="sreday-2026-amsterdam-q4-mladen-maric.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">Securing the Vibe Coding Era: Local-First Security Gates for AI-Generated Code</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Mladen Maric</div>
+              <div class="tz-by-org">lomo.dev</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Mladen Maric.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Mladen Maric</b> · lomo.dev</span><button class="tz-dl" type="button" data-download="28">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-29" data-file="sreday-2026-amsterdam-q4-luca-berton.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">The GPU Is Not Your SLO: Reliability Engineering for Production AI</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Luca Berton</div>
+              <div class="tz-by-org">The Production AI Expert</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Luca Berton.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Luca Berton</b> · The Production AI Expert</span><button class="tz-dl" type="button" data-download="29">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-30" data-file="sreday-2026-amsterdam-q4-anand-shukla.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">Confessions of an Engineers Therapist: Replacing Pipeline Hell with Centralized, Closed-Loop Heaven</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Anand Shukla</div>
+              <div class="tz-by-org">ING</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Anand Shukla.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Anand Shukla</b> · ING</span><button class="tz-dl" type="button" data-download="30">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-31" data-file="sreday-2026-amsterdam-q4-nati-cohen.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">Understanding Performance Regression With APerf</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Nati Cohen</div>
+              <div class="tz-by-org">AWS</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Nati Cohen.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Nati Cohen</b> · AWS</span><button class="tz-dl" type="button" data-download="31">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-32" data-file="sreday-2026-amsterdam-q4-rob-akershoek.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">How to Make Your IT Flow: 7 Essential Flows of Digital Delivery</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Rob Akershoek</div>
+              <div class="tz-by-org">DXC Technology</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Rob Akershoek.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Rob Akershoek</b> · DXC Technology</span><button class="tz-dl" type="button" data-download="32">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-33" data-file="sreday-2026-amsterdam-q4-giovanni-pepe-razvan-mihai-cicu.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">From vendor driven monitoring to open-source observability</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Giovanni Pepe & Razvan Mihai Cicu</div>
+              <div class="tz-by-org">Uber</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Giovanni Pepe & Razvan Mihai Cicu.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Giovanni Pepe & Razvan Mihai Cicu</b> · Uber</span><button class="tz-dl" type="button" data-download="33">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-34" data-file="sreday-2026-amsterdam-q4-denys-zhak.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-long">What AWS Lambda Was Hiding: Runtime Assumptions Exposed by a Migration</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Denys Zhak</div>
+              <div class="tz-by-org">Imubit</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Denys Zhak.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Denys Zhak</b> · Imubit</span><button class="tz-dl" type="button" data-download="34">Download PNG</button></div>
+      </div>
+      
+      <div class="tz-slot">
+        <div class="tz-frame">
+          <div class="tz-card" id="tz-card-35" data-file="sreday-2026-amsterdam-q4-aliaksandr-valialkin.png">
+            <div class="tz-logo">
+              <div class="tz-wordmark">SRE DAY</div>
+              <div class="tz-rule"></div>
+              <div class="tz-tagline">Site Reliability, DevOps and Cloud</div>
+              <div class="tz-kind">In-person conference</div>
+            </div>
+            <div class="tz-badge" data-badge hidden><span data-badge-1></span><small data-badge-2></small></div>
+            <div class="tz-talk tz-xlong">How to Create a Database Optimized for Petabytes of Logs and Wide Events</div>
+            <div class="tz-by">
+              <div class="tz-rule"></div>
+              <div class="tz-by-label">Session by:</div>
+              <div class="tz-by-name">Aliaksandr Valialkin</div>
+              <div class="tz-by-org">VictoriaMetrics</div>
+            </div>
+            <div class="tz-photo"><img src="../../speakers/Aliaksandr Valialkin.png" alt="" crossorigin="anonymous"></div>
+            <div class="tz-foot">
+              <div class="tz-foot-item">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="14" width="48" height="42" rx="6"/><path d="M8 26h48M20 8v12M44 8v12"/><path d="M20 38h6M29 38h6M38 38h6M20 47h6M29 47h6M38 47h6" stroke-width="5"/></svg>
+                <div class="tz-foot-date">November 2, 2026</div>
+              </div>
+              <div class="tz-foot-sep"></div>
+              <div class="tz-foot-item tz-foot-place">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 58s-20-17-20-32a20 20 0 0 1 40 0c0 15-20 32-20 32z"/><circle cx="32" cy="26" r="8"/></svg>
+                <div class="tz-foot-venue"><div>ING Cedar - Hosting Sponsor</div><div class="tz-foot-street">Bijlmerdreef 106</div><b>1102 CT AMSTERDAM, NETHERLANDS</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tz-meta"><span><b>Aliaksandr Valialkin</b> · VictoriaMetrics</span><button class="tz-dl" type="button" data-download="35">Download PNG</button></div>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    (function () {
+      // scale every 1200px card into its preview frame
+      function fit() {
+        document.querySelectorAll('.tz-frame').forEach(function (f) {
+          var w = f.clientWidth; if (!w) return;
+          f.querySelector('.tz-card').style.transform = 'scale(' + (w / 1200) + ')';
+        });
+      }
+      fit(); window.addEventListener('resize', fit); window.addEventListener('load', fit);
+      if (window.ResizeObserver) { var ro = new ResizeObserver(fit); document.querySelectorAll('.tz-frame').forEach(function (f) { ro.observe(f); }); }
+
+      // badge: both lines typed at the top, applied to every card; empty = no badge
+      var d = document.getElementById('tz-discount'), c = document.getElementById('tz-code');
+      function badge() {
+        var a = d.value.trim(), b = c.value.trim();
+        document.querySelectorAll('[data-badge]').forEach(function (el) {
+          el.hidden = !(a || b);
+          el.querySelector('[data-badge-1]').textContent = a;
+          el.querySelector('[data-badge-2]').textContent = b;
+        });
+      }
+      d.addEventListener('input', badge); c.addEventListener('input', badge); badge();
+
+      // export: render the unscaled card off-screen at its true size
+      function download(i) {
+        var card = document.getElementById('tz-card-' + i);
+        var clone = card.cloneNode(true);
+        clone.style.transform = 'none'; clone.style.position = 'fixed'; clone.style.left = '-2400px'; clone.style.top = '0';
+        document.body.appendChild(clone);
+        // scale 1.25: the 1200 px card comes out as a 1500 x 1500 PNG
+        return html2canvas(clone, { width: 1200, height: 1200, scale: 1.25, backgroundColor: null, useCORS: true }).then(function (canvas) {
+          var a = document.createElement('a'); a.download = card.getAttribute('data-file'); a.href = canvas.toDataURL('image/png'); a.click();
+        }).finally(function () { clone.remove(); });
+      }
+      document.querySelectorAll('[data-download]').forEach(function (b) {
+        b.addEventListener('click', function () { b.disabled = true; download(b.getAttribute('data-download')).finally(function () { b.disabled = false; }); });
+      });
+      var all = document.getElementById('tz-all');
+      all.addEventListener('click', function () {
+        all.disabled = true; var ids = [].map.call(document.querySelectorAll('.tz-card'), function (el) { return el.id.replace('tz-card-', ''); });
+        ids.reduce(function (p, i) { return p.then(function () { return download(i); }); }, Promise.resolve()).finally(function () { all.disabled = false; });
+      });
+    })();
+  </script>
+</body>
+</html>
