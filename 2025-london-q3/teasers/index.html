@@ -26,6 +26,8 @@
     .tz-controls input { font: 500 .95rem 'Roboto', sans-serif; padding: 7px 10px; border: 1px solid #cfcfd6; border-radius: 8px; width: 130px; }
     .tz-btn { font: 600 .9rem 'Montserrat', sans-serif; padding: 10px 18px; border-radius: 999px; border: 0; background: var(--brand); color: #fff; cursor: pointer; }
     .tz-btn:disabled { opacity: .5; cursor: default; }
+    .tz-hint { flex-basis: 100%; font-size: .78rem; color: #777; }
+    .tz-hint code { font-size: .78rem; }
     .tz-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 26px; }
     .tz-slot { display: flex; flex-direction: column; gap: 10px; }
     /* the preview shows the 1200px card scaled to the column width; the export renders the unscaled card */
@@ -33,7 +35,7 @@
     .tz-frame .tz-card { position: absolute; top: 0; left: 0; transform-origin: 0 0; }
     .tz-meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: .85rem; color: #555; }
     .tz-meta b { color: #222; font-weight: 600; }
-    .tz-dl { font: 600 .8rem 'Montserrat', sans-serif; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--brand); background: #fff; color: var(--brand); cursor: pointer; white-space: nowrap; }
+    .tz-dl { text-decoration: none; font: 600 .8rem 'Montserrat', sans-serif; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--brand); background: #fff; color: var(--brand); cursor: pointer; white-space: nowrap; }
     .tz-dl:hover { background: var(--brand); color: #fff; }
 
     /* ── the card, 1200 x 1200 ────────────────────────────────────────────── */
@@ -78,6 +80,14 @@
     .tz-foot-venue .tz-foot-street { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .tz-foot-venue b { font-weight: 800; }
     @media (max-width: 575.98px) { .tz-grid { grid-template-columns: 1fr; } .tz-controls input { width: 110px; } }
+    /* sheet mode (#sheet-<start>-<count>): what the build-time renderer screenshots - the chosen cards stacked at 1200 px, nothing else */
+    body.tz-sheet { background: #000; }
+    .tz-sheet .tz-page { max-width: none; padding: 0; margin: 0; }
+    .tz-sheet .tz-head, .tz-sheet .tz-meta, .tz-sheet .tz-slot.tz-off, .tz-sheet .tz-empty { display: none; }
+    .tz-sheet .tz-grid { display: block; }
+    .tz-sheet .tz-slot { gap: 0; }
+    .tz-sheet .tz-frame { width: 1200px; height: 1200px; aspect-ratio: auto; border-radius: 0; box-shadow: none; }
+    .tz-sheet .tz-frame .tz-card { transform: none !important; }
   </style>
 </head>
 <body>
@@ -86,12 +96,13 @@
       <div>
         <div class="tz-brand">SREday · teasers</div>
         <h1 class="tz-title">SREday London 2025 Q3</h1>
-        <div class="tz-sub">September 18-19, 2025 · Everyman Canary Wharf · one card per session, exported as 1500 x 1500 px PNG. Rebuilt from talks.csv on every site build. Hidden page for the team.</div>
+        <div class="tz-sub">September 18-19, 2025 · Everyman Canary Wharf · one card per session, a 1500 x 1500 px PNG each, rendered on every site build from talks.csv. Hidden page for the team.</div>
       </div>
       <div class="tz-controls">
-        <label>Badge line 1<input id="tz-discount" value="" placeholder="20% OFF"></label>
-        <label>Badge line 2<input id="tz-code" value="" placeholder="SRE20"></label>
+        <label>Badge line 1 (preview)<input id="tz-discount" value="" placeholder="20% OFF"></label>
+        <label>Badge line 2 (preview)<input id="tz-code" value="" placeholder="SRE20"></label>
         <button class="tz-btn" id="tz-all" type="button">Download all PNGs</button>
+        <div class="tz-hint">The PNGs carry the badge from metadata.yml (<code>teaser_discount</code> / <code>teaser_code</code>); the inputs only preview it here.</div>
       </div>
     </div>
 
@@ -128,7 +139,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Miko Pawlikowski</b> · SRE Author · keynote</span><button class="tz-dl" type="button" data-download="1">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Miko Pawlikowski</b> · SRE Author · keynote</span><a class="tz-dl" href="./sreday-2025-london-q3-miko-pawlikowski.png" download="sreday-2025-london-q3-miko-pawlikowski.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -162,7 +173,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Peter Marshall</b> · Imply · keynote</span><button class="tz-dl" type="button" data-download="2">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Peter Marshall</b> · Imply · keynote</span><a class="tz-dl" href="./sreday-2025-london-q3-peter-marshall.png" download="sreday-2025-london-q3-peter-marshall.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -196,7 +207,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Andrei Pokhilko</b> · Komodor · keynote</span><button class="tz-dl" type="button" data-download="3">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Andrei Pokhilko</b> · Komodor · keynote</span><a class="tz-dl" href="./sreday-2025-london-q3-andrei-pokhilko.png" download="sreday-2025-london-q3-andrei-pokhilko.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -230,7 +241,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Leena Mooneeram & Jorge Lainfiesta</b> · Chainalysis & Rootly · keynote</span><button class="tz-dl" type="button" data-download="4">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Leena Mooneeram & Jorge Lainfiesta</b> · Chainalysis & Rootly · keynote</span><a class="tz-dl" href="./sreday-2025-london-q3-leena-mooneeram-jorge-lainfiesta.png" download="sreday-2025-london-q3-leena-mooneeram-jorge-lainfiesta.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -264,7 +275,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Kim-Norman Sahm</b> · CAST AI · keynote</span><button class="tz-dl" type="button" data-download="5">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Kim-Norman Sahm</b> · CAST AI · keynote</span><a class="tz-dl" href="./sreday-2025-london-q3-kim-norman-sahm.png" download="sreday-2025-london-q3-kim-norman-sahm.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -298,7 +309,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Piotr Zaniewski</b> · vCluster Labs · keynote</span><button class="tz-dl" type="button" data-download="6">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Piotr Zaniewski</b> · vCluster Labs · keynote</span><a class="tz-dl" href="./sreday-2025-london-q3-piotr-zaniewski.png" download="sreday-2025-london-q3-piotr-zaniewski.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -332,7 +343,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Kim-Norman Sahm</b> · CAST AI</span><button class="tz-dl" type="button" data-download="7">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Kim-Norman Sahm</b> · CAST AI</span><a class="tz-dl" href="./sreday-2025-london-q3-kim-norman-sahm.png" download="sreday-2025-london-q3-kim-norman-sahm.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -366,7 +377,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Divine Odazie & Shivadeep Gundoju</b> · EverythingDevOps & ING</span><button class="tz-dl" type="button" data-download="8">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Divine Odazie & Shivadeep Gundoju</b> · EverythingDevOps & ING</span><a class="tz-dl" href="./sreday-2025-london-q3-divine-odazie-shivadeep-gundoju.png" download="sreday-2025-london-q3-divine-odazie-shivadeep-gundoju.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -400,7 +411,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Dominik Süß</b> · Grafana Labs</span><button class="tz-dl" type="button" data-download="9">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Dominik Süß</b> · Grafana Labs</span><a class="tz-dl" href="./sreday-2025-london-q3-dominik-s.png" download="sreday-2025-london-q3-dominik-s.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -434,7 +445,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Dheeraj Bandaru & Francois Martel</b> · Microsoft & Neubird.ai</span><button class="tz-dl" type="button" data-download="10">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Dheeraj Bandaru & Francois Martel</b> · Microsoft & Neubird.ai</span><a class="tz-dl" href="./sreday-2025-london-q3-dheeraj-bandaru-francois-martel.png" download="sreday-2025-london-q3-dheeraj-bandaru-francois-martel.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -468,7 +479,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Rory Crispin</b> · ClickHouse</span><button class="tz-dl" type="button" data-download="11">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Rory Crispin</b> · ClickHouse</span><a class="tz-dl" href="./sreday-2025-london-q3-rory-crispin.png" download="sreday-2025-london-q3-rory-crispin.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -502,7 +513,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Sean Behan</b> · Independent</span><button class="tz-dl" type="button" data-download="12">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Sean Behan</b> · Independent</span><a class="tz-dl" href="./sreday-2025-london-q3-sean-behan.png" download="sreday-2025-london-q3-sean-behan.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -536,7 +547,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Ayd Asraf</b> · Auto1 Group</span><button class="tz-dl" type="button" data-download="13">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Ayd Asraf</b> · Auto1 Group</span><a class="tz-dl" href="./sreday-2025-london-q3-ayd-asraf.png" download="sreday-2025-london-q3-ayd-asraf.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -570,7 +581,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Scott Rosenberg</b> · TeraSky</span><button class="tz-dl" type="button" data-download="14">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Scott Rosenberg</b> · TeraSky</span><a class="tz-dl" href="./sreday-2025-london-q3-scott-rosenberg.png" download="sreday-2025-london-q3-scott-rosenberg.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -604,7 +615,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Simon Hanmer</b> · GlobalLogic</span><button class="tz-dl" type="button" data-download="15">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Simon Hanmer</b> · GlobalLogic</span><a class="tz-dl" href="./sreday-2025-london-q3-simon-hanmer.png" download="sreday-2025-london-q3-simon-hanmer.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -638,7 +649,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Stratos Kourtzanidis</b> · Microsoft</span><button class="tz-dl" type="button" data-download="16">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Stratos Kourtzanidis</b> · Microsoft</span><a class="tz-dl" href="./sreday-2025-london-q3-stratos-kourtzanidis.png" download="sreday-2025-london-q3-stratos-kourtzanidis.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -672,7 +683,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Marcus Tenorio</b> · Bitso</span><button class="tz-dl" type="button" data-download="17">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Marcus Tenorio</b> · Bitso</span><a class="tz-dl" href="./sreday-2025-london-q3-marcus-tenorio.png" download="sreday-2025-london-q3-marcus-tenorio.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -706,7 +717,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Bharav Patel</b> · AWS</span><button class="tz-dl" type="button" data-download="18">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Bharav Patel</b> · AWS</span><a class="tz-dl" href="./sreday-2025-london-q3-bharav-patel.png" download="sreday-2025-london-q3-bharav-patel.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -740,7 +751,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Prithvi Raj</b> · Mirantis</span><button class="tz-dl" type="button" data-download="19">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Prithvi Raj</b> · Mirantis</span><a class="tz-dl" href="./sreday-2025-london-q3-prithvi-raj.png" download="sreday-2025-london-q3-prithvi-raj.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -774,7 +785,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Ceyda Duzgec</b> · Sufle</span><button class="tz-dl" type="button" data-download="20">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Ceyda Duzgec</b> · Sufle</span><a class="tz-dl" href="./sreday-2025-london-q3-ceyda-duzgec.png" download="sreday-2025-london-q3-ceyda-duzgec.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -808,7 +819,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Cynthia Akiotu</b> · Independent</span><button class="tz-dl" type="button" data-download="21">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Cynthia Akiotu</b> · Independent</span><a class="tz-dl" href="./sreday-2025-london-q3-cynthia-akiotu.png" download="sreday-2025-london-q3-cynthia-akiotu.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -842,7 +853,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Diana Todea</b> · VictoriaMetrics</span><button class="tz-dl" type="button" data-download="22">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Diana Todea</b> · VictoriaMetrics</span><a class="tz-dl" href="./sreday-2025-london-q3-diana-todea.png" download="sreday-2025-london-q3-diana-todea.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -876,7 +887,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Amit Kushwaha</b> · SambaNova Systems</span><button class="tz-dl" type="button" data-download="23">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Amit Kushwaha</b> · SambaNova Systems</span><a class="tz-dl" href="./sreday-2025-london-q3-amit-kushwaha.png" download="sreday-2025-london-q3-amit-kushwaha.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -910,7 +921,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Dima Malyshenko</b> · countX</span><button class="tz-dl" type="button" data-download="24">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Dima Malyshenko</b> · countX</span><a class="tz-dl" href="./sreday-2025-london-q3-dima-malyshenko.png" download="sreday-2025-london-q3-dima-malyshenko.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -944,7 +955,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Pooja Mistry</b> · Postman</span><button class="tz-dl" type="button" data-download="25">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Pooja Mistry</b> · Postman</span><a class="tz-dl" href="./sreday-2025-london-q3-pooja-mistry.png" download="sreday-2025-london-q3-pooja-mistry.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -978,7 +989,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Carly Richmond</b> · Elastic</span><button class="tz-dl" type="button" data-download="26">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Carly Richmond</b> · Elastic</span><a class="tz-dl" href="./sreday-2025-london-q3-carly-richmond.png" download="sreday-2025-london-q3-carly-richmond.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1012,7 +1023,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Michael Cote</b> · Tanzu</span><button class="tz-dl" type="button" data-download="27">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Michael Cote</b> · Tanzu</span><a class="tz-dl" href="./sreday-2025-london-q3-michael-cote.png" download="sreday-2025-london-q3-michael-cote.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1046,7 +1057,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Mitul Jain</b> · H&M Group</span><button class="tz-dl" type="button" data-download="28">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Mitul Jain</b> · H&M Group</span><a class="tz-dl" href="./sreday-2025-london-q3-mitul-jain.png" download="sreday-2025-london-q3-mitul-jain.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1080,7 +1091,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Ashish Upadhyay</b> · Ministry of Housing, Communities and Local Government</span><button class="tz-dl" type="button" data-download="29">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Ashish Upadhyay</b> · Ministry of Housing, Communities and Local Government</span><a class="tz-dl" href="./sreday-2025-london-q3-ashish-upadhyay.png" download="sreday-2025-london-q3-ashish-upadhyay.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1114,7 +1125,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Martin McLarnon</b> · Coralogix</span><button class="tz-dl" type="button" data-download="30">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Martin McLarnon</b> · Coralogix</span><a class="tz-dl" href="./sreday-2025-london-q3-martin-mclarnon.png" download="sreday-2025-london-q3-martin-mclarnon.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1148,7 +1159,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Roman Khavronenko</b> · VictoriaMetrics</span><button class="tz-dl" type="button" data-download="31">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Roman Khavronenko</b> · VictoriaMetrics</span><a class="tz-dl" href="./sreday-2025-london-q3-roman-khavronenko.png" download="sreday-2025-london-q3-roman-khavronenko.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1182,7 +1193,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Joris Bonnefoy</b> · Datadog</span><button class="tz-dl" type="button" data-download="32">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Joris Bonnefoy</b> · Datadog</span><a class="tz-dl" href="./sreday-2025-london-q3-joris-bonnefoy.png" download="sreday-2025-london-q3-joris-bonnefoy.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1216,7 +1227,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Mayank Goyal</b> · Okta</span><button class="tz-dl" type="button" data-download="33">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Mayank Goyal</b> · Okta</span><a class="tz-dl" href="./sreday-2025-london-q3-mayank-goyal.png" download="sreday-2025-london-q3-mayank-goyal.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1250,7 +1261,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Jamie Pullinger</b> · Telefonica Tech</span><button class="tz-dl" type="button" data-download="34">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Jamie Pullinger</b> · Telefonica Tech</span><a class="tz-dl" href="./sreday-2025-london-q3-jamie-pullinger.png" download="sreday-2025-london-q3-jamie-pullinger.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1284,7 +1295,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Stephan Mousset</b> · ING</span><button class="tz-dl" type="button" data-download="35">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Stephan Mousset</b> · ING</span><a class="tz-dl" href="./sreday-2025-london-q3-stephan-mousset.png" download="sreday-2025-london-q3-stephan-mousset.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1318,7 +1329,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Alecia Cotterell</b> · Teesside University London</span><button class="tz-dl" type="button" data-download="36">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Alecia Cotterell</b> · Teesside University London</span><a class="tz-dl" href="./sreday-2025-london-q3-alecia-cotterell.png" download="sreday-2025-london-q3-alecia-cotterell.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1352,7 +1363,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Stuart Clark</b> · Spotify</span><button class="tz-dl" type="button" data-download="37">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Stuart Clark</b> · Spotify</span><a class="tz-dl" href="./sreday-2025-london-q3-stuart-clark.png" download="sreday-2025-london-q3-stuart-clark.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1386,7 +1397,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Harel Safra</b> · Riskified</span><button class="tz-dl" type="button" data-download="38">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Harel Safra</b> · Riskified</span><a class="tz-dl" href="./sreday-2025-london-q3-harel-safra.png" download="sreday-2025-london-q3-harel-safra.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1420,7 +1431,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Federico Fregosi</b> · Wise</span><button class="tz-dl" type="button" data-download="39">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Federico Fregosi</b> · Wise</span><a class="tz-dl" href="./sreday-2025-london-q3-federico-fregosi.png" download="sreday-2025-london-q3-federico-fregosi.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1454,7 +1465,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Dale McDiarmid</b> · ClickHouse</span><button class="tz-dl" type="button" data-download="40">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Dale McDiarmid</b> · ClickHouse</span><a class="tz-dl" href="./sreday-2025-london-q3-dale-mcdiarmid.png" download="sreday-2025-london-q3-dale-mcdiarmid.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1488,7 +1499,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Josh Lee</b> · Altinity</span><button class="tz-dl" type="button" data-download="41">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Josh Lee</b> · Altinity</span><a class="tz-dl" href="./sreday-2025-london-q3-josh-lee.png" download="sreday-2025-london-q3-josh-lee.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1522,7 +1533,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Marie Cruz</b> · Grafana Labs</span><button class="tz-dl" type="button" data-download="42">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Marie Cruz</b> · Grafana Labs</span><a class="tz-dl" href="./sreday-2025-london-q3-marie-cruz.png" download="sreday-2025-london-q3-marie-cruz.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1556,7 +1567,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Dave McAllister</b> · NGINX</span><button class="tz-dl" type="button" data-download="43">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Dave McAllister</b> · NGINX</span><a class="tz-dl" href="./sreday-2025-london-q3-dave-mcallister.png" download="sreday-2025-london-q3-dave-mcallister.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1590,7 +1601,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Frederic G. Marand</b> · OSInet</span><button class="tz-dl" type="button" data-download="44">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Frederic G. Marand</b> · OSInet</span><a class="tz-dl" href="./sreday-2025-london-q3-frederic-g-marand.png" download="sreday-2025-london-q3-frederic-g-marand.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1624,14 +1635,13 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Meletius Mgbeodichimma Igbokwe</b></span><button class="tz-dl" type="button" data-download="45">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Meletius Mgbeodichimma Igbokwe</b></span><a class="tz-dl" href="./sreday-2025-london-q3-meletius-mgbeodichimma-igbokwe.png" download="sreday-2025-london-q3-meletius-mgbeodichimma-igbokwe.png">Download PNG</a></div>
       </div>
       
     </div>
     
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>
     (function () {
       // scale every 1200px card into its preview frame
@@ -1656,24 +1666,22 @@
       }
       d.addEventListener('input', badge); c.addEventListener('input', badge); badge();
 
-      // export: render the unscaled card off-screen at its true size
-      function download(i) {
-        var card = document.getElementById('tz-card-' + i);
-        var clone = card.cloneNode(true);
-        clone.style.transform = 'none'; clone.style.position = 'fixed'; clone.style.left = '-2400px'; clone.style.top = '0';
-        document.body.appendChild(clone);
-        // scale 1.25: the 1200 px card comes out as a 1500 x 1500 PNG
-        return html2canvas(clone, { width: 1200, height: 1200, scale: 1.25, backgroundColor: null, useCORS: true }).then(function (canvas) {
-          var a = document.createElement('a'); a.download = card.getAttribute('data-file'); a.href = canvas.toDataURL('image/png'); a.click();
-        }).finally(function () { clone.remove(); });
+      // sheet mode for the build-time renderer: #sheet-<start>-<count> keeps only those cards, unscaled
+      var m = /^#sheet-(\d+)-(\d+)$/.exec(location.hash);
+      if (m) {
+        var from = +m[1], to = from + +m[2];
+        document.body.classList.add('tz-sheet');
+        document.querySelectorAll('.tz-slot').forEach(function (s, i) { if (i < from || i >= to) s.classList.add('tz-off'); });
+        document.querySelectorAll('.tz-frame .tz-card').forEach(function (c) { c.style.transform = 'none'; });
       }
-      document.querySelectorAll('[data-download]').forEach(function (b) {
-        b.addEventListener('click', function () { b.disabled = true; download(b.getAttribute('data-download')).finally(function () { b.disabled = false; }); });
-      });
+
+      // "Download all": click every card's link in turn (the browser asks once to allow multiple downloads)
       var all = document.getElementById('tz-all');
       all.addEventListener('click', function () {
-        all.disabled = true; var ids = [].map.call(document.querySelectorAll('.tz-card'), function (el) { return el.id.replace('tz-card-', ''); });
-        ids.reduce(function (p, i) { return p.then(function () { return download(i); }); }, Promise.resolve()).finally(function () { all.disabled = false; });
+        all.disabled = true;
+        var links = [].slice.call(document.querySelectorAll('a.tz-dl'));
+        links.forEach(function (a, i) { setTimeout(function () { a.click(); if (i === links.length - 1) all.disabled = false; }, i * 400); });
+        if (!links.length) all.disabled = false;
       });
     })();
   </script>

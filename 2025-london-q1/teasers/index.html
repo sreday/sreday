@@ -26,6 +26,8 @@
     .tz-controls input { font: 500 .95rem 'Roboto', sans-serif; padding: 7px 10px; border: 1px solid #cfcfd6; border-radius: 8px; width: 130px; }
     .tz-btn { font: 600 .9rem 'Montserrat', sans-serif; padding: 10px 18px; border-radius: 999px; border: 0; background: var(--brand); color: #fff; cursor: pointer; }
     .tz-btn:disabled { opacity: .5; cursor: default; }
+    .tz-hint { flex-basis: 100%; font-size: .78rem; color: #777; }
+    .tz-hint code { font-size: .78rem; }
     .tz-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 26px; }
     .tz-slot { display: flex; flex-direction: column; gap: 10px; }
     /* the preview shows the 1200px card scaled to the column width; the export renders the unscaled card */
@@ -33,7 +35,7 @@
     .tz-frame .tz-card { position: absolute; top: 0; left: 0; transform-origin: 0 0; }
     .tz-meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: .85rem; color: #555; }
     .tz-meta b { color: #222; font-weight: 600; }
-    .tz-dl { font: 600 .8rem 'Montserrat', sans-serif; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--brand); background: #fff; color: var(--brand); cursor: pointer; white-space: nowrap; }
+    .tz-dl { text-decoration: none; font: 600 .8rem 'Montserrat', sans-serif; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--brand); background: #fff; color: var(--brand); cursor: pointer; white-space: nowrap; }
     .tz-dl:hover { background: var(--brand); color: #fff; }
 
     /* ── the card, 1200 x 1200 ────────────────────────────────────────────── */
@@ -78,6 +80,14 @@
     .tz-foot-venue .tz-foot-street { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .tz-foot-venue b { font-weight: 800; }
     @media (max-width: 575.98px) { .tz-grid { grid-template-columns: 1fr; } .tz-controls input { width: 110px; } }
+    /* sheet mode (#sheet-<start>-<count>): what the build-time renderer screenshots - the chosen cards stacked at 1200 px, nothing else */
+    body.tz-sheet { background: #000; }
+    .tz-sheet .tz-page { max-width: none; padding: 0; margin: 0; }
+    .tz-sheet .tz-head, .tz-sheet .tz-meta, .tz-sheet .tz-slot.tz-off, .tz-sheet .tz-empty { display: none; }
+    .tz-sheet .tz-grid { display: block; }
+    .tz-sheet .tz-slot { gap: 0; }
+    .tz-sheet .tz-frame { width: 1200px; height: 1200px; aspect-ratio: auto; border-radius: 0; box-shadow: none; }
+    .tz-sheet .tz-frame .tz-card { transform: none !important; }
   </style>
 </head>
 <body>
@@ -86,12 +96,13 @@
       <div>
         <div class="tz-brand">SREday · teasers</div>
         <h1 class="tz-title">SREday London 2025 Q1</h1>
-        <div class="tz-sub">March 27-28, 2025 · Everyman Canary Wharf · one card per session, exported as 1500 x 1500 px PNG. Rebuilt from talks.csv on every site build. Hidden page for the team.</div>
+        <div class="tz-sub">March 27-28, 2025 · Everyman Canary Wharf · one card per session, a 1500 x 1500 px PNG each, rendered on every site build from talks.csv. Hidden page for the team.</div>
       </div>
       <div class="tz-controls">
-        <label>Badge line 1<input id="tz-discount" value="" placeholder="20% OFF"></label>
-        <label>Badge line 2<input id="tz-code" value="" placeholder="SRE20"></label>
+        <label>Badge line 1 (preview)<input id="tz-discount" value="" placeholder="20% OFF"></label>
+        <label>Badge line 2 (preview)<input id="tz-code" value="" placeholder="SRE20"></label>
         <button class="tz-btn" id="tz-all" type="button">Download all PNGs</button>
+        <div class="tz-hint">The PNGs carry the badge from metadata.yml (<code>teaser_discount</code> / <code>teaser_code</code>); the inputs only preview it here.</div>
       </div>
     </div>
 
@@ -128,7 +139,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Miko Pawlikowski</b> · SRE Author · keynote</span><button class="tz-dl" type="button" data-download="1">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Miko Pawlikowski</b> · SRE Author · keynote</span><a class="tz-dl" href="./sreday-2025-london-q1-miko-pawlikowski.png" download="sreday-2025-london-q1-miko-pawlikowski.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -162,7 +173,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Harry Kimpel</b> · New Relic · keynote</span><button class="tz-dl" type="button" data-download="2">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Harry Kimpel</b> · New Relic · keynote</span><a class="tz-dl" href="./sreday-2025-london-q1-harry-kimpel.png" download="sreday-2025-london-q1-harry-kimpel.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -196,7 +207,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Laura Thomson & Vladislav Nedosekin</b> · AWS</span><button class="tz-dl" type="button" data-download="3">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Laura Thomson & Vladislav Nedosekin</b> · AWS</span><a class="tz-dl" href="./sreday-2025-london-q1-laura-thomson-vladislav-nedosekin.png" download="sreday-2025-london-q1-laura-thomson-vladislav-nedosekin.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -230,7 +241,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Simon Copsey</b> · The Curious Coffee Club</span><button class="tz-dl" type="button" data-download="4">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Simon Copsey</b> · The Curious Coffee Club</span><a class="tz-dl" href="./sreday-2025-london-q1-simon-copsey.png" download="sreday-2025-london-q1-simon-copsey.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -264,7 +275,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Michael Cote</b> · VMware / Pivotal</span><button class="tz-dl" type="button" data-download="5">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Michael Cote</b> · VMware / Pivotal</span><a class="tz-dl" href="./sreday-2025-london-q1-michael-cote.png" download="sreday-2025-london-q1-michael-cote.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -298,7 +309,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Yan Cui</b> · Lumigo</span><button class="tz-dl" type="button" data-download="6">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Yan Cui</b> · Lumigo</span><a class="tz-dl" href="./sreday-2025-london-q1-yan-cui.png" download="sreday-2025-london-q1-yan-cui.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -332,7 +343,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Steve Wade</b> · Steven Wade Consulting</span><button class="tz-dl" type="button" data-download="7">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Steve Wade</b> · Steven Wade Consulting</span><a class="tz-dl" href="./sreday-2025-london-q1-steve-wade.png" download="sreday-2025-london-q1-steve-wade.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -366,7 +377,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Pawel Hajdan</b> · Tech Momentum</span><button class="tz-dl" type="button" data-download="8">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Pawel Hajdan</b> · Tech Momentum</span><a class="tz-dl" href="./sreday-2025-london-q1-pawel-hajdan.png" download="sreday-2025-london-q1-pawel-hajdan.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -400,7 +411,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Igor Baliuk</b> · Avito</span><button class="tz-dl" type="button" data-download="9">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Igor Baliuk</b> · Avito</span><a class="tz-dl" href="./sreday-2025-london-q1-igor-baliuk.png" download="sreday-2025-london-q1-igor-baliuk.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -434,7 +445,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>James Eastham</b> · Datadog</span><button class="tz-dl" type="button" data-download="10">Download PNG</button></div>
+        <div class="tz-meta"><span><b>James Eastham</b> · Datadog</span><a class="tz-dl" href="./sreday-2025-london-q1-james-eastham.png" download="sreday-2025-london-q1-james-eastham.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -468,7 +479,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Yishai Beeri</b> · LinearB</span><button class="tz-dl" type="button" data-download="11">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Yishai Beeri</b> · LinearB</span><a class="tz-dl" href="./sreday-2025-london-q1-yishai-beeri.png" download="sreday-2025-london-q1-yishai-beeri.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -502,7 +513,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Diego Nieto</b> · Altinity</span><button class="tz-dl" type="button" data-download="12">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Diego Nieto</b> · Altinity</span><a class="tz-dl" href="./sreday-2025-london-q1-diego-nieto.png" download="sreday-2025-london-q1-diego-nieto.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -536,7 +547,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Vladimir Klevko</b> · CAST AI</span><button class="tz-dl" type="button" data-download="13">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Vladimir Klevko</b> · CAST AI</span><a class="tz-dl" href="./sreday-2025-london-q1-vladimir-klevko.png" download="sreday-2025-london-q1-vladimir-klevko.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -570,7 +581,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Aivars Kalvans</b> · Ebury</span><button class="tz-dl" type="button" data-download="14">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Aivars Kalvans</b> · Ebury</span><a class="tz-dl" href="./sreday-2025-london-q1-aivars-kalvans.png" download="sreday-2025-london-q1-aivars-kalvans.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -604,7 +615,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Elad Leev</b> · Dojo</span><button class="tz-dl" type="button" data-download="15">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Elad Leev</b> · Dojo</span><a class="tz-dl" href="./sreday-2025-london-q1-elad-leev.png" download="sreday-2025-london-q1-elad-leev.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -638,7 +649,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Casey Wylie</b> · Defense Unicorns</span><button class="tz-dl" type="button" data-download="16">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Casey Wylie</b> · Defense Unicorns</span><a class="tz-dl" href="./sreday-2025-london-q1-casey-wylie.png" download="sreday-2025-london-q1-casey-wylie.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -672,7 +683,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Hrittik Roy</b> · Loft Labs</span><button class="tz-dl" type="button" data-download="17">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Hrittik Roy</b> · Loft Labs</span><a class="tz-dl" href="./sreday-2025-london-q1-hrittik-roy.png" download="sreday-2025-london-q1-hrittik-roy.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -706,7 +717,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Mateusz Solnica</b> · SpeakAura</span><button class="tz-dl" type="button" data-download="18">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Mateusz Solnica</b> · SpeakAura</span><a class="tz-dl" href="./sreday-2025-london-q1-mateusz-solnica.png" download="sreday-2025-london-q1-mateusz-solnica.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -740,7 +751,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Ilya Andreev</b> · ClickHouse</span><button class="tz-dl" type="button" data-download="19">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Ilya Andreev</b> · ClickHouse</span><a class="tz-dl" href="./sreday-2025-london-q1-ilya-andreev.png" download="sreday-2025-london-q1-ilya-andreev.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -774,7 +785,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Max Golionko</b> · VictoriaMetrics</span><button class="tz-dl" type="button" data-download="20">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Max Golionko</b> · VictoriaMetrics</span><a class="tz-dl" href="./sreday-2025-london-q1-max-golionko.png" download="sreday-2025-london-q1-max-golionko.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -808,7 +819,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Mark Faiers</b> · RiverSafe</span><button class="tz-dl" type="button" data-download="21">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Mark Faiers</b> · RiverSafe</span><a class="tz-dl" href="./sreday-2025-london-q1-mark-faiers.png" download="sreday-2025-london-q1-mark-faiers.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -842,7 +853,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Rotem Tamir</b> · Atlas by Ariga</span><button class="tz-dl" type="button" data-download="22">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Rotem Tamir</b> · Atlas by Ariga</span><a class="tz-dl" href="./sreday-2025-london-q1-rotem-tamir.png" download="sreday-2025-london-q1-rotem-tamir.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -876,7 +887,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Tomasz Czajka, Ciaran Gaffney & Pascal Schlumpf</b> · Tenable</span><button class="tz-dl" type="button" data-download="23">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Tomasz Czajka, Ciaran Gaffney & Pascal Schlumpf</b> · Tenable</span><a class="tz-dl" href="./sreday-2025-london-q1-tomasz-czajka-ciaran-gaffney-pascal-schlumpf.png" download="sreday-2025-london-q1-tomasz-czajka-ciaran-gaffney-pascal-schlumpf.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -910,7 +921,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Joshua Fox</b> · DoiT International</span><button class="tz-dl" type="button" data-download="24">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Joshua Fox</b> · DoiT International</span><a class="tz-dl" href="./sreday-2025-london-q1-joshua-fox.png" download="sreday-2025-london-q1-joshua-fox.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -944,7 +955,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Chris Phillips & Simon Kapadia</b> · IBM</span><button class="tz-dl" type="button" data-download="25">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Chris Phillips & Simon Kapadia</b> · IBM</span><a class="tz-dl" href="./sreday-2025-london-q1-chris-phillips-simon-kapadia.png" download="sreday-2025-london-q1-chris-phillips-simon-kapadia.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -978,7 +989,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Kristina Kondrashevich & Gang Luo</b> · Electrolux Group</span><button class="tz-dl" type="button" data-download="26">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Kristina Kondrashevich & Gang Luo</b> · Electrolux Group</span><a class="tz-dl" href="./sreday-2025-london-q1-kristina-kondrashevich-gang-luo.png" download="sreday-2025-london-q1-kristina-kondrashevich-gang-luo.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1012,7 +1023,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Pedro Ivo Raimundo</b> · Pegasystems</span><button class="tz-dl" type="button" data-download="27">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Pedro Ivo Raimundo</b> · Pegasystems</span><a class="tz-dl" href="./sreday-2025-london-q1-pedro-ivo-raimundo.png" download="sreday-2025-london-q1-pedro-ivo-raimundo.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1046,7 +1057,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Jorge Lainfiesta</b> · Rootly</span><button class="tz-dl" type="button" data-download="28">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Jorge Lainfiesta</b> · Rootly</span><a class="tz-dl" href="./sreday-2025-london-q1-jorge-lainfiesta.png" download="sreday-2025-london-q1-jorge-lainfiesta.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1080,7 +1091,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Harry Kimpel</b> · New Relic</span><button class="tz-dl" type="button" data-download="29">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Harry Kimpel</b> · New Relic</span><a class="tz-dl" href="./sreday-2025-london-q1-harry-kimpel.png" download="sreday-2025-london-q1-harry-kimpel.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1114,7 +1125,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Harry Kimpel</b> · New Relic</span><button class="tz-dl" type="button" data-download="30">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Harry Kimpel</b> · New Relic</span><a class="tz-dl" href="./sreday-2025-london-q1-harry-kimpel.png" download="sreday-2025-london-q1-harry-kimpel.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1148,7 +1159,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Harry Kimpel</b> · New Relic</span><button class="tz-dl" type="button" data-download="31">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Harry Kimpel</b> · New Relic</span><a class="tz-dl" href="./sreday-2025-london-q1-harry-kimpel.png" download="sreday-2025-london-q1-harry-kimpel.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1182,7 +1193,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Harry Kimpel</b> · New Relic</span><button class="tz-dl" type="button" data-download="32">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Harry Kimpel</b> · New Relic</span><a class="tz-dl" href="./sreday-2025-london-q1-harry-kimpel.png" download="sreday-2025-london-q1-harry-kimpel.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1216,7 +1227,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Alina Astapovich & Markus Makela</b> · Electrolux Group</span><button class="tz-dl" type="button" data-download="33">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Alina Astapovich & Markus Makela</b> · Electrolux Group</span><a class="tz-dl" href="./sreday-2025-london-q1-alina-astapovich-markus-makela.png" download="sreday-2025-london-q1-alina-astapovich-markus-makela.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1250,7 +1261,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Nick Taylor</b> · Pomerium</span><button class="tz-dl" type="button" data-download="34">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Nick Taylor</b> · Pomerium</span><a class="tz-dl" href="./sreday-2025-london-q1-nick-taylor.png" download="sreday-2025-london-q1-nick-taylor.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1284,7 +1295,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Stuart Rimell</b> · Uptime Labs</span><button class="tz-dl" type="button" data-download="35">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Stuart Rimell</b> · Uptime Labs</span><a class="tz-dl" href="./sreday-2025-london-q1-stuart-rimell.png" download="sreday-2025-london-q1-stuart-rimell.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1318,7 +1329,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Prerit Munjal</b> · KubeCloud</span><button class="tz-dl" type="button" data-download="36">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Prerit Munjal</b> · KubeCloud</span><a class="tz-dl" href="./sreday-2025-london-q1-prerit-munjal.png" download="sreday-2025-london-q1-prerit-munjal.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1352,7 +1363,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Alon Nisser</b> · ZenCity</span><button class="tz-dl" type="button" data-download="37">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Alon Nisser</b> · ZenCity</span><a class="tz-dl" href="./sreday-2025-london-q1-alon-nisser.png" download="sreday-2025-london-q1-alon-nisser.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1386,7 +1397,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Piotr Zaniewski</b> · Loft Labs</span><button class="tz-dl" type="button" data-download="38">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Piotr Zaniewski</b> · Loft Labs</span><a class="tz-dl" href="./sreday-2025-london-q1-piotr-zaniewski.png" download="sreday-2025-london-q1-piotr-zaniewski.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1420,7 +1431,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Rob Charlwood</b> · Supercharged</span><button class="tz-dl" type="button" data-download="39">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Rob Charlwood</b> · Supercharged</span><a class="tz-dl" href="./sreday-2025-london-q1-rob-charlwood.png" download="sreday-2025-london-q1-rob-charlwood.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1454,7 +1465,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Panagiotis Moustafellos</b> · Elastic</span><button class="tz-dl" type="button" data-download="40">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Panagiotis Moustafellos</b> · Elastic</span><a class="tz-dl" href="./sreday-2025-london-q1-panagiotis-moustafellos.png" download="sreday-2025-london-q1-panagiotis-moustafellos.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1488,7 +1499,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Pawel Skrzypek</b> · 7bulls.com</span><button class="tz-dl" type="button" data-download="41">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Pawel Skrzypek</b> · 7bulls.com</span><a class="tz-dl" href="./sreday-2025-london-q1-pawel-skrzypek.png" download="sreday-2025-london-q1-pawel-skrzypek.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1522,7 +1533,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Jonathan Perry</b> · Unvariance</span><button class="tz-dl" type="button" data-download="42">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Jonathan Perry</b> · Unvariance</span><a class="tz-dl" href="./sreday-2025-london-q1-jonathan-perry.png" download="sreday-2025-london-q1-jonathan-perry.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1556,7 +1567,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Marius Kimmina</b> · adjoe</span><button class="tz-dl" type="button" data-download="43">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Marius Kimmina</b> · adjoe</span><a class="tz-dl" href="./sreday-2025-london-q1-marius-kimmina.png" download="sreday-2025-london-q1-marius-kimmina.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1590,7 +1601,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Rajith Muditha Attapattu</b> · Randoli</span><button class="tz-dl" type="button" data-download="44">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Rajith Muditha Attapattu</b> · Randoli</span><a class="tz-dl" href="./sreday-2025-london-q1-rajith-muditha-attapattu.png" download="sreday-2025-london-q1-rajith-muditha-attapattu.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1624,7 +1635,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Mykhaylo Rykmas</b> · Vettabase</span><button class="tz-dl" type="button" data-download="45">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Mykhaylo Rykmas</b> · Vettabase</span><a class="tz-dl" href="./sreday-2025-london-q1-mykhaylo-rykmas.png" download="sreday-2025-london-q1-mykhaylo-rykmas.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1658,7 +1669,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Siddharth Vijay</b> · Baazi Games</span><button class="tz-dl" type="button" data-download="46">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Siddharth Vijay</b> · Baazi Games</span><a class="tz-dl" href="./sreday-2025-london-q1-siddharth-vijay.png" download="sreday-2025-london-q1-siddharth-vijay.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1692,7 +1703,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Carly Richmond</b> · Elastic</span><button class="tz-dl" type="button" data-download="47">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Carly Richmond</b> · Elastic</span><a class="tz-dl" href="./sreday-2025-london-q1-carly-richmond.png" download="sreday-2025-london-q1-carly-richmond.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1726,7 +1737,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Martin McLarnon</b> · Coralogix</span><button class="tz-dl" type="button" data-download="48">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Martin McLarnon</b> · Coralogix</span><a class="tz-dl" href="./sreday-2025-london-q1-martin-mclarnon.png" download="sreday-2025-london-q1-martin-mclarnon.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1760,7 +1771,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Eric D. Schabell & Graziano Casto</b> · Chronosphere & Mia-Platform</span><button class="tz-dl" type="button" data-download="49">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Eric D. Schabell & Graziano Casto</b> · Chronosphere & Mia-Platform</span><a class="tz-dl" href="./sreday-2025-london-q1-eric-d-schabell-graziano-casto.png" download="sreday-2025-london-q1-eric-d-schabell-graziano-casto.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1794,7 +1805,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Agnieszka Welian</b> · Pegasystems</span><button class="tz-dl" type="button" data-download="50">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Agnieszka Welian</b> · Pegasystems</span><a class="tz-dl" href="./sreday-2025-london-q1-agnieszka-welian.png" download="sreday-2025-london-q1-agnieszka-welian.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1828,7 +1839,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Daniel Afonso</b> · PagerDuty</span><button class="tz-dl" type="button" data-download="51">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Daniel Afonso</b> · PagerDuty</span><a class="tz-dl" href="./sreday-2025-london-q1-daniel-afonso.png" download="sreday-2025-london-q1-daniel-afonso.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1862,7 +1873,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Denys Vasyliev</b> · GfK - An NIQ Company</span><button class="tz-dl" type="button" data-download="52">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Denys Vasyliev</b> · GfK - An NIQ Company</span><a class="tz-dl" href="./sreday-2025-london-q1-denys-vasyliev.png" download="sreday-2025-london-q1-denys-vasyliev.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1896,7 +1907,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Dmytri Kleiner</b> · Saleor Commerce</span><button class="tz-dl" type="button" data-download="53">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Dmytri Kleiner</b> · Saleor Commerce</span><a class="tz-dl" href="./sreday-2025-london-q1-dmytri-kleiner.png" download="sreday-2025-london-q1-dmytri-kleiner.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1930,7 +1941,7 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Victor Onyenagubom</b> · Teesside University London</span><button class="tz-dl" type="button" data-download="54">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Victor Onyenagubom</b> · Teesside University London</span><a class="tz-dl" href="./sreday-2025-london-q1-victor-onyenagubom.png" download="sreday-2025-london-q1-victor-onyenagubom.png">Download PNG</a></div>
       </div>
       
       <div class="tz-slot">
@@ -1964,14 +1975,13 @@
             </div>
           </div>
         </div>
-        <div class="tz-meta"><span><b>Yongkang HE</b> · K8SUG</span><button class="tz-dl" type="button" data-download="55">Download PNG</button></div>
+        <div class="tz-meta"><span><b>Yongkang HE</b> · K8SUG</span><a class="tz-dl" href="./sreday-2025-london-q1-yongkang-he.png" download="sreday-2025-london-q1-yongkang-he.png">Download PNG</a></div>
       </div>
       
     </div>
     
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>
     (function () {
       // scale every 1200px card into its preview frame
@@ -1996,24 +2006,22 @@
       }
       d.addEventListener('input', badge); c.addEventListener('input', badge); badge();
 
-      // export: render the unscaled card off-screen at its true size
-      function download(i) {
-        var card = document.getElementById('tz-card-' + i);
-        var clone = card.cloneNode(true);
-        clone.style.transform = 'none'; clone.style.position = 'fixed'; clone.style.left = '-2400px'; clone.style.top = '0';
-        document.body.appendChild(clone);
-        // scale 1.25: the 1200 px card comes out as a 1500 x 1500 PNG
-        return html2canvas(clone, { width: 1200, height: 1200, scale: 1.25, backgroundColor: null, useCORS: true }).then(function (canvas) {
-          var a = document.createElement('a'); a.download = card.getAttribute('data-file'); a.href = canvas.toDataURL('image/png'); a.click();
-        }).finally(function () { clone.remove(); });
+      // sheet mode for the build-time renderer: #sheet-<start>-<count> keeps only those cards, unscaled
+      var m = /^#sheet-(\d+)-(\d+)$/.exec(location.hash);
+      if (m) {
+        var from = +m[1], to = from + +m[2];
+        document.body.classList.add('tz-sheet');
+        document.querySelectorAll('.tz-slot').forEach(function (s, i) { if (i < from || i >= to) s.classList.add('tz-off'); });
+        document.querySelectorAll('.tz-frame .tz-card').forEach(function (c) { c.style.transform = 'none'; });
       }
-      document.querySelectorAll('[data-download]').forEach(function (b) {
-        b.addEventListener('click', function () { b.disabled = true; download(b.getAttribute('data-download')).finally(function () { b.disabled = false; }); });
-      });
+
+      // "Download all": click every card's link in turn (the browser asks once to allow multiple downloads)
       var all = document.getElementById('tz-all');
       all.addEventListener('click', function () {
-        all.disabled = true; var ids = [].map.call(document.querySelectorAll('.tz-card'), function (el) { return el.id.replace('tz-card-', ''); });
-        ids.reduce(function (p, i) { return p.then(function () { return download(i); }); }, Promise.resolve()).finally(function () { all.disabled = false; });
+        all.disabled = true;
+        var links = [].slice.call(document.querySelectorAll('a.tz-dl'));
+        links.forEach(function (a, i) { setTimeout(function () { a.click(); if (i === links.length - 1) all.disabled = false; }, i * 400); });
+        if (!links.length) all.disabled = false;
       });
     })();
   </script>
