@@ -255,7 +255,7 @@
         <p class="ac-blurb"><strong>SREday</strong> is a worldwide series of community events for engineers who build, ship and run modern software systems. Across cities around the world, we bring together people working in reliability, cloud, DevOps, observability and production engineering to share real-world experience, connect with their local community and explore how these disciplines are evolving in the age of AI.</p>
         
         <h5 class="ac-topics-heading">Companies presenting:</h5>
-        <p class="ac-companies">4Linux, Ana Gaming, Banco Bradesco, Bosch Digital, Bradesco, ECI Software Solutions, Edwards Lifesciences, IBM, Itau Unibanco, Microsoft, Máquina de Dados, QuintoAndar, ZenerIM</p>
+        <p class="ac-companies">4Linux, Ana Gaming, Banco Bradesco, Bosch Digital, Bradesco, ECI Software Solutions, Edwards Lifesciences, IBM, Itau Unibanco, Microsoft, Máquina de Dados, Orca Security, QuintoAndar, ZenerIM</p>
         
         
         <h5 class="ac-topics-heading">Topics so far:</h5>
@@ -301,6 +301,7 @@
           <div class="ac-topic-name">DevOps & Automation</div>
           <ul class="ac-topic-talks">
             <li><a href="Felipe_Pereira_Mquina_de_Dados_Harness_Engineering_for_Real_Building_the_Environment_Where_AI_Can_Ac.html#speakers-section">Harness Engineering for Real: Building the Environment Where AI Can Actually Deliver</a></li>
+            <li><a href="Flavio_Meira_Orca_Security_Assinando_tudo_Sigstore__Cosign_e_provenincia_provenance_em_pipelines_Git.html#speakers-section">Assinando tudo: Sigstore, Cosign e proveniência (provenance) em pipelines GitOps</a></li>
             
           </ul>
         </div>
@@ -780,6 +781,32 @@
             <ul class="social-list list-inline mb-0">
               
               <li class="list-inline-item"><a  href="https://www.linkedin.com/in/pereira-felipe/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15"><img src="../speakers/Flavio Meira.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Flavio Meira</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Orca Security</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Flavio_Meira_Orca_Security_Assinando_tudo_Sigstore__Cosign_e_provenincia_provenance_em_pipelines_Git#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/flaviomeira10/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -2138,6 +2165,49 @@ In this talk, we will explore what Harness Engineering looks like in the context
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Emerson Silva é Engenheiro DevOps/SRE na 4Linux, com mais de 9 anos de experiência em ambientes críticos de infraestrutura, automação e confiabilidade. Instrutor, autor e palestrante, com passagens por SREDay, DevOpsDays e Meetups da CNCF. Community Lead de Kubernetes na DOUGBrazil e organizador dos eventos da CNCF Campinas.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 15 -->
+<div class="modal modal-speaker modal-speaker-15" id="modal-speaker-15" tabindex="-1" role="dialog" aria-labelledby="speaker-15-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Flavio Meira.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Flavio Meira</h2>
+                          <div class="meta mb-2">Orca Security</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/flaviomeira10/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Assinando tudo: Sigstore, Cosign e proveniência (provenance) em pipelines GitOps</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Um artefato não assinado que chega em produção não é apenas uma falha de segurança, é um incidente de disponibilidade esperando para acontecer. Em pipelines GitOps, confiamos implicitamente que a imagem no registry é exatamente a que o pipeline gerou, mas raramente verificamos isso de fato. Quando esse pressuposto falha, o sintoma aparece longe da causa: um SLO quebra, um rollback não se comporta como esperado e o time de plantão descobre tarde demais que a versão anterior nunca foi verificada com certeza. Com agentes de IA cada vez mais escrevendo e até fazendo commit de código, essa pergunta fica ainda mais urgente: seu pipeline consegue garantir que qualquer artefato, escrito por humano ou por IA, passou pelos mesmos gates de qualidade e segurança antes de chegar em produção? Nesta talk vamos entender como o Sigstore e o Cosign funcionam na prática, eliminando a necessidade de gerenciar chaves privadas manualmente na assinatura de artefatos. Vamos ver também como provenance, através das SLSA attestations, funciona como telemetria de como um artefato foi construído, não apenas de quem o assinou.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Flávio é especialista em segurança da informação em ambientes cloud (Azure, AWS), desenvolvimento seguro e DevOps. Tem ampla experiência em segurança de ambientes cloud e on-premise, segurança de containers e Kubernetes, além de práticas seguras de GitOps. Como desenvolvedor com foco em segurança, contribuiu em diversos projetos implementando gates de segurança em pipelines de CI/CD e aplicando shift-left no desenvolvimento seguro.</p></p>
               </div>
 
           </div><!--//modal-body-->
