@@ -681,10 +681,849 @@
 </style>
 
 
+<style>
+  /* Track navigation */
+  .track-nav {
+    padding: 0.75rem 0;
+    margin-bottom: 1.5rem;
+  }
+  .track-nav-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .track-nav-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .track-nav-links a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--brand);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+  }
+  .track-nav-links a:hover {
+    background: var(--brand-light);
+    color: white;
+  }
+  .view-toggle-link {
+    color: var(--brand);
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--brand);
+    border-radius: 4px;
+    transition: all 0.2s;
+    min-width: 10rem;
+    text-align: center;
+  }
+  .view-toggle-link:hover {
+    background: var(--brand);
+    color: white;
+  }
+  .view-toggle-link.active {
+    background: var(--brand);
+    color: white;
+  }
+  /* Table view */
+  .schedule-table-view { display: none; }
+  .schedule-table-view.active { display: block; }
+  .schedule-timeline-view { display: block; }
+  .schedule-timeline-view.hidden { display: none; }
+  .schedule-grid-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+    table-layout: fixed;
+  }
+  .schedule-grid-table th {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: white;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .schedule-grid-table th:first-child {
+    width: 60px;
+  }
+  .schedule-grid-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--brand-lightest);
+    vertical-align: top;
+  }
+  .schedule-grid-table td.merged-cell {
+    text-align: center;
+    font-weight: 500;
+    color: #555;
+    background: var(--brand-lightest);
+  }
+  /* A track with nothing on at this time (e.g. keynotes running on screen 1 only) gets the break colour (Marek 2026-09-22) */
+  .schedule-grid-table td.empty-cell { background: linear-gradient(90deg, color-mix(in srgb, var(--brand-lightest) 86%, #000), var(--brand-lightest) 85%); } /* slight left-to-right gradient per cell: each empty parallel track reads as its own column (Marek 2026-09-23) */
+  .schedule-grid-table .time-cell {
+    color: var(--brand);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .schedule-grid-table .talk-cell a {
+    color: #222;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .schedule-grid-table .talk-cell a:hover {
+    color: var(--brand);
+  }
+  .schedule-grid-table .speaker-info {
+    color: #444;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+  .schedule-grid-table .speaker-info .affiliation {
+    color: #666;
+  }
+  .schedule-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  .schedule-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.8rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .schedule-meta-divider {
+    color: #ccc;
+    font-weight: 300;
+  }
+  /* Track section header */
+  .track-section-header {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    margin: 2rem 0 0 0;
+    border-radius: 4px 4px 0 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  .track-section-header:first-of-type {
+    margin-top: 0;
+  }
+
+  .schedule-section.theme-bg-light { background-color: #f0faf5 !important; }
+</style>
+
 <section id="schedule" class="schedule-section section theme-bg-light">
   <div class="container">
-    <h2 class="section-heading text-center mb-5">Schedule</h2>
-    <h4 class="section-heading text-center mb-5">Coming soon</h4>
+    <h2 class="section-heading text-center mb-4">Schedule</h2>
+
+    <!-- Schedule meta info -->
+    <div class="schedule-meta">
+      <span class="schedule-meta-item">October 23, 2026</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">single track</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">9AM - 4PM</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">Dallas, in-person</span>
+    </div>
+
+
+    
+
+    <!-- Track navigation -->
+    <div class="track-nav">
+      <div class="track-nav-inner">
+
+        <span class="view-toggle-link" id="view-toggle-0" onclick="toggleView(0)">view as table</span>
+      </div>
+    </div>
+
+    <!-- Timeline View (default) -->
+    <div id="timeline-view-0" class="schedule-timeline-view">
+
+      <div class="track-section-header" id="track-0-1">main room &bull; Track 1</div>
+      <div class="schedule-tab-content">
+        <div class="tab-pane active">
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">09:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Coffee break</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">09:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle mb-2" src="../speakers/Krishna Reddy.png" alt=""></a>
+                <div class="name">Krishna Reddy</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Secure Context Cache for Reliable AI Agents</a>
+              </h3>
+              <div class="location mb-3">HedgeServ</div>
+              <div class="desc schedule-abstract">Production AI agents often fail because they receive either too little operational context to act reliably or too much sensitive context to operate safely. This talk presents Secure Context Cache, an open-source framework and runtime gateway that measures, selects, reuses, and verifies identity- and policy-scoped context before a model call. In a deterministic prototype benchmark of 24 developer-agent tasks, the approach reduced average context tokens by 75.3% relative to full-context release while preserving 95.8% task success; infrastructure-review and incident-response examples will show how freshness checks, provenance, audit evidence, and human approval limit stale-context and prompt-injection risk. Attendees will leave with an architecture pattern, failure-mode checklist, and rollout metrics for operating AI agents with SRE discipline.<a class="schedule-abstract-read-more" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle mb-2" src="../speakers/Jerry Scott.png" alt=""></a>
+                <div class="name">Jerry Scott</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Detection, Tracking, Notification: A Three-Layer Model for Effective Incident Management</a>
+              </h3>
+              <div class="location mb-3">Check Point Software</div>
+              <div class="desc schedule-abstract">Good incident management comes down to three interlocking layers: detection (monitoring and dashboards that surface issues, balanced against alert fatigue and log-level tuning), tracking (ticketing systems, queue structures, staffing, and the documentation that speeds up resolution), and notification (getting the right alert to the right person fast). Drawing on hands-on experience across LTI Mindtree/Marriott, Hitachi/Verizon, and Check Point, spanning tools like Dynatrace, Splunk, ServiceNow, Salesforce, Jira, and Teams, I’ll walk through what breaks down when one layer is neglected, and what a well-balanced incident management process actually looks like across a support organization.
+3. Bio: Jerry Scott’s path into incident management started as a Data Engineer at LTI Mindtree, supporting Marriott’s revenue management system across 8,000+ properties, before moving into Site Reliability/Production Support at Hitachi Digital Services on Verizon’s FedRAMP High AWS GovCloud infrastructure. He’s now a Technical Support Engineer at Check Point Software Technologies, troubleshooting and resolving incidents on Check Point’s Security Management System (SMS), the platform that manages security gateways protecting organizations from cyberattacks. Across every role, the throughline has been the same: detecting, tracking, and resolving incidents, just under different titles and different tools. He holds an MS in Cybersecurity, a BS in Sociology, and an AA in Social Work, and has a deep interest in technology and problem-solving that pulled him into this field.<a class="schedule-abstract-read-more" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">10:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle mb-2" src="../speakers/Dusan Stanojevic.png" alt=""></a>
+                <div class="name">Dusan Stanojevic</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">From Firefighting to Foresight: Observability Is Reactive by Default, and It Shouldn't Be</a>
+              </h3>
+              <div class="location mb-3">Traceway</div>
+              <div class="desc schedule-abstract">Most observability today is reactive by design. We instrument our systems, wire up dashboards, and then wait. More often than not, it's a customer hitting an error, a support ticket, or a 3am page that tells us something has already broken. By then the damage is done. This talk argues that treating observability as a break-then-fix process is a choice, not a law of nature, and that the next era of reliability engineering is proactive: surfacing degradation, anomalous patterns, and emerging risk before they ever reach a customer. Drawing on lessons from building Traceway, it covers what a proactive observability model looks like in practice: the signals worth watching, how to close the loop from detection to action, and where teams get stuck making the shift. You leave with a concrete framework for getting ahead of failure instead of chasing it.<a class="schedule-abstract-read-more" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img class="profile-image rounded-circle mb-2" src="../speakers/Michael Liubchenko.png" alt=""></a>
+                <div class="name">Michael Liubchenko</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">SRE for Multi-Agent AI: Operating Private LLMs Across Distributed Infrastructure</a>
+              </h3>
+              <div class="location mb-3">Kyndryl</div>
+              <div class="desc schedule-abstract">Agentic AI doesn’t always require SOTA LLMs in the cloud. Local, open-weight LLMs can enable private, domain-specific multi-agent workflows across mobile devices, laptops, and on-premise servers.
+But operating these systems in production introduces new SRE challenges around orchestration, observability, reliability, resource management, model lifecycle, and failure handling.
+This talk explores how to build a production-ready orchestration environment for multi-agent workflows across heterogeneous infrastructure, and the engineering practices needed to keep distributed AI systems reliable at scale.<a class="schedule-abstract-read-more" href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">11:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">12:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img class="profile-image rounded-circle mb-2" src="../speakers/Girish Konda.png" alt=""></a>
+                <div class="name">Girish Konda</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">A Thousand Alerts a Day, and One Real Incident Hiding In Them</a>
+              </h3>
+              <div class="location mb-3">Microsoft</div>
+              <div class="desc schedule-abstract">A monitoring stack that fires a thousand alerts a day does not have a monitoring problem. It has a reading problem. Nearly all of it is benign and repeats the same twenty shapes - and somewhere in there is a real incident that looks exactly like the rest until someone digs.
+The obvious fix is to point an agent at the queue and let it triage. We tried that. It is confidently wrong, and the confidence is the dangerous part: it returns a fluent, well-argued verdict on every alert at the same level of certainty, whether it pulled real evidence or just pattern-matched the title. At a thousand a day, even a small confidently-wrong rate is dozens of silent misfilings - and the ones it buries are the unfamiliar ones, which is exactly where the real incidents live.
+I am a Principal Engineer in Microsoft Fabric, where I am the tech lead and architect for capacity management. What finally worked was refusing to let one agent do both jobs.
+Triage got cut back until routing is all it can do. It groups by signature and hands off. It is not allowed to conclude, to close, or to declare anything benign - that is the judgement it is worst at and the one with the worst downside.
+Investigation was then split across dedicated agents, one per failure domain. Each knows only its own telemetry, its own known-benign patterns, and its own escalation bar. That narrow hypothesis space is what makes "I could not find evidence for this" an answer the agent will actually give, instead of a plausible story. It also means each one can be tested on its own against past incidents, which a single generalist triager never can be.
+The metric that matters is recall on the rare real incident, not how much of the queue got closed.
+I will go through the routing design, how the investigation agents are kept honest, what is escalated to a human on purpose, and the real problems we only caught because a specialist refused to answer.<a class="schedule-abstract-read-more" href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Kevin Inman.png" alt=""></a>
+                <div class="name">Kevin Inman</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Two paths, one future: operating with AI or operating the AI</a>
+              </h3>
+              <div class="location mb-3">Bellevue College</div>
+              <div class="desc schedule-abstract">The SRE role is quietly splitting into two different jobs.
+One path is using AI agents to operate more systems with fewer humans; shifting the SRE from first responder to the engineer who provides judgment, oversight, and the final override. The other is building, tuning, and governing the AI systems themselves: becoming the engineer responsible for the reliability of the thing operating the infrastructure.
+Neither path is optional, and neither requires abandoning the reliability mindset that got us here. In fact, the skills that made great SREs, understanding failure, managing blast radius, demanding observability, designing for rollback, and distrusting systems that haven't earned trust, has become more valuable than ever.
+This talk explores what the split looks like, why it is happening now, and how SREs can start preparing for both paths today. We'll look at practical examples of AI-assisted operations, the emerging discipline of AI reliability engineering, and what happens when we give an AI agent real operational authority.
+The future of SRE isn't fewer engineers. It's engineers operating at a dramatically different level of abstraction.
+Takeaway:
+The toil was never the job. It was just in the way.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Jason Kallner.png" alt=""></a>
+                <div class="name">Jason Kallner</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Why Enterprise SLO Programs Fail</a>
+              </h3>
+              <div class="location mb-3">JPMorganChase</div>
+              <div class="desc schedule-abstract">Why do enterprise implementations of SLOs fail?
+The failure is rarely a cancellation or a reversal in direction. It usually masquerades as something more sinister — lip service and minimal effort, where outcomes get sacrificed for the sake of output, and the difference that could have been made for our teams and customers quietly never arrives. What makes it hard to catch is that the early part goes well. Dashboards appear, percentages get published, coverage gets reported, and none of it is fake. Then the program never lifts off the runway, or it does and it's carrying nothing.
+This session walks through several failure patterns I've seen first hand, and what each one costs you. Some are corrosive. Some just leave a better outcome on the table in exchange for something expedient. All of them are avoidable once you can see them for what they are. These aren't hypotheticals — they come from multiple years driving SRE adoption, culture, and practice across different organizations, and I've been in the middle of every one of them.
+Before we can fix something we first have to be able to recognize it for what it is and then articulate why it's a pattern to be avoided.
+If you see yourself, your team, or your organization in any of this — good. You're not alone.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Aaron Hunter.png" alt=""></a>
+                <div class="name">Aaron Hunter</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">The tokenomics of Model Context Protocol at scale</a>
+              </h3>
+              <div class="location mb-3">AWS</div>
+              <div class="desc schedule-abstract">Everyone's connecting MCP servers to their AI agents right now. What almost nobody's doing is checking the bill. Every tool you register and every server you connect quietly pads your token count... often before the model does anything useful. This talk digs into the real tokenomics of MCP: why tool schemas are a fixed tax on every request, how that overhead compounds into serious cost and latency at scale, and what you can actually do about it. You'll see how to measure the token cost your MCP setup adds, using live examples, plus practical ways to trim it without losing the tools you rely on. If you're running AI agents in production, or about to be, this is the cost conversation worth having before your invoice has it for you.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Isaac Rowaiye.png" alt=""></a>
+                <div class="name">Isaac Rowaiye</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Taking Ownership: Cloud Migration</a>
+              </h3>
+              <div class="location mb-3">IR Technical Solutions</div>
+              <div class="desc schedule-abstract">Moving a live application to AWS meant taking responsibility for more than a new infrastructure diagram. This talk follows the migration of a production application with live users, from building its AWS environment with Terraform, ECS, and RDS through the cutover and its first operational surprises. I’ll share three assumptions the move exposed: a database restore that reported success without moving the expected data, scheduled jobs that ran twice when the application scaled beyond one container, and competing owners for the ECS task definition. Attendees will leave with practical ways to verify a migration against its source, identify behavior that assumes a single instance, and make deployment ownership explicit.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">15:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Austin Sutterfield.png" alt=""></a>
+                <div class="name">Austin Sutterfield</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Who Owns the Gaps?</a>
+              </h3>
+              <div class="location mb-3">Celestica</div>
+              <div class="desc schedule-abstract">Every team has finished its part—but is the whole system ready? This talk explores closing the gaps between design, delivery, and operations so what gets built is ready for the people who run it. Drawing on real-world infrastructure and commissioning examples, I’ll discuss agreeing on what “ready” means, verifying dependencies between teams and systems, and clarifying who makes the call when issues remain. Attendees will leave with three practical questions to bring into their next project or readiness review.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Wrap up</h3>
+              <div class="location mb-3" style="color:#098dcf;">Scan each other's QR codes & head to a nearby pub!</div>
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Table View -->
+    <div id="table-view-0" class="schedule-table-view">
+      <table class="schedule-grid-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+
+            <th style="width: calc((100% - 60px) / 1)">main room</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">09:00</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Coffee break
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">09:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Secure Context Cache for Reliable AI Agents</a>
+              <div class="speaker-info">Krishna Reddy <span class="affiliation">• HedgeServ</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">10:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Detection, Tracking, Notification: A Three-Layer Model for Effective Incident Management</a>
+              <div class="speaker-info">Jerry Scott <span class="affiliation">• Check Point Software</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">10:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">From Firefighting to Foresight: Observability Is Reactive by Default, and It Shouldn't Be</a>
+              <div class="speaker-info">Dusan Stanojevic <span class="affiliation">• Traceway</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">11:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3">SRE for Multi-Agent AI: Operating Private LLMs Across Distributed Infrastructure</a>
+              <div class="speaker-info">Michael Liubchenko <span class="affiliation">• Kyndryl</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">11:30</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Lunch & networking
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">12:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4">A Thousand Alerts a Day, and One Real Incident Hiding In Them</a>
+              <div class="speaker-info">Girish Konda <span class="affiliation">• Microsoft</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">13:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">Two paths, one future: operating with AI or operating the AI</a>
+              <div class="speaker-info">Kevin Inman <span class="affiliation">• Bellevue College</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">13:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Why Enterprise SLO Programs Fail</a>
+              <div class="speaker-info">Jason Kallner <span class="affiliation">• JPMorganChase</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">14:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">The tokenomics of Model Context Protocol at scale</a>
+              <div class="speaker-info">Aaron Hunter <span class="affiliation">• AWS</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">14:30</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Networking & sponsor crawl
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">15:00</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Taking Ownership: Cloud Migration</a>
+              <div class="speaker-info">Isaac Rowaiye <span class="affiliation">• IR Technical Solutions</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell">15:30</td>
+            <td class="talk-cell" colspan="1">
+
+              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Who Owns the Gaps?</a>
+              <div class="speaker-info">Austin Sutterfield <span class="affiliation">• Celestica</span></div>
+
+            </td>
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">16:00</td>
+            <td class="talk-cell merged-cell" colspan="1">
+
+              Wrap up
+
+            </td>
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+    <script>
+    function toggleView(day) {
+      const timelineView = document.getElementById('timeline-view-' + day);
+      const tableView = document.getElementById('table-view-' + day);
+      const toggleBtn = document.getElementById('view-toggle-' + day);
+      const trackLinks = document.getElementById('track-links-' + day);
+
+      if (tableView.classList.contains('active')) {
+        tableView.classList.remove('active');
+        timelineView.classList.remove('hidden');
+        toggleBtn.textContent = 'view as table';
+        toggleBtn.classList.remove('active');
+        if (trackLinks) trackLinks.style.display = 'flex';
+      } else {
+        tableView.classList.add('active');
+        timelineView.classList.add('hidden');
+        toggleBtn.textContent = 'view as timeline';
+        toggleBtn.classList.add('active');
+        if (trackLinks) trackLinks.style.display = 'none';
+      }
+    }
+    </script>
+
+    
+    <div class="schedule-cta text-center mx-auto mt-4"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+    
   </div>
 </section>
 
@@ -957,16 +1796,6 @@
       </div><!--//col-->
 
       
-
-      
-
-      <div class="col mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h4>More coming soon</h4>
-          </div><!--//card-->
-        </div><!--//card-->
-      </div><!--//col-->
 
       
 
