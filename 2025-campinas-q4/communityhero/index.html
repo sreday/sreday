@@ -114,7 +114,9 @@
   <div class="ch-brand">SREday · community heroes</div>
   <h1 class="ch-title">Community Hero at SREday Campinas 2025 Q4</h1>
   <div class="ch-sub">December 4, 2025 · Campinas · <a href="https://www.sreday.com/2025-campinas-q4/" target="_blank" rel="noopener">event page</a></div>
+  
   <p class="ch-intro">You applied for a Community Hero ticket: free admission in exchange for helping us promote the event. Everything you need is on this page. Fill in your details, generate and grab your card, pick a post and a message to spread, then tell us what you did. We&#39;ll review your activities and confirm your free ticket!</p>
+  
 
   <form id="ch-form" novalidate>
     <div class="ch-card">
@@ -125,7 +127,7 @@
         <label class="ch-field" data-field="role"><span>Job title</span><input type="text" name="role" autocomplete="organization-title" maxlength="120"></label>
         <label class="ch-field" data-field="company"><span>Company</span><input type="text" name="company" autocomplete="organization" maxlength="120"></label>
         <label class="ch-field ch-wide" data-field="linkedin"><span>LinkedIn profile URL</span><input type="url" name="linkedin" autocomplete="url" placeholder="https://www.linkedin.com/in/..." maxlength="300"></label>
-        <label class="ch-field ch-wide" data-field="photo"><span>Your photo <small>(a clear headshot, it goes on your card)</small></span>
+        <label class="ch-field ch-wide" data-field="photo"><span>Your photo <small>(headshot picture or avatar, it goes on your card)</small></span>
           <div class="ch-photo-box" id="ch-photo-box"><img id="ch-photo-prev" alt="" hidden><div class="ch-photo-text" id="ch-photo-text"><b>Choose a photo</b> or drop it here. JPG or PNG, a square headshot works best, up to 10 MB.</div><input type="file" name="photo" id="ch-photo" accept="image/*"></div>
         </label>
       </div>
@@ -148,12 +150,14 @@
     </div>
     
 
+    
     <div class="ch-card" id="ch-code-card">
       <div class="ch-step"><i>4</i><h2>Your discount code</h2></div>
       <div class="ch-code-row"><div class="ch-code" id="ch-code">HERO30</div><div class="ch-code-off" id="ch-code-off">30% off</div></div>
       <div class="ch-row"><button type="button" class="btn-ch ghost" id="ch-code-copy">Copy code</button><span class="ch-copied" id="ch-code-copied"></span></div>
       <div class="ch-hint">You may use this code publicly.</div>
     </div>
+    
 
     <div class="ch-card">
       <div class="ch-step"><i>5</i><h2>Your post</h2><small>LinkedIn, X, etc. - where your community is active</small></div>
@@ -208,7 +212,7 @@
 
 <script>
 var CH_URL = "https://script.google.com/macros/s/AKfycbyeW8C7ZfEjrELd0-GHy4p-fiBYTyBGsPkJ-M7uNkoD69Xk8UyhIUBfl7u67eQIfmPG/exec";
-var E = {"attendees": 200, "banner": "/assets/images/events/sreday-2025-campinas-q4.png", "blurb_short": "SREday is a worldwide series of community events for engineers who build, ship and run modern software systems.", "brand": "sreday", "brand_color": "#713660", "brand_name": "SREday", "city": "Campinas", "companies": ["4Linux", "Accenture", "Advolve.ai", "AWS", "Banco Bradesco", "Bosch"], "date": "December 4, 2025", "day": "4", "event_name": "SREday Campinas 2025 Q4", "event_url": "https://www.sreday.com/2025-campinas-q4/", "keynotes": ["Andre Murbach Maidl"], "luma_url": "https://lu.ma/event/evt-f55K8uZle8Ow0Lz", "month": "December", "month_day": "December 4", "pick_talks": [{"company": "Kyndryl", "keynote": false, "speaker": "Rod Anami"}, {"company": "Kyndryl", "keynote": false, "speaker": "Danne Aguiar"}, {"company": "Kyndryl", "keynote": false, "speaker": "Tiago Dias Generoso"}, {"company": "AWS", "keynote": false, "speaker": "Joao Fernando Helena Filho"}, {"company": "Netskope", "keynote": false, "speaker": "Douglas Bussoli Mugnos"}, {"company": "Cloud Programming Shell (CPS1)", "keynote": false, "speaker": "Miguel Di Ciurcio Filho"}, {"company": "Orca Security", "keynote": false, "speaker": "Igor Eulalio Morgado Lopes"}, {"company": "Opsteam", "keynote": false, "speaker": "Bruno Paiuca"}, {"company": "Advolve.ai", "keynote": false, "speaker": "Gustavo Martins T Borges"}, {"company": "Microsoft", "keynote": false, "speaker": "Rodrigo Candido Leme"}, {"company": "Matera", "keynote": false, "speaker": "Levi Leopoldino Alves"}, {"company": "Grafana Labs", "keynote": false, "speaker": "Alexandre Melo Ferreira"}, {"company": "Banco Bradesco", "keynote": false, "speaker": "Luiz Siqueira"}, {"company": "C6 Bank", "keynote": false, "speaker": "Alexandre Tavares"}, {"company": "Vivo", "keynote": false, "speaker": "Andre Bonfa"}, {"company": "Banco Bradesco", "keynote": false, "speaker": "Anderson Dorigao"}, {"company": "Accenture", "keynote": false, "speaker": "Ademar Gregio Junior"}, {"company": "GFT Technologies", "keynote": false, "speaker": "Felipe de Freitas Campos"}, {"company": "4Linux", "keynote": false, "speaker": "Emerson Silva"}, {"company": "Dynatrace", "keynote": false, "speaker": "Alan Delcaro"}, {"company": "FIAP", "keynote": false, "speaker": "Amaury Borges Souza"}, {"company": "Bosch", "keynote": false, "speaker": "Marcelo da Silva Pires"}, {"company": "ClickHouse", "keynote": true, "speaker": "Andre Murbach Maidl"}], "promo_code": "HERO30", "promo_code_near": "HERO50", "promo_label": "30% off", "promo_label_near": "50% off", "slug": "2025-campinas-q4", "speakers_n": 23, "start_date": "2025-12-04", "subtitle": "Campinas 2025 Q4", "tickets_url": "https://www.sreday.com/2025-campinas-q4/#tickets", "topic_talks": [{"category": "Site Reliability Engineering", "talks": [{"company": "Kyndryl", "speaker": "Rod Anami", "title": "Agentic AI for SREs: How I casually developed my first MCP server"}, {"company": "Opsteam", "speaker": "Bruno Paiuca", "title": "The Anatomy of a Secure Request: Ten Layers of Defense from DNS to Database"}, {"company": "Microsoft", "speaker": "Rodrigo Candido Leme", "title": "Supercharging SRE with Azure\u2019s AI-Powered Age"}]}, {"category": "Observability \u0026 Monitoring", "talks": [{"company": "Kyndryl", "speaker": "Danne Aguiar", "title": "Business Observability with Dynatrace"}, {"company": "Kyndryl", "speaker": "Tiago Dias Generoso", "title": "Observability Strategy: From Metrics to Meaningful Reliability"}, {"company": "Orca Security", "speaker": "Igor Eulalio Morgado Lopes", "title": "eBPF: Why is everyone talking about it and what does that mean to you?"}]}, {"category": "Incident Management", "talks": [{"company": "Vivo", "speaker": "Andre Bonfa", "title": "Preparar, Operar, Aprender: O Papel do PRR e do Postmortem na Engenharia de Confiabilidade"}]}, {"category": "Resilience \u0026 Chaos Engineering", "talks": [{"company": "Netskope", "speaker": "Douglas Bussoli Mugnos", "title": "Designing for Failure: Proven Techniques for Reliable Applications"}, {"company": "Banco Bradesco", "speaker": "Luiz Siqueira", "title": "Chaos Engineering: Como Usar o Dynatrace para Transformar Falhas em Aprendizado"}]}, {"category": "Cloud Infrastructure", "talks": [{"company": "Advolve.ai", "speaker": "Gustavo Martins T Borges", "title": "Hello World in Production: Building Cloud-Native applications that survive the real world."}, {"company": "Grafana Labs", "speaker": "Alexandre Melo Ferreira", "title": "Stack de Observabilidade com Grafana Cloud"}, {"company": "GFT Technologies", "speaker": "Felipe de Freitas Campos", "title": "Microservi\u00e7os serverless: diferentes designs, mesmas dores"}]}, {"category": "DevOps \u0026 Automation", "talks": [{"company": "Cloud Programming Shell (CPS1)", "speaker": "Miguel Di Ciurcio Filho", "title": "Staging Is Dead: How Ephemeral Environments Redefine Platform Engineering"}, {"company": "C6 Bank", "speaker": "Alexandre Tavares", "title": "Diferencas entre DataOps e DevOps: Entendendo Pr\u00e1ticas e Importancias na Era Digital"}, {"company": "Dynatrace", "speaker": "Alan Delcaro", "title": "Platform Engineering with Dynatrace for SRE: Intelligent Automation and Observability"}]}, {"category": "AI for Operations", "talks": [{"company": "AWS", "speaker": "Joao Fernando Helena Filho", "title": "Enhancing SRE with AI Agents on AWS: Intelligent Automation for Incident Response and Operations"}]}], "topics": ["Site Reliability Engineering", "Observability \u0026 Monitoring", "Incident Management", "Resilience \u0026 Chaos Engineering", "Cloud Infrastructure"], "venue_line": "Rodovia Jornalista Francisco Aguirre Proen\u00e7a, SP101", "venue_name": "Kyndryl Campinas / Hortol\u00e2ndia", "venue_short": "Kyndryl Campinas / Hortol\u00e2ndia", "weekday": "Thursday", "wordmark": "/assets/images/sreday_sticker.png"};
+var E = {"attendees": 200, "banner": "/assets/images/events/sreday-2025-campinas-q4.png", "blurb_short": "SREday is a worldwide series of community events for engineers who build, ship and run modern software systems.", "brand": "sreday", "brand_color": "#713660", "brand_name": "SREday", "city": "Campinas", "companies": ["4Linux", "Accenture", "Advolve.ai", "AWS", "Banco Bradesco", "Bosch"], "date": "December 4, 2025", "day": "4", "event_name": "SREday Campinas 2025 Q4", "event_url": "https://www.sreday.com/2025-campinas-q4/", "is_free": false, "keynotes": ["Andre Murbach Maidl"], "luma_url": "https://lu.ma/event/evt-f55K8uZle8Ow0Lz", "month": "December", "month_day": "December 4", "pick_talks": [{"company": "Kyndryl", "keynote": false, "speaker": "Rod Anami"}, {"company": "Kyndryl", "keynote": false, "speaker": "Danne Aguiar"}, {"company": "Kyndryl", "keynote": false, "speaker": "Tiago Dias Generoso"}, {"company": "AWS", "keynote": false, "speaker": "Joao Fernando Helena Filho"}, {"company": "Netskope", "keynote": false, "speaker": "Douglas Bussoli Mugnos"}, {"company": "Cloud Programming Shell (CPS1)", "keynote": false, "speaker": "Miguel Di Ciurcio Filho"}, {"company": "Orca Security", "keynote": false, "speaker": "Igor Eulalio Morgado Lopes"}, {"company": "Opsteam", "keynote": false, "speaker": "Bruno Paiuca"}, {"company": "Advolve.ai", "keynote": false, "speaker": "Gustavo Martins T Borges"}, {"company": "Microsoft", "keynote": false, "speaker": "Rodrigo Candido Leme"}, {"company": "Matera", "keynote": false, "speaker": "Levi Leopoldino Alves"}, {"company": "Grafana Labs", "keynote": false, "speaker": "Alexandre Melo Ferreira"}, {"company": "Banco Bradesco", "keynote": false, "speaker": "Luiz Siqueira"}, {"company": "C6 Bank", "keynote": false, "speaker": "Alexandre Tavares"}, {"company": "Vivo", "keynote": false, "speaker": "Andre Bonfa"}, {"company": "Banco Bradesco", "keynote": false, "speaker": "Anderson Dorigao"}, {"company": "Accenture", "keynote": false, "speaker": "Ademar Gregio Junior"}, {"company": "GFT Technologies", "keynote": false, "speaker": "Felipe de Freitas Campos"}, {"company": "4Linux", "keynote": false, "speaker": "Emerson Silva"}, {"company": "Dynatrace", "keynote": false, "speaker": "Alan Delcaro"}, {"company": "FIAP", "keynote": false, "speaker": "Amaury Borges Souza"}, {"company": "Bosch", "keynote": false, "speaker": "Marcelo da Silva Pires"}, {"company": "ClickHouse", "keynote": true, "speaker": "Andre Murbach Maidl"}], "promo_code": "HERO30", "promo_code_near": "HERO50", "promo_label": "30% off", "promo_label_near": "50% off", "slug": "2025-campinas-q4", "speakers_n": 23, "start_date": "2025-12-04", "subtitle": "Campinas 2025 Q4", "tickets_url": "https://www.sreday.com/2025-campinas-q4/#tickets", "topic_talks": [{"category": "Site Reliability Engineering", "talks": [{"company": "Kyndryl", "speaker": "Rod Anami", "title": "Agentic AI for SREs: How I casually developed my first MCP server"}, {"company": "Opsteam", "speaker": "Bruno Paiuca", "title": "The Anatomy of a Secure Request: Ten Layers of Defense from DNS to Database"}, {"company": "Microsoft", "speaker": "Rodrigo Candido Leme", "title": "Supercharging SRE with Azure\u2019s AI-Powered Age"}]}, {"category": "Observability \u0026 Monitoring", "talks": [{"company": "Kyndryl", "speaker": "Danne Aguiar", "title": "Business Observability with Dynatrace"}, {"company": "Kyndryl", "speaker": "Tiago Dias Generoso", "title": "Observability Strategy: From Metrics to Meaningful Reliability"}, {"company": "Orca Security", "speaker": "Igor Eulalio Morgado Lopes", "title": "eBPF: Why is everyone talking about it and what does that mean to you?"}]}, {"category": "Incident Management", "talks": [{"company": "Vivo", "speaker": "Andre Bonfa", "title": "Preparar, Operar, Aprender: O Papel do PRR e do Postmortem na Engenharia de Confiabilidade"}]}, {"category": "Resilience \u0026 Chaos Engineering", "talks": [{"company": "Netskope", "speaker": "Douglas Bussoli Mugnos", "title": "Designing for Failure: Proven Techniques for Reliable Applications"}, {"company": "Banco Bradesco", "speaker": "Luiz Siqueira", "title": "Chaos Engineering: Como Usar o Dynatrace para Transformar Falhas em Aprendizado"}]}, {"category": "Cloud Infrastructure", "talks": [{"company": "Advolve.ai", "speaker": "Gustavo Martins T Borges", "title": "Hello World in Production: Building Cloud-Native applications that survive the real world."}, {"company": "Grafana Labs", "speaker": "Alexandre Melo Ferreira", "title": "Stack de Observabilidade com Grafana Cloud"}, {"company": "GFT Technologies", "speaker": "Felipe de Freitas Campos", "title": "Microservi\u00e7os serverless: diferentes designs, mesmas dores"}]}, {"category": "DevOps \u0026 Automation", "talks": [{"company": "Cloud Programming Shell (CPS1)", "speaker": "Miguel Di Ciurcio Filho", "title": "Staging Is Dead: How Ephemeral Environments Redefine Platform Engineering"}, {"company": "C6 Bank", "speaker": "Alexandre Tavares", "title": "Diferencas entre DataOps e DevOps: Entendendo Pr\u00e1ticas e Importancias na Era Digital"}, {"company": "Dynatrace", "speaker": "Alan Delcaro", "title": "Platform Engineering with Dynatrace for SRE: Intelligent Automation and Observability"}]}, {"category": "AI for Operations", "talks": [{"company": "AWS", "speaker": "Joao Fernando Helena Filho", "title": "Enhancing SRE with AI Agents on AWS: Intelligent Automation for Incident Response and Operations"}]}], "topics": ["Site Reliability Engineering", "Observability \u0026 Monitoring", "Incident Management", "Resilience \u0026 Chaos Engineering", "Cloud Infrastructure"], "venue_line": "Rodovia Jornalista Francisco Aguirre Proen\u00e7a, SP101", "venue_name": "Kyndryl Campinas / Hortol\u00e2ndia", "venue_short": "Kyndryl Campinas / Hortol\u00e2ndia", "weekday": "Thursday", "wordmark": "/assets/images/sreday_sticker.png"};
 var $ = function (id) { return document.getElementById(id); };
 var form = $('ch-form');
 function val(k) { return (form.elements[k].value || '').trim(); }
@@ -245,7 +249,10 @@ function sessionsProse(n) {
 
 // ---- the hero code (same rule as the card: HERO30 while the event is 14+ days away, HERO50 inside that) -----
 // The code always sits alone on its own line: people copy it.
-function codeBlock(lead) { var hc = heroCode(); return hc[0] ? lead.replace('{off}', hc[1]) + '\n' + hc[0] + '\n\n' : ''; }
+function codeBlock(lead) {
+  if (E.is_free) return "It's free to attend, you just need to register.\n\n";
+  var hc = heroCode(); return hc[0] ? lead.replace('{off}', hc[1]) + '\n' + hc[0] + '\n\n' : '';
+}
 var when = E.date + (E.venue_name ? ' · ' + E.venue_name : ''), tag = '#' + E.brand_name.replace(/\s+/g, '') + ' #' + E.city.replace(/\s+/g, '');
 
 // ---- the Personal post (Marek 2026-09-28): five wordings of one structure, one picked at random per page load,
@@ -268,10 +275,13 @@ function talksText() {
 }
 function topicsText() { return list(E.topics, 3); }
 function codeInline() { var hc = heroCode(); return hc[0] ? hc[1] + ' with the code ' + hc[0] + '\n' : ''; }
+function rsvpLines() {                          // free event: "Register for FREE", no code; paid: RSVP + the code
+  return E.is_free ? 'Register for FREE: ' + E.event_url + '\n' : 'RSVP: ' + E.event_url + '\n' + codeInline();
+}
 function personalPost() {
   var N = sessionsText(), T = talksText(), P = topicsText(), B = tagged(E.brand_name);
   var join = function (lead) { return lead + ' ' + E.city + ' on ' + E.month_day; };
-  var tail = function (ask, thanks) { return ask + '\nRSVP: ' + E.event_url + '\n' + codeInline() + '\n' + thanks; };
+  var tail = function (ask, thanks) { return ask + '\n' + rsvpLines() + '\n' + thanks; };
   var V = [                                      // excited and warm, emojis welcome - the Professional post stays composed
     function () {
       return "I'm a Community Hero at " + E.event_name + '! 🎉\n\n' +
@@ -320,7 +330,7 @@ function talksBullets() {
 function proPost() {
   var N = sessionsText(), L = talksBullets(), P = topicsText(), B = tagged(E.brand_name), EV = E.event_name;
   var where = E.city + ' on ' + E.month_day;
-  var tail = function (ask, thanks) { return (ask ? ask + '\n' : '') + 'RSVP: ' + E.event_url + '\n' + codeInline() + '\n' + thanks; };
+  var tail = function (ask, thanks) { return (ask ? ask + '\n' : '') + rsvpLines() + '\n' + thanks; };
   // the hero's own job title and company from step 1 (company taggable); each version phrases it its own way
   var role = val('role'), comp = val('company') ? tagged(val('company')) : '', aRole = role ? (/^[aeiou]/i.test(role) ? 'an ' : 'a ') + role : '';
   var who = function (both, onlyRole, onlyComp) { return role && comp ? both : role ? onlyRole : comp ? onlyComp : ''; };
@@ -434,6 +444,7 @@ render('post'); render('msg');
 // the discount code step: the same code as on the card (HERO30, HERO50 inside 14 days of the event)
 (function () {
   var hc = heroCode();
+  if (!$('ch-code-card')) return;                 // free event: no code step
   if (!hc[0]) { $('ch-code-card').hidden = true; return; }
   $('ch-code').textContent = hc[0]; $('ch-code-off').textContent = hc[1];
   $('ch-code-copy').addEventListener('click', function () {
@@ -605,7 +616,7 @@ function drawCard() {
   ctx.save(); ctx.shadowColor = K.glow; ctx.shadowBlur = 60; ctx.strokeStyle = ringGradient(cx, cy, r); ctx.lineWidth = 14;
   ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
   // venue bar: pin, venue + street on the left, the hero ticket code (own line) and what it gives on the right
-  var y = 1210, h = 190, hc = heroCode(), code = hc[0], codeW = 0;
+  var y = 1210, h = 190, hc = E.is_free ? ['FREE', 'Register now'] : heroCode(), code = hc[0], codeW = 0;
   glass(90, y, 1320, h, 40, 'rgba(255,255,255,.18)');
   if (code) { ctx.font = '900 60px Montserrat, Arial, sans-serif'; codeW = ctx.measureText(code).width; }
   var textMax = 1360 - 260 - (code ? codeW + 50 : 0);

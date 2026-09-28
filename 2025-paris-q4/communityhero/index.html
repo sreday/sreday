@@ -114,7 +114,9 @@
   <div class="ch-brand">SREday · community heroes</div>
   <h1 class="ch-title">Community Hero at SREday Paris 2025 Q4</h1>
   <div class="ch-sub">November 19-20, 2025 · Paris · <a href="https://www.sreday.com/2025-paris-q4/" target="_blank" rel="noopener">event page</a></div>
+  
   <p class="ch-intro">You applied for a Community Hero ticket: free admission in exchange for helping us promote the event. Everything you need is on this page. Fill in your details, generate and grab your card, pick a post and a message to spread, then tell us what you did. We&#39;ll review your activities and confirm your free ticket!</p>
+  
 
   <form id="ch-form" novalidate>
     <div class="ch-card">
@@ -125,7 +127,7 @@
         <label class="ch-field" data-field="role"><span>Job title</span><input type="text" name="role" autocomplete="organization-title" maxlength="120"></label>
         <label class="ch-field" data-field="company"><span>Company</span><input type="text" name="company" autocomplete="organization" maxlength="120"></label>
         <label class="ch-field ch-wide" data-field="linkedin"><span>LinkedIn profile URL</span><input type="url" name="linkedin" autocomplete="url" placeholder="https://www.linkedin.com/in/..." maxlength="300"></label>
-        <label class="ch-field ch-wide" data-field="photo"><span>Your photo <small>(a clear headshot, it goes on your card)</small></span>
+        <label class="ch-field ch-wide" data-field="photo"><span>Your photo <small>(headshot picture or avatar, it goes on your card)</small></span>
           <div class="ch-photo-box" id="ch-photo-box"><img id="ch-photo-prev" alt="" hidden><div class="ch-photo-text" id="ch-photo-text"><b>Choose a photo</b> or drop it here. JPG or PNG, a square headshot works best, up to 10 MB.</div><input type="file" name="photo" id="ch-photo" accept="image/*"></div>
         </label>
       </div>
@@ -148,12 +150,14 @@
     </div>
     
 
+    
     <div class="ch-card" id="ch-code-card">
       <div class="ch-step"><i>4</i><h2>Your discount code</h2></div>
       <div class="ch-code-row"><div class="ch-code" id="ch-code">HERO30</div><div class="ch-code-off" id="ch-code-off">30% off</div></div>
       <div class="ch-row"><button type="button" class="btn-ch ghost" id="ch-code-copy">Copy code</button><span class="ch-copied" id="ch-code-copied"></span></div>
       <div class="ch-hint">You may use this code publicly.</div>
     </div>
+    
 
     <div class="ch-card">
       <div class="ch-step"><i>5</i><h2>Your post</h2><small>LinkedIn, X, etc. - where your community is active</small></div>
@@ -208,7 +212,7 @@
 
 <script>
 var CH_URL = "https://script.google.com/macros/s/AKfycbyeW8C7ZfEjrELd0-GHy4p-fiBYTyBGsPkJ-M7uNkoD69Xk8UyhIUBfl7u67eQIfmPG/exec";
-var E = {"attendees": 90, "banner": "/assets/images/events/sreday-2025-paris-q4.png", "blurb_short": "SREday is a worldwide series of community events for engineers who build, ship and run modern software systems.", "brand": "sreday", "brand_color": "#713660", "brand_name": "SREday", "city": "Paris", "companies": ["Axoflow", "CAST AI", "Catchpoint", "countX GmbH", "Criteo", "Datadog"], "date": "November 19-20, 2025", "day": "19", "event_name": "SREday Paris 2025 Q4", "event_url": "https://www.sreday.com/2025-paris-q4/", "keynotes": ["Kyle Hoondert", "Matthieu Blumberg", "Poone Mokari"], "luma_url": "https://lu.ma/event/evt-QW9jA7rZAQ5EwvK", "month": "November", "month_day": "November 19-20", "pick_talks": [{"company": "Waovo", "keynote": false, "speaker": "Annie Talvasto"}, {"company": "Gatling", "keynote": false, "speaker": "Heather Thacker"}, {"company": "Datadog \u0026 OllyGarden", "keynote": false, "speaker": "Juliano Costa"}, {"company": "vCluster", "keynote": false, "speaker": "Piotr Zaniewski"}, {"company": "Happening", "keynote": false, "speaker": "Laurent Godet"}, {"company": "PagerDuty", "keynote": false, "speaker": "Daniel Afonso"}, {"company": "Axoflow", "keynote": false, "speaker": "Attila Szakacs"}, {"company": "Axoflow", "keynote": false, "speaker": "Bence Csati"}, {"company": "Varnish Software", "keynote": false, "speaker": "Thijs Feryn"}, {"company": "Grafana Labs", "keynote": false, "speaker": "Dominik S\u00fc\u00df"}, {"company": "Criteo", "keynote": false, "speaker": "Raphael Bizos"}, {"company": "Catchpoint", "keynote": false, "speaker": "Leon Adato"}, {"company": "countX GmbH", "keynote": false, "speaker": "Dima Malyshenko"}, {"company": "DoiT International", "keynote": false, "speaker": "Joshua Fox"}, {"company": "Imply", "keynote": true, "speaker": "Kyle Hoondert"}, {"company": "Criteo", "keynote": true, "speaker": "Matthieu Blumberg"}, {"company": "Ewake.ai", "keynote": true, "speaker": "Poone Mokari"}, {"company": "Criteo", "keynote": true, "speaker": "Emmanuel Gu\u00e9rin"}, {"company": "Ewake.ai", "keynote": true, "speaker": "Tomaz Medrado"}, {"company": "CAST AI", "keynote": true, "speaker": "Jerome Baude"}], "promo_code": "HERO30", "promo_code_near": "HERO50", "promo_label": "30% off", "promo_label_near": "50% off", "slug": "2025-paris-q4", "speakers_n": 21, "start_date": "2025-11-19", "subtitle": "Paris 2025 Q4", "tickets_url": "https://www.sreday.com/2025-paris-q4/#tickets", "topic_talks": [{"category": "Observability \u0026 Monitoring", "talks": [{"company": "Datadog \u0026 OllyGarden", "speaker": "Juliano Costa", "title": "Crash-Proofing Your OpenTelemetry Collector"}, {"company": "Axoflow", "speaker": "Bence Csati", "title": "Telemetry as Code: Declarative Observability with OpenTelemetry"}, {"company": "Varnish Software", "speaker": "Thijs Feryn", "title": "Leveraging the edge for observability"}]}, {"category": "Incident Management", "talks": [{"company": "vCluster", "speaker": "Piotr Zaniewski", "title": "Instant KAI Sandboxes with vCluster: Multi-Tenant, Multi-Scheduler GPU Sharing"}, {"company": "PagerDuty", "speaker": "Daniel Afonso", "title": "The State of AI in Incident Management"}]}, {"category": "Resilience \u0026 Chaos Engineering", "talks": [{"company": "PagerDuty", "speaker": "Daniel Afonso", "title": "Plan for Unplanned Work: Game Days with Chaos Engineering"}]}, {"category": "Cloud Infrastructure", "talks": [{"company": "Happening", "speaker": "Laurent Godet", "title": "Orchestrating the Edge: A Hybrid Kubernetes Journey"}]}, {"category": "DevOps \u0026 Automation", "talks": [{"company": "Waovo", "speaker": "Annie Talvasto", "title": "I\u2019ll Be Backoff: Benchmarking AI-Powered Platform Engineering Tools"}, {"company": "Axoflow", "speaker": "Attila Szakacs", "title": "Counting What You Care About in Your Security Data Pipeline"}]}, {"category": "Performance \u0026 Scalability", "talks": [{"company": "Gatling", "speaker": "Heather Thacker", "title": "Getting Started with Reliable Load Testing"}]}, {"category": "Production Engineering", "talks": [{"company": "countX GmbH", "speaker": "Dima Malyshenko", "title": "From Git Push to Exit: How Continuous Deployment Converted into Financial Success"}]}, {"category": "AI for Operations", "talks": [{"company": "DoiT International", "speaker": "Joshua Fox", "title": "Growing Machine Learning to production: Cloud MLOps for speed and efficiency"}]}], "topics": ["Site Reliability Engineering", "Observability \u0026 Monitoring", "Incident Management", "Resilience \u0026 Chaos Engineering", "Cloud Infrastructure"], "venue_line": "32 Rue Blanche", "venue_name": "Criteo HQ", "venue_short": "Criteo HQ", "weekday": "Wednesday", "wordmark": "/assets/images/sreday_sticker.png"};
+var E = {"attendees": 90, "banner": "/assets/images/events/sreday-2025-paris-q4.png", "blurb_short": "SREday is a worldwide series of community events for engineers who build, ship and run modern software systems.", "brand": "sreday", "brand_color": "#713660", "brand_name": "SREday", "city": "Paris", "companies": ["Axoflow", "CAST AI", "Catchpoint", "countX GmbH", "Criteo", "Datadog"], "date": "November 19-20, 2025", "day": "19", "event_name": "SREday Paris 2025 Q4", "event_url": "https://www.sreday.com/2025-paris-q4/", "is_free": false, "keynotes": ["Kyle Hoondert", "Matthieu Blumberg", "Poone Mokari"], "luma_url": "https://lu.ma/event/evt-QW9jA7rZAQ5EwvK", "month": "November", "month_day": "November 19-20", "pick_talks": [{"company": "Waovo", "keynote": false, "speaker": "Annie Talvasto"}, {"company": "Gatling", "keynote": false, "speaker": "Heather Thacker"}, {"company": "Datadog \u0026 OllyGarden", "keynote": false, "speaker": "Juliano Costa"}, {"company": "vCluster", "keynote": false, "speaker": "Piotr Zaniewski"}, {"company": "Happening", "keynote": false, "speaker": "Laurent Godet"}, {"company": "PagerDuty", "keynote": false, "speaker": "Daniel Afonso"}, {"company": "Axoflow", "keynote": false, "speaker": "Attila Szakacs"}, {"company": "Axoflow", "keynote": false, "speaker": "Bence Csati"}, {"company": "Varnish Software", "keynote": false, "speaker": "Thijs Feryn"}, {"company": "Grafana Labs", "keynote": false, "speaker": "Dominik S\u00fc\u00df"}, {"company": "Criteo", "keynote": false, "speaker": "Raphael Bizos"}, {"company": "Catchpoint", "keynote": false, "speaker": "Leon Adato"}, {"company": "countX GmbH", "keynote": false, "speaker": "Dima Malyshenko"}, {"company": "DoiT International", "keynote": false, "speaker": "Joshua Fox"}, {"company": "Imply", "keynote": true, "speaker": "Kyle Hoondert"}, {"company": "Criteo", "keynote": true, "speaker": "Matthieu Blumberg"}, {"company": "Ewake.ai", "keynote": true, "speaker": "Poone Mokari"}, {"company": "Criteo", "keynote": true, "speaker": "Emmanuel Gu\u00e9rin"}, {"company": "Ewake.ai", "keynote": true, "speaker": "Tomaz Medrado"}, {"company": "CAST AI", "keynote": true, "speaker": "Jerome Baude"}], "promo_code": "HERO30", "promo_code_near": "HERO50", "promo_label": "30% off", "promo_label_near": "50% off", "slug": "2025-paris-q4", "speakers_n": 21, "start_date": "2025-11-19", "subtitle": "Paris 2025 Q4", "tickets_url": "https://www.sreday.com/2025-paris-q4/#tickets", "topic_talks": [{"category": "Observability \u0026 Monitoring", "talks": [{"company": "Datadog \u0026 OllyGarden", "speaker": "Juliano Costa", "title": "Crash-Proofing Your OpenTelemetry Collector"}, {"company": "Axoflow", "speaker": "Bence Csati", "title": "Telemetry as Code: Declarative Observability with OpenTelemetry"}, {"company": "Varnish Software", "speaker": "Thijs Feryn", "title": "Leveraging the edge for observability"}]}, {"category": "Incident Management", "talks": [{"company": "vCluster", "speaker": "Piotr Zaniewski", "title": "Instant KAI Sandboxes with vCluster: Multi-Tenant, Multi-Scheduler GPU Sharing"}, {"company": "PagerDuty", "speaker": "Daniel Afonso", "title": "The State of AI in Incident Management"}]}, {"category": "Resilience \u0026 Chaos Engineering", "talks": [{"company": "PagerDuty", "speaker": "Daniel Afonso", "title": "Plan for Unplanned Work: Game Days with Chaos Engineering"}]}, {"category": "Cloud Infrastructure", "talks": [{"company": "Happening", "speaker": "Laurent Godet", "title": "Orchestrating the Edge: A Hybrid Kubernetes Journey"}]}, {"category": "DevOps \u0026 Automation", "talks": [{"company": "Waovo", "speaker": "Annie Talvasto", "title": "I\u2019ll Be Backoff: Benchmarking AI-Powered Platform Engineering Tools"}, {"company": "Axoflow", "speaker": "Attila Szakacs", "title": "Counting What You Care About in Your Security Data Pipeline"}]}, {"category": "Performance \u0026 Scalability", "talks": [{"company": "Gatling", "speaker": "Heather Thacker", "title": "Getting Started with Reliable Load Testing"}]}, {"category": "Production Engineering", "talks": [{"company": "countX GmbH", "speaker": "Dima Malyshenko", "title": "From Git Push to Exit: How Continuous Deployment Converted into Financial Success"}]}, {"category": "AI for Operations", "talks": [{"company": "DoiT International", "speaker": "Joshua Fox", "title": "Growing Machine Learning to production: Cloud MLOps for speed and efficiency"}]}], "topics": ["Site Reliability Engineering", "Observability \u0026 Monitoring", "Incident Management", "Resilience \u0026 Chaos Engineering", "Cloud Infrastructure"], "venue_line": "32 Rue Blanche", "venue_name": "Criteo HQ", "venue_short": "Criteo HQ", "weekday": "Wednesday", "wordmark": "/assets/images/sreday_sticker.png"};
 var $ = function (id) { return document.getElementById(id); };
 var form = $('ch-form');
 function val(k) { return (form.elements[k].value || '').trim(); }
@@ -245,7 +249,10 @@ function sessionsProse(n) {
 
 // ---- the hero code (same rule as the card: HERO30 while the event is 14+ days away, HERO50 inside that) -----
 // The code always sits alone on its own line: people copy it.
-function codeBlock(lead) { var hc = heroCode(); return hc[0] ? lead.replace('{off}', hc[1]) + '\n' + hc[0] + '\n\n' : ''; }
+function codeBlock(lead) {
+  if (E.is_free) return "It's free to attend, you just need to register.\n\n";
+  var hc = heroCode(); return hc[0] ? lead.replace('{off}', hc[1]) + '\n' + hc[0] + '\n\n' : '';
+}
 var when = E.date + (E.venue_name ? ' · ' + E.venue_name : ''), tag = '#' + E.brand_name.replace(/\s+/g, '') + ' #' + E.city.replace(/\s+/g, '');
 
 // ---- the Personal post (Marek 2026-09-28): five wordings of one structure, one picked at random per page load,
@@ -268,10 +275,13 @@ function talksText() {
 }
 function topicsText() { return list(E.topics, 3); }
 function codeInline() { var hc = heroCode(); return hc[0] ? hc[1] + ' with the code ' + hc[0] + '\n' : ''; }
+function rsvpLines() {                          // free event: "Register for FREE", no code; paid: RSVP + the code
+  return E.is_free ? 'Register for FREE: ' + E.event_url + '\n' : 'RSVP: ' + E.event_url + '\n' + codeInline();
+}
 function personalPost() {
   var N = sessionsText(), T = talksText(), P = topicsText(), B = tagged(E.brand_name);
   var join = function (lead) { return lead + ' ' + E.city + ' on ' + E.month_day; };
-  var tail = function (ask, thanks) { return ask + '\nRSVP: ' + E.event_url + '\n' + codeInline() + '\n' + thanks; };
+  var tail = function (ask, thanks) { return ask + '\n' + rsvpLines() + '\n' + thanks; };
   var V = [                                      // excited and warm, emojis welcome - the Professional post stays composed
     function () {
       return "I'm a Community Hero at " + E.event_name + '! 🎉\n\n' +
@@ -320,7 +330,7 @@ function talksBullets() {
 function proPost() {
   var N = sessionsText(), L = talksBullets(), P = topicsText(), B = tagged(E.brand_name), EV = E.event_name;
   var where = E.city + ' on ' + E.month_day;
-  var tail = function (ask, thanks) { return (ask ? ask + '\n' : '') + 'RSVP: ' + E.event_url + '\n' + codeInline() + '\n' + thanks; };
+  var tail = function (ask, thanks) { return (ask ? ask + '\n' : '') + rsvpLines() + '\n' + thanks; };
   // the hero's own job title and company from step 1 (company taggable); each version phrases it its own way
   var role = val('role'), comp = val('company') ? tagged(val('company')) : '', aRole = role ? (/^[aeiou]/i.test(role) ? 'an ' : 'a ') + role : '';
   var who = function (both, onlyRole, onlyComp) { return role && comp ? both : role ? onlyRole : comp ? onlyComp : ''; };
@@ -434,6 +444,7 @@ render('post'); render('msg');
 // the discount code step: the same code as on the card (HERO30, HERO50 inside 14 days of the event)
 (function () {
   var hc = heroCode();
+  if (!$('ch-code-card')) return;                 // free event: no code step
   if (!hc[0]) { $('ch-code-card').hidden = true; return; }
   $('ch-code').textContent = hc[0]; $('ch-code-off').textContent = hc[1];
   $('ch-code-copy').addEventListener('click', function () {
@@ -605,7 +616,7 @@ function drawCard() {
   ctx.save(); ctx.shadowColor = K.glow; ctx.shadowBlur = 60; ctx.strokeStyle = ringGradient(cx, cy, r); ctx.lineWidth = 14;
   ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
   // venue bar: pin, venue + street on the left, the hero ticket code (own line) and what it gives on the right
-  var y = 1210, h = 190, hc = heroCode(), code = hc[0], codeW = 0;
+  var y = 1210, h = 190, hc = E.is_free ? ['FREE', 'Register now'] : heroCode(), code = hc[0], codeW = 0;
   glass(90, y, 1320, h, 40, 'rgba(255,255,255,.18)');
   if (code) { ctx.font = '900 60px Montserrat, Arial, sans-serif'; codeW = ctx.measureText(code).width; }
   var textMax = 1360 - 260 - (code ? codeW + 50 : 0);
