@@ -267,7 +267,7 @@
         <p class="ac-blurb"><strong>SREday</strong> is a worldwide series of community events for engineers who build, ship and run modern software systems. Across cities around the world, we bring together people working in reliability, cloud, DevOps, observability and production engineering to share real-world experience, connect with their local community and explore how these disciplines are evolving in the age of AI.</p>
         
         <h5 class="ac-topics-heading">Companies presenting:</h5>
-        <p class="ac-companies">AppMaster, Autolake, AWS, Cisco, Fidian, FloQast, FoxCommand, Garner Health, Google, Grafana Labs, Harness, Hippo Harvest, Hotdata, LangChain, Microsoft, Nexsys Systems LLC, NOFire AI, PayPal, Red Hat, Reliaburger, Serra Labs, Signadot, Socket, SpaceXAI, TruffleRoot, ViralCircle, Wack Incorporated, Walmart Global Tech, WSO2</p>
+        <p class="ac-companies">AppMaster, Autolake, AWS, Cisco, Fidian, FloQast, FoxCommand, Garner Health, Google, Grafana Labs, Harness, Hippo Harvest, Hotdata, LangChain, Microsoft, Nexsys Systems LLC, NOFire AI, PayPal, Red Hat, Reliaburger, Serra Labs, Signadot, Socket, SpaceXAI, TestSprite, TruffleRoot, ViralCircle, Wack Incorporated, Walmart Global Tech, WSO2</p>
         
         
         <h5 class="ac-topics-heading">Topics so far:</h5>
@@ -290,9 +290,9 @@
           <div class="ac-topic-name">Observability & Monitoring</div>
           <ul class="ac-topic-talks">
             <li><a href="Smita_Pasumarthi__Chandan_Chilumula_TruffleRoot_From_Observability_to_Causality_Teaching_Machines_Ho.html#speakers-section">From Observability to Causality: Teaching Machines How Your System Fails</a></li>
-            <li><a href="Eddie_Tejeda_Hotdata_The_Agent_Data_Bus_Shared_State_for_MultiAgent_Systems.html#speakers-section">The Agent Data Bus: Shared State for Multi-Agent Systems</a></li>
             <li><a href="Joel_Lipton_FoxCommand_Reliable_AI_Needs_More_Than_Observability.html#speakers-section">Reliable AI Needs More Than Observability</a></li>
             <li><a href="Hilliary_Lipsig_Red_Hat_Burning_the_Ships_Migrating_Our_Core_Logging_Stack_with_No_Way_Back.html#speakers-section">Burning the Ships: Migrating Our Core Logging Stack with No Way Back</a></li>
+            <li><a href="Eddie_Tejeda_Hotdata_The_Agent_Data_Bus_Shared_State_for_MultiAgent_Systems.html#speakers-section">The Agent Data Bus: Shared State for Multi-Agent Systems</a></li>
             <li><a href="Ankush_Sharma_FloQast_SRE_for_LLMs_Observability_and_Chaos_Engineering_for_AI.html#speakers-section">SRE for LLMs: Observability and Chaos Engineering for AI</a></li>
             <li><a href="Sameera_Jayasoma_WSO2_Beyond_MCP_and_Skills_Architecting_Agentic_Developer_Workflows.html#speakers-section">Beyond MCP and Skills: Architecting Agentic Developer Workflows</a></li>
             <li><a href="Girish_Konda_Microsoft_A_Thousand_Alerts_a_Day__and_One_Real_Incident_Hiding_In_Them.html#speakers-section">A Thousand Alerts a Day, and One Real Incident Hiding In Them</a></li>
@@ -346,6 +346,7 @@
         <div class="ac-topic-group">
           <div class="ac-topic-name">Production Engineering</div>
           <ul class="ac-topic-talks">
+            <li><a href="Yunhao_Jiao_TestSprite_Verification_After_the_Deploy_Catching_What_AIWritten_Code_Breaks_Before_Your.html#speakers-section">Verification After the Deploy: Catching What AI-Written Code Breaks Before Your Users Do</a></li>
             <li><a href="Forrest_Thomas_Garner_Health_Hope_Is_Not_a_Control.html#speakers-section">Hope Is Not a Control</a></li>
             <li><a href="Mark_Pawlikowski_Reliaburger_Kill_It_and_Watch_It_Come_Back_Handson_with_Reliaburger.html#speakers-section">Kill It and Watch It Come Back: Hands-on with Reliaburger</a></li>
             <li><a href="Larsen_Cundric_SpaceXAI_Running_Untrusted_Agents_in_Production.html#speakers-section">Running Untrusted Agents in Production</a></li>
@@ -1203,18 +1204,23 @@ This talk is about what it takes for one SRE, not a platform team, to stand up t
             <div class="meta">
               <h4 class="time mb-3">16:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Eddie Tejeda.png" alt=""></a>
-                <div class="name">Eddie Tejeda</div>
+                <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Yunhao Jiao.png" alt=""></a>
+                <div class="name">Yunhao Jiao</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">The Agent Data Bus: Shared State for Multi-Agent Systems</a>
+                <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Verification After the Deploy: Catching What AI-Written Code Breaks Before Your Users Do</a>
               </h3>
-              <div class="location mb-3">Hotdata</div>
-              <div class="desc schedule-abstract">Multi-agent AI systems are distributed systems, but many still pass data through prompts. This loses information, wastes tokens, and makes failures hard to manage.
-This talk presents a shared data bus where agents exchange a database ID. Using a real three-agent pipeline, I’ll cover retries, conflicting writes, access control, monitoring, and cleanup. I will also provide a guide for choosing between prompts, queues, files, and databases.<a class="schedule-abstract-read-more" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">... Read more</a></div>
+              <div class="location mb-3">TestSprite</div>
+              <div class="desc schedule-abstract">Most of the quality tooling we have added for AI-written code looks at the diff. Code review, static analysis, and pre-merge checks all ask whether the change looks correct. None of them answer the question a reliability engineer actually cares about, which is whether the running application still works.
+
+When a person wrote the code, that mattered less. They knew what they had changed and what else it might touch. When an agent writes the code, nobody knows. The pull request looks clean, the checks pass, and the first honest signal arrives after the deploy, often when a user hits it.
+
+This talk makes the case for moving verification to the other side of the deploy event, and shows what that looks like in practice. A testing agent opens the live build in a real browser, exercises it the way a user would, and hands the failure back to the coding agent with enough context to act on it: the failing step, a screenshot, a DOM snapshot, and a root-cause hypothesis. The repair happens before a human is involved.
+
+Yunhao will close with what TestSprite measured across CoderCup, a public benchmark where frontier coding agents built the same application under identical conditions, including a pattern the team calls feature retention: working features quietly disappearing as later edits land in a codebase whose author does not remember what it built last week.<a class="schedule-abstract-read-more" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">... Read more</a></div>
               
             </div>
           </div>
@@ -1504,19 +1510,18 @@ Everyone who makes it through the six steps and gives feedback goes into a raffl
             <div class="meta">
               <h4 class="time mb-3">14:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21"><img class="profile-image rounded-circle mb-2" src="../speakers/Larsen Cundric.png" alt=""></a>
-                <div class="name">Larsen Cundric</div>
+                <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21"><img class="profile-image rounded-circle mb-2" src="../speakers/Eddie Tejeda.png" alt=""></a>
+                <div class="name">Eddie Tejeda</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">Running Untrusted Agents in Production</a>
+                <a class="theme-link" href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">The Agent Data Bus: Shared State for Multi-Agent Systems</a>
               </h3>
-              <div class="location mb-3">SpaceXAI</div>
-              <div class="desc schedule-abstract">Giving an AI agent the ability to execute code changes the infrastructure it needs. When I was working at Browser Use, that meant rethinking where agents ran, which credentials they could access, and how their work survived a process dying.
-I'll walk through the architecture we built: isolated agent runtimes, scoped access through a control plane, and state stored outside the worker. Then I'll cover what still went wrong, including a failed state restore that was mistaken for a fresh session and allowed blank state to replace valid conversation history. We'll look at the recovery changes that followed and the operational tradeoffs we encountered moving between runtimes.
-The talk draws on publicly documented Browser Use work. Attendees will leave with practical lessons for isolating untrusted workloads, distinguishing missing state from unavailable storage, and deciding which parts of an agent platform they need to operate themselves.<a class="schedule-abstract-read-more" href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">... Read more</a></div>
+              <div class="location mb-3">Hotdata</div>
+              <div class="desc schedule-abstract">Multi-agent AI systems are distributed systems, but many still pass data through prompts. This loses information, wastes tokens, and makes failures hard to manage.
+This talk presents a shared data bus where agents exchange a database ID. Using a real three-agent pipeline, I’ll cover retries, conflicting writes, access control, monitoring, and cleanup. I will also provide a guide for choosing between prompts, queues, files, and databases.<a class="schedule-abstract-read-more" href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">... Read more</a></div>
               
             </div>
           </div>
@@ -1525,17 +1530,19 @@ The talk draws on publicly documented Browser Use work. Attendees will leave wit
             <div class="meta">
               <h4 class="time mb-3">14:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22"><img class="profile-image rounded-circle mb-2" src="../speakers/Jagan Jagannathan.png" alt=""></a>
-                <div class="name">Jagan Jagannathan</div>
+                <a href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22"><img class="profile-image rounded-circle mb-2" src="../speakers/Larsen Cundric.png" alt=""></a>
+                <div class="name">Larsen Cundric</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22">Different Workloads, Different Wins</a>
+                <a class="theme-link" href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22">Running Untrusted Agents in Production</a>
               </h3>
-              <div class="location mb-3">Serra Labs</div>
-              <div class="desc schedule-abstract">For some workloads, success means a smaller cloud bill; for others, it means better performance. This talk demonstrates how to put those goals into practice. We’ll walk through analyzing workload behavior, selecting an optimization mode, and evaluating recommended configurations against cost and performance requirements. Attendees will see how to turn workload data into actionable infrastructure decisions.<a class="schedule-abstract-read-more" href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22">... Read more</a></div>
+              <div class="location mb-3">SpaceXAI</div>
+              <div class="desc schedule-abstract">Giving an AI agent the ability to execute code changes the infrastructure it needs. When I was working at Browser Use, that meant rethinking where agents ran, which credentials they could access, and how their work survived a process dying.
+I'll walk through the architecture we built: isolated agent runtimes, scoped access through a control plane, and state stored outside the worker. Then I'll cover what still went wrong, including a failed state restore that was mistaken for a fresh session and allowed blank state to replace valid conversation history. We'll look at the recovery changes that followed and the operational tradeoffs we encountered moving between runtimes.
+The talk draws on publicly documented Browser Use work. Attendees will leave with practical lessons for isolating untrusted workloads, distinguishing missing state from unavailable storage, and deciding which parts of an agent platform they need to operate themselves.<a class="schedule-abstract-read-more" href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22">... Read more</a></div>
               
             </div>
           </div>
@@ -1544,17 +1551,17 @@ The talk draws on publicly documented Browser Use work. Attendees will leave wit
             <div class="meta">
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-23" data-bs-toggle="modal" data-bs-target="#modal-speaker-23"><img class="profile-image rounded-circle mb-2" src="../speakers/Ankush Sharma.png" alt=""></a>
-                <div class="name">Ankush Sharma</div>
+                <a href="#modal-speaker-23" data-bs-toggle="modal" data-bs-target="#modal-speaker-23"><img class="profile-image rounded-circle mb-2" src="../speakers/Jagan Jagannathan.png" alt=""></a>
+                <div class="name">Jagan Jagannathan</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-23" data-bs-toggle="modal" data-bs-target="#modal-speaker-23">SRE for LLMs: Observability and Chaos Engineering for AI</a>
+                <a class="theme-link" href="#modal-speaker-23" data-bs-toggle="modal" data-bs-target="#modal-speaker-23">Different Workloads, Different Wins</a>
               </h3>
-              <div class="location mb-3">FloQast</div>
-              <div class="desc schedule-abstract">LLMs break the assumptions traditional monitoring is built on, a service can be "up" while quietly hallucinating, drifting, or burning your token budget. This talk shows how to apply SRE discipline to AI systems i.e defining SLOs for inference quality and latency, token-level metrics, prompt tracing, and structured logging across LLM pipelines. We'll then go further with chaos engineering for AI, injecting failures into model-serving infrastructure and automating resilience experiments. Attendees will leave with a practical blueprint for making LLM systems as observable and reliable as the rest of their stack, drawn from the author's book *Observability for Large Language Models* (Apress, 2026).<a class="schedule-abstract-read-more" href="#modal-speaker-23" data-bs-toggle="modal" data-bs-target="#modal-speaker-23">... Read more</a></div>
+              <div class="location mb-3">Serra Labs</div>
+              <div class="desc schedule-abstract">For some workloads, success means a smaller cloud bill; for others, it means better performance. This talk demonstrates how to put those goals into practice. We’ll walk through analyzing workload behavior, selecting an optimization mode, and evaluating recommended configurations against cost and performance requirements. Attendees will see how to turn workload data into actionable infrastructure decisions.<a class="schedule-abstract-read-more" href="#modal-speaker-23" data-bs-toggle="modal" data-bs-target="#modal-speaker-23">... Read more</a></div>
               
             </div>
           </div>
@@ -1579,21 +1586,17 @@ The talk draws on publicly documented Browser Use work. Attendees will leave wit
             <div class="meta">
               <h4 class="time mb-3">16:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-24" data-bs-toggle="modal" data-bs-target="#modal-speaker-24"><img class="profile-image rounded-circle mb-2" src="../speakers/Sameera Jayasoma.png" alt=""></a>
-                <div class="name">Sameera Jayasoma</div>
+                <a href="#modal-speaker-24" data-bs-toggle="modal" data-bs-target="#modal-speaker-24"><img class="profile-image rounded-circle mb-2" src="../speakers/Ankush Sharma.png" alt=""></a>
+                <div class="name">Ankush Sharma</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-24" data-bs-toggle="modal" data-bs-target="#modal-speaker-24">Beyond MCP and Skills: Architecting Agentic Developer Workflows</a>
+                <a class="theme-link" href="#modal-speaker-24" data-bs-toggle="modal" data-bs-target="#modal-speaker-24">SRE for LLMs: Observability and Chaos Engineering for AI</a>
               </h3>
-              <div class="location mb-3">WSO2</div>
-              <div class="desc schedule-abstract">MCP servers, Skills, and agents are a commodity now. But composing these primitives into production-ready developer workflows is not easy. Building the abstraction layers that help agents get the context they need, without burning tokens on low-level detail and wiring it all into a cohesive system architecture takes time. Once you've figured out the patterns, they're repeatable.
-This talk is about those patterns, the decisions and trade-offs you face when turning these building blocks into developer workflows.
-I'll demonstrate one workflow live to make it concrete: an alert fires, an agent assembles context, produces a root-cause report, helps a developer troubleshoot, and proposes a fix the platform executes.
-From that one workflow, I'll pull out patterns you can reuse anywhere, treating the platform as the agent's context source, letting agents express intent while the platform reconciles deterministically, scoping permissions to bound blast radius, and placing the human handoffs that keep people in the loop.
-These are repeatable patterns I learned building OpenChoreo, a CNCF project and they apply to any platform, not just this one.<a class="schedule-abstract-read-more" href="#modal-speaker-24" data-bs-toggle="modal" data-bs-target="#modal-speaker-24">... Read more</a></div>
+              <div class="location mb-3">FloQast</div>
+              <div class="desc schedule-abstract">LLMs break the assumptions traditional monitoring is built on, a service can be "up" while quietly hallucinating, drifting, or burning your token budget. This talk shows how to apply SRE discipline to AI systems i.e defining SLOs for inference quality and latency, token-level metrics, prompt tracing, and structured logging across LLM pipelines. We'll then go further with chaos engineering for AI, injecting failures into model-serving infrastructure and automating resilience experiments. Attendees will leave with a practical blueprint for making LLM systems as observable and reliable as the rest of their stack, drawn from the author's book *Observability for Large Language Models* (Apress, 2026).<a class="schedule-abstract-read-more" href="#modal-speaker-24" data-bs-toggle="modal" data-bs-target="#modal-speaker-24">... Read more</a></div>
               
             </div>
           </div>
@@ -1602,23 +1605,21 @@ These are repeatable patterns I learned building OpenChoreo, a CNCF project and 
             <div class="meta">
               <h4 class="time mb-3">16:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-25" data-bs-toggle="modal" data-bs-target="#modal-speaker-25"><img class="profile-image rounded-circle mb-2" src="../speakers/Girish Konda.png" alt=""></a>
-                <div class="name">Girish Konda</div>
+                <a href="#modal-speaker-25" data-bs-toggle="modal" data-bs-target="#modal-speaker-25"><img class="profile-image rounded-circle mb-2" src="../speakers/Sameera Jayasoma.png" alt=""></a>
+                <div class="name">Sameera Jayasoma</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-25" data-bs-toggle="modal" data-bs-target="#modal-speaker-25">A Thousand Alerts a Day, and One Real Incident Hiding In Them</a>
+                <a class="theme-link" href="#modal-speaker-25" data-bs-toggle="modal" data-bs-target="#modal-speaker-25">Beyond MCP and Skills: Architecting Agentic Developer Workflows</a>
               </h3>
-              <div class="location mb-3">Microsoft</div>
-              <div class="desc schedule-abstract">A monitoring stack that fires a thousand alerts a day does not have a monitoring problem. It has a reading problem. Nearly all of it is benign and repeats the same twenty shapes - and somewhere in there is a real incident that looks exactly like the rest until someone digs.
-The obvious fix is to point an agent at the queue and let it triage. We tried that. It is confidently wrong, and the confidence is the dangerous part: it returns a fluent, well-argued verdict on every alert at the same level of certainty, whether it pulled real evidence or just pattern-matched the title. At a thousand a day, even a small confidently-wrong rate is dozens of silent misfilings - and the ones it buries are the unfamiliar ones, which is exactly where the real incidents live.
-I am a Principal Engineer in Microsoft Fabric, where I am the tech lead and architect for capacity management. What finally worked was refusing to let one agent do both jobs.
-Triage got cut back until routing is all it can do. It groups by signature and hands off. It is not allowed to conclude, to close, or to declare anything benign - that is the judgement it is worst at and the one with the worst downside.
-Investigation was then split across dedicated agents, one per failure domain. Each knows only its own telemetry, its own known-benign patterns, and its own escalation bar. That narrow hypothesis space is what makes "I could not find evidence for this" an answer the agent will actually give, instead of a plausible story. It also means each one can be tested on its own against past incidents, which a single generalist triager never can be.
-The metric that matters is recall on the rare real incident, not how much of the queue got closed.
-I will go through the routing design, how the investigation agents are kept honest, what is escalated to a human on purpose, and the real problems we only caught because a specialist refused to answer.<a class="schedule-abstract-read-more" href="#modal-speaker-25" data-bs-toggle="modal" data-bs-target="#modal-speaker-25">... Read more</a></div>
+              <div class="location mb-3">WSO2</div>
+              <div class="desc schedule-abstract">MCP servers, Skills, and agents are a commodity now. But composing these primitives into production-ready developer workflows is not easy. Building the abstraction layers that help agents get the context they need, without burning tokens on low-level detail and wiring it all into a cohesive system architecture takes time. Once you've figured out the patterns, they're repeatable.
+This talk is about those patterns, the decisions and trade-offs you face when turning these building blocks into developer workflows.
+I'll demonstrate one workflow live to make it concrete: an alert fires, an agent assembles context, produces a root-cause report, helps a developer troubleshoot, and proposes a fix the platform executes.
+From that one workflow, I'll pull out patterns you can reuse anywhere, treating the platform as the agent's context source, letting agents express intent while the platform reconciles deterministically, scoping permissions to bound blast radius, and placing the human handoffs that keep people in the loop.
+These are repeatable patterns I learned building OpenChoreo, a CNCF project and they apply to any platform, not just this one.<a class="schedule-abstract-read-more" href="#modal-speaker-25" data-bs-toggle="modal" data-bs-target="#modal-speaker-25">... Read more</a></div>
               
             </div>
           </div>
@@ -1627,19 +1628,23 @@ I will go through the routing design, how the investigation agents are kept hone
             <div class="meta">
               <h4 class="time mb-3">17:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-26" data-bs-toggle="modal" data-bs-target="#modal-speaker-26"><img class="profile-image rounded-circle mb-2" src="../speakers/An Phan.png" alt=""></a>
-                <div class="name">An Phan</div>
+                <a href="#modal-speaker-26" data-bs-toggle="modal" data-bs-target="#modal-speaker-26"><img class="profile-image rounded-circle mb-2" src="../speakers/Girish Konda.png" alt=""></a>
+                <div class="name">Girish Konda</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-26" data-bs-toggle="modal" data-bs-target="#modal-speaker-26">When the Site Is Actually a Site: Rethinking Site Reliability for the Physical World</a>
+                <a class="theme-link" href="#modal-speaker-26" data-bs-toggle="modal" data-bs-target="#modal-speaker-26">A Thousand Alerts a Day, and One Real Incident Hiding In Them</a>
               </h3>
-              <div class="location mb-3">Hippo Harvest</div>
-              <div class="desc schedule-abstract">What does Site Reliability Engineering look like when the "site" is an actual physical place?
-At a physical site, software is only one part of the system. Networks can disappear, machines have their own state, sensors provide incomplete evidence, and environmental conditions keep changing regardless of whether our infrastructure is healthy. A reliable cloud service does not necessarily mean a reliable site.
-Drawing from engineering systems that span cloud infrastructure, on-site computing, machines, sensors, and physical processes, this talk explores where the traditional reliability boundary starts to break down. It proposes a broader way to think about observability, failure, recovery, and system health when the physical site itself becomes part of the system we are responsible for keeping reliable.<a class="schedule-abstract-read-more" href="#modal-speaker-26" data-bs-toggle="modal" data-bs-target="#modal-speaker-26">... Read more</a></div>
+              <div class="location mb-3">Microsoft</div>
+              <div class="desc schedule-abstract">A monitoring stack that fires a thousand alerts a day does not have a monitoring problem. It has a reading problem. Nearly all of it is benign and repeats the same twenty shapes - and somewhere in there is a real incident that looks exactly like the rest until someone digs.
+The obvious fix is to point an agent at the queue and let it triage. We tried that. It is confidently wrong, and the confidence is the dangerous part: it returns a fluent, well-argued verdict on every alert at the same level of certainty, whether it pulled real evidence or just pattern-matched the title. At a thousand a day, even a small confidently-wrong rate is dozens of silent misfilings - and the ones it buries are the unfamiliar ones, which is exactly where the real incidents live.
+I am a Principal Engineer in Microsoft Fabric, where I am the tech lead and architect for capacity management. What finally worked was refusing to let one agent do both jobs.
+Triage got cut back until routing is all it can do. It groups by signature and hands off. It is not allowed to conclude, to close, or to declare anything benign - that is the judgement it is worst at and the one with the worst downside.
+Investigation was then split across dedicated agents, one per failure domain. Each knows only its own telemetry, its own known-benign patterns, and its own escalation bar. That narrow hypothesis space is what makes "I could not find evidence for this" an answer the agent will actually give, instead of a plausible story. It also means each one can be tested on its own against past incidents, which a single generalist triager never can be.
+The metric that matters is recall on the rare real incident, not how much of the queue got closed.
+I will go through the routing design, how the investigation agents are kept honest, what is escalated to a human on purpose, and the real problems we only caught because a specialist refused to answer.<a class="schedule-abstract-read-more" href="#modal-speaker-26" data-bs-toggle="modal" data-bs-target="#modal-speaker-26">... Read more</a></div>
               
             </div>
           </div>
@@ -1648,17 +1653,19 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
             <div class="meta">
               <h4 class="time mb-3">17:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-27" data-bs-toggle="modal" data-bs-target="#modal-speaker-27"><img class="profile-image rounded-circle mb-2" src="../speakers/Oleg Sotnikov.png" alt=""></a>
-                <div class="name">Oleg Sotnikov</div>
+                <a href="#modal-speaker-27" data-bs-toggle="modal" data-bs-target="#modal-speaker-27"><img class="profile-image rounded-circle mb-2" src="../speakers/An Phan.png" alt=""></a>
+                <div class="name">An Phan</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-27" data-bs-toggle="modal" data-bs-target="#modal-speaker-27">One Container, One Database per Tenant: Running Hundreds of Thousands of AI-Generated Apps</a>
+                <a class="theme-link" href="#modal-speaker-27" data-bs-toggle="modal" data-bs-target="#modal-speaker-27">When the Site Is Actually a Site: Rethinking Site Reliability for the Physical World</a>
               </h3>
-              <div class="location mb-3">AppMaster</div>
-              <div class="desc schedule-abstract">When your platform generates your customers' applications, every incident in their production is your incident. This talk is a field report from running a no-code platform's runtime plane at a peak of 250,000 concurrently hosted containers: one container and one PostgreSQL database per tenant app across multiple regions, with a control plane and a build plane feeding it. The applications themselves are produced by an AI-driven generator from customers' blueprints, which adds a failure class most fleets never see — code that nobody reviewed, regenerated on demand. I'll cover the reliability model we settled on and why: blast-radius isolation vs. density, per-tenant observability, fleet-wide regeneration and redeploy when the generator itself changes, noisy-neighbor handling on shared hosts, and the failure modes that only exist when the code in production was compiled from a customer's blueprint 10 minutes ago. Practical patterns for anyone operating a fleet of workloads you don't control.<a class="schedule-abstract-read-more" href="#modal-speaker-27" data-bs-toggle="modal" data-bs-target="#modal-speaker-27">... Read more</a></div>
+              <div class="location mb-3">Hippo Harvest</div>
+              <div class="desc schedule-abstract">What does Site Reliability Engineering look like when the "site" is an actual physical place?
+At a physical site, software is only one part of the system. Networks can disappear, machines have their own state, sensors provide incomplete evidence, and environmental conditions keep changing regardless of whether our infrastructure is healthy. A reliable cloud service does not necessarily mean a reliable site.
+Drawing from engineering systems that span cloud infrastructure, on-site computing, machines, sensors, and physical processes, this talk explores where the traditional reliability boundary starts to break down. It proposes a broader way to think about observability, failure, recovery, and system health when the physical site itself becomes part of the system we are responsible for keeping reliable.<a class="schedule-abstract-read-more" href="#modal-speaker-27" data-bs-toggle="modal" data-bs-target="#modal-speaker-27">... Read more</a></div>
               
             </div>
           </div>
@@ -1667,17 +1674,17 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
             <div class="meta">
               <h4 class="time mb-3">18:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-28" data-bs-toggle="modal" data-bs-target="#modal-speaker-28"><img class="profile-image rounded-circle mb-2" src="../speakers/Ganesh Nathan.png" alt=""></a>
-                <div class="name">Ganesh Nathan</div>
+                <a href="#modal-speaker-28" data-bs-toggle="modal" data-bs-target="#modal-speaker-28"><img class="profile-image rounded-circle mb-2" src="../speakers/Oleg Sotnikov.png" alt=""></a>
+                <div class="name">Oleg Sotnikov</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-28" data-bs-toggle="modal" data-bs-target="#modal-speaker-28">Your Bill Is an SLO: Reliability for a Data Platform With No Servers</a>
+                <a class="theme-link" href="#modal-speaker-28" data-bs-toggle="modal" data-bs-target="#modal-speaker-28">One Container, One Database per Tenant: Running Hundreds of Thousands of AI-Generated Apps</a>
               </h3>
-              <div class="location mb-3">Autolake</div>
-              <div class="desc schedule-abstract">We run a multi-tenant data lakehouse for higher education and public sector organizations on AWS serverless services only: S3, Glue, Athena, Lambda, Step Functions, and Iceberg tables. No cluster, no Kubernetes, and no on-call rotation. That changes what reliability means, because the signals SREs usually rely on, CPU, memory, pod health, do not exist. Our answer is that cost is the most honest signal you have. A query that returns the right answer at ten times the expected cost is a degradation, and we treat it like one. This talk walks through the SLOs we built around cost per query, file count per partition, and snapshot age, and how those SLOs drive automated remediation: compaction, snapshot expiry, catalog reconciliation, and retention enforcement that run themselves and report back. We will also cover the guardrails that keep petabyte-scale storage healthy without a human in the loop: hidden partitioning so users cannot write expensive queries by accident, and per-tenant cost limits that stop a runaway workload before it becomes a bill. You will leave with a working model for SRE on serverless data infrastructure and a checklist you can apply to any Iceberg on S3 deployment.<a class="schedule-abstract-read-more" href="#modal-speaker-28" data-bs-toggle="modal" data-bs-target="#modal-speaker-28">... Read more</a></div>
+              <div class="location mb-3">AppMaster</div>
+              <div class="desc schedule-abstract">When your platform generates your customers' applications, every incident in their production is your incident. This talk is a field report from running a no-code platform's runtime plane at a peak of 250,000 concurrently hosted containers: one container and one PostgreSQL database per tenant app across multiple regions, with a control plane and a build plane feeding it. The applications themselves are produced by an AI-driven generator from customers' blueprints, which adds a failure class most fleets never see — code that nobody reviewed, regenerated on demand. I'll cover the reliability model we settled on and why: blast-radius isolation vs. density, per-tenant observability, fleet-wide regeneration and redeploy when the generator itself changes, noisy-neighbor handling on shared hosts, and the failure modes that only exist when the code in production was compiled from a customer's blueprint 10 minutes ago. Practical patterns for anyone operating a fleet of workloads you don't control.<a class="schedule-abstract-read-more" href="#modal-speaker-28" data-bs-toggle="modal" data-bs-target="#modal-speaker-28">... Read more</a></div>
               
             </div>
           </div>
@@ -1685,6 +1692,25 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
           <div class="item item-talk">
             <div class="meta">
               <h4 class="time mb-3">18:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-29" data-bs-toggle="modal" data-bs-target="#modal-speaker-29"><img class="profile-image rounded-circle mb-2" src="../speakers/Ganesh Nathan.png" alt=""></a>
+                <div class="name">Ganesh Nathan</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-29" data-bs-toggle="modal" data-bs-target="#modal-speaker-29">Your Bill Is an SLO: Reliability for a Data Platform With No Servers</a>
+              </h3>
+              <div class="location mb-3">Autolake</div>
+              <div class="desc schedule-abstract">We run a multi-tenant data lakehouse for higher education and public sector organizations on AWS serverless services only: S3, Glue, Athena, Lambda, Step Functions, and Iceberg tables. No cluster, no Kubernetes, and no on-call rotation. That changes what reliability means, because the signals SREs usually rely on, CPU, memory, pod health, do not exist. Our answer is that cost is the most honest signal you have. A query that returns the right answer at ten times the expected cost is a degradation, and we treat it like one. This talk walks through the SLOs we built around cost per query, file count per partition, and snapshot age, and how those SLOs drive automated remediation: compaction, snapshot expiry, catalog reconciliation, and retention enforcement that run themselves and report back. We will also cover the guardrails that keep petabyte-scale storage healthy without a human in the loop: hidden partitioning so users cannot write expensive queries by accident, and per-tenant cost limits that stop a runaway workload before it becomes a bill. You will leave with a working model for SRE on serverless data infrastructure and a checklist you can apply to any Iceberg on S3 deployment.<a class="schedule-abstract-read-more" href="#modal-speaker-29" data-bs-toggle="modal" data-bs-target="#modal-speaker-29">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">19:00</h4>
               <div class="profile">
                 <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
                 <div class="name"></div>
@@ -1717,6 +1743,8 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
           </tr>
         </thead>
         <tbody>
+
+
 
 
 
@@ -2230,8 +2258,8 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">Running Untrusted Agents in Production</a>
-              <div class="speaker-info">Larsen Cundric <span class="affiliation">• SpaceXAI</span></div>
+              <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">The Agent Data Bus: Shared State for Multi-Agent Systems</a>
+              <div class="speaker-info">Eddie Tejeda <span class="affiliation">• Hotdata</span></div>
             </td>
 
 
@@ -2275,8 +2303,8 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22">Different Workloads, Different Wins</a>
-              <div class="speaker-info">Jagan Jagannathan <span class="affiliation">• Serra Labs</span></div>
+              <a href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22">Running Untrusted Agents in Production</a>
+              <div class="speaker-info">Larsen Cundric <span class="affiliation">• SpaceXAI</span></div>
             </td>
 
 
@@ -2320,8 +2348,8 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-23" data-bs-toggle="modal" data-bs-target="#modal-speaker-23">SRE for LLMs: Observability and Chaos Engineering for AI</a>
-              <div class="speaker-info">Ankush Sharma <span class="affiliation">• FloQast</span></div>
+              <a href="#modal-speaker-23" data-bs-toggle="modal" data-bs-target="#modal-speaker-23">Different Workloads, Different Wins</a>
+              <div class="speaker-info">Jagan Jagannathan <span class="affiliation">• Serra Labs</span></div>
             </td>
 
 
@@ -2379,8 +2407,8 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">The Agent Data Bus: Shared State for Multi-Agent Systems</a>
-              <div class="speaker-info">Eddie Tejeda <span class="affiliation">• Hotdata</span></div>
+              <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Verification After the Deploy: Catching What AI-Written Code Breaks Before Your Users Do</a>
+              <div class="speaker-info">Yunhao Jiao <span class="affiliation">• TestSprite</span></div>
             </td>
 
 
@@ -2390,8 +2418,8 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-24" data-bs-toggle="modal" data-bs-target="#modal-speaker-24">Beyond MCP and Skills: Architecting Agentic Developer Workflows</a>
-              <div class="speaker-info">Sameera Jayasoma <span class="affiliation">• WSO2</span></div>
+              <a href="#modal-speaker-24" data-bs-toggle="modal" data-bs-target="#modal-speaker-24">SRE for LLMs: Observability and Chaos Engineering for AI</a>
+              <div class="speaker-info">Ankush Sharma <span class="affiliation">• FloQast</span></div>
             </td>
 
 
@@ -2435,8 +2463,8 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-25" data-bs-toggle="modal" data-bs-target="#modal-speaker-25">A Thousand Alerts a Day, and One Real Incident Hiding In Them</a>
-              <div class="speaker-info">Girish Konda <span class="affiliation">• Microsoft</span></div>
+              <a href="#modal-speaker-25" data-bs-toggle="modal" data-bs-target="#modal-speaker-25">Beyond MCP and Skills: Architecting Agentic Developer Workflows</a>
+              <div class="speaker-info">Sameera Jayasoma <span class="affiliation">• WSO2</span></div>
             </td>
 
 
@@ -2480,8 +2508,8 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-26" data-bs-toggle="modal" data-bs-target="#modal-speaker-26">When the Site Is Actually a Site: Rethinking Site Reliability for the Physical World</a>
-              <div class="speaker-info">An Phan <span class="affiliation">• Hippo Harvest</span></div>
+              <a href="#modal-speaker-26" data-bs-toggle="modal" data-bs-target="#modal-speaker-26">A Thousand Alerts a Day, and One Real Incident Hiding In Them</a>
+              <div class="speaker-info">Girish Konda <span class="affiliation">• Microsoft</span></div>
             </td>
 
 
@@ -2525,8 +2553,8 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-27" data-bs-toggle="modal" data-bs-target="#modal-speaker-27">One Container, One Database per Tenant: Running Hundreds of Thousands of AI-Generated Apps</a>
-              <div class="speaker-info">Oleg Sotnikov <span class="affiliation">• AppMaster</span></div>
+              <a href="#modal-speaker-27" data-bs-toggle="modal" data-bs-target="#modal-speaker-27">When the Site Is Actually a Site: Rethinking Site Reliability for the Physical World</a>
+              <div class="speaker-info">An Phan <span class="affiliation">• Hippo Harvest</span></div>
             </td>
 
 
@@ -2570,8 +2598,8 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-28" data-bs-toggle="modal" data-bs-target="#modal-speaker-28">Your Bill Is an SLO: Reliability for a Data Platform With No Servers</a>
-              <div class="speaker-info">Ganesh Nathan <span class="affiliation">• Autolake</span></div>
+              <a href="#modal-speaker-28" data-bs-toggle="modal" data-bs-target="#modal-speaker-28">One Container, One Database per Tenant: Running Hundreds of Thousands of AI-Generated Apps</a>
+              <div class="speaker-info">Oleg Sotnikov <span class="affiliation">• AppMaster</span></div>
             </td>
 
 
@@ -2614,7 +2642,10 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
 
 
-            <td class="talk-cell merged-cell">Wrap up</td>
+            <td class="talk-cell">
+              <a href="#modal-speaker-29" data-bs-toggle="modal" data-bs-target="#modal-speaker-29">Your Bill Is an SLO: Reliability for a Data Platform With No Servers</a>
+              <div class="speaker-info">Ganesh Nathan <span class="affiliation">• Autolake</span></div>
+            </td>
 
 
           </tr>
@@ -2635,25 +2666,13 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
 
 
-
-
           <tr>
             <td class="time-cell merged-cell">19:00</td>
+            <td class="talk-cell merged-cell" colspan="2">
 
+              Wrap up
 
-
-
-
-
-            <td class="talk-cell merged-cell">Wrap up</td>
-
-
-
-
-
-            <td class="talk-cell merged-cell"></td>
-
-
+            </td>
           </tr>
 
 
@@ -2730,7 +2749,7 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-26" data-bs-toggle="modal" data-bs-target="#modal-speaker-26"><img src="../speakers/An Phan.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-27" data-bs-toggle="modal" data-bs-target="#modal-speaker-27"><img src="../speakers/An Phan.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">An Phan</h5>
             <div class="card-text mb-3">
@@ -2756,7 +2775,7 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-23" data-bs-toggle="modal" data-bs-target="#modal-speaker-23"><img src="../speakers/Ankush Sharma.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-24" data-bs-toggle="modal" data-bs-target="#modal-speaker-24"><img src="../speakers/Ankush Sharma.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Ankush Sharma</h5>
             <div class="card-text mb-3">
@@ -2860,7 +2879,7 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Eddie Tejeda.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21"><img src="../speakers/Eddie Tejeda.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Eddie Tejeda</h5>
             <div class="card-text mb-3">
@@ -2938,7 +2957,7 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-28" data-bs-toggle="modal" data-bs-target="#modal-speaker-28"><img src="../speakers/Ganesh Nathan.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-29" data-bs-toggle="modal" data-bs-target="#modal-speaker-29"><img src="../speakers/Ganesh Nathan.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Ganesh Nathan</h5>
             <div class="card-text mb-3">
@@ -2990,7 +3009,7 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-25" data-bs-toggle="modal" data-bs-target="#modal-speaker-25"><img src="../speakers/Girish Konda.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-26" data-bs-toggle="modal" data-bs-target="#modal-speaker-26"><img src="../speakers/Girish Konda.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Girish Konda</h5>
             <div class="card-text mb-3">
@@ -3120,7 +3139,7 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22"><img src="../speakers/Jagan Jagannathan.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-23" data-bs-toggle="modal" data-bs-target="#modal-speaker-23"><img src="../speakers/Jagan Jagannathan.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Jagan Jagannathan</h5>
             <div class="card-text mb-3">
@@ -3198,7 +3217,7 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21"><img src="../speakers/Larsen Cundric.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-22" data-bs-toggle="modal" data-bs-target="#modal-speaker-22"><img src="../speakers/Larsen Cundric.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Larsen Cundric</h5>
             <div class="card-text mb-3">
@@ -3276,7 +3295,7 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-27" data-bs-toggle="modal" data-bs-target="#modal-speaker-27"><img src="../speakers/Oleg Sotnikov.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-28" data-bs-toggle="modal" data-bs-target="#modal-speaker-28"><img src="../speakers/Oleg Sotnikov.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Oleg Sotnikov</h5>
             <div class="card-text mb-3">
@@ -3354,7 +3373,7 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-24" data-bs-toggle="modal" data-bs-target="#modal-speaker-24"><img src="../speakers/Sameera Jayasoma.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-25" data-bs-toggle="modal" data-bs-target="#modal-speaker-25"><img src="../speakers/Sameera Jayasoma.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Sameera Jayasoma</h5>
             <div class="card-text mb-3">
@@ -3447,6 +3466,32 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
             <ul class="social-list list-inline mb-0">
               
               <li class="list-inline-item"><a  href="https://www.linkedin.com/in/wei-chincall/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Yunhao Jiao.png" class="card-img-top rounded-0" alt=""></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Yunhao Jiao</h5>
+            <div class="card-text mb-3">
+              <div class="meta">TestSprite</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Yunhao_Jiao_TestSprite_Verification_After_the_Deploy_Catching_What_AIWritten_Code_Breaks_Before_Your#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/yunhaojiao/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -4247,26 +4292,28 @@ ELK. Geoff has participated in and led infrastructure deployments and reliabilit
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Eddie Tejeda.png" alt="" />
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Yunhao Jiao.png" alt="" />
                       </div>
 
                       <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Eddie Tejeda</h2>
-                          <div class="meta mb-2">Hotdata</div>
+                          <h2 class="name mb-2">Yunhao Jiao</h2>
+                          <div class="meta mb-2">TestSprite</div>
                           <ul class="social-list list-inline mb-0">
                             
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/eddietejeda/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/yunhaojiao/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
                             
                             
                           </ul><!--//social-list-->
                       </div><!--//col-->
                   </div><!--//row-->
               </div>
-              <div class="talk-title-bar">The Agent Data Bus: Shared State for Multi-Agent Systems</div>
+              <div class="talk-title-bar">Verification After the Deploy: Catching What AI-Written Code Breaks Before Your Users Do</div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Multi-agent AI systems are distributed systems, but many still pass data through prompts. This loses information, wastes tokens, and makes failures hard to manage.
-This talk presents a shared data bus where agents exchange a database ID. Using a real three-agent pipeline, I’ll cover retries, conflicting writes, access control, monitoring, and cleanup. I will also provide a guide for choosing between prompts, queues, files, and databases.</p></p>
+                <p><p>Most of the quality tooling we have added for AI-written code looks at the diff. Code review, static analysis, and pre-merge checks all ask whether the change looks correct. None of them answer the question a reliability engineer actually cares about, which is whether the running application still works.</p>
+<p>When a person wrote the code, that mattered less. They knew what they had changed and what else it might touch. When an agent writes the code, nobody knows. The pull request looks clean, the checks pass, and the first honest signal arrives after the deploy, often when a user hits it.</p>
+<p>This talk makes the case for moving verification to the other side of the deploy event, and shows what that looks like in practice. A testing agent opens the live build in a real browser, exercises it the way a user would, and hands the failure back to the coding agent with enough context to act on it: the failing step, a screenshot, a DOM snapshot, and a root-cause hypothesis. The repair happens before a human is involved.</p>
+<p>Yunhao will close with what TestSprite measured across CoderCup, a public benchmark where frontier coding agents built the same application under identical conditions, including a pattern the team calls feature retention: working features quietly disappearing as later edits land in a codebase whose author does not remember what it built last week.</p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
@@ -4274,7 +4321,7 @@ This talk presents a shared data bus where agents exchange a database ID. Using 
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Eddie Tejeda is co-founder and CTO of Hotdata.dev , which helps AI agents create databases in milliseconds. He is a two-time founder and previously led engineering at Mode Analytics and ThoughtSpot.</p></p>
+                <p><p>Yunhao Jiao is a Yale University graduate with a master's degree and spent nearly five years at AWS as a Senior Software Engineer, where he helped build the Contract Tests framework for AWS CloudFormation, ensuring resource types operated as expected throughout their lifecycle. He has been active in NLP research since 2015 and published his first AI paper as lead author in 2017. Yunhao founded TestSprite and participates in the Techstars Miami and YC China accelerator programs.</p></p>
               </div>
 
           </div><!--//modal-body-->
@@ -4753,6 +4800,50 @@ Previously, she worked in marketing at YC-backed Julius AI. With a background in
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Eddie Tejeda.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Eddie Tejeda</h2>
+                          <div class="meta mb-2">Hotdata</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/eddietejeda/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">The Agent Data Bus: Shared State for Multi-Agent Systems</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Multi-agent AI systems are distributed systems, but many still pass data through prompts. This loses information, wastes tokens, and makes failures hard to manage.
+This talk presents a shared data bus where agents exchange a database ID. Using a real three-agent pipeline, I’ll cover retries, conflicting writes, access control, monitoring, and cleanup. I will also provide a guide for choosing between prompts, queues, files, and databases.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Eddie Tejeda is co-founder and CTO of Hotdata.dev , which helps AI agents create databases in milliseconds. He is a two-time founder and previously led engineering at Mode Analytics and ThoughtSpot.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 22 -->
+<div class="modal modal-speaker modal-speaker-22" id="modal-speaker-22" tabindex="-1" role="dialog" aria-labelledby="speaker-22-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
                           <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Larsen Cundric.png" alt="" />
                       </div>
 
@@ -4789,8 +4880,8 @@ The talk draws on publicly documented Browser Use work. Attendees will leave wit
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 22 -->
-<div class="modal modal-speaker modal-speaker-22" id="modal-speaker-22" tabindex="-1" role="dialog" aria-labelledby="speaker-22-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 23 -->
+<div class="modal modal-speaker modal-speaker-23" id="modal-speaker-23" tabindex="-1" role="dialog" aria-labelledby="speaker-23-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -4832,8 +4923,8 @@ The talk draws on publicly documented Browser Use work. Attendees will leave wit
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 23 -->
-<div class="modal modal-speaker modal-speaker-23" id="modal-speaker-23" tabindex="-1" role="dialog" aria-labelledby="speaker-23-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 24 -->
+<div class="modal modal-speaker modal-speaker-24" id="modal-speaker-24" tabindex="-1" role="dialog" aria-labelledby="speaker-24-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -4875,8 +4966,8 @@ The talk draws on publicly documented Browser Use work. Attendees will leave wit
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 24 -->
-<div class="modal modal-speaker modal-speaker-24" id="modal-speaker-24" tabindex="-1" role="dialog" aria-labelledby="speaker-24-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 25 -->
+<div class="modal modal-speaker modal-speaker-25" id="modal-speaker-25" tabindex="-1" role="dialog" aria-labelledby="speaker-25-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -4923,8 +5014,8 @@ With over 18 years at WSO2, Sameera has spearheaded major platform initiatives, 
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 25 -->
-<div class="modal modal-speaker modal-speaker-25" id="modal-speaker-25" tabindex="-1" role="dialog" aria-labelledby="speaker-25-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 26 -->
+<div class="modal modal-speaker modal-speaker-26" id="modal-speaker-26" tabindex="-1" role="dialog" aria-labelledby="speaker-26-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -4972,8 +5063,8 @@ I will go through the routing design, how the investigation agents are kept hone
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 26 -->
-<div class="modal modal-speaker modal-speaker-26" id="modal-speaker-26" tabindex="-1" role="dialog" aria-labelledby="speaker-26-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 27 -->
+<div class="modal modal-speaker modal-speaker-27" id="modal-speaker-27" tabindex="-1" role="dialog" aria-labelledby="speaker-27-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -5017,8 +5108,8 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 27 -->
-<div class="modal modal-speaker modal-speaker-27" id="modal-speaker-27" tabindex="-1" role="dialog" aria-labelledby="speaker-27-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 28 -->
+<div class="modal modal-speaker modal-speaker-28" id="modal-speaker-28" tabindex="-1" role="dialog" aria-labelledby="speaker-28-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -5060,8 +5151,8 @@ Drawing from engineering systems that span cloud infrastructure, on-site computi
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 28 -->
-<div class="modal modal-speaker modal-speaker-28" id="modal-speaker-28" tabindex="-1" role="dialog" aria-labelledby="speaker-28-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 29 -->
+<div class="modal modal-speaker modal-speaker-29" id="modal-speaker-29" tabindex="-1" role="dialog" aria-labelledby="speaker-29-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
