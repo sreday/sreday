@@ -266,8 +266,8 @@
           <div class="ac-topic-name">Site Reliability Engineering</div>
           <ul class="ac-topic-talks">
             <li><a href="Marcos_Novelli_Harispe_LoopStudio_The_Cost_of_Ephemerality_FinOps_Tradeoffs_for_Ephemeral_Environmen.html#speakers-section">The Cost of Ephemerality: FinOps Trade-offs for Ephemeral Environments</a></li>
-            <li><a href="Diego_Braga_Krateo_Questions_to_Ask_Before_You_Buy_an_SRE_Agent.html#speakers-section">Questions to Ask Before You Buy an SRE Agent</a></li>
             <li><a href="Maxim_Schepelin_Bookingcom_SRE_concents_every_engineering_leader_should_know.html#speakers-section">SRE concents every engineering leader should know</a></li>
+            <li><a href="Diego_Braga_Krateo_Questions_to_Ask_Before_You_Buy_an_SRE_Agent.html#speakers-section">Questions to Ask Before You Buy an SRE Agent</a></li>
             <li><a href="Muharrem_Burak_Unuvar_Microsoft_Agentic_Infra_Ops__SRE_Agents_in_Action.html#speakers-section">Agentic Infra Ops &amp; SRE Agents in Action</a></li>
             <li><a href="Jacob_Duijzer_BIMcollab_What_If_This_Dependency_Fails_Learning_Reliability_Through_Chaos_Engineering.html#speakers-section">What If This Dependency Fails? Learning Reliability Through Chaos Engineering</a></li>
             <li><a href="Ricard_Bejarano_Cisco_SRE_for_the_homelab.html#speakers-section">SRE for the homelab</a></li>
@@ -279,8 +279,8 @@
         <div class="ac-topic-group">
           <div class="ac-topic-name">Observability & Monitoring</div>
           <ul class="ac-topic-talks">
-            <li><a href="Gergely_Daroczi_Spare_Cores_DataDriven_Instance_Selection.html#speakers-section">Data-Driven Instance Selection</a></li>
             <li><a href="Judith_Redi_Dash0_Opentelemetery_as_the_standard_for_Agentic_Observability__moving_to_self_healing_s.html#speakers-section">Opentelemetery as the standard for Agentic Observability &amp; moving to self healing systems</a></li>
+            <li><a href="Gergely_Daroczi_Spare_Cores_DataDriven_Instance_Selection.html#speakers-section">Data-Driven Instance Selection</a></li>
             <li><a href="Ralph_Meijer_Netdata_Your_Dashboards_Are_Lying_to_You_And_How_to_Make_Them_Tell_the_Truth.html#speakers-section">Your Dashboards Are Lying to You (And How to Make Them Tell the Truth)</a></li>
             <li><a href="Caner_Sahan_NCR_Voyix_AskPeter_Turning_Production_Data_into_Engineering_Decisions.html#speakers-section">AskPeter: Turning Production Data into Engineering Decisions</a></li>
             <li><a href="Giovanni_Pepe__Razvan_Mihai_Cicu_Uber_From_vendor_driven_monitoring_to_opensource_observability.html#speakers-section">From vendor driven monitoring to open-source observability</a></li>
@@ -1091,33 +1091,14 @@ It is 0.1.0, free and Apache 2.0. Download it, break it, tell me.<a class="sched
             <div class="meta">
               <h4 class="time mb-3">14:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Piotr Zaniewski.png" alt=""></a>
-                <div class="name">Piotr Zaniewski</div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Curl a GPU Into Your Cluster: Hybrid Kubernetes for AI Development</a>
-              </h3>
-              <div class="location mb-3">vCluster Labs</div>
-              <div class="desc schedule-abstract">AI development has a cluster problem: laptop Kubernetes like kind can't host real GPUs, so engineers juggle Docker Compose, full clusters, and scripts that drift from production. We show a pattern where one laptop kubectl context spans local Docker workers and a cloud NVIDIA T4, joined by a single curl over a WireGuard tunnel, so the same workload runs locally and on cloud GPU without two separate setups. The idea is Kubernetes-native: any Linux host (KVM, GCE, bare metal) becomes a node by pasting a one-line curl that installs kubelet and connects over the tunnel, in one tenant cluster. We demo it live: laptop Docker workers, a local KVM node, and a GCE T4 in a single context. We pull llama3.2 onto the T4, deploy a service that talks to it, expose it through a built-in LoadBalancer, and pause/resume the cluster like a laptop. We close with the failure modes (tunnel reconnect after sleep, egress cost on model pulls, GPU eviction) and the GitOps that keeps the topology declarative.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">14:30</h4>
-              <div class="profile">
-                <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Marcos Novelli Harispe.png" alt=""></a>
+                <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img class="profile-image rounded-circle mb-2" src="../speakers/Marcos Novelli Harispe.png" alt=""></a>
                 <div class="name">Marcos Novelli Harispe</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">The Cost of Ephemerality: FinOps Trade-offs for Ephemeral Environments</a>
+                <a class="theme-link" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">The Cost of Ephemerality: FinOps Trade-offs for Ephemeral Environments</a>
               </h3>
               <div class="location mb-3">LoopStudio</div>
               <div class="desc schedule-abstract">Ephemeral Environments (EEs) replace long-lived shared environments with
@@ -1134,7 +1115,26 @@ We’ll discuss the trade-offs between environment fidelity and cost, how
 lifecycle-driven infrastructure changes spending patterns, and how reducing shared
 environment failures can offset infrastructure growth.
 This session is about understanding the cost model behind Ephemeral
-Environments, and how to adopt them without losing financial control.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
+Environments, and how to adopt them without losing financial control.<a class="schedule-abstract-read-more" href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">14:30</h4>
+              <div class="profile">
+                <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img class="profile-image rounded-circle mb-2" src="../speakers/Piotr Zaniewski.png" alt=""></a>
+                <div class="name">Piotr Zaniewski</div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Curl a GPU Into Your Cluster: Hybrid Kubernetes for AI Development</a>
+              </h3>
+              <div class="location mb-3">vCluster Labs</div>
+              <div class="desc schedule-abstract">AI development has a cluster problem: laptop Kubernetes like kind can't host real GPUs, so engineers juggle Docker Compose, full clusters, and scripts that drift from production. We show a pattern where one laptop kubectl context spans local Docker workers and a cloud NVIDIA T4, joined by a single curl over a WireGuard tunnel, so the same workload runs locally and on cloud GPU without two separate setups. The idea is Kubernetes-native: any Linux host (KVM, GCE, bare metal) becomes a node by pasting a one-line curl that installs kubelet and connects over the tunnel, in one tenant cluster. We demo it live: laptop Docker workers, a local KVM node, and a GCE T4 in a single context. We pull llama3.2 onto the T4, deploy a service that talks to it, expose it through a built-in LoadBalancer, and pause/resume the cluster like a laptop. We close with the failure modes (tunnel reconnect after sleep, egress cost on model pulls, GPU eviction) and the GitOps that keeps the topology declarative.<a class="schedule-abstract-read-more" href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">... Read more</a></div>
               
             </div>
           </div>
@@ -1159,17 +1159,17 @@ Environments, and how to adopt them without losing financial control.<a class="s
             <div class="meta">
               <h4 class="time mb-3">15:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Teresa Lopes.png" alt=""></a>
-                <div class="name">Teresa Lopes</div>
+                <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Judith Redi.png" alt=""></a>
+                <div class="name">Judith Redi</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Operational hazards of managing PostgreSQL DBs over 100TB</a>
+                <a class="theme-link" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Opentelemetery as the standard for Agentic Observability & moving to self healing systems</a>
               </h3>
-              <div class="location mb-3">Adyen</div>
-              <div class="desc schedule-abstract">Picture this: you start a new role, eager to learn and contribute with your ideas! Your next task is to get familiar with the database setup, and then you start encountering these massive PostgreSQL databases — 100TB, 200TB, 300TB... And you start questioning yourself: how do you backup (and restore) a +100TB database? And how about HA? Performance? Vacuum? It should work the same way as for a 100GB database, right? Well, maybe not exactly. Blog posts and best practice guides make PostgreSQL seem straightforward—until you push it to its limits. At extreme scale, you will find yourself questioning the most fundamental assumptions about how PostgreSQL works. Over the last years, my team at Adyen has been exploring the boundaries of what PostgreSQL can do, and today I will share our findings with you (at least the ones I can!).<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
+              <div class="location mb-3">Dash0</div>
+              <div class="desc schedule-abstract">Every vendor now demos an agent that finds the root cause and opens the PR. Almost nobody talks about what that agent is reading — and that's the part that decides whether self-healing is real or a very expensive way to break production faster. Humans tolerate bad telemetry. We squint at an inconsistently named metric, we know which dashboard lies, we carry the tribal context that isn't in any span. An agent has none of that. It acts on exactly what the pipeline says, which makes the data contract — not the model — the binding constraint on autonomy. This talk makes the case that OpenTelemetry is that contract, and gets concrete about it. The GenAI semantic conventions (invoke_agent, execute_tool, gen_ai.*) now let you observe agents as first-class citizens rather than opaque HTTP calls. The same conventions, pointed the other way, are what let an agent reason across your estate without a bespoke integration per tool. Then the honest half: where this breaks today, what the conventions still don't cover, and a staged trust model for moving from suggest → propose → act, with a blast radius you can defend in a post-mortem.<a class="schedule-abstract-read-more" href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">... Read more</a></div>
               
             </div>
           </div>
@@ -1178,20 +1178,17 @@ Environments, and how to adopt them without losing financial control.<a class="s
             <div class="meta">
               <h4 class="time mb-3">16:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Bajric Sanel.png" alt=""></a>
-                <div class="name">Bajric Sanel</div>
+                <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Teresa Lopes.png" alt=""></a>
+                <div class="name">Teresa Lopes</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Who Authorizes the Agent? Non-Human Identity, Trust Boundaries and Failure Containment in Autonomous Production Operations</a>
+                <a class="theme-link" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Operational hazards of managing PostgreSQL DBs over 100TB</a>
               </h3>
-              <div class="location mb-3">VendoQ</div>
-              <div class="desc schedule-abstract">AI agents are moving from advisory copilots to operational actors capable of calling APIs, changing infrastructure, triggering workflows and making decisions across production environments. Once that happens, the central reliability question is no longer simply whether the model produces a good answer, but who authorized the agent to act, under which identity, with what scope, and how that authority can be observed, constrained and revoked.
-This session examines the production architecture required for autonomous operations: non-human identity lifecycle and explicit ownership, delegated authorization and least privilege across tools and services, trust boundaries outside the model layer, auditable action trails, human escalation paths, deterministic safety gates and circuit breakers.
-We will also look at failure containment: what happens when an agent performs a technically valid action that is operationally wrong, and how SRE teams can limit blast radius before autonomy becomes systemic risk.
-The goal is a practical, product-independent framework for increasing useful autonomy without allowing operational, security and economic risk to increase at the same rate.<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+              <div class="location mb-3">Adyen</div>
+              <div class="desc schedule-abstract">Picture this: you start a new role, eager to learn and contribute with your ideas! Your next task is to get familiar with the database setup, and then you start encountering these massive PostgreSQL databases — 100TB, 200TB, 300TB... And you start questioning yourself: how do you backup (and restore) a +100TB database? And how about HA? Performance? Vacuum? It should work the same way as for a 100GB database, right? Well, maybe not exactly. Blog posts and best practice guides make PostgreSQL seem straightforward—until you push it to its limits. At extreme scale, you will find yourself questioning the most fundamental assumptions about how PostgreSQL works. Over the last years, my team at Adyen has been exploring the boundaries of what PostgreSQL can do, and today I will share our findings with you (at least the ones I can!).<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
               
             </div>
           </div>
@@ -1200,17 +1197,20 @@ The goal is a practical, product-independent framework for increasing useful aut
             <div class="meta">
               <h4 class="time mb-3">16:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Gergely Daroczi.png" alt=""></a>
-                <div class="name">Gergely Daroczi</div>
+                <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img class="profile-image rounded-circle mb-2" src="../speakers/Bajric Sanel.png" alt=""></a>
+                <div class="name">Bajric Sanel</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Data-Driven Instance Selection</a>
+                <a class="theme-link" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Who Authorizes the Agent? Non-Human Identity, Trust Boundaries and Failure Containment in Autonomous Production Operations</a>
               </h3>
-              <div class="location mb-3">Spare Cores</div>
-              <div class="desc schedule-abstract">Choosing a cloud instance type for a task is still largely a heuristic exercise. While public pricing and hardware specifications are available, they are fragmented, inconsistently structured, and challenging to compare across (or even within) cloud providers -- especially once real workload performance is taken into account. In this talk, we present Spare Cores Navigator, a Python-queryable and open-source benchmark dataset that covers thousands of cloud server types from multiple vendors, with standardized performance and cost-efficiency metrics. We demonstrate how instance selection can be expressed as a simple data query, e.g. filtering by workload characteristics, hardware or compliance constraints, and budget, then ranking candidates by price-performance.<a class="schedule-abstract-read-more" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">... Read more</a></div>
+              <div class="location mb-3">VendoQ</div>
+              <div class="desc schedule-abstract">AI agents are moving from advisory copilots to operational actors capable of calling APIs, changing infrastructure, triggering workflows and making decisions across production environments. Once that happens, the central reliability question is no longer simply whether the model produces a good answer, but who authorized the agent to act, under which identity, with what scope, and how that authority can be observed, constrained and revoked.
+This session examines the production architecture required for autonomous operations: non-human identity lifecycle and explicit ownership, delegated authorization and least privilege across tools and services, trust boundaries outside the model layer, auditable action trails, human escalation paths, deterministic safety gates and circuit breakers.
+We will also look at failure containment: what happens when an agent performs a technically valid action that is operationally wrong, and how SRE teams can limit blast radius before autonomy becomes systemic risk.
+The goal is a practical, product-independent framework for increasing useful autonomy without allowing operational, security and economic risk to increase at the same rate.<a class="schedule-abstract-read-more" href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">... Read more</a></div>
               
             </div>
           </div>
@@ -1219,17 +1219,17 @@ The goal is a practical, product-independent framework for increasing useful aut
             <div class="meta">
               <h4 class="time mb-3">17:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img class="profile-image rounded-circle mb-2" src="../speakers/Thijs Feryn.png" alt=""></a>
-                <div class="name">Thijs Feryn</div>
+                <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img class="profile-image rounded-circle mb-2" src="../speakers/Gergely Daroczi.png" alt=""></a>
+                <div class="name">Gergely Daroczi</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">What's new in Varnish: new features in the high-performance caching proxy</a>
+                <a class="theme-link" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Data-Driven Instance Selection</a>
               </h3>
-              <div class="location mb-3">Varnish Software</div>
-              <div class="desc schedule-abstract">Varnish is a well-known reverse open source HTTP caching proxy that accelerates websites, applications, files, and any other HTTP-base type of workload. The technology has been around for more than 15 years and powers millions of active websites. While Varnish is considered a stable and reliable piece of acceleration software, there hasn't been a lot of hype surrounding the project. The recent release of Varnish version 9 deserves a bit of hype. In this presentation, Thijs will explain the major new features of Varnish 9, which include TLS support, dynamic backends, OTEL support, and a wide range of exciting modules. He’ll show you how to use them to apply a more intelligent caching layer to your web stack. Thijs will also explain some major changes in the way the open source project is run, and will present some cloud-native additions to the project like Docker images, Helm Charts, and even a Varnish-powered Kubernetes Gateway Controller.<a class="schedule-abstract-read-more" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">... Read more</a></div>
+              <div class="location mb-3">Spare Cores</div>
+              <div class="desc schedule-abstract">Choosing a cloud instance type for a task is still largely a heuristic exercise. While public pricing and hardware specifications are available, they are fragmented, inconsistently structured, and challenging to compare across (or even within) cloud providers -- especially once real workload performance is taken into account. In this talk, we present Spare Cores Navigator, a Python-queryable and open-source benchmark dataset that covers thousands of cloud server types from multiple vendors, with standardized performance and cost-efficiency metrics. We demonstrate how instance selection can be expressed as a simple data query, e.g. filtering by workload characteristics, hardware or compliance constraints, and budget, then ranking candidates by price-performance.<a class="schedule-abstract-read-more" href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">... Read more</a></div>
               
             </div>
           </div>
@@ -1238,17 +1238,17 @@ The goal is a practical, product-independent framework for increasing useful aut
             <div class="meta">
               <h4 class="time mb-3">17:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img class="profile-image rounded-circle mb-2" src="../speakers/Judith Redi.png" alt=""></a>
-                <div class="name">Judith Redi</div>
+                <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img class="profile-image rounded-circle mb-2" src="../speakers/Thijs Feryn.png" alt=""></a>
+                <div class="name">Thijs Feryn</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Opentelemetery as the standard for Agentic Observability & moving to self healing systems</a>
+                <a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">What's new in Varnish: new features in the high-performance caching proxy</a>
               </h3>
-              <div class="location mb-3">Dash0</div>
-              <div class="desc schedule-abstract">Every vendor now demos an agent that finds the root cause and opens the PR. Almost nobody talks about what that agent is reading — and that's the part that decides whether self-healing is real or a very expensive way to break production faster. Humans tolerate bad telemetry. We squint at an inconsistently named metric, we know which dashboard lies, we carry the tribal context that isn't in any span. An agent has none of that. It acts on exactly what the pipeline says, which makes the data contract — not the model — the binding constraint on autonomy. This talk makes the case that OpenTelemetry is that contract, and gets concrete about it. The GenAI semantic conventions (invoke_agent, execute_tool, gen_ai.*) now let you observe agents as first-class citizens rather than opaque HTTP calls. The same conventions, pointed the other way, are what let an agent reason across your estate without a bespoke integration per tool. Then the honest half: where this breaks today, what the conventions still don't cover, and a staged trust model for moving from suggest → propose → act, with a blast radius you can defend in a post-mortem.<a class="schedule-abstract-read-more" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">... Read more</a></div>
+              <div class="location mb-3">Varnish Software</div>
+              <div class="desc schedule-abstract">Varnish is a well-known reverse open source HTTP caching proxy that accelerates websites, applications, files, and any other HTTP-base type of workload. The technology has been around for more than 15 years and powers millions of active websites. While Varnish is considered a stable and reliable piece of acceleration software, there hasn't been a lot of hype surrounding the project. The recent release of Varnish version 9 deserves a bit of hype. In this presentation, Thijs will explain the major new features of Varnish 9, which include TLS support, dynamic backends, OTEL support, and a wide range of exciting modules. He’ll show you how to use them to apply a more intelligent caching layer to your web stack. Thijs will also explain some major changes in the way the open source project is run, and will present some cloud-native additions to the project like Docker images, Helm Charts, and even a Varnish-powered Kubernetes Gateway Controller.<a class="schedule-abstract-read-more" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">... Read more</a></div>
               
             </div>
           </div>
@@ -1296,25 +1296,19 @@ The goal is a practical, product-independent framework for increasing useful aut
             <div class="meta">
               <h4 class="time mb-3">11:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img class="profile-image rounded-circle mb-2" src="../speakers/Miko Pawlikowski.png" alt=""></a>
-                <div class="name">Miko Pawlikowski</div>
+                <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img class="profile-image rounded-circle mb-2" src="../speakers/Maxim Schepelin.png" alt=""></a>
+                <div class="name">Maxim Schepelin</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">Kill It and Watch It Come Back: Hands-on with Reliaburger</a>
+                <a class="theme-link" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">SRE concents every engineering leader should know</a>
               </h3>
-              <div class="location mb-3">Reliaburger, SRE Author</div>
-              <div class="desc schedule-abstract">Before your first container hits production on Kubernetes you install a distro, a CNI, an ingress, cert-manager, Prometheus, Loki and ArgoCD. None of them is your app. After ten years of running platform teams on Kubernetes, I built [Reliaburger](https://reliaburger.com/) to put the lot into one Rust binary: scheduler, gossip, Raft, eBPF service discovery, ingress, mTLS, registry, metrics, logs, GitOps and chaos testing, driven by TOML. An app with health checks, ingress and autoscaling is twelve lines.
-This is a hands-on session, so bring a laptop (macOS on Apple silicon or Linux; Windows is not supported yet). In 60 minutes you will:
-1. Install Reliaburger with one command and start a node on your laptop. No container runtime, no root, no VMs: the built-in process runtime runs plain binaries.
-2. Deploy an app from a twelve-line TOML file and watch it in the terminal dashboard and the web UI.
-3. Ship a deliberately sick version and watch the health checker restart it, then roll back with one command.
-4. Break it on purpose with the built-in fault injector: kill an instance, freeze another, and let `relish wtf` explain what just happened.
-5. Read the manual and the source code from inside the binary. I will be next to you for the questions the manual does not answer.
-6. Provide feedback!
-It is 0.1.0. It will break. That is the point, and I want to hear about it.<a class="schedule-abstract-read-more" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">... Read more</a></div>
+              <div class="location mb-3">Booking.com</div>
+              <div class="desc schedule-abstract">What engineering leaders can learn from Site Reliability Engineering?
+At first glance, SRE feels like a deeply technical concern: uptime dashboards, infrastructure capacity, on-call rotations. But core SRE concepts are deeper than they seem. Definitions of service criticality, Service-Level Indicators, Service-Level Objectives, and error budgets are not just technical speak.
+These ideas can be applied far beyond production environments. This talk explores how core SRE concepts can become high-leverage leadership tools for shaping team culture, guiding prioritization, and driving meaningful business outcomes.<a class="schedule-abstract-read-more" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">... Read more</a></div>
               
             </div>
           </div>
@@ -1350,19 +1344,25 @@ It is 0.1.0. It will break. That is the point, and I want to hear about it.<a cl
             <div class="meta">
               <h4 class="time mb-3">12:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15"><img class="profile-image rounded-circle mb-2" src="../speakers/Niek van Raaij.png" alt=""></a>
-                <div class="name">Niek van Raaij</div>
+                <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15"><img class="profile-image rounded-circle mb-2" src="../speakers/Miko Pawlikowski.png" alt=""></a>
+                <div class="name">Miko Pawlikowski</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Rehearse the Worst Day</a>
+                <a class="theme-link" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Kill It and Watch It Come Back: Hands-on with Reliaburger</a>
               </h3>
-              <div class="location mb-3">Reliability Engineering Lab</div>
-              <div class="desc schedule-abstract">Every engineer remembers their worst incident. Mine taught me something uncomfortable: our systems were fine within the hour. It was us, the engineers, that took all night. The people scrambled.
-Since then, one question keeps bugging me: why do we test everything except our own response? We chaos-test infrastructure and load-test services, but the people component remains untested.
-This talk is about closing that gap through rehearsal. We look through the lens of incident simulations, and I'll share what I've learned: what breaks first in a team under pressure (communication, not competence), why your most experienced engineer can be your biggest liability, and how a team that has practiced its worst day performs when the real one arrives.<a class="schedule-abstract-read-more" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">... Read more</a></div>
+              <div class="location mb-3">Reliaburger, SRE Author</div>
+              <div class="desc schedule-abstract">Before your first container hits production on Kubernetes you install a distro, a CNI, an ingress, cert-manager, Prometheus, Loki and ArgoCD. None of them is your app. After ten years of running platform teams on Kubernetes, I built [Reliaburger](https://reliaburger.com/) to put the lot into one Rust binary: scheduler, gossip, Raft, eBPF service discovery, ingress, mTLS, registry, metrics, logs, GitOps and chaos testing, driven by TOML. An app with health checks, ingress and autoscaling is twelve lines.
+This is a hands-on session, so bring a laptop (macOS on Apple silicon or Linux; Windows is not supported yet). In 60 minutes you will:
+1. Install Reliaburger with one command and start a node on your laptop. No container runtime, no root, no VMs: the built-in process runtime runs plain binaries.
+2. Deploy an app from a twelve-line TOML file and watch it in the terminal dashboard and the web UI.
+3. Ship a deliberately sick version and watch the health checker restart it, then roll back with one command.
+4. Break it on purpose with the built-in fault injector: kill an instance, freeze another, and let `relish wtf` explain what just happened.
+5. Read the manual and the source code from inside the binary. I will be next to you for the questions the manual does not answer.
+6. Provide feedback!
+It is 0.1.0. It will break. That is the point, and I want to hear about it.<a class="schedule-abstract-read-more" href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">... Read more</a></div>
               
             </div>
           </div>
@@ -1387,17 +1387,19 @@ This talk is about closing that gap through rehearsal. We look through the lens 
             <div class="meta">
               <h4 class="time mb-3">13:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img class="profile-image rounded-circle mb-2" src="../speakers/Ralph Meijer.png" alt=""></a>
-                <div class="name">Ralph Meijer</div>
+                <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img class="profile-image rounded-circle mb-2" src="../speakers/Niek van Raaij.png" alt=""></a>
+                <div class="name">Niek van Raaij</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Your Dashboards Are Lying to You (And How to Make Them Tell the Truth)</a>
+                <a class="theme-link" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Rehearse the Worst Day</a>
               </h3>
-              <div class="location mb-3">Netdata</div>
-              <div class="desc schedule-abstract">We’ve all been there. It’s 3 a.m., an alert just fired, and you’re staring at a dashboard. The P99 latency is spiking, but the average looks fine. The CPU is high, but the load average is normal. What’s actually going on? The hard truth is that most of our dashboards are subtle liars. They lie by averaging percentiles, hiding the real user pain. They lie with poorly chosen time windows that miss the crucial spike. They lie because we're forced to guess: is this a counter or a gauge? Can I sum this? Is a line graph even the right way to look at this? We expect every engineer on our team to also be a part-time statistician, and at 3 a.m., that’s a recipe for disaster. In this talk, I'll share stories of how misleading dashboards have sent teams down the wrong rabbit hole during critical incidents. We'll dissect the common lies and half-truths our monitoring tells us every day. Then, we'll talk about the alternative: building "opinionated" observability. It's about baking our expertise and best practices directly into our tools, so the right chart appears by default, the alert already has context, and the system guides you to the right questions. This isn't just about making prettier graphs. It's about giving back our most valuable resource time, and letting engineers get back to being engineers, not full-time data analysts. What you'll get from this talk: How to spot the 3 most common ways your dashboards are probably lying to you. A simple mental model for choosing the right visualization for the job (and knowing when a line graph is a terrible choice). Practical ways to start baking your team's expertise and "tribal knowledge" into your monitoring with smart defaults. How to argue for, or build, "opinionated" tools that stop wasting your team's time and lead to faster, more accurate incident response.<a class="schedule-abstract-read-more" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">... Read more</a></div>
+              <div class="location mb-3">Reliability Engineering Lab</div>
+              <div class="desc schedule-abstract">Every engineer remembers their worst incident. Mine taught me something uncomfortable: our systems were fine within the hour. It was us, the engineers, that took all night. The people scrambled.
+Since then, one question keeps bugging me: why do we test everything except our own response? We chaos-test infrastructure and load-test services, but the people component remains untested.
+This talk is about closing that gap through rehearsal. We look through the lens of incident simulations, and I'll share what I've learned: what breaks first in a team under pressure (communication, not competence), why your most experienced engineer can be your biggest liability, and how a team that has practiced its worst day performs when the real one arrives.<a class="schedule-abstract-read-more" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">... Read more</a></div>
               
             </div>
           </div>
@@ -1406,17 +1408,17 @@ This talk is about closing that gap through rehearsal. We look through the lens 
             <div class="meta">
               <h4 class="time mb-3">14:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17"><img class="profile-image rounded-circle mb-2" src="../speakers/Ozlem Tanrikulu.png" alt=""></a>
-                <div class="name">Ozlem Tanrikulu</div>
+                <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17"><img class="profile-image rounded-circle mb-2" src="../speakers/Ralph Meijer.png" alt=""></a>
+                <div class="name">Ralph Meijer</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Finding the 33% Your Kubernetes Clusters Are Wasting</a>
+                <a class="theme-link" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Your Dashboards Are Lying to You (And How to Make Them Tell the Truth)</a>
               </h3>
-              <div class="location mb-3">Near East University</div>
-              <div class="desc schedule-abstract">Every SRE team knows their clusters are overprovisioned. But how much exactly, and where? I kept asking this question on our EKS clusters. kubectl top gives percentages, not dollars. AWS Cost Explorer sees instances, not pods. Every tool that connects the two wanted me to deploy Helm charts, agents, and dashboards. I just wanted a number. So I built Burn — an open-source CLI that reads your kubeconfig, fetches real-time pricing from AWS and Azure APIs, and gives you per-namespace cost breakdown in 30 seconds. No agent, no dashboard, no cluster changes. Running it on production, I found 33% idle capacity ($117/month on a 5-node cluster), a pod requesting 500m CPU but using 0.12m, and debug pods nobody remembered deploying. I deleted the waste that same day. In this talk I'll cover: - How Burn splits node cost into CPU and RAM using ratio-based pricing - Why P95 metrics matter more than averages for rightsizing - How we detect Ingress-based load balancers that other tools miss - Honest trade-offs of an agentless approach vs full platforms like Kubecost Attendees will leave knowing how to identify idle resources, understand Kubernetes cost allocation math, and evaluate the right level of cost tooling for their clusters.<a class="schedule-abstract-read-more" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">... Read more</a></div>
+              <div class="location mb-3">Netdata</div>
+              <div class="desc schedule-abstract">We’ve all been there. It’s 3 a.m., an alert just fired, and you’re staring at a dashboard. The P99 latency is spiking, but the average looks fine. The CPU is high, but the load average is normal. What’s actually going on? The hard truth is that most of our dashboards are subtle liars. They lie by averaging percentiles, hiding the real user pain. They lie with poorly chosen time windows that miss the crucial spike. They lie because we're forced to guess: is this a counter or a gauge? Can I sum this? Is a line graph even the right way to look at this? We expect every engineer on our team to also be a part-time statistician, and at 3 a.m., that’s a recipe for disaster. In this talk, I'll share stories of how misleading dashboards have sent teams down the wrong rabbit hole during critical incidents. We'll dissect the common lies and half-truths our monitoring tells us every day. Then, we'll talk about the alternative: building "opinionated" observability. It's about baking our expertise and best practices directly into our tools, so the right chart appears by default, the alert already has context, and the system guides you to the right questions. This isn't just about making prettier graphs. It's about giving back our most valuable resource time, and letting engineers get back to being engineers, not full-time data analysts. What you'll get from this talk: How to spot the 3 most common ways your dashboards are probably lying to you. A simple mental model for choosing the right visualization for the job (and knowing when a line graph is a terrible choice). Practical ways to start baking your team's expertise and "tribal knowledge" into your monitoring with smart defaults. How to argue for, or build, "opinionated" tools that stop wasting your team's time and lead to faster, more accurate incident response.<a class="schedule-abstract-read-more" href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">... Read more</a></div>
               
             </div>
           </div>
@@ -1425,18 +1427,17 @@ This talk is about closing that gap through rehearsal. We look through the lens 
             <div class="meta">
               <h4 class="time mb-3">14:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18"><img class="profile-image rounded-circle mb-2" src="../speakers/Ankit Asthana & Dastan Oryngali.png" alt=""></a>
-                <div class="name">Ankit Asthana & Dastan Oryngali</div>
+                <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18"><img class="profile-image rounded-circle mb-2" src="../speakers/Ozlem Tanrikulu.png" alt=""></a>
+                <div class="name">Ozlem Tanrikulu</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">Beyond API Keys: Fine-Grained Authorization with OpenFGA</a>
+                <a class="theme-link" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">Finding the 33% Your Kubernetes Clusters Are Wasting</a>
               </h3>
-              <div class="location mb-3">SQUER</div>
-              <div class="desc schedule-abstract">Modern applications often outgrow simple API key or role-based access models, especially in multi-tenant and microservice environments. This talk explores how OpenFGA enables fine-grained, relationship-based authorization to model complex access patterns such as “user X can access resource Y because they belong to team Z.”
-We’ll walk through real-world scenarios where traditional RBAC breaks down, demonstrate how OpenFGA implements Google Zanzibar–inspired authorization, and show how to integrate it into cloud-native platforms and APIs. Attendees will leave with practical patterns, architecture guidance, and lessons learned from implementing authorization as a standalone service in modern platform architectures.<a class="schedule-abstract-read-more" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">... Read more</a></div>
+              <div class="location mb-3">Near East University</div>
+              <div class="desc schedule-abstract">Every SRE team knows their clusters are overprovisioned. But how much exactly, and where? I kept asking this question on our EKS clusters. kubectl top gives percentages, not dollars. AWS Cost Explorer sees instances, not pods. Every tool that connects the two wanted me to deploy Helm charts, agents, and dashboards. I just wanted a number. So I built Burn — an open-source CLI that reads your kubeconfig, fetches real-time pricing from AWS and Azure APIs, and gives you per-namespace cost breakdown in 30 seconds. No agent, no dashboard, no cluster changes. Running it on production, I found 33% idle capacity ($117/month on a 5-node cluster), a pod requesting 500m CPU but using 0.12m, and debug pods nobody remembered deploying. I deleted the waste that same day. In this talk I'll cover: - How Burn splits node cost into CPU and RAM using ratio-based pricing - Why P95 metrics matter more than averages for rightsizing - How we detect Ingress-based load balancers that other tools miss - Honest trade-offs of an agentless approach vs full platforms like Kubecost Attendees will leave knowing how to identify idle resources, understand Kubernetes cost allocation math, and evaluate the right level of cost tooling for their clusters.<a class="schedule-abstract-read-more" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">... Read more</a></div>
               
             </div>
           </div>
@@ -1461,20 +1462,18 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
             <div class="meta">
               <h4 class="time mb-3">15:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19"><img class="profile-image rounded-circle mb-2" src="../speakers/Caner Sahan.png" alt=""></a>
-                <div class="name">Caner Sahan</div>
+                <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19"><img class="profile-image rounded-circle mb-2" src="../speakers/Ankit Asthana & Dastan Oryngali.png" alt=""></a>
+                <div class="name">Ankit Asthana & Dastan Oryngali</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">AskPeter: Turning Production Data into Engineering Decisions</a>
+                <a class="theme-link" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">Beyond API Keys: Fine-Grained Authorization with OpenFGA</a>
               </h3>
-              <div class="location mb-3">NCR Voyix</div>
-              <div class="desc schedule-abstract">Modern operations teams are overwhelmed by dashboards, alerts, logs, vulnerability reports, documentation, and operational data. The challenge is no longer collecting information—it's helping engineers make the right decision quickly.
-In this session, I'll share the engineering journey behind AskPeter, an AI-powered engineering assistant designed to help production teams investigate incidents, understand system behaviour, analyse vulnerabilities, and retrieve operational knowledge using natural language.
-Rather than replacing engineers, AskPeter acts as an engineering teammate, combining observability data, operational telemetry, documentation, and AI reasoning to reduce investigation time and improve decision-making.
-I'll walk through the architecture, design decisions, challenges, security considerations, and lessons learned while introducing AI into real production engineering workflows. This isn't another AI demo—it's an honest engineering story about building AI that engineers can actually trust.<a class="schedule-abstract-read-more" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">... Read more</a></div>
+              <div class="location mb-3">SQUER</div>
+              <div class="desc schedule-abstract">Modern applications often outgrow simple API key or role-based access models, especially in multi-tenant and microservice environments. This talk explores how OpenFGA enables fine-grained, relationship-based authorization to model complex access patterns such as “user X can access resource Y because they belong to team Z.”
+We’ll walk through real-world scenarios where traditional RBAC breaks down, demonstrate how OpenFGA implements Google Zanzibar–inspired authorization, and show how to integrate it into cloud-native platforms and APIs. Attendees will leave with practical patterns, architecture guidance, and lessons learned from implementing authorization as a standalone service in modern platform architectures.<a class="schedule-abstract-read-more" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">... Read more</a></div>
               
             </div>
           </div>
@@ -1483,17 +1482,20 @@ I'll walk through the architecture, design decisions, challenges, security consi
             <div class="meta">
               <h4 class="time mb-3">16:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20"><img class="profile-image rounded-circle mb-2" src="../speakers/Diego Braga.png" alt=""></a>
-                <div class="name">Diego Braga</div>
+                <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20"><img class="profile-image rounded-circle mb-2" src="../speakers/Caner Sahan.png" alt=""></a>
+                <div class="name">Caner Sahan</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">Questions to Ask Before You Buy an SRE Agent</a>
+                <a class="theme-link" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">AskPeter: Turning Production Data into Engineering Decisions</a>
               </h3>
-              <div class="location mb-3">Krateo</div>
-              <div class="desc schedule-abstract">You've seen the demo. The agent read the alert, walked the traces, found the misconfigured deployment, and proposed a fix — all in ninety seconds, on stage. Now you have to decide whether it goes anywhere near your production cluster. The published evidence should make you cautious. On IBM's Kubernetes incident benchmark, the best model today scores 56% under a metric that awards zero for a single missed entity. On CUJBench, agents given the full toolset performed worse than agents restricted to browser evidence — 20% versus 28% — and one frontier model collapsed from 52% to 12% accuracy when handed more tools, burning 92 tool calls and 4 million tokens per failed run without ever submitting an answer. Across 1,675 root-cause analysis runs, hallucinated interpretation of data showed up in 71% of them, at every model tier. None of that means agents are useless. It means the demo told you almost nothing, and the questions you'd normally ask a vendor don't cover the failure modes that actually matter here. This talk is six questions, each grounded in what ITBench, AIOpsLab, SREGym and CUJBench actually measured — and each with a way to answer it on your own cluster rather than taking a number on faith. We'll cover why more context can make diagnosis worse, why an agent that retrieves the right evidence still names the wrong service, why a scenario catalog is not a benchmark, and what happens when an agent "resolves" an incident by deleting the fault injector that caused it. You'll leave with the six questions, and a harness design for answering them yourself.<a class="schedule-abstract-read-more" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">... Read more</a></div>
+              <div class="location mb-3">NCR Voyix</div>
+              <div class="desc schedule-abstract">Modern operations teams are overwhelmed by dashboards, alerts, logs, vulnerability reports, documentation, and operational data. The challenge is no longer collecting information—it's helping engineers make the right decision quickly.
+In this session, I'll share the engineering journey behind AskPeter, an AI-powered engineering assistant designed to help production teams investigate incidents, understand system behaviour, analyse vulnerabilities, and retrieve operational knowledge using natural language.
+Rather than replacing engineers, AskPeter acts as an engineering teammate, combining observability data, operational telemetry, documentation, and AI reasoning to reduce investigation time and improve decision-making.
+I'll walk through the architecture, design decisions, challenges, security considerations, and lessons learned while introducing AI into real production engineering workflows. This isn't another AI demo—it's an honest engineering story about building AI that engineers can actually trust.<a class="schedule-abstract-read-more" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">... Read more</a></div>
               
             </div>
           </div>
@@ -1502,19 +1504,17 @@ I'll walk through the architecture, design decisions, challenges, security consi
             <div class="meta">
               <h4 class="time mb-3">16:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21"><img class="profile-image rounded-circle mb-2" src="../speakers/Maxim Schepelin.png" alt=""></a>
-                <div class="name">Maxim Schepelin</div>
+                <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21"><img class="profile-image rounded-circle mb-2" src="../speakers/Diego Braga.png" alt=""></a>
+                <div class="name">Diego Braga</div>
               </div>
             </div>
             <div class="content">
               
               <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">SRE concents every engineering leader should know</a>
+                <a class="theme-link" href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">Questions to Ask Before You Buy an SRE Agent</a>
               </h3>
-              <div class="location mb-3">Booking.com</div>
-              <div class="desc schedule-abstract">What engineering leaders can learn from Site Reliability Engineering?
-At first glance, SRE feels like a deeply technical concern: uptime dashboards, infrastructure capacity, on-call rotations. But core SRE concepts are deeper than they seem. Definitions of service criticality, Service-Level Indicators, Service-Level Objectives, and error budgets are not just technical speak.
-These ideas can be applied far beyond production environments. This talk explores how core SRE concepts can become high-leverage leadership tools for shaping team culture, guiding prioritization, and driving meaningful business outcomes.<a class="schedule-abstract-read-more" href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">... Read more</a></div>
+              <div class="location mb-3">Krateo</div>
+              <div class="desc schedule-abstract">You've seen the demo. The agent read the alert, walked the traces, found the misconfigured deployment, and proposed a fix — all in ninety seconds, on stage. Now you have to decide whether it goes anywhere near your production cluster. The published evidence should make you cautious. On IBM's Kubernetes incident benchmark, the best model today scores 56% under a metric that awards zero for a single missed entity. On CUJBench, agents given the full toolset performed worse than agents restricted to browser evidence — 20% versus 28% — and one frontier model collapsed from 52% to 12% accuracy when handed more tools, burning 92 tool calls and 4 million tokens per failed run without ever submitting an answer. Across 1,675 root-cause analysis runs, hallucinated interpretation of data showed up in 71% of them, at every model tier. None of that means agents are useless. It means the demo told you almost nothing, and the questions you'd normally ask a vendor don't cover the failure modes that actually matter here. This talk is six questions, each grounded in what ITBench, AIOpsLab, SREGym and CUJBench actually measured — and each with a way to answer it on your own cluster rather than taking a number on faith. We'll cover why more context can make diagnosis worse, why an agent that retrieves the right evidence still names the wrong service, why a scenario catalog is not a benchmark, and what happens when an agent "resolves" an incident by deleting the fault injector that caused it. You'll leave with the six questions, and a harness design for answering them yourself.<a class="schedule-abstract-read-more" href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">... Read more</a></div>
               
             </div>
           </div>
@@ -2245,8 +2245,8 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">Kill It and Watch It Come Back: Hands-on with Reliaburger</a>
-              <div class="speaker-info">Miko Pawlikowski <span class="affiliation">• Reliaburger, SRE Author</span></div>
+              <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">SRE concents every engineering leader should know</a>
+              <div class="speaker-info">Maxim Schepelin <span class="affiliation">• Booking.com</span></div>
             </td>
 
 
@@ -2369,8 +2369,8 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Rehearse the Worst Day</a>
-              <div class="speaker-info">Niek van Raaij <span class="affiliation">• Reliability Engineering Lab</span></div>
+              <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15">Kill It and Watch It Come Back: Hands-on with Reliaburger</a>
+              <div class="speaker-info">Miko Pawlikowski <span class="affiliation">• Reliaburger, SRE Author</span></div>
             </td>
 
 
@@ -2462,8 +2462,8 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Your Dashboards Are Lying to You (And How to Make Them Tell the Truth)</a>
-              <div class="speaker-info">Ralph Meijer <span class="affiliation">• Netdata</span></div>
+              <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">Rehearse the Worst Day</a>
+              <div class="speaker-info">Niek van Raaij <span class="affiliation">• Reliability Engineering Lab</span></div>
             </td>
 
 
@@ -2513,8 +2513,8 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">Curl a GPU Into Your Cluster: Hybrid Kubernetes for AI Development</a>
-              <div class="speaker-info">Piotr Zaniewski <span class="affiliation">• vCluster Labs</span></div>
+              <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6">The Cost of Ephemerality: FinOps Trade-offs for Ephemeral Environments</a>
+              <div class="speaker-info">Marcos Novelli Harispe <span class="affiliation">• LoopStudio</span></div>
             </td>
 
 
@@ -2524,8 +2524,8 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Finding the 33% Your Kubernetes Clusters Are Wasting</a>
-              <div class="speaker-info">Ozlem Tanrikulu <span class="affiliation">• Near East University</span></div>
+              <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17">Your Dashboards Are Lying to You (And How to Make Them Tell the Truth)</a>
+              <div class="speaker-info">Ralph Meijer <span class="affiliation">• Netdata</span></div>
             </td>
 
 
@@ -2575,8 +2575,8 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">The Cost of Ephemerality: FinOps Trade-offs for Ephemeral Environments</a>
-              <div class="speaker-info">Marcos Novelli Harispe <span class="affiliation">• LoopStudio</span></div>
+              <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7">Curl a GPU Into Your Cluster: Hybrid Kubernetes for AI Development</a>
+              <div class="speaker-info">Piotr Zaniewski <span class="affiliation">• vCluster Labs</span></div>
             </td>
 
 
@@ -2586,8 +2586,8 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">Beyond API Keys: Fine-Grained Authorization with OpenFGA</a>
-              <div class="speaker-info">Ankit Asthana & Dastan Oryngali <span class="affiliation">• SQUER</span></div>
+              <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">Finding the 33% Your Kubernetes Clusters Are Wasting</a>
+              <div class="speaker-info">Ozlem Tanrikulu <span class="affiliation">• Near East University</span></div>
             </td>
 
 
@@ -2668,8 +2668,8 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Operational hazards of managing PostgreSQL DBs over 100TB</a>
-              <div class="speaker-info">Teresa Lopes <span class="affiliation">• Adyen</span></div>
+              <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8">Opentelemetery as the standard for Agentic Observability & moving to self healing systems</a>
+              <div class="speaker-info">Judith Redi <span class="affiliation">• Dash0</span></div>
             </td>
 
 
@@ -2679,8 +2679,8 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">AskPeter: Turning Production Data into Engineering Decisions</a>
-              <div class="speaker-info">Caner Sahan <span class="affiliation">• NCR Voyix</span></div>
+              <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">Beyond API Keys: Fine-Grained Authorization with OpenFGA</a>
+              <div class="speaker-info">Ankit Asthana & Dastan Oryngali <span class="affiliation">• SQUER</span></div>
             </td>
 
 
@@ -2730,8 +2730,8 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Who Authorizes the Agent? Non-Human Identity, Trust Boundaries and Failure Containment in Autonomous Production Operations</a>
-              <div class="speaker-info">Bajric Sanel <span class="affiliation">• VendoQ</span></div>
+              <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">Operational hazards of managing PostgreSQL DBs over 100TB</a>
+              <div class="speaker-info">Teresa Lopes <span class="affiliation">• Adyen</span></div>
             </td>
 
 
@@ -2741,8 +2741,8 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">Questions to Ask Before You Buy an SRE Agent</a>
-              <div class="speaker-info">Diego Braga <span class="affiliation">• Krateo</span></div>
+              <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">AskPeter: Turning Production Data into Engineering Decisions</a>
+              <div class="speaker-info">Caner Sahan <span class="affiliation">• NCR Voyix</span></div>
             </td>
 
 
@@ -2792,8 +2792,8 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Data-Driven Instance Selection</a>
-              <div class="speaker-info">Gergely Daroczi <span class="affiliation">• Spare Cores</span></div>
+              <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10">Who Authorizes the Agent? Non-Human Identity, Trust Boundaries and Failure Containment in Autonomous Production Operations</a>
+              <div class="speaker-info">Bajric Sanel <span class="affiliation">• VendoQ</span></div>
             </td>
 
 
@@ -2803,8 +2803,8 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">SRE concents every engineering leader should know</a>
-              <div class="speaker-info">Maxim Schepelin <span class="affiliation">• Booking.com</span></div>
+              <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21">Questions to Ask Before You Buy an SRE Agent</a>
+              <div class="speaker-info">Diego Braga <span class="affiliation">• Krateo</span></div>
             </td>
 
 
@@ -2854,8 +2854,8 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">What's new in Varnish: new features in the high-performance caching proxy</a>
-              <div class="speaker-info">Thijs Feryn <span class="affiliation">• Varnish Software</span></div>
+              <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11">Data-Driven Instance Selection</a>
+              <div class="speaker-info">Gergely Daroczi <span class="affiliation">• Spare Cores</span></div>
             </td>
 
 
@@ -2916,8 +2916,8 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
             <td class="talk-cell">
-              <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">Opentelemetery as the standard for Agentic Observability & moving to self healing systems</a>
-              <div class="speaker-info">Judith Redi <span class="affiliation">• Dash0</span></div>
+              <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">What's new in Varnish: new features in the high-performance caching proxy</a>
+              <div class="speaker-info">Thijs Feryn <span class="affiliation">• Varnish Software</span></div>
             </td>
 
 
@@ -3181,7 +3181,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18"><img src="../speakers/Ankit Asthana & Dastan Oryngali.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19"><img src="../speakers/Ankit Asthana & Dastan Oryngali.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Ankit Asthana<br>&amp; Dastan Oryngali</h5>
             <div class="card-text mb-3">
@@ -3233,7 +3233,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Bajric Sanel.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Bajric Sanel.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Bajric Sanel</h5>
             <div class="card-text mb-3">
@@ -3259,7 +3259,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19"><img src="../speakers/Caner Sahan.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20"><img src="../speakers/Caner Sahan.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Caner Sahan</h5>
             <div class="card-text mb-3">
@@ -3363,7 +3363,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20"><img src="../speakers/Diego Braga.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21"><img src="../speakers/Diego Braga.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Diego Braga</h5>
             <div class="card-text mb-3">
@@ -3389,7 +3389,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Gergely Daroczi.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img src="../speakers/Gergely Daroczi.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Gergely Daroczi</h5>
             <div class="card-text mb-3">
@@ -3493,7 +3493,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img src="../speakers/Judith Redi.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Judith Redi.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Judith Redi</h5>
             <div class="card-text mb-3">
@@ -3597,7 +3597,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Marcos Novelli Harispe.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Marcos Novelli Harispe.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Marcos Novelli Harispe</h5>
             <div class="card-text mb-3">
@@ -3623,7 +3623,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-21" data-bs-toggle="modal" data-bs-target="#modal-speaker-21"><img src="../speakers/Maxim Schepelin.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img src="../speakers/Maxim Schepelin.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Maxim Schepelin</h5>
             <div class="card-text mb-3">
@@ -3649,7 +3649,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img src="../speakers/Miko Pawlikowski.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14"><img src="../speakers/Miko Pawlikowski.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Miko Pawlikowski</h5>
             <div class="card-text mb-3">
@@ -3753,7 +3753,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-15" data-bs-toggle="modal" data-bs-target="#modal-speaker-15"><img src="../speakers/Niek van Raaij.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img src="../speakers/Niek van Raaij.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Niek van Raaij</h5>
             <div class="card-text mb-3">
@@ -3779,7 +3779,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17"><img src="../speakers/Ozlem Tanrikulu.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18"><img src="../speakers/Ozlem Tanrikulu.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Ozlem Tanrikulu</h5>
             <div class="card-text mb-3">
@@ -3805,7 +3805,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Piotr Zaniewski.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Piotr Zaniewski.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Piotr Zaniewski</h5>
             <div class="card-text mb-3">
@@ -3831,7 +3831,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img src="../speakers/Ralph Meijer.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-17" data-bs-toggle="modal" data-bs-target="#modal-speaker-17"><img src="../speakers/Ralph Meijer.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Ralph Meijer</h5>
             <div class="card-text mb-3">
@@ -3961,7 +3961,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Teresa Lopes.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Teresa Lopes.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Teresa Lopes</h5>
             <div class="card-text mb-3">
@@ -3987,7 +3987,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
       <div class="col mb-4">
         <div class="card rounded">
-          <a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img src="../speakers/Thijs Feryn.png" class="card-img-top rounded-0" alt=""></a>
+          <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img src="../speakers/Thijs Feryn.png" class="card-img-top rounded-0" alt=""></a>
           <div class="card-body">
             <h5 class="card-title mb-2">Thijs Feryn</h5>
             <div class="card-text mb-3">
@@ -4613,49 +4613,6 @@ document.getElementById('lead-form').addEventListener('submit', function(ev) {
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Piotr Zaniewski.png" alt="" />
-                      </div>
-
-                      <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Piotr Zaniewski</h2>
-                          <div class="meta mb-2">vCluster Labs</div>
-                          <ul class="social-list list-inline mb-0">
-                            
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/piotr-zaniewski/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            
-                            
-                          </ul><!--//social-list-->
-                      </div><!--//col-->
-                  </div><!--//row-->
-              </div>
-              <div class="talk-title-bar">Curl a GPU Into Your Cluster: Hybrid Kubernetes for AI Development</div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>AI development has a cluster problem: laptop Kubernetes like kind can't host real GPUs, so engineers juggle Docker Compose, full clusters, and scripts that drift from production. We show a pattern where one laptop kubectl context spans local Docker workers and a cloud NVIDIA T4, joined by a single curl over a WireGuard tunnel, so the same workload runs locally and on cloud GPU without two separate setups. The idea is Kubernetes-native: any Linux host (KVM, GCE, bare metal) becomes a node by pasting a one-line curl that installs kubelet and connects over the tunnel, in one tenant cluster. We demo it live: laptop Docker workers, a local KVM node, and a GCE T4 in a single context. We pull llama3.2 onto the T4, deploy a service that talks to it, expose it through a built-in LoadBalancer, and pause/resume the cluster like a laptop. We close with the failure modes (tunnel reconnect after sleep, egress cost on model pulls, GPU eviction) and the GitOps that keeps the topology declarative.</p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <p></p>
-              </div>
-
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>An active contributor to open source, content creator on Medium and YouTube, focusing on practical, scalable solutions in cloud-native environments. DevOps and Platform Engineering practitioner and advocate.</p></p>
-              </div>
-
-          </div><!--//modal-body-->
-      </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
-
-<!-- Modal Speaker 7 -->
-<div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-body p-0">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <div class="theme-bg-light p-5">
-                  <div class="row">
-                      <div class="col-12 col-md-auto text-center">
                           <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Marcos Novelli Harispe.png" alt="" />
                       </div>
 
@@ -4704,8 +4661,94 @@ Environments, and how to adopt them without losing financial control.</p></p>
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
+<!-- Modal Speaker 7 -->
+<div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Piotr Zaniewski.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Piotr Zaniewski</h2>
+                          <div class="meta mb-2">vCluster Labs</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/piotr-zaniewski/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Curl a GPU Into Your Cluster: Hybrid Kubernetes for AI Development</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>AI development has a cluster problem: laptop Kubernetes like kind can't host real GPUs, so engineers juggle Docker Compose, full clusters, and scripts that drift from production. We show a pattern where one laptop kubectl context spans local Docker workers and a cloud NVIDIA T4, joined by a single curl over a WireGuard tunnel, so the same workload runs locally and on cloud GPU without two separate setups. The idea is Kubernetes-native: any Linux host (KVM, GCE, bare metal) becomes a node by pasting a one-line curl that installs kubelet and connects over the tunnel, in one tenant cluster. We demo it live: laptop Docker workers, a local KVM node, and a GCE T4 in a single context. We pull llama3.2 onto the T4, deploy a service that talks to it, expose it through a built-in LoadBalancer, and pause/resume the cluster like a laptop. We close with the failure modes (tunnel reconnect after sleep, egress cost on model pulls, GPU eviction) and the GitOps that keeps the topology declarative.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>An active contributor to open source, content creator on Medium and YouTube, focusing on practical, scalable solutions in cloud-native environments. DevOps and Platform Engineering practitioner and advocate.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
 <!-- Modal Speaker 8 -->
 <div class="modal modal-speaker modal-speaker-8" id="modal-speaker-8" tabindex="-1" role="dialog" aria-labelledby="speaker-8-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Judith Redi.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Judith Redi</h2>
+                          <div class="meta mb-2">Dash0</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/jredi/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Opentelemetery as the standard for Agentic Observability & moving to self healing systems</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Every vendor now demos an agent that finds the root cause and opens the PR. Almost nobody talks about what that agent is reading — and that's the part that decides whether self-healing is real or a very expensive way to break production faster. Humans tolerate bad telemetry. We squint at an inconsistently named metric, we know which dashboard lies, we carry the tribal context that isn't in any span. An agent has none of that. It acts on exactly what the pipeline says, which makes the data contract — not the model — the binding constraint on autonomy. This talk makes the case that OpenTelemetry is that contract, and gets concrete about it. The GenAI semantic conventions (invoke_agent, execute_tool, gen_ai.*) now let you observe agents as first-class citizens rather than opaque HTTP calls. The same conventions, pointed the other way, are what let an agent reason across your estate without a bespoke integration per tool. Then the honest half: where this breaks today, what the conventions still don't cover, and a staged trust model for moving from suggest → propose → act, with a blast radius you can defend in a post-mortem.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Judith Redi is VP of Engineering at Dash0, an OpenTelemetry-native observability company. She leads the engineering organisation building the platform's ingest, storage, and analysis layers — which means she spends a lot of time looking at what real OTel pipelines do under load, and at what breaks when teams migrate onto them. Before moving into industry engineering leadership, Judith spent a decade in research: a PhD from the University of Genoa on machine learning for image quality assessment, postdoctoral work at Eurecom, and years as an Assistant Professor in TU Delft's Multimedia Computing group, with a Veni award and an IBM Faculty Fellowship along the way. She is a long-standing advocate for gender diversity in engineering.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 9 -->
+<div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -4747,8 +4790,8 @@ Environments, and how to adopt them without losing financial control.</p></p>
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 9 -->
-<div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 10 -->
+<div class="modal modal-speaker modal-speaker-10" id="modal-speaker-10" tabindex="-1" role="dialog" aria-labelledby="speaker-10-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -4794,8 +4837,8 @@ His work focuses on the intersection of production AI, distributed systems, oper
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 10 -->
-<div class="modal modal-speaker modal-speaker-10" id="modal-speaker-10" tabindex="-1" role="dialog" aria-labelledby="speaker-10-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 11 -->
+<div class="modal modal-speaker modal-speaker-11" id="modal-speaker-11" tabindex="-1" role="dialog" aria-labelledby="speaker-11-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -4837,8 +4880,53 @@ His work focuses on the intersection of production AI, distributed systems, oper
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 11 -->
-<div class="modal modal-speaker modal-speaker-11" id="modal-speaker-11" tabindex="-1" role="dialog" aria-labelledby="speaker-11-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 12 -->
+<div class="modal modal-speaker modal-speaker-12" id="modal-speaker-12" tabindex="-1" role="dialog" aria-labelledby="speaker-12-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Maxim Schepelin.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Maxim Schepelin</h2>
+                          <div class="meta mb-2">Booking.com</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/schepelin"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">SRE concents every engineering leader should know</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>What engineering leaders can learn from Site Reliability Engineering?
+At first glance, SRE feels like a deeply technical concern: uptime dashboards, infrastructure capacity, on-call rotations. But core SRE concepts are deeper than they seem. Definitions of service criticality, Service-Level Indicators, Service-Level Objectives, and error budgets are not just technical speak.
+These ideas can be applied far beyond production environments. This talk explores how core SRE concepts can become high-leverage leadership tools for shaping team culture, guiding prioritization, and driving meaningful business outcomes.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Maxim Schepelin is a solution architect at Booking.com and coauthor of Engineering Manager's Compass, a practical guide to the everyday realities of engineering leadership. Over fifteen years, he's built products used by millions of people every day—and picked up a thing or two about exiting both Vim and Emacs along the way.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 13 -->
+<div class="modal modal-speaker modal-speaker-13" id="modal-speaker-13" tabindex="-1" role="dialog" aria-labelledby="speaker-13-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -4873,100 +4961,6 @@ His work focuses on the intersection of production AI, distributed systems, oper
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>As the Technical Evangelist at <a href="https://www.varnish-software.com/">Varnish Software</a>, <a href="https://feryn.eu/">Thijs Feryn</a> focuses on web performance, software scalability, and content delivery. He demonstrates content-driven and technical messaging through presentations, videos, books, blog posts, social media posts, podcasts, and other media. Thijs is a published author and wrote <a href="https://learning.oreilly.com/library/view/getting-started-with/9781491972212/">Getting Started with Varnish Cache</a> and <a href="https://info.varnish-software.com/resources/varnish-6-by-example-book">Varnish 6 by Example</a>. As a public speaker, he has a track record of over 380 presentations in 26 different countries, where he is often praised for his energetic and engaging presentation style. As an evangelist, Thijs is also active in many open-source communities, most notably the Varnish and PHP community. He has contributed to various communities for over 15 years both technically and as an organizer and facilitator. Prior to joining Varnish Software, Thijs Feryn spent 15 years in the web hosting industry, tackling web performance and scalability issues on a daily basis and evangelizing these topics. For more information about Thijs’ past &amp; upcoming presentations, please visit <a href="https://feryn.eu/speaking">https://feryn.eu/speaking</a>.</p></p>
-              </div>
-
-          </div><!--//modal-body-->
-      </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
-
-<!-- Modal Speaker 12 -->
-<div class="modal modal-speaker modal-speaker-12" id="modal-speaker-12" tabindex="-1" role="dialog" aria-labelledby="speaker-12-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-body p-0">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <div class="theme-bg-light p-5">
-                  <div class="row">
-                      <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Judith Redi.png" alt="" />
-                      </div>
-
-                      <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Judith Redi</h2>
-                          <div class="meta mb-2">Dash0</div>
-                          <ul class="social-list list-inline mb-0">
-                            
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/jredi/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            
-                            
-                          </ul><!--//social-list-->
-                      </div><!--//col-->
-                  </div><!--//row-->
-              </div>
-              <div class="talk-title-bar">Opentelemetery as the standard for Agentic Observability & moving to self healing systems</div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Every vendor now demos an agent that finds the root cause and opens the PR. Almost nobody talks about what that agent is reading — and that's the part that decides whether self-healing is real or a very expensive way to break production faster. Humans tolerate bad telemetry. We squint at an inconsistently named metric, we know which dashboard lies, we carry the tribal context that isn't in any span. An agent has none of that. It acts on exactly what the pipeline says, which makes the data contract — not the model — the binding constraint on autonomy. This talk makes the case that OpenTelemetry is that contract, and gets concrete about it. The GenAI semantic conventions (invoke_agent, execute_tool, gen_ai.*) now let you observe agents as first-class citizens rather than opaque HTTP calls. The same conventions, pointed the other way, are what let an agent reason across your estate without a bespoke integration per tool. Then the honest half: where this breaks today, what the conventions still don't cover, and a staged trust model for moving from suggest → propose → act, with a blast radius you can defend in a post-mortem.</p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <p></p>
-              </div>
-
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Judith Redi is VP of Engineering at Dash0, an OpenTelemetry-native observability company. She leads the engineering organisation building the platform's ingest, storage, and analysis layers — which means she spends a lot of time looking at what real OTel pipelines do under load, and at what breaks when teams migrate onto them. Before moving into industry engineering leadership, Judith spent a decade in research: a PhD from the University of Genoa on machine learning for image quality assessment, postdoctoral work at Eurecom, and years as an Assistant Professor in TU Delft's Multimedia Computing group, with a Veni award and an IBM Faculty Fellowship along the way. She is a long-standing advocate for gender diversity in engineering.</p></p>
-              </div>
-
-          </div><!--//modal-body-->
-      </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
-
-<!-- Modal Speaker 13 -->
-<div class="modal modal-speaker modal-speaker-13" id="modal-speaker-13" tabindex="-1" role="dialog" aria-labelledby="speaker-13-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-body p-0">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <div class="theme-bg-light p-5">
-                  <div class="row">
-                      <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Miko Pawlikowski.png" alt="" />
-                      </div>
-
-                      <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Miko Pawlikowski</h2>
-                          <div class="meta mb-2">Reliaburger, SRE Author</div>
-                          <ul class="social-list list-inline mb-0">
-                            <li class="list-inline-item"><a  href="https://twitter.com/@mikopawlikowski"><i class="fab fa-twitter fa-fw"></i></a></li>
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/mikolajpawlikowski/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            
-                            
-                          </ul><!--//social-list-->
-                      </div><!--//col-->
-                  </div><!--//row-->
-              </div>
-              <div class="talk-title-bar">Kill It and Watch It Come Back: Hands-on with Reliaburger</div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>Before your first container hits production on Kubernetes you install a distro, a CNI, an ingress, cert-manager, Prometheus, Loki and ArgoCD. None of them is your app. After ten years of running platform teams on Kubernetes, I built <a href="https://reliaburger.com/">Reliaburger</a> to put the lot into one Rust binary: scheduler, gossip, Raft, eBPF service discovery, ingress, mTLS, registry, metrics, logs, GitOps and chaos testing, driven by TOML. An app with health checks, ingress and autoscaling is twelve lines.
-This is a hands-on session, so bring a laptop (macOS on Apple silicon or Linux; Windows is not supported yet). In 60 minutes you will:
-1. Install Reliaburger with one command and start a node on your laptop. No container runtime, no root, no VMs: the built-in process runtime runs plain binaries.
-2. Deploy an app from a twelve-line TOML file and watch it in the terminal dashboard and the web UI.
-3. Ship a deliberately sick version and watch the health checker restart it, then roll back with one command.
-4. Break it on purpose with the built-in fault injector: kill an instance, freeze another, and let <code>relish wtf</code> explain what just happened.
-5. Read the manual and the source code from inside the binary. I will be next to you for the questions the manual does not answer.
-6. Provide feedback!
-It is 0.1.0. It will break. That is the point, and I want to hear about it.</p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <p></p>
-              </div>
-
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p><a href="https://www.linkedin.com/in/mikolajpawlikowski/">Miko Pawlikowski</a> has been running platform teams on top of Kubernetes since version 1.0, and has the scars to show for it. He is the author of <a href="https://www.manning.com/books/chaos-engineering">Chaos Engineering</a> (Manning) and of <a href="https://reliaburger.com/">Reliaburger</a>, a batteries-included container orchestrator written in Rust, along with the book <a href="https://github.com/reliaburger/reliaburger/tree/main/docs/book">Building Reliaburger</a> that documents how every subsystem was designed and built.</p></p>
               </div>
 
           </div><!--//modal-body-->
@@ -5034,6 +5028,57 @@ It is 0.1.0. It will break. That is the point, and I want to hear about it.</p><
               <div class="theme-bg-light p-5">
                   <div class="row">
                       <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Miko Pawlikowski.png" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Miko Pawlikowski</h2>
+                          <div class="meta mb-2">Reliaburger, SRE Author</div>
+                          <ul class="social-list list-inline mb-0">
+                            <li class="list-inline-item"><a  href="https://twitter.com/@mikopawlikowski"><i class="fab fa-twitter fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/mikolajpawlikowski/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Kill It and Watch It Come Back: Hands-on with Reliaburger</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Before your first container hits production on Kubernetes you install a distro, a CNI, an ingress, cert-manager, Prometheus, Loki and ArgoCD. None of them is your app. After ten years of running platform teams on Kubernetes, I built <a href="https://reliaburger.com/">Reliaburger</a> to put the lot into one Rust binary: scheduler, gossip, Raft, eBPF service discovery, ingress, mTLS, registry, metrics, logs, GitOps and chaos testing, driven by TOML. An app with health checks, ingress and autoscaling is twelve lines.
+This is a hands-on session, so bring a laptop (macOS on Apple silicon or Linux; Windows is not supported yet). In 60 minutes you will:
+1. Install Reliaburger with one command and start a node on your laptop. No container runtime, no root, no VMs: the built-in process runtime runs plain binaries.
+2. Deploy an app from a twelve-line TOML file and watch it in the terminal dashboard and the web UI.
+3. Ship a deliberately sick version and watch the health checker restart it, then roll back with one command.
+4. Break it on purpose with the built-in fault injector: kill an instance, freeze another, and let <code>relish wtf</code> explain what just happened.
+5. Read the manual and the source code from inside the binary. I will be next to you for the questions the manual does not answer.
+6. Provide feedback!
+It is 0.1.0. It will break. That is the point, and I want to hear about it.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p><a href="https://www.linkedin.com/in/mikolajpawlikowski/">Miko Pawlikowski</a> has been running platform teams on top of Kubernetes since version 1.0, and has the scars to show for it. He is the author of <a href="https://www.manning.com/books/chaos-engineering">Chaos Engineering</a> (Manning) and of <a href="https://reliaburger.com/">Reliaburger</a>, a batteries-included container orchestrator written in Rust, along with the book <a href="https://github.com/reliaburger/reliaburger/tree/main/docs/book">Building Reliaburger</a> that documents how every subsystem was designed and built.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 16 -->
+<div class="modal modal-speaker modal-speaker-16" id="modal-speaker-16" tabindex="-1" role="dialog" aria-labelledby="speaker-16-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
                           <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Niek van Raaij.png" alt="" />
                       </div>
 
@@ -5070,8 +5115,8 @@ This talk is about closing that gap through rehearsal. We look through the lens 
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 16 -->
-<div class="modal modal-speaker modal-speaker-16" id="modal-speaker-16" tabindex="-1" role="dialog" aria-labelledby="speaker-16-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 17 -->
+<div class="modal modal-speaker modal-speaker-17" id="modal-speaker-17" tabindex="-1" role="dialog" aria-labelledby="speaker-17-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -5114,8 +5159,8 @@ Ralph balances security, reliability, privacy, performance, and maintainability 
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 17 -->
-<div class="modal modal-speaker modal-speaker-17" id="modal-speaker-17" tabindex="-1" role="dialog" aria-labelledby="speaker-17-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 18 -->
+<div class="modal modal-speaker modal-speaker-18" id="modal-speaker-18" tabindex="-1" role="dialog" aria-labelledby="speaker-18-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -5157,8 +5202,8 @@ Ralph balances security, reliability, privacy, performance, and maintainability 
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 18 -->
-<div class="modal modal-speaker modal-speaker-18" id="modal-speaker-18" tabindex="-1" role="dialog" aria-labelledby="speaker-18-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 19 -->
+<div class="modal modal-speaker modal-speaker-19" id="modal-speaker-19" tabindex="-1" role="dialog" aria-labelledby="speaker-19-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -5201,8 +5246,8 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 19 -->
-<div class="modal modal-speaker modal-speaker-19" id="modal-speaker-19" tabindex="-1" role="dialog" aria-labelledby="speaker-19-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 20 -->
+<div class="modal modal-speaker modal-speaker-20" id="modal-speaker-20" tabindex="-1" role="dialog" aria-labelledby="speaker-20-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -5248,8 +5293,8 @@ He is the creator of AskPeter, an AI engineering assistant that combines product
   </div><!--//modal-dialog-->
 </div><!--//modal-->
 
-<!-- Modal Speaker 20 -->
-<div class="modal modal-speaker modal-speaker-20" id="modal-speaker-20" tabindex="-1" role="dialog" aria-labelledby="speaker-20-ModalLabel" aria-hidden="true">
+<!-- Modal Speaker 21 -->
+<div class="modal modal-speaker modal-speaker-21" id="modal-speaker-21" tabindex="-1" role="dialog" aria-labelledby="speaker-21-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
@@ -5284,51 +5329,6 @@ He is the creator of AskPeter, an AI engineering assistant that combines product
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
                 <p><p>Diego Braga is CTO at Krateo PlatformOps. Diego has spent the last 10 years building open-source architectures for customers, from embedded devices to large-scale distributed systems. Most recently he has been focused on the open cloud infrastructure space, and on emerging patterns for cloud-native applications.</p></p>
-              </div>
-
-          </div><!--//modal-body-->
-      </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
-
-<!-- Modal Speaker 21 -->
-<div class="modal modal-speaker modal-speaker-21" id="modal-speaker-21" tabindex="-1" role="dialog" aria-labelledby="speaker-21-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-body p-0">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <div class="theme-bg-light p-5">
-                  <div class="row">
-                      <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Maxim Schepelin.png" alt="" />
-                      </div>
-
-                      <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Maxim Schepelin</h2>
-                          <div class="meta mb-2">Booking.com</div>
-                          <ul class="social-list list-inline mb-0">
-                            
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/schepelin"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            
-                            
-                          </ul><!--//social-list-->
-                      </div><!--//col-->
-                  </div><!--//row-->
-              </div>
-              <div class="talk-title-bar">SRE concents every engineering leader should know</div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>What engineering leaders can learn from Site Reliability Engineering?
-At first glance, SRE feels like a deeply technical concern: uptime dashboards, infrastructure capacity, on-call rotations. But core SRE concepts are deeper than they seem. Definitions of service criticality, Service-Level Indicators, Service-Level Objectives, and error budgets are not just technical speak.
-These ideas can be applied far beyond production environments. This talk explores how core SRE concepts can become high-leverage leadership tools for shaping team culture, guiding prioritization, and driving meaningful business outcomes.</p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <p></p>
-              </div>
-
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Maxim Schepelin is a solution architect at Booking.com and coauthor of Engineering Manager's Compass, a practical guide to the everyday realities of engineering leadership. Over fifteen years, he's built products used by millions of people every day—and picked up a thing or two about exiting both Vim and Emacs along the way.</p></p>
               </div>
 
           </div><!--//modal-body-->
