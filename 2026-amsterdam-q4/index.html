@@ -857,7 +857,7 @@
     color: #666;
   }
   /* a 60/90/120-minute session: one cell spanning its time rows, with its length */
-  .schedule-grid-table td.double-cell { vertical-align: middle; }
+  .schedule-grid-table td.double-cell { vertical-align: middle; box-shadow: inset 0 0 0 2px var(--brand-lighter); } /* a thicker outline marks a longer session (Marek 2026-09-30) */
   .slot-badge { display: inline-block; margin-top: 0.4rem; padding: 1px 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 600; color: var(--brand-dark); background: var(--brand-lightest); border: 1px solid var(--brand-lighter); }
   .schedule-meta {
     display: flex;
@@ -1059,22 +1059,6 @@ It is 0.1.0, free and Apache 2.0. Download it, break it, tell me.<a class="sched
             <div class="meta">
               <h4 class="time mb-3">12:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"></div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
-              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">13:30</h4>
-              <div class="profile">
                 <a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img class="profile-image rounded-circle mb-2" src="../speakers/Daniel Afonso.png" alt=""></a>
                 <div class="name">Daniel Afonso</div>
               </div>
@@ -1086,6 +1070,22 @@ It is 0.1.0, free and Apache 2.0. Download it, break it, tell me.<a class="sched
               </h3>
               <div class="location mb-3">PagerDuty</div>
               <div class="desc schedule-abstract">How do you plan for unplanned incidents? You practice with Chaos Engineering. Strong incident response doesn’t just happen, you have to build the skills and train your team. Practicing for major incidents gives your team insight into how your applications will behave when something goes wrong as well as how the team will interact to solve problems. Combining your Incident Response practices with Chaos Engineering roots your response practice in real-world scenarios, helping your team build confidence.<a class="schedule-abstract-read-more" href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
               
             </div>
           </div>
@@ -1146,22 +1146,6 @@ Environments, and how to adopt them without losing financial control.<a class="s
             <div class="meta">
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"></div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
-              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">15:30</h4>
-              <div class="profile">
                 <a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img class="profile-image rounded-circle mb-2" src="../speakers/Judith Redi.png" alt=""></a>
                 <div class="name">Judith Redi</div>
               </div>
@@ -1179,7 +1163,7 @@ Environments, and how to adopt them without losing financial control.<a class="s
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">16:00</h4>
+              <h4 class="time mb-3">15:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img class="profile-image rounded-circle mb-2" src="../speakers/Teresa Lopes.png" alt=""></a>
                 <div class="name">Teresa Lopes</div>
@@ -1192,6 +1176,22 @@ Environments, and how to adopt them without losing financial control.<a class="s
               </h3>
               <div class="location mb-3">Adyen</div>
               <div class="desc schedule-abstract">Picture this: you start a new role, eager to learn and contribute with your ideas! Your next task is to get familiar with the database setup, and then you start encountering these massive PostgreSQL databases — 100TB, 200TB, 300TB... And you start questioning yourself: how do you backup (and restore) a +100TB database? And how about HA? Performance? Vacuum? It should work the same way as for a 100GB database, right? Well, maybe not exactly. Blog posts and best practice guides make PostgreSQL seem straightforward—until you push it to its limits. At extreme scale, you will find yourself questioning the most fundamental assumptions about how PostgreSQL works. Over the last years, my team at Adyen has been exploring the boundaries of what PostgreSQL can do, and today I will share our findings with you (at least the ones I can!).<a class="schedule-abstract-read-more" href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
               
             </div>
           </div>
@@ -1347,22 +1347,6 @@ It is 0.1.0. It will break. That is the point, and I want to hear about it.<a cl
             <div class="meta">
               <h4 class="time mb-3">12:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"></div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
-              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">13:30</h4>
-              <div class="profile">
                 <a href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16"><img class="profile-image rounded-circle mb-2" src="../speakers/Niek van Raaij.png" alt=""></a>
                 <div class="name">Niek van Raaij</div>
               </div>
@@ -1376,6 +1360,22 @@ It is 0.1.0. It will break. That is the point, and I want to hear about it.<a cl
               <div class="desc schedule-abstract">Every engineer remembers their worst incident. Mine taught me something uncomfortable: our systems were fine within the hour. It was us, the engineers, that took all night. The people scrambled.
 Since then, one question keeps bugging me: why do we test everything except our own response? We chaos-test infrastructure and load-test services, but the people component remains untested.
 This talk is about closing that gap through rehearsal. We look through the lens of incident simulations, and I'll share what I've learned: what breaks first in a team under pressure (communication, not competence), why your most experienced engineer can be your biggest liability, and how a team that has practiced its worst day performs when the real one arrives.<a class="schedule-abstract-read-more" href="#modal-speaker-16" data-bs-toggle="modal" data-bs-target="#modal-speaker-16">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
               
             </div>
           </div>
@@ -1422,22 +1422,6 @@ This talk is about closing that gap through rehearsal. We look through the lens 
             <div class="meta">
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"></div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
-              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">15:30</h4>
-              <div class="profile">
                 <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19"><img class="profile-image rounded-circle mb-2" src="../speakers/Ankit Asthana & Dastan Oryngali.png" alt=""></a>
                 <div class="name">Ankit Asthana & Dastan Oryngali</div>
               </div>
@@ -1456,7 +1440,7 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">16:00</h4>
+              <h4 class="time mb-3">15:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20"><img class="profile-image rounded-circle mb-2" src="../speakers/Caner Sahan.png" alt=""></a>
                 <div class="name">Caner Sahan</div>
@@ -1472,6 +1456,22 @@ We’ll walk through real-world scenarios where traditional RBAC breaks down, de
 In this session, I'll share the engineering journey behind AskPeter, an AI-powered engineering assistant designed to help production teams investigate incidents, understand system behaviour, analyse vulnerabilities, and retrieve operational knowledge using natural language.
 Rather than replacing engineers, AskPeter acts as an engineering teammate, combining observability data, operational telemetry, documentation, and AI reasoning to reduce investigation time and improve decision-making.
 I'll walk through the architecture, design decisions, challenges, security considerations, and lessons learned while introducing AI into real production engineering workflows. This isn't another AI demo—it's an honest engineering story about building AI that engineers can actually trust.<a class="schedule-abstract-read-more" href="#modal-speaker-20" data-bs-toggle="modal" data-bs-target="#modal-speaker-20">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
               
             </div>
           </div>
@@ -1654,22 +1654,6 @@ In this talk, I show how to combine quality gates and engineering practices into
             <div class="meta">
               <h4 class="time mb-3">12:30</h4>
               <div class="profile">
-                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"></div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
-              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">13:30</h4>
-              <div class="profile">
                 <a href="#modal-speaker-28" data-bs-toggle="modal" data-bs-target="#modal-speaker-28"><img class="profile-image rounded-circle mb-2" src="../speakers/Albert Tanure.png" alt=""></a>
                 <div class="name">Albert Tanure</div>
               </div>
@@ -1681,6 +1665,22 @@ In this talk, I show how to combine quality gates and engineering practices into
               </h3>
               <div class="location mb-3">Microsoft</div>
               <div class="desc schedule-abstract">Most SRE tooling waits for something to break, and Azure SRE Agent changes that. In this talk I'll show how far agentic SRE has come as an AI teammate that doesn't just respond to the 3 AM page, but continuously watches your production environment, reasons over it against best practices and authoritative guidance via MCP, and acts to keep it healthy. We'll go under the hood on what the agent can genuinely do in production today, where the honest limits of autonomy are, and how a governance model built on RBAC and human-in-the-loop keeps you in control.<a class="schedule-abstract-read-more" href="#modal-speaker-28" data-bs-toggle="modal" data-bs-target="#modal-speaker-28">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">13:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Lunch & networking</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
               
             </div>
           </div>
@@ -1730,22 +1730,6 @@ The goal is to give SREs a concrete framework for answering a deceptively simple
             <div class="meta">
               <h4 class="time mb-3">15:00</h4>
               <div class="profile">
-                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
-                <div class="name"></div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
-              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">15:30</h4>
-              <div class="profile">
                 <a href="#modal-speaker-31" data-bs-toggle="modal" data-bs-target="#modal-speaker-31"><img class="profile-image rounded-circle mb-2" src="../speakers/Anand Shukla.png" alt=""></a>
                 <div class="name">Anand Shukla</div>
               </div>
@@ -1770,7 +1754,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">16:00</h4>
+              <h4 class="time mb-3">15:30</h4>
               <div class="profile">
                 <a href="#modal-speaker-32" data-bs-toggle="modal" data-bs-target="#modal-speaker-32"><img class="profile-image rounded-circle mb-2" src="../speakers/Nati Cohen.png" alt=""></a>
                 <div class="name">Nati Cohen</div>
@@ -1783,6 +1767,22 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
               </h3>
               <div class="location mb-3">AWS</div>
               <div class="desc schedule-abstract">Finding performance issues in modern software is like finding a needle in a haystack and intuition on where to look first is often wrong. APerf is an open source tool we have used many times to help with performance debugging by looking “wide” before going “deep”. This session will present the tool along with an performance regression example<a class="schedule-abstract-read-more" href="#modal-speaker-32" data-bs-toggle="modal" data-bs-target="#modal-speaker-32">... Read more</a></div>
+              
+            </div>
+          </div>
+
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">16:00</h4>
+              <div class="profile">
+                <a href="#modal-speaker-" data-bs-toggle="modal" data-bs-target="#modal-speaker-"><img class="profile-image rounded-circle mb-2" src="" alt=""></a>
+                <div class="name"></div>
+              </div>
+            </div>
+            <div class="content">
+              
+              <h3 class="title mb-3" style="color:#098dcf;">Networking & sponsor crawl</h3>
+              <div class="location mb-3" style="color:#098dcf;">Main lobby</div>
               
             </div>
           </div>
@@ -2377,41 +2377,10 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
 
-          <tr>
-            <td class="time-cell merged-cell">12:30</td>
-            <td class="talk-cell merged-cell" colspan="3">
-
-              Lunch & networking
-
-            </td>
-          </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
           <tr>
-            <td class="time-cell">13:30</td>
+            <td class="time-cell">12:30</td>
 
 
 
@@ -2446,6 +2415,37 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
             </td>
 
 
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">13:00</td>
+            <td class="talk-cell merged-cell" colspan="3">
+
+              Lunch & networking
+
+            </td>
           </tr>
 
 
@@ -2594,41 +2594,10 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
 
-          <tr>
-            <td class="time-cell merged-cell">15:00</td>
-            <td class="talk-cell merged-cell" colspan="3">
-
-              Networking & sponsor crawl
-
-            </td>
-          </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
           <tr>
-            <td class="time-cell">15:30</td>
+            <td class="time-cell">15:00</td>
 
 
 
@@ -2690,7 +2659,7 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
 
 
           <tr>
-            <td class="time-cell">16:00</td>
+            <td class="time-cell">15:30</td>
 
 
 
@@ -2725,6 +2694,37 @@ With the rise of AI-assisted engineering, the volume of code changes is explodin
             </td>
 
 
+          </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <tr>
+            <td class="time-cell merged-cell">16:00</td>
+            <td class="talk-cell merged-cell" colspan="3">
+
+              Networking & sponsor crawl
+
+            </td>
           </tr>
 
 
