@@ -253,22 +253,22 @@
 
 <section id="speakers-section" class="speakers-section section">
   <div class="container">
-    <h1 class="section-heading text-center mb-3">Curl a GPU Into Your Cluster: Hybrid Kubernetes for AI Development</h1>
+    <h1 class="section-heading text-center mb-3">Keynote: Coralogix</h1>
     <div class="row">
 
       <div class="col-6 col-lg-3 mb-4" style="align-self:start;">
         <div class="card rounded-0">
-          <img src="../speakers/Piotr Zaniewski.png" class="card-img-top rounded-0" alt="">
+          <img src="../speakers/Lewis Isaac.png" class="card-img-top rounded-0" alt="">
           <div class="card-body">
-            <h5 class="card-title mb-2">Piotr Zaniewski</h5>
+            <h5 class="card-title mb-2">Lewis Isaac</h5>
             <div class="card-text mb-3">
-              <div class="meta">vCluster Labs</div>
+              <div class="meta">Coralogix</div>
             </div><!--//card-text-->
           </div><!--//card-->
           <div class="card-footer text-muted">
             <ul class="social-list list-inline mb-0">
               
-              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/piotr-zaniewski/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/lewisjamesisaac/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
               
               
             </ul><!--//social-list-->
@@ -282,14 +282,14 @@
 
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>AI development has a cluster problem: laptop Kubernetes like kind can't host real GPUs, so engineers juggle Docker Compose, full clusters, and scripts that drift from production. We show a pattern where one laptop kubectl context spans local Docker workers and a cloud NVIDIA T4, joined by a single curl over a WireGuard tunnel, so the same workload runs locally and on cloud GPU without two separate setups. The idea is Kubernetes-native: any Linux host (KVM, GCE, bare metal) becomes a node by pasting a one-line curl that installs kubelet and connects over the tunnel, in one tenant cluster. We demo it live: laptop Docker workers, a local KVM node, and a GCE T4 in a single context. We pull llama3.2 onto the T4, deploy a service that talks to it, expose it through a built-in LoadBalancer, and pause/resume the cluster like a laptop. We close with the failure modes (tunnel reconnect after sleep, egress cost on model pulls, GPU eviction) and the GitOps that keeps the topology declarative.</p></p>
+                <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <p></p>
               </div>
               <div class="desc p-2 p-lg-3">
                 <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>An active contributor to open source, content creator on Medium and YouTube, focusing on practical, scalable solutions in cloud-native environments. DevOps and Platform Engineering practitioner and advocate.</p></p>
+                <p><p>Lewis Isaac is a Developer Advocate at Coralogix, helping developers use observability to understand how their systems affect users and business outcomes. His work also explores monitoring AI agents and running AI-generated code reliably in production.</p></p>
               </div>
 
               
