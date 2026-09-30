@@ -867,6 +867,9 @@
   .schedule-grid-table .speaker-info .affiliation {
     color: #666;
   }
+  /* a 60/90/120-minute session: one cell spanning its time rows, with its length */
+  .schedule-grid-table td.double-cell { vertical-align: middle; }
+  .slot-badge { display: inline-block; margin-top: 0.4rem; padding: 1px 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 600; color: var(--brand-dark); background: var(--brand-lightest); border: 1px solid var(--brand-lighter); }
   .schedule-meta {
     display: flex;
     align-items: center;
@@ -1282,7 +1285,7 @@ As many in the industry move toward “thin” harnesses, this talk argues for a
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">11:00</h4>
+              <h4 class="time mb-3">11:00&ndash;12:00</h4><span class="slot-badge mb-2">60 min</span>
               <div class="profile">
                 <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img class="profile-image rounded-circle mb-2" src="../speakers/Aaron Hunter & Saurabh Rob Dahal.png" alt=""></a>
                 <div class="name">Aaron Hunter & Saurabh Rob Dahal</div>
@@ -1296,26 +1299,6 @@ As many in the industry move toward “thin” harnesses, this talk argues for a
               <div class="location mb-3">AWS<a class="event-watch-btn event-watch-btn-sm" href="https://youtu.be/UsJHK2O5ZKs" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="white" style="vertical-align:middle;margin-right:4px"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>Watch</a></div>
               <div class="desc schedule-abstract">####Free Kiro Access for Attendees####
 Kiro is a new agentic IDE from AWS that turns your ideas into working software through specs, not just prompts. In this hands-on workshop, you'll use Kiro to build a website from scratch using spec-driven development - where requirements, design, and tasks are generated before a single line of code is written. Then you'll use Kiro's agent skills to generate a polished, tailored resume in minutes. No prior Kiro experience needed. Every attendee gets a free Kiro Pro coupon<a class="schedule-abstract-read-more" href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">... Read more</a></div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">11:30</h4>
-              <div class="profile">
-                <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img class="profile-image rounded-circle mb-2" src="../speakers/Aaron Hunter & Saurabh Rob Dahal.png" alt=""></a>
-                <div class="name">Aaron Hunter & Saurabh Rob Dahal</div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">1h Hands-On with Kiro: Use AI Agents to Build Your Website and Optimize Your Resume</a>
-              </h3>
-              <div class="location mb-3">AWS<a class="event-watch-btn event-watch-btn-sm" href="https://youtu.be/UsJHK2O5ZKs" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="white" style="vertical-align:middle;margin-right:4px"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>Watch</a></div>
-              <div class="desc schedule-abstract">####Free Kiro Access for Attendees####
-Kiro is a new agentic IDE from AWS that turns your ideas into working software through specs, not just prompts. In this hands-on workshop, you'll use Kiro to build a website from scratch using spec-driven development - where requirements, design, and tasks are generated before a single line of code is written. Then you'll use Kiro's agent skills to generate a polished, tailored resume in minutes. No prior Kiro experience needed. Every attendee gets a free Kiro Pro coupon<a class="schedule-abstract-read-more" href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">... Read more</a></div>
               
             </div>
           </div>
@@ -1610,8 +1593,6 @@ This session explores how EEs can help us become faster firefighters and more ef
 
 
 
-
-
           <tr>
             <td class="time-cell">09:00</td>
 
@@ -1781,9 +1762,9 @@ This session explores how EEs can help us become faster firefighters and more ef
 
 
 
-            <td class="talk-cell">
+            <td class="talk-cell double-cell" rowspan="2">
               <a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12">1h Hands-On with Kiro: Use AI Agents to Build Your Website and Optimize Your Resume</a>
-              <div class="speaker-info">Aaron Hunter & Saurabh Rob Dahal <span class="affiliation">• AWS</span></div>
+              <div class="speaker-info">Aaron Hunter & Saurabh Rob Dahal <span class="affiliation">• AWS</span></div><span class="slot-badge">60 min</span>
             </td>
 
 
@@ -1824,12 +1805,6 @@ This session explores how EEs can help us become faster firefighters and more ef
 
 
 
-
-
-            <td class="talk-cell">
-              <a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13">1h Hands-On with Kiro: Use AI Agents to Build Your Website and Optimize Your Resume</a>
-              <div class="speaker-info">Aaron Hunter & Saurabh Rob Dahal <span class="affiliation">• AWS</span></div>
-            </td>
 
 
           </tr>
@@ -3589,51 +3564,6 @@ As many in the industry move toward “thin” harnesses, this talk argues for a
 
 <!-- Modal Speaker 12 -->
 <div class="modal modal-speaker modal-speaker-12" id="modal-speaker-12" tabindex="-1" role="dialog" aria-labelledby="speaker-12-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-body p-0">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <div class="theme-bg-light p-5">
-                  <div class="row">
-                      <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Aaron Hunter & Saurabh Rob Dahal.png" alt="" />
-                      </div>
-
-                      <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Aaron Hunter & Saurabh Rob Dahal</h2>
-                          <div class="meta mb-2">AWS</div>
-                          <ul class="social-list list-inline mb-0">
-                            
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/aaronshunter/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/saurabhdahal/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                          </ul><!--//social-list-->
-                      </div><!--//col-->
-                  </div><!--//row-->
-              </div>
-              <div class="talk-title-bar">1h Hands-On with Kiro: Use AI Agents to Build Your Website and Optimize Your Resume</div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p><strong>Free Kiro Access for Attendees####</strong>
-Kiro is a new agentic IDE from AWS that turns your ideas into working software through specs, not just prompts. In this hands-on workshop, you'll use Kiro to build a website from scratch using spec-driven development - where requirements, design, and tasks are generated before a single line of code is written. Then you'll use Kiro's agent skills to generate a polished, tailored resume in minutes. No prior Kiro experience needed. Every attendee gets a free Kiro Pro coupon</p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <p></p>
-              </div>
-
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Aaron Hunter is a Principal Developer Advocate at AWS based in Frisco, TX. With over 15 years of experience spanning system administration, networking, and training, he brings more than a decade of cloud expertise to help Engineers, Developers, Builders, and tech enthusiasts master AWS technologies. His philosophy is simple: always be learning something new, and have fun while doing it! Aaron shares his knowledge through workshops, online courses, mentoring, and live streaming – making complex cloud concepts accessible and enjoyable. When he's not building in the cloud, you'll find him exploring craft beer scenes in new cities or teaming up with friends in Marvel Rivals on his PlayStation, because even superheroes need good teammates!
-Saurabh Rob Dahal: career change from Biomedical field to Tech. Worked as a Solutions Engineer at Oracle, Software Developer and Coding Bootcamp instructor. Currently working as a Developer Advocate at AWS specializing in AI Engineering, software development, and Agents.</p></p>
-              </div>
-
-          </div><!--//modal-body-->
-      </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
-
-<!-- Modal Speaker 13 -->
-<div class="modal modal-speaker modal-speaker-13" id="modal-speaker-13" tabindex="-1" role="dialog" aria-labelledby="speaker-13-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">

@@ -874,6 +874,9 @@
   .schedule-grid-table .speaker-info .affiliation {
     color: #666;
   }
+  /* a 60/90/120-minute session: one cell spanning its time rows, with its length */
+  .schedule-grid-table td.double-cell { vertical-align: middle; }
+  .slot-badge { display: inline-block; margin-top: 0.4rem; padding: 1px 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 600; color: var(--brand-dark); background: var(--brand-lightest); border: 1px solid var(--brand-lighter); }
   .schedule-meta {
     display: flex;
     align-items: center;
@@ -1436,7 +1439,7 @@ This is not a theoretical exploration. The architecture was validated in product
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">12:00</h4>
+              <h4 class="time mb-3">12:00&ndash;13:00</h4><span class="slot-badge mb-2">60 min</span>
               <div class="profile">
                 <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18"><img class="profile-image rounded-circle mb-2" src="../speakers/YuZhao Zhang & Allen-Michael Grobelny.png" alt=""></a>
                 <div class="name">YuZhao Zhang & Allen-Michael Grobelny</div>
@@ -1449,25 +1452,6 @@ This is not a theoretical exploration. The architecture was validated in product
               </h3>
               <div class="location mb-3">HashiCorp & AWS</div>
               <div class="desc schedule-abstract">This workshop will teach attendees the basics of DevOps and Infrastructure as Code (IaC) in a fun gamified way that combines learning DevOps fundamentals with making "line go up". Attendees will gain hands-on expertise with both AWS and HashiCorp Terraform in a free, safe, and sand-boxed environment. Bring your laptop and a web browser (no additional tools are needed to get started) and leave with tips and tricks that you can immediately apply to your own workflows.<a class="schedule-abstract-read-more" href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">... Read more</a></div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">12:30</h4>
-              <div class="profile">
-                <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19"><img class="profile-image rounded-circle mb-2" src="../speakers/YuZhao Zhang & Allen-Michael Grobelny.png" alt=""></a>
-                <div class="name">YuZhao Zhang & Allen-Michael Grobelny</div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">1h Workshop: A Casual Introduction To DevOps, But Make It A Contest</a>
-              </h3>
-              <div class="location mb-3">HashiCorp & AWS</div>
-              <div class="desc schedule-abstract">This workshop will teach attendees the basics of DevOps and Infrastructure as Code (IaC) in a fun gamified way that combines learning DevOps fundamentals with making "line go up". Attendees will gain hands-on expertise with both AWS and HashiCorp Terraform in a free, safe, and sand-boxed environment. Bring your laptop and a web browser (no additional tools are needed to get started) and leave with tips and tricks that you can immediately apply to your own workflows.<a class="schedule-abstract-read-more" href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">... Read more</a></div>
               
             </div>
           </div>
@@ -1715,8 +1699,6 @@ This talk is aimed at practicing SREs and platform engineers looking for practic
           </tr>
         </thead>
         <tbody>
-
-
 
 
 
@@ -2107,9 +2089,9 @@ This talk is aimed at practicing SREs and platform engineers looking for practic
 
 
 
-            <td class="talk-cell">
+            <td class="talk-cell double-cell" rowspan="2">
               <a href="#modal-speaker-18" data-bs-toggle="modal" data-bs-target="#modal-speaker-18">1h Workshop: A Casual Introduction To DevOps, But Make It A Contest</a>
-              <div class="speaker-info">YuZhao Zhang & Allen-Michael Grobelny <span class="affiliation">• HashiCorp & AWS</span></div>
+              <div class="speaker-info">YuZhao Zhang & Allen-Michael Grobelny <span class="affiliation">• HashiCorp & AWS</span></div><span class="slot-badge">60 min</span>
             </td>
 
 
@@ -2150,12 +2132,6 @@ This talk is aimed at practicing SREs and platform engineers looking for practic
 
 
 
-
-
-            <td class="talk-cell">
-              <a href="#modal-speaker-19" data-bs-toggle="modal" data-bs-target="#modal-speaker-19">1h Workshop: A Casual Introduction To DevOps, But Make It A Contest</a>
-              <div class="speaker-info">YuZhao Zhang & Allen-Michael Grobelny <span class="affiliation">• HashiCorp & AWS</span></div>
-            </td>
 
 
           </tr>
@@ -4539,50 +4515,6 @@ This is not a theoretical exploration. The architecture was validated in product
 
 <!-- Modal Speaker 18 -->
 <div class="modal modal-speaker modal-speaker-18" id="modal-speaker-18" tabindex="-1" role="dialog" aria-labelledby="speaker-18-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-body p-0">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <div class="theme-bg-light p-5">
-                  <div class="row">
-                      <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/YuZhao Zhang & Allen-Michael Grobelny.png" alt="" />
-                      </div>
-
-                      <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">YuZhao Zhang & Allen-Michael Grobelny</h2>
-                          <div class="meta mb-2">HashiCorp & AWS</div>
-                          <ul class="social-list list-inline mb-0">
-                            
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/yuzhaozhang/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/amgrobelny/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                          </ul><!--//social-list-->
-                      </div><!--//col-->
-                  </div><!--//row-->
-              </div>
-              <div class="talk-title-bar">1h Workshop: A Casual Introduction To DevOps, But Make It A Contest</div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>This workshop will teach attendees the basics of DevOps and Infrastructure as Code (IaC) in a fun gamified way that combines learning DevOps fundamentals with making "line go up". Attendees will gain hands-on expertise with both AWS and HashiCorp Terraform in a free, safe, and sand-boxed environment. Bring your laptop and a web browser (no additional tools are needed to get started) and leave with tips and tricks that you can immediately apply to your own workflows.</p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <p></p>
-              </div>
-
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p><strong><a href="https://www.linkedin.com/in/yuzhaozhang/">YuZhao Zhang</a></strong> is a Solutions Architect and Customer Success Engineer with over 20 years of experience across software development, cybersecurity, multi-cloud, and SaaS. She specializes in working with enterprise and Fortune 500 customers, helping them design, implement, and scale secure infrastructure solutions. Known as a trusted technical advisor, she bridges the gap between complex technology and business value, driving long-term customer success through strategic guidance and hands-on expertise.</p>
-<p><strong><a href="https://www.linkedin.com/in/amgrobelny/">Allen-Michael Grobelny</a></strong> is a technology leader and solutions architect with deep expertise in cloud computing, DevOps, and enterprise transformation. He has a track record of helping organizations design and implement scalable, secure systems while aligning technical strategy with business outcomes. With a background spanning engineering, consulting, and leadership roles, Allen-Michael focuses on driving adoption of modern infrastructure practices, including infrastructure as code, observability, and distributed systems architecture.</p></p>
-              </div>
-
-          </div><!--//modal-body-->
-      </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
-
-<!-- Modal Speaker 19 -->
-<div class="modal modal-speaker modal-speaker-19" id="modal-speaker-19" tabindex="-1" role="dialog" aria-labelledby="speaker-19-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">

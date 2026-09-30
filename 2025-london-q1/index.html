@@ -912,6 +912,9 @@
   .schedule-grid-table .speaker-info .affiliation {
     color: #666;
   }
+  /* a 60/90/120-minute session: one cell spanning its time rows, with its length */
+  .schedule-grid-table td.double-cell { vertical-align: middle; }
+  .slot-badge { display: inline-block; margin-top: 0.4rem; padding: 1px 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 600; color: var(--brand-dark); background: var(--brand-lightest); border: 1px solid var(--brand-lighter); }
   .schedule-meta {
     display: flex;
     align-items: center;
@@ -2699,7 +2702,7 @@ During the talk, my main goals are to: - Explain the key concepts in an accessib
 
           <div class="item item-talk">
             <div class="meta">
-              <h4 class="time mb-3">10:00</h4>
+              <h4 class="time mb-3">10:00&ndash;12:00</h4><span class="slot-badge mb-2">120 min</span>
               <div class="profile">
                 <a href="#modal-speaker-28" data-bs-toggle="modal" data-bs-target="#modal-speaker-28"><img class="profile-image rounded-circle mb-2" src="../speakers/Harry Kimpel.png" alt=""></a>
                 <div class="name">Harry Kimpel</div>
@@ -2712,63 +2715,6 @@ During the talk, my main goals are to: - Explain the key concepts in an accessib
               </h3>
               <div class="location mb-3">New Relic</div>
               <div class="desc schedule-abstract">In this workshop, we will focus on leveraging New Relic's AI Monitoring to confidently build and run AI applications. You'll learn how to achieve comprehensive observability across your stack to maintain peak performance, ensure compliance, promote quality, and observe costs. Through hands-on demonstrations and practical exercises, you'll gain insights into best practices for monitoring and managing AI-driven systems, ensuring they are reliable, efficient, and compliant with industry standards. Join us to master the tools and techniques that will empower you to optimize your AI applications and drive business success.<a class="schedule-abstract-read-more" href="#modal-speaker-28" data-bs-toggle="modal" data-bs-target="#modal-speaker-28">... Read more</a></div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">10:30</h4>
-              <div class="profile">
-                <a href="#modal-speaker-29" data-bs-toggle="modal" data-bs-target="#modal-speaker-29"><img class="profile-image rounded-circle mb-2" src="../speakers/Harry Kimpel.png" alt=""></a>
-                <div class="name">Harry Kimpel</div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-29" data-bs-toggle="modal" data-bs-target="#modal-speaker-29">2h Workshop: Hands-on guide to monitor your API-driven AI/LLM applications</a>
-              </h3>
-              <div class="location mb-3">New Relic</div>
-              <div class="desc schedule-abstract">In this workshop, we will focus on leveraging New Relic's AI Monitoring to confidently build and run AI applications. You'll learn how to achieve comprehensive observability across your stack to maintain peak performance, ensure compliance, promote quality, and observe costs. Through hands-on demonstrations and practical exercises, you'll gain insights into best practices for monitoring and managing AI-driven systems, ensuring they are reliable, efficient, and compliant with industry standards. Join us to master the tools and techniques that will empower you to optimize your AI applications and drive business success.<a class="schedule-abstract-read-more" href="#modal-speaker-29" data-bs-toggle="modal" data-bs-target="#modal-speaker-29">... Read more</a></div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">11:00</h4>
-              <div class="profile">
-                <a href="#modal-speaker-30" data-bs-toggle="modal" data-bs-target="#modal-speaker-30"><img class="profile-image rounded-circle mb-2" src="../speakers/Harry Kimpel.png" alt=""></a>
-                <div class="name">Harry Kimpel</div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-30" data-bs-toggle="modal" data-bs-target="#modal-speaker-30">2h Workshop: Hands-on guide to monitor your API-driven AI/LLM applications</a>
-              </h3>
-              <div class="location mb-3">New Relic</div>
-              <div class="desc schedule-abstract">In this workshop, we will focus on leveraging New Relic's AI Monitoring to confidently build and run AI applications. You'll learn how to achieve comprehensive observability across your stack to maintain peak performance, ensure compliance, promote quality, and observe costs. Through hands-on demonstrations and practical exercises, you'll gain insights into best practices for monitoring and managing AI-driven systems, ensuring they are reliable, efficient, and compliant with industry standards. Join us to master the tools and techniques that will empower you to optimize your AI applications and drive business success.<a class="schedule-abstract-read-more" href="#modal-speaker-30" data-bs-toggle="modal" data-bs-target="#modal-speaker-30">... Read more</a></div>
-              
-            </div>
-          </div>
-
-          <div class="item item-talk">
-            <div class="meta">
-              <h4 class="time mb-3">11:30</h4>
-              <div class="profile">
-                <a href="#modal-speaker-31" data-bs-toggle="modal" data-bs-target="#modal-speaker-31"><img class="profile-image rounded-circle mb-2" src="../speakers/Harry Kimpel.png" alt=""></a>
-                <div class="name">Harry Kimpel</div>
-              </div>
-            </div>
-            <div class="content">
-              
-              <h3 class="title mb-3">
-                <a class="theme-link" href="#modal-speaker-31" data-bs-toggle="modal" data-bs-target="#modal-speaker-31">2h Workshop: Hands-on guide to monitor your API-driven AI/LLM applications</a>
-              </h3>
-              <div class="location mb-3">New Relic</div>
-              <div class="desc schedule-abstract">In this workshop, we will focus on leveraging New Relic's AI Monitoring to confidently build and run AI applications. You'll learn how to achieve comprehensive observability across your stack to maintain peak performance, ensure compliance, promote quality, and observe costs. Through hands-on demonstrations and practical exercises, you'll gain insights into best practices for monitoring and managing AI-driven systems, ensuring they are reliable, efficient, and compliant with industry standards. Join us to master the tools and techniques that will empower you to optimize your AI applications and drive business success.<a class="schedule-abstract-read-more" href="#modal-speaker-31" data-bs-toggle="modal" data-bs-target="#modal-speaker-31">... Read more</a></div>
               
             </div>
           </div>
@@ -3585,12 +3531,6 @@ I’ll take you behind the scenes — from early challenges and unexpected break
 
 
 
-
-
-
-
-
-
           <tr>
             <td class="time-cell">09:00</td>
 
@@ -3682,9 +3622,9 @@ I’ll take you behind the scenes — from early challenges and unexpected break
 
 
 
-            <td class="talk-cell">
+            <td class="talk-cell double-cell" rowspan="4">
               <a href="#modal-speaker-28" data-bs-toggle="modal" data-bs-target="#modal-speaker-28">2h Workshop: Hands-on guide to monitor your API-driven AI/LLM applications</a>
-              <div class="speaker-info">Harry Kimpel <span class="affiliation">• New Relic</span></div>
+              <div class="speaker-info">Harry Kimpel <span class="affiliation">• New Relic</span></div><span class="slot-badge">120 min</span>
             </td>
 
 
@@ -3744,12 +3684,6 @@ I’ll take you behind the scenes — from early challenges and unexpected break
 
 
 
-            <td class="talk-cell">
-              <a href="#modal-speaker-29" data-bs-toggle="modal" data-bs-target="#modal-speaker-29">2h Workshop: Hands-on guide to monitor your API-driven AI/LLM applications</a>
-              <div class="speaker-info">Harry Kimpel <span class="affiliation">• New Relic</span></div>
-            </td>
-
-
 
 
 
@@ -3806,12 +3740,6 @@ I’ll take you behind the scenes — from early challenges and unexpected break
 
 
 
-            <td class="talk-cell">
-              <a href="#modal-speaker-30" data-bs-toggle="modal" data-bs-target="#modal-speaker-30">2h Workshop: Hands-on guide to monitor your API-driven AI/LLM applications</a>
-              <div class="speaker-info">Harry Kimpel <span class="affiliation">• New Relic</span></div>
-            </td>
-
-
 
 
 
@@ -3866,12 +3794,6 @@ I’ll take you behind the scenes — from early challenges and unexpected break
 
 
 
-
-
-            <td class="talk-cell">
-              <a href="#modal-speaker-31" data-bs-toggle="modal" data-bs-target="#modal-speaker-31">2h Workshop: Hands-on guide to monitor your API-driven AI/LLM applications</a>
-              <div class="speaker-info">Harry Kimpel <span class="affiliation">• New Relic</span></div>
-            </td>
 
 
 
@@ -7320,135 +7242,6 @@ I have managed teams of 10+ engineers and provided technical mentorship and care
 
 <!-- Modal Speaker 28 -->
 <div class="modal modal-speaker modal-speaker-28" id="modal-speaker-28" tabindex="-1" role="dialog" aria-labelledby="speaker-28-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-body p-0">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <div class="theme-bg-light p-5">
-                  <div class="row">
-                      <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Harry Kimpel.png" alt="" />
-                      </div>
-
-                      <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Harry Kimpel</h2>
-                          <div class="meta mb-2">New Relic</div>
-                          <ul class="social-list list-inline mb-0">
-                            
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/harrykimpel/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            
-                            
-                          </ul><!--//social-list-->
-                      </div><!--//col-->
-                  </div><!--//row-->
-              </div>
-              <div class="talk-title-bar">2h Workshop: Hands-on guide to monitor your API-driven AI/LLM applications</div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>In this workshop, we will focus on leveraging New Relic's AI Monitoring to confidently build and run AI applications. You'll learn how to achieve comprehensive observability across your stack to maintain peak performance, ensure compliance, promote quality, and observe costs. Through hands-on demonstrations and practical exercises, you'll gain insights into best practices for monitoring and managing AI-driven systems, ensuring they are reliable, efficient, and compliant with industry standards. Join us to master the tools and techniques that will empower you to optimize your AI applications and drive business success.</p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <p></p>
-              </div>
-
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Passionate software craftsman with 25+ years experience in a broad spectrum of development technologies and platforms. Main focus on cloud-native software architectures and all major cloud environments. Passion for model-driven development, application modernization and Dapr. Observing and securing these environments are key aspects. As a Developer Relations Engineer at New Relic, Harry helps software engineers, DevOps, SREs and operations experts to understand and implement proactive and scalable observability practices by leveraging open source technologies and the New Relic platform.</p></p>
-              </div>
-
-          </div><!--//modal-body-->
-      </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
-
-<!-- Modal Speaker 29 -->
-<div class="modal modal-speaker modal-speaker-29" id="modal-speaker-29" tabindex="-1" role="dialog" aria-labelledby="speaker-29-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-body p-0">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <div class="theme-bg-light p-5">
-                  <div class="row">
-                      <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Harry Kimpel.png" alt="" />
-                      </div>
-
-                      <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Harry Kimpel</h2>
-                          <div class="meta mb-2">New Relic</div>
-                          <ul class="social-list list-inline mb-0">
-                            
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/harrykimpel/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            
-                            
-                          </ul><!--//social-list-->
-                      </div><!--//col-->
-                  </div><!--//row-->
-              </div>
-              <div class="talk-title-bar">2h Workshop: Hands-on guide to monitor your API-driven AI/LLM applications</div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>In this workshop, we will focus on leveraging New Relic's AI Monitoring to confidently build and run AI applications. You'll learn how to achieve comprehensive observability across your stack to maintain peak performance, ensure compliance, promote quality, and observe costs. Through hands-on demonstrations and practical exercises, you'll gain insights into best practices for monitoring and managing AI-driven systems, ensuring they are reliable, efficient, and compliant with industry standards. Join us to master the tools and techniques that will empower you to optimize your AI applications and drive business success.</p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <p></p>
-              </div>
-
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Passionate software craftsman with 25+ years experience in a broad spectrum of development technologies and platforms. Main focus on cloud-native software architectures and all major cloud environments. Passion for model-driven development, application modernization and Dapr. Observing and securing these environments are key aspects. As a Developer Relations Engineer at New Relic, Harry helps software engineers, DevOps, SREs and operations experts to understand and implement proactive and scalable observability practices by leveraging open source technologies and the New Relic platform.</p></p>
-              </div>
-
-          </div><!--//modal-body-->
-      </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
-
-<!-- Modal Speaker 30 -->
-<div class="modal modal-speaker modal-speaker-30" id="modal-speaker-30" tabindex="-1" role="dialog" aria-labelledby="speaker-30-ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-body p-0">
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-              <div class="theme-bg-light p-5">
-                  <div class="row">
-                      <div class="col-12 col-md-auto text-center">
-                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Harry Kimpel.png" alt="" />
-                      </div>
-
-                      <div class="col text-center text-md-start mx-auto">
-                          <h2 class="name mb-2">Harry Kimpel</h2>
-                          <div class="meta mb-2">New Relic</div>
-                          <ul class="social-list list-inline mb-0">
-                            
-                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/harrykimpel/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-                            
-                            
-                          </ul><!--//social-list-->
-                      </div><!--//col-->
-                  </div><!--//row-->
-              </div>
-              <div class="talk-title-bar">2h Workshop: Hands-on guide to monitor your API-driven AI/LLM applications</div>
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
-                <p><p>In this workshop, we will focus on leveraging New Relic's AI Monitoring to confidently build and run AI applications. You'll learn how to achieve comprehensive observability across your stack to maintain peak performance, ensure compliance, promote quality, and observe costs. Through hands-on demonstrations and practical exercises, you'll gain insights into best practices for monitoring and managing AI-driven systems, ensuring they are reliable, efficient, and compliant with industry standards. Join us to master the tools and techniques that will empower you to optimize your AI applications and drive business success.</p></p>
-              </div>
-              <div class="desc p-2 p-lg-3">
-                <p></p>
-              </div>
-
-              <div class="desc p-2 p-lg-3">
-                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
-                <p><p>Passionate software craftsman with 25+ years experience in a broad spectrum of development technologies and platforms. Main focus on cloud-native software architectures and all major cloud environments. Passion for model-driven development, application modernization and Dapr. Observing and securing these environments are key aspects. As a Developer Relations Engineer at New Relic, Harry helps software engineers, DevOps, SREs and operations experts to understand and implement proactive and scalable observability practices by leveraging open source technologies and the New Relic platform.</p></p>
-              </div>
-
-          </div><!--//modal-body-->
-      </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
-
-<!-- Modal Speaker 31 -->
-<div class="modal modal-speaker modal-speaker-31" id="modal-speaker-31" tabindex="-1" role="dialog" aria-labelledby="speaker-31-ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-body p-0">
