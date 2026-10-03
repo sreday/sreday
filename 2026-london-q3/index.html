@@ -5180,7 +5180,7 @@ This session explores how teams can maintain resilience as database estates grow
         <!--//footer-link-->
 
         <div class="py-4 text-center">
-            <video class="lazy-loop" data-src="/assets/maupa GIF.mp4?v=ce08670d8c" poster="/assets/maupa GIF.poster.webp?v=a31d6d6197" aria-label="SREday Maupa" muted loop playsinline preload="none" style="height:400px;"></video>
+            <video class="lazy-loop" poster="/assets/maupa GIF.poster.webp?v=a31d6d6197" aria-label="SREday Maupa" muted loop playsinline preload="none" style="height:400px;"><source data-src="/assets/maupa GIF.mov?v=1fcff7e491" type='video/quicktime; codecs="hvc1"'><source data-src="/assets/maupa GIF.webm?v=48617e2b00" type="video/webm"></video>
         </div>
 
     </div><!--//container-->
@@ -5193,6 +5193,6 @@ This session explores how teams can maintain resilience as database estates grow
 <script defer src="assets/plugins/gumshoe/gumshoe.polyfills.min.js?v=c16ae2d7c9"></script>
 <script defer src="assets/js/main.js?v=72cf53ce03"></script>
 
-<script>/* rewrite_assets.py: loops load and play only while on screen */(function(){var vs=document.querySelectorAll('video.lazy-loop');if(!vs.length)return;var c=navigator.connection;if(c&&(c.saveData||/2g|3g/.test(c.effectiveType)))return;function go(v){if(!v.src)v.src=v.dataset.src;var p=v.play();p&&p.catch&&p.catch(function(){})}if(!('IntersectionObserver'in window)){vs.forEach(go);return}var io=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?go(e.target):e.target.pause()})},{rootMargin:'300px'});vs.forEach(function(v){io.observe(v)})})()</script>
+<script>/* rewrite_assets.py: loops load and play only while on screen */(function(){var vs=document.querySelectorAll('video.lazy-loop');if(!vs.length)return;var c=navigator.connection;if(c&&(c.saveData||/2g|3g/.test(c.effectiveType)))return;function go(v){if(!v.dataset.on){v.dataset.on=1;if(v.dataset.src){v.src=v.dataset.src}else{v.querySelectorAll('source[data-src]').forEach(function(s){s.src=s.dataset.src});v.load()}}var p=v.play();p&&p.catch&&p.catch(function(){})}if(!('IntersectionObserver'in window)){vs.forEach(go);return}var io=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?go(e.target):e.target.pause()})},{rootMargin:'300px'});vs.forEach(function(v){io.observe(v)})})()</script>
 </body>
 </html>
