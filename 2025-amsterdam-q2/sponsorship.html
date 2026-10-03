@@ -1365,7 +1365,7 @@
               </div>
             </div>
           </div>
-          <video loop muted playsinline class="sp-stats-header-gif-img lazy-loop" style="width:529px; border-radius:12px; flex-shrink:0; aspect-ratio:16/9; object-fit:contain; display:none;" data-src="/assets/sre monkeys.mp4?v=94021797ab" preload="none"></video>
+          <video src="/assets/sre monkeys.mp4?v=94021797ab" autoplay loop muted playsinline class="sp-stats-header-gif-img" style="width:529px; border-radius:12px; flex-shrink:0; aspect-ratio:16/9; object-fit:contain; display:none;"></video>
         </div>
 
         <hr class="sp-stats-sep">
@@ -1725,7 +1725,7 @@ window.addEventListener('hashchange', function() { spAutoExpand(window.location.
       
       <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.catawiki.com/" target="_blank"><img src="../sponsors/catawiki.webp?v=4aecf96913" alt=""></a></div>
       
-      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.harness.io/" target="_blank"><img src="../sponsors/harness.webp?v=f81a94ab18" alt="" loading="lazy" decoding="async"></a></div>
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.harness.io/" target="_blank"><img src="../sponsors/harness.webp?v=f81a94ab18" alt=""></a></div>
       
     </div>
   </div>
@@ -1964,13 +1964,13 @@ window.addEventListener('hashchange', function() { spAutoExpand(window.location.
     <p class="text-center" style="color:#aaa;margin-top:-.6rem;margin-bottom:1.5rem;">Other conferences we organize: in-person & online</p>
     <div class="sp-sisters">
       <a href="https://llmday.com" target="_blank" rel="noopener noreferrer">
-        <img src="/assets/images/llmday_sticker.webp?v=34c95df1bb" alt="LLMday" loading="lazy" decoding="async">
+        <img src="/assets/images/llmday_sticker.webp?v=34c95df1bb" alt="LLMday">
       </a>
       <a href="https://platformday.com" target="_blank" rel="noopener noreferrer">
-        <img src="/assets/images/platformday_sticker.webp?v=8a6dade9f1" alt="PLATFORMday" loading="lazy" decoding="async">
+        <img src="/assets/images/platformday_sticker.webp?v=8a6dade9f1" alt="PLATFORMday">
       </a>
       <a href="https://conf42.com" target="_blank" rel="noopener noreferrer">
-        <img src="/assets/images/conf42_sticker.webp?v=9842363abb" alt="Conf42" loading="lazy" decoding="async">
+        <img src="/assets/images/conf42_sticker.webp?v=9842363abb" alt="Conf42">
       </a>
     </div>
   </div>
@@ -1983,15 +1983,15 @@ window.addEventListener('hashchange', function() { spAutoExpand(window.location.
     <div class="sp-sisters">
       
       <a href="https://reliaburger.com/" target="_blank" rel="noopener noreferrer">
-        <img src="/assets/images/reliaburger sticker.webp?v=11120b26b9" alt="Reliaburger" loading="lazy" decoding="async">
+        <img src="/assets/images/reliaburger sticker.webp?v=11120b26b9" alt="Reliaburger">
       </a>
       
       <a href="https://cfp.ninja/" target="_blank" rel="noopener noreferrer">
-        <img src="/assets/images/cfpninja sticker.webp?v=a22a5b13bd" alt="CFP Ninja" loading="lazy" decoding="async">
+        <img src="/assets/images/cfpninja sticker.webp?v=a22a5b13bd" alt="CFP Ninja">
       </a>
       
       <a href="https://certified.fyi/" target="_blank" rel="noopener noreferrer">
-        <img src="/assets/images/certified fyi sticker.webp?v=fbdb298a41" alt="Certified FYI" loading="lazy" decoding="async">
+        <img src="/assets/images/certified fyi sticker.webp?v=fbdb298a41" alt="Certified FYI">
       </a>
       
     </div>
@@ -2024,7 +2024,7 @@ window.addEventListener('hashchange', function() { spAutoExpand(window.location.
         <!--//footer-link-->
 
         <div class="py-4 text-center">
-            <video class="lazy-loop" poster="/assets/maupa GIF.poster.webp?v=a31d6d6197" aria-label="SREday Maupa" muted loop playsinline preload="none" style="height:400px;"><source data-src="/assets/maupa GIF.mov?v=1fcff7e491" type='video/quicktime; codecs="hvc1"'><source data-src="/assets/maupa GIF.webm?v=48617e2b00" type="video/webm"></video>
+            <img src="/assets/maupa GIF.gif?v=319ba1d5b5" alt="SREday Maupa" style="height:400px;">
         </div>
 
     </div><!--//container-->
@@ -2037,6 +2037,5 @@ window.addEventListener('hashchange', function() { spAutoExpand(window.location.
 <script defer src="assets/plugins/gumshoe/gumshoe.polyfills.min.js?v=c16ae2d7c9"></script>
 <script defer src="assets/js/main.js?v=72cf53ce03"></script>
 
-<script>/* rewrite_assets.py: loops load and play only while on screen */(function(){var vs=document.querySelectorAll('video.lazy-loop');if(!vs.length)return;var c=navigator.connection;if(c&&(c.saveData||/2g|3g/.test(c.effectiveType)))return;function go(v){if(!v.dataset.on){v.dataset.on=1;if(v.dataset.src){v.src=v.dataset.src}else{v.querySelectorAll('source[data-src]').forEach(function(s){s.src=s.dataset.src});v.load()}}var p=v.play();p&&p.catch&&p.catch(function(){})}if(!('IntersectionObserver'in window)){vs.forEach(go);return}var io=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?go(e.target):e.target.pause()})},{rootMargin:'300px'});vs.forEach(function(v){io.observe(v)})})()</script>
 </body>
 </html>
