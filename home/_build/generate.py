@@ -755,6 +755,7 @@ _ADDED_SAME = 0.85                   # difflib ratio at/above which a "new" name
 _ADDED_FLAP_DAYS = 2
 _REMOVED_FULL = ("name", "organization", "title", "abstract", "photo")   # all filled = a known, fully entered speaker
 _REMOVED_MASS = (5, 0.4)             # one commit dropping more than 5 speakers AND over 40% of a lineup = csv accident, not news
+                                     # (or 8+ speakers whatever the share, as BIG_REMOVAL in ../_build/redflag.py)
 
 
 def _status_git(*args, cwd=None):
@@ -909,7 +910,7 @@ def _status_added_log(rows):
             _co_bases = {p[0] for p in _co_pairs}
             added = [(_k, _v) for _k, _v in added if _k not in _co_taken]
             gone = [(_k, _v) for _k, _v in gone if _k not in _co_bases]
-            if len(gone) > _REMOVED_MASS[0] and len(gone) > _REMOVED_MASS[1] * max(len(before), 1):
+            if len(gone) >= 8 or (len(gone) > _REMOVED_MASS[0] and len(gone) > _REMOVED_MASS[1] * max(len(before), 1)):
                 warnings.append("%s: commit %s drops %d of %d speakers at once, treated as a csv accident (see the red bar while it is unfixed): its changes and the fix are not listed"
                                 % (r["name"], sha[:7], len(gone), len(before)))
                 carry = before
