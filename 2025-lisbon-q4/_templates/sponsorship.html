@@ -382,28 +382,6 @@
   border-color: rgba(180, 130, 20, .5);
   box-shadow: 0 0 22px rgba(180, 130, 20, .22), 0 0 50px rgba(180, 130, 20, .08);
 }
-.sp-tier-card.sp-tier-highlight {
-  border-color: var(--sp-accent);
-  box-shadow: 0 4px 24px rgba(113,54,96,.2);
-}
-.sp-tier-card.sp-tier-highlight:hover {
-  border-color: rgba(180, 130, 20, .7);
-  box-shadow: 0 0 30px rgba(180, 130, 20, .30), 0 0 70px rgba(180, 130, 20, .10);
-}
-.sp-popular-badge {
-  position: absolute;
-  top: -13px; left: 50%;
-  transform: translateX(-50%);
-  background: var(--sp-accent);
-  color: #fff;
-  font-size: .72rem;
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  padding: 3px 14px;
-  border-radius: 999px;
-  white-space: nowrap;
-}
 .sp-tier-name     { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; color: #fff; }
 .sp-tier-subtitle { font-size: .85rem; color: #999; margin-bottom: 2px; }
 .sp-tier-price    { font-size: 2.2rem; font-weight: 800; color: #fff; transition: opacity .18s ease; }
@@ -653,10 +631,7 @@
     <div class="row justify-content-center g-4 mt-2">
       {% for tier in sponsorship_tiers %}
       <div class="col-12 col-md-4">
-        <div class="sp-tier-card {% if tier.highlight %}sp-tier-highlight{% endif %}" data-tier-id="{{ tier.id }}">
-          {% if tier.highlight %}
-          <div class="sp-popular-badge">⭐ Most popular</div>
-          {% endif %}
+        <div class="sp-tier-card" data-tier-id="{{ tier.id }}">
           <div class="sp-tier-name">{% if first_in_city and tier.id == 'startup_discount' %}Launch partner{% else %}{{ tier.name }}{% endif %}{% if tier.id not in ('startup_discount', 'food', 'clothing') %}<span class="sp-tier-original"></span>{% endif %}</div>
           {% if tier.subtitle %}<div class="sp-tier-subtitle">{{ tier.subtitle }}</div>{% endif %}
           {% if tier.id == 'startup_discount' %}
@@ -938,7 +913,7 @@
         <div style="display:flex; align-items:flex-start; gap:32px; margin-bottom:0;">
           <div style="flex:1; min-width:0;">
             <div class="sp-stats-s-title">Let's start with some numbers</div>
-            <div class="sp-stats-s-sub">Across all SREday editions worldwide</div>
+            <div class="sp-stats-s-sub">Across all {{ brand_name }} editions worldwide</div>
             <div class="sp-stats-big-numbers">
               <div class="sp-stats-big-num">
                 <div class="sp-stats-big-num-value">{{ total_attendees }}</div>
@@ -974,7 +949,7 @@
         <hr class="sp-stats-sep">
 
         <div class="sp-stats-s-title">Attendee profile</div>
-        <div class="sp-stats-s-sub">Based on past attendee information across sampled events</div>
+        <div class="sp-stats-s-sub">Based on anonymized past attendee stats</div>
 
         <div class="sp-stats-tldr">
           <strong>TLDR:</strong> A hands-on crowd of SREs, platform engineers, and DevOps practitioners from startups and enterprises — actively building and running production systems. Senior practitioners who care about reliability, observability, and incident management, figuring out how to make SRE work at scale.
@@ -1200,7 +1175,7 @@ window.addEventListener('hashchange', function() { spAutoExpand(window.location.
     <p class="text-center" style="color:#aaa;margin-top:-.6rem;margin-bottom:1.5rem;">Secure your sponsorship with <a href="https://www.linkedin.com/in/marek-pawlikowski/" target="_blank" rel="noopener noreferrer" style="color:#c49abc;">Mark Pawlikowski</a></p>
     <div class="row justify-content-center">
       <div class="col-12 col-lg-10 d-flex flex-wrap justify-content-center gap-3">
-        {% if calendly_sponsor_url %}<a href="{{ calendly_sponsor_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary sp-cta-btn">Hop on a call</a>{% endif %}
+        <a href="{{ calendly_sponsor_url or "https://calendly.com/sreday/30min" }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary sp-cta-btn">Hop on a call</a>
         <a href="{{ mailto }}" class="btn btn-primary sp-cta-btn">✉ Email Mark</a>
         <a href="https://wa.me/447307415008" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp sp-cta-btn"><i class="fab fa-whatsapp me-2"></i>DM Mark</a>
       </div>
@@ -1357,15 +1332,11 @@ window.addEventListener('hashchange', function() { spAutoExpand(window.location.
     <h2 class="sp-section-title text-center">Sister brands</h2>
     <p class="text-center" style="color:#aaa;margin-top:-.6rem;margin-bottom:1.5rem;">Other conferences we organize: in-person & online</p>
     <div class="sp-sisters">
-      <a href="https://llmday.com" target="_blank" rel="noopener noreferrer">
-        <img src="/assets/images/llmday_sticker.png" alt="LLMday">
+      {% for brand in sister_brands %}
+      <a href="{{ brand.url }}" target="_blank" rel="noopener noreferrer">
+        <img src="{{ brand.logo }}" alt="{{ brand.name }}">
       </a>
-      <a href="https://platformday.com" target="_blank" rel="noopener noreferrer">
-        <img src="/assets/images/platformday_sticker.png" alt="PLATFORMday">
-      </a>
-      <a href="https://conf42.com" target="_blank" rel="noopener noreferrer">
-        <img src="/assets/images/conf42_sticker.png" alt="Conf42">
-      </a>
+      {% endfor %}
     </div>
   </div>
 </section>

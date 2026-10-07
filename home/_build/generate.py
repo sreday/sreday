@@ -1818,7 +1818,7 @@ print("Writing out status/index.html (hidden, not in sitemap)")
 
 # MEETUPS
 print(DIVIDER)
-meetups = context.get("meetups") + context.get("meetups_past")
+meetups = (context.get("meetups") or []) + (context.get("meetups_past") or [])
 print(f"Generating {len(meetups)} meetup pages")
 for meetup in meetups:
     print(f"Generating {meetup.get('name')} meetup subpage")
@@ -1836,7 +1836,7 @@ for meetup in meetups:
         if photo:
             talk["photo_url"] = "../speakers/" + photo
 
-    with open(BASE_FOLDER + "/" + meetup.get("url") + ".html", "w") as f:
+    with open(BASE_FOLDER + "/" + meetup.get("url") + ".html", "w", encoding="utf-8") as f:
         print("Writing out", f.name)
         template = env.get_template("meetup.html")
         f.write(template.render(talks=talks_raw, meetup=meetup, **context))
