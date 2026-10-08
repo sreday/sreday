@@ -1975,7 +1975,8 @@ _TH_BRANDS = {
     # logos, rather than reinterpreted fonts"): transparent, trimmed PNGs next to each logo in home/assets/images, cut from
     # sreday_square.png, llmday_sticker_new.png and platformday_sticker.png. imgs = [left, right] as [src, width px]; the
     # widths keep the logo's own proportions; img_top shifts the pair (their centre sits at img_top + 360).
-    'sreday': {'layout': 'split', 'bg': 'linear-gradient(125deg, #7a2e3c 0%, #4f3168 48%, #2e3c80 100%)', 'img_top': 20,
+    # SREday: Marek's own background picture, used as is (2026-10-08: red-purple-blue with film grain, no CSS gradient matches)
+    'sreday': {'layout': 'split', 'bg': "#4f3a63 url('../../assets/images/sreday_thumb_bg.png') center / cover no-repeat", 'img_top': 20,
                'imgs': [['../../assets/images/sreday_sre.png', 295], ['../../assets/images/sreday_day.png', 318]]},
     'llmday': {'layout': 'split', 'bg': '#141414', 'img_top': 22,
                'imgs': [['../../assets/images/llmday_llm.png', 300], ['../../assets/images/llmday_day.png', 300]]},
