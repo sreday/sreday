@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+	<title>SREday - London, UK - Thursday, October 24 2024</title>
+	<!-- link previews: _build/og_images.py -->
+	<meta property="og:title" content="SREday - London, UK - Thursday, October 24 2024">
+	<meta property="og:description" content="Conference on Site Reliability Engineering, Cloud and DevOps. Probably the most awesome SRE meetup in London, UK!">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://sreday.com/meetup-london-2024-oct">
+	<meta property="og:site_name" content="SREday">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:image" content="https://sreday.com/og/e465f28cc97095f6.jpg">
+	<meta property="og:image:secure_url" content="https://sreday.com/og/e465f28cc97095f6.jpg">
+	<meta property="og:image:type" content="image/jpeg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="802">
+	<meta property="og:image:alt" content="SREday - London, UK - Thursday, October 24 2024">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@sreday_com">
+	<meta name="twitter:creator" content="@sreday_com">
+	<meta name="twitter:title" content="SREday - London, UK - Thursday, October 24 2024">
+	<meta name="twitter:description" content="Conference on Site Reliability Engineering, Cloud and DevOps. Probably the most awesome SRE meetup in London, UK!">
+	<meta name="twitter:image" content="https://sreday.com/og/e465f28cc97095f6.jpg">
+	<meta name="twitter:image:alt" content="SREday - London, UK - Thursday, October 24 2024">
+	
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="SREday conference">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=79557738bd">
+	<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=7083b3a030">
+	<link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=1c6292c528">
+	<link rel="manifest" href="./assets/site.webmanifest?v=bf31baf91b">
+	
+	<!-- Google Font -->
+	<link rel="stylesheet" href="assets/css/fonts.css?v=ac4f21e544">
+	
+	<!-- FontAwesome JS-->
+	<link rel="stylesheet" href="assets/css/icons.css?v=25ca3d318d">
+
+	<!-- Theme CSS -->  
+	<link id="theme-style" rel="stylesheet" href="assets/css/theme.css?v=aff0ff35a4">
+
+
+
+
+
+<script>/* analytics load after the page is shown (venue wifi) */function _later(f){addEventListener('load',function(){(window.requestIdleCallback||setTimeout)(f)})}</script>
+<!-- Twitter conversion tracking base code -->
+<script>
+	!function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+	},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',
+	a=t.getElementsByTagName(n)[0],_later(function(){a.parentNode.insertBefore(u,a)}))}(window,document,'script');
+	twq('config','ofo1h');
+	</script>
+	<!-- End Twitter conversion tracking base code -->
+<meta name="build" content="0074374e48-20261010T183342Z">
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script>_later(function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-CQ2KV6LK8G';document.head.appendChild(s)})</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CQ2KV6LK8G');
+</script>
+
+<style>
+	.tinted {
+		box-shadow: 0 3000px rgba(0, 0, 0, 0.5) inset;
+	}
+	.retro {
+		font-family: 'Monoton', sans-serif;
+	}
+	.logo {
+		font-size: 5rem;
+		color: white;
+		font-weight: 400;
+	}
+	.theme-bg-primary {
+		background: #713660;
+	}
+	.header {
+		background: rgba(20, 28, 37, 0.55) !important;
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	}
+</style>
+	
+
+<body>    
+	<header id="header" class="header fixed-top">	    
+		<div class="branding">
+			<div class="container-fluid">
+				<nav class="main-nav navbar navbar-expand-lg">
+					<div class="site-logo"><a class="scrollto" href="#hero-block">
+                        <!-- <img class="logo-icon" src="assets/images/logo-white.svg?v=318fd0dbf1" alt="logo"></a> -->
+                    </div>
+					
+					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="#tickets">Tickets</a></div>
+					
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					
+					<div id="navigation" class="navbar-collapse collapse  justify-content-lg-end me-lg-3">
+						<ul class="nav navbar-nav">
+							
+							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>                                              
+							<li class="nav-item"><a class="nav-link scrollto" href="#tickets">Tickets</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="#schedule">Schedule</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="#speakers">Speakers</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="#venue">Venue</a></li>
+							<!-- <li class="nav-item"><a class="nav-link scrollto" href="#sponsors">Sponsors</a></li> -->
+						</ul><!--//nav-->
+					</div><!--//navabr-collapse-->
+
+				</nav><!--//main-nav-->
+				
+			</div><!--//container-->
+		</div><!--//branding-->
+	</header><!--//header-->
+	
+	<div id="home" class="hero-block">
+		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+			<div class="carousel-inner">
+				
+				<div class="carousel-item tinted active" style="background:url('../photos/london-2022-0.webp?v=93408224bd') no-repeat center"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2022-1.webp?v=afdace342b') no-repeat center"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-san-francisco-2024-0.webp?v=472c83668f') no-repeat center"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/sreday-san-francisco-2024-1.webp?v=734d2032e0') no-repeat center"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2022-2.webp?v=9613b6cc38') no-repeat center"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2022-3.webp?v=e90869425e') no-repeat center"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2022-4.webp?v=e027907d42') no-repeat center"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2022-5.webp?v=d4b542d59f') no-repeat center"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-0.webp?v=6f56e3ec71') no-repeat center"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-1.webp?v=39516b3bea') no-repeat center"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-2.webp?v=2ec69187b6') no-repeat center"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-3.webp?v=16d497ef3f') no-repeat center"></div>
+				
+			</div>
+
+		</div>
+		<div class="container">
+			<div class="hero-text-block text-center" style="max-width: 100%;">
+				<h1 class="logo retro mb-4"><img src="/assets/images/sreday_sticker.webp?v=d9588af3ae" alt="SREday" style="height: 200px;"></h1>
+				<h2 class="text-white mb-3">SREday meetup - beers & talks</h2>
+				<h3 class="text-white"><i class="far fa-calendar-alt me-2"></i>Thursday, October 24 2024 <i class="fas fa-map-marker-alt mx-2"></i>London, UK</h3>
+				<div class="hero-cta mt-4">
+					<a class="btn btn-secondary btn-lg" href="#tickets">Get Tickets</a>
+					
+			    </div>
+			</div><!--//hero-text-block-->
+		</div><!--//container-->
+
+	</div><!--//hero-block-->
+
+<!-- CONTENT -->
+
+
+
+<section id="schedule" class="schedule-section section theme-bg-light">
+  <div class="container">
+    <h2 class="section-heading text-center mb-5">Schedule</h2>
+    <h4 class="section-heading text-center mb-5"></h4>
+
+    <!-- Tab panes -->
+    <div class="schedule-tab-content tab-content">
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3"></h4>
+            <div class="profile">
+              <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img class="profile-image rounded-circle  mb-2" src="../speakers/Mark Faiers.webp?v=80dacc4279" alt=""></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">Mark Faiers</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0">The DevOps Organisation</a>
+            </h3>
+            <div class="location mb-3"></i>RiverSafe</div>
+            <div class="desc"><br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3"></h4>
+            <div class="profile">
+              <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img class="profile-image rounded-circle  mb-2" src="../speakers/Divine Odazie.webp?v=0cdcefe67c" alt="" loading="lazy" decoding="async"></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Divine Odazie</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1">Introduction to Sovereign DBaaS</a>
+            </h3>
+            <div class="location mb-3"></i>Severalnines</div>
+            <div class="desc"><br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+        <div class="item item-talk">
+          <div class="meta">
+            <h4 class="time mb-3"></h4>
+            <div class="profile">
+              <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img class="profile-image rounded-circle  mb-2" src="../speakers/Pawel Hajdan.webp?v=4fd2e1ee18" alt="" loading="lazy" decoding="async"></a>
+              <div class="name"><a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">Pawel Hajdan</a></div>
+            </div><!--//profile-->
+          </div><!--//meta-->
+          <div class="content">
+            <h3 class="title mb-3">
+              <a class="theme-link" href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2">A Business Case for moving from Ops to a Google-style SRE</a>
+            </h3>
+            <div class="location mb-3"></i></div>
+            <div class="desc"><br /><br /></div>
+          </div><!--//content-->
+        </div><!--//item-->
+
+
+
+      </div>
+
+    </div><!--//schedule-tab-content-->
+
+    <div class="schedule-cta text-center mx-auto"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Tickets</a></div>
+  </div>
+</section>
+
+
+
+
+<section id="speakers" class="speakers-section section">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Speakers</h3>
+    <div class="row">
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img src="../speakers/Divine Odazie.webp?v=0cdcefe67c" class="card-img-top rounded-0" alt="" loading="lazy" decoding="async"></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Divine Odazie</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Severalnines</div>
+            </div><!--//card-text-->
+            <a href="./">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              <li class="list-inline-item"><a  href="https://twitter.com/@_odazie"><i class="fab fa-twitter fa-fw"></i></a></li>
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/divine-odazie/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-0" data-bs-toggle="modal" data-bs-target="#modal-speaker-0"><img src="../speakers/Mark Faiers.webp?v=80dacc4279" class="card-img-top rounded-0" alt="" loading="lazy" decoding="async"></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Mark Faiers</h5>
+            <div class="card-text mb-3">
+              <div class="meta">RiverSafe</div>
+            </div><!--//card-text-->
+            <a href="./">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/mark-faiers-52804b10b/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col-6 col-lg-3 mb-4">
+        <div class="card rounded">
+          <a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Pawel Hajdan.webp?v=4fd2e1ee18" class="card-img-top rounded-0" alt="" loading="lazy" decoding="async"></a>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Pawel Hajdan</h5>
+            <div class="card-text mb-3">
+              <div class="meta"></div>
+            </div><!--//card-text-->
+            <a href="./">Read more &rarr;</a>
+          </div><!--//card-->
+          <div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              
+              <li class="list-inline-item"><a  href="https://www.linkedin.com/in/pawelhajdan/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+              
+              
+            </ul><!--//social-list-->
+          </div>
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      
+
+    </div><!--//row-->
+  </div><!--//container-->
+
+</section><!--//speakers-section-->
+
+
+<section id="venue" class="venue-section section  theme-bg-primary text-white">
+  <div class="container">
+    <h3 class="section-heading text-center mb-5 text-white">Venue</h3>
+    <div class="row gx-5 py-lg-5">
+      <div class="col-12 h-100">
+        <div class="desc">
+          <p>
+            RiverSafe, Sierra Quebec Bravo, 77 Marsh Wall, London E14 9SH
+          </p>
+
+          <div class="row pt-3">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.657336807931!2d-0.019034622053465677!3d51.50115537181185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760357546dd31f%3A0x92c7bfb860480f6!2sRiverSafe!5e0!3m2!1sen!2suk!4v1731694381921!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div><!--//row-->
+        </div><!--//desc-->
+      </div><!--//col-->
+    </div><!--//row-->
+  </div><!--//container-->
+</section><!--//venue-section-->
+
+
+<section id="tickets" class="tickets-section section">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Tickets</h3>
+    <div class="row pricing mb-5 mt-10"></div>
+      <div class="col-12 text-center">
+        <iframe
+    src="https://lu.ma/embed/event/evt-BsVBdncSl0Avikr/simple"
+  width="600"
+  height="650"
+  frameborder="0"
+  style="border: 1px solid #bfcbda88; border-radius: 4px;"
+  allowfullscreen=""
+  aria-hidden="false"
+  tabindex="0"
+></iframe>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Modal Speaker 0 -->
+<div class="modal modal-speaker modal-speaker-0" id="modal-speaker-0" tabindex="-1" role="dialog" aria-labelledby="speaker-0-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-0-ModalLabel" class="modal-title sr-only"
+>Mark Faiers</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Mark Faiers.webp?v=80dacc4279" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Mark Faiers</h2>
+                          <div class="meta mb-2">RiverSafe</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/mark-faiers-52804b10b/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>DevOps is one of those terms whose meaning varies greatly depending on the background, job role, and lived experience of those being asked, but most people would agree that it is something that applies to the development and operation of software.</p>
+<p>But at some point, DevOps outgrew this simple coming together, and so we combined other functions to get terms like ‘DevSecOps’, ‘DataOps’, ‘MLOps’ and so on. All these terms are, however, too simplistic to capture the actual essence of DevOps and the ways of working that have developed around it.</p>
+<p>However, there is no reason that these principles should only be applied to the development and operation of digital products and services. They can actually be applied across organisations as a whole to create ‘The DevOps Organisation’.</p>
+<p>This talk explores how DevOps principles can be taken and applied outside of the context of software development to provide better outcomes, both internally, and externally, for an organisation.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Mark has over 15 years experience in software engineering, working across the SDLC starting out as a software engineer and later transitioning into DevOps and Cloud focused roles. He has been leading Communities of Practice for around 5 years and has worked with numerous technology stacks and across a wide range of industries, including Healthcare, FinTech, and Logistics. He has worked as an AWS consultant to some of the biggest Financial and Insurance firms in the U.K. and is now the DevOps Practice Lead at RiverSafe. In this role he is responsible for leading and building a highly skilled team of DevOps experts, delivering expert services and exceptional outcomes for customers. Mark is especially passionate about serverless technology and sustainability.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 1 -->
+<div class="modal modal-speaker modal-speaker-1" id="modal-speaker-1" tabindex="-1" role="dialog" aria-labelledby="speaker-1-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-1-ModalLabel" class="modal-title sr-only"
+>Divine Odazie</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Divine Odazie.webp?v=0cdcefe67c" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Divine Odazie</h2>
+                          <div class="meta mb-2">Severalnines</div>
+                          <ul class="social-list list-inline mb-0">
+                            <li class="list-inline-item"><a  href="https://twitter.com/@_odazie"><i class="fab fa-twitter fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/divine-odazie/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>The idea of sovereign DBaaS is to enable orgs to determine the what, where and how of their database operations in staying ahead of regulatory changes, remove vendor and environment lock-in, etc. </p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Divine Odazie is a Technology Evangelist at Severalnines with over 5+ years of experience in Technology and a track record in Backend Engineering, DevOps, Cloud Native and Developer Relations on a global scale. He has given talks/workshops at developer conferences like Open Source Summit Europe, KubeCon North America, Cloud Native Rejekts, and Ansible Contributor Summit.</p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 2 -->
+<div class="modal modal-speaker modal-speaker-2" id="modal-speaker-2" tabindex="-1" role="dialog" aria-labelledby="speaker-2-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 id="speaker-2-ModalLabel" class="modal-title sr-only"
+>Pawel Hajdan</h4>
+          </div>
+          <div class="modal-body p-0">
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 rounded-circle mx-auto" src="../speakers/Pawel Hajdan.webp?v=4fd2e1ee18" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Pawel Hajdan</h2>
+                          <div class="meta mb-2"></div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/pawelhajdan/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p><p>Having experienced both Google-style SRE (maybe with a bit too much complexity), and more traditional Ops (which could use a bit more automation), I'll present my "sweet spot" model which retains the simplicity, reduces toil and turnaround time, and gives you an understanding of the SRE philosophy so you can apply it to your specific situation, and make a compelling business case for it.</p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+              <div class="desc p-2 p-lg-3">
+                <p></p>
+              </div>
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+
+
+
+
+
+<footer class="footer py-5 theme-bg-primary">
+    <div class="container text-center">
+        
+        <ul class="social-list list-inline mb-4"> 
+            <li class="list-inline-item me-3"><a target="_blank" href="mailto:hello@sreday.com"><i class="fas fa-envelope"></i></a></li>
+            <li class="list-inline-item me-3"><a target="_blank" href="https://www.linkedin.com/company/sreday/"><i class="fab fa-linkedin fa-fw"></i></a></li>
+            <li class="list-inline-item me-3"><a target="_blank" href="https://twitter.com/sreday_com"><i class="fab fa-twitter fa-fw"></i></a></li>
+            <li class="list-inline-item me-0"><a target="_blank" href="https://www.youtube.com/@sreday"><i class="fab fa-youtube fa-fw"></i></a></li>
+        </ul>
+        
+        <!-- <ul class="footer-links list-inline mx-auto mb-4">
+            <li class="list-inline-item"><a href="#">Code of Conduct</a></li>
+            <li class="list-inline-item">|</li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item">|</li>
+            <li class="list-inline-item me-0"><a href="#">Privacy</a></li>
+        </ul> -->
+        <!--//footer-link-->
+        
+         <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+        <small class="copyright">Designed with <i class="fas fa-heart" style="color: #EC645E;"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+        
+    </div><!--//container-->	    
+</footer>
+
+
+<!-- Javascript -->          
+<script defer src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js?v=d722fa9982"></script>  
+<script defer src="assets/plugins/smoothscroll.min.js?v=5d08587d4d"></script>
+<script defer src="assets/plugins/gumshoe/gumshoe.polyfills.min.js?v=c16ae2d7c9"></script> 
+<script defer src="assets/js/main.js?v=72cf53ce03"></script>  
+
+<script>/* rewrite_assets.py: reload when a newer build is out */(function(){var m=document.querySelector('meta[name="build"]');if(!m||!window.fetch)return;var mine=m.getAttribute('content'),busy=0,bar=null;function engaged(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))return true;var f=document.querySelectorAll('input,textarea');for(var i=0;i<f.length;i++){var e=f[i];if(/^(checkbox|radio)$/.test(e.type)?e.checked!==e.defaultChecked:(e.type!=='hidden'&&e.value!==e.defaultValue))return true}return !!document.querySelector('.modal.show')}function offer(){if(bar||!document.body)return;bar=document.createElement('div');bar.setAttribute('role','status');bar.style.cssText='position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:2000;display:flex;gap:12px;align-items:center;max-width:calc(100% - 32px);background:#111;color:#fff;padding:10px 12px 10px 18px;border-radius:999px;font:600 14px/1.3 Montserrat,sans-serif;box-shadow:0 4px 18px rgba(0,0,0,.3)';var t=document.createElement('span');t.textContent='This page was just updated (schedule, speakers or sponsors)';bar.appendChild(t);var b=document.createElement('button');b.type='button';b.textContent='Refresh';b.style.cssText='border:0;border-radius:999px;padding:6px 14px;font:inherit;cursor:pointer;background:#fff;color:#111';b.onclick=function(){location.reload()};bar.appendChild(b);document.body.appendChild(bar)}function check(auto){if(busy||document.visibilityState==='hidden')return;busy=1;fetch('/build.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){busy=0;if(!j||!j.build||j.build===mine)return;var again=false;try{again=sessionStorage.getItem('fresh-reload')===j.build;sessionStorage.setItem('fresh-reload',j.build)}catch(e){}if(auto&&!again&&!engaged())location.reload();else offer()})['catch'](function(){busy=0})}check(true);document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')check(true)});addEventListener('pageshow',function(e){if(e.persisted)check(true)});setInterval(function(){check(false)},300000)})()</script>
+</body>
+</html> 
