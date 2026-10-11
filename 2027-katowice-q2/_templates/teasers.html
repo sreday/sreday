@@ -194,6 +194,17 @@
     .sp-sheet .tz-frame { width: 1200px; height: 1200px; aspect-ratio: auto; border-radius: 0; box-shadow: none; }
     .sp-sheet .tz-frame .tz-card { transform: none !important; }
     .sp-slot[hidden] { display: none; }
+    /*sp*/
+    /* to the closing sp marker: sponsor / host cards only (Marek 2026-10-11) - only the sponsor pictures' cache key covers it.
+       The venue photo darkened in the brand's colour, not black (its mid colour multiplied in, as dark as brightness .85 was),
+       the vignette in a deep shade of it, and HOST / SPONSOR / PARTNER centred between the card's left edge and the logo circle (622) */
+    .sp-onphoto .sp-photo { filter: none; }
+    .sp-onphoto .sp-photo::after { content: ''; position: absolute; inset: 0; background: {{ tz.tint }}; mix-blend-mode: multiply;
+      opacity: calc(var(--sp-dk, 0) * {{ tz.tint_k }}); }
+    .sp-onphoto .sp-fv { background: radial-gradient(circle at 50% 50%, {{ tz.tint_dark }}33 220px, {{ tz.tint_dark }}e6 820px),
+      linear-gradient(180deg, {{ tz.tint_dark }}bf 0%, {{ tz.tint_dark }}00 30%, {{ tz.tint_dark }}00 62%, {{ tz.tint_dark }}e0 82%); }
+    .sp-card .sp-word { left: 0; width: 622px; text-align: center; }
+    /*/sp*/
     /*city*/
     /* to the closing city marker: the City view card (Marek 2026-10-11) - the city's panorama (<repo>/panoramas/, tinted by
        generate.py) instead of the slimes, the headshot 760 px with its circle's bottom behind the ticket, the title centred
@@ -513,7 +524,7 @@
         <div class="tz-frame">
           <div class="tz-card sp-card{% if c.photo %} sp-onphoto{% endif %}" id="sp-card-{{ g|lower }}-{{ loop.index }}" data-file="{{ c.file }}">
             {% set _k = 'sp-' ~ g|lower ~ '-' ~ loop.index %}{{ tz.sweeps_corners|replace('tzg', 'tzg-' ~ _k ~ '-')|replace('tzf', 'tzf-' ~ _k ~ '-')|safe }}
-            {% if c.photo %}<div class="sp-photo" style="background-image:url('{{ c.photo }}'){% if c.bright is defined %};filter:brightness({{ c.bright }}){% endif %}"></div><div class="sp-fv"></div>{% endif %}<div class="tz-vig"></div>
+            {% if c.photo %}{% set _b = c.bright if c.bright is defined else 0.85 %}<div class="sp-photo" style="background-image:url('{{ c.photo }}');{% if _b < 1 %}--sp-dk:{{ (1 - _b)|round(3) }}{% else %}filter:brightness({{ _b }}){% endif %}"></div><div class="sp-fv"></div>{% endif %}<div class="tz-vig"></div>
             {% if tz.logo %}<img class="tz-logo" src="{{ tz.logo }}" alt="">{% endif %}
             <div class="tz-conf">{{ tz.conf }}</div>
             {% if tz.show %}<div class="tz-ball"><div class="tz-ball-in">
