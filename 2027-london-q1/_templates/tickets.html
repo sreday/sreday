@@ -1,0 +1,94 @@
+{% if in10t_event %}
+{# Registration on in10t.ai instead of Luma (Marek 2026-09-29, LLMday Tel Aviv: Sharone Zitzman's community
+   platform). metadata.yml: in10t_event: <id>, optional in10t_theme: dark. The widget is in10t's own embed script. #}
+<div class="text-start" data-in10t-event="{{ in10t_event }}"{% if in10t_theme %} data-theme="{{ in10t_theme }}"{% endif %} style="max-width: 720px; margin: 0 auto;"></div>
+<script src="https://in10t.ai/embed.js" async></script>
+{% elif not luma_evt %}
+<div class="text-center py-5">
+  <p class="lead mb-0">Tickets will be available soon</p>
+</div>
+{% else %}
+{% set embed_height = 700 if luma_is_free else 1000 %}
+{# "Tinted shard" (Marek 2026-10-12, luma-glass-minimal option 2): the embed and "Register on Luma" inside one piece of
+   glass washed in the brand colour, a soft brand glow behind it, 20% narrower than the container (full width on phones). #}
+<style>
+  #tickets { position: relative; overflow: hidden; }
+  .luma-col { position: relative; width: 80%; max-width: 912px; margin: 0 auto; text-align: center; }
+  .luma-glow { position: absolute; left: 50%; top: 50%; width: 110%; height: 95%; transform: translate(-50%, -50%); z-index: 0; pointer-events: none;
+    /* soft by its own stops: a filter: blur() here made a layer whose bounds showed as a grey box through the frosted
+       navbar when scrolled under it (Marek 2026-10-13) */
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--brand) 62%, transparent), color-mix(in srgb, var(--brand) 26%, transparent) 55%, transparent); }
+  .luma-shard { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 12px; padding: 12px; border-radius: 26px;
+    background: linear-gradient(160deg, color-mix(in srgb, var(--brand) 22%, rgba(255,255,255,.5)), color-mix(in srgb, var(--brand) 8%, rgba(255,255,255,.25)));
+    -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid color-mix(in srgb, var(--brand) 25%, #fff);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 24px 60px -24px color-mix(in srgb, var(--brand) 60%, transparent); }
+  .luma-shard iframe { width: 100%; border: 0; border-radius: 14px; display: block; }
+  .luma-shard a.luma-reg { align-self: center; display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px 14px; border-radius: 999px;
+    font-weight: 600; font-size: 1rem; line-height: 1.2; text-decoration: none; border: 0;
+    background: var(--brand) !important; color: #fff !important; box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 8px 22px -10px var(--brand); }
+  .luma-shard a.luma-reg span { transition: transform .2s; }
+  .luma-shard a.luma-reg:hover span { transform: translateX(3px); }
+  @media (max-width: 760px) { .luma-col { width: 100%; } }
+</style>
+<div class="luma-col">
+  <div class="luma-glow"></div>
+  <div class="luma-shard">
+    <iframe
+      id="luma-tickets-iframe"
+      src="https://lu.ma/embed/event/{{ luma_evt }}/simple"
+      width="100%"
+      frameborder="0"
+      style="height: {{ embed_height }}px; min-height: {{ embed_height }}px;"
+      allowfullscreen=""
+      aria-hidden="false"
+      tabindex="0"
+    ></iframe>
+    <a
+      href="https://lu.ma/event/{{ luma_evt }}"
+      class="luma-checkout--button luma-reg"
+      data-luma-action="checkout"
+      data-luma-event-id="{{ luma_evt }}"
+    >Register on Luma <span>→</span></a>
+  </div>
+</div>
+
+<script id="luma-checkout" async src="https://embed.lu.ma/checkout-button.js"></script>
+<script>
+  (function() {
+    var params = window.location.search;
+    var iframe = document.getElementById('luma-tickets-iframe');
+
+    // Append query params to iframe src
+    if (iframe && params) {
+      var src = iframe.getAttribute('src');
+      var sep = src.indexOf('?') > -1 ? '&' : '?';
+      iframe.setAttribute('src', src + sep + params.substring(1));
+    }
+
+    // Append query params to button
+    if (params) {
+      var btn = document.querySelector('.luma-checkout--button');
+      if (btn) {
+        var href = btn.getAttribute('href');
+        var sep = href.indexOf('?') > -1 ? '&' : '?';
+        btn.setAttribute('href', href + sep + params.substring(1));
+      }
+    }
+
+    // Auto-resize iframe via Luma postMessage (overrides fixed height if received)
+    window.addEventListener('message', function(e) {
+      if (!iframe) return;
+      var d = e.data;
+      if (!d) return;
+      // Handle multiple possible Luma message formats
+      var h = null;
+      if (typeof d.height === 'number' && d.height > 100) h = d.height;
+      else if (typeof d.height === 'string' && parseInt(d.height) > 100) h = parseInt(d.height);
+      if (h !== null) {
+        iframe.style.height = h + 'px';
+      }
+    });
+  })();
+</script>
+{% endif %}
