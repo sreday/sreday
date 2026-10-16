@@ -105,6 +105,32 @@ descriptions with chapters, lengths) is in `research/youtube-sample.json`.
   - Chapters: 9-23 per video (median 13), written `00:00`. The first is "Welcome and Intro" / "Intro", the last
     "Wrap Up" / "Key Takeaways".
 
+## Learned from a real day: PLATFORMday Austin 2026 Q4 (2026-10-16)
+
+The recording: one 8 h 48 min file, 25 GB, 16 talks on the lineup. The analysis took 33 minutes on the M1 Max. The
+reference cuts, hand-checked against the transcript, are in `research/platformday-2026-austin-q4.cuts.json`.
+`tests/realday.py` scores the draft against them: 13 of 15 within 30 s, and the no-show found.
+
+- **Sound.** Only the left channel had sound, at about -46 dB, so every talk gets the stereo fix. The room is noisy
+  (noise floor -41 dB), so starts come from the transcript and are never tightened by the levels: a speaker's first
+  words before the mic is live are quiet but still part of the talk.
+- **Openings.** The greeting often comes before the name: "Hey, thanks for being here today" 46 s before "I'm Jay",
+  "Hi. Good afternoon, everyone" 80 s before "I am Nelma". Before the greeting come mic checks ("Can you guys hear
+  me OK?") and set-up chat, sometimes 10+ minutes off-mic. Some speakers never say their name; then the start is the
+  greeting ("Okay, how is everybody doing?"). Names are misheard (Raulite, Puligam, Gobi). Nicknames count as
+  names (Tim Porter for Timothy), and so do two-letter ones (MJ).
+- **Endings.**
+  - The talk is over at "And that's our presentation", "That's it from me", "that is everything I have for you
+    today" or "Thank you for your time".
+  - The Q&A follows, sometimes announced ("I'm gonna take questions now"), sometimes not ("So that's my talk...
+    Thank you." and then questions from the room).
+  - "Hit me up if you got any questions" and "use my QR code" are invitations, not the Q&A.
+  - A Q&A can be longer than the talk (Jay: a 16 min talk, then 13 min of questions).
+  - Someone else thanking the speaker ("Thank you for the presentation") means the talk is over.
+- **The day.** The camera ran through a 47-minute lunch break; a pause of 3+ minutes ends a talk. Slots get swapped
+  and speakers miss their slot: Anderson Gobbi spoke in Abhijeet's slot, and Abhijeet's talk never happened. When a
+  later talk's speaker clearly introduces themselves in a slot, the planned talk is not forced into it.
+
 ## Files
 
 | | |

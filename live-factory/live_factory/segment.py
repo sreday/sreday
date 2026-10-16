@@ -48,8 +48,36 @@ SELF_ANY = re.compile(r"\b(?:i m|im|i am|my name is|my name s|myself)\s+([a-z]+)
 # the speaker opening the Q&A: "any questions?", "do you have questions", "let's do Q&A", "happy to take questions"
 QA_START = re.compile(r"^(ok |okay |so |any )?questions\b|\b(any questions|do you have (any )?questions|questions for me|(let s|we can|time for|now) (do )?"
                       r"(a |some )?(q and a|q a|questions)|q and a|open (it )?up for questions|"
-                      r"happy to (take|answer) (any |some )?questions|take (some |a few )?questions)\b")
+                      r"(happy|love|glad) to (take|answer) (any |some )?questions|take (some |a few )?questions)\b")
+# the speaker announcing the Q&A outright: clearly the Q&A wherever it falls ("I'm gonna take questions now")
+ANNOUNCE = re.compile(r"\b(take questions now|take some questions now|open it up|open (it )?up for questions|"
+                      r"let s do (a |some )?(q and a|q a|questions)|time for (some )?questions|move (on )?to (q and a|questions))\b")
+# "hit me up if you got any questions", "use my QR code if you have questions": an invitation for later, not the Q&A
+INVITE = re.compile(r"\b(hit me up|reach out|feel free to (reach|connect|ping|email|add)|connect with me|linkedin|find me|"
+                    r"after the talk|later on|qr code|email me|ping me|grab me|come (find|talk to) me)\b")
+# a greeting to the room: where a talk really starts, often before the name ("Hey, thanks for being here today ... I'm Jay")
+# a greeting to the room: where a talk really starts, often before the name ("Hey, thanks for being here today ... I'm Jay").
+# GREETING_STRONG is said to a room and nowhere else; the weaker openers ("so today", "my talk") need a pause before them
+GREETING_STRONG = re.compile(r"\b(good (morning|afternoon|evening)|hello everyone|hello everybody|hi everyone|hi everybody|"
+                             r"hey everyone|hey everybody|hey y all|hi y all|hi folks|hey folks|"
+                             r"thanks for (being here|joining|having me|coming)|thank you for (being here|joining|having me|coming)|"
+                             r"how is everybody|how s everybody|how is everyone|how s everyone|how are (you|y all) doing|"
+                             r"nice to be here|great to be here|welcome everyone|right folks|all right folks|okay folks)\b")
+GREETING = re.compile(GREETING_STRONG.pattern[:-3] + r"|hello|so today|today i m going to|today i want to|my talk|"
+                      r"what i (want to|wanna) talk about|i m going to (talk|be talking) about|"
+                      r"today we (are|re) going to|i will talk about)\b")
+# a mic check / set-up line: a talk never starts on one ("can you hear me", "test", "is this on")
+MICCHECK = re.compile(r"\b(can (you|y all|you all|everybody|everyone) hear me|hear me okay|is this on|check check|"
+                      r"mic check|test test|^test|testing|do i need (to use )?the mic|is it recording|are we good)\b")
 # ... and carrying on with the talk after a question in the middle: then it was not the Q&A
+# the speaker saying the talk is over: "And that's our presentation", "That's it from me", "that's all I have"
+END_MARK = re.compile(r"\b(that s (our|my) (presentation|talk)|that s it from me|that s all i have|that is all i have|"
+                      r"that s everything i have|that is everything i have|that s all from me|that s my talk|"
+                      r"thanks for your attention|thank you for your attention|thank you for your time|"
+                      r"thanks for your time|and that s it|i ll end here|that s the end)\b")
+# someone else thanking for the talk ("Thank you for the presentation"): the talk is over, the room has the floor
+AUDIENCE_THANKS = re.compile(r"\b(thank you for the (presentation|talk)|thanks for the (presentation|talk)|"
+                             r"great (talk|presentation)|thank you again for your talk)\b")
 RESUME = re.compile(r"\b(moving on|move on|back to|let me continue|where was i|next slide|let s continue|carry on|"
                     r"so anyway|let s get back|going back to the|on the next)\b")
 STOP = set("""a an and are as at be by for from how in into is it its of on or our the their this to we what when
@@ -91,6 +119,22 @@ def _names(name):
     return [p.strip() for p in re.split(r",|&|\band\b", name) if p.strip() and not p.strip().startswith("_")]
 
 
+COMMON = set("""also just really very going gonna here sure not now still actually currently originally happy glad
+excited from with working work the a an so and but really kind sort""".split())
+
+
+def _name_like(heard, name):
+    """A heard word that is this name: the same (MJ), a nickname or a cut-off of it (Tim / Timothy), or a mishearing
+    of the same length (Mailo / Mykhailo, Laya / Leila)."""
+    if heard == name:
+        return True
+    if len(heard) < 3 or len(name) < 3:
+        return False
+    if name.startswith(heard) or heard.startswith(name):
+        return True
+    return abs(len(heard) - len(name)) <= 3 and difflib.SequenceMatcher(None, heard, name).ratio() >= 0.7
+
+
 def _sounds_like(tw, target, n):
     """Whisper's spelling of a name ("Bob Martin as" for Bob Martinez): n or n+1 neighbouring words, run together,
     82% like the name run together. Only windows starting with the name's first letter are compared (fast)."""
@@ -123,7 +167,7 @@ def hits(segments, lineup):
                 continue
             full, first = " ".join(words), words[0]
             last = words[-1] if len(words[-1]) >= 4 and len(words) > 1 else None
-            alts = [re.escape(full)] + ([re.escape(first)] if len(first) >= 3 else []) + ([re.escape(last)] if last else [])
+            alts = [re.escape(full)] + ([re.escape(first)] if len(first) >= 2 else []) + ([re.escape(last)] if last else [])
             self_rx = re.compile(SELF % "|".join(alts))
             target = "".join(words)
             for at, text, raw in texts:
@@ -131,9 +175,8 @@ def hits(segments, lineup):
                 m = None if self_rx.search(text) else SELF_ANY.search(text)
                 # Whisper / YouTube mishear names ("my name is Mailo" for Mykhailo, "Laya Anderson" for Leila):
                 # a self-introduction also counts when the name that follows sounds like the speaker's
-                heard = [w for w in (m.groups() if m else ()) if w and len(w) >= 3]
-                if self_rx.search(text) or any(difflib.SequenceMatcher(None, h, n).ratio() >= 0.7
-                                               for h in heard for n in words if len(n) >= 3):
+                heard = [w for w in (m.groups() if m else ()) if w and len(w) >= 2 and w not in STOP and w not in COMMON]
+                if self_rx.search(text) or any(_name_like(h, n) for h in heard for n in words):
                     found.append((at, "self", "\"%s\"" % raw[:80]))
                 elif " %s " % full in padded or (last and " %s " % last in padded) or (
                         len(target) >= 8 and _sounds_like(text.split(), target, len(words))):
@@ -160,6 +203,12 @@ def closings(segments):
         elif CLOSE.search(t):
             out.append((s["start"], "close", s["text"][:80]))
     return out
+
+
+def _spoken_end(seg):
+    """Where a line's words really stop: Whisper often stretches a segment's end over the silence after it, so a short
+    line ("There we go.") is taken to last ~0.4 s a word (+1 s) at most."""
+    return min(seg["end"], seg["start"] + 0.4 * len(seg["text"].split()) + 1)
 
 
 def gaps(segments, duration, min_gap):
@@ -261,27 +310,41 @@ def qa_split(segs, start, end, max_qa=600):
     question line."""
     talk = [s for s in segs if start <= s["start"] < end]
     span = end - start
-    cands = [s for s in talk if QA_START.search(_norm(s["text"]))]
+    cands = [s for s in talk if QA_START.search(_norm(s["text"])) and not INVITE.search(_norm(s["text"]))]
+    # "So that's my talk ... Thank you." with a minute or more of speech after it: an unannounced Q&A
+    for i, s in enumerate(talk):
+        t = _norm(s["text"])
+        if (re.search(r"\b(thank you|thanks)\b", t) and len(t.split()) <= 6 and s["start"] >= start + span * 0.4
+                and any(END_MARK.search(_norm(x["text"])) for x in talk[max(0, i - 12):i + 1] if s["start"] - x["start"] <= 60)
+                and end - s["end"] >= 60):
+            c = dict(s, unannounced=True)
+            cands.append(c)
+            break
+    cands.sort(key=lambda s: s["start"])
     if not cands:
         return None, None
     why = "\"%s\" only mid-talk - kept" % cands[0]["text"][:40]
     for c in cands:
-        if c["start"] < start + span * 0.6:
+        ended = c.get("unannounced") or ANNOUNCE.search(_norm(c["text"])) or any(
+            END_MARK.search(_norm(s["text"])) for s in talk if c["start"] - 45 <= s["start"] <= c["start"])
+        if ended and c["start"] >= start + span * 0.3 and end - c["start"] <= max_qa * 2:
+            pass                                         # "And that's our presentation. Any questions?": clearly the Q&A
+        elif c["start"] < start + span * 0.6:
             continue                                     # a question in the middle: the talk goes on
-        if end - c["start"] > max(60, min(max_qa, span * 0.4)):
+        elif end - c["start"] > max(60, min(max_qa, span * 0.4)):
             why = "too much after \"%s\" for a Q&A - kept" % c["text"][:40]
             continue
         later = [s for s in talk if s["start"] > c["start"]]
-        if any(RESUME.search(_norm(s["text"])) for s in later):
+        if not ended and any(RESUME.search(_norm(s["text"])) for s in later):
             return None, "the speaker carries on after \"%s\" - kept" % c["text"][:40]
         t = _norm(c["text"])
         m = QA_START.search(t)
-        if CLOSE.search(t[:m.start()]) or m.start() > len(t) * 0.5:
+        if c.get("unannounced") or CLOSE.search(t[:m.start()] if m else t):
             cut_at = c["end"]                            # "Thank you! Any questions?" in one line: keep the line
         else:
             cut_at = c["start"]
-        if cut_at >= end - 2:
-            return None, None                            # the talk simply ends on it: nothing to drop
+        if cut_at >= end - (2 if ended else 25):
+            return None, None                            # the talk simply ends on it ("happy to answer any questions")
         return cut_at, "Q&A from %s dropped (%.1f min)" % (stamp(c["start"]), (end - cut_at) / 60)
     return None, why
 
@@ -525,7 +588,7 @@ def draft(run):
             lv = analyse.load(run.rec_dir(rid), "levels.json")
             quiet = quiet_spans(lv, max(min_gap, 60)) if lv else []
             at_seg = {sg["start"]: i for i, sg in enumerate(segs)}
-            expected, placed = anchor, []
+            expected, placed, held = anchor, [], []
             for x in items[first_i:]:
                 if x["key"] in done:
                     continue
@@ -533,19 +596,45 @@ def draft(run):
                     expected += x["minutes"] * 60
                     continue
                 after = placed[-1]["start"] + 30 if placed else 0
-                window = [h for h in found.get(x["key"], []) if abs(h[0] - expected) < 15 * 60 and h[0] > after
+                window = [h for h in found.get(x["key"], []) if h[0] > after and (
+                          abs(h[0] - expected) < 20 * 60 if h[1] in ("self", "mc") else abs(h[0] - expected) < 15 * 60)
                           and h[1] in ("self", "mc", "name")]
+                if not window:
+                    # a later talk's speaker clearly introducing themselves around here: this one swapped slots or
+                    # did not happen - look for it again after that talk, don't guess it into this place
+                    later = [y for y in items[items.index(x) + 1:] if y["key"] and y["key"] not in done
+                             and any(h[1] in ("self", "mc") and h[0] > after and abs(h[0] - expected) < 10 * 60
+                                     for h in found.get(y["key"], []))]
+                    if later:
+                        held.append(x)
+                        continue
                 if not window and expected > dur - 10:      # past the end, and nobody says the name: not in here
                     break
                 rank = {"self": 0, "mc": 1, "name": 2}
                 window.sort(key=lambda h: (rank[h[1]], h[0]))
                 mc = next((h for h in window if h[1] == "mc"), None)
                 own = next((h for h in window if h[1] == "self" and (not mc or 0 <= h[0] - mc[0] < 180)), None)
-                if own:                                      # "Hey, I'm Dan": the talk starts here
-                    start = intro = own[0]
+                if own:                                      # "Hey, I'm Dan": the talk starts here - or at the greeting
+                    start = intro = own[0]                   # before it ("Hey, thanks for being here ... I'm Jay")
                     if mc and mc[0] < own[0]:
                         intro = mc[0]
+                    i = at_seg.get(own[0])
+                    if i is not None:
+                        k, greet = i, None
+                        while k > 0 and own[0] - segs[k - 1]["start"] <= 90:
+                            prev = segs[k - 1]
+                            mc_line = INTRO.search(prev["text"]) and not re.search(r"introduce (myself|ourselves)", prev["text"], re.I)
+                            if segs[k]["start"] - prev["end"] > 15 or MICCHECK.search(_norm(prev["text"])) or mc_line:
+                                break                            # a long pause, a mic check or the MC: before the talk
+                            k -= 1
+                            if GREETING.search(_norm(segs[k]["text"])):
+                                greet = k
+                        if greet is not None and segs[greet]["start"] < own[0]:
+                            start = segs[greet]["start"]
+                            intro = min(intro, start)
                     how, conf = "speaker introduces themselves at %s" % stamp(own[0]), "high"
+                    if start < own[0]:
+                        how += " (greets the room from %s)" % stamp(start)
                 elif mc:                                     # the MC's introduction: the talk starts on the next line
                     intro, i = mc[0], at_seg.get(mc[0])
                     start = segs[i + 1]["start"] if i is not None and i + 1 < len(segs) else mc[0]
@@ -554,11 +643,23 @@ def draft(run):
                     start = intro = window[0][0]
                     how, conf = "name heard at %s" % stamp(start), "medium"
                 else:
-                    near = [b for a, b in gaps(segs, dur, 8) if abs(b - expected) < 8 * 60]
-                    start = min(near, key=lambda b: abs(b - expected)) if near else expected
+                    # no name: a greeting to the room ("how's everybody doing?") after a pause or a mic check
+                    greets = [sg for k, sg in enumerate(segs) if abs(sg["start"] - expected) < 8 * 60 and sg["start"] > after
+                              and GREETING.search(_norm(sg["text"])) and k and (
+                                  GREETING_STRONG.search(_norm(sg["text"])) or sg["start"] - _spoken_end(segs[k - 1]) >= 4
+                                  or any(MICCHECK.search(_norm(z["text"])) for z in segs[max(0, k - 12):k]
+                                         if sg["start"] - z["start"] <= 30))]
+                    near = [b for a, b in gaps(segs, dur, 8) if abs(b - expected) < 8 * 60 and b > after]
+                    if greets:
+                        start = min(greets, key=lambda g: abs(g["start"] - expected))["start"]
+                        how, conf = "greets the room at %s - no name heard" % stamp(start), "medium"
+                    elif near:
+                        start = min(near, key=lambda b: abs(b - expected))
+                        how, conf = "speech resumes after a pause near the planned time - no name heard", "low"
+                    else:
+                        start = expected
+                        how, conf = "planned time only - no name heard", "low"
                     intro = start
-                    how, conf = ("speech resumes after a pause near the planned time - no name heard" if near
-                                 else "planned time only - no name heard"), "low"
                 if start > dur - 30:                         # the recording ends before this talk
                     break
                 # the lead-in never reaches back into the words before (the MC's "... please welcome Dan")
@@ -574,11 +675,14 @@ def draft(run):
                 # a quiet stretch shortly before the next introduction: the talk ended there, the MC talked after it
                 handover = [a for a, b in (quiet_spans(lv, min_gap) if lv else []) if p["start"] < a and limit - b < 90
                             and b <= limit] if i + 1 < len(placed) else []
-                end = min(handover) if handover else min(pauses) if pauses else (max(last) if last else limit)
+                breaks = [a for a in pauses if any(b - a2 >= 180 for a2, b in quiet if a2 == a)]
+                end = (min(handover + breaks) if handover or breaks else min(pauses) if pauses
+                       else (max(last) if last else limit))
                 # someone thanking the speaker by name ("Thank you, David!") is the MC: the talk ended before that
                 names = {w for person in _names(p["name"]) for w in _norm(person).split() if len(w) >= 3}
                 thanked = [sg["start"] for sg in segs if p["start"] + 20 < sg["start"] < limit
-                           and CLOSE.search(_norm(sg["text"])) and names & set(_norm(sg["text"]).split())]
+                           and (CLOSE.search(_norm(sg["text"])) and names & set(_norm(sg["text"]).split())
+                                or AUDIENCE_THANKS.search(_norm(sg["text"])) and sg["start"] > p["start"] + 300)]
                 hard = min([limit] + thanked)           # the next voice that is not this talk's
                 if thanked:
                     end = min(end, hard)
@@ -603,6 +707,8 @@ def draft(run):
                         cut_end = min(cut_end, b2 + tail, nxt - 0.2)
                     if qa_why:
                         how += "; " + qa_why
+                a = p["start"] + lead                    # the start stays on the transcript: a quiet first line (mic not
+                                                         # live yet) is still the talk; only the end follows the levels
                 out.append({"key": p["key"], "parts": [{"rec": rid, "start": round(max(0.0, p["floor"], a - lead), 1),
                                                          "end": round(cut_end, 1)}],
                             "confidence": p["confidence"], "reason": how, "by": "draft", "approved": False})
