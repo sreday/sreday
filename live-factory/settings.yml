@@ -45,6 +45,9 @@ silent_channel_db: -60       # a channel below this RMS level is empty whatever 
 # ---- 4. Descript ---------------------------------------------------------------------------------------------
 studio_sound_percent: 80
 volume_percent: 300          # Descript gain (3x) before the limiter
+# (2026-10-16, first live run: "Remove all filler words" made Descript also mute real words its detector flagged -
+# "your", "that", repeated words - and the limiter came out at -1 dB on one talk and -6 dB on the next. Both are
+# spelled out now.)
 gap_over_seconds: 2          # word gaps longer than this ...
 gap_to_seconds: 1            # ... are shortened to this
 max_edit_credits: 35         # an edit costing more pauses all further edits
@@ -52,11 +55,15 @@ edit_prompt: >-
   Work ONLY on the composition "{composition}" (the one this request is for).
   Do not open, edit or apply settings to any other composition or clip in the project.
   In "{composition}": apply Studio Sound at {studio_sound_percent}% intensity.
-  Add a limiter and increase the volume to {volume_percent}%.
-  Remove all filler words.
+  Set the track gain to {volume_percent}%.
+  Add a limiter: Descript has no dedicated limiter, so use the compressor with threshold -1 dB, ratio 20:1,
+  attack 0 s, release 0.1 s, knee 0 dB.
+  Remove ONLY the filler sounds um, uh, er, ah and hmm (and their spellings like umm, uhh, erm). Do not remove
+  repeated words, false starts, "like", "you know", "so" or any other real word, even when the filler-word detection
+  flags them - if in doubt, keep the word.
   Shorten every word gap longer than {gap_over_seconds} seconds to {gap_to_seconds} second.
   Do not change anything else.
-  When done, list exactly which settings you applied and their values.
+  When done, list exactly which settings you applied and their values, and how many filler sounds you removed.
 max_resolution: 1080p
 publish_access: unlisted
 

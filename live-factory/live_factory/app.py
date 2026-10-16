@@ -25,6 +25,7 @@ PORT = 8043                      # the Conf42 factory has 8042
 PY = sys.executable
 HERE = pipeline.HERE
 PAGE_FILE = os.path.join(os.path.dirname(__file__), "dashboard.html")
+STATUS_FILE = os.path.join(os.path.dirname(__file__), "status.html")   # /status: the read-only overview
 
 
 def work_root():
@@ -99,6 +100,13 @@ def levels_of(run, rid):
     return hit[1]
 
 
+def credits_of(run):
+    """Descript AI credits this event's edits have cost so far (the ledger of paid edits)."""
+    led = run.ledger()
+    mine = [v for v in led.values() if v.get("event") == run.ev["id"]]
+    return {"edits": len(mine), "credits": round(sum(float(v.get("credits") or 0) for v in mine), 1)}
+
+
 def event_payload(event_id):
     run = pipeline.Run(event_id)
     sch = events.schedule(run.ev)
@@ -131,7 +139,7 @@ def event_payload(event_id):
                          for k, v in sch.items()},
             "talks": [{"key": t["key"], "title": t["title"], "track": t["track"], "kind": t["kind"]} for t in events.talks(run.ev)],
             "steps": pipeline.STEPS, "rec_steps": pipeline.REC_STEPS,
-            "log": (run.state.get("log") or [])[-40:]}
+            "log": (run.state.get("log") or [])[-40:], "credits": credits_of(run)}
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -186,6 +194,9 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if u.path == "/":
                 with open(PAGE_FILE, encoding="utf-8") as f:
+                    return self.send(200, f.read(), "text/html")
+            if u.path == "/status":
+                with open(STATUS_FILE, encoding="utf-8") as f:
                     return self.send(200, f.read(), "text/html")
             if u.path == "/api/events":
                 return self.send(200, event_list())

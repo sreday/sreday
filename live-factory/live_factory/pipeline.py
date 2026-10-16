@@ -559,6 +559,8 @@ class Run:
                     self.set(key, "edit", "done", note="already edited in Descript, skipped (%s)" % (paid.get("note") or paid.get("at")))
             if not done("edit"):
                 if self.state.get("edits_paused"):
+                    with self.lock:
+                        t["current"] = "edit"                # the error belongs to the edit, not the finished upload
                     raise RuntimeError("edits paused: " + self.state["edits_paused"])
                 self.set(key, "edit", "running")
                 j = d.edit(pid, cid, cfg["edit_prompt"].format(composition=key, **cfg), on_progress=progress("edit"))
@@ -566,7 +568,12 @@ class Run:
                 self.record_edit(cid, key, credits)
                 report = str(j["result"].get("agent_response") or "")
                 self.set(key, "edit", "done", report=report, credits=credits, job_id=j.get("job_id"))
-                others = [k for k in self.state["talks"] if k != key and k in report]
+                # another talk named in the report - unless the sentence says it was left alone ("I didn't open or
+                # edit 'Anderson Gobbi'", which is how the AI editor confirms it stayed in its lane)
+                sentences = re.split(r"(?<=[.!?])\s+|\n", report)
+                others = [k for k in self.state["talks"] if k != key and any(
+                    k in sn and not re.search(r"\b(didn'?t|did not|not|never|no other|only|without|untouched|left alone)\b",
+                                              sn, re.I) for sn in sentences)]
                 cap = float(cfg.get("max_edit_credits") or 0)
                 if re.search(r"\ball \d+ (clips|compositions)\b", report, re.I) or others:
                     with self.lock:
@@ -650,7 +657,7 @@ class Run:
             with self.lock:
                 t["error"] = "%s: %s" % (t.get("current") or "?", ex)
                 cur = t.get("current")
-                if cur:
+                if cur and (t["steps"].get(cur) or {}).get("status") != "done":   # never overwrite a finished step
                     t["steps"][cur] = {"status": "failed", "at": now(), "error": str(ex)[:500]}
                 self.save()
             self.note("FAILED %s at %s: %s" % (key, t.get("current"), ex))

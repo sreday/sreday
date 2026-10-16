@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LIVE factory status</title>
+<style>
+:root { --bg:#f6f6f4; --card:#fff; --ink:#1d1d1f; --mute:#6b6b70; --line:#e2e2e0; --accent:#d4380d; --ok:#2e7d32;
+        --run:#1565c0; --wait:#b26a00; --bad:#c62828; --todo:#e6e6e3; }
+@media (prefers-color-scheme: dark) { :root { --bg:#141416; --card:#1d1d20; --ink:#ececee; --mute:#9a9aa2; --line:#2e2e33;
+        --todo:#2a2a2f; --run:#64a8ff; --ok:#66bb6a; --wait:#ffb74d; --bad:#ef5350; } }
+* { box-sizing:border-box; }
+body { margin:0; font:14px/1.45 -apple-system, "Segoe UI", Roboto, sans-serif; background:var(--bg); color:var(--ink); }
+header { display:flex; gap:12px; align-items:center; flex-wrap:wrap; padding:12px 18px; background:var(--card); border-bottom:1px solid var(--line); }
+header h1 { font-size:17px; margin:0; } header h1 b { color:var(--accent); }
+header a { color:var(--mute); font-size:13px; }
+main { padding:16px 18px 40px; max-width:1300px; margin:0 auto; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:14px; }
+.big { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
+.big .pct { font-size:34px; font-weight:700; font-variant-numeric:tabular-nums; }
+.bar { height:10px; background:var(--todo); border-radius:5px; overflow:hidden; margin-top:8px; }
+.bar > i { display:block; height:100%; background:var(--ok); transition:width .6s; }
+.stages { display:grid; grid-template-columns:repeat(auto-fit, minmax(118px, 1fr)); gap:10px; }
+.stage { border:1px solid var(--line); border-radius:8px; padding:9px 10px; }
+.stage .n { font-size:20px; font-weight:650; font-variant-numeric:tabular-nums; }
+.stage .l { font-size:12px; color:var(--mute); }
+.stage.active { border-color:var(--run); } .stage.attn { border-color:var(--wait); } .stage.bad { border-color:var(--bad); }
+.stage .bar { height:5px; margin-top:6px; }
+table { border-collapse:collapse; width:100%; } th, td { text-align:left; padding:6px 6px; border-bottom:1px solid var(--line); vertical-align:middle; }
+th { font-size:12px; color:var(--mute); font-weight:600; }
+.cells { display:flex; gap:2px; min-width:220px; }
+.cells span { flex:1; height:14px; border-radius:3px; background:var(--todo); position:relative; }
+.cells span.done { background:var(--ok); } .cells span.running { background:var(--run); animation:pulse 1.4s infinite; }
+.cells span.waiting { background:var(--wait); } .cells span.failed { background:var(--bad); }
+@keyframes pulse { 50% { opacity:.45; } }
+.legend { display:flex; gap:2px; font-size:10px; color:var(--mute); min-width:220px; } .legend span { flex:1; text-align:center; overflow:hidden; }
+.mute { color:var(--mute); } .bad { color:var(--bad); } .wait { color:var(--wait); } .ok { color:var(--ok); } .run { color:var(--run); }
+.cols { display:grid; grid-template-columns: 1fr 340px; gap:14px; } @media (max-width: 900px) { .cols { grid-template-columns:1fr; } }
+.kv div { display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid var(--line); } .kv div:last-child { border:0; }
+pre { font-size:12px; white-space:pre-wrap; margin:0; color:var(--mute); max-height:300px; overflow:auto; }
+.next { font-weight:600; } .next a { color:var(--accent); }
+.mini { height:4px; background:var(--todo); border-radius:2px; overflow:hidden; margin-top:3px; max-width:160px; } .mini > i { display:block; height:100%; background:var(--run); }
+</style>
+</head>
+<body>
+<header>
+  <h1><b>LIVE</b> factory status</h1>
+  <select id="ev"></select>
+  <span id="runner" class="mute"></span>
+  <span id="upd" class="mute" style="margin-left:auto"></span>
+  <a href="/">open the workbench</a>
+</header>
+<main>
+  <div class="card">
+    <div class="big"><span class="pct" id="pct">-</span><span id="sum" class="mute"></span></div>
+    <div class="bar"><i id="pbar" style="width:0"></i></div>
+    <div class="next" id="next" style="margin-top:10px"></div>
+  </div>
+  <div class="card"><div class="stages" id="stages"></div></div>
+  <div class="cols">
+    <div class="card"><table id="talks"></table></div>
+    <div>
+      <div class="card kv" id="facts"></div>
+      <div class="card"><b>Log</b><pre id="log"></pre></div>
+    </div>
+  </div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const q = new URLSearchParams(location.search);
+let E = q.get('e') || localStorage.getItem('lf-event') || '';
+const mins = s => s >= 3600 ? Math.floor(s / 3600) + ' h ' + Math.round(s % 3600 / 60) + ' min' : s >= 60 ? Math.round(s / 60) + ' min' : Math.round(s) + ' s';
+const since = iso => iso ? (Date.now() - new Date(iso).getTime()) / 1000 : 0;
+const NAMES = {cut: 'cut', upload: 'upload', edit: 'edit', review: 'review', publish: 'publish', download: 'download', srt: 'subtitles', chapters: 'chapters', loudness: 'final mp4', qa: 'QA'};
+
+async function events() {
+  const list = await (await fetch('/api/events')).json();
+  $('ev').innerHTML = list.map(x => `<option value="${x.id}">${x.started ? '● ' : ''}${x.id}</option>`).join('');
+  if (!E || !list.some(x => x.id === E)) E = (list.find(x => x.started) || list[0] || {}).id || '';
+  $('ev').value = E;
+}
+$('ev').onchange = () => { E = $('ev').value; localStorage.setItem('lf-event', E); history.replaceState(null, '', '?e=' + E); tick(); };
+
+async function tick() {
+  if (!E) return;
+  let P;
+  try { P = await (await fetch('/api/event?e=' + encodeURIComponent(E))).json(); } catch (e) { $('upd').textContent = 'app not answering'; return; }
+  if (!P.state) return;
+  const st = P.state, steps = P.steps, talks = st.talks || {}, recs = st.recordings || {};
+  const cuts = (P.cuts.cuts || []), approved = cuts.filter(c => c.approved), skipped = P.cuts.skipped || [];
+  const keys = approved.map(c => c.key);
+  const S = (k, s) => ((talks[k] || {}).steps || {})[s] || {};
+  // overall: recordings analysed (weight 2 each step) + every talk step
+  const recSteps = P.rec_steps, recDone = Object.values(recs).reduce((a, r) => a + recSteps.filter(s => (r.steps[s] || {}).status === 'done').length, 0);
+  const recTotal = Object.keys(recs).length * recSteps.length;
+  const talkDone = keys.reduce((a, k) => a + steps.filter(s => S(k, s).status === 'done').length, 0);
+  const talkTotal = keys.length * steps.length;
+  const pct = (recTotal + talkTotal) ? Math.round(100 * (recDone + talkDone) / (recTotal + talkTotal)) : 0;
+  $('pct').textContent = pct + '%';
+  $('pbar').style.width = pct + '%';
+  const fin = keys.filter(k => (talks[k] || {}).finished).length;
+  $('sum').textContent = `${P.event.title} - ${fin} of ${keys.length} talks finished` + (skipped.length ? `, ${skipped.length} not recorded` : '');
+  const r = P.runner;
+  $('runner').innerHTML = r ? `<span class="run">● ${esc(r.job || 'job')} running for ${mins(since(r.since))}</span>` : '<span class="mute">no job running</span>';
+  $('upd').textContent = 'updated ' + new Date().toLocaleTimeString();
+  // stages
+  const count = s => keys.filter(k => S(k, s).status === 'done').length;
+  const busy = s => keys.filter(k => ['running', 'waiting'].includes(S(k, s).status)).length;
+  const failed = s => keys.filter(k => S(k, s).status === 'failed').length;
+  const analysed = Object.values(recs).filter(x => recSteps.every(s => (x.steps[s] || {}).status === 'done')).length;
+  const review = keys.filter(k => S(k, 'review').status === 'waiting').length;
+  const exportDone = keys.filter(k => S(k, 'qa').status === 'done').length;
+  const stg = [
+    {n: `${analysed}/${Object.keys(recs).length}`, l: 'recordings analysed', p: Object.keys(recs).length ? analysed / Object.keys(recs).length : 0},
+    {n: `${approved.length}/${cuts.length}`, l: 'cuts approved (gate 1)', p: cuts.length ? approved.length / cuts.length : 0},
+    ...['cut', 'upload', 'edit'].map(s => ({n: `${count(s)}/${keys.length}`, l: NAMES[s] + (s === 'edit' ? ' (Studio Sound, fillers)' : ''), p: keys.length ? count(s) / keys.length : 0, busy: busy(s), bad: failed(s)})),
+    {n: `${review}`, l: 'waiting for your review (gate 2)', p: keys.length ? count('review') / keys.length : 0, attn: review > 0},
+    {n: `${exportDone}/${keys.length}`, l: 'exported (mp4, subtitles, chapters)', p: keys.length ? exportDone / keys.length : 0, busy: ['publish', 'download', 'srt', 'chapters', 'loudness', 'qa'].reduce((a, s) => a + busy(s), 0)},
+  ];
+  $('stages').innerHTML = stg.map(x => `<div class="stage ${x.bad ? 'bad' : x.attn ? 'attn' : x.busy ? 'active' : ''}"><div class="n">${x.n}</div><div class="l">${x.l}${x.busy ? ` <span class="run">· ${x.busy} now</span>` : ''}${x.bad ? ` <span class="bad">· ${x.bad} failed</span>` : ''}</div><div class="bar"><i style="width:${Math.round(100 * x.p)}%"></i></div></div>`).join('');
+  // next action
+  const errs = keys.filter(k => (talks[k] || {}).error);
+  let next = '';
+  if (st.space_warning) next = `<span class="bad">⚠ ${esc(st.space_warning.msg)}</span>`;
+  else if (errs.length) next = `<span class="bad">${errs.length} talk(s) failed - retry them in the workbench</span>`;
+  else if (review && !r) next = `${review} talk(s) edited and waiting for you: look at them in <a href="${esc(P.descript_url)}" target="_blank">Descript</a>, tick Reviewed in the <a href="/">workbench</a>, then Run again to export`;
+  else if (review) next = `${review} talk(s) ready for your review in <a href="${esc(P.descript_url)}" target="_blank">Descript</a> - the run carries on with the rest`;
+  else if (r) next = 'working - nothing needed from you right now';
+  else if (fin && fin === keys.length) next = '<span class="ok">all talks finished</span> - the YouTube items are in the event folder';
+  $('next').innerHTML = next;
+  // talks
+  const cutOf = Object.fromEntries(cuts.map(c => [c.key, c]));
+  $('talks').innerHTML = `<tr><th>talk</th><th>length</th><th><div class="legend">${steps.map(s => `<span title="${NAMES[s]}">${NAMES[s].slice(0, 4)}</span>`).join('')}</div></th><th>now</th></tr>` +
+    keys.slice().sort((a, b) => (cutOf[a].parts[0].start) - (cutOf[b].parts[0].start)).map(k => {
+      const t = talks[k] || {steps: {}}, cur = t.current ? (t.steps[t.current] || {}) : null;
+      const len = cutOf[k].parts.reduce((a, p) => a + p.end - p.start, 0);
+      let now = '';
+      if (t.error) now = `<span class="bad">${esc(t.error)}</span>`;
+      else if (t.finished) { const qa = t.steps.qa || {}; now = `<span class="ok">finished</span> <span class="mute">${qa.minutes_after || ''} min, ${qa.lufs ?? ''} LUFS${(qa.flags || []).length ? ' · ' + esc(qa.flags.join(', ')) : ''}</span>`; }
+      else if (cur && cur.status === 'waiting' && t.current === 'review') now = `<span class="wait">waiting for your review in Descript</span>`;
+      else if (cur) now = `<span class="run">${esc(cur.label || NAMES[t.current])}</span> <span class="mute">· ${mins(since(cur.started))}</span>` + (cur.percent != null ? `<div class="mini"><i style="width:${cur.percent}%"></i></div>` : '');
+      else if (!Object.keys(t.steps).length) now = '<span class="mute">queued</span>';
+      const ed = t.steps.edit || {};
+      return `<tr><td>${esc(k)}<div class="mute" style="font-size:12px">${esc(t.title || '')}</div></td><td class="mute">${mins(len)}</td>
+        <td><div class="cells">${steps.map(s => { const x = t.steps[s] || {}; return `<span class="${x.status || ''}" title="${NAMES[s]}: ${esc(x.status || 'to do')}${x.took ? ' (' + mins(x.took) + ')' : ''}${x.note ? ' - ' + esc(x.note) : ''}"></span>`; }).join('')}</div></td>
+        <td>${now}${ed.credits ? `<div class="mute" style="font-size:12px">edit: ${ed.credits} credits</div>` : ''}</td></tr>`;
+    }).join('') + skipped.map(s => `<tr><td>${esc(s.key)}</td><td></td><td></td><td class="mute">not recorded: ${esc(s.why)}</td></tr>`).join('');
+  // facts
+  const d = P.disk || {}, rc = Object.values(recs)[0];
+  const talkMin = keys.reduce((a, k) => a + cutOf[k].parts.reduce((b, p) => b + p.end - p.start, 0), 0);
+  const recMin = Object.values(recs).reduce((a, x) => a + ((x.probe || {}).duration || 0), 0);
+  $('facts').innerHTML = [
+    ['recordings', `${Object.keys(recs).length} · ${mins(recMin)}`],
+    ['talks to Descript', `${keys.length} · ${mins(talkMin)}`],
+    ['saved from Descript', recMin ? `${mins(recMin - talkMin)} (${Math.round(100 * (1 - talkMin / recMin))}%)` : '-'],
+    ['Descript edits paid', `${P.credits.edits} · ${P.credits.credits} credits`],
+    ['sound', rc ? esc((rc.steps.levels || {}).note || '-') : '-'],
+    ['disk', d.free_gb != null ? `${d.free_gb} GB free, job needs ${d.need_gb} GB` : '-'],
+    ['Descript project', P.descript_url ? `<a href="${esc(P.descript_url)}" target="_blank">open</a>` : 'not created yet'],
+  ].map(([a, b]) => `<div><span class="mute">${a}</span><span>${b}</span></div>`).join('');
+  $('log').textContent = (P.log || []).slice().reverse().join('\n');
+}
+events().then(tick);
+setInterval(tick, 3000);
+</script>
+</body>
+</html>
