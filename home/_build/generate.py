@@ -1878,6 +1878,18 @@ except OSError:
     pass
 print("Writing out status/index.html (hidden, not in sitemap)")
 
+# FACTORY MANUAL (hidden, /factory/ - Marek 2026-10-16: "let our team run it as well"): the team manual of the LIVE talk
+# factory, live-factory/MANUAL.md rendered as is. Only where that file exists (the sreday repo); noindex, never in the
+# sitemap. The manual is kept up to date with the factory itself.
+_fm_path = os.path.join("..", "live-factory", "MANUAL.md")
+if os.path.exists(_fm_path):
+    with open(_fm_path, encoding="utf-8") as _fm_f:
+        _fm_html = markdown.markdown(_fm_f.read(), extensions=["tables", "pymdownx.superfences", "toc", "sane_lists"])
+    os.makedirs(BASE_FOLDER + "/factory", exist_ok=True)
+    with open(BASE_FOLDER + "/factory/index.html", "w", encoding="utf-8") as f:
+        f.write(env.get_template("factory.html").render(factory_manual=_fm_html, **context))
+    print("Writing out factory/index.html (hidden, not in sitemap)")
+
 # MEETUPS
 print(DIVIDER)
 meetups = (context.get("meetups") or []) + (context.get("meetups_past") or [])

@@ -1,0 +1,40 @@
+{# ── /factory/ (hidden, team-facing): the manual of the LIVE talk factory, live-factory/MANUAL.md rendered by
+     home/_build/generate.py (FACTORY MANUAL block). sreday repo only. noindex, never in the sitemap. ── #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>LIVE talk factory - manual</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:600,700|Roboto:300,400,700&display=swap" rel="stylesheet">
+  <style>
+    :root { --brand: #713660; --ink: #1d1d1f; --mute: #6b6b70; --line: #e6e2e6; --bg: #f7f5f7; --card: #fff; --code: #f2eef2; }
+    @media (prefers-color-scheme: dark) { :root { --ink: #ececee; --mute: #a3a0a6; --line: #333036; --bg: #151316; --card: #1e1b1f; --code: #2a262b; --brand: #c98ab8; } }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.65 Roboto, Arial, sans-serif; }
+    header { background: #713660; color: #fff; padding: 18px 16px; }
+    header .in { max-width: 920px; margin: 0 auto; display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; }
+    header b { font-family: Montserrat, sans-serif; font-size: 20px; } header span { opacity: .8; font-size: 14px; }
+    main { max-width: 920px; margin: 22px auto 60px; padding: 8px 28px 30px; background: var(--card); border-radius: 12px; }
+    @media (max-width: 600px) { main { margin: 0; border-radius: 0; padding: 4px 16px 24px; } }
+    h1, h2, h3 { font-family: Montserrat, sans-serif; line-height: 1.3; }
+    h1 { font-size: 28px; margin: 22px 0 8px; } h2 { font-size: 22px; margin: 38px 0 10px; padding-top: 14px; border-top: 1px solid var(--line); }
+    h3 { font-size: 18px; margin: 28px 0 6px; color: var(--brand); }
+    a { color: var(--brand); }
+    code { background: var(--code); padding: 1px 5px; border-radius: 4px; font-size: .88em; }
+    pre { background: #2b1f29; color: #f3e9f1; padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-size: 14px; }
+    pre code { background: none; padding: 0; color: inherit; }
+    blockquote { margin: 14px 0; padding: 8px 16px; background: var(--code); border-left: 3px solid var(--brand); border-radius: 6px; color: var(--mute); }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 14px; display: block; overflow-x: auto; }
+    th, td { text-align: left; padding: 7px 9px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { font-family: Montserrat, sans-serif; font-size: 13px; }
+    hr { border: 0; } li { margin: 3px 0; }
+  </style>
+</head>
+<body>
+<header><div class="in"><b>LIVE talk factory</b><span>team manual · SREday, LLMday, PLATFORMday, PEC</span></div></header>
+<main>{{ factory_manual | safe }}</main>
+</body>
+</html>

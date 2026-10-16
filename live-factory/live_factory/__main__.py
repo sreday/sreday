@@ -14,6 +14,7 @@
   python -m live_factory retry <event> "<talk>"        retry one talk from its failed step
   python -m live_factory redo <event> "<talk>" [why]   flag a talk to be cut again and re-uploaded (a fresh
                                                        composition "<talk> (redo N)") on the next run
+  python -m live_factory unpause <event>               clear "edits paused" after checking the talk in Descript
   python -m live_factory youtube <event>               <event>/YouTube items.txt again
   python -m live_factory status <event>
   python -m live_factory serve                         the local app on http://localhost:8043
@@ -187,6 +188,10 @@ def dispatch(run, cmd, argv):
             raise SystemExit("no talk %r in this run" % argv[2])
         run.request_redo(argv[2], " ".join(argv[3:]))
         print("flagged: %s - the next run cuts it again and uploads it as a fresh composition" % argv[2])
+    elif cmd == "unpause":
+        why = run.state.pop("edits_paused", None)
+        run.save()
+        print(("edits resumed (was: %s) - press Run" % why) if why else "edits were not paused")
     elif cmd == "retry":
         t = run.state["talks"][argv[2]]
         for step, v in list(t["steps"].items()):

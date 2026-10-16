@@ -1,5 +1,7 @@
 # LIVE talk factory
 
+> **Team manual:** `MANUAL.md` next to this file is the step-by-step guide for the team, published unlisted at sreday.com/factory (noindex, not in the sitemap). **Whenever the factory changes in a way the team would notice (a step, a button, a setting, a fix), update MANUAL.md and its Changelog in the same commit.**
+
 Long live recordings in, one clean YouTube-ready video per talk out, for any brand (SREday, LLMday, PLATFORMday,
 PEC, DevOps Not Dead). Descript gets only the talks, never the breaks, MC chatter and silence, so its transcription
 credits and media hours go to the talks alone. This is the live-event sibling of the Conf42 factory
