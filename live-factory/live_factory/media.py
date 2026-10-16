@@ -66,11 +66,20 @@ def browser_playable(info, path):
             and os.path.splitext(path)[1].lower() in (".mp4", ".m4v", ".mov"))
 
 
-def _encoders(cq, max_short_side, w, h):
-    """The (label, input args, video args) to try on this machine, best first; the CPU always last."""
+def _encoders(cq, max_short_side, w, h, crop=None):
+    """The (label, input args, video filters, video args) to try on this machine, best first; the CPU always last.
+    crop = (w, h, x, y): cut that box out (a slide deck boxed in black bars) and scale it back up to the full frame."""
     big = w and h and min(w, h) > max_short_side
     size = ("-2:%d" % max_short_side) if h <= w else ("%d:-2" % max_short_side)
     scale = ["scale=" + size] if big else []
+    if crop:
+        # zoom to FIT: the slides grow until they touch the frame's edges - nothing of them is cut off; whatever
+        # shape they have, any small rest of the frame stays black
+        fw, fh = (w, h) if not big else ((round(w * max_short_side / h / 2) * 2, max_short_side) if h <= w
+                                          else (max_short_side, round(h * max_short_side / w / 2) * 2))
+        scale = ["crop=%d:%d:%d:%d" % tuple(crop),
+                 "scale=%d:%d:force_original_aspect_ratio=decrease:flags=lanczos" % (fw, fh),
+                 "pad=%d:%d:(ow-iw)/2:(oh-ih)/2:black" % (fw, fh), "setsar=1"]
     nvenc = ["-c:v", "h264_nvenc", "-preset", "p5", "-rc", "vbr", "-cq", str(cq), "-b:v", "0"]
     out = []
     if gpu_status():
@@ -84,7 +93,7 @@ def _encoders(cq, max_short_side, w, h):
 
 
 def encode(src, dst, start=None, end=None, af=None, max_short_side=1080, cq=21, audio_kbps=192, extra_v=None,
-           on_progress=None, what="rendering"):
+           on_progress=None, what="rendering", crop=None):
     """Re-encode [start, end] of src to a lean H.264/AAC mp4 (48 kHz stereo), frame-accurate, with an optional audio
     filter (the one-sided stereo fix). Tries the GPU, then the Mac media engine, then the CPU."""
     safe_target(dst)
@@ -96,7 +105,7 @@ def encode(src, dst, start=None, end=None, af=None, max_short_side=1080, cq=21, 
     head = ["-hide_banner", "-loglevel", "error", "-y"]
     part = "%s.%d.part.mp4" % (dst, os.getpid())
     err = ""
-    for how, hw, vf, venc in _encoders(cq, max_short_side, info["width"], info["height"]):
+    for how, hw, vf, venc in _encoders(cq, max_short_side, info["width"], info["height"], crop):
         args = head + hw + cut + ["-i", src] + (["-vf", ",".join(vf)] if vf else []) + venc + (extra_v or []) + audio
         rc, err = _ffmpeg_progress([tool("ffmpeg")] + args + ["-progress", "pipe:1", "-nostats", part], length,
                                    lambda pct: on_progress and on_progress("%s on the %s - %d%%" % (what, how, pct), pct))
@@ -112,20 +121,20 @@ def encode(src, dst, start=None, end=None, af=None, max_short_side=1080, cq=21, 
     return dst
 
 
-def cut(parts, dst, af=None, max_short_side=1080, on_progress=None, cq=18):
+def cut(parts, dst, af=None, max_short_side=1080, on_progress=None, cq=18, crop=None):
     """One talk out of the recordings: parts = [(src, start, end)] in order (a talk split across two files has two).
     Each part is encoded with the same settings, then joined without another encode. The cut goes to Descript, which
     encodes it again, so it is kept close to the source (cq 18); the light file is the final one (normalize)."""
     safe_target(dst)
     if len(parts) == 1:
         src, a, b = parts[0]
-        return encode(src, dst, a, b, af, max_short_side, cq=cq, on_progress=on_progress, what="cutting")
+        return encode(src, dst, a, b, af, max_short_side, cq=cq, on_progress=on_progress, what="cutting", crop=crop)
     pieces = []
     try:
         for i, (src, a, b) in enumerate(parts):
             p = "%s.piece%d.mp4" % (dst, i)
             encode(src, p, a, b, af, max_short_side, cq=cq, what="cutting part %d of %d" % (i + 1, len(parts)),
-                   on_progress=on_progress)
+                   on_progress=on_progress, crop=crop)
             pieces.append(p)
         listing = dst + ".concat.txt"
         with open(listing, "w", encoding="utf-8") as f:
@@ -142,6 +151,41 @@ def cut(parts, dst, af=None, max_short_side=1080, on_progress=None, cq=18):
         for p in pieces:
             if os.path.exists(p):
                 os.remove(p)
+
+
+def black_bars(src, start, end, samples=24, min_zoom_percent=5.0):
+    """Slides shown smaller than the frame, inside black bars: the slides' box (w, h, x, y), or (None, why not).
+    The box is zoomed to FIT the frame - it grows until it touches the frame's edges, so nothing of the slides is cut
+    off, whatever their shape. Only the obvious case counts:
+      - frames sampled across [start, end] agree on the same box (80%+ of them) - a talk that switches between the
+        camera and the slides, or dark slides that fool the detection, are left alone;
+      - zooming to fit gains at least min_zoom_percent (thin bars are not worth a re-scale).
+    PLATFORMday Austin 2026: Thomas Cameron's slides sat in a steady 1600x810 box in the 1920x1080 frame -> 1.2x."""
+    info = probe(src)
+    W, H = info["width"], info["height"]
+    if not (W and H):
+        return None, "no picture"
+    boxes = []
+    for i in range(samples):
+        t = start + (end - start) * (i + 0.5) / samples
+        r = run([tool("ffmpeg"), "-hide_banner", "-ss", "%.2f" % t, "-i", src, "-frames:v", "3", "-an",
+                 "-vf", "cropdetect=limit=0.08:round=2:reset=0", "-f", "null", "-"])
+        found = re.findall(r"crop=(\d+):(\d+):(\d+):(\d+)", r.stderr or "")
+        if found:
+            boxes.append(tuple(int(v) for v in found[-1]))
+    if len(boxes) < samples * 0.5:
+        return None, "too few frames read"
+    def same(a, b):                                      # the same box within a few pixels
+        return all(abs(x - y) <= 8 for x, y in zip(a, b))
+    best = max(boxes, key=lambda b: sum(same(b, o) for o in boxes))
+    agree = sum(same(best, o) for o in boxes) / len(boxes)
+    w, h, x, y = best
+    zoom = min(W / w, H / h)
+    if zoom < 1 + min_zoom_percent / 100:
+        return None, "no black bars worth a zoom" if zoom < 1.01 else "bars too thin to bother (%.0f%% zoom)" % ((zoom - 1) * 100)
+    if agree < 0.8:
+        return None, "the picture changes during the talk (%d%% of frames agree) - left as it is" % (agree * 100)
+    return best, "zoomed in %.2fx: the slides filled only %dx%d of the %dx%d frame" % (zoom, w, h, W, H)
 
 
 def make_proxy(src, dst, on_progress=None):

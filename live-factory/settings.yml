@@ -34,6 +34,16 @@ talk_max_minutes: 30
 # the last 40% of the talk, at most max_qa_minutes long, the speaker not carrying on after it. Doubt keeps it in.
 cut_qa: true
 max_qa_minutes: 10
+# Extra footage around every cut sent to Descript (Marek 2026-10-16: the automatic ends are right ~80% of the time and
+# cut off the other 20%), so the talk can be trimmed by hand in Descript. Never reaches into the next talk's own cut.
+# The workbench shows where the talk sits inside the clip.
+pad_before_seconds: 30
+pad_after_seconds: 60
+# Slides shown smaller than the frame, in black bars: zoom them to FIT the full frame (they grow until they touch its
+# edges - nothing is cut off, whatever their shape). Only when the box is steady through the talk (a camera/slides mix
+# or dark slides that fool the detection are left alone) and the zoom gains at least zoom_min_percent.
+zoom_black_bars: true
+zoom_min_percent: 5
 cut_lead_seconds: 2          # the cut starts this long before the first word (Descript's trim fine-tunes it later)
 cut_tail_seconds: 3          # ... and ends this long after the last one
 

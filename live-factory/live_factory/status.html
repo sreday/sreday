@@ -136,9 +136,11 @@ async function tick() {
       const t = talks[k] || {steps: {}}, cur = t.current ? (t.steps[t.current] || {}) : null;
       const len = cutOf[k].parts.reduce((a, p) => a + p.end - p.start, 0);
       let now = '';
-      if (t.error) now = `<span class="bad">${esc(t.error)}</span>`;
+      const rq = (P.redo || {})[k];
+      if (rq && t.redo_handled !== rq.at) now = `<span class="wait">flagged for a redo: ${esc(rq.why)} - next Run</span>`;
+      else if (t.error) now = `<span class="bad">${esc(t.error)}</span>`;
       else if (t.finished) { const qa = t.steps.qa || {}; now = `<span class="ok">finished</span> <span class="mute">${qa.minutes_after || ''} min, ${qa.lufs ?? ''} LUFS${(qa.flags || []).length ? ' · ' + esc(qa.flags.join(', ')) : ''}</span>`; }
-      else if (cur && cur.status === 'waiting' && t.current === 'review') now = `<span class="wait">waiting for your review in Descript</span>`;
+      else if (cur && cur.status === 'waiting' && t.current === 'review') now = `<span class="wait">waiting for your review in Descript</span>` + (t.in_clip ? ` <span class="mute">· talk ${mins(t.in_clip.start)} in → trim after ${Math.round(t.in_clip.end / 60)} min</span>` : '');
       else if (cur) now = `<span class="run">${esc(cur.label || NAMES[t.current])}</span> <span class="mute">· ${mins(since(cur.started))}</span>` + (cur.percent != null ? `<div class="mini"><i style="width:${cur.percent}%"></i></div>` : '');
       else if (!Object.keys(t.steps).length) now = '<span class="mute">queued</span>';
       const ed = t.steps.edit || {};

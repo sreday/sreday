@@ -294,6 +294,53 @@ def main():
           media.probe(final)["vcodec"] == "h264", "%s, %.1f MB from %.1f MB" % (how, os.path.getsize(final) / 1e6, os.path.getsize(out) / 1e6))
     check("final: at YouTube loudness", lufs is not None and abs(lufs + 14) < 1.5, lufs)
 
+    # extra footage around a cut: 30 s before, 60 s after, never into a neighbour's own cut
+    talk_keys = run.sync_talks()
+    pad_parts, before, after = run.padded("Bob Martinez & Carol Chen")
+    bob, alice_c, david_c = (found[k]["parts"][0] for k in ("Bob Martinez & Carol Chen", "Alice Walker", "David Okafor"))
+    check("extra footage before stops at the previous talk's cut", abs(pad_parts[0]["start"] - max(alice_c["end"], bob["start"] - 30)) < 0.2,
+          "%.1f (Alice ends %.1f)" % (pad_parts[0]["start"], alice_c["end"]))
+    check("extra footage after stops at the next talk's cut", abs(pad_parts[-1]["end"] - min(david_c["start"], bob["end"] + 60)) < 0.2,
+          "%.1f (David starts %.1f)" % (pad_parts[-1]["end"], david_c["start"]))
+    run.cfg.update(pad_before_seconds=30, pad_after_seconds=60)
+
+    # black bars: a 16:9 deck boxed inside the frame is zoomed back to full HD; a 4:3 deck and a full frame are not
+    vids = os.path.join(TMP, "bars")
+    os.makedirs(vids)
+    def boxed(name, w, h):
+        out = os.path.join(vids, name)
+        ff("-f", "lavfi", "-i", "testsrc2=size=%dx%d:rate=25" % (w, h), "-t", "12",
+           "-vf", "pad=1280:720:(ow-iw)/2:(oh-ih)/2:black", "-c:v", "libx264", "-preset", "ultrafast", "-pix_fmt", "yuv420p", out)
+        return out
+    wide, square, full = boxed("wide.mp4", 1088, 612), boxed("43.mp4", 800, 600), boxed("full.mp4", 1280, 720)
+    crop, why = media.black_bars(wide, 0, 12, samples=6)
+    check("black bars around a 16:9 deck found", crop and abs(crop[0] - 1088) <= 8 and abs(crop[1] - 612) <= 8, (crop, why))
+    c43, why43 = media.black_bars(square, 0, 12, samples=6)
+    check("black bars around a 4:3 deck found too", c43 and abs(c43[0] - 800) <= 8, (c43, why43))
+    cf, whyf = media.black_bars(full, 0, 12, samples=6)
+    check("a full-frame picture is left alone", cf is None, whyf)
+    for name, src, box, expect in (("16:9", wide, crop, (1280, 720)), ("4:3", square, c43, (960, 720))):
+        zoomed = os.path.join(vids, "zoomed-%s.mp4" % name.replace(":", ""))
+        media.cut([(src, 0, 12)], zoomed, crop=box)
+        zi = media.probe(zoomed)
+        after, _ = media.black_bars(zoomed, 0, 12, samples=6)
+        r = media.run([media.tool("ffmpeg"), "-hide_banner", "-ss", "6", "-i", zoomed, "-frames:v", "3", "-vf",
+                       "cropdetect=limit=0.08:round=2:reset=0", "-f", "null", "-"])
+        import re as _re
+        seen = _re.findall(r"crop=(\d+):(\d+)", r.stderr)[-1]
+        check("%s deck zoomed to fit: full frame, slides %s" % (name, "x".join(map(str, expect))),
+              (zi["width"], zi["height"]) == (1280, 720) and after is None
+              and abs(int(seen[0]) - expect[0]) <= 8 and abs(int(seen[1]) - expect[1]) <= 8, (zi["width"], zi["height"], seen))
+
+    # flag for a redo: the next run starts the talk again (as "<talk> (redo 2)" in Descript), once
+    t = run.state["talks"]["David Okafor"]
+    t["steps"] = {"cut": {"status": "done"}, "upload": {"status": "done"}, "edit": {"status": "done"}}
+    t["composition_id"] = "old-composition"
+    run.request_redo("David Okafor", "end cut too early")
+    check("redo request applied", run.apply_redo_requests() == ["David Okafor"] and t["steps"] == {}
+          and "old-composition" in t.get("broken_compositions", []) and len(t.get("redone") or []) == 1)
+    check("redo request applied only once", run.apply_redo_requests() == [])
+
     briefs = segment.brief(run)
     text = open(briefs[0], encoding="utf-8").read()
     check("brief written", all(x in text for x in ("## Running order", "Recording r1", "Speakers introducing themselves",
