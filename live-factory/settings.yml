@@ -114,6 +114,12 @@ youtube:
     - "Grab your ticket for the next {brand}: {www_url}"
     - "Upcoming {brand} CFPs: https://cfp.ninja/?q={brand_key}&status=open"
 
+# ---- the Factory tab of sreday.com/factory (hidden) ---------------------------------------------------------------
+# Every job ends by publishing this computer's progress (live-factory/status.json, pushed to the sreday repo); during a
+# run also when a talk is ready for review or finished, at most every status_publish_minutes. false = never.
+publish_status: true
+status_publish_minutes: 20
+
 # ---- places and pace -------------------------------------------------------------------------------------------
 work_folder: live-factory           # on the Desktop: <work_folder>/<brand>-<event>/
 final_folder: final videos for YouTube

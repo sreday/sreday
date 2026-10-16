@@ -57,6 +57,7 @@ pre.log { font-size:12px; max-height:220px; overflow:auto; margin:0; white-space
   <button onclick="openIt('youtube')">YouTube items</button>
   <button onclick="openIt('folder')">Event folder</button>
   <button onclick="openIt('final')">Final videos</button>
+  <button onclick="pub()" title="update the Factory tab of sreday.com/factory now (runs do it by themselves)">Publish status</button>
   <span id="msg"></span>
 </header>
 <main>
@@ -325,6 +326,7 @@ async function redo(k, on, id) {
 async function review(k, on) { await api('/api/reviewed', {e: E, key: k, on}); refresh(); }
 async function job(name, key) { if (dirty && name !== 'retry' && !confirm('Your cut changes are not saved - start anyway?')) return;
   const r = await api('/api/job', {e: E, job: name, key}); say(r.msg); setTimeout(refresh, 800); }
+async function pub() { say('publishing...'); const r = await api('/api/publish', {}); say(r.msg); }
 async function openIt(what) { const r = await api('/api/open', {e: E, what}); say(r.msg); }
 
 window.addEventListener('resize', () => drawTimelines());

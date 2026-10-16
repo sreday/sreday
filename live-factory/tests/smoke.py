@@ -133,7 +133,7 @@ def fixture_repo(root):
     settings = os.path.join(root, "settings.smoke.yml")
     with open(settings, "w") as f:
         f.write("github_root: %s\nbrands:\n  testbrand: {repo: testbrand}\nwork_root: %s\nwhisper_model: tiny.en\n"
-                "frame_every_seconds: 30\ntalk_min_minutes: 0.2\ntalk_max_minutes: 3\n" % (json.dumps(root), json.dumps(os.path.join(root, "work"))))
+                "frame_every_seconds: 30\ntalk_min_minutes: 0.2\ntalk_max_minutes: 3\npublish_status: false\n" % (json.dumps(root), json.dumps(os.path.join(root, "work"))))
     return settings
 
 

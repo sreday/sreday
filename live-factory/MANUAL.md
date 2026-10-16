@@ -11,6 +11,12 @@ recordings  →  analyse  →  find the talks  →  ✋ you check the cuts  → 
 Two steps are yours (✋). Nothing is uploaded before you approve the cuts, and nothing is exported before you've
 looked at each talk in Descript.
 
+> This is the **Manual** tab. The **Factory** tab shows what the factory has done, live: every computer that runs it
+> publishes its progress - at the end of every job, and during a run whenever a talk is ready for review or finished
+> (at most every 20 minutes) - and the tab checks for news every minute. **Publish status** in the workbench publishes
+> right away. The same page is on sreday.com/factory, llmday.com/factory and platformday.com/factory; each shows its
+> own brand's events (tick "show the other brands" for all).
+>
 > This page is the manual for operating the tool. The technical details live in `live-factory/README.md` in the
 > sreday repo. When the tool changes, this page changes with it - see **Changelog** at the bottom.
 
@@ -218,6 +224,10 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 
 ## Changelog
 
+- **2026-10-16** - The page is on sreday.com, llmday.com and platformday.com (/factory), each with its own brand's
+  events; the Factory tab updates live, every minute.
+- **2026-10-16** - Two tabs on this page: **Manual** and **Factory**, where runs publish their progress (talk names,
+  steps and results only). **Publish status** button in the workbench, `unpause` command for paused edits.
 - **2026-10-16** - Every clip gets 30 s of extra footage before the talk and 60 s after, for trimming in Descript.
     Slides boxed in black bars are zoomed to fit the frame. **Flag for redo** for any talk. The filler-word removal takes
     only um / uh sounds (it had muted real words). First real day processed: PLATFORMday Austin 2026 Q4.
