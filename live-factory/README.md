@@ -82,6 +82,22 @@ or use the app: `./run.sh` / `run.cmd` → http://localhost:8043.
   160k AAC, usually a fraction of Descript's export at the same look. If it ever comes out bigger, the export's
   picture is kept.
 
+## Trimming, zoom and redo (Marek, 2026-10-16)
+
+- **Extra footage for trimming by hand.** The automatic start and end are right on about 80% of talks, and on the
+  rest a fixed rule cuts too much. So every clip sent to Descript gets `pad_before_seconds: 30` before the judged
+  start and `pad_after_seconds: 60` after the judged end, never reaching into the next talk's own cut. The workbench
+  shows where the talk sits in the clip ("talk runs 0:30 → 25:12"); trim the rest in Descript before ticking
+  Reviewed.
+- **Black bars.** When the slides sit in a steady box smaller than the frame, they are zoomed to *fit*: they grow
+  until they touch the frame's edges, so nothing is cut off whatever their shape. On PLATFORMday Austin, Thomas
+  Cameron's 1600×810 slides became a 1.2× zoom. A talk where the picture changes (camera and slides, or dark slides
+  that fool the detection) is left as it is.
+- **Flag for redo.** In the workbench's Descript table, say what's wrong and press "flag for redo" (or run
+  `redo <event> "<talk>" "why"`). Fix the talk's cut in gate 1 first if needed. The next Run cuts it again with the
+  cut, extra footage and zoom as they are now, and uploads it as a fresh composition "<talk> (redo 2)". The old
+  composition stays in Descript untouched.
+
 ## Learned from the published talks (2026-10-16)
 
 The sample: 89 talks on the SREday and LLMday channels, with transcripts read for six of them. The raw data (titles,

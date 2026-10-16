@@ -134,7 +134,7 @@ def event_payload(event_id):
     except OSError:
         pass
     return {"event": run.ev, "state": run.state, "disk": {"free_gb": free, "need_gb": round(run.space_needed() / 1e9, 1)}, "summary": pipeline.summary(run.state), "cuts": data,
-            "problems": problems, "reviews": run.reviews(), "runner": runner(event_id), "descript_url": descript,
+            "problems": problems, "reviews": run.reviews(), "redo": run.redo_requests(), "runner": runner(event_id), "descript_url": descript,
             "schedule": {k: {"day": v["day"], "room": v["room"], "date": v["date"], "items": v["items"]}
                          for k, v in sch.items()},
             "talks": [{"key": t["key"], "title": t["title"], "track": t["track"], "kind": t["kind"]} for t in events.talks(run.ev)],
@@ -245,6 +245,10 @@ class Handler(BaseHTTPRequestHandler):
                 problems = pipeline.Run(e).save_cuts(body["data"])
                 return self.send(200, {"msg": "cuts saved" + (" - %d note(s)" % len(problems) if problems else ""),
                                        "problems": problems})
+            if self.path == "/api/redo":
+                pipeline.Run(e).request_redo(body["key"], body.get("why", ""), bool(body.get("on", True)))
+                return self.send(200, {"msg": ("flagged %s - press Run to cut it again and re-upload it" % body["key"])
+                                       if body.get("on", True) else "redo cancelled"})
             if self.path == "/api/reviewed":
                 pipeline.Run(e).set_reviewed(body["key"], bool(body.get("on")))
                 return self.send(200, {"msg": ""})

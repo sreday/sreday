@@ -459,13 +459,65 @@ class Run:
                 os.remove(media.safe_target(leftover))
         if t.get("composition_id"):
             t.setdefault("broken_compositions", []).append(t["composition_id"])
-        for k in ("composition_id", "finished", "trim", "error", "current", "stereo", "resolution"):
+        for k in ("composition_id", "composition_name", "finished", "trim", "error", "current", "stereo", "resolution",
+                  "zoom", "in_clip"):
             t.pop(k, None)
         if key in self.reviews():
             self.set_reviewed(key, False)               # a new cut is a new video: reviewed again
         t["steps"] = {}
         t.setdefault("redone", []).append({"at": now(), "why": why})
         self.note("%s: %s - doing it again" % (key, why))
+
+    def padded(self, key):
+        """The talk's parts with pad_before_seconds before the first and pad_after_seconds after the last, never into
+        another talk's own cut on the same recording, nor past the recording. Returns (parts, before, after)."""
+        t = self.state["talks"][key]
+        parts = [dict(p) for p in t["parts"]]
+        others = [p for c in self.cuts()["cuts"] if c["key"] != key for p in c["parts"]]
+        first, last = parts[0], parts[-1]
+        want_b, want_a = float(self.cfg.get("pad_before_seconds", 30)), float(self.cfg.get("pad_after_seconds", 60))
+        floor = max([p["end"] for p in others if p["rec"] == first["rec"] and p["end"] <= first["start"]] + [0.0])
+        dur = ((self.state["recordings"].get(last["rec"]) or {}).get("probe") or {}).get("duration") or last["end"]
+        ceil = min([p["start"] for p in others if p["rec"] == last["rec"] and p["start"] >= last["end"]] + [dur])
+        new_start, new_end = max(floor, first["start"] - want_b), min(ceil, last["end"] + want_a)
+        before, after = first["start"] - new_start, new_end - last["end"]
+        first["start"], last["end"] = new_start, new_end
+        return parts, before, after
+
+    # ---- redo: Marek flags a talk in the workbench (redo.json, written by the app only) -----------------------------
+    def redo_requests(self):
+        try:
+            with open(os.path.join(self.dir, "redo.json"), encoding="utf-8") as f:
+                return json.load(f)
+        except (OSError, ValueError):
+            return {}
+
+    def request_redo(self, key, why, on=True):
+        r = self.redo_requests()
+        if on:
+            r[key] = {"at": now(), "why": why or "flagged in the workbench"}
+        else:
+            r.pop(key, None)
+        path = os.path.join(self.dir, "redo.json")
+        with open(path + ".tmp", "w", encoding="utf-8") as f:
+            json.dump(r, f, indent=1, ensure_ascii=False)
+        os.replace(path + ".tmp", path)
+
+    def apply_redo_requests(self):
+        """At the start of a run: every talk flagged since its last redo starts again from the cut - with the cut,
+        extra footage and zoom as they are now - and goes to Descript as a fresh composition "<talk> (redo N)". The old
+        composition stays in Descript, untouched."""
+        done = []
+        for key, req in self.redo_requests().items():
+            t = self.state["talks"].get(key)
+            if not t or t.get("redo_handled") == req["at"]:
+                continue
+            self.redo(key, "flagged for a redo: " + req["why"])
+            t["redo_handled"] = req["at"]
+            done.append(key)
+        if done:
+            self.save()
+        return done
 
     def reviews(self):
         try:
@@ -504,17 +556,32 @@ class Run:
             if not done("cut"):
                 with self.render_sem:
                     st = self.stereo_for({"parts": t["parts"]})
+                    padded, before, after = self.padded(key)
+                    crop, zoom_note = None, None
+                    if cfg.get("zoom_black_bars", True):
+                        self.set(key, "cut", "running", label="looking for black bars around the slides", percent=0)
+                        p0 = t["parts"][0]
+                        crop, zoom_note = media.black_bars(self.rec_path(p0["rec"]), p0["start"], p0["end"],
+                                                           min_zoom_percent=float(cfg.get("zoom_min_percent", 5)))
                     self.set(key, "cut", "running", label="cutting", percent=0)
-                    parts = [(self.rec_path(p["rec"]), p["start"], p["end"]) for p in t["parts"]]
-                    media.cut(parts, lean, st.get("af"), on_progress=progress("cut"), cq=int(cfg.get("cut_crf") or 18))
+                    parts = [(self.rec_path(p["rec"]), p["start"], p["end"]) for p in padded]
+                    media.cut(parts, lean, st.get("af"), on_progress=progress("cut"), cq=int(cfg.get("cut_crf") or 18),
+                              crop=crop)
                     info = media.probe(lean)
+                    core = sum(p["end"] - p["start"] for p in t["parts"])
                     with self.lock:
-                        t["stereo"], t["probe"] = st, info
+                        t["stereo"], t["probe"], t["zoom"] = st, info, {"crop": crop, "note": zoom_note}
+                        # where the judged talk sits in the clip, for trimming the extra footage by hand in Descript
+                        t["in_clip"] = {"start": round(before, 1), "end": round(before + core, 1), "before": round(before, 1),
+                                        "after": round(after, 1)}
                         t["resolution"] = media.pick_resolution(info["width"], info["height"], cfg["max_resolution"])
-                    self.set(key, "cut", "done", note="%s, %s" % (segment.stamp(info["duration"]), st["note"]),
-                             sig=t["cut_sig"])
+                    self.set(key, "cut", "done", sig=t["cut_sig"], note="%s; the talk runs %s-%s in the clip; %s%s" % (
+                        segment.stamp(info["duration"]), segment.stamp(before), segment.stamp(before + core), st["note"],
+                        "; " + zoom_note if crop else ""))
             d = Descript()
             pname = cfg["project_name"].format(event=self.ev["title"])
+            redos = len(t.get("redone") or [])
+            comp_name = key if not redos else "%s (redo %d)" % (key, redos + 1)   # a redo never hides the old version
             # credit guard 1: a composition with this name already in the Descript project -> reuse it
             if not done("upload"):
                 with self.plock:
@@ -524,27 +591,27 @@ class Run:
                     bad = set(t.get("broken_compositions") or [])
                     existing = {c["name"]: c for c in d.project(self.state["project_id"]).get("compositions", [])
                                 if c["id"] not in bad and (c.get("duration") or 0) >= MIN_TALK_SECONDS}
-                    if key in existing:
-                        t["composition_id"] = existing[key]["id"]
+                    if comp_name in existing:
+                        t["composition_id"], t["composition_name"] = existing[comp_name]["id"], comp_name
                         self.set(key, "upload", "done", note="already in Descript, reused")
             if not done("upload"):
                 self.set(key, "upload", "running", label="uploading %.0f MB" % (os.path.getsize(lean) / 1e6), percent=0)
                 with self.plock:
                     created = False
                     if not self.state["project_id"]:
-                        pid, cid, _ = d.import_file(lean, key, project_name=pname, on_progress=progress("upload"))
+                        pid, cid, _ = d.import_file(lean, comp_name, project_name=pname, on_progress=progress("upload"))
                         self.state["project_id"], created = pid, True
                         self.save()
                 if not created:
                     again = len(t.get("broken_compositions") or [])
-                    pid, cid, _ = d.import_file(lean, key, project_id=self.state["project_id"], on_progress=progress("upload"),
-                                                media_name=key if not again else "%s (upload %d)" % (key, again + 1))
+                    pid, cid, _ = d.import_file(lean, comp_name, project_id=self.state["project_id"], on_progress=progress("upload"),
+                                                media_name=comp_name if not again else "%s (upload %d)" % (comp_name, again + 1))
                 comp = next((c for c in d.project(self.state["project_id"]).get("compositions", []) if c["id"] == cid), {})
                 if (comp.get("duration") or 0) < MIN_TALK_SECONDS:
                     t.setdefault("broken_compositions", []).append(cid)
                     raise RuntimeError("Descript got no usable video from the upload (%.0f s)" % (comp.get("duration") or 0))
-                t["composition_id"] = cid
-                self.set(key, "upload", "done")
+                t["composition_id"], t["composition_name"] = cid, comp_name
+                self.set(key, "upload", "done", note=comp_name if comp_name != key else None)
             pid, cid = self.state["project_id"], t["composition_id"]
             # credit guard 2: never pay for the same edit twice (the ledger, or a composition already shorter)
             if not done("edit"):
@@ -563,7 +630,7 @@ class Run:
                         t["current"] = "edit"                # the error belongs to the edit, not the finished upload
                     raise RuntimeError("edits paused: " + self.state["edits_paused"])
                 self.set(key, "edit", "running")
-                j = d.edit(pid, cid, cfg["edit_prompt"].format(composition=key, **cfg), on_progress=progress("edit"))
+                j = d.edit(pid, cid, cfg["edit_prompt"].format(composition=comp_name, **cfg), on_progress=progress("edit"))
                 credits = float(j["result"].get("ai_credits_used") or 0)
                 self.record_edit(cid, key, credits)
                 report = str(j["result"].get("agent_response") or "")
@@ -670,7 +737,7 @@ class Run:
         self.set(key, "chapters", "running", label="Descript is writing chapters")
         who = youtube.speakers_of(talk) if talk else key
         room = youtube.budget(self.ev, self.cfg, who)
-        text, res = d.chapters(self.state["project_id"], t["composition_id"], key,
+        text, res = d.chapters(self.state["project_id"], t["composition_id"], t.get("composition_name") or key,
                                on_progress=lambda label, percent=None: self.set(key, "chapters", "running",
                                                                                 label=label, percent=percent),
                                title=talk["title"] if talk and len(talk["title"]) > room else None, title_room=room)
@@ -778,7 +845,11 @@ class Run:
         bad = [p for p in segment.validate(self, self.cuts()) if p.startswith("ERROR")]
         if bad:
             raise SystemExit("cuts.json has errors - fix them first: " + "; ".join(bad))
+        self.sync_talks()
+        redone = self.apply_redo_requests()
         keys = [k for k in self.sync_talks() if not self.state["talks"][k].get("finished") and (not only or k in only)]
+        if redone:
+            self.note("redo: %s - cut again and uploaded as a fresh composition" % ", ".join(redone))
         if keys:
             self.ensure_space("cutting and exporting %d talk(s)" % len(keys))
         if not keys:

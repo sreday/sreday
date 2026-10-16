@@ -96,7 +96,7 @@ pre.log { font-size:12px; max-height:220px; overflow:auto; margin:0; white-space
   </section>
 
   <section>
-    <h2>3. Talks in Descript - gate 2 <span class="hint">after the edit (Studio Sound, fillers, gaps) look at each talk in Descript, tick Reviewed, then Run again to export</span>
+    <h2>3. Talks in Descript - gate 2 <span class="hint">after the edit (Studio Sound, fillers, gaps) look at each talk in Descript, trim the extra footage, tick Reviewed, then Run again to export. Something wrong with a talk? Fix its cut above if needed, flag it for a redo, press Run: it is cut again and uploaded as a fresh composition.</span>
       <a id="dlink" target="_blank"></a></h2>
     <table id="talks"></table>
   </section>
@@ -300,15 +300,27 @@ function drawTalks() {
   const talks = P.state.talks || {}, keys = Object.keys(talks).sort((a, b) => a.localeCompare(b));
   $('dlink').textContent = P.descript_url ? 'open the Descript project' : ''; $('dlink').href = P.descript_url || '#';
   if (!keys.length) { $('talks').innerHTML = '<tr><td class="mute">No talks yet - approve cuts, save, then Run.</td></tr>'; return; }
-  $('talks').innerHTML = '<tr><th>talk</th><th>steps</th><th>reviewed</th><th>now / result</th><th></th></tr>' + keys.map(k => {
+  $('talks').innerHTML = '<tr><th>talk</th><th>steps</th><th>reviewed</th><th>now / result</th><th>redo</th></tr>' + keys.map(k => {
     const t = talks[k], edited = (t.steps.edit || {}).status === 'done', rv = P.reviews[k], qa = t.steps.qa || {}, cur = t.current ? (t.steps[t.current] || {}) : null;
     const info = t.error ? `<span class="bad">${esc(t.error)}</span>` : t.finished ? `<span class="ok">finished</span> ${qa.minutes_after || ''} min, ${qa.lufs ?? ''} LUFS ${(qa.flags || []).map(f => `<span class="warn">${esc(f)}</span>`).join(' ')}`
       : cur ? esc(cur.label || t.current) : '';
     return `<tr><td>${esc(k)}<div class="mute">${esc(t.title)}</div></td><td>${chips(t.steps, P.steps)}</td>
       <td><label><input type="checkbox" ${rv ? 'checked' : ''} ${edited ? '' : 'disabled'} onchange="review('${esc(k)}', this.checked)"> ${rv ? esc(rv.slice(5, 16).replace('T', ' ')) : edited ? 'look at it in Descript' : ''}</label></td>
-      <td>${info}${t.stereo && t.stereo.fix ? `<div class="mute">sound: ${esc(t.stereo.note)}</div>` : ''}${t.retry ? `<div class="warn">${esc(t.retry)}</div>` : ''}</td>
-      <td>${t.error ? `<button class="small" onclick="job('retry','${esc(k)}')">retry</button>` : ''}</td></tr>`;
+      <td>${info}${t.in_clip ? `<div class="mute">talk runs ${st(t.in_clip.start)} → ${st(t.in_clip.end)} in the clip - trim the extra ${Math.round(t.in_clip.before)} s before / ${Math.round(t.in_clip.after)} s after in Descript</div>` : ''}${t.composition_name && t.composition_name !== k ? `<div class="mute">in Descript as "${esc(t.composition_name)}"</div>` : ''}${(t.zoom || {}).crop ? `<div class="mute">${esc(t.zoom.note)}</div>` : ''}${t.stereo && t.stereo.fix ? `<div class="mute">sound: ${esc(t.stereo.note)}</div>` : ''}${t.retry ? `<div class="warn">${esc(t.retry)}</div>` : ''}</td>
+      <td>${t.error ? `<button class="small" onclick="job('retry','${esc(k)}')">retry</button>` : ''}
+        ${redoReq(k, t)}</td></tr>`;
   }).join('');
+}
+function redoReq(k, t) {
+  const r = (P.redo || {})[k];
+  if (r && t.redo_handled !== r.at) return `<div class="warn">redo flagged: ${esc(r.why)}</div><div class="mute">press Run</div><button class="small" onclick="redo('${esc(k)}', false)">cancel</button>`;
+  const id = 'why-' + btoa(unescape(encodeURIComponent(k))).replace(/=/g, '');
+  return `<input id="${id}" placeholder="what's wrong?" style="width:150px;font-size:12px"> <button class="small" onclick="redo('${esc(k)}', true, '${id}')">flag for redo</button>`;
+}
+async function redo(k, on, id) {
+  const why = id ? $(id).value.trim() : '';
+  if (on && !why) { say('say what is wrong first - it goes into the log'); return; }
+  const r = await api('/api/redo', {e: E, key: k, on, why}); say(r.msg); refresh();
 }
 async function review(k, on) { await api('/api/reviewed', {e: E, key: k, on}); refresh(); }
 async function job(name, key) { if (dirty && name !== 'retry' && !confirm('Your cut changes are not saved - start anyway?')) return;
