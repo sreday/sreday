@@ -6,6 +6,7 @@ on:
     paths-ignore:   # notes that are not part of the site do not deploy
       - '**/README.md'
       - '.claude/**'
+      - 'live-factory/**'   # the LIVE talk factory is a local tool, not part of the site
   schedule:
     - cron: '5 4 * * *'   # daily ~5AM UK (04:05 UTC) so /status/ is fresh before work
   workflow_dispatch:
