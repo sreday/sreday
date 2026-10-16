@@ -1,0 +1,301 @@
+"""The local LIVE talk factory app: http://localhost:8043 (start it with run.sh / run.cmd).
+
+Per event: add recordings, watch the analysis, check and approve the cuts against the recording itself (gate 1),
+start the Descript runs, tick talks Reviewed after looking at them in Descript (gate 2), open the outputs.
+Every long job (analyse, run) is its own background process, so closing the browser never stops it; one job per
+event at a time, because a job owns the event's state.json while it runs. The dashboard itself only writes
+cuts.json and reviews.json.
+"""
+import datetime
+import html
+import json
+import os
+import re
+import subprocess
+import sys
+import webbrowser
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from urllib.parse import parse_qs, urlparse
+
+import yaml
+
+from . import events, machine, media, pipeline, segment
+
+PORT = 8043                      # the Conf42 factory has 8042
+PY = sys.executable
+HERE = pipeline.HERE
+PAGE_FILE = os.path.join(os.path.dirname(__file__), "dashboard.html")
+
+
+def work_root():
+    return machine.work_root(pipeline.settings())
+
+
+def state_of(event_id):
+    p = os.path.join(work_root(), event_id, "state.json")
+    if not os.path.exists(p):
+        return None
+    with open(p, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def event_list():
+    """Events with a work folder first, then every brand's events from a year ago on (newest first)."""
+    cfg, root = pipeline.settings(), work_root()
+    year_ago = str(datetime.date.today().replace(year=datetime.date.today().year - 1))
+    out = []
+    for eid, path in events.all_events(cfg):
+        started = os.path.exists(os.path.join(root, eid, "state.json"))
+        folder = os.path.basename(path)
+        if started or folder[:4] >= year_ago[:4]:
+            out.append({"id": eid, "started": started, "folder": folder})
+    return sorted(out, key=lambda x: (not x["started"], x["folder"][:7] > str(datetime.date.today())[:7],
+                                      x["folder"][:4], x["id"]), reverse=False)
+
+
+def runner(event_id):
+    """The background job working on this event, if one is alive (it saves a heartbeat every 30 s)."""
+    st = state_of(event_id) or {}
+    r = st.get("runner") or {}
+    try:
+        age = (datetime.datetime.now() - datetime.datetime.fromisoformat(r.get("at"))).total_seconds()
+    except (TypeError, ValueError):
+        return None
+    if not r.get("pid") or age > 120:
+        return None
+    try:
+        os.kill(r["pid"], 0)
+    except (OSError, SystemError):
+        return None
+    except Exception:
+        pass
+    return {"pid": r["pid"], "job": st.get("job") or "", "since": st.get("run_started") or r.get("at")}
+
+
+def spawn(args, event_id):
+    os.makedirs(os.path.join(work_root(), event_id), exist_ok=True)
+    log = open(os.path.join(work_root(), event_id, "run.log"), "a", encoding="utf-8")
+    log.write("\n==== %s  %s\n" % (datetime.datetime.now().isoformat(timespec="seconds"), " ".join(args)))
+    log.flush()
+    extra = {"creationflags": 0x00000008 | 0x00000200} if os.name == "nt" else {"start_new_session": True}
+    subprocess.Popen([PY, "-m", "live_factory"] + args, cwd=HERE, stdout=log, stderr=subprocess.STDOUT,
+                     env={**os.environ, "PYTHONUTF8": "1"}, **extra)
+
+
+_levels_cache, _annot_cache = {}, {}
+
+
+def levels_of(run, rid):
+    """levels.json, cached by modification time (the cut list asks for it on every refresh)."""
+    path = os.path.join(run.rec_dir(rid), "levels.json")
+    try:
+        mt = os.path.getmtime(path)
+    except OSError:
+        return None
+    hit = _levels_cache.get(path)
+    if not hit or hit[0] != mt:
+        with open(path, encoding="utf-8") as f:
+            hit = _levels_cache[path] = (mt, json.load(f))
+    return hit[1]
+
+
+def event_payload(event_id):
+    run = pipeline.Run(event_id)
+    sch = events.schedule(run.ev)
+    data = run.cuts()
+    problems = segment.validate(run, data)
+    key = (run.cuts_path, json.dumps(data, sort_keys=True), os.path.getmtime(run.state_path) if os.path.exists(run.state_path) else 0)
+    if _annot_cache.get("key") != key:               # assess() reads the transcripts: only when something changed
+        _annot_cache.update(key=key, data=segment.annotate(run, json.loads(json.dumps(data))))
+    data = json.loads(json.dumps(_annot_cache["data"]))
+    from . import stereo
+    for c in data["cuts"]:
+        verdict = None
+        for p in c["parts"]:
+            lv = levels_of(run, p["rec"])
+            if lv:
+                v = stereo.check(lv, p["start"], p["end"], run.cfg)
+                if verdict is None or (v["fix"] and not verdict["fix"]):
+                    verdict = v
+        c["stereo"] = verdict
+    descript = ("https://web.descript.com/" + run.state["project_id"]) if run.state.get("project_id") else ""
+    free = None
+    try:
+        import shutil
+        free = round(shutil.disk_usage(run.dir).free / 1e9, 1)
+    except OSError:
+        pass
+    return {"event": run.ev, "state": run.state, "disk": {"free_gb": free, "need_gb": round(run.space_needed() / 1e9, 1)}, "summary": pipeline.summary(run.state), "cuts": data,
+            "problems": problems, "reviews": run.reviews(), "runner": runner(event_id), "descript_url": descript,
+            "schedule": {k: {"day": v["day"], "room": v["room"], "date": v["date"], "items": v["items"]}
+                         for k, v in sch.items()},
+            "talks": [{"key": t["key"], "title": t["title"], "track": t["track"], "kind": t["kind"]} for t in events.talks(run.ev)],
+            "steps": pipeline.STEPS, "rec_steps": pipeline.REC_STEPS,
+            "log": (run.state.get("log") or [])[-40:]}
+
+
+class Handler(BaseHTTPRequestHandler):
+    def log_message(self, *a):
+        pass
+
+    def send(self, code, body, ctype="application/json"):
+        b = body if isinstance(body, bytes) else body.encode("utf-8") if isinstance(body, str) else json.dumps(body).encode("utf-8")
+        self.send_response(code)
+        self.send_header("Content-Type", ctype + ("; charset=utf-8" if ctype.startswith(("text", "application/json")) else ""))
+        self.send_header("Content-Length", str(len(b)))
+        self.send_header("Cache-Control", "no-store")
+        self.end_headers()
+        self.wfile.write(b)
+
+    def send_file(self, path, ctype):
+        """A file with HTTP range support, so the browser's <video> can seek in an 8 h recording."""
+        size = os.path.getsize(path)
+        rng = re.match(r"bytes=(\d*)-(\d*)", self.headers.get("Range") or "")
+        start, end = 0, size - 1
+        if rng:
+            if rng.group(1):
+                start = int(rng.group(1))
+                end = int(rng.group(2)) if rng.group(2) else size - 1
+            else:
+                start = size - int(rng.group(2))
+        end = min(end, size - 1)
+        self.send_response(206 if rng else 200)
+        self.send_header("Content-Type", ctype)
+        self.send_header("Accept-Ranges", "bytes")
+        self.send_header("Content-Length", str(end - start + 1))
+        if rng:
+            self.send_header("Content-Range", "bytes %d-%d/%d" % (start, end, size))
+        self.end_headers()
+        with open(path, "rb") as f:
+            f.seek(start)
+            left = end - start + 1
+            try:
+                while left > 0:
+                    chunk = f.read(min(1 << 20, left))
+                    if not chunk:
+                        break
+                    self.wfile.write(chunk)
+                    left -= len(chunk)
+            except (BrokenPipeError, ConnectionResetError):
+                pass                                   # the player jumped elsewhere
+
+    def do_GET(self):
+        u = urlparse(self.path)
+        q = {k: v[0] for k, v in parse_qs(u.query).items()}
+        e = q.get("e", "")
+        try:
+            if u.path == "/":
+                with open(PAGE_FILE, encoding="utf-8") as f:
+                    return self.send(200, f.read(), "text/html")
+            if u.path == "/api/events":
+                return self.send(200, event_list())
+            if u.path == "/api/event":
+                return self.send(200, event_payload(e))
+            if u.path == "/api/doctor":
+                return self.send(200, {"machine": machine.machine_name(pipeline.settings()),
+                                       "checks": machine.doctor(pipeline.settings(), check_descript=False)})
+            if u.path == "/api/levels":
+                run = pipeline.Run(e)
+                return self.send(200, levels_of(run, q["r"]) or {})
+            if u.path == "/api/transcript":
+                run = pipeline.Run(e)
+                from . import analyse
+                tj = analyse.load(run.rec_dir(q["r"]), "transcript.json") or {"segments": []}
+                a, b = float(q.get("a", 0)), float(q.get("b", 1e9))
+                return self.send(200, [s for s in tj["segments"] if s["end"] >= a and s["start"] <= b])
+            if u.path == "/media":
+                run = pipeline.Run(e)
+                path = run.media_for_browser(q["r"])
+                ext = os.path.splitext(path)[1].lower()
+                return self.send_file(path, "video/quicktime" if ext == ".mov" else "video/mp4")
+            if u.path == "/frame":
+                run = pipeline.Run(e)
+                sec = int(float(q["t"]))
+                path = os.path.join(run.rec_dir(q["r"]), "frames", "at_%d.jpg" % sec)
+                if not os.path.exists(path):
+                    os.makedirs(os.path.dirname(path), exist_ok=True)
+                    media.still_at(run.rec_path(q["r"]), sec, path, width=480)
+                with open(path, "rb") as f:
+                    return self.send(200, f.read(), "image/jpeg")
+            if u.path == "/api/settings":
+                with open(os.path.join(HERE, "settings.yml"), encoding="utf-8") as f:
+                    return self.send(200, {"yaml": f.read()})
+        except Exception as ex:
+            return self.send(500, {"msg": "error: %s" % ex})
+        self.send(404, {"msg": "not found"})
+
+    def do_POST(self):
+        n = int(self.headers.get("Content-Length") or 0)
+        body = json.loads(self.rfile.read(n) or b"{}")
+        e = body.get("e", "")
+        try:
+            busy = runner(e) if e else None
+            if self.path == "/api/cuts":
+                problems = pipeline.Run(e).save_cuts(body["data"])
+                return self.send(200, {"msg": "cuts saved" + (" - %d note(s)" % len(problems) if problems else ""),
+                                       "problems": problems})
+            if self.path == "/api/reviewed":
+                pipeline.Run(e).set_reviewed(body["key"], bool(body.get("on")))
+                return self.send(200, {"msg": ""})
+            if self.path == "/api/job":
+                job = body["job"]
+                if busy:
+                    return self.send(200, {"msg": "a job is already running on this event (pid %s) - wait for it, "
+                                                  "or stop it first" % busy["pid"]})
+                if job == "add":
+                    paths = [p.strip().strip('"').strip("'") for p in str(body.get("paths", "")).splitlines() if p.strip()]
+                    args = ["add", e] + paths
+                    if body.get("day"):
+                        args += ["--day", str(body["day"])]
+                    if body.get("track"):
+                        args += ["--track", str(body["track"])]
+                    if body.get("in_place"):
+                        args.append("--in-place")
+                    r = subprocess.run([PY, "-m", "live_factory"] + args, cwd=HERE, capture_output=True, text=True,
+                                       env={**os.environ, "PYTHONUTF8": "1"}, timeout=300)
+                    out = (r.stdout + r.stderr).strip().splitlines()
+                    return self.send(200, {"msg": out[-1] if out else "done"})
+                if job in ("analyse", "run", "draft", "brief", "youtube"):
+                    if job == "run" and not any(c.get("approved") for c in pipeline.Run(e).cuts()["cuts"]):
+                        return self.send(200, {"msg": "approve some cuts first"})
+                    spawn([job, e], e)
+                    return self.send(200, {"msg": "%s started" % job})
+                if job == "retry":
+                    spawn(["retry", e, body["key"]], e)
+                    return self.send(200, {"msg": "retrying " + body["key"]})
+                return self.send(200, {"msg": "unknown job"})
+            if self.path == "/api/open":
+                root = os.path.join(work_root(), e)
+                target = {"folder": root, "final": machine.final_folder(pipeline.settings()),
+                          "youtube": os.path.join(root, "YouTube items.txt"), "log": os.path.join(root, "run.log")
+                          }.get(body.get("what"), root)
+                if body.get("what") in ("youtube", "log") and not os.path.exists(target):
+                    return self.send(200, {"msg": "not there yet"})
+                machine.open_folder(target)
+                return self.send(200, {"msg": ""})
+            if self.path == "/api/settings":
+                yaml.safe_load(body["yaml"])
+                with open(os.path.join(HERE, "settings.yml"), "w", encoding="utf-8") as f:
+                    f.write(body["yaml"])
+                return self.send(200, {"msg": "settings saved - the next job uses them"})
+        except Exception as ex:
+            return self.send(200, {"msg": "error: %s" % html.escape(str(ex))})
+        self.send(404, {"msg": "not found"})
+
+
+def serve():
+    url = "http://localhost:%d" % PORT
+    import socket
+    probe = socket.socket()
+    probe.settimeout(1)
+    busy = probe.connect_ex(("127.0.0.1", PORT)) == 0
+    probe.close()
+    if busy:
+        print("the LIVE talk factory app is already running on " + url)
+        webbrowser.open(url)
+        return
+    ThreadingHTTPServer.allow_reuse_address = os.name != "nt"
+    srv = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
+    print("LIVE talk factory app on " + url)
+    webbrowser.open(url)
+    srv.serve_forever()

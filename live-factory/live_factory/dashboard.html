@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LIVE talk factory</title>
+<style>
+:root { --bg:#f6f6f4; --card:#fff; --ink:#1d1d1f; --mute:#6b6b70; --line:#e2e2e0; --accent:#d4380d; --ok:#2e7d32;
+        --warn:#b26a00; --bad:#c62828; --run:#1565c0; --wave:#9aa3ad; --waveR:#c0c6cc; --cut:rgba(212,56,13,.18); --cutOk:rgba(46,125,50,.22); }
+@media (prefers-color-scheme: dark) { :root { --bg:#141416; --card:#1d1d20; --ink:#ececee; --mute:#9a9aa2; --line:#2e2e33;
+        --wave:#5f6b78; --waveR:#48525c; --cut:rgba(255,112,67,.22); --cutOk:rgba(102,187,106,.25); } }
+* { box-sizing:border-box; }
+body { margin:0; font:14px/1.45 -apple-system, "Segoe UI", Roboto, sans-serif; background:var(--bg); color:var(--ink); }
+header { display:flex; gap:12px; align-items:center; flex-wrap:wrap; padding:12px 18px; background:var(--card); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:5; }
+header h1 { font-size:17px; margin:0 8px 0 0; } header h1 b { color:var(--accent); }
+main { padding:16px 18px 60px; max-width:1500px; margin:0 auto; }
+section { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:16px; }
+section h2 { font-size:15px; margin:0 0 10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+section h2 .hint { font-weight:400; color:var(--mute); font-size:13px; }
+button, select, input, textarea { font:inherit; color:inherit; }
+button { background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:4px 10px; cursor:pointer; }
+button:hover { border-color:var(--mute); } button.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+button.small { padding:1px 6px; font-size:12px; }
+select, input:not([type=checkbox]), textarea { background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:4px 6px; }
+table { border-collapse:collapse; width:100%; } th, td { text-align:left; padding:5px 6px; border-bottom:1px solid var(--line); vertical-align:top; }
+th { font-weight:600; color:var(--mute); font-size:12px; }
+.chip { display:inline-block; padding:0 6px; border-radius:9px; font-size:11px; margin:1px 2px 1px 0; border:1px solid var(--line); color:var(--mute); white-space:nowrap; }
+.chip.done { color:var(--ok); border-color:var(--ok); } .chip.running { color:var(--run); border-color:var(--run); }
+.chip.waiting { color:var(--warn); border-color:var(--warn); } .chip.failed { color:var(--bad); border-color:var(--bad); }
+.mute { color:var(--mute); } .bad { color:var(--bad); } .warn { color:var(--warn); } .ok { color:var(--ok); }
+#msg { color:var(--accent); font-weight:500; }
+.tabs { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px; } .tabs button.on { border-color:var(--accent); color:var(--accent); }
+.review { display:grid; grid-template-columns: minmax(320px, 520px) 1fr; gap:14px; align-items:start; }
+@media (max-width: 900px) { .review { grid-template-columns: 1fr; } }
+video { width:100%; background:#000; border-radius:8px; }
+.player { position:sticky; top:70px; }
+.tl { margin:6px 0 12px; } .tl .lbl { font-size:12px; color:var(--mute); display:flex; justify-content:space-between; }
+.tl canvas { width:100%; height:70px; display:block; cursor:crosshair; border:1px solid var(--line); border-radius:6px; }
+.time { width:78px; font-variant-numeric:tabular-nums; }
+.words { font-size:12px; color:var(--mute); max-width:640px; margin-top:4px; } .words b { color:var(--ink); }
+tr.approved td { background:rgba(46,125,50,.06); }
+tr.sel td { outline:1px solid var(--accent); outline-offset:-1px; }
+.problems { font-size:12px; margin:6px 0; } .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:6px 0; }
+pre.log { font-size:12px; max-height:220px; overflow:auto; margin:0; white-space:pre-wrap; color:var(--mute); }
+.legend { font-size:12px; color:var(--mute); }
+</style>
+</head>
+<body>
+<header>
+  <h1><b>LIVE</b> talk factory</h1>
+  <select id="ev"></select>
+  <span id="runner" class="mute"></span>
+  <button onclick="job('analyse')">Analyse recordings</button>
+  <button onclick="job('draft')">Draft cuts</button>
+  <button onclick="job('brief')">Brief for Claude</button>
+  <button class="primary" onclick="job('run')" title="Approved cuts are cut and go to Descript; talks ticked Reviewed are exported">Run (cut, Descript, export reviewed)</button>
+  <button onclick="openIt('youtube')">YouTube items</button>
+  <button onclick="openIt('folder')">Event folder</button>
+  <button onclick="openIt('final')">Final videos</button>
+  <span id="msg"></span>
+</header>
+<main>
+  <div id="space" style="display:none;background:var(--bad);color:#fff;padding:10px 14px;border-radius:8px;margin-bottom:14px;font-weight:600"></div>
+  <section>
+    <h2>1. Recordings <span class="hint">copied in from the card or disk, then analysed here (levels, Whisper transcript, stills) - free, no Descript</span></h2>
+    <div id="recs"></div>
+    <details style="margin-top:8px"><summary>Add recordings</summary>
+      <div class="row"><textarea id="paths" rows="2" cols="70" placeholder="/Volumes/CARD/DCIM/day1.mp4 (a file or a folder per line)"></textarea></div>
+      <div class="row">Day <select id="day"></select> Track <select id="track"></select>
+        <label><input type="checkbox" id="inplace"> read in place (don't copy - the disk stays plugged in)</label>
+        <button onclick="addRecs()">Add</button></div>
+    </details>
+  </section>
+
+  <section>
+    <h2>2. Cuts - gate 1 <span class="hint">check each start and end against the recording, then approve. Nothing goes to Descript before that.</span></h2>
+    <div class="tabs" id="tracks"></div>
+    <div class="review">
+      <div class="player"><video id="vid" controls preload="metadata"></video>
+        <div class="row mute" id="now">-</div>
+        <div class="legend">Waveform: left channel above the line, right below - a one-sided recording shows only one half.
+          Click it to jump there. Cuts are shaded (green = approved).</div>
+        <div id="sched" class="legend" style="margin-top:8px"></div>
+      </div>
+      <div>
+        <div id="timelines"></div>
+        <div class="row"><button onclick="addCut()">+ cut at the playhead</button>
+          <button onclick="approveAll(true)" title="flagged and low-confidence cuts are left for you to tick one by one">Approve all unflagged</button>
+          <button class="primary" onclick="saveCuts()">Save cuts</button>
+          <span id="dirty" class="warn"></span></div>
+        <div class="problems" id="problems"></div>
+        <table id="cuts"></table>
+        <div id="skipped" class="mute" style="margin-top:8px"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Talks in Descript - gate 2 <span class="hint">after the edit (Studio Sound, fillers, gaps) look at each talk in Descript, tick Reviewed, then Run again to export</span>
+      <a id="dlink" target="_blank"></a></h2>
+    <table id="talks"></table>
+  </section>
+
+  <section><h2>Log</h2><pre class="log" id="log"></pre></section>
+</main>
+<script>
+let E = localStorage.getItem('lf-event') || '', LASTCUTS = '', P = null, CUTS = null, dirty = false, TRACK = null, REC = null, LV = {};
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const st = s => { s = Math.max(0, Math.round(s)); return Math.floor(s/3600) + ':' + String(Math.floor(s%3600/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0'); };
+const parse = v => String(v).trim().split(':').reduce((a, x) => a * 60 + parseFloat(x || 0), 0);
+async function api(path, body) {
+  const r = await fetch(path, body ? {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)} : {});
+  return r.json();
+}
+function say(m) { $('msg').textContent = m || ''; if (m) setTimeout(() => { if ($('msg').textContent === m) $('msg').textContent = ''; }, 8000); }
+function markDirty(on = true) { dirty = on; $('dirty').textContent = on ? 'unsaved changes' : ''; }
+
+async function loadEvents() {
+  const list = await api('/api/events');
+  $('ev').innerHTML = list.map(x => `<option value="${x.id}">${x.started ? '● ' : ''}${x.id}</option>`).join('');
+  if (!E || !list.some(x => x.id === E)) E = (list[0] || {}).id || '';
+  $('ev').value = E;
+}
+$('ev').onchange = () => { if (dirty && !confirm('Drop the unsaved cut changes?')) { $('ev').value = E; return; }
+  E = $('ev').value; localStorage.setItem('lf-event', E); P = null; CUTS = null; LASTCUTS = ''; TRACK = null; REC = null; LV = {}; markDirty(false); refresh(); };
+
+async function refresh() {
+  if (!E) return;
+  const p = await api('/api/event?e=' + encodeURIComponent(E));
+  if (p.msg) { say(p.msg); return; }
+  const first = !P; P = p;
+  const cj = JSON.stringify([p.cuts, p.problems, Object.keys(p.state.recordings || {})]);
+  const cutsChanged = cj !== LASTCUTS;      // redraw the cut list only when it changed: open "words" and focus stay put
+  if (!dirty && cutsChanged) { CUTS = JSON.parse(JSON.stringify(p.cuts)); LASTCUTS = cj; }
+  const r = p.runner;
+  $('runner').innerHTML = r ? `<span class="chip running">${esc(r.job || 'job')} running since ${esc((r.since||'').slice(11,16))}</span>` : '';
+  drawRecs(); drawForm(); drawTracks(); if (!dirty && cutsChanged) drawCuts(); drawTalks();
+  $('log').textContent = (p.log || []).slice().reverse().join('\n');
+  const sw = p.state.space_warning, dk = p.disk || {};
+  $('space').style.display = sw ? 'block' : 'none';
+  $('space').textContent = sw ? '⚠ Not enough disk space (' + sw.at.slice(11, 16) + '): ' + sw.msg : '';
+  $('runner').innerHTML += dk.free_gb != null ? ` <span class="chip ${dk.need_gb + 10 > dk.free_gb ? 'failed' : ''}" title="what the rest of the job needs / free on the work disk">disk: needs ${dk.need_gb} GB, ${dk.free_gb} GB free</span>` : '';
+  if (first && REC) loadVideo(REC);
+}
+
+function chips(steps, order) {
+  return order.map(s => { const x = steps[s] || {}; const pct = x.status === 'running' && x.percent != null ? ' ' + x.percent + '%' : '';
+    return `<span class="chip ${x.status || ''}" title="${esc(x.label || x.note || x.error || '')}">${s}${pct}</span>`; }).join('');
+}
+function drawRecs() {
+  const recs = P.state.recordings || {};
+  const ids = Object.keys(recs).sort((a, b) => +a.slice(1) - +b.slice(1));
+  if (!ids.length) { $('recs').innerHTML = '<p class="mute">No recordings yet - add them below.</p>'; return; }
+  $('recs').innerHTML = '<table><tr><th>rec</th><th>file</th><th>day / track</th><th>length</th><th>steps</th><th>now</th></tr>' + ids.map(id => {
+    const r = recs[id], cur = r.current ? (r.steps[r.current] || {}) : null;
+    const lv = (r.steps.levels || {}), err = Object.values(r.steps).find(x => x.status === 'failed');
+    return `<tr><td>${id}</td><td>${esc(r.file)}${r.in_place ? ' <span class="warn" title="read where it is - no backup copy was made">(in place - the only copy!)</span>' : ''}</td>
+      <td>day ${r.day}, track ${esc(r.track)} <span class="mute">${esc(r.room)}</span></td>
+      <td>${r.probe ? st(r.probe.duration) : ''}</td>
+      <td>${chips(r.steps, P.rec_steps.filter(s => s !== 'copy' || !r.in_place))}</td>
+      <td class="${err ? 'bad' : 'mute'}">${esc(err ? err.error : cur ? (cur.label || r.current) : (lv.note || ''))}</td></tr>`;
+  }).join('') + '</table>';
+}
+function drawForm() {
+  const days = Math.max(...Object.values(P.schedule).map(v => v.day), 1);
+  if ($('day').options.length !== days) $('day').innerHTML = Array.from({length: days}, (_, i) => `<option>${i + 1}</option>`).join('');
+  const opts = '<option value="">(the only one that day)</option>' + Object.entries(P.schedule).map(([k, v]) => `<option value="${esc(k)}">${esc(k)} - day ${v.day}, ${esc(v.room)}</option>`).join('');
+  if ($('track').dataset.e !== E) { $('track').innerHTML = opts; $('track').dataset.e = E; }
+}
+async function addRecs() {
+  const r = await api('/api/job', {e: E, job: 'add', paths: $('paths').value, day: $('day').value, track: $('track').value, in_place: $('inplace').checked});
+  say(r.msg); if (!/error/i.test(r.msg)) $('paths').value = ''; refresh();
+}
+
+// ---- gate 1: cuts --------------------------------------------------------------------------------------------
+function recTracks() { const t = {}; for (const [id, r] of Object.entries(P.state.recordings || {})) (t[r.track] = t[r.track] || []).push(id); return t; }
+function drawTracks() {
+  const t = recTracks(), keys = Object.keys(t).sort();
+  if (!TRACK || !t[TRACK]) TRACK = keys[0] || null;
+  $('tracks').innerHTML = keys.map(k => `<button class="${k === TRACK ? 'on' : ''}" onclick="pickTrack('${esc(k)}')">Track ${esc(k)} - day ${P.schedule[k] ? P.schedule[k].day : '?'}, ${esc(P.schedule[k] ? P.schedule[k].room : '')} (${t[k].length} rec)</button>`).join('');
+  if (TRACK && (!REC || P.state.recordings[REC]?.track !== TRACK)) loadVideo(t[TRACK].sort((a, b) => +a.slice(1) - +b.slice(1))[0]);
+  const s = P.schedule[TRACK];
+  $('sched').innerHTML = s ? '<b>Planned running order</b><br>' + s.items.map(x => `${x.start} ${x.key ? esc(x.key) : '<i>' + esc(x.title) + '</i>'}`).join('<br>') : '';
+  drawTimelines();
+}
+function pickTrack(k) { TRACK = k; REC = null; drawTracks(); drawCuts(); }
+function loadVideo(rid) {
+  if (!rid) return; REC = rid;
+  const v = $('vid'), src = '/media?e=' + encodeURIComponent(E) + '&r=' + rid;
+  if (v.dataset.src !== src) { v.src = src; v.dataset.src = src; }
+}
+function seek(rid, t, play) { loadVideo(rid); const v = $('vid');
+  const go = () => { v.currentTime = t; if (play) v.play(); };
+  if (v.readyState >= 1) go(); else v.addEventListener('loadedmetadata', go, {once: true}); }
+$('vid').addEventListener('timeupdate', () => { $('now').textContent = (REC || '') + '  ' + st($('vid').currentTime); drawTimelines(true); });
+
+async function getLevels(rid) {
+  if (LV[rid] === undefined) { LV[rid] = null; const l = await api('/api/levels?e=' + encodeURIComponent(E) + '&r=' + rid); LV[rid] = l.left ? l : false; drawTimelines(); }
+  return LV[rid];
+}
+function drawTimelines(headOnly) {
+  const ids = (recTracks()[TRACK] || []).sort((a, b) => +a.slice(1) - +b.slice(1));
+  const box = $('timelines');
+  if (!headOnly || box.children.length !== ids.length) {
+    box.innerHTML = ids.map(id => `<div class="tl"><div class="lbl"><span>${id} - ${esc(P.state.recordings[id].file)}</span><span>${P.state.recordings[id].probe ? st(P.state.recordings[id].probe.duration) : ''}</span></div><canvas id="tl-${id}"></canvas></div>`).join('');
+    ids.forEach(id => { const c = $('tl-' + id); c.onclick = ev => { const d = (P.state.recordings[id].probe || {}).duration || 0;
+      const r = c.getBoundingClientRect(); seek(id, d * (ev.clientX - r.left) / r.width, false); }; getLevels(id); });
+  }
+  ids.forEach(id => paint(id));
+}
+function paint(id) {
+  const c = $('tl-' + id); if (!c) return;
+  const W = c.clientWidth, H = c.clientHeight, dpr = window.devicePixelRatio || 1;
+  if (c.width !== W * dpr) { c.width = W * dpr; c.height = H * dpr; }
+  const g = c.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, W, H);
+  const dur = (P.state.recordings[id].probe || {}).duration || 1, css = getComputedStyle(document.documentElement);
+  for (const cut of CUTS.cuts) for (const p of cut.parts) if (p.rec === id) {
+    g.fillStyle = css.getPropertyValue(cut.approved ? '--cutOk' : '--cut'); const x = W * p.start / dur, w = Math.max(2, W * (p.end - p.start) / dur);
+    g.fillRect(x, 0, w, H); g.fillStyle = css.getPropertyValue('--ink'); g.font = '11px sans-serif'; g.fillText(cut.key.slice(0, Math.max(3, w / 6.5)), x + 3, 12);
+  }
+  const lv = LV[id];
+  if (lv) { const n = lv.left.length, mid = H / 2, h = v => Math.max(0, (v + 60) / 60) * (mid - 2);
+    for (let x = 0; x < W; x++) { const a = Math.floor(n * x / W), b = Math.max(a + 1, Math.floor(n * (x + 1) / W));
+      let l = -90, r = -90; for (let i = a; i < b && i < n; i++) { if (lv.left[i] > l) l = lv.left[i]; if (lv.right[i] > r) r = lv.right[i]; }
+      g.fillStyle = css.getPropertyValue('--wave'); g.fillRect(x, mid - h(l), 1, h(l));
+      g.fillStyle = css.getPropertyValue('--waveR'); g.fillRect(x, mid, 1, h(r)); } }
+  if (REC === id) { const v = $('vid'); g.fillStyle = css.getPropertyValue('--accent'); g.fillRect(W * v.currentTime / dur, 0, 2, H); }
+}
+
+function trackCuts() { return CUTS.cuts.map((c, i) => [c, i]).filter(([c]) => c.parts.some(p => P.state.recordings[p.rec]?.track === TRACK) ||
+  (!c.parts.length && (P.talks.find(t => t.key === c.key) || {}).track === TRACK)); }
+function drawCuts() {
+  if (!P || !CUTS) return;
+  const recs = (recTracks()[TRACK] || []), talks = P.talks;
+  const opt = (sel) => talks.map(t => `<option ${t.key === sel ? 'selected' : ''} value="${esc(t.key)}">${esc(t.key)}</option>`).join('');
+  $('problems').innerHTML = (P.problems || []).map(p => `<div class="${p.startsWith('ERROR') ? 'bad' : 'warn'}">${esc(p)}</div>`).join('');
+  $('cuts').innerHTML = '<tr><th>✓</th><th>talk</th><th>parts (recording, start - end)</th><th>length</th><th>sound</th><th>why</th><th></th></tr>' +
+    trackCuts().map(([c, i]) => {
+      const len = c.parts.reduce((a, p) => a + p.end - p.start, 0), sx = c.stereo;
+      const parts = c.parts.map((p, j) => `<div class="row">
+        <select onchange="setPart(${i},${j},'rec',this.value)">${recs.map(r => `<option ${r === p.rec ? 'selected' : ''}>${r}</option>`).join('')}</select>
+        <button class="small" onclick="nudge(${i},${j},'start',-5)">-5</button><button class="small" onclick="nudge(${i},${j},'start',-1)">-1</button>
+        <input class="time" value="${st(p.start)}" onchange="setPart(${i},${j},'start',parse(this.value))">
+        <button class="small" onclick="nudge(${i},${j},'start',1)">+1</button><button class="small" onclick="nudge(${i},${j},'start',5)">+5</button>
+        <button class="small" title="start = playhead" onclick="toHead(${i},${j},'start')">⇤</button>
+        <button class="small" title="play from the start" onclick="seek('${p.rec}',${p.start},true)">▶ start</button>
+        &nbsp;-&nbsp;
+        <button class="small" onclick="nudge(${i},${j},'end',-5)">-5</button><button class="small" onclick="nudge(${i},${j},'end',-1)">-1</button>
+        <input class="time" value="${st(p.end)}" onchange="setPart(${i},${j},'end',parse(this.value))">
+        <button class="small" onclick="nudge(${i},${j},'end',1)">+1</button><button class="small" onclick="nudge(${i},${j},'end',5)">+5</button>
+        <button class="small" title="end = playhead" onclick="toHead(${i},${j},'end')">⇥</button>
+        <button class="small" title="play the last 15 seconds" onclick="seek('${p.rec}',${Math.max(0, p.end - 15)},true)">▶ end</button>
+        <button class="small" onclick="words(${i},${j})">words</button>
+        ${c.parts.length > 1 ? `<button class="small" onclick="dropPart(${i},${j})">✕</button>` : ''}</div>
+        <div class="words" id="w-${i}-${j}"></div>`).join('') + `<button class="small" onclick="addPart(${i})" title="the talk goes on in the next recording">+ part</button>`;
+      return `<tr class="${c.approved ? 'approved' : ''}"><td><input type="checkbox" ${c.approved ? 'checked' : ''} onchange="CUTS.cuts[${i}].approved=this.checked;CUTS.cuts[${i}].by='marek';markDirty();paintAll()"></td>
+        <td><select onchange="CUTS.cuts[${i}].key=this.value;markDirty()">${opt(c.key)}</select><div class="mute">${esc((talks.find(t => t.key === c.key) || {}).title || '')}</div></td>
+        <td>${parts}</td><td>${(len / 60).toFixed(1)} min</td>
+        <td class="${sx && sx.fix ? 'warn' : 'mute'}">${sx ? esc(sx.fix ? 'one-sided: ' + sx.fix + ' copied to both' : 'stereo ok') : ''}<div class="mute">${sx && sx.left_db != null ? 'L ' + sx.left_db + ' / R ' + sx.right_db + ' dB' : ''}</div></td>
+        <td><span class="${c.confidence === 'low' ? 'bad' : c.confidence === 'medium' ? 'warn' : 'ok'}">${esc(c.confidence)}</span> <span class="mute">${esc(c.by)}</span><div class="mute">${esc(c.reason)}</div>
+          ${(c.flags || []).map(f => `<div class="bad">⚑ ${esc(f)}</div>`).join('')}${(c.notes || []).map(n => `<div class="mute">· ${esc(n)}</div>`).join('')}</td>
+        <td><button class="small" onclick="if(confirm('Remove this cut?')){CUTS.cuts.splice(${i},1);markDirty();drawCuts();paintAll()}">✕</button></td></tr>`;
+    }).join('');
+  const miss = (P.cuts.missing || []);
+  $('skipped').innerHTML = ((CUTS.skipped || []).length ? '<div class="bad"><b>⚑ Not cut - not recorded properly, or a no-show?</b></div>' +
+      CUTS.skipped.map(s => `<div class="bad">${esc(s.key)}: <span class="mute">${esc(s.why)}</span></div>`).join('') : '') +
+    (miss.length ? '<div class="bad" style="margin-top:6px"><b>⚑ In the lineup but neither cut nor skipped:</b> ' + miss.map(esc).join(', ') + '</div>' : '');
+}
+function paintAll() { (recTracks()[TRACK] || []).forEach(paint); }
+function setPart(i, j, k, v) { CUTS.cuts[i].parts[j][k] = v; CUTS.cuts[i].by = 'marek'; markDirty(); drawCuts(); paintAll(); }
+function nudge(i, j, k, d) { const p = CUTS.cuts[i].parts[j]; setPart(i, j, k, Math.max(0, p[k] + d)); if (k === 'start') seek(p.rec, p.start, true); else seek(p.rec, Math.max(0, p.end - 8), true); }
+function toHead(i, j, k) { if (REC !== CUTS.cuts[i].parts[j].rec) { say('the player shows ' + REC + ', this part is in ' + CUTS.cuts[i].parts[j].rec); return; } setPart(i, j, k, Math.round($('vid').currentTime * 10) / 10); }
+function addPart(i) { const recs = (recTracks()[TRACK] || []).sort((a, b) => +a.slice(1) - +b.slice(1)); const last = CUTS.cuts[i].parts.slice(-1)[0];
+  const next = recs[recs.indexOf(last.rec) + 1] || last.rec; CUTS.cuts[i].parts.push({rec: next, start: 0, end: 60}); markDirty(); drawCuts(); paintAll(); }
+function dropPart(i, j) { CUTS.cuts[i].parts.splice(j, 1); markDirty(); drawCuts(); paintAll(); }
+function addCut() { if (!REC) return say('no recording on this track yet'); const t = $('vid').currentTime || 0;
+  const used = new Set(CUTS.cuts.map(c => c.key)), sched = (P.schedule[TRACK] || {items: []}).items.filter(x => x.key && !used.has(x.key));
+  CUTS.cuts.push({key: (sched[0] || P.talks[0]).key, parts: [{rec: REC, start: Math.round(t), end: Math.round(t + 1800)}], confidence: 'medium', reason: 'added by hand', by: 'marek', approved: false});
+  markDirty(); drawCuts(); paintAll(); }
+function approveAll(on) {
+  let held = 0;
+  trackCuts().forEach(([c]) => { if ((c.flags || []).length || c.confidence === 'low') { held++; return; } c.approved = on; c.by = 'marek'; });
+  if (held) say(held + ' flagged or low-confidence cut(s) left for you to check and tick one by one');
+  markDirty(); drawCuts(); paintAll(); }
+async function words(i, j) {
+  const p = CUTS.cuts[i].parts[j], q = (a, b) => api(`/api/transcript?e=${encodeURIComponent(E)}&r=${p.rec}&a=${a}&b=${b}`);
+  const [a, b] = await Promise.all([q(p.start - 30, p.start + 30), q(p.end - 30, p.end + 30)]);
+  const line = (s, mark) => `<div>${s.start < mark ? '' : '<b>'}[${st(s.start)}] ${esc(s.text)}${s.start < mark ? '' : '</b>'}</div>`;
+  $('w-' + i + '-' + j).innerHTML = '<div class="mute">around the start (bold = inside the cut):</div>' + a.map(s => line(s, p.start)).join('') +
+    '<div class="mute" style="margin-top:4px">around the end (bold = after the cut):</div>' + b.map(s => line(s, p.end)).join('');
+}
+async function saveCuts() {
+  const r = await api('/api/cuts', {e: E, data: CUTS}); say(r.msg);
+  if (!/^error/.test(r.msg)) { markDirty(false); LASTCUTS = ''; refresh(); }
+}
+
+// ---- gate 2: talks in Descript -------------------------------------------------------------------------------
+function drawTalks() {
+  const talks = P.state.talks || {}, keys = Object.keys(talks).sort((a, b) => a.localeCompare(b));
+  $('dlink').textContent = P.descript_url ? 'open the Descript project' : ''; $('dlink').href = P.descript_url || '#';
+  if (!keys.length) { $('talks').innerHTML = '<tr><td class="mute">No talks yet - approve cuts, save, then Run.</td></tr>'; return; }
+  $('talks').innerHTML = '<tr><th>talk</th><th>steps</th><th>reviewed</th><th>now / result</th><th></th></tr>' + keys.map(k => {
+    const t = talks[k], edited = (t.steps.edit || {}).status === 'done', rv = P.reviews[k], qa = t.steps.qa || {}, cur = t.current ? (t.steps[t.current] || {}) : null;
+    const info = t.error ? `<span class="bad">${esc(t.error)}</span>` : t.finished ? `<span class="ok">finished</span> ${qa.minutes_after || ''} min, ${qa.lufs ?? ''} LUFS ${(qa.flags || []).map(f => `<span class="warn">${esc(f)}</span>`).join(' ')}`
+      : cur ? esc(cur.label || t.current) : '';
+    return `<tr><td>${esc(k)}<div class="mute">${esc(t.title)}</div></td><td>${chips(t.steps, P.steps)}</td>
+      <td><label><input type="checkbox" ${rv ? 'checked' : ''} ${edited ? '' : 'disabled'} onchange="review('${esc(k)}', this.checked)"> ${rv ? esc(rv.slice(5, 16).replace('T', ' ')) : edited ? 'look at it in Descript' : ''}</label></td>
+      <td>${info}${t.stereo && t.stereo.fix ? `<div class="mute">sound: ${esc(t.stereo.note)}</div>` : ''}${t.retry ? `<div class="warn">${esc(t.retry)}</div>` : ''}</td>
+      <td>${t.error ? `<button class="small" onclick="job('retry','${esc(k)}')">retry</button>` : ''}</td></tr>`;
+  }).join('');
+}
+async function review(k, on) { await api('/api/reviewed', {e: E, key: k, on}); refresh(); }
+async function job(name, key) { if (dirty && name !== 'retry' && !confirm('Your cut changes are not saved - start anyway?')) return;
+  const r = await api('/api/job', {e: E, job: name, key}); say(r.msg); setTimeout(refresh, 800); }
+async function openIt(what) { const r = await api('/api/open', {e: E, what}); say(r.msg); }
+
+window.addEventListener('resize', () => drawTimelines());
+loadEvents().then(refresh);
+setInterval(() => { if (E) refresh(); }, 5000);
+</script>
+</body>
+</html>

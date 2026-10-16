@@ -1,0 +1,103 @@
+# LIVE talk factory settings - change anything here (or in the local app) and the next run uses it.
+# Per-machine overrides go in settings.local.yml next to this file (git-ignored).
+
+# Brands: the site repo of each brand, a sibling of this repo (~/Documents/GitHub/<repo> on the Mac, the same
+# folder on the PC). Name, city, domain and the YouTube channel come from each event's metadata.yml.
+brands:
+  sreday: {repo: website}
+  llmday: {repo: llmday}
+  platformday: {repo: platformday}
+  pec: {repo: 2026.promptengineering.rocks}
+  devopsnotdead: {repo: devopsnotdead}
+# github_root: D:/GitHub       # where the brand repos live; default: the folder holding this repo
+
+# Descript project that collects all talks of one event (one composition per talk).
+# {event} = "SREday London 2026 Q1" (brand, city, year, quarter).
+project_name: "{event}"
+
+# ---- 1. analyse (local, free) ---------------------------------------------------------------------------------
+# faster-whisper transcribes every recording once, so Claude can match it to the lineup. Only the timing and the
+# names matter here, not a perfect transcript: "auto" = large-v3 on an NVIDIA card, small on the CPU (Mac).
+whisper_model: auto
+whisper_language: en
+chunk_minutes: 30            # a recording is transcribed in pieces of this length (resumable, bounded memory)
+frame_every_seconds: 120     # a still frame every N seconds for the lineup match (keyframes only: fast)
+# The dashboard plays the recording itself when the browser can (H.264 in mp4/mov); anything else gets a 480p proxy.
+proxy: auto                  # auto | always | never
+
+# ---- 2. segment ------------------------------------------------------------------------------------------------
+min_gap_seconds: 20          # a pause in speech at least this long is a possible boundary (talk change, break)
+# Talks run 10-30 minutes (workshops longer): a cut far outside that is flagged.
+talk_min_minutes: 10
+talk_max_minutes: 30
+# The closing Q&A ("any questions?" ... someone at the back without a microphone) is cut off when it clearly is one: in
+# the last 40% of the talk, at most max_qa_minutes long, the speaker not carrying on after it. Doubt keeps it in.
+cut_qa: true
+max_qa_minutes: 10
+cut_lead_seconds: 2          # the cut starts this long before the first word (Descript's trim fine-tunes it later)
+cut_tail_seconds: 3          # ... and ends this long after the last one
+
+# ---- 3. one-sided stereo -------------------------------------------------------------------------------------
+# A channel this many dB below the other (in the talk's speech) counts as empty and gets the other channel's sound.
+stereo_gap_db: 25
+silent_channel_db: -60       # a channel below this RMS level is empty whatever the other one does
+
+# ---- 4. Descript ---------------------------------------------------------------------------------------------
+studio_sound_percent: 80
+volume_percent: 300          # Descript gain (3x) before the limiter
+gap_over_seconds: 2          # word gaps longer than this ...
+gap_to_seconds: 1            # ... are shortened to this
+max_edit_credits: 35         # an edit costing more pauses all further edits
+edit_prompt: >-
+  Work ONLY on the composition "{composition}" (the one this request is for).
+  Do not open, edit or apply settings to any other composition or clip in the project.
+  In "{composition}": apply Studio Sound at {studio_sound_percent}% intensity.
+  Add a limiter and increase the volume to {volume_percent}%.
+  Remove all filler words.
+  Shorten every word gap longer than {gap_over_seconds} seconds to {gap_to_seconds} second.
+  Do not change anything else.
+  When done, list exactly which settings you applied and their values.
+max_resolution: 1080p
+publish_access: unlisted
+
+# ---- output videos: lightweight MP4, best quality for the size --------------------------------------------------
+# The cut that goes to Descript stays close to the source (Descript encodes it again). The finished video is H.264 in
+# MP4 at constant quality (x264 CRF): a talk is mostly a still stage and slides, so it comes out a fraction of
+# Descript's export and looks the same. Lower CRF = better and bigger (18 near-lossless, 21 sharp, 23 x264's default);
+# slower preset = smaller at the same quality. If the result is ever bigger than Descript's export, the export's picture
+# is kept as it is.
+cut_crf: 18
+final_crf: 21
+final_preset: medium
+final_audio_kbps: 160
+
+# ---- disk space ------------------------------------------------------------------------------------------------
+# Before adding, analysing or running, the factory works out what the whole job still needs on the work disk (copies,
+# review copies, cuts, Descript's downloads, finished videos) and stops - with a desktop notification - if that plus
+# this reserve is more than is free.
+disk_reserve_gb: 10
+
+# ---- 5. export -----------------------------------------------------------------------------------------------
+trim_to_speech: true
+trim_lead_seconds: 0.3
+trim_tail_seconds: 1.0
+loudness_lufs: -14
+true_peak_db: -1.5
+qa_loudness_tolerance: 1.0
+qa_max_cut_percent: 25
+
+# YouTube items per event: "<title> | <Speakers> | SREday London 2026 Q1" (<= title_max characters) + the description, in
+# the channels' house style (read off 89 published SREday / LLMday talks, 2026-10-16). Values: {event} {date} {brand}
+# {brand_key} {www_url} {talk_url} {event_url} {site_url} {cfp_url} {channel_url}; a line with an empty value is left out.
+youtube:
+  title_max: 100
+  description:
+    - "{event} - {date}"
+    - "Grab your ticket for the next {brand}: {www_url}"
+    - "Upcoming {brand} CFPs: https://cfp.ninja/?q={brand_key}&status=open"
+
+# ---- places and pace -------------------------------------------------------------------------------------------
+work_folder: live-factory           # on the Desktop: <work_folder>/<brand>-<event>/
+final_folder: final videos for YouTube
+render_parallel: 2                  # cuts rendered at once
+parallel_talks: 2                   # talks going through Descript at once

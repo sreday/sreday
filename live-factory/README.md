@@ -1,0 +1,127 @@
+# LIVE talk factory
+
+Long live recordings in, one clean YouTube-ready video per talk out, for any brand (SREday, LLMday, PLATFORMday,
+PEC, DevOps Not Dead). Descript gets only the talks, never the breaks, MC chatter and silence, so its transcription
+credits and media hours go to the talks alone. This is the live-event sibling of the Conf42 factory
+(`conf42/factory/`), which handles pre-recorded talks.
+
+```
+SD card / disk ──add──> analyse (local, free) ──> cuts.json ──GATE 1──> cut + stereo fix ──> Descript edit
+                         levels, Whisper,           Claude matches        (you approve)                │
+                         stills, proxy              the lineup                                         ▼
+          YouTube items.txt <── loudness + trim <── srt, chapters <── publish <──GATE 2── you review in Descript
+```
+
+## Setup (once per machine)
+
+- Mac: `bash live-factory/setup.sh`
+- Windows: double-click `live-factory\setup.cmd` (on an NVIDIA PC it also installs Whisper's CUDA libraries)
+
+This creates `live-factory/env` (git-ignored) and installs faster-whisper. The Descript token is reused from the
+Conf42 factory if that machine has it. Then: `python -m live_factory doctor`.
+
+## A day of recordings
+
+Events are named `<brand>-<folder>`, e.g. `sreday-2026-london-q1` or `llmday-2026-london-q4`. Run the commands
+from `live-factory/` with `env/bin/python -m live_factory …` (Windows: `env\Scripts\python.exe -m live_factory …`),
+or use the app: `./run.sh` / `run.cmd` → http://localhost:8043.
+
+1. **Add.** `add sreday-2026-london-q1 /Volumes/CARD/DCIM --day 1 --track 2` copies the files in. `--track` is
+   the schedule track or the room name ("screen 2"); a day with one track needs only `--day`. Use `--in-place`
+   to read the files where they are. The source files are never changed.
+2. **Analyse.** `analyse sreday-2026-london-q1` runs once per recording and is resumable. It writes:
+   - per-second left/right levels;
+   - a Whisper transcript (small on the Mac CPU, about 10x real time; large-v3 on an NVIDIA card);
+   - stills;
+   - a 480p proxy, only when the browser can't play the file itself.
+3. **Match the lineup.** `draft` makes a first guess: it uses the MC's "please welcome …", pauses checked
+   against the real audio levels, and the running order with its delays carried forward. `brief` writes
+   `segment_brief_<track>.md` for Claude, who reads it, looks at frames
+   (`frame <event> r1 1:02:30`) and writes `cuts.json`. Ask Claude: "match the lineup for
+   sreday-2026-london-q1".
+4. **Gate 1, in the app.**
+   - Each track shows the recording with a waveform: left channel above the line, right below, so a one-sided
+     recording shows half a wave.
+   - Each cut has ±1/±5 s nudges, ▶ start / ▶ end, and the transcript around the boundaries.
+   - Approve the good cuts and save. Nothing goes to Descript before this.
+5. **Run.** Every approved cut is cut out with ffmpeg; a one-sided talk gets its live channel copied to both
+   sides. It is then uploaded to the event's Descript project and edited with Studio Sound 80%, a limiter, filler
+   words removed, and gaps over 2 s shortened to 1 s (`edit_prompt` in settings.yml). The run then stops.
+6. **Gate 2.** Watch each talk in Descript and tick Reviewed in the app (or
+   `review <event> "<speaker>"`). Then Run again: publish, download, SRT, chapters, loudness at -14 LUFS, trim to
+   the speech, and QA.
+7. **YouTube.** `<work folder>/<event>/YouTube items.txt` holds, per talk:
+   - the title (`<title> | <speakers> | SREday London 2026 Q1`, at most 100 characters);
+   - the description (talk page, event, upcoming events, CFP, chapters);
+   - the link to the thumbnail the website already draws (`/<event>/teasers/<speaker>.png`).
+
+   The finished videos are in `final videos for YouTube/`.
+
+## Rules it keeps
+
+- **The raw recordings are never touched.** Originals are only ever read. Each copy in `in/` is checked against
+  its original (size plus a sampled hash), then made read-only and kept for good as the backup. Every write and
+  delete in the code goes through a guard that refuses a raw file. `--in-place` makes no copy, and the app marks
+  those files "the only copy!".
+- **A wrong cut is worse than none.** A talk starts at the speaker's own "Hey, I'm Dan", or failing that, right
+  after the MC's introduction. It ends after their Q&A ("Thank you, any questions?" and the last answer), and
+  before anyone thanks them by name (that's the MC). Every cut is checked against what is said in it:
+  - the words in it, compared with every title and abstract (a cut that sounds like another talk is flagged as a
+    swapped slot);
+  - quiet or distorting sound, drop-outs, too few words, an unsure transcript, a blank picture;
+  - a length far from its slot.
+
+  Flagged and low-confidence cuts are never approved in bulk. Talks in the lineup that aren't found are listed as
+  "not recorded properly, or a no-show?".
+- **Disk space.** Before adding, analysing or running, the factory works out what the rest of the job needs (copies,
+  review copies, cuts, Descript's downloads, finished videos), keeping `disk_reserve_gb` spare. If that doesn't
+  fit, nothing starts: a desktop notification goes out and the app shows a red banner. A copy that fills the disk
+  midway is removed; the original is untouched.
+- **Lightweight MP4s.** The cut that goes to Descript stays close to the source (`cut_crf: 18`), because Descript
+  encodes it again. The finished video is H.264 at constant quality (`final_crf: 21`, `final_preset: medium`) with
+  160k AAC, usually a fraction of Descript's export at the same look. If it ever comes out bigger, the export's
+  picture is kept.
+
+## Learned from the published talks (2026-10-16)
+
+The sample: 89 talks on the SREday and LLMday channels, with transcripts read for six of them. The raw data (titles,
+descriptions with chapters, lengths) is in `research/youtube-sample.json`.
+
+- **Length.** SREday talks have a median of 19 min (10% shorter than 12.4 min, 10% longer than 24.5). LLMday talks
+  have a median of 22.6 min (10% longer than 32). Keynotes run 13-27 min. So `talk_min_minutes: 10` and
+  `talk_max_minutes: 30` hold, with flags below about 8 and above about 40.
+- **Openings.** "Okay, my name is Laya Anderson" (YouTube's spelling of Leila), "Awesome. So, as you all heard
+  earlier, I'm Stephen", "Hello everyone ... My name is Mailo" (Mykhailo), "My name is Jim Hershower". So a
+  self-introduction also matches by sound. Some speakers open with a mic check and set-up chat ("You can hear me?").
+- **Endings.** "So I think that is my time in my slides. Thank you all very much", or just the last point. Some
+  published cuts keep stray words after the end ("Yep." ... "Wait."); the factory drops those.
+- **Q&A.** About 28% of published videos still end with a Q&A, usually 1-5 min, at most about 12. Questions also
+  come mid-talk during demos ("while it's running, anyone have any questions"), and those stay. Some Q&As are never
+  announced ("Great question."), so they get a note and are left for a person to decide.
+- **YouTube house style.**
+  - Title: `<title> | <speakers> | SREday Austin 2026 Q2`, always with the quarter, at most 100 characters.
+  - Description: `<event> - <date>`, "Grab your ticket for the next SREday: https://www.sreday.com",
+    "Upcoming SREday CFPs: https://cfp.ninja/?q=sreday&status=open", then "Chapters".
+  - Chapters: 9-23 per video (median 13), written `00:00`. The first is "Welcome and Intro" / "Intro", the last
+    "Wrap Up" / "Key Takeaways".
+
+## Files
+
+| | |
+|---|---|
+| `settings.yml` | everything tunable; `settings.local.yml` (git-ignored) overrides it per machine |
+| `live_factory/events.py` | brands, events, talks.csv rules and the schedule, rebuilt as `_event_template/_build/generate.py` builds it; keep the two in step |
+| `live_factory/analyse.py` | the Whisper pass |
+| `live_factory/segment.py` | the brief, the draft, and cuts.json checks |
+| `live_factory/stereo.py` | one-sided stereo detection |
+| `live_factory/pipeline.py` | state, gates, the Descript steps (from the Conf42 factory, with its credit guards and ledger) |
+| `live_factory/descript.py`, `media.py`, `machine.py` | copies of the Conf42 factory's modules, adapted; fix bugs in both |
+| `live_factory/app.py`, `dashboard.html` | the local app |
+| `tests/smoke.py` | offline test on a synthetic day (`--no-whisper` works anywhere) |
+
+Work files live in `<Desktop>/live-factory/<event>/`:
+- `state.json`, which a running job owns;
+- `cuts.json` (gate 1) and `reviews.json` (gate 2), the only files the app writes;
+- `in/`, `rec/<id>/`, `cuts/`, `out/` and `srt/`.
+
+talks.csv is only ever read: it is a Drive export.
