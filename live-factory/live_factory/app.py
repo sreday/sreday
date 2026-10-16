@@ -279,6 +279,9 @@ class Handler(BaseHTTPRequestHandler):
                     spawn(["retry", e, body["key"]], e)
                     return self.send(200, {"msg": "retrying " + body["key"]})
                 return self.send(200, {"msg": "unknown job"})
+            if self.path == "/api/publish":
+                from . import publish
+                return self.send(200, {"msg": publish.publish()})
             if self.path == "/api/open":
                 root = os.path.join(work_root(), e)
                 target = {"folder": root, "final": machine.final_folder(pipeline.settings()),

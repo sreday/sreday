@@ -16,6 +16,7 @@ on:
       - 'live-factory/*.sh'
       - 'live-factory/*.cmd'
       - 'live-factory/.gitignore'
+      - 'live-factory/status.json'   # the factory pages read it live from GitHub - no rebuild needed
   schedule:
     - cron: '5 4 * * *'   # daily ~5AM UK (04:05 UTC) so /status/ is fresh before work
   workflow_dispatch:

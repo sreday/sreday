@@ -15,6 +15,7 @@
   python -m live_factory redo <event> "<talk>" [why]   flag a talk to be cut again and re-uploaded (a fresh
                                                        composition "<talk> (redo N)") on the next run
   python -m live_factory unpause <event>               clear "edits paused" after checking the talk in Descript
+  python -m live_factory publish                       update the Factory tab of sreday.com/factory now
   python -m live_factory youtube <event>               <event>/YouTube items.txt again
   python -m live_factory status <event>
   python -m live_factory serve                         the local app on http://localhost:8043
@@ -119,6 +120,10 @@ def main(argv):
     if cmd == "serve":
         from . import app
         app.serve()
+        return
+    if cmd == "publish":
+        from . import publish
+        print(publish.publish())
         return
     if len(argv) < 2:
         raise SystemExit(__doc__)

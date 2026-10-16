@@ -130,6 +130,19 @@ class Run:
                 with open(tmp, "w", encoding="utf-8") as f:
                     json.dump(self.state, f, indent=1, ensure_ascii=False)
                 os.replace(tmp, self.state_path)
+            self.publish(force=True)
+
+    def publish(self, force=False):
+        """Push this computer's progress to the Factory tab of sreday.com/factory (publish.py): at the end of every
+        job, and when a talk is ready for review or finished - then at most every status_publish_minutes."""
+        if not self.cfg.get("publish_status", True):
+            return
+        every = float(self.cfg.get("status_publish_minutes", 20)) * 60
+        if not force and time.time() - getattr(self, "_published", 0) < every:
+            return
+        self._published = time.time()
+        from . import publish
+        self.note("status page: %s" % publish.publish())
 
     def note(self, msg):
         with self.lock:
@@ -659,6 +672,7 @@ class Run:
                 if (t["steps"].get("review") or {}).get("status") != "waiting":
                     self.set(key, "review", "waiting", label="check it in Descript, then tick Reviewed")
                     self.note("%s is ready for review in Descript" % key)
+                    self.publish()
                 with self.lock:
                     t["current"] = "review"
                 return
@@ -720,6 +734,7 @@ class Run:
                 t["finished"] = now()
                 self.save()
             self.note("done: %s" % key)
+            self.publish()
         except Exception as ex:
             with self.lock:
                 t["error"] = "%s: %s" % (t.get("current") or "?", ex)
