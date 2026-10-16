@@ -6,7 +6,16 @@ on:
     paths-ignore:   # notes that are not part of the site do not deploy
       - '**/README.md'
       - '.claude/**'
-      - 'live-factory/**'   # the LIVE talk factory is a local tool, not part of the site
+      # the LIVE talk factory is a local tool, not part of the site - except its team manual, live-factory/MANUAL.md,
+      # which is the hidden page sreday.com/factory/ (home/_build/generate.py), so it is not ignored here
+      - 'live-factory/live_factory/**'
+      - 'live-factory/tests/**'
+      - 'live-factory/research/**'
+      - 'live-factory/*.yml'
+      - 'live-factory/*.txt'
+      - 'live-factory/*.sh'
+      - 'live-factory/*.cmd'
+      - 'live-factory/.gitignore'
   schedule:
     - cron: '5 4 * * *'   # daily ~5AM UK (04:05 UTC) so /status/ is fresh before work
   workflow_dispatch:

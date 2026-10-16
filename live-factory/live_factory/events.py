@@ -38,6 +38,8 @@ def brand_repo(cfg, brand):
     b = brands(cfg).get(brand)
     if not b:
         raise KeyError("unknown brand %r - the brands in settings.yml: %s" % (brand, ", ".join(sorted(brands(cfg)))))
+    if b["repo"] in (".", "this"):                    # the repo the factory lives in, whatever its folder is called
+        return REPO
     return os.path.join(github_root(cfg), b["repo"])
 
 
