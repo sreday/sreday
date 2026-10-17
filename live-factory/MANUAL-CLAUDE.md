@@ -1,4 +1,6 @@
-# LIVE talk factory - with Claude <span class="tag-good">Recommended!</span>
+# LIVE talk factory - with Claude
+
+<p class="tag-good">Recommended!</p>
 
 The same job as the **No Claude, manual** tab, but you talk to Claude and it runs the factory for you: it adds the recordings,
 analyses them, reads the whole day's transcript to find every talk, cuts them, sends them to Descript, exports and
