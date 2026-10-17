@@ -224,6 +224,8 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 
 ## Changelog
 
+- **2026-10-16** - New **With Claude** tab: run the factory by talking to Claude Code (the live-factory skill comes
+  with the sreday repo).
 - **2026-10-16** - The factory pages ask for the team password once per device (ask Mark).
 - **2026-10-16** - The page is on sreday.com, llmday.com and platformday.com (/factory), each with its own brand's
   events; the Factory tab updates live, every minute.
