@@ -1,5 +1,7 @@
 # LIVE talk factory - team manual
 
+<p class="tag-slow">Probably slower than manual editing for non-tech people...</p>
+
 Turns the long recordings of a live event (SREday, LLMday, PLATFORMday, PEC, DevOps Not Dead) into one clean,
 YouTube-ready video per talk. Descript only gets the talks themselves: the breaks, set-up chatter, lunch and Q&A
 never reach it, which saves about a third of its media hours.
