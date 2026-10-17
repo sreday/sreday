@@ -1,6 +1,6 @@
 # LIVE talk factory - with Claude
 
-The same job as the **Manual** tab, but you talk to Claude and it runs the factory for you: it adds the recordings,
+The same job as the **No Claude, manual** tab, but you talk to Claude and it runs the factory for you: it adds the recordings,
 analyses them, reads the whole day's transcript to find every talk, cuts them, sends them to Descript, exports and
 writes the YouTube texts. You only do the two checks a person has to do - approving the cuts and reviewing the talks
 in Descript - and the YouTube upload.
@@ -59,7 +59,7 @@ Replace the event and paths with yours. Events are named like `sreday-2026-londo
   is cut again and uploaded as a fresh composition "Thomas Cameron (redo 2)"; the old one stays in Descript.
 - *"Edits are paused - what happened?"* - Claude reads the edit reports and tells you what to check in Descript
   before it resumes.
-- *"Publish the status."* - updates the Factory tab of this page.
+- *"Publish the status."* - updates the Factory logs tab of this page.
 
 ## 4. What Claude won't do on its own
 
@@ -74,4 +74,5 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-10-16** - Tabs renamed and reordered: **Run with Claude** (first), **No Claude, manual**, **Factory logs**.
 - **2026-10-16** - First version, with the live-factory skill in the sreday repo.

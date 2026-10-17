@@ -11,7 +11,7 @@ recordings  →  analyse  →  find the talks  →  ✋ you check the cuts  → 
 Two steps are yours (✋). Nothing is uploaded before you approve the cuts, and nothing is exported before you've
 looked at each talk in Descript.
 
-> This is the **Manual** tab. The **Factory** tab shows what the factory has done, live: every computer that runs it
+> This is the **No Claude, manual** tab. The **Factory logs** tab shows what the factory has done, live: every computer that runs it
 > publishes its progress - at the end of every job, and during a run whenever a talk is ready for review or finished
 > (at most every 20 minutes) - and the tab checks for news every minute. **Publish status** in the workbench publishes
 > right away. The same page is on sreday.com/factory, llmday.com/factory and platformday.com/factory; each shows its
@@ -224,6 +224,7 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 
 ## Changelog
 
+- **2026-10-16** - Tabs renamed and reordered: **Run with Claude** (first), **No Claude, manual**, **Factory logs**.
 - **2026-10-16** - New **With Claude** tab: run the factory by talking to Claude Code (the live-factory skill comes
   with the sreday repo).
 - **2026-10-16** - The factory pages ask for the team password once per device (ask Mark).

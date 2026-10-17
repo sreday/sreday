@@ -42,7 +42,7 @@ you need before changing anything.
 8. **YouTube items**: `youtube <event>` → `<work folder>/<event>/YouTube items.txt`. Uploading to YouTube is the person's.
 
 Other commands: `status <event>`, `retry <event> "<talk>"`, `redo <event> "<talk>" "why"` (cut again + fresh
-Descript composition "<talk> (redo N)" on the next run), `unpause <event>`, `publish` (Factory tab of the website),
+Descript composition "<talk> (redo N)" on the next run), `unpause <event>`, `publish` (Factory logs tab of the website),
 `frame <event> r1 h:mm:ss` (one still - look at it with Read), `draft`, `brief`.
 
 ## Matching the lineup (step 3) - be careful, a wrong cut is worse than none
@@ -74,6 +74,6 @@ Descript composition "<talk> (redo N)" on the next run), `unpause <event>`, `pub
   `unpause` - the guard exists because the AI editor once could touch other talks.
 - Disk: the factory refuses jobs that don't fit and says how much to free - relay that, don't delete things to make room.
 - One computer per event.
-- After the person's runs, `publish` keeps the website's Factory tab current (runs also publish by themselves).
+- After the person's runs, `publish` keeps the website's Factory logs tab current (runs also publish by themselves).
 - If you change the factory's code or behaviour: update `live-factory/MANUAL.md` (and `MANUAL-CLAUDE.md`) plus the
   Changelog in the same commit, run `env/bin/python tests/smoke.py --no-whisper`, and commit only your files.
