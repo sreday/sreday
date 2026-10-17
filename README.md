@@ -2,6 +2,13 @@
 
 In-person conferences for Site Reliability, DevOps and Cloud engineers.
 
+## Where the events are
+
+- Upcoming and running events are the dated folders at the top, e.g. `2026-nyc-q4/`.
+- Finished events are in `past/`, e.g. `past/2025-london-q1/`. They keep every feature: edit them there (talks.csv, videos, metadata toggles), and they are rebuilt on every deploy. Their URLs don't change (`sreday.com/2025-london-q1/`).
+- `make archive` moves events that ended more than 24 h ago into `past/` (`make archive DRY=1` only lists them). Commit and push after.
+- An upload into an event's old top-level folder after it moved stops the build with a message saying which files to move into `past/`.
+
 
 ## Running locally
 
