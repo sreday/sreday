@@ -51,23 +51,32 @@ def split_id(event_id):
     return m.group(1), m.group(2)
 
 
+def event_path(repo, folder):
+    """An event folder: at the top of its repo while upcoming, in past/ from 24 h after it ends (make archive)."""
+    path = os.path.join(repo, folder)
+    return path if os.path.isdir(path) else os.path.join(repo, "past", folder)
+
+
 def all_events(cfg):
-    """Every event folder of every brand whose repo is on this machine: [(event_id, folder path)]."""
+    """Every event folder of every brand whose repo is on this machine, upcoming and past: [(event_id, folder path)]."""
     out = []
     for brand in sorted(brands(cfg)):
         repo = brand_repo(cfg, brand)
         if not os.path.isdir(repo):
             continue
-        for name in sorted(os.listdir(repo)):
-            if re.match(r"^20\d\d-", name) and os.path.exists(os.path.join(repo, name, "metadata.yml")):
-                out.append(("%s-%s" % (brand, name), os.path.join(repo, name)))
-    return out
+        for parent in (repo, os.path.join(repo, "past")):
+            if not os.path.isdir(parent):
+                continue
+            for name in sorted(os.listdir(parent)):
+                if re.match(r"^20\d\d-", name) and os.path.exists(os.path.join(parent, name, "metadata.yml")):
+                    out.append(("%s-%s" % (brand, name), os.path.join(parent, name)))
+    return sorted(out)
 
 
 def event(cfg, event_id):
     brand, folder = split_id(event_id)
     repo = brand_repo(cfg, brand)
-    path = os.path.join(repo, folder)
+    path = event_path(repo, folder)
     if not os.path.exists(os.path.join(path, "metadata.yml")):
         raise KeyError("no event %s: %s has no metadata.yml" % (event_id, path))
     with open(os.path.join(path, "metadata.yml"), encoding="utf-8") as f:
