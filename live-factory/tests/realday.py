@@ -6,6 +6,9 @@ recordings. Needs that event analysed on this machine (its transcript and levels
 2026-10-16, PLATFORMday Austin 2026 Q4 (one 8 h 48 min recording, 16 talks): 13 of 15 within 30 s, the no-show found.
 The two left are judgement calls - Daniel's voice apology before his first topic line, and MJ's unannounced room
 discussion, which the draft keeps (doubt keeps a Q&A).
+
+2026-10-17, LLMday Austin 2026 Q4 (two recordings, 11 talks): 7 of 11 - unannounced Q&As after the closing "thank
+you" (Maryam, Nick, Nate) and Vashishtha's closing cut 40 s early (README, "Learned from a real day").
 """
 import json
 import os
