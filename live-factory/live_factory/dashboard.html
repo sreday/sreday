@@ -105,7 +105,7 @@ pre.log { font-size:12px; max-height:220px; overflow:auto; margin:0; white-space
   <section><h2>Log</h2><pre class="log" id="log"></pre></section>
 </main>
 <script>
-let E = localStorage.getItem('lf-event') || '', LASTCUTS = '', P = null, CUTS = null, dirty = false, TRACK = null, REC = null, LV = {};
+let E = new URLSearchParams(location.search).get('event') || localStorage.getItem('lf-event') || '', LASTCUTS = '', P = null, CUTS = null, dirty = false, TRACK = null, REC = null, LV = {};
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const st = s => { s = Math.max(0, Math.round(s)); return Math.floor(s/3600) + ':' + String(Math.floor(s%3600/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0'); };
@@ -120,11 +120,14 @@ function markDirty(on = true) { dirty = on; $('dirty').textContent = on ? 'unsav
 async function loadEvents() {
   const list = await api('/api/events');
   $('ev').innerHTML = list.map(x => `<option value="${x.id}">${x.started ? '● ' : ''}${x.id}</option>`).join('');
-  if (!E || !list.some(x => x.id === E)) E = (list[0] || {}).id || '';
-  $('ev').value = E;
+  // ?event= wins; a remembered pick only while it has been started; otherwise the event worked on last (list[0])
+  const fromUrl = new URLSearchParams(location.search).get('event');
+  const known = list.find(x => x.id === E);
+  if (!known || (!known.started && E !== fromUrl)) E = (list[0] || {}).id || '';
+  $('ev').value = E; localStorage.setItem('lf-event', E); history.replaceState(null, '', '?event=' + E);
 }
 $('ev').onchange = () => { if (dirty && !confirm('Drop the unsaved cut changes?')) { $('ev').value = E; return; }
-  E = $('ev').value; localStorage.setItem('lf-event', E); P = null; CUTS = null; LASTCUTS = ''; TRACK = null; REC = null; LV = {}; markDirty(false); refresh(); };
+  E = $('ev').value; localStorage.setItem('lf-event', E); history.replaceState(null, '', '?event=' + E); P = null; CUTS = null; LASTCUTS = ''; TRACK = null; REC = null; LV = {}; markDirty(false); refresh(); };
 
 async function refresh() {
   if (!E) return;

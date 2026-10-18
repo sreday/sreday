@@ -56,6 +56,11 @@ It opens two pages in your browser:
 - **Workbench** - http://localhost:8043 - where you do everything.
 - **Status** - http://localhost:8043/status - read-only progress of the whole day; leave it open in a tab.
 
+The workbench opens on the event you worked on last (the events you've started are marked ● at the top of the list),
+and the address shows it (`?event=llmday-2026-austin-q4`), so a bookmark or a reload keeps it. Finished events in a
+repo's `past/` folder are listed too. Starting the app again while an older copy is still running replaces that copy;
+jobs already running carry on.
+
 Before every event, update the repos so the lineup is current: `git pull` in each repo folder.
 
 ---
@@ -226,6 +231,8 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 
 ## Changelog
 
+- **2026-10-17** - The workbench opens on the event you worked on last (or `?event=` in the address), lists events
+  that have moved to `past/`, and an app left running from an older version is replaced when you start it again.
 - **2026-10-16** - Tabs renamed and reordered: **Run with Claude** (first), **No Claude, manual**, **Factory logs**.
 - **2026-10-16** - New **With Claude** tab: run the factory by talking to Claude Code (the live-factory skill comes
   with the sreday repo).
