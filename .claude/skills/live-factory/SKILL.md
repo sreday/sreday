@@ -21,7 +21,14 @@ you need before changing anything.
   it is a Drive export).
 - Long jobs (`analyse`, `run`) go in the background; tell the person the workbench (http://localhost:8043) and the
   status page (http://localhost:8043/status) show progress. An 8 h day analyses in ~35 min on an M1/M2 Mac.
-- Start the app for them: `./run.sh` (Mac) / `run.cmd` (Windows).
+- **"Launch / activate the factory" always opens the workbench**: start the app if nothing listens on :8043
+  (`./run.sh` on the Mac / `run.cmd` on Windows, in the background), then open http://localhost:8043 in their browser
+  (`open http://localhost:8043` on the Mac, `start http://localhost:8043` on Windows) - every time, even when it's
+  already running (Marek, 2026-10-17).
+- **Keep the practices in the repo**: whenever a real event (or the person) teaches a new rule or way of working,
+  write it into `live-factory/README.md` (e.g. a "Learned from a real day: <event>" section), this skill if it changes
+  how you run things, and `MANUAL.md` / `MANUAL-CLAUDE.md` plus their Changelog when the team would notice - in the
+  same job, not later (Marek, 2026-10-17).
 
 ## The steps
 

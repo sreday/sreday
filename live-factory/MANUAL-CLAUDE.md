@@ -43,6 +43,7 @@ Replace the event and paths with yours. Events are named like `sreday-2026-londo
 
 | Step | Say to Claude | What happens |
 |---|---|---|
+| Launch | *"Launch the factory."* | Claude starts the app if needed and opens the workbench (http://localhost:8043) in your browser. |
 | Add | *"Add the recordings from /Volumes/CARD/DCIM for PLATFORMday Austin 2026 Q4, day 1."* (more rooms: *"…room 2 is track 2"*) | The files are copied in as a checked, read-only backup. Your originals are never touched. |
 | Analyse | *"Analyse them."* | Sound, transcript, stills - free, on your computer. About 35 min for an 8-hour day; Claude runs it in the background and tells you when it's done. |
 | Find the talks | *"Match the lineup."* | Claude reads the whole day: greetings, "I'm …", the MC, closing lines, Q&A, pauses, titles and abstracts. It gives you a table of every talk with start, end and anything doubtful, and asks you what only someone who was there knows ("who spoke last?"). |
@@ -76,5 +77,7 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-10-17** - "Launch the factory" now always opens the workbench in your browser. Claude also writes each new
+  practice it learns on a real day into the factory's README and these manuals straight away.
 - **2026-10-16** - Tabs renamed and reordered: **Run with Claude** (first), **No Claude, manual**, **Factory logs**.
 - **2026-10-16** - First version, with the live-factory skill in the sreday repo.
