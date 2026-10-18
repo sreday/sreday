@@ -360,7 +360,8 @@ class Run:
         need = self.space_needed(extra)
         if need + reserve > free:
             self.space_alarm("%s for %s needs about %.0f GB on %s, %.0f GB is free (keeping %.0f GB spare) - free "
-                             "%.0f GB, or set work_root to a bigger disk in settings.local.yml" % (
+                             "%.0f GB (ask Claude to clean up junk and cache files), or set work_root to a bigger disk in "
+                             "settings.local.yml" % (
                                  what, self.ev["id"], need / 1e9, self.dir, free / 1e9, reserve / 1e9,
                                  (need + reserve - free) / 1e9))
         if self.state.get("space_warning"):

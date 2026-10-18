@@ -211,7 +211,7 @@ def doctor(cfg, check_descript=True):
         os.makedirs(root, exist_ok=True)
         free = shutil.disk_usage(root).free / 1e9
         add("Work folder", free > 50, "%s (%.0f GB free)" % (root, free),
-            "free some space (a day of recordings needs ~2x its size)")
+            "free some space - ask Claude to clean up junk and cache files (a day of recordings needs ~2x its size)")
     except OSError as ex:
         add("Work folder", False, str(ex), "set work_root in live-factory/settings.local.yml")
     tok = read_token()

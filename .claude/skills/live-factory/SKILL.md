@@ -85,7 +85,28 @@ Descript composition "<talk> (redo N)" on the next run), `unpause <event>`, `pub
 - Never put a Descript token, password or the person's private data in a file, a commit or the chat.
 - "EDITS PAUSED": read the edit reports in state.json (`talks.<name>.steps.edit.report`) and check in Descript before
   `unpause` - the guard exists because the AI editor once could touch other talks.
-- Disk: the factory refuses jobs that don't fit and says how much to free - relay that, don't delete things to make room.
+- Disk: the factory refuses jobs that don't fit and says how much to free - relay that, and never delete things to
+  make room on your own.
+- **Low disk space: offer a junk and cache clean-up** (Marek, 2026-10-17). When the factory refuses a job for space, the
+  health check says "free some space", or the person mentions a full disk, offer to clean junk and cache files from
+  their drive. Never delete on your own:
+  1. Measure first (`du -sh` on the Mac, folder sizes on Windows) and show a table: what it is, its size, and whether it
+     comes back by itself.
+  2. Candidates, all safe to lose:
+     - Mac: the Trash; `~/Library/Caches` (quit the apps first); Xcode `DerivedData` and unavailable simulators
+       (`xcrun simctl delete unavailable`); `brew cleanup`; `npm cache clean --force`; `pip cache purge`; unused Docker
+       data (`docker system prune`); video apps' caches (Descript's local media cache, Adobe Media Cache, DaVinci
+       Resolve CacheClip, Final Cut render files).
+     - Windows: the Recycle Bin, `%TEMP%`, Disk Cleanup (`cleanmgr`, including Windows Update clean-up), browser caches,
+       the same app and developer caches.
+     - On either: old installers in Downloads (`.dmg`, `.pkg`, `.exe`, `.msi`, `.zip`) - list them and let the person
+       pick.
+  3. Delete only what the person picks, say how much was freed, run `doctor` again and carry on with the job.
+  - **Never offer:**
+    - recordings, event folders, `in/` copies, or anything on the Desktop the person put there;
+    - Documents, Photos and Lightroom libraries, iCloud or OneDrive files;
+    - git repos and their worktrees - point those out, but the person (or that repo's own session) decides;
+    - running VMs.
 - One computer per event.
 - After the person's runs, `publish` keeps the website's Factory logs tab current (runs also publish by themselves).
 - If you change the factory's code or behaviour: update `live-factory/MANUAL.md` (and `MANUAL-CLAUDE.md`) plus the
