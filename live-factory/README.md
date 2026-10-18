@@ -58,12 +58,12 @@ before didn't know about `past/` and opened on DevOps Not Dead London instead of
 6. **Gate 2.** Watch each talk in Descript and tick Reviewed in the app (or
    `review <event> "<speaker>"`). Then Run again: publish, download, SRT, chapters, loudness at -14 LUFS, trim to
    the speech, and QA.
-7. **YouTube.** `<work folder>/<event>/YouTube items.txt` holds, per talk:
+7. **YouTube.** `Desktop/video factory - <event>/YouTube items.txt` holds, per talk:
    - the title (`<title> | <speakers> | SREday London 2026 Q1`, at most 100 characters);
    - the description (talk page, event, upcoming events, CFP, chapters);
    - the link to the thumbnail the website already draws (`/<event>/teasers/<speaker>.png`).
 
-   The finished videos are in `final videos for YouTube/`.
+   The finished videos are in the event folder's `final videos for YouTube/`.
 
 ## Rules it keeps
 
@@ -169,7 +169,11 @@ reference cuts, hand-checked against the transcript, are in `research/platformda
 | `live_factory/app.py`, `dashboard.html` | the local app |
 | `tests/smoke.py` | offline test on a synthetic day (`--no-whisper` works anywhere) |
 
-Work files live in `<Desktop>/live-factory/<event>/`:
+Work files live in one folder per event, named after the conference so several can run side by side:
+`<Desktop>/video factory - LLMday Austin 2026 Q4/` (`event_folder` in settings.yml; `work_root` in settings.local.yml
+puts them on another disk). Opening an event in the app makes no folder; the first add or save does. Folders from
+before 2026-10-17 (`<Desktop>/live-factory/<event id>/`) are still found. The ledger of paid Descript edits is
+machine-wide, in `live-factory/local/` (git-ignored). Each folder holds:
 - `state.json`, which a running job owns;
 - `cuts.json` (gate 1) and `reviews.json` (gate 2), the only files the app writes;
 - `in/`, `rec/<id>/`, `cuts/`, `out/` and `srt/`.

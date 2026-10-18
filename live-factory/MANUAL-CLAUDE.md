@@ -77,6 +77,8 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-10-17** - Each event gets its own Desktop folder named after the conference (`video factory - LLMday Austin
+  2026 Q4`).
 - **2026-10-17** - "Launch the factory" opens the workbench on the event you're working on.
 - **2026-10-17** - "Launch the factory" now always opens the workbench in your browser. Claude also writes each new
   practice it learns on a real day into the factory's README and these manuals straight away.

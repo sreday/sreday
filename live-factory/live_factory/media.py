@@ -15,8 +15,14 @@ PROTECTED_FILES, PROTECTED_DIRS = set(), set()   # the raw recordings: nothing h
 
 def protect(path):
     """Register a raw recording (a file) or the folder of raw copies (a folder) as untouchable."""
-    real = os.path.realpath(path)
-    (PROTECTED_DIRS if os.path.isdir(real) else PROTECTED_FILES).add(os.path.normcase(real))
+    real = os.path.normcase(os.path.realpath(path))
+    if os.path.isdir(real):
+        PROTECTED_DIRS.add(real)
+    elif os.path.exists(real):
+        PROTECTED_FILES.add(real)
+    else:                                  # not made yet (an event's in/ before its first recording): guard it both ways
+        PROTECTED_FILES.add(real)
+        PROTECTED_DIRS.add(real)
 
 
 def safe_target(path):

@@ -177,6 +177,9 @@ def main():
     raw_hash = media.sampled_hash(video)
     media.notify = lambda *a: None                    # no desktop notifications from the test
     run = pipeline.Run(ev["id"])
+    check("event folder named after the conference", os.path.basename(run.dir) == "video factory - TESTday Testcity 2026 Q4",
+          run.dir)
+    check("just opening an event makes no folder", not os.path.exists(run.dir))
 
     # disk space: a job that does not fit never starts
     run.cfg["disk_reserve_gb"] = 10 ** 6
@@ -188,6 +191,7 @@ def main():
     run.cfg["disk_reserve_gb"] = 0
 
     ids = run.add([rec_dir], day=1)
+    check("final videos inside the event's folder", run.final_dir.startswith(run.dir + os.sep), run.final_dir)
     check("add: one recording from the card folder", ids == ["r1"], ids)
     check("space warning cleared", not run.state.get("space_warning"))
     if NO_WHISPER:

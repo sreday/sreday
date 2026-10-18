@@ -25,6 +25,9 @@ you need before changing anything.
   `... -m live_factory serve <event>` in the background - it opens http://localhost:8043/?event=<event> in their
   browser, reuses an app that's current and replaces one running older code. Every time, even when it's already
   running (Marek, 2026-10-17).
+- **One folder per event, named after the conference** (Marek, 2026-10-17): `Desktop/video factory - LLMday Austin 2026 Q4`
+  (both factories; `machine.event_dir`). Never make factory folders named by id, and never one shared folder for
+  several events - several conferences can be in the factory at once.
 - **Keep the factories in step with the websites**: when a change to the site repos alters something a factory reads
   (folder layout like `past/`, talks.csv columns, metadata.yml keys, teaser/thumbnail URLs, brand list), adapt the
   live factory and the Conf42 factory in the same job, and test them (Marek, 2026-10-17).
@@ -48,8 +51,8 @@ you need before changing anything.
    count and the cost: ~8-30 Descript AI credits per talk.
 6. **Gate 2 - the person reviews each talk in Descript**, trims the extra footage, ticks Reviewed. Not you, unless
    they explicitly tell you a talk is reviewed (`review <event> "<talk>"`).
-7. **Run again** → publish, download, SRT, chapters, loudness, light MP4 → `<Desktop>/live-factory/final videos for YouTube/`.
-8. **YouTube items**: `youtube <event>` → `<work folder>/<event>/YouTube items.txt`. Uploading to YouTube is the person's.
+7. **Run again** → publish, download, SRT, chapters, loudness, light MP4 → `<Desktop>/video factory - <event>/final videos for YouTube/`.
+8. **YouTube items**: `youtube <event>` → `<Desktop>/video factory - <event>/YouTube items.txt`. Uploading to YouTube is the person's.
 
 Other commands: `status <event>`, `retry <event> "<talk>"`, `redo <event> "<talk>" "why"` (cut again + fresh
 Descript composition "<talk> (redo N)" on the next run), `unpause <event>`, `publish` (Factory logs tab of the website),

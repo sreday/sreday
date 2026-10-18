@@ -175,7 +175,7 @@ Press **Run** again. Every talk ticked **Reviewed** is:
 published from Descript → downloaded → subtitles (SRT) → YouTube chapters → trimmed to the first and last word →
 set to YouTube loudness (-14 LUFS) → saved as a light MP4 → checked.
 
-The finished videos are in `Desktop/live-factory/final videos for YouTube/`, named
+The finished videos are in the event's folder, `Desktop/video factory - <event>/final videos for YouTube/`, named
 `<speaker> - <Event>.mp4`. The event folder (button **Event folder**) has `YouTube items.txt`.
 
 ### Step 8 - YouTube
@@ -212,7 +212,8 @@ Agree who runs which event.
 
 ## 4. Where things are
 
-On the computer that runs the event, `Desktop/live-factory/<event>/`:
+On the computer that runs the event, one folder per conference on the Desktop, e.g.
+`Desktop/video factory - LLMday Austin 2026 Q4/`, so several events can run side by side:
 
 | Folder / file | What's in it |
 |---|---|
@@ -222,8 +223,8 @@ On the computer that runs the event, `Desktop/live-factory/<event>/`:
 | `out/`, `srt/` | Descript's downloads, subtitles |
 | `cuts.json` | the cuts you approved (step 4) |
 | `YouTube items.txt` | titles, descriptions, thumbnails (step 8) |
+| `final videos for YouTube/` | the finished videos of this event |
 
-Finished videos of every event: `Desktop/live-factory/final videos for YouTube/`.
 When an event is published on YouTube and the raw recording is backed up elsewhere, the event folder can be archived
 or deleted to free space - ask first, the `in/` copy may be the only backup of the recording.
 
@@ -231,6 +232,8 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 
 ## Changelog
 
+- **2026-10-17** - One folder per event on the Desktop, named after the conference: `video factory - LLMday Austin
+  2026 Q4`, with its own `final videos for YouTube/`. Opening an event in the app no longer makes a folder for it.
 - **2026-10-17** - Fewer false sound flags: when the room is nearly as loud as the speaker, stretches the
   transcript hears as speech are no longer flagged as drop-outs or "hardly any sound".
 - **2026-10-17** - The workbench opens on the event you worked on last (or `?event=` in the address), lists events
