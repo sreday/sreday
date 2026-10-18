@@ -18,7 +18,8 @@
   python -m live_factory publish                       update the Factory tab of sreday.com/factory now
   python -m live_factory youtube <event>               <event>/YouTube items.txt again
   python -m live_factory status <event>
-  python -m live_factory serve                         the local app on http://localhost:8043
+  python -m live_factory serve [<event>]               the local app on http://localhost:8043, opened on the event
+                                                       (an older app still running is replaced)
   python -m live_factory doctor                        check this machine
   python -m live_factory setup                         one-time setup (Descript token, launcher, check)
 """
@@ -119,7 +120,7 @@ def main(argv):
         sys.exit(1 if setup() else 0)
     if cmd == "serve":
         from . import app
-        app.serve()
+        app.serve(argv[1] if len(argv) > 1 else None)
         return
     if cmd == "publish":
         from . import publish

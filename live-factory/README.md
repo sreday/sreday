@@ -26,7 +26,13 @@ Conf42 factory if that machine has it. Then: `python -m live_factory doctor`.
 
 Events are named `<brand>-<folder>`, e.g. `sreday-2026-london-q1` or `llmday-2026-london-q4`. Run the commands
 from `live-factory/` with `env/bin/python -m live_factory …` (Windows: `env\Scripts\python.exe -m live_factory …`),
-or use the app: `./run.sh` / `run.cmd` → http://localhost:8043.
+or use the app: `./run.sh` / `run.cmd` → http://localhost:8043 (`serve <event>` opens it on that event).
+
+The app opens on `?event=` or else the event whose `state.json` changed last; a remembered pick only wins while that
+event has been started. Events in a repo's `past/` are listed. An app still running from older code is replaced:
+`serve` compares `/api/version` (the code's newest mtime when it started) with the code now and asks the old one to
+quit (`/api/quit`); jobs run in their own processes and carry on. (2026-10-17: an app left running from the day
+before didn't know about `past/` and opened on DevOps Not Dead London instead of LLMday Austin.)
 
 1. **Add.** `add sreday-2026-london-q1 /Volumes/CARD/DCIM --day 1 --track 2` copies the files in. `--track` is
    the schedule track or the room name ("screen 2"); a day with one track needs only `--day`. Use `--in-place`

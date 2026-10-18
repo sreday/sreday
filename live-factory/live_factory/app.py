@@ -25,6 +25,16 @@ PORT = 8043                      # the Conf42 factory has 8042
 PY = sys.executable
 HERE = pipeline.HERE
 PAGE_FILE = os.path.join(os.path.dirname(__file__), "dashboard.html")
+
+
+def code_stamp():
+    """When the factory's code last changed: an app started before that is stale and gets replaced (2026-10-17: an app
+    left running from the day before didn't know about past/ and showed the wrong event)."""
+    d = os.path.dirname(__file__)
+    return max(os.path.getmtime(os.path.join(d, f)) for f in os.listdir(d) if f.endswith((".py", ".html")))
+
+
+STARTED_STAMP = code_stamp()
 STATUS_FILE = os.path.join(os.path.dirname(__file__), "status.html")   # /status: the read-only overview
 
 
@@ -50,8 +60,11 @@ def event_list():
         folder = os.path.basename(path)
         if started or folder[:4] >= year_ago[:4]:
             out.append({"id": eid, "started": started, "folder": folder})
-    return sorted(out, key=lambda x: (not x["started"], x["folder"][:7] > str(datetime.date.today())[:7],
-                                      x["folder"][:4], x["id"]), reverse=False)
+    # the event worked on last comes first: it is the one the app opens on
+    for x in out:
+        x["active"] = os.path.getmtime(os.path.join(root, x["id"], "state.json")) if x["started"] else 0
+    return sorted(out, key=lambda x: (not x["started"], -x["active"], x["folder"][:7] > str(datetime.date.today())[:7],
+                                      x["folder"][:4], x["id"]))
 
 
 def runner(event_id):
@@ -198,6 +211,8 @@ class Handler(BaseHTTPRequestHandler):
             if u.path == "/status":
                 with open(STATUS_FILE, encoding="utf-8") as f:
                     return self.send(200, f.read(), "text/html")
+            if u.path == "/api/version":
+                return self.send(200, {"stamp": STARTED_STAMP, "pid": os.getpid()})
             if u.path == "/api/events":
                 return self.send(200, event_list())
             if u.path == "/api/event":
@@ -241,6 +256,10 @@ class Handler(BaseHTTPRequestHandler):
         e = body.get("e", "")
         try:
             busy = runner(e) if e else None
+            if self.path == "/api/quit":           # a newer copy of the app is taking over the port
+                import threading
+                threading.Thread(target=self.server.shutdown, daemon=True).start()
+                return self.send(200, {"msg": "bye"})
             if self.path == "/api/cuts":
                 problems = pipeline.Run(e).save_cuts(body["data"])
                 return self.send(200, {"msg": "cuts saved" + (" - %d note(s)" % len(problems) if problems else ""),
@@ -301,17 +320,50 @@ class Handler(BaseHTTPRequestHandler):
         self.send(404, {"msg": "not found"})
 
 
-def serve():
-    url = "http://localhost:%d" % PORT
+def _ask(method, path):
+    from urllib.request import Request, urlopen
+    with urlopen(Request("http://127.0.0.1:%d%s" % (PORT, path), data=b"{}" if method == "POST" else None,
+                         method=method, headers={"Content-Type": "application/json"}), timeout=3) as r:
+        return json.loads(r.read() or b"{}")
+
+
+def _port_busy():
     import socket
     probe = socket.socket()
     probe.settimeout(1)
     busy = probe.connect_ex(("127.0.0.1", PORT)) == 0
     probe.close()
-    if busy:
-        print("the LIVE talk factory app is already running on " + url)
-        webbrowser.open(url)
-        return
+    return busy
+
+
+def serve(event_id=None):
+    """The app, opened in the browser on event_id (or the event worked on last). An app already running on the port is
+    reused when it has today's code and replaced when it's older; background jobs run in their own processes and
+    carry on either way."""
+    import time
+    url = "http://localhost:%d/" % PORT + ("?event=" + event_id if event_id else "")
+    if _port_busy():
+        try:
+            stale = _ask("GET", "/api/version").get("stamp", 0) < code_stamp()
+        except Exception:
+            stale = True                       # an app from before /api/version existed
+        if not stale:
+            print("the LIVE talk factory app is already running on " + url)
+            webbrowser.open(url)
+            return
+        try:
+            _ask("POST", "/api/quit")
+        except Exception:
+            pass
+        for _ in range(20):
+            if not _port_busy():
+                break
+            time.sleep(0.25)
+        if _port_busy():
+            print("an older LIVE talk factory app is still running on port %d and won't stop - close its window "
+                  "(or end its python process), then start this again" % PORT)
+            return
+        print("replaced the older app that was running")
     ThreadingHTTPServer.allow_reuse_address = os.name != "nt"
     srv = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
     print("LIVE talk factory app on " + url)
