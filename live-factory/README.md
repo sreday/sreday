@@ -175,3 +175,33 @@ Work files live in `<Desktop>/live-factory/<event>/`:
 - `in/`, `rec/<id>/`, `cuts/`, `out/` and `srt/`.
 
 talks.csv is only ever read: it is a Drive export.
+
+## Learned from a real day: LLMday Austin 2026 Q4 (2026-10-17)
+
+Two recordings, before and after lunch: r1 4 h 27 min (12.7 GB), r2 2 h 48 min (8 GB), 11 talks on the lineup. The
+analysis took about 25 minutes on the M1 Max. Claude's checked cuts are in `research/llmday-2026-austin-q4.cuts.json`.
+`tests/realday.py llmday-2026-austin-q4` scores the draft: 7 of 11 within 30 s.
+
+- **The sound can change sides during the day.** r1 has its sound on the right channel until about 3:19 and on the
+  left after it (Leila Anderson's talk). The recording's note only names the side most of the day used. The stereo fix
+  is measured per talk, so each talk gets its own live channel.
+- **Room noise close to the speech.** In r2 the breaks sit at about -36 dB and the talks at about -30 dB. The level
+  check (12 dB over the 20th-percentile floor) therefore called most of every afternoon talk "quiet" and flagged
+  "hardly any sound" and dozens of drop-outs. A quiet stretch where the transcript hears 60+ words a minute is now
+  speech, not a drop-out, and becomes a note instead of a flag.
+- **Where the draft went wrong (4 of 11):**
+  - An unannounced Q&A right after "Thank you." (Nick Smith) and "And thank you. I am happy to take question"
+    (Maryam Astero). The draft ran on to the next talk, through the MC and the team's conference promo.
+  - An audience discussion straight after the last line (Nate Lemos, "...that's not enough anymore"). The draft kept
+    6 minutes of it.
+  - A closing cut 40 s early ("And yeah, thank you" from Vashishtha Patil).
+- **Not a talk:** a team member's promo of the other conferences (QR codes, upcoming events) filled a gap while a
+  speaker set up. It's never cut as a talk.
+- **The day ran ahead.** Speakers who didn't show (Jesse, plus Nikita and Jonathan Malkin, drafts not on the lineup)
+  shifted the afternoon, and talks ran 12-14 min (Matt Barge, Nate Lemos), so "only 13 of 30 planned minutes" is
+  expected on such a day. The recording ends at the MC's "half an hour break, see if the last two speakers make it".
+- **Openings:** "Hi. Good morning, everyone" before the name; "All right. You know, they say..."; names misheard
+  (Ajbirra = Azmeera, Nehouse = Niehaus, Amostero = Astero, Kone Lutemulai = Kunle Olutomilayo).
+- **Starting the factory:** an app left running from the day before didn't know events move to `past/` and opened on
+  DevOps Not Dead London. See the app notes under "A day of recordings".
+

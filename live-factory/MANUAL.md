@@ -231,6 +231,8 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 
 ## Changelog
 
+- **2026-10-17** - Fewer false sound flags: when the room is nearly as loud as the speaker, stretches the
+  transcript hears as speech are no longer flagged as drop-outs or "hardly any sound".
 - **2026-10-17** - The workbench opens on the event you worked on last (or `?event=` in the address), lists events
   that have moved to `past/`, and an app left running from an older version is replaced when you start it again.
 - **2026-10-16** - Tabs renamed and reordered: **Run with Claude** (first), **No Claude, manual**, **Factory logs**.

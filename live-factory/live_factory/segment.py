@@ -235,6 +235,15 @@ def sound_threshold(lv):
     return max(noise_floor(lv) + 12, -70.0)
 
 
+def spoken(segs, a, b, length=None):
+    """True when the transcript hears steady talking in [a, b] (a talk's pace is ~120-160 words a minute; 60+ counts):
+    then a stretch the levels call quiet is room noise close to the speech level, not a drop-out (LLMday Austin
+    2026 Q4: breaks at -36 dB, talks at -30 dB, so most of every afternoon talk looked "quiet")."""
+    length = length or (b - a)
+    words = sum(len(s["text"].split()) for s in segs if a <= s["start"] < b)
+    return length >= 1 and words / (length / 60) >= 60
+
+
 def quiet_spans(lv, min_len, thr=None, a=0, b=None):
     """Stretches of at least min_len seconds with no sound over the room noise, inside [a, b]: [(start, end)]."""
     thr = sound_threshold(lv) if thr is None else thr
@@ -357,7 +366,7 @@ def assess(run, cut, talks=None, planned=None, cache=None):
     if planned is None:
         planned = {x["key"]: x["minutes"] for v in events.schedule(run.ev).values() for x in v["items"] if x["key"]}
     flags, notes = [], []
-    segs, loud, total, levels_seen, stills, blank = [], [], 0.0, False, 0, 0
+    segs, loud, total, levels_seen, stills, blank, talked_through = [], [], 0.0, False, 0, 0, 0.0
     lv = None
     for p in cut.get("parts", []):
         rid, a, b = p["rec"], p["start"], p["end"]
@@ -375,7 +384,11 @@ def assess(run, cut, talks=None, planned=None, cache=None):
             thr = sound_threshold(lv)
             loud += [max(l, r) for l, r in zip(lv["left"][int(a):int(b)], lv["right"][int(a):int(b)]) if max(l, r) > thr]
             inner_a, inner_b = a + (b - a) * 0.1, b - (b - a) * 0.1
+            tsegs = (data["tj"] or {}).get("segments", [])
             for qa, qb in quiet_spans(lv, 30, thr, inner_a, inner_b):
+                if spoken(tsegs, qa, qb):
+                    talked_through += qb - qa         # the levels say quiet, the transcript hears a talk
+                    continue
                 flags.append("sound drops out for %d s at %s (%s)" % (qb - qa, stamp(qa), rid))
         if os.path.isdir(data["frames"]):
             for name in os.listdir(data["frames"]):
@@ -386,7 +399,10 @@ def assess(run, cut, talks=None, planned=None, cache=None):
     minutes = total / 60
     # recorded properly?
     if levels_seen:
-        if len(loud) < max(10, total * 0.2):
+        if len(loud) < max(10, total * 0.2) and spoken(segs, 0, 1e9, total):
+            notes.append("the levels can't tell this talk from the room noise (speech only a few dB over the breaks), "
+                         "but the transcript hears it all the way through - sound is there")
+        elif len(loud) < max(10, total * 0.2):
             flags.append("hardly any sound (%d of %d s) - mic off or not recorded?" % (len(loud), total))
         else:
             med = statistics.median(loud)
@@ -395,6 +411,9 @@ def assess(run, cut, talks=None, planned=None, cache=None):
             hot = sum(1 for x in loud if x > -4) / len(loud)
             if hot > 0.02:
                 flags.append("sound distorts / clips in %.0f%% of the talk" % (hot * 100))
+    if talked_through:
+        notes.append("%d s the levels call quiet have speech in the transcript - room noise close to the speech, "
+                     "not drop-outs" % talked_through)
     if segs:
         words = sum(len(s["text"].split()) for s in segs)
         wpm = words / max(minutes, 0.1)
