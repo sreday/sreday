@@ -64,14 +64,12 @@ def event_summary(event_id):
 
 def build():
     """status.json content: this computer's events, plus other computers' entries already in the file."""
-    root = machine.work_root(pipeline.settings())
     mine = []
-    for name in sorted(os.listdir(root)) if os.path.isdir(root) else []:
-        if os.path.exists(os.path.join(root, name, "state.json")):
-            try:
-                mine.append(event_summary(name))
-            except Exception as ex:                                  # an event of a brand repo not on this machine
-                print("publish: %s skipped (%s)" % (name, ex))
+    for name in sorted(machine.event_dirs(pipeline.settings())):     # event ids of the started "video factory - ..."
+        try:
+            mine.append(event_summary(name))
+        except Exception as ex:                                      # an event of a brand repo not on this machine
+            print("publish: %s skipped (%s)" % (name, ex))
     try:
         with open(STATUS, encoding="utf-8") as f:
             old = json.load(f).get("events", [])

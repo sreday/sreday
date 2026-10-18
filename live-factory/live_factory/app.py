@@ -42,8 +42,16 @@ def work_root():
     return machine.work_root(pipeline.settings())
 
 
+def event_dir(event_id):
+    """The event's folder, "video factory - <event>" (machine.event_dir)."""
+    try:
+        return machine.event_dir(pipeline.settings(), event_id)
+    except (KeyError, ValueError):
+        return machine.event_dirs(pipeline.settings()).get(event_id) or os.path.join(work_root(), event_id)
+
+
 def state_of(event_id):
-    p = os.path.join(work_root(), event_id, "state.json")
+    p = os.path.join(event_dir(event_id), "state.json")
     if not os.path.exists(p):
         return None
     with open(p, encoding="utf-8") as f:
@@ -52,17 +60,18 @@ def state_of(event_id):
 
 def event_list():
     """Events with a work folder first, then every brand's events from a year ago on (newest first)."""
-    cfg, root = pipeline.settings(), work_root()
+    cfg = pipeline.settings()
+    dirs = machine.event_dirs(cfg)                    # started events: {id: "video factory - <event>" folder}
     year_ago = str(datetime.date.today().replace(year=datetime.date.today().year - 1))
     out = []
     for eid, path in events.all_events(cfg):
-        started = os.path.exists(os.path.join(root, eid, "state.json"))
+        started = eid in dirs
         folder = os.path.basename(path)
         if started or folder[:4] >= year_ago[:4]:
             out.append({"id": eid, "started": started, "folder": folder})
     # the event worked on last comes first: it is the one the app opens on
     for x in out:
-        x["active"] = os.path.getmtime(os.path.join(root, x["id"], "state.json")) if x["started"] else 0
+        x["active"] = os.path.getmtime(os.path.join(dirs[x["id"]], "state.json")) if x["started"] else 0
     return sorted(out, key=lambda x: (not x["started"], -x["active"], x["folder"][:7] > str(datetime.date.today())[:7],
                                       x["folder"][:4], x["id"]))
 
@@ -87,8 +96,8 @@ def runner(event_id):
 
 
 def spawn(args, event_id):
-    os.makedirs(os.path.join(work_root(), event_id), exist_ok=True)
-    log = open(os.path.join(work_root(), event_id, "run.log"), "a", encoding="utf-8")
+    os.makedirs(event_dir(event_id), exist_ok=True)
+    log = open(os.path.join(event_dir(event_id), "run.log"), "a", encoding="utf-8")
     log.write("\n==== %s  %s\n" % (datetime.datetime.now().isoformat(timespec="seconds"), " ".join(args)))
     log.flush()
     extra = {"creationflags": 0x00000008 | 0x00000200} if os.name == "nt" else {"start_new_session": True}
@@ -302,8 +311,8 @@ class Handler(BaseHTTPRequestHandler):
                 from . import publish
                 return self.send(200, {"msg": publish.publish()})
             if self.path == "/api/open":
-                root = os.path.join(work_root(), e)
-                target = {"folder": root, "final": machine.final_folder(pipeline.settings()),
+                root = event_dir(e)
+                target = {"folder": root, "final": machine.final_folder(pipeline.settings(), root),
                           "youtube": os.path.join(root, "YouTube items.txt"), "log": os.path.join(root, "run.log")
                           }.get(body.get("what"), root)
                 if body.get("what") in ("youtube", "log") and not os.path.exists(target):

@@ -798,6 +798,7 @@ def load(path):
 
 
 def save(path, data):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     tmp = path + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(normalise(data), f, indent=1, ensure_ascii=False)

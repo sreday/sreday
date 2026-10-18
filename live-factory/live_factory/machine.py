@@ -7,8 +7,10 @@ private file ~/.live-factory/descript_token, else the Conf42 factory's ~/.conf42
 Descript account, so a machine set up for Conf42 needs nothing more).
 """
 import glob
+import json
 import os
 import platform
+import re
 import shutil
 import socket
 import subprocess
@@ -40,13 +42,57 @@ def desktop():
 
 
 def work_root(cfg):
-    """Folder holding one sub-folder per event: settings `work_root` (absolute) or Desktop/<work_folder>."""
+    """Where the events' folders go: settings `work_root` (absolute, e.g. a bigger disk) or the Desktop."""
     root = cfg.get("work_root")
-    return os.path.expanduser(root) if root else os.path.join(desktop(), cfg.get("work_folder") or "live-factory")
+    return os.path.expanduser(root) if root else desktop()
 
 
-def final_folder(cfg):
-    return os.path.join(work_root(cfg), cfg.get("final_folder") or "final videos for YouTube")
+def legacy_root(cfg):
+    """Before 2026-10-17 every event sat in <work root or Desktop>/live-factory/<event id>."""
+    return os.path.join(work_root(cfg), "live-factory") if not cfg.get("work_root") else work_root(cfg)
+
+
+def event_dir(cfg, event_id, title=None):
+    """One folder per event, named after the conference so several can run side by side (Marek 2026-10-17):
+    "<work root>/video factory - LLMday Austin 2026 Q4" (settings `event_folder`). A folder from before that
+    (<root>/live-factory/<event id>) is used where it still exists."""
+    if title is None:
+        from . import events
+        title = events.event(cfg, event_id)["title"]
+    name = (cfg.get("event_folder") or "video factory - {event}").format(event=title, id=event_id)
+    new = os.path.join(work_root(cfg), re.sub(r'[<>:"/\\|?*]', "-", name).strip())
+    old = os.path.join(legacy_root(cfg), event_id)
+    return old if not os.path.exists(new) and os.path.exists(os.path.join(old, "state.json")) else new
+
+
+def event_dirs(cfg):
+    """The event folders on this machine that have been started: {event id: folder}."""
+    out = {}
+    for root in {work_root(cfg), legacy_root(cfg)}:
+        for name in sorted(os.listdir(root)) if os.path.isdir(root) else []:
+            st = os.path.join(root, name, "state.json")
+            if os.path.exists(st):
+                try:
+                    with open(st, encoding="utf-8") as f:
+                        ev = json.load(f)["event"]
+                    if "short_url" not in ev:         # not the Conf42 factory's folder (same "video factory - " names)
+                        out.setdefault(ev["id"], os.path.join(root, name))
+                except (OSError, ValueError, KeyError):
+                    pass
+    return out
+
+
+def shared_dir(cfg):
+    """Machine-wide files that belong to no single event (the ledger of paid Descript edits, the app's log):
+    live-factory/local/ next to the code (git-ignored)."""
+    d = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "local")
+    os.makedirs(d, exist_ok=True)
+    return d
+
+
+def final_folder(cfg, event_dir_path):
+    """The event's finished videos: inside its own folder."""
+    return os.path.join(event_dir_path, cfg.get("final_folder") or "final videos for YouTube")
 
 
 def open_folder(path):

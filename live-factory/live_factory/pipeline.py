@@ -67,11 +67,11 @@ class Run:
     def __init__(self, event_id):
         self.cfg = settings()
         self.ev = events.event(self.cfg, event_id)
-        self.dir = os.path.join(machine.work_root(self.cfg), self.ev["id"])
+        self.dir = machine.event_dir(self.cfg, self.ev["id"], self.ev["title"])
         self.inp, self.cut_dir, self.out, self.srt_dir = (os.path.join(self.dir, d) for d in ("in", "cuts", "out", "srt"))
-        self.final_dir = machine.final_folder(self.cfg)
-        for d in (self.inp, self.cut_dir, self.out, self.srt_dir, self.final_dir):
-            os.makedirs(d, exist_ok=True)
+        self.final_dir = machine.final_folder(self.cfg, self.dir)
+        if os.path.isdir(self.dir):                   # just looking at an event in the app makes no folder for it
+            self.ensure_dirs()
         self.state_path = os.path.join(self.dir, "state.json")
         self.cuts_path = os.path.join(self.dir, "cuts.json")         # gate 1: written by the dashboard and Claude
         self.reviews_path = os.path.join(self.dir, "reviews.json")   # gate 2: written by the dashboard (never by a run,
@@ -95,8 +95,15 @@ class Run:
         return {"event": {"id": self.ev["id"], "title": self.ev["title"]}, "project_id": None, "recordings": {},
                 "talks": {}, "log": []}
 
+    def ensure_dirs(self):
+        """The event's folder "video factory - <event>" and its sub-folders, made on the first write."""
+        for d in (self.inp, self.cut_dir, self.out, self.srt_dir, self.final_dir):
+            os.makedirs(d, exist_ok=True)
+        media.protect(self.inp)                       # again, now that in/ exists (realpath can differ once it does)
+
     def save(self, throttle=False):
         """Write state.json (atomically). throttle=True (progress ticks) writes at most every 2 seconds."""
+        self.ensure_dirs()
         with self.lock:
             if throttle and time.time() - self._saved < 2:
                 return
@@ -184,7 +191,7 @@ class Run:
 
     # ---- the ledger of paid Descript edits, shared by all events (<work root>/ledger.json) ----------------------
     def ledger_path(self):
-        return os.path.join(os.path.dirname(self.dir), "ledger.json")
+        return os.path.join(machine.shared_dir(self.cfg), "ledger.json")
 
     def ledger(self):
         try:
@@ -345,7 +352,10 @@ class Run:
 
     def ensure_space(self, what, extra=None):
         """Stop before a job that would fill the disk - and tell Marek."""
-        free = shutil.disk_usage(self.dir).free
+        where = self.dir
+        while not os.path.isdir(where):              # the event's folder isn't made until something is written
+            where = os.path.dirname(where)
+        free = shutil.disk_usage(where).free
         reserve = float(self.cfg.get("disk_reserve_gb", 10)) * 1e9
         need = self.space_needed(extra)
         if need + reserve > free:
@@ -511,6 +521,7 @@ class Run:
             r[key] = {"at": now(), "why": why or "flagged in the workbench"}
         else:
             r.pop(key, None)
+        self.ensure_dirs()
         path = os.path.join(self.dir, "redo.json")
         with open(path + ".tmp", "w", encoding="utf-8") as f:
             json.dump(r, f, indent=1, ensure_ascii=False)
@@ -545,6 +556,7 @@ class Run:
             r[key] = now()
         else:
             r.pop(key, None)
+        self.ensure_dirs()
         tmp = self.reviews_path + ".tmp"
         with open(tmp, "w", encoding="utf-8") as f:
             json.dump(r, f, indent=1, ensure_ascii=False)

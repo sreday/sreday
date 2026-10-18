@@ -57,7 +57,7 @@ def setup():
                 pass
         with open(local, "w", encoding="utf-8") as f:
             f.write("# this machine only (git-ignored). Anything from settings.yml can be overridden here.\n"
-                    "machine_name: %s\n# work_root: D:/live-factory    # default: <Desktop>/live-factory\n" % name)
+                    "machine_name: %s\n# work_root: D:/video-factory    # where the \"video factory - <event>\" folders go; default: the Desktop\n" % name)
         print("wrote " + local)
     if not machine.read_token() and sys.stdin.isatty():
         print("\nDescript API token (Descript > Settings > API tokens). Stored on this machine only, never in git.")

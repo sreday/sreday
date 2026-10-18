@@ -121,7 +121,9 @@ publish_status: true
 status_publish_minutes: 20
 
 # ---- places and pace -------------------------------------------------------------------------------------------
-work_folder: live-factory           # on the Desktop: <work_folder>/<brand>-<event>/
-final_folder: final videos for YouTube
+# One folder per event on the Desktop (or in work_root from settings.local.yml), named after the conference so several
+# can run side by side: "video factory - LLMday Austin 2026 Q4". {event} = the event's name, {id} = llmday-2026-austin-q4.
+event_folder: "video factory - {event}"
+final_folder: final videos for YouTube   # inside the event's folder
 render_parallel: 2                  # cuts rendered at once
 parallel_talks: 2                   # talks going through Descript at once
