@@ -67,7 +67,8 @@ Replace the event and paths with yours. Events are named like `sreday-2026-londo
 ## 4. What Claude won't do on its own
 
 - Approve cuts or mark talks reviewed - unless you tell it to.
-- Touch, move or delete your recordings, or free disk space by deleting things - it tells you what to free.
+- Touch, move or delete your recordings, or free disk space by deleting things on its own. When your disk is low it offers to clean up junk and cache
+  files: it shows you what they are and how big, and deletes only what you pick.
 - Handle your Descript token or any password.
 - Upload to YouTube.
 
@@ -77,6 +78,7 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-10-17** - When the disk is low, Claude offers to clean up junk and cache files and shows you what first.
 - **2026-10-17** - Each event gets its own Desktop folder named after the conference (`video factory - LLMday Austin
   2026 Q4`).
 - **2026-10-17** - "Launch the factory" opens the workbench on the event you're working on.
