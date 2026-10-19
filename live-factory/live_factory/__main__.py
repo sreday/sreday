@@ -17,6 +17,8 @@
   python -m live_factory unpause <event>               clear "edits paused" after checking the talk in Descript
   python -m live_factory publish                       update the Factory tab of sreday.com/factory now
   python -m live_factory youtube <event>               <event>/YouTube items.txt again
+  python -m live_factory leftovers <event>             list the Descript compositions failed uploads left behind
+                                                       (empty or unedited twins of a talk) for deleting by hand
   python -m live_factory status <event>
   python -m live_factory serve [<event>]               the local app on http://localhost:8043, opened on the event
                                                        (an older app still running is replaced)
@@ -210,6 +212,11 @@ def dispatch(run, cmd, argv):
     elif cmd == "youtube":
         run.write_youtube()
         print(open(os.path.join(run.dir, "YouTube items.txt"), encoding="utf-8").read())
+    elif cmd == "leftovers":
+        left = run.find_leftovers()
+        for c in left:
+            print("%-32s the %-18s one, %s  (%s)" % (c["name"], c["kind"], segment.stamp(c["seconds"]), c["id"]))
+        print("%d leftover(s) to delete in Descript" % len(left) if left else "no leftovers in Descript")
     elif cmd == "status":
         print(json.dumps(pipeline.summary(run.state), indent=1))
     else:

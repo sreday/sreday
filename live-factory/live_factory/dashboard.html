@@ -62,6 +62,7 @@ pre.log { font-size:12px; max-height:220px; overflow:auto; margin:0; white-space
 </header>
 <main>
   <div id="space" style="display:none;background:var(--bad);color:#fff;padding:10px 14px;border-radius:8px;margin-bottom:14px;font-weight:600"></div>
+  <div id="leftovers" style="display:none;border:2px solid var(--bad);padding:10px 14px;border-radius:8px;margin-bottom:14px;font-weight:600"></div>
   <section>
     <h2>1. Recordings <span class="hint">copied in from the card or disk, then analysed here (levels, Whisper transcript, stills) - free, no Descript</span></h2>
     <div id="recs"></div>
@@ -144,6 +145,10 @@ async function refresh() {
   const sw = p.state.space_warning, dk = p.disk || {};
   $('space').style.display = sw ? 'block' : 'none';
   $('space').textContent = sw ? '⚠ Not enough disk space (' + sw.at.slice(11, 16) + '): ' + sw.msg : '';
+  const lo = p.state.leftover_compositions || [];
+  $('leftovers').style.display = lo.length ? 'block' : 'none';
+  $('leftovers').textContent = lo.length ? '🗑 Delete in Descript - leftovers of failed uploads, same name as the real talk, so go by length: ' +
+    lo.map(c => c.name + ' - the ' + c.kind + ' one (' + st(c.seconds) + ')').join(', ') : '';
   $('runner').innerHTML += dk.free_gb != null ? ` <span class="chip ${dk.need_gb + 10 > dk.free_gb ? 'failed' : ''}" title="what the rest of the job needs / free on the work disk">disk: needs ${dk.need_gb} GB, ${dk.free_gb} GB free</span>` : '';
   if (first && REC) loadVideo(REC);
 }
