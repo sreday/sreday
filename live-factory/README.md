@@ -222,4 +222,13 @@ analysis took about 25 minutes on the M1 Max. Claude's checked cuts are in `rese
   red banner instead of failing on a full disk.
 - **Edit reports:** Colby cost 11.6 credits (250 um/uh muted, 16 long gaps shortened) and Geoff cost 9.7 (99 muted).
   Descript sometimes doesn't confirm the limiter's knee value; listen for it in the review.
+- **The whole night (2026-10-19 07:37):** all 11 talks were edited and are waiting for review, for 119.8 credits in
+  all (7.7-13.5 a talk). The factory's own retries (3 attempts, 2 min apart) got through Descript's hiccups:
+  - Kunle's import "was cancelled" by Descript;
+  - 429 "A job is already running for this project";
+  - Rodney's upload came back with "no usable video (6 s)".
+
+  Every failed or cancelled import leaves a 6-second composition with the talk's name, three this night (Geoff, Kunle,
+  Rodney). The AI edit always picked the real one, but the empty ones have to be deleted by hand.
+- **To do:** have the factory delete its own failed 6-second compositions before it retries.
 
