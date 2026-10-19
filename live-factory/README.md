@@ -208,4 +208,18 @@ analysis took about 25 minutes on the M1 Max. Claude's checked cuts are in `rese
   (Ajbirra = Azmeera, Nehouse = Niehaus, Amostero = Astero, Kone Lutemulai = Kunle Olutomilayo).
 - **Starting the factory:** an app left running from the day before didn't know events move to `past/` and opened on
   DevOps Not Dead London. See the app notes under "A day of recordings".
+- **The disk can fill during a run (2026-10-18).** Other work on the same Mac (Reliaburger builds) took the free space
+  from 67 GB to 11 GB while the talks were being cut. The factory checks space only when a run starts, so Claude
+  stopped the run by hand at a safe moment (an upload in progress, no paid edit), waited until 25+ GB stayed free for
+  10 minutes, and ran it again. The new run picked up where the old one stopped:
+  - it cancelled the leftover Descript upload ("cancelled 1 Descript upload(s) left over from a stopped run");
+  - it cut Kunle again from scratch;
+  - it uploaded Geoff again.
+
+  Stopping mid-upload leaves a short empty composition with the talk's name in Descript (Geoff: 6 s, next to the
+  real 25 min one). The AI edit worked on the right one, but the empty one has to be deleted by hand.
+- **To do:** check the space before each cut and upload, not just at the start of a run, and stop cleanly with the
+  red banner instead of failing on a full disk.
+- **Edit reports:** Colby cost 11.6 credits (250 um/uh muted, 16 long gaps shortened) and Geoff cost 9.7 (99 muted).
+  Descript sometimes doesn't confirm the limiter's knee value; listen for it in the review.
 
