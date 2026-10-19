@@ -218,8 +218,8 @@ analysis took about 25 minutes on the M1 Max. Claude's checked cuts are in `rese
 
   Stopping mid-upload leaves a short empty composition with the talk's name in Descript (Geoff: 6 s, next to the
   real 25 min one). The AI edit worked on the right one, but the empty one has to be deleted by hand.
-- **To do:** check the space before each cut and upload, not just at the start of a run, and stop cleanly with the
-  red banner instead of failing on a full disk.
+- **Fixed (2026-10-19):** each talk checks the space again right before it cuts and before it downloads Descript's
+  export. On a full disk it stops with the red banner (no retries), and the next run carries on.
 - **Edit reports:** Colby cost 11.6 credits (250 um/uh muted, 16 long gaps shortened) and Geoff cost 9.7 (99 muted).
   Descript sometimes doesn't confirm the limiter's knee value; listen for it in the review.
 - **The whole night (2026-10-19 07:37):** all 11 talks were edited and are waiting for review, for 119.8 credits in
@@ -228,7 +228,16 @@ analysis took about 25 minutes on the M1 Max. Claude's checked cuts are in `rese
   - 429 "A job is already running for this project";
   - Rodney's upload came back with "no usable video (6 s)".
 
-  Every failed or cancelled import leaves a 6-second composition with the talk's name, three this night (Geoff, Kunle,
-  Rodney). The AI edit always picked the real one, but the empty ones have to be deleted by hand.
-- **To do:** have the factory delete its own failed 6-second compositions before it retries.
+  Every failed or cancelled import leaves a composition with the talk's name. There were 5 empty 6-second ones (Geoff,
+  Kunle, Maryam, Matt, Nick) and Rodney's: his upload looked empty when checked, then filled in later as a full-length
+  **unedited** twin (38:07, next to the edited 34:26). The morning report counted only three - the factory's own
+  list is the one to trust. The AI edit always picked the real one.
+- **Leftovers can't be deleted by the factory:** Descript's API has no way to delete a composition (its only DELETE is
+  for jobs). Instead, the end of every run (or `python -m live_factory leftovers <event>`) lists them in the log and as
+  a banner in the workbench: name, "empty" or "unedited duplicate", and length - the name is the same as the real
+  talk, so delete by length. A redo's earlier version is never listed (it's kept on purpose).
+- **Whisper hears a mic left far away.** The "transcript hears speech" rule above let a talk recorded 35 dB too quiet
+  pass as fine (caught by the smoke test). A talk more than 15 dB under its recording's usual talk level is flagged
+  "much quieter than the rest of the recording" even when the transcript understands it. None of the Austin talks
+  gets this flag.
 

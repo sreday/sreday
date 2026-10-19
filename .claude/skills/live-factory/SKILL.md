@@ -51,6 +51,10 @@ you need before changing anything.
    count and the cost: ~8-30 Descript AI credits per talk.
 6. **Gate 2 - the person reviews each talk in Descript**, trims the extra footage, ticks Reviewed. Not you, unless
    they explicitly tell you a talk is reviewed (`review <event> "<talk>"`).
+   When telling them the talks are ready, give the leftovers from `leftovers <event>` (the run also writes them to
+   the log and the workbench banner): failed uploads leave compositions with the talk's own name - empty 6 s ones or
+   an unedited full-length twin - and Descript's API can't delete them, so they delete the one with the length you
+   name. Never count leftovers from your own memory of the night's errors (Austin: you said 3, there were 6).
 7. **Run again** → publish, download, SRT, chapters, loudness, light MP4 → `<Desktop>/video factory - <event>/final videos for YouTube/`.
 8. **YouTube items**: `youtube <event>` → `<Desktop>/video factory - <event>/YouTube items.txt`. Uploading to YouTube is the person's.
 

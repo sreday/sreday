@@ -195,7 +195,8 @@ the Google Sheet, never in the repo's CSV.
 
 | What you see | What to do |
 |---|---|
-| Red banner **Not enough disk space** | Free the space it names, or set `work_root: D:/live-factory` (a bigger drive) in `live-factory/settings.local.yml`. Nothing was started. |
+| Red banner **Not enough disk space** | Free the space it names, or set `work_root: D:/live-factory` (a bigger drive) in `live-factory/settings.local.yml`. Nothing was started, or the talk named in the banner stopped before writing its file - run again and it carries on. |
+| Banner **Delete in Descript - leftovers of failed uploads** | A failed upload left a composition with the talk's name - an empty 6 s one, or an unedited full-length twin. Delete the one with the length shown; the real, edited talk is the other one. The factory can't delete it itself (Descript doesn't allow it). |
 | A talk is **failed** at upload | Press **retry** next to it. A dropped connection is retried 3 times automatically first. |
 | **EDITS PAUSED** in the log | The factory stopped all edits because a report looked like the AI editor touched another talk, or one edit cost too much. Check that talk in Descript; if all is fine, clear the pause - `env/bin/python -m live_factory unpause <event>` in the `live-factory` folder (Windows: `env\Scripts\python`) - then Run. |
 | Descript says **402** | The Descript plan is out of credits or media minutes. Top it up, then Run - finished steps are never paid for twice. |
@@ -231,6 +232,13 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 ---
 
 ## Changelog
+
+- **2026-10-19** - Disk space is checked again before each talk is cut and before Descript's export is downloaded,
+  not only at the start of a run. A full disk stops that talk with the red banner, and the next run carries on.
+- **2026-10-19** - After each run the workbench lists the leftover compositions failed uploads left in Descript
+  (empty 6 s ones, or an unedited full-length twin), with their length, so you know which one to delete.
+- **2026-10-19** - A talk far quieter than the rest of its recording (a mic left far away) is flagged again, even
+  when the transcript understands it.
 
 - **2026-10-17** - One folder per event on the Desktop, named after the conference: `video factory - LLMday Austin
   2026 Q4`, with its own `final videos for YouTube/`. Opening an event in the app no longer makes a folder for it.

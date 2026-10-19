@@ -367,6 +367,7 @@ def assess(run, cut, talks=None, planned=None, cache=None):
         planned = {x["key"]: x["minutes"] for v in events.schedule(run.ev).values() for x in v["items"] if x["key"]}
     flags, notes = [], []
     segs, loud, total, levels_seen, stills, blank, talked_through = [], [], 0.0, False, 0, 0, 0.0
+    every, refs = [], []                                 # every second's level in the talk; each recording's talk level
     lv = None
     for p in cut.get("parts", []):
         rid, a, b = p["rec"], p["start"], p["end"]
@@ -382,7 +383,14 @@ def assess(run, cut, talks=None, planned=None, cache=None):
         if lv:
             levels_seen = True
             thr = sound_threshold(lv)
-            loud += [max(l, r) for l, r in zip(lv["left"][int(a):int(b)], lv["right"][int(a):int(b)]) if max(l, r) > thr]
+            secs = [max(l, r) for l, r in zip(lv["left"][int(a):int(b)], lv["right"][int(a):int(b)])]
+            loud += [x for x in secs if x > thr]
+            every += secs
+            if "ref" not in data:                        # how loud this recording's talks usually are
+                whole = sorted(max(l, r) for l, r in zip(lv["left"], lv["right"]))
+                data["ref"] = whole[int(len(whole) * 0.75)] if whole else None
+            if data["ref"] is not None:
+                refs.append(data["ref"])
             inner_a, inner_b = a + (b - a) * 0.1, b - (b - a) * 0.1
             tsegs = (data["tj"] or {}).get("segments", [])
             for qa, qb in quiet_spans(lv, 30, thr, inner_a, inner_b):
@@ -399,7 +407,12 @@ def assess(run, cut, talks=None, planned=None, cache=None):
     minutes = total / 60
     # recorded properly?
     if levels_seen:
-        if len(loud) < max(10, total * 0.2) and spoken(segs, 0, 1e9, total):
+        under = (max(refs) - statistics.median(every)) if refs and every else 0
+        if under > 15 and (len(loud) < max(10, total * 0.2) or talked_through):
+            # the transcript may still understand it (Whisper hears a mic left far away), but this talk sits far
+            # under the recording's other talks - that is a bad recording, not room noise close to the speech
+            flags.append("much quieter than the rest of the recording (%.0f dB under) - mic far away or off?" % under)
+        elif len(loud) < max(10, total * 0.2) and spoken(segs, 0, 1e9, total):
             notes.append("the levels can't tell this talk from the room noise (speech only a few dB over the breaks), "
                          "but the transcript hears it all the way through - sound is there")
         elif len(loud) < max(10, total * 0.2):
@@ -411,7 +424,7 @@ def assess(run, cut, talks=None, planned=None, cache=None):
             hot = sum(1 for x in loud if x > -4) / len(loud)
             if hot > 0.02:
                 flags.append("sound distorts / clips in %.0f%% of the talk" % (hot * 100))
-    if talked_through:
+    if talked_through and not any(f.startswith("much quieter") for f in flags):
         notes.append("%d s the levels call quiet have speech in the transcript - room noise close to the speech, "
                      "not drop-outs" % talked_through)
     if segs:

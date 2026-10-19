@@ -370,6 +370,33 @@ class Run:
                 self.save()
         return need, free
 
+    def talk_bytes(self, key, what):
+        """Bytes one talk's next local file takes: "cut" = the padded cut, "export" = Descript's export + the lean final."""
+        mb = 1e6
+        secs = sum(p["end"] - p["start"] for p in self.padded(key)[0])
+        if what == "export":
+            return secs * 1.4 * mb
+        recs = [self.state["recordings"].get(p["rec"]) or {} for p in self.state["talks"][key]["parts"]]
+        rates = [min(r["size"] / r["probe"]["duration"], 1.25 * mb) for r in recs
+                 if r.get("size") and (r.get("probe") or {}).get("duration")]
+        return secs * (max(rates) if rates else 1.25 * mb)
+
+    def ensure_room(self, key, what):
+        """Checked again right before each talk writes a big file, not only when the run starts: two talks work at
+        once and the other Mac users keep writing, so the start-of-run sum can go stale (LLMday Austin: 67 GB free at
+        the start, 11 GB by Geoff's upload)."""
+        where = self.dir
+        while not os.path.isdir(where):
+            where = os.path.dirname(where)
+        free = shutil.disk_usage(where).free
+        reserve = float(self.cfg.get("disk_reserve_gb", 10)) * 1e9
+        need = self.talk_bytes(key, what)
+        if need + reserve > free:
+            self.space_alarm("%s's %s needs about %.1f GB, %.0f GB is free (keeping %.0f GB spare) - free %.0f GB (ask "
+                             "Claude to clean up junk and cache files), then run the factory again" % (
+                                 key, "cut" if what == "cut" else "Descript export", need / 1e9, free / 1e9,
+                                 reserve / 1e9, (need + reserve - free) / 1e9))
+
     # ---- 2. analyse --------------------------------------------------------------------------------------------
     def analyse(self, rids=None):
         """Every part of the local pass for the given (default: all) recordings, one recording at a time - it keeps
@@ -481,15 +508,16 @@ class Run:
         for leftover in (os.path.join(self.cut_dir, key + ".mp4"), os.path.join(self.out, "_descript", key + ".mp4")):
             if os.path.exists(leftover):
                 os.remove(media.safe_target(leftover))
-        if t.get("composition_id"):
-            t.setdefault("broken_compositions", []).append(t["composition_id"])
+        kept = t.get("composition_id")
+        if kept:
+            t.setdefault("broken_compositions", []).append(kept)
         for k in ("composition_id", "composition_name", "finished", "trim", "error", "current", "stereo", "resolution",
                   "zoom", "in_clip"):
             t.pop(k, None)
         if key in self.reviews():
             self.set_reviewed(key, False)               # a new cut is a new video: reviewed again
         t["steps"] = {}
-        t.setdefault("redone", []).append({"at": now(), "why": why})
+        t.setdefault("redone", []).append({"at": now(), "why": why, "composition_id": kept})
         self.note("%s: %s - doing it again" % (key, why))
 
     def padded(self, key):
@@ -581,6 +609,8 @@ class Run:
                 t["error"] = None
             if not done("cut"):
                 with self.render_sem:
+                    self.set(key, "cut", "running", label="checking disk space", percent=0)
+                    self.ensure_room(key, "cut")
                     st = self.stereo_for({"parts": t["parts"]})
                     padded, before, after = self.padded(key)
                     crop, zoom_note = None, None
@@ -697,6 +727,8 @@ class Run:
                 self.set(key, "publish", "done", job_id=j.get("job_id"), share_url=j["result"].get("share_url"),
                          download_url=j["result"].get("download_url"))
             if not done("download"):
+                self.set(key, "download", "running", label="checking disk space")
+                self.ensure_room(key, "export")
                 self.set(key, "download", "running")
                 os.makedirs(os.path.dirname(raw), exist_ok=True)
                 with requests.get(t["steps"]["publish"]["download_url"], stream=True, timeout=600) as r:
@@ -852,12 +884,46 @@ class Run:
         with open(os.path.join(self.dir, "YouTube items.txt"), "w", encoding="utf-8") as f:
             f.write("\n".join(lines) + "\n")
 
+    def find_leftovers(self, d=None):
+        """Compositions failed Descript imports leave behind: a cancelled import or a 6 s upload still creates
+        "<talk>", and an upload that looked empty can fill in later as a full-length UNEDITED duplicate with the
+        same name (LLMday Austin: 5 empty ones + Rodney's 38 min twin). Descript's API can't delete a composition,
+        so they're listed for Marek to delete by hand - by length, since the name matches the real one. The talk's
+        real composition and a redo's earlier version (kept on purpose) are never listed."""
+        if not self.state.get("project_id"):
+            return []
+        try:
+            comps = (d or Descript()).project(self.state["project_id"]).get("compositions", [])
+        except Exception as ex:
+            self.note("could not check Descript for leftover compositions: %s" % ex)
+            return []
+        keep = {t.get("composition_id") for t in self.state["talks"].values()}
+        keep |= {r.get("composition_id") for t in self.state["talks"].values() for r in t.get("redone") or []}
+        talks = list(self.state["talks"])
+        left = []
+        for c in comps:
+            if c["id"] in keep or not any(c["name"] == k or c["name"].startswith(k + " (") for k in talks):
+                continue
+            secs = round(c.get("duration") or 0, 1)
+            left.append({"name": c["name"], "id": c["id"], "seconds": secs,
+                         "kind": "empty" if secs < MIN_TALK_SECONDS else "unedited duplicate"})
+        with self.lock:
+            if left:
+                self.state["leftover_compositions"] = left
+            else:
+                self.state.pop("leftover_compositions", None)
+            self.save()
+        if left:
+            self.note("delete in Descript (leftovers of failed uploads, the API can't delete them): " +
+                      "; ".join("%s - the %s one (%s)" % (c["name"], c["kind"], segment.stamp(c["seconds"])) for c in left))
+        return left
+
     def process_with_retries(self, key, attempts=3, pause=120):
         t = self.state["talks"][key]
         for n in range(1, attempts + 1):
             self.process(key)
             err = t.get("error") or ""
-            if not err or n == attempts or "402" in err or "edits paused" in err:
+            if not err or n == attempts or "402" in err or "edits paused" in err or "free (keeping" in err:
                 return
             with self.lock:
                 t["retry"] = "failed (%s) - trying again in %d min, attempt %d of %d" % (err[:120], pause // 60, n + 1, attempts)
@@ -906,6 +972,7 @@ class Run:
                 self.note("could not check for leftover Descript uploads: %s" % ex)
         with ThreadPoolExecutor(max_workers=max(1, int(self.cfg.get("parallel_talks") or 2))) as pool:
             list(pool.map(self.process_with_retries, keys))
+        self.find_leftovers()
         self.write_youtube()
         waiting = [k for k in keys if (self.state["talks"][k]["steps"].get("review") or {}).get("status") == "waiting"]
         self.note("run finished" + (" - %d talk(s) waiting for your review in Descript" % len(waiting) if waiting else ""))

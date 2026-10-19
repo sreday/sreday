@@ -63,6 +63,8 @@ Replace the event and paths with yours. Events are named like `sreday-2026-londo
 - *"Edits are paused - what happened?"* - Claude reads the edit reports and tells you what to check in Descript
   before it resumes.
 - *"Publish the status."* - updates the Factory logs tab of this page.
+- *"Which compositions do I delete in Descript?"* - Claude lists the leftovers failed uploads left behind (same name
+  as the talk, so it gives the length of the one to delete).
 
 ## 4. What Claude won't do on its own
 
@@ -77,6 +79,9 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 ---
 
 ## Changelog
+
+- **2026-10-19** - Claude's morning report lists the leftover Descript compositions from the factory's own check
+  (with lengths), and the factory checks disk space before every cut and export, not only at the start.
 
 - **2026-10-17** - When the disk is low, Claude offers to clean up junk and cache files and shows you what first.
 - **2026-10-17** - Each event gets its own Desktop folder named after the conference (`video factory - LLMday Austin
