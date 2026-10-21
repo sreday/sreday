@@ -125,7 +125,8 @@
         {% endif %}
     </div>
 </section>
-
+{% endif %}
+</div>
 <script>
 /* Ambassador story opens underneath, inside the same card */
 function toggleStory(btn) {
@@ -190,8 +191,6 @@ window.addEventListener('load', glowIntensity);
 document.addEventListener('DOMContentLoaded', updateDeckButtons);
 window.addEventListener('resize', function () { clearTimeout(window.__deckT); window.__deckT = setTimeout(function () { updateDeckButtons(); glowIntensity(); }, 150); });
 </script>
-{% endif %}
-</div>
 
 {% if events_past or meetups_past %}
 <section id="past-events" class="sponsors-section section theme-bg-primary text-white">
