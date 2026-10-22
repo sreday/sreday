@@ -151,7 +151,8 @@ jobs:
           git remote add origin "https://x-access-token:${GH_PAGES_TOKEN}@github.com/${{ github.repository }}.git"
           old=""
           if git fetch -q --filter=blob:none --depth=1 origin gh-pages; then old=$(git rev-parse FETCH_HEAD); fi
-          git add -A
+          git -c core.looseCompression=0 add -A   # stored uncompressed on this throwaway machine (the push still compresses):
+                                                  # most files are images, and compressing them again took ~40 s on SREday
           if [ ! -e static/CNAME ] && [ -n "$old" ] && cname=$(git rev-parse -q --verify "$old:CNAME"); then
             git update-index --add --cacheinfo "100644,$cname,CNAME"
           fi
