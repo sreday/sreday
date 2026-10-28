@@ -1,0 +1,1167 @@
+{% extends "_base.html" %}
+
+{% block content %}
+{#- Keynote / Workshop pill before the title (schedule + modals): talk.pill and talk.title_display come from
+    generate.py (talk_pill: status keynote or a legacy "Keynote:" title prefix, status workshop) -#}
+{% macro kn(t) -%}{% if t.pill %}<span class="kn-pill">{{ t.pill }}</span>{{ t.title_display }}{% else %}{{ t.title }}{% endif %}{%- endmacro %}
+
+<div class="glass-run">
+<!-- ── ABOUT THE CONFERENCE (expandable) ─────────────────────────────────── -->
+{% if about_blurb %}
+<section id="about" class="section pt-5 pb-0">
+  <div class="container text-center">
+    <button class="btn-about-conf" type="button" aria-expanded="false"
+            aria-controls="about-conf-panel" onclick="acToggle(this)">
+      About the conference
+      <span class="ac-chevron" aria-hidden="true">
+        <svg width="17" height="10" viewBox="0 0 14 8" fill="none"
+             stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="1,1 7,7 13,1"/>
+        </svg>
+      </span>
+    </button>
+    <div id="about-conf-panel" class="ac-panel mx-auto text-start">
+      <div class="ac-panel-inner">
+        <p class="ac-blurb">{{ about_blurb }}</p>
+        {% if about_companies %}
+        <h5 class="ac-topics-heading">Companies presenting:</h5>
+        <p class="ac-companies">{{ about_companies|join(', ')|e }}</p>
+        {% endif %}
+        {% if about_topics %}
+        <h5 class="ac-topics-heading">Topics so far:</h5>
+        {% for group in about_topics %}
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">{{ group.category }}</div>
+          <ul class="ac-topic-talks">
+            {% for t in group.talks %}<li>{% if t.url %}<a href="{{ t.url }}">{{ t.title|e }}</a>{% else %}{{ t.title|e }}{% endif %}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% if about_more_soon %}
+        <p class="ac-more-soon">We'll announce more talks soon, stay tuned!</p>
+        {% endif %}
+        <button class="ac-close-row" type="button" onclick="acClose()" aria-label="Close About the conference">
+          <span class="ac-close-chip">Close
+            <svg width="12" height="7" viewBox="0 0 14 8" fill="none" aria-hidden="true"
+                 stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                 style="transform:rotate(180deg);">
+              <polyline points="1,1 7,7 13,1"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .kn-pill { display: inline-block; background: var(--brand); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .6em; letter-spacing: .06em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; margin-right: 8px; vertical-align: middle; line-height: 1.4; }
+  .talk-cell .kn-pill { font-size: .7em; padding: 2px 8px; margin-right: 6px; }
+  .btn-about-conf {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--brand);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 13px 34px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.14rem;
+    font-weight: 600;
+    letter-spacing: .01em;
+    cursor: pointer;
+    transition: background .2s, box-shadow .2s;
+  }
+  .btn-about-conf:hover { background: var(--brand-dark); box-shadow: 0 4px 18px rgba(0,0,0,.18); }
+  .btn-about-conf:hover, .btn-about-conf:focus, .btn-about-conf:active,
+  .btn-about-conf[aria-expanded="true"] { color: #fff; }
+  .btn-about-conf:active { transform: scale(.97); }
+  .ac-chevron { display: flex; align-items: center; transition: transform .3s ease; }
+  .btn-about-conf[aria-expanded="true"] .ac-chevron { transform: rotate(180deg); }
+  .ac-panel { max-width: 800px; overflow: hidden; max-height: 0; transition: max-height .585s cubic-bezier(.4,0,.2,1); }
+  .ac-panel-inner { padding: 18px 4px 6px; }
+  .ac-blurb { color: #555; }
+  .ac-more-soon { color: #888; font-style: italic; }
+  .ac-topics-heading { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--brand-dark); margin-top: 16px; }
+  .ac-companies { color: #555; font-size: .9rem; }
+  .ac-topic-group { margin-top: 10px; }
+  .ac-topic-name { font-weight: 700; color: var(--brand); }
+  .ac-topic-talks { margin: 4px 0 0; padding-left: 20px; color: #555; font-size: .9rem; }
+  .ac-topic-talks a { color: inherit; text-decoration: none; }
+  .ac-topic-talks a:hover { color: var(--brand); }
+  .ac-close-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 24px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .ac-close-row::before, .ac-close-row::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e0e0e0;
+  }
+  .ac-close-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 10px;
+    padding: 3px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 999px;
+    background: #fff;
+    color: #999;
+    font-size: .78rem;
+    font-weight: 600;
+    transition: color .2s, border-color .2s;
+  }
+  .ac-close-row:hover .ac-close-chip { color: #666; border-color: #bbb; }
+</style>
+<script>
+  function acToggle(btn) {
+    var panel = document.getElementById('about-conf-panel');
+    var open = btn.getAttribute('aria-expanded') !== 'true';
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0';
+  }
+  function acClose() {
+    acToggle(document.querySelector('#about .btn-about-conf'));
+    setTimeout(function() { document.getElementById('about').scrollIntoView({behavior: 'smooth'}); }, 10);
+  }
+  function acAutoExpand() {
+    var btn = document.querySelector('#about .btn-about-conf');
+    if (btn && btn.getAttribute('aria-expanded') !== 'true') acToggle(btn);
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.location.hash === '#about') acAutoExpand();
+    document.querySelectorAll('a[href$="#about"]').forEach(function(a) {
+      a.addEventListener('click', function() { setTimeout(acAutoExpand, 0); });
+    });
+  });
+  window.addEventListener('hashchange', function() {
+    if (window.location.hash === '#about') acAutoExpand();
+  });
+</script>
+{% endif %}
+<!-- ── END ABOUT THE CONFERENCE ────────────────────────────────────── -->
+
+<style>
+  /* About + countdown + Tickets in the schedule's liquid glass (Marek 2026-10-17): ONE soft aurora in the brand colour
+     runs behind all three (no per-section edges), strongest under the stats band and fading to white before the
+     schedule, whose own aurora now fades in from white; About opens into a big rounded glass card, the countdown is a
+     glass pill, and the tickets' tinted shard (tickets.html) floats on the wash */
+  .glass-run { position: relative; isolation: isolate; overflow: clip; }
+  .glass-run::before { content: ""; position: absolute; left: -5%; right: -5%; top: -80px; bottom: 0; z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(110deg, color-mix(in srgb, var(--brand) 62%, transparent),
+      color-mix(in srgb, color-mix(in srgb, var(--brand) 45%, #ec4899) 45%, transparent),
+      rgba(245,158,11,.42), rgba(20,184,166,.32));
+    filter: blur(40px); opacity: .6;
+    -webkit-mask-image: linear-gradient(#000, rgba(0,0,0,.8) 30%, rgba(0,0,0,.4) 65%, transparent);
+    mask-image: linear-gradient(#000, rgba(0,0,0,.8) 30%, rgba(0,0,0,.4) 65%, transparent); }
+  /* the panel clips (it animates its height), so it carries 36px of room on every side for the card's shadow; the
+     shadow stays inside that room (Marek 2026-10-19: the bigger one was cut into a hard-edged rectangle) */
+  .ac-panel { max-width: 872px; padding: 0 36px; }
+  .ac-panel-inner { margin: 22px 0 46px; padding: 26px 34px 18px; border-radius: 36px;
+    background: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.8);
+    -webkit-backdrop-filter: blur(24px) saturate(170%); backdrop-filter: blur(24px) saturate(170%);
+    box-shadow: 0 12px 30px rgba(30,20,40,.10), inset 0 1px 0 rgba(255,255,255,.9); }
+  @media (max-width: 767.98px) { .ac-panel { padding: 0 14px; } .ac-panel-inner { padding: 18px 18px 12px; border-radius: 24px;
+    box-shadow: 0 6px 14px rgba(30,20,40,.09), inset 0 1px 0 rgba(255,255,255,.9); } }
+</style>
+<section id="countdown" class="about-section section">
+
+  <div class="container">
+    <div class="event-countdown text-center mb-3">
+    {% if event_state != 'after' %}
+      <h4 class="countdown-intro mb-2 text-center mb-3">Event Starts In:</h4>
+      <div id="countdown-box" class="countdown-box"></div>
+    {% else %}
+      <h4 class="countdown-intro mb-2 text-center mb-3">This is a past event, what's next?</h4>
+      {% if timeline_events %}
+      <style>
+        /* What's next, in the page's liquid glass (Marek 2026-10-17): frosted cards on the aurora, the upcoming ones
+           brand-tinted, the past ones quieter; a "Today" pill where we are. Phones get a vertical timeline (one card
+           per row) instead of nine squeezed columns */
+        .idx-tl { position: relative; max-width: 980px; margin: 6px auto 10px; padding: 18px 0 6px; }
+        .idx-tl-line { position: absolute; top: 24px; left: 2%; right: 2%; height: 2px; z-index: 0;
+          background: linear-gradient(90deg, rgba(120,110,130,.25), color-mix(in srgb, var(--brand) 55%, transparent)); }
+        .idx-tl-events { display: flex; gap: 12px; position: relative; align-items: stretch; }
+        .idx-tl-event { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; }
+        .idx-tl-dot { width: 14px; height: 14px; border-radius: 50%; margin-bottom: 12px; flex-shrink: 0; z-index: 1;
+          background: var(--brand); box-shadow: 0 0 0 3px rgba(255,255,255,.85), 0 0 14px color-mix(in srgb, var(--brand) 55%, transparent); }
+        .idx-tl-dot.past { background: #a39ba8; box-shadow: 0 0 0 3px rgba(255,255,255,.85); }
+        .idx-tl-chip { flex: 1; width: 100%; display: flex; flex-direction: column; justify-content: center; gap: 2px;
+          padding: 12px 6px; border-radius: 18px; text-align: center; text-decoration: none;
+          background: color-mix(in srgb, var(--brand) 12%, rgba(255,255,255,.55)); border: 1px solid rgba(255,255,255,.85);
+          -webkit-backdrop-filter: blur(18px) saturate(170%); backdrop-filter: blur(18px) saturate(170%);
+          box-shadow: 0 12px 30px rgba(40,20,50,.12), inset 0 1px 0 rgba(255,255,255,.9);
+          transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+        .idx-tl-chip:hover { text-decoration: none; transform: translateY(-3px);
+          background: color-mix(in srgb, var(--brand) 18%, rgba(255,255,255,.6)); box-shadow: 0 18px 38px rgba(40,20,50,.18), inset 0 1px 0 #fff; }
+        .idx-tl-chip.past { background: rgba(255,255,255,.38); box-shadow: 0 8px 22px rgba(40,20,50,.07), inset 0 1px 0 rgba(255,255,255,.8); }
+        .idx-tl-chip.past:hover { background: rgba(255,255,255,.55); }
+        .idx-tl-city { font-family: 'Montserrat', sans-serif; font-size: .8rem; font-weight: 700; color: var(--brand-dark);
+          word-break: normal; overflow-wrap: normal; hyphens: manual; }
+        .idx-tl-country, .idx-tl-date { font-size: .72rem; line-height: 1.35; color: #5b5560; }
+        .idx-tl-date { font-weight: 600; color: color-mix(in srgb, var(--brand-dark) 80%, #555); }
+        .idx-tl-chip.past .idx-tl-city { color: #5b5560; }
+        .idx-tl-chip.past .idx-tl-country, .idx-tl-chip.past .idx-tl-date { color: #8a8390; font-weight: 400; }
+        .idx-tl-now { flex: 0 0 auto; display: flex; align-items: flex-start; z-index: 1; }
+        /* "we are here": the triangular pin on the line (Marek 2026-10-17, not a "Today" label) */
+        .idx-tl-pin { display: block; width: 0; height: 0; margin-top: 10px;
+          border-left: 13px solid transparent; border-right: 13px solid transparent; border-top: 22px solid var(--brand-dark);
+          filter: drop-shadow(0 4px 8px color-mix(in srgb, var(--brand) 45%, transparent)); }
+        @media (max-width: 767.98px) {
+          /* phones: a vertical timeline - the line and dots on the left, a full-width card per event */
+          .idx-tl { max-width: 440px; padding: 4px 0 0 0; }
+          .idx-tl-line { top: 8px; bottom: 8px; left: 11px; right: auto; width: 2px; height: auto;
+            background: linear-gradient(180deg, rgba(120,110,130,.25), color-mix(in srgb, var(--brand) 55%, transparent)); }
+          .idx-tl-events { flex-direction: column; gap: 10px; }
+          .idx-tl-event { flex-direction: row; align-items: center; gap: 14px; }
+          .idx-tl-dot { margin: 0 0 0 5px; }
+          .idx-tl-chip { flex-direction: row; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+            column-gap: 10px; padding: 10px 16px; border-radius: 16px; text-align: left; }
+          .idx-tl-chip:hover { transform: translateX(3px); }
+          .idx-tl-city { font-size: .95rem; }
+          .idx-tl-country { order: 3; flex-basis: 100%; }
+          .idx-tl-date { order: 2; }
+          .idx-tl-now { padding-left: 2px; }
+          .idx-tl-pin { margin: 0; border-top: 11px solid transparent; border-bottom: 11px solid transparent;
+            border-left: 20px solid var(--brand-dark); border-right: 0; }   /* points right at the cards on the vertical line */
+        }
+      </style>
+      <div class="idx-tl">
+        <div class="idx-tl-line"></div>
+        <div class="idx-tl-events">
+          {% set ns = namespace(pin_shown=false) %}
+          {% for ev in timeline_events %}
+          {% if not ns.pin_shown and ev.state != 'past' and ev.state != 'after' %}
+          {% set ns.pin_shown = true %}
+          <div class="idx-tl-now" title="Today"><span class="idx-tl-pin" aria-label="Today"></span></div>
+          {% endif %}
+          <div class="idx-tl-event">
+            <div class="idx-tl-dot{% if ev.state == 'past' or ev.state == 'after' %} past{% endif %}"></div>
+            <a href="{{ ev.url }}" class="idx-tl-chip{% if ev.state == 'past' or ev.state == 'after' %} past{% endif %}">
+              <span class="idx-tl-city">{{ ev.city }}</span>
+              <span class="idx-tl-country">{{ ev.country }}</span>
+              <span class="idx-tl-date">{{ ev.date_string }}</span>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    {% endif %}
+    </div>
+  </div>
+  <style>
+    /* ======= Countdown pill ========= */
+    .countdown-box {                                /* a frosted glass pill on the aurora (Marek 2026-10-17), was dark #2f2f2f */
+      display: inline-flex;
+      background: rgba(255,255,255,.42);
+      border: 1px solid rgba(255,255,255,.8);
+      -webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%);
+      border-radius: 999px;
+      padding: 10px 30px;
+      box-shadow: 0 10px 30px rgba(60,20,50,.12), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(255,255,255,.25);
+    }
+    .countdown-box .number { color: var(--brand-dark); }
+    .countdown-box .unit { color: #5b5560; }
+    @media (max-width: 575px) {
+      .countdown-box { padding: 8px 14px; }
+      .countdown-box span { min-width: 56px; padding: .5rem .25rem; }  /* 4 units still fit a 320px screen */
+    }
+  </style>
+  <script>
+    /* ======= Countdown ========= */
+    // set the date we're counting down to
+    var target_date = new Date("{{ start_time }}").getTime();
+
+    // get tag element (absent on past events)
+    var countdown = document.getElementById("countdown-box");
+    if (countdown) {
+      var makeUnit = function (cls, label) {
+        var wrap = document.createElement("SPAN");
+        wrap.className = cls;
+        var num = document.createElement("SPAN");
+        num.className = "number";
+        num.textContent = "0";
+        var unit = document.createElement("SPAN");
+        unit.className = "unit";
+        unit.textContent = label;
+        wrap.appendChild(num);
+        wrap.appendChild(unit);
+        countdown.appendChild(wrap);
+        return num;
+      };
+      var days_el = makeUnit("days", "Days");
+      var hours_el = makeUnit("hours", "Hrs");
+      var minutes_el = makeUnit("minutes", "Mins");
+      var secs_el = makeUnit("secs", "Secs");
+
+      // roll a number to its new value (same countdown tween as the
+      // sponsorship page's currency switch)
+      var setNum = function (el, v) {
+        v = parseInt(v, 10);
+        var cur = parseInt(el.textContent, 10) || 0;
+        if (cur === v) return;
+        if (el._rollId) cancelAnimationFrame(el._rollId);
+        var start = performance.now();
+        var step = function (now) {
+          var t = Math.min((now - start) / 400, 1);
+          var ease = 1 - Math.pow(1 - t, 3);
+          el.textContent = String(Math.round(cur + (v - cur) * ease));
+          if (t < 1) el._rollId = requestAnimationFrame(step);
+          else el._rollId = null;
+        };
+        el._rollId = requestAnimationFrame(step);
+      };
+
+      // the event has started (Marek 2026-10-16): no "0 0 0 0" pill, the whole countdown section goes the moment it hits zero
+      var timer = null;
+      var tick = function () {
+        var seconds_left = Math.max(0, (target_date - new Date().getTime()) / 1000);
+        if (seconds_left < 1) {
+          document.getElementById("countdown").style.display = "none";
+          if (timer) clearInterval(timer);
+          return;
+        }
+        setNum(days_el, parseInt(seconds_left / 86400));
+        seconds_left = seconds_left % 86400;
+        setNum(hours_el, parseInt(seconds_left / 3600));
+        seconds_left = seconds_left % 3600;
+        setNum(minutes_el, parseInt(seconds_left / 60));
+        setNum(secs_el, parseInt(seconds_left % 60));
+      };
+      tick();
+      timer = setInterval(tick, 1000);
+    }
+    </script>
+</section>
+
+
+
+{% if event_state != 'after' %}
+<section id="tickets" class="tickets-section section">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Tickets</h3>
+
+    <div class="row pricing mb-5 mt-10">
+      <div class="col-12 text-center">
+        {% include 'tickets.html' %}
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endif %}
+</div><!--//glass-run-->
+
+<style>
+  .speakers-section .card {
+    height: 100%;
+  }
+  .speakers-section .card-footer {
+    min-height: 3rem;
+  }
+  .speakers-section .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+  }
+  .speakers-section .card-title {
+    font-size: 1.1rem;
+  }
+  .event-card-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+    width: 100%;
+  }
+  .speakers-section .event-card-buttons a {
+    flex: 0 0 auto;  /* natural width: a 50% cap let "Read more" spill out of its box on narrow cards */
+    text-align: center;
+    display: block;
+  }
+  .event-read-more-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #8e4d7c;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+  }
+  .event-read-more-btn:hover,
+  .event-read-more-btn:focus {
+    background: #a86e99;
+    color: #fff;
+    text-decoration: none;
+  }
+  .event-watch-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #EC645E;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+  }
+  .event-watch-btn:hover,
+  .event-watch-btn:focus {
+    background: #F28B87;
+    color: #fff;
+    text-decoration: none;
+  }
+  .event-watch-btn-sm {
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    margin-left: 12px;
+  }
+  .schedule-abstract {
+    position: relative;
+    max-height: 3.2em;
+    line-height: 1.6;
+    overflow: hidden;
+    text-align: justify;
+  }
+  .schedule-abstract-read-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-left: 3em;
+    background: linear-gradient(to right, transparent, #e8f8f0 30%);
+    font-weight: 700;
+    color: var(--brand);
+    text-decoration: underline;
+  }
+  .schedule-section .item {
+    margin-bottom: 4.5rem;
+  }
+</style>
+
+{% if event_state == 'before' %}
+<section id="schedule" class="schedule-section section theme-bg-light">
+  <div class="sched-aurora" aria-hidden="true"></div>
+  <div class="container">
+    <h2 class="section-heading text-center mb-5">Schedule</h2>
+    <h4 class="section-heading text-center mb-5">Coming soon</h4>
+  </div>
+</section>
+{% else %}
+<style>
+  /* Track navigation */
+  .track-nav {
+    padding: 0.75rem 0;
+    margin-bottom: 1.5rem;
+  }
+  .track-nav-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .track-nav-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .track-nav-links a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--brand);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+  }
+  .track-nav-links a:hover {
+    background: var(--brand-light);
+    color: white;
+  }
+  .view-toggle-link {
+    color: var(--brand);
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--brand);
+    border-radius: 4px;
+    transition: all 0.2s;
+    min-width: 10rem;
+    text-align: center;
+  }
+  .view-toggle-link:hover {
+    background: var(--brand);
+    color: white;
+  }
+  .view-toggle-link.active {
+    background: var(--brand);
+    color: white;
+  }
+  /* Table view */
+  .schedule-table-view { display: none; }
+  .schedule-table-view.active { display: block; }
+  /* one track: the table at 60% width, centred (Marek 2026-10-06); full width on phones */
+  @media (min-width: 768px) { .schedule-table-view.single-track { max-width: 60%; margin: 0 auto; } }
+  .schedule-timeline-view { display: block; }
+  .schedule-timeline-view.hidden { display: none; }
+  /* view switch (Normal / Compact / Table), same slider pill as the sponsorship page's currency switch */
+  .sched-glass { margin-top: 1.5rem; padding: 28px 30px 34px; border-radius: 36px;
+    background: rgba(255,255,255,.45); border: 1px solid rgba(255,255,255,.75);
+    -webkit-backdrop-filter: blur(24px) saturate(170%); backdrop-filter: blur(24px) saturate(170%);
+    box-shadow: 0 24px 60px rgba(30,20,40,.12), inset 0 1px 0 rgba(255,255,255,.9); }
+  .sched-glass .track-nav { margin-bottom: 1rem; }
+  @media (max-width: 767.98px) { .sched-glass { padding: 16px 12px 20px; border-radius: 24px; } }
+  /* the view switch centred on its own row, the room buttons underneath (Marek 2026-10-06) */
+  .track-nav-inner { flex-direction: column; gap: .75rem; }
+  .track-nav-inner .sv-toggle { order: -1; }
+  .sv-toggle { display: inline-flex; align-items: center; position: relative; gap: 2px; padding: 4px; border-radius: 999px;
+    background: color-mix(in srgb, var(--brand) 8%, white); border: 1px solid color-mix(in srgb, var(--brand) 28%, white);
+    font-size: .9rem; font-weight: 600; vertical-align: middle; }
+  .sv-label { padding: 0 .55rem 0 .8rem; color: color-mix(in srgb, var(--brand) 70%, #555); font-size: .72rem; letter-spacing: .06em;
+    text-transform: uppercase; position: relative; z-index: 1; }
+  .sv-slider { position: absolute; top: 4px; left: 4px; height: calc(100% - 8px); border-radius: 999px; background: var(--brand);
+    box-shadow: 0 1px 4px rgba(0,0,0,.2); transition: transform .3s cubic-bezier(.4,0,.2,1), width .3s cubic-bezier(.4,0,.2,1);
+    pointer-events: none; z-index: 0; }
+  .sv-btn { background: none; border: 0; color: var(--brand); font-weight: 600; font-size: .9rem; padding: .4rem 1rem; border-radius: 999px;
+    cursor: pointer; line-height: 1.2; position: relative; z-index: 1; transition: color .25s, background .15s; }
+  .sv-btn.active { color: #fff; }
+  @media (max-width: 575.98px) { .sv-label { display: none; } .sv-btn { padding: .4rem .8rem; } }
+  /* compact view: one tight list per track (time | title, speaker · company), breaks in italics */
+  .schedule-compact-view { display: none; max-width: 860px; margin: 0 auto; }
+  .schedule-compact-view.active { display: block; }
+  .sc-track { --sc: var(--brand); margin-bottom: 2.75rem; scroll-margin-top: 90px; }
+  .sc-track.sc-t2 { --sc: #c2410c; } .sc-track.sc-t3 { --sc: #0f766e; } .sc-track.sc-t4 { --sc: #6d28d9; }
+  .sc-head { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; padding-bottom: .7rem; border-bottom: 1px solid #d9dde3; }
+  /* compact view pills filled like the normal schedule's .kn-pill (Marek 2026-10-06), in the track colour */
+  .sc-badge { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase;
+    color: #fff; background: var(--sc); border-radius: 999px; padding: 3px 10px; line-height: 1.4; }
+  .sc-room { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.35rem; color: #1f2328; }
+  .sc-list { list-style: none; margin: 0; padding: 0; }
+  .sc-row { display: flex; gap: 1.1rem; padding: .7rem 0; border-bottom: 1px solid #e3e6ea; }
+  .sc-time { flex: 0 0 3.6rem; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .95rem; color: var(--brand); padding-top: .1rem; }
+  .sc-body { flex: 1; min-width: 0; }
+  .sc-pill { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: .62rem; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase; color: #fff; background: var(--sc); border-radius: 999px; padding: 3px 10px; line-height: 1.4; margin-bottom: .3rem; }
+  .sc-title { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.02rem; line-height: 1.35; color: #1f2328; text-decoration: none; }
+  .sc-title:hover { color: var(--sc); text-decoration: none; }
+  .sc-who { font-size: .88rem; color: #1f2328; margin-top: .15rem; }
+  .sc-org, .sc-dur { color: #6b7280; }
+  .sc-break .sc-body { font-style: italic; color: #6b7280; }
+  @media (max-width: 575.98px) { .sc-time { flex-basis: 3rem; font-size: .85rem; } .sc-row { gap: .7rem; } }
+  .schedule-grid-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+    table-layout: fixed;
+  }
+  .schedule-grid-table th {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: white;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .schedule-grid-table th:first-child {
+    width: 60px;
+  }
+  .schedule-grid-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--brand-lightest);
+    vertical-align: top;
+  }
+  .schedule-grid-table td.merged-cell {
+    text-align: center;
+    font-weight: 500;
+    color: #555;
+    background: var(--brand-lightest);
+  }
+  /* A track with nothing on at this time (e.g. keynotes running on screen 1 only) gets the break colour (Marek 2026-09-22) */
+  .schedule-grid-table td.empty-cell { background: linear-gradient(90deg, color-mix(in srgb, var(--brand-lightest) 70%, var(--brand-dark)), var(--brand-lightest) 85%); } /* left-to-right gradient per cell, from 30% darker (towards the brand's dark colour, not grey) to the coffee-break colour: each empty parallel track reads as its own column (Marek 2026-09-23, 2026-09-30) */
+  .schedule-grid-table .time-cell {
+    color: var(--brand);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .schedule-grid-table .talk-cell a {
+    color: #222;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .schedule-grid-table .talk-cell a:hover {
+    color: var(--brand);
+  }
+  .schedule-grid-table .speaker-info {
+    color: #444;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+  .schedule-grid-table .speaker-info .affiliation {
+    color: #666;
+  }
+  /* a 60/90/120-minute session: one cell spanning its time rows, with its length */
+  .schedule-grid-table td.double-cell { vertical-align: middle; box-shadow: inset 0 0 0 2px var(--brand-lighter); } /* a thicker outline marks a longer session (Marek 2026-09-30) */
+  .slot-badge { display: inline-block; margin-top: 0.4rem; padding: 1px 8px; border-radius: 10px; font-size: 0.75rem; font-weight: 600; color: var(--brand-dark); background: var(--brand-lightest); border: 1px solid var(--brand-lighter); }
+  /* Table view on phones (Marek 2026-10-18: "super tall rows" with 3 tracks): the tracks were ~50px of text each, one
+     word per line. Now every track gets a readable 210px column and the table scrolls sideways, the time column stays
+     pinned on the left, rows spanning all tracks keep their text on screen, and the cells are tighter */
+  .sgt-hint { display: none; }
+  @media (max-width: 767.98px) {
+    .sgt-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; overscroll-behavior-x: contain;
+      margin-top: .5rem; border-radius: 14px; }
+    .sgt-scroll .schedule-grid-table { width: calc(52px + var(--sgt-n) * 210px); min-width: 100%; margin-top: 0; }
+    .sgt-scroll .schedule-grid-table th:first-child { width: 52px; }
+    .sgt-scroll .schedule-grid-table th:not(:first-child) { width: 210px !important; }
+    .sgt-scroll .schedule-grid-table th, .sgt-scroll .schedule-grid-table td { padding: .55rem .65rem; }
+    .sgt-scroll .schedule-grid-table .talk-cell a { font-size: .9rem; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical; overflow: hidden; }   /* long titles stop at 3 lines; a tap opens the full talk */
+    .sgt-scroll .schedule-grid-table .speaker-info { font-size: .78rem; }
+    .sgt-scroll .schedule-grid-table td.talk-cell { scroll-snap-align: start; scroll-margin-left: 52px; }
+    .sgt-scroll .schedule-grid-table th:first-child, .sgt-scroll .schedule-grid-table .time-cell {
+      position: sticky; left: 0; z-index: 2; font-size: .82rem; box-shadow: 1px 0 0 var(--brand-lightest); }
+    .sgt-scroll .schedule-grid-table th:first-child { background: var(--brand-dark); }
+    .sgt-scroll .schedule-grid-table .time-cell { background: #fff; }
+    .sgt-scroll .schedule-grid-table .time-cell.merged-cell { background: var(--brand-lightest); }
+    .sgt-pin { position: sticky; left: 64px; display: inline-block; max-width: calc(100vw - 150px); text-align: left; }
+    .sgt-scroll .schedule-grid-table td[colspan] { text-align: left; }
+    .sgt-hint { display: block; margin: .75rem 0 0; font-size: .8rem; font-weight: 600; color: var(--brand-dark); opacity: .75; text-align: right; }
+  }
+  .schedule-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  .schedule-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.8rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .schedule-meta-divider {
+    color: #ccc;
+    font-weight: 300;
+  }
+  /* schedule header, liquid glass (Marek 2026-10-05, idea 40): a soft aurora in the brand colour behind the title
+     and chips, fading out below; the chips and the view switch are frosted glass on top of it */
+  .schedule-section { position: relative; isolation: isolate; overflow: clip; }
+  .sched-aurora { position: absolute; left: -5%; right: -5%; top: 0; height: 460px; z-index: -1; pointer-events: none;
+    background: linear-gradient(120deg, color-mix(in srgb, var(--brand) 62%, transparent),
+      color-mix(in srgb, color-mix(in srgb, var(--brand) 45%, #ec4899) 45%, transparent),
+      rgba(245,158,11,.42), rgba(20,184,166,.32));
+    filter: blur(40px); -webkit-mask-image: linear-gradient(transparent, #000 45%, transparent); mask-image: linear-gradient(transparent, #000 45%, transparent); }
+  /* the schedule starts white and turns mint (Marek 2026-10-17), so it meets the white end of the About/Tickets wash without an edge */
+  .schedule-section.theme-bg-light { background-image: linear-gradient(#fff, #f0faf5 260px); }
+  .schedule-meta { flex-wrap: wrap; gap: .75rem; }
+  .schedule-meta-divider { display: none; }
+  .schedule-meta-item, .sv-toggle {
+    background: rgba(255,255,255,.42); border: 1px solid rgba(255,255,255,.75);
+    -webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%);
+    box-shadow: 0 10px 30px rgba(60,20,50,.12), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(255,255,255,.25); }
+  .schedule-meta-item { padding: .6rem 1.3rem; border-radius: 999px; color: #1d1b20; }
+  /* phones: the four pills as a 2 x 2 grid of equal width (Marek 2026-10-14), not a ragged wrap */
+  @media (max-width: 575.98px) {
+    .schedule-section .schedule-meta { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; gap: .55rem; width: 100%; max-width: 420px; margin-left: auto; margin-right: auto; }
+    .schedule-section .schedule-meta .schedule-meta-item { justify-content: center; text-align: center; padding: .55rem .5rem; font-size: .92rem; line-height: 1.25; min-width: 0; }
+  }
+  /* the room buttons as glass pills like the View switch above them (Marek 2026-10-14), filled in the brand colour on hover */
+  .track-nav-links a { padding: .5rem 1.25rem; border-radius: 999px; color: var(--brand); font-weight: 700;
+    background: rgba(255,255,255,.42); border: 1px solid rgba(255,255,255,.75);
+    -webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%);
+    box-shadow: 0 10px 30px rgba(60,20,50,.12), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(255,255,255,.25);
+    transition: background .2s, color .2s, box-shadow .2s, transform .2s; }
+  .track-nav-links a:hover, .track-nav-links a:focus-visible { background: var(--brand); color: #fff; border-color: transparent;
+    box-shadow: 0 10px 26px color-mix(in srgb, var(--brand) 35%, transparent); transform: translateY(-1px); }
+  /* Track section header */
+  .track-section-header {
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: white;
+    padding: 1rem 1.75rem;
+    margin: 2rem 0 .75rem 0;
+    border-radius: 999px;                                   /* a pill across the full width (Marek 2026-10-06) */
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  .track-section-header:first-of-type {
+    margin-top: 0;
+  }
+
+  .schedule-section.theme-bg-light { background-color: #f0faf5 !important; }
+</style>
+
+<section id="schedule" class="schedule-section section theme-bg-light">
+  <div class="sched-aurora" aria-hidden="true"></div>
+  <div class="container">
+    <h2 class="section-heading text-center mb-4">Schedule{% if schedule_wip %} <span class="sched-wip">- work in progress</span>{% endif %}</h2>
+<style>.sched-wip { font-weight: 500; opacity: .7; white-space: nowrap; }</style>
+
+
+    <!-- Schedule meta info -->
+    <div class="schedule-meta">
+      <span class="schedule-meta-item">{{ date_string }}</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">{% if tracks_display == 1 %}single track{% else %}{{ tracks_display }} parallel tracks{% endif %}</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">{{ schedule_time_bracket }}</span>
+      <span class="schedule-meta-divider">•</span>
+      <span class="schedule-meta-item">{{ city_name }}, in&#8209;person</span>
+    </div>
+
+    <div class="sched-glass">{# the whole schedule on one frosted glass sheet (Marek 2026-10-06) #}
+{% for day in range(days) %}
+    {% if days > 1 %}<h4 class="section-heading text-center mb-5">Day {{ day + 1 }}</h4>{% endif %}
+
+    <!-- Track navigation -->
+    <div class="track-nav">
+      <div class="track-nav-inner">
+{% if (tracks|length) // days > 1 %}
+        <div class="track-nav-links" id="track-links-{{ day }}">
+{% for track in tracks[(tracks|length)//days*(day):(tracks|length)//days*(day+1)] %}
+          <a href="#track-{{ day }}-{{ loop.index }}">{{ rooms[loop.index0] }}</a>
+{% endfor %}
+        </div>
+{% endif %}
+        <span class="sv-toggle" role="group" aria-label="Schedule view"><span class="sv-slider"></span><span class="sv-label">View</span><button type="button" class="sv-btn active" data-view="normal" onclick="setScheduleView('normal')">Normal</button><button type="button" class="sv-btn" data-view="compact" onclick="setScheduleView('compact')">Compact</button>{% if tracks_per_day > 1 %}<button type="button" class="sv-btn" data-view="table" onclick="setScheduleView('table')">Table</button>{% endif %}</span>
+      </div>
+    </div>
+
+    <!-- Timeline View (default) -->
+    <div id="timeline-view-{{ day }}" class="schedule-timeline-view">
+{% for track in tracks[(tracks|length)//days*(day):(tracks|length)//days*(day+1)] %}
+{# one track (Marek 2026-10-16): no "Track 1" anywhere, just the room (no header at all without one) #}
+{% set _room = rooms[loop.index0] or '' %}
+{% if (tracks|length) // days > 1 %}
+      <div class="track-section-header" id="track-{{ day }}-{{ loop.index }}">Track {{ track }} &bull; {{ _room }}</div>
+{% elif _room %}
+      <div class="track-section-header" id="track-{{ day }}-{{ loop.index }}">{{ _room[:1]|upper }}{{ _room[1:] }}</div>
+{% else %}
+      <div id="track-{{ day }}-{{ loop.index }}"></div>
+{% endif %}
+      <div class="schedule-tab-content">
+        <div class="tab-pane active">
+{% for talk in talks_by_tracks[track] %}
+          <div class="item item-talk">
+            <div class="meta">
+              <h4 class="time mb-3">{{ talk.start_time.strftime('%H:%M') }}{% if talk.slots and talk.slots > 1 %}&ndash;{{ talk.end_label }}{% endif %}</h4>{% if talk.slots and talk.slots > 1 %}<span class="slot-badge mb-2">{{ talk.duration }} min</span>{% endif %}
+              <div class="profile">
+                <a href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}"><img class="profile-image rounded-circle mb-2" src="{{ talk.photo_url }}" alt=""></a>
+                <div class="name">{{ talk.name }}</div>
+              </div>
+            </div>
+            <div class="content">
+              {% if talk.name %}
+              <h3 class="title mb-3">
+                <a class="theme-link" href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}">{{ kn(talk) }}</a>
+              </h3>
+              <div class="location mb-3">{{ talk.comment }}{{ talk.organization }}{% if talk.YouTube %}<a class="event-watch-btn event-watch-btn-sm" href="{{ talk.YouTube }}" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="white" style="vertical-align:middle;margin-right:4px"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>Watch</a>{% endif %}</div>
+              <div class="desc schedule-abstract">{{ talk.abstract | plain }}<a class="schedule-abstract-read-more" href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}">... Read more</a></div>
+              {% else %}
+              <h3 class="title mb-3" style="color:#098dcf;">{{ talk.title }}</h3>
+              {% if talk.comment %}<div class="location mb-3" style="color:#098dcf;">{{ talk.comment }}</div>{% endif %}
+              {% endif %}
+            </div>
+          </div>
+{% endfor %}
+        </div>
+      </div>
+{% endfor %}
+    </div>
+
+    <!-- Compact View -->
+    <div id="compact-view-{{ day }}" class="schedule-compact-view">
+{% for track in tracks[(tracks|length)//days*(day):(tracks|length)//days*(day+1)] %}
+{% set _room = rooms[loop.index0] or '' %}
+      <div class="sc-track sc-t{{ loop.index }}" id="track-c-{{ day }}-{{ loop.index }}">
+        <div class="sc-head">{% if (tracks|length) // days > 1 %}<span class="sc-badge">Track {{ track }}</span>{% endif %}<span class="sc-room">{{ _room[:1]|upper }}{{ _room[1:] }}</span></div>
+        <ol class="sc-list">
+{% for talk in talks_by_tracks[track] %}
+          <li class="sc-row{% if not talk.name %} sc-break{% endif %}">
+            <span class="sc-time">{{ talk.start_time.strftime('%H:%M') }}</span>
+            <div class="sc-body">
+{% if talk.name %}
+              {% if talk.pill %}<span class="sc-pill">{{ talk.pill }}</span>{% endif %}
+              <a class="sc-title" href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}">{{ talk.title_display if talk.pill else talk.title }}</a>
+              <div class="sc-who">{{ talk.name }}{% if talk.organization %} <span class="sc-org">&middot; {{ talk.organization }}</span>{% endif %}{% if talk.slots and talk.slots > 1 %} <span class="sc-dur">&middot; {{ talk.duration }} min</span>{% endif %}</div>
+{% else %}
+              {{ talk.title }}
+{% endif %}
+            </div>
+          </li>
+{% endfor %}
+        </ol>
+      </div>
+{% endfor %}
+    </div>
+
+{% if tracks_per_day > 1 %}
+    <!-- Table View -->
+    <div id="table-view-{{ day }}" class="schedule-table-view{% if (tracks|length) // days == 1 %} single-track{% endif %}">
+      <div class="sgt-hint">Swipe sideways for every track &rarr;</div>
+      <div class="sgt-scroll" style="--sgt-n: {{ (tracks|length) // days }}">
+      <table class="schedule-grid-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+{% for track in tracks[(tracks|length)//days*(day):(tracks|length)//days*(day+1)] %}
+            <th style="width: calc((100% - 60px) / {{ (tracks|length) // days }})">{{ rooms[loop.index0] }}</th>
+{% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+{% set all_times = [] %}
+{% for track in tracks[(tracks|length)//days*(day):(tracks|length)//days*(day+1)] %}
+{% for talk in talks_by_tracks[track] %}
+{% if talk.start_time.strftime('%H:%M') not in all_times %}
+{% set _ = all_times.append(talk.start_time.strftime('%H:%M')) %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% for time in all_times|sort %}
+{% set ns = namespace(talks_at_time=[], titles=[]) %}
+{% for track in tracks[(tracks|length)//days*(day):(tracks|length)//days*(day+1)] %}
+{% for talk in talks_by_tracks[track] if talk.start_time.strftime('%H:%M') == time %}
+{% set _ = ns.talks_at_time.append(talk) %}
+{% set _ = ns.titles.append(talk.title) %}
+{% endfor %}
+{% if ns.talks_at_time|length < loop.index %}
+{% set _ = ns.talks_at_time.append(none) %}
+{% set _ = ns.titles.append('') %}
+{% endif %}
+{% endfor %}
+{% if ns.titles|unique|list|length == 1 and ns.titles[0] != '' %}
+          <tr>
+            <td class="time-cell{% if not ns.talks_at_time[0].name %} merged-cell{% endif %}">{{ time }}</td>
+            <td class="talk-cell{% if not ns.talks_at_time[0].name %} merged-cell{% endif %}" colspan="{{ (tracks|length) // days }}">
+              <div class="sgt-pin">
+{% if ns.talks_at_time[0].name %}
+              <a href="#modal-speaker-{{ ns.talks_at_time[0].id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ ns.talks_at_time[0].id }}">{{ ns.titles[0] }}</a>
+              <div class="speaker-info">{{ ns.talks_at_time[0].name }}{% if ns.talks_at_time[0].organization %} <span class="affiliation">• {{ ns.talks_at_time[0].organization }}</span>{% endif %}</div>
+{% else %}
+              {{ ns.titles[0] }}
+{% endif %}
+              </div>
+            </td>
+          </tr>
+{% else %}
+{% set ns_row = namespace(all_breaks=true) %}
+{% for talk in ns.talks_at_time if talk and talk.name %}{% set ns_row.all_breaks = false %}{% endfor %}
+          <tr>
+            <td class="time-cell{% if ns_row.all_breaks %} merged-cell{% endif %}">{{ time }}</td>
+{% for track in tracks[(tracks|length)//days*(day):(tracks|length)//days*(day+1)] %}
+{% set ns2 = namespace(cell_talk=none) %}
+{% for talk in talks_by_tracks[track] if talk.start_time.strftime('%H:%M') == time %}
+{% set ns2.cell_talk = talk %}
+{% endfor %}
+{% if time in covered_slots.get(track, ()) %}{# a longer session in this track spans this row (rowspan above) #}
+{% elif ns2.cell_talk and ns2.cell_talk.name %}
+            <td class="talk-cell{% if ns2.cell_talk.row_span and ns2.cell_talk.row_span > 1 %} double-cell{% endif %}"{% if ns2.cell_talk.row_span and ns2.cell_talk.row_span > 1 %} rowspan="{{ ns2.cell_talk.row_span }}"{% endif %}>
+              <a href="#modal-speaker-{{ ns2.cell_talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ ns2.cell_talk.id }}">{{ kn(ns2.cell_talk) }}</a>
+              <div class="speaker-info">{{ ns2.cell_talk.name }}{% if ns2.cell_talk.organization %} <span class="affiliation">• {{ ns2.cell_talk.organization }}</span>{% endif %}</div>{% if ns2.cell_talk.slots and ns2.cell_talk.slots > 1 %}<span class="slot-badge">{{ ns2.cell_talk.duration }} min</span>{% endif %}
+            </td>
+{% elif ns2.cell_talk %}
+            <td class="talk-cell merged-cell">{{ kn(ns2.cell_talk) }}</td>
+{% else %}
+            <td class="talk-cell{% if ns_row.all_breaks %} merged-cell{% else %} empty-cell{% endif %}"></td>
+{% endif %}
+{% endfor %}
+          </tr>
+{% endif %}
+{% endfor %}
+        </tbody>
+      </table>
+      </div>
+    </div>
+{% endif %}
+
+{% endfor %}
+    </div><!-- /.sched-glass -->
+
+    <script>
+    // Normal / Compact / Table, for every day at once; the choice is remembered per browser (a convenience only)
+    (function () {
+      var svPhone = !!(window.matchMedia && matchMedia('(max-width: 767.98px)').matches);
+      var svKey = svPhone ? 'scheduleViewPhone' : 'scheduleView';
+      function svMove(tg) {
+        var b = tg.querySelector('.sv-btn.active'), s = tg.querySelector('.sv-slider');
+        if (!b || !s) return;
+        s.style.width = b.offsetWidth + 'px';
+        s.style.transform = 'translateX(' + (b.offsetLeft - 4) + 'px)';
+      }
+      function svAll() { document.querySelectorAll('.sv-toggle').forEach(svMove); }
+      window.setScheduleView = function (v) {
+        // only the views this page offers (a one-track event has no Table): a remembered "table" falls back to normal
+        var offered = Array.prototype.map.call(document.querySelectorAll('.sv-btn'), function (b) { return b.getAttribute('data-view'); });
+        if (offered.indexOf(v) < 0) v = 'normal';
+        for (var d = 0; ; d++) {
+          var tl = document.getElementById('timeline-view-' + d);
+          if (!tl) break;
+          var cp = document.getElementById('compact-view-' + d), tb = document.getElementById('table-view-' + d);
+          var links = document.getElementById('track-links-' + d);
+          tl.classList.toggle('hidden', v !== 'normal');
+          if (cp) cp.classList.toggle('active', v === 'compact');
+          if (tb) tb.classList.toggle('active', v === 'table');
+          if (links) {
+            // hidden but still taking its space, so the view switch next to it never moves (Marek 2026-10-05)
+            links.style.visibility = v === 'table' ? 'hidden' : '';
+            links.querySelectorAll('a[href^="#track-"]').forEach(function (a) {
+              a.setAttribute('href', a.getAttribute('href').replace(/^#track-(c-)?/, v === 'compact' ? '#track-c-' : '#track-'));
+            });
+          }
+        }
+        document.querySelectorAll('.sv-btn').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-view') === v); });
+        svAll();
+        try { localStorage.setItem(svKey, v); } catch (e) {}
+      };
+      var saved = null;
+      try { saved = localStorage.getItem(svKey); } catch (e) {}
+      // phones open on the compact lineup (Marek 2026-10-06); a phone keeps its own remembered view, so a view
+      // stored before this default, or picked on a desktop, never overrides it (Marek 2026-10-07)
+      if (!saved && svPhone) saved = 'compact';
+      if (saved && saved !== 'normal') setScheduleView(saved);
+      requestAnimationFrame(svAll);
+      window.addEventListener('load', svAll);
+      window.addEventListener('resize', svAll);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(svAll);
+    })();
+    </script>
+
+    {% if event_state == 'after' %}
+    <div class="schedule-cta text-center mx-auto mt-4"><a href="https://luma.com/sre" target="_blank" rel="noopener" class="btn btn-secondary btn-lg d-block d-md-inline-block">Upcoming conferences on LUMA</a></div>
+    {% else %}
+    <div class="schedule-cta text-center mx-auto mt-4"><a href="#tickets" class="btn btn-secondary btn-lg d-block d-md-inline-block">Buy Tickets</a></div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+
+{# a speaker without a headshot gets no card here (Marek 2026-10-19); their talk stays in the schedule #}
+{% set speakers_shown = (talks + keynotes)|sort(attribute='name')|dedupe|selectattr('photo_url')|list %}
+{% if speakers_shown %}
+<style>
+  /* schedule -> speakers without an edge (Marek 2026-10-20): the schedule fades back to white at its foot and the
+     speakers' aurora fades in from white at its head, so the two washes meet on white */
+  .schedule-section.theme-bg-light { background-image: linear-gradient(#fff, #f0faf5 260px, #f0faf5 calc(100% - 320px), #fff); }
+  #speakers .spk-aurora { -webkit-mask-image: linear-gradient(transparent, #000 360px); mask-image: linear-gradient(transparent, #000 360px); }
+</style>
+<section id="speakers" class="speakers-section section spk-glass">
+  <div class="spk-aurora" aria-hidden="true"></div>
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Speakers</h3>
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
+
+      {% for talk in speakers_shown %}
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="spk-pic"><a href="#modal-speaker-{{ talk.id }}" data-bs-toggle="modal" data-bs-target="#modal-speaker-{{ talk.id }}"><img src="{{ talk.photo_url }}" class="card-img-top rounded-0" alt=""></a>{% if talk.linkedin %}<a class="spk-li{% if talk.linkedin2 %} spk-li-left{% endif %}" target="_blank" rel="noopener" href="{{ talk.linkedin }}" aria-label="{{ talk.name }} on LinkedIn"><i class="fab fa-linkedin-in"></i></a>{% endif %}{% if talk.linkedin2 %}<a class="spk-li" target="_blank" rel="noopener" href="{{ talk.linkedin2 }}" aria-label="{{ talk.name }} on LinkedIn"><i class="fab fa-linkedin-in"></i></a>{% endif %}</div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">{{ talk.display_name }}</h5>
+            <div class="card-text mb-3">
+              <div class="meta">{{ talk.organization }}</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./{{ talk.short_url }}#speakers-section" class="event-read-more-btn">Read more</a>
+              {% if talk.YouTube %}<a class="event-watch-btn" href="{{ talk.YouTube }}" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="white" style="vertical-align:middle;margin-right:4px"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>Watch</a>{% endif %}
+            </div>
+          </div><!--//card-->
+          {% if talk.twitter or talk.twitter2 %}<div class="card-footer text-muted">
+            <ul class="social-list list-inline mb-0">
+              {% if talk.twitter %}<li class="list-inline-item"><a  href="https://twitter.com/{{ talk.twitter }}"><i class="fab fa-twitter fa-fw"></i></a></li>{% endif %}
+              {% if talk.twitter2 %}<li class="list-inline-item"><a  href="https://twitter.com/{{ talk.twitter2 }}"><i class="fab fa-twitter fa-fw"></i></a></li>{% endif %}
+            </ul><!--//social-list-->
+          </div>{% endif %}
+        </div><!--//card-->
+      </div><!--//col-->
+
+      {% endfor %}
+
+      {% if event_state == 'before' %}
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h4>More coming soon</h4>
+          </div><!--//card-->
+        </div><!--//card-->
+      </div><!--//col-->
+
+      {% endif %}
+
+    </div><!--//row-->
+    {% if event_state != 'after' %}<div class="speakers-cta text-center py-3"><a class="btn btn-primary btn-lg" href="#tickets">Get Tickets</a></div>{% endif %}
+  </div><!--//container-->
+
+</section><!--//speakers-section-->
+{% endif %}
+
+{% if venue_tbc %}{% include 'venue_tbc.html' %}{% else %}{% include 'venue.html' %}{% endif %}
+
+{% if sponsors %}
+<section id="sponsors" class="sponsors-section section">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Sponsors &amp; Partners</h3>
+    <div class="section-intro text-center single-col-max mx-auto mb-5">Want to become a sponsor? Get in touch!</div>
+    <div class="row logos justify-content-center">
+      {% for sponsor in sponsors %}
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="{{sponsor.url}}" target="_blank"><img src="../sponsors/{{ sponsor.logo }}" style="--trim:{{ sponsor.logo|logo_trim }}%" alt=""></a></div>
+      {% endfor %}
+    </div><!--//row-->
+    <div class="sponsors-cta text-center pt-5">{% include '_lead_form.html' %}</div>
+  </div><!--//container-->
+</section><!--//sponsors-section-->
+{% endif %}
+
+
+<style>
+  .modal-speaker .desc p,
+  .modal-speaker .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  /* Phones: justified text in a narrow column leaves big gaps between words */
+  @media (max-width: 767.98px) {
+    .modal-speaker .desc p,
+    .modal-speaker .desc li,
+    .schedule-abstract { text-align: left; }
+  }
+  .modal-speaker .modal-close-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 1;
+    background: var(--brand);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 2.1rem;
+    line-height: 1;
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .modal-close-btn:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .modal-header {
+    display: none;
+  }
+  .modal-speaker .modal-body {
+    position: relative;
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
+  .modal-speaker .desc {
+    padding-bottom: 0.125rem;
+  }
+  /* speaker modal, liquid glass (Marek 2026-10-05, option 01 "Frosted sheet"): one frosted pane over the blurred
+     page; the header lets the page glow through, the reading area turns more opaque; headshot shown raw */
+  body:has(.modal-speaker.show) .modal-backdrop.show { --bs-backdrop-opacity: 1; background: rgba(20,16,24,.28);
+    -webkit-backdrop-filter: blur(14px) saturate(140%); backdrop-filter: blur(14px) saturate(140%); }
+  .modal-speaker .modal-content { background: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.75); border-radius: 32px; overflow: hidden;
+    -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 0 24px 60px rgba(20,10,30,.25), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(255,255,255,.3); }
+  .modal-speaker .modal-body > .theme-bg-light { background: transparent !important; }
+  .modal-speaker .profile-image { width: 140px; border-radius: 0; border: 0; box-shadow: none; filter: none; }
+  .modal-speaker h2.name { font-size: 2rem; }
+  .modal-speaker .meta { color: #5f5a63; font-size: 1.05rem; }
+  .modal-speaker .social-list a { display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; color: var(--brand);
+    background: rgba(255,255,255,.6); border: 1px solid rgba(255,255,255,.85); box-shadow: inset 0 1px 0 #fff; font-size: 1rem; }
+  .modal-speaker .talk-title-bar { font-family: 'Montserrat', sans-serif; font-size: 1.15rem; padding: 1.1rem 2rem;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--brand) 85%, transparent), color-mix(in srgb, var(--brand) 65%, transparent));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.35); }
+  .modal-speaker .desc { background: rgba(255,255,255,.86); padding: 1.6rem 2.6rem .4rem !important; }
+  .modal-speaker .desc:last-child { padding-bottom: 2.2rem !important; }
+  .modal-speaker .desc h5 { font-family: 'Montserrat', sans-serif; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .6rem; }
+  .modal-speaker .modal-close-btn { top: 18px; right: 18px; width: 42px; height: 42px; padding: 0; border-radius: 50%; font-size: 1.7rem;
+    display: grid; place-items: center; color: #1d1b20; background: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.85);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 4px 14px rgba(0,0,0,.12), inset 0 1px 0 #fff; }
+  .modal-speaker .modal-close-btn:hover { background: rgba(255,255,255,.9); color: var(--brand); }
+  @media (max-width: 575.98px) { .modal-speaker .modal-content { border-radius: 24px; } .modal-speaker .desc { padding: 1.2rem 1.3rem .3rem !important; } }
+</style>
+
+{% for talk in talks + keynotes %}
+<!-- Modal Speaker {{ talk.id }} -->
+<div class="modal modal-speaker modal-speaker-{{ talk.id }}" id="modal-speaker-{{ talk.id }}" tabindex="-1" role="dialog" aria-labelledby="speaker-{{ talk.id }}-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 mx-auto" src="{{ talk.photo_url }}" alt="" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">{{ talk.name }}</h2>
+                          <div class="meta mb-2">{{ talk.organization }}</div>
+                          <ul class="social-list list-inline mb-0">
+                            {% if talk.twitter %}<li class="list-inline-item"><a  href="https://twitter.com/{{ talk.twitter }}"><i class="fab fa-twitter fa-fw"></i></a></li>{% endif %}
+                            {% if talk.linkedin %}<li class="list-inline-item"><a  href="{{ talk.linkedin }}"><i class="fab fa-linkedin-in fa-fw"></i></a></li>{% endif %}
+                            {% if talk.twitter2 %}<li class="list-inline-item"><a  href="https://twitter.com/{{ talk.twitter2 }}"><i class="fab fa-twitter fa-fw"></i></a></li>{% endif %}
+                            {% if talk.linkedin2 %}<li class="list-inline-item"><a  href="{{ talk.linkedin2 }}"><i class="fab fa-linkedin-in fa-fw"></i></a></li>{% endif %}
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">{{ kn(talk) }}</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p>{{ talk.abstract | markdown }}</p>
+              </div>
+{% if talk.description %}
+              <div class="desc p-2 p-lg-3">
+                <p>{{ talk.description | markdown }}</p>
+              </div>
+{% endif %}
+{% if talk.bio %}
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p>{{ talk.bio | markdown }}</p>
+              </div>
+{% endif %}
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+{% endfor %}
+
+{% endblock %}
