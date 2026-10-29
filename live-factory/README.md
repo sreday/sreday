@@ -262,6 +262,12 @@ analysis took about 25 minutes on the M1 Max. Claude's checked cuts are in `rese
 - The "sounds like <other talk>" check gave a false alarm on an 11-min keynote with generic words (Chris vs Dusan):
   the slides on screen settled it.
 - **Windows: "Access is denied" on the state.json swap** killed the first run (the workbench was reading state.json at
-  that moment). `Pipeline._swap_in` now retries `os.replace` for up to 5 s.
+  that moment). `machine.swap_in` now retries `os.replace` for up to 5 s, for every JSON file the workbench and a run share.
+- **Q&As are cut, every time** (Marek: "cut Q&As, leave margin in descript"): the 60 s after the cut is enough to put
+  a good question back in Descript. Low-confidence talks go to Descript too, for Marek to check there.
+- **The host's own talk was not in the lineup** (Jeremy Newhouse, Evolv, 12:00): added to talks.csv, lunch shortened
+  to 30 min in metadata.yml, and the row handed over for the WWW sheet.
+- Credits: 7.7-15.5 per talk, about 120 for the 12 edits paid on the day. One failed upload left an unedited
+  full-length twin (Isaac Rowaiye, 0:13:41) to delete in Descript.
 - A run and the workbench once stopped together with no error in the log (something outside closed them). Starting
   `run` again picked up where it stopped; credit guard 2 skipped the edit Descript had already finished.

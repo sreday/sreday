@@ -93,7 +93,7 @@ def publish(push=True):
         tmp = STATUS + ".tmp"
         with open(tmp, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=1, ensure_ascii=False)
-        os.replace(tmp, STATUS)
+        machine.swap_in(tmp, STATUS)
         if not push:
             return "written (not pushed)"
         rel = os.path.relpath(STATUS, events.REPO)

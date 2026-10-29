@@ -30,7 +30,7 @@ import re
 import statistics
 import unicodedata
 
-from . import analyse, events
+from . import analyse, events, machine
 
 # the MC handing over: "please welcome", "next up", "give it up for"
 INTRO = re.compile(r"\b(welcome|next up|next speaker|up next|please|give it up|round of applause|introduce|on stage|"
@@ -815,4 +815,4 @@ def save(path, data):
     tmp = path + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(normalise(data), f, indent=1, ensure_ascii=False)
-    os.replace(tmp, path)
+    machine.swap_in(tmp, path)

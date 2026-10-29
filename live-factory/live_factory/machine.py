@@ -15,6 +15,7 @@ import shutil
 import socket
 import subprocess
 import sys
+import time
 
 HOME_DIR = os.path.join(os.path.expanduser("~"), ".live-factory")
 TOKEN_FILE = os.path.join(HOME_DIR, "descript_token")
@@ -22,6 +23,19 @@ CONF42_TOKEN_FILE = os.path.join(os.path.expanduser("~"), ".conf42-factory", "de
 
 
 # ---- places ------------------------------------------------------------------------------------------------------
+
+def swap_in(tmp, path):
+    """os.replace(tmp, path), retried for up to 5 s. On Windows a process reading `path` at that moment blocks the swap
+    ("Access is denied") - the workbench reading state.json killed the SREday Dallas run (2026-10-29). Use it for every
+    JSON file the workbench and a run both touch."""
+    for attempt in range(50):
+        try:
+            return os.replace(tmp, path)
+        except PermissionError:
+            if attempt == 49:
+                raise
+            time.sleep(0.1)
+
 def desktop():
     """The user's real Desktop folder (on Windows it may live in OneDrive)."""
     if os.name == "nt":

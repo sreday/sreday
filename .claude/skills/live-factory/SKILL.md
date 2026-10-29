@@ -43,12 +43,15 @@ you need before changing anything.
    warn that the file is the only copy).
 2. **Analyse**: `analyse <event>` (background).
 3. **Match the lineup** - your main job, see below. Result: `cuts.json` via `cuts <event> <file.json>`.
+   On Windows start `analyse`, `run` and `serve` with PowerShell `Start-Process` (or `cmd /c ... > log`) so they keep
+   running after Claude's shell ends. If a run and the workbench both stop with no error in the log (Dallas, 03:11),
+   start both again: the run carries on, and credit guard 2 skips edits Descript already finished.
 4. **Gate 1 - the person approves the cuts** in the workbench (section 2). Never tick "approved" yourself unless the
    person explicitly says to approve (e.g. "approve all", "you're on point, ship them"); then approve only what they
    named.
 5. **Run**: `run <event>` - cut (stereo fix, black-bar zoom, 30 s before / 60 s after for hand-trimming) → Descript
    upload → AI edit (Studio Sound 80 %, um/uh only, limiter, gaps). Before the first run of an event, tell them the
-   count and the cost: ~8-30 Descript AI credits per talk.
+   count and the cost: ~8-30 Descript AI credits per talk (Dallas 2026 Q4: 7.7-15.5, about 120 for 12 talks).
 6. **Gate 2 - the person reviews each talk in Descript**, trims the extra footage, ticks Reviewed. Not you, unless
    they explicitly tell you a talk is reviewed (`review <event> "<talk>"`).
    When telling them the talks are ready, give the leftovers from `leftovers <event>` (the run also writes them to
@@ -57,6 +60,9 @@ you need before changing anything.
    name. Never count leftovers from your own memory of the night's errors (Austin: you said 3, there were 6).
 7. **Run again** → publish, download, SRT, chapters, loudness, light MP4 → `<Desktop>/video factory - <event>/final videos for YouTube/`.
 8. **YouTube items**: `youtube <event>` → `<Desktop>/video factory - <event>/YouTube items.txt`. Uploading to YouTube is the person's.
+9. **Postmortem** (Marek, 2026-10-29): when a run ends (talks in Descript, and again after the export if more broke),
+   follow the `postmortem` skill and write `live-factory/postmortems/YYYY-MM-DD-<event>.md`. Before the first step of
+   the next event, read the last postmortem's open actions.
 
 Other commands: `status <event>`, `retry <event> "<talk>"`, `redo <event> "<talk>" "why"` (cut again + fresh
 Descript composition "<talk> (redo N)" on the next run), `unpause <event>`, `publish` (Factory logs tab of the website),
@@ -72,12 +78,25 @@ Descript composition "<talk> (redo N)" on the next run), `unpause <event>`, `pub
      being here today ... So I'm Jay") - never on a mic check ("can you hear me", "test") or set-up chat.
    - It ends at their closing ("that's my time / that's it from me / thank you"). Cut the closing Q&A when it clearly
      is one ("any questions?", "let's do Q&A", "I'm gonna take questions now", then someone asking from the back).
-     Questions in the middle (during a demo) stay. In doubt, keep the Q&A. "Hit me up with questions" is not a Q&A.
+     Questions in the middle (during a demo) stay. "Hit me up with questions" is not a Q&A. Cut every closing Q&A:
+     the 60 s margin after the cut lets the person keep it in Descript if they want (Marek, 2026-10-29: "cut Q&As,
+     leave margin in descript").
    - Someone thanking the speaker by name, or "thank you for the presentation", is the MC / audience: the talk ended.
    - Names are misheard (Laya = Leila, Mailo = Mykhailo); some speakers never say their name - confirm by the topic
      (title + abstract against what is said).
    - Slots get swapped and speakers don't show; the camera may run through lunch. A talk not found → `skipped` with why.
    - Talks run 10-30 min (workshops longer).
+   - A talk in the recording that is not in talks.csv (Dallas: the host's own talk) is not "not found": ask. If the
+     person says add it, add the speaker to `<event>/_db/talks.csv` (and the schedule in metadata.yml if a slot has to
+     move), cut it, and give them the row in the WWW sheet layout (16 tab-separated columns) for the Drive sheet.
+   - Whole-day Zoom recordings have silent stretches when the room mic was muted in Zoom: `rec/<id>/levels.json`
+     (one value a second) sits flat on its -90 dB floor - digital silence, not a quiet room. Nothing brings it back.
+     Say so, cut what is audible, and ask for another source (a phone, a camera, the Zoom cloud recording) for whatever is lost.
+   - A talk you're not sure of (low/medium confidence, picture missing, start lost) still goes to Descript when the
+     person says so ("you can put them in descript, I will check later", Marek 2026-10-29); name those talks again
+     when they are ready to review.
+   - `draft` refuses to save when two of its guesses overlap. That is fine: it is only a first guess, and you write
+     cuts.json yourself from the brief.
 3. Write cuts.json (`{"cuts":[{"key","parts":[{"rec","start","end"}],"confidence","reason","by":"claude"}],"skipped":[...]}`),
    load it with `cuts <event> file.json` (validates + flags), and give the person a table of every cut with anything
    flagged or uncertain called out. Ask them about talks you're unsure of (e.g. who spoke last).
