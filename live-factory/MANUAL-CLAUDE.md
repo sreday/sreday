@@ -80,6 +80,11 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-10-29** - Claude cuts every closing Q&A (you can put one back from the 60 s margin), asks before adding a
+  talk that isn't in the lineup, sends talks it is unsure of to Descript when you say so, and tells you when a Zoom
+  recording has stretches with the mic muted. Runs on Windows with an NVIDIA card. After every event Claude writes a postmortem
+  (`live-factory/postmortems/`) and acts on what it finds.
+
 - **2026-10-19** - Claude's morning report lists the leftover Descript compositions from the factory's own check
   (with lengths), and the factory checks disk space before every cut and export, not only at the start.
 

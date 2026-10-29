@@ -52,7 +52,7 @@ def _write_json(path, data):
     tmp = path + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False)
-    os.replace(tmp, path)
+    machine.swap_in(tmp, path)
 
 
 def transcribe(src, folder, duration, cfg, on_progress=None):

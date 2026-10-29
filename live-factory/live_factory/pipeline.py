@@ -113,18 +113,7 @@ class Run:
             tmp = self.state_path + ".%d.tmp" % threading.get_ident()
             with open(tmp, "w", encoding="utf-8") as f:
                 json.dump(self.state, f, indent=1, ensure_ascii=False)
-            self._swap_in(tmp)
-
-    def _swap_in(self, tmp):
-        """os.replace(tmp, state.json), retried for up to 5 s: on Windows the app reading state.json at that moment
-        blocks the swap ("Access is denied") - that killed the SREday Dallas run (2026-10-29)."""
-        for attempt in range(50):
-            try:
-                return os.replace(tmp, self.state_path)
-            except PermissionError:
-                if attempt == 49:
-                    raise
-                time.sleep(0.1)
+            machine.swap_in(tmp, self.state_path)
 
     @contextlib.contextmanager
     def job(self, name):
@@ -147,7 +136,7 @@ class Run:
                 tmp = self.state_path + ".tmp"
                 with open(tmp, "w", encoding="utf-8") as f:
                     json.dump(self.state, f, indent=1, ensure_ascii=False)
-                self._swap_in(tmp)
+                machine.swap_in(tmp, self.state_path)
             self.publish(force=True)
 
     def publish(self, force=False):
@@ -565,7 +554,7 @@ class Run:
         path = os.path.join(self.dir, "redo.json")
         with open(path + ".tmp", "w", encoding="utf-8") as f:
             json.dump(r, f, indent=1, ensure_ascii=False)
-        os.replace(path + ".tmp", path)
+        machine.swap_in(path + ".tmp", path)
 
     def apply_redo_requests(self):
         """At the start of a run: every talk flagged since its last redo starts again from the cut - with the cut,
@@ -600,7 +589,7 @@ class Run:
         tmp = self.reviews_path + ".tmp"
         with open(tmp, "w", encoding="utf-8") as f:
             json.dump(r, f, indent=1, ensure_ascii=False)
-        os.replace(tmp, self.reviews_path)
+        machine.swap_in(tmp, self.reviews_path)
 
     def final_path(self, key):
         safe = re.sub(r'[\\/:*?"<>|]+', "", key)

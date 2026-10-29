@@ -204,6 +204,8 @@ the Google Sheet, never in the repo's CSV.
 | The wrong talk got a name, or a talk is missing | Fix it in step 4 (change the name, add a cut with **+ cut at the playhead**), or flag it for redo in step 6. |
 | A talk **wasn't recorded** | It shows under **Not cut**. Tell the speaker; there is nothing to process. |
 | The workbench doesn't open | Double-click the launcher again; if the page is still blank, run `doctor` (step 1.3). |
+| The run and the workbench **stopped with no error** | Something outside the factory closed them (it happened once in Dallas). Open the workbench again and press **Run**: it carries on where it stopped, and an edit Descript already finished is not paid for again. |
+| A stretch of a talk has **no sound at all** | In a Zoom recording, the room mic was muted in Zoom. The file can't bring it back - look for another recording (a phone, a camera, the Zoom cloud recording). |
 | You started a job and closed the browser | That's fine - jobs run in the background. Reopen the workbench to see them. |
 
 **One computer per event.** Two people processing the same event at once would fight over the Descript project.
@@ -232,6 +234,11 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 ---
 
 ## Changelog
+
+- **2026-10-29** - Works on Windows with an NVIDIA card (first day: SREday Dallas 2026 Q4 on an RTX 5090, a whole
+  8.7 h day transcribed in about 15 min). Fixed: on Windows the run could stop with "Access is denied" while the
+  workbench was open, and ticking Reviewed during a run could do the same. Fixed: transcribing failed with a newer PyAV (`metadata_errors`).
+- **2026-10-29** - Closing Q&As are always cut; the 60 s after the talk is there if you want a question back.
 
 - **2026-10-19** - Disk space is checked again before each talk is cut and before Descript's export is downloaded,
   not only at the start of a run. A full disk stops that talk with the red banner, and the next run carries on.
