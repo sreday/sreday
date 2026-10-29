@@ -241,3 +241,27 @@ analysis took about 25 minutes on the M1 Max. Claude's checked cuts are in `rese
   "much quieter than the rest of the recording" even when the transcript understands it. None of the Austin talks
   gets this flag.
 
+
+## Learned from a real day: SREday Dallas 2026 Q4 (2026-10-29)
+
+- **A Zoom recording of the whole day** (one 8:43 h file, 2384x1542, speaker view switching to screen shares) works
+  like a camera: `add ... --day 1`, `analyse`, match. Zoom only records what the room shares, so expect stretches with
+  no picture or no sound:
+  - Michael's talk is a blank grey frame from start to end (he shared nothing): **audio only**, flagged "picture blank".
+  - A no-slides panel (6:01-6:22) recorded no sound at all; only its last line ("our time is up") made it.
+  - Two talks start mid-sentence after a silent stretch (Chris's keynote ~6 min lost; Mark's workshop after 103 s).
+    Look at the stills: slides on screen with a silent level line mean the talk had started.
+  - The recording stopped 5 min into the closing panel.
+- **Windows PC with an RTX 5090 ("Elephant")**: Whisper large-v3 on CUDA did the 8.7 h day in about 15 min (30 min of
+  audio in ~50 s), cuts go through NVENC. `setup.cmd` would not start from Claude's shells here; its steps by hand
+  (venv with `%LOCALAPPDATA%\Programs\Python\Python312\python.exe`, `pip install -r requirements.txt`, the two
+  `nvidia-*` CUDA packages, `python -m live_factory setup`) did the same. An existing `DESCRIPT_API_TOKEN` (from the
+  Conf42 factory) means setup asks for nothing.
+- **PyAV 19 broke faster-whisper 1.2.1** (`open() got an unexpected keyword argument 'metadata_errors'`):
+  requirements.txt now pins `av<16`.
+- The "sounds like <other talk>" check gave a false alarm on an 11-min keynote with generic words (Chris vs Dusan):
+  the slides on screen settled it.
+- **Windows: "Access is denied" on the state.json swap** killed the first run (the workbench was reading state.json at
+  that moment). `Pipeline._swap_in` now retries `os.replace` for up to 5 s.
+- A run and the workbench once stopped together with no error in the log (something outside closed them). Starting
+  `run` again picked up where it stopped; credit guard 2 skipped the edit Descript had already finished.
