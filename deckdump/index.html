@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Deck dump: SREday</title>
+	<!-- link previews: _build/og_images.py -->
+	<meta property="og:title" content="Deck dump: SREday">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://sreday.com/deckdump/">
+	<meta property="og:site_name" content="SREday">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:image" content="https://sreday.com/og/e465f28cc97095f6.jpg">
+	<meta property="og:image:secure_url" content="https://sreday.com/og/e465f28cc97095f6.jpg">
+	<meta property="og:image:type" content="image/jpeg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="802">
+	<meta property="og:image:alt" content="Deck dump: SREday">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@sreday_com">
+	<meta name="twitter:creator" content="@sreday_com">
+	<meta name="twitter:title" content="Deck dump: SREday">
+	<meta name="twitter:image" content="https://sreday.com/og/e465f28cc97095f6.jpg">
+	<meta name="twitter:image:alt" content="Deck dump: SREday">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png?v=7083b3a030">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:600,700|Roboto:300,400,700&display=swap" rel="stylesheet">
+  <style>
+    :root { --dd-accent: #713660; --dd-danger: #c0392b; }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }   /* .dd-picked's display:flex must not beat the hidden attribute */
+    html, body { margin: 0; background: #f4f4f6; color: #111; font-family: 'Roboto', sans-serif; }
+    .dd-wrap { max-width: 720px; margin: 0 auto; padding: 48px 20px 80px; }
+    .dd-brand { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--dd-accent); font-size: .9rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
+    .dd-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.8rem; margin: 0 0 14px; line-height: 1.2; }
+    .dd-intro { color: #333; font-size: 1rem; line-height: 1.6; margin: 0 0 26px; }
+    .dd-card { background: #fff; border: 1px solid #e6e6e6; border-left: 4px solid var(--dd-accent); border-radius: 16px; padding: 28px 32px; box-shadow: 0 4px 20px rgba(0,0,0,.06); margin-bottom: 22px; }
+    .dd-field { display: block; margin: 0 0 20px; position: relative; }
+    .dd-field:last-child { margin-bottom: 0; }
+    .dd-field > span { display: block; font-size: .8rem; font-weight: 600; color: #333; margin-bottom: 6px; letter-spacing: .02em; }
+    .dd-field > span small { font-weight: 400; color: #888; }
+    .dd-field select, .dd-field input[type=text], .dd-field input[type=email] {
+      width: 100%; border: 1px solid #ddd; border-radius: 10px; padding: 11px 14px; font-size: 1rem; color: #111; background: #fff; outline: none; font-family: inherit; transition: border-color .2s, box-shadow .2s;
+    }
+    .dd-field select:focus, .dd-field input:focus { border-color: var(--dd-accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--dd-accent) 18%, transparent); }
+    .dd-field input:disabled { background: #f2f2f4; color: #999; cursor: not-allowed; }
+    .dd-field.is-invalid select, .dd-field.is-invalid input, .dd-drop.is-invalid { border-color: var(--dd-danger) !important; }
+    .dd-list { position: absolute; left: 0; right: 0; top: 100%; z-index: 5; margin: 4px 0 0; padding: 6px; list-style: none; background: #fff; border: 1px solid #ddd; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.12); max-height: 320px; overflow-y: auto; }
+    .dd-list li { padding: 9px 12px; border-radius: 8px; cursor: pointer; line-height: 1.35; }
+    .dd-list li:hover, .dd-list li.on { background: color-mix(in srgb, var(--dd-accent) 10%, #fff); }
+    .dd-list li b { display: block; font-weight: 600; }
+    .dd-list li small { color: #777; }
+    .dd-list li.none { cursor: default; color: #777; }
+    .dd-picked { display: flex; justify-content: space-between; align-items: center; gap: 12px; border: 1px solid color-mix(in srgb, var(--dd-accent) 40%, #fff); background: color-mix(in srgb, var(--dd-accent) 7%, #fff); border-radius: 10px; padding: 10px 14px; }
+    .dd-picked b { display: block; }
+    .dd-picked small { color: #666; }
+    .dd-linkbtn { background: none; border: none; padding: 0; color: var(--dd-accent); font: inherit; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .dd-drop { border: 2px dashed #ccc; border-radius: 12px; padding: 22px; cursor: pointer; transition: border-color .2s, background .2s; background: #fafafa; display: block; font-size: .95rem; color: #444; line-height: 1.5; }
+    .dd-drop:hover, .dd-drop.over { border-color: var(--dd-accent); background: color-mix(in srgb, var(--dd-accent) 5%, #fff); }
+    .dd-drop input { display: none; }
+    .dd-drop b { color: var(--dd-accent); }
+    .dd-hint { font-size: .8rem; color: #888; margin-top: 6px; min-height: 1em; }
+    .dd-hint.warn { color: #b26a00; }
+    .dd-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding: 4px 32px 0; }
+    .btn-dd { display: inline-flex; align-items: center; justify-content: center; min-width: 170px; border: none; border-radius: 999px; padding: 12px 28px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 1.05rem; cursor: pointer; background: var(--dd-accent); color: #fff; transition: filter .15s, transform .1s; }
+    .btn-dd:hover { filter: brightness(1.1); }
+    .btn-dd:active { transform: scale(.97); }
+    .btn-dd[disabled] { opacity: .55; cursor: default; }
+    .dd-error { width: 100%; font-size: .92rem; color: var(--dd-danger); }
+    .dd-progress { width: 100%; margin-top: 4px; }
+    .dd-bar { height: 8px; border-radius: 999px; background: #e6e6e6; overflow: hidden; }
+    .dd-bar i { display: block; height: 100%; width: 0; background: var(--dd-accent); transition: width .3s; }
+    .dd-step { font-size: .88rem; color: #555; margin-top: 8px; }
+    .dd-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .dd-done { font-size: 1.05rem; line-height: 1.6; }
+    .dd-done strong { font-family: 'Montserrat', sans-serif; }
+    .dd-muted { color: #888; font-size: .85rem; margin-top: 30px; padding: 0 32px; }
+    .dd-muted a { color: #666; }
+    @media (max-width: 575.98px) { .dd-card { padding: 22px 18px; } .dd-row, .dd-muted { padding-left: 18px; padding-right: 18px; } .dd-title { font-size: 1.45rem; } }
+  </style>
+<meta name="build" content="a9969fd203-20261031T172453Z">
+</head>
+<body>
+<main class="dd-wrap">
+  <div class="dd-brand">SREday · deck dump</div>
+  <h1 class="dd-title">Upload your slides</h1>
+  <p class="dd-intro">Please share the final version of your slides with us as a PDF before the conference. We keep them as a backup on the day, and after the event they go up on your talk page for everyone to download. Big files are fine, we only trim the extra weight and never touch the quality.</p>
+
+
+  <form id="dd-form" novalidate>
+    <div class="dd-card">
+      <label class="dd-field" data-field="event"><span>Conference</span>
+        <select name="event">
+          <option value="">Pick your conference</option>
+          
+          <optgroup label="Upcoming"><option value="2026-amsterdam-q4">SREday Amsterdam 2026 Q4 · November 2, 2026</option><option value="2026-nyc-q4">SREday NYC 2026 Q4 · November 7, 2026</option><option value="2026-campinas-q4">SREday Campinas 2026 Q4 · December 2-3, 2026</option><option value="2027-katowice-q2">SREday Katowice 2027 Q2 · June 9, 2027</option></optgroup>
+          <optgroup label="Already happened (late uploads)"><option value="2026-dallas-q4">SREday Dallas 2026 Q4 · October 23, 2026</option><option value="2026-warsaw-q4">SREday Warsaw 2026 Q4 · October 22, 2026</option><option value="2026-san-francisco-q4">SREday San Francisco 2026 Q4 · October 2, 2026</option></optgroup>
+        </select>
+      </label>
+      <div class="dd-field" data-field="talk"><span>Your talk</span>
+        <input type="text" id="dd-search" placeholder="Pick your conference first" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="dd-list" disabled>
+        <ul class="dd-list" id="dd-list" role="listbox" hidden></ul>
+        <div class="dd-picked" id="dd-picked" hidden><div><b id="dd-picked-name"></b><small id="dd-picked-title"></small></div><button type="button" class="dd-linkbtn" id="dd-change">Change</button></div>
+      </div>
+      <div class="dd-field" data-field="file"><span>Slides <small>(PDF, 200 MB max)</small></span>
+        <label class="dd-drop" id="dd-drop">
+          <input type="file" name="file" accept=".pdf,application/pdf">
+          <span id="dd-drop-text"><b>Choose your PDF</b> or drop it here.<br>From PowerPoint, Keynote or Google Slides: File &gt; Export (or Download) &gt; PDF.</span>
+        </label>
+        <div class="dd-hint" id="dd-file-hint"></div>
+      </div>
+      <label class="dd-field" data-field="email"><span>Email <small>(optional, for a receipt)</small></span><input type="email" name="email" autocomplete="email" maxlength="254"></label>
+    </div>
+    <div class="dd-hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <div class="dd-row">
+      <button type="submit" class="btn-dd" id="dd-send">Upload my slides</button>
+      <div class="dd-progress" id="dd-progress" hidden><div class="dd-bar"><i id="dd-bar"></i></div><div class="dd-step" id="dd-step"></div></div>
+      <div class="dd-error" id="dd-error" hidden></div>
+    </div>
+  </form>
+
+  <div class="dd-card dd-done" id="dd-done" hidden></div>
+  <div class="dd-muted">Can't find your name? Email us at <a href="mailto:hello@sreday.com">hello@sreday.com</a> and attach your slides.</div>
+
+</main>
+
+
+<script src="../assets/js/deckdump/pdf-lib.min.js?v=0fe9d55504" defer></script>
+<script>
+var DD_URL    = "https://script.google.com/macros/s/AKfycbyBYyHafNCaZGxxCtWbcmp85kSi-VN43PQJzh8VWkIUzT5G23-4eCXeuTRgrSz6bHL2wQ/exec";
+var DD_BRAND  = "sreday";
+var DD_EVENTS = [{"city": "Amsterdam", "date": "November 2, 2026", "ends": "2026-11-03T00:00:00+01:00", "event_name": "SREday Amsterdam 2026 Q4", "folder": "2026-amsterdam-q4", "past": false, "start": "2026-11-02T09:15:00+01:00", "talks": [{"k": "Albert_Tanure_Microsoft_The_Agent_That_Prevents_Incidents__Not_Just_Fixes_Them", "n": "Albert Tanure", "t": "The Agent That Prevents Incidents, Not Just Fixes Them"}, {"k": "Aliaksandr_Valialkin_VictoriaMetrics_How_to_Create_a_Database_Optimized_for_Petabytes_of_Logs_and_Wi", "n": "Aliaksandr Valialkin", "t": "How to Create a Database Optimized for Petabytes of Logs and Wide Events"}, {"k": "Ankit_Asthana__Dastan_Oryngali_SQUER_Beyond_API_Keys_FineGrained_Authorization_with_OpenFGA", "n": "Ankit Asthana \u0026 Dastan Oryngali", "t": "Beyond API Keys: Fine-Grained Authorization with OpenFGA"}, {"k": "Ario_Afrashteh_Rabobank_Engineering_the_Harness_From_Vibe_Coding_to_Verified_Code_Generation", "n": "Ario Afrashteh", "t": "Engineering the Harness: From Vibe Coding to Verified Code Generation"}, {"k": "Bajric_Sanel_VendoQ_Who_Authorizes_the_Agent_NonHuman_Identity__Trust_Boundaries_and_Failure_Contain", "n": "Bajric Sanel", "t": "Who Authorizes the Agent? Non-Human Identity, Trust Boundaries and Failure Containment in Autonomous Production Operations"}, {"k": "Caner_Sahan_NCR_Voyix_AskPeter_Turning_Production_Data_into_Engineering_Decisions", "n": "Caner Sahan", "t": "AskPeter: Turning Production Data into Engineering Decisions"}, {"k": "Costa_Tsaousis_Netdata_The_Death_of_the_Dashboard", "n": "Costa Tsaousis", "t": "The Death of the Dashboard"}, {"k": "Daniele_Tonella_ING_SRE_at_ING", "n": "Daniele Tonella", "t": "SRE at ING"}, {"k": "Denys_Zhak_Imubit_What_AWS_Lambda_Was_Hiding_Runtime_Assumptions_Exposed_by_a_Migration", "n": "Denys Zhak", "t": "What AWS Lambda Was Hiding: Runtime Assumptions Exposed by a Migration"}, {"k": "Gergely_Daroczi_Spare_Cores_DataDriven_Instance_Selection", "n": "Gergely Daroczi", "t": "Data-Driven Instance Selection"}, {"k": "Giovanni_Pepe__Razvan_Mihai_Cicu_Uber_From_vendor_driven_monitoring_to_opensource_observability", "n": "Giovanni Pepe \u0026 Razvan Mihai Cicu", "t": "From vendor driven monitoring to open-source observability"}, {"k": "Gunnar_Grosch_Sinch_Rolling_Back_the_Agent_Just_Resets_the_Clock", "n": "Gunnar Grosch", "t": "Rolling Back the Agent Just Resets the Clock"}, {"k": "Hazel_Weakly_ING_Beyond_Policy_as_Code_Scaling_Guardrails_and_Reliability", "n": "Hazel Weakly", "t": "Beyond Policy as Code: Scaling Guardrails and Reliability"}, {"k": "Iulian_Meghea_Plumelo_Secrets_are_just_encrypted_config", "n": "Iulian Meghea", "t": "Secrets are just encrypted config"}, {"k": "Jacob_Duijzer_BIMcollab_What_If_This_Dependency_Fails_Learning_Reliability_Through_Chaos_Engineering", "n": "Jacob Duijzer", "t": "What If This Dependency Fails? Learning Reliability Through Chaos Engineering"}, {"k": "Judith_Redi_Dash0_Opentelemetery_as_the_standard_for_Agentic_Observability__moving_to_self_healing_s", "n": "Judith Redi", "t": "Opentelemetery as the standard for Agentic Observability \u0026 moving to self healing systems"}, {"k": "Leo_Visser_OGD_ICTdiensten_No_0day_required__just_target_the_AI_coding_assistant", "n": "Leo Visser", "t": "No 0-day required, just target the AI coding assistant!"}, {"k": "Lewis_Isaac_Coralogix_Whos_Watching_the_Agents_Measuring_the_Impact_of_AIAssisted_Development", "n": "Lewis Isaac", "t": "Who\u0027s Watching the Agents? Measuring the Impact of AI-Assisted Development"}, {"k": "Luca_Berton_The_Production_AI_Expert_The_GPU_Is_Not_Your_SLO_Reliability_Engineering_for_Production_", "n": "Luca Berton", "t": "The GPU Is Not Your SLO: Reliability Engineering for Production AI"}, {"k": "Maxim_Schepelin_Bookingcom_SRE_concents_every_engineering_leader_should_know", "n": "Maxim Schepelin", "t": "SRE concents every engineering leader should know"}, {"k": "Michael_Cote_Broadcom_Here_comes_the_normies__how_DevOps_can_handle_the_flood_of_AI_slopapps", "n": "Michael Cote", "t": "Here comes the normies - how DevOps can handle the flood of AI slop-apps"}, {"k": "Miko_Pawlikowski_Reliaburger_Ten_years_of_Kubernetes_lessons__in_one_binary", "n": "Miko Pawlikowski", "t": "Ten years of Kubernetes lessons, in one binary"}, {"k": "Miko_Pawlikowski_Reliaburger_SRE_Author_Kill_It_and_Watch_It_Come_Back_Handson_with_Reliaburger", "n": "Miko Pawlikowski", "t": "Kill It and Watch It Come Back: Hands-on with Reliaburger"}, {"k": "Mladen_Maric_lomodev_Securing_the_Vibe_Coding_Era_LocalFirst_Security_Gates_for_AIGenerated_Code", "n": "Mladen Maric", "t": "Securing the Vibe Coding Era: Local-First Security Gates for AI-Generated Code"}, {"k": "Muharrem_Burak_Unuvar_Microsoft_Agentic_Infra_Ops__SRE_Agents_in_Action", "n": "Muharrem Burak Unuvar", "t": "Agentic Infra Ops \u0026 SRE Agents in Action"}, {"k": "Nati_Cohen_AWS_Understanding_Performance_Regression_With_APerf", "n": "Nati Cohen", "t": "Understanding Performance Regression With APerf"}, {"k": "Niek_van_Raaij_Schuberg_Philis_Rehearse_the_Worst_Day", "n": "Niek van Raaij", "t": "Rehearse the Worst Day"}, {"k": "Ozlem_Tanrikulu_Near_East_University_Finding_the_33_Your_Kubernetes_Clusters_Are_Wasting", "n": "Ozlem Tanrikulu", "t": "Finding the 33% Your Kubernetes Clusters Are Wasting"}, {"k": "Peter_Marshall_Imply_Agentic_observability_needs_a_new_engine", "n": "Peter Marshall", "t": "Agentic observability needs a new engine"}, {"k": "Piotr_Zaniewski_vCluster_Labs_Curl_a_GPU_Into_Your_Cluster_Hybrid_Kubernetes_for_AI_Development", "n": "Piotr Zaniewski", "t": "Curl a GPU Into Your Cluster: Hybrid Kubernetes for AI Development"}, {"k": "Ralph_Meijer_Netdata_Your_Dashboards_Are_Lying_to_You_And_How_to_Make_Them_Tell_the_Truth", "n": "Ralph Meijer", "t": "Your Dashboards Are Lying to You (And How to Make Them Tell the Truth)"}, {"k": "Renato_Losio_Funambol_Five_Hard_Lessons_from_Five_Years_of_SoCalled_Serverless_Databases", "n": "Renato Losio", "t": "Five Hard Lessons from Five Years of So-Called Serverless Databases"}, {"k": "Ricard_Bejarano_Cisco_SRE_for_the_homelab", "n": "Ricard Bejarano", "t": "SRE for the homelab"}, {"k": "Rob_Akershoek_DXC_Technology_How_to_Make_Your_IT_Flow_7_Essential_Flows_of_Digital_Delivery", "n": "Rob Akershoek", "t": "How to Make Your IT Flow: 7 Essential Flows of Digital Delivery"}, {"k": "Roman_Gorge_Andersen_Lab_AIAssisted_Operations_for_Platform_Teams", "n": "Roman Gorge", "t": "AI-Assisted Operations for Platform Teams"}, {"k": "Roopam_Mahindra_ING_Observability_Wont_Save_You_But_a_Reliability_Culture_Will", "n": "Roopam Mahindra", "t": "Observability Won\u0027t Save You (But a Reliability Culture Will)"}, {"k": "Stephen_Cihak_Harness_Closing_the_Loop_From_Production_Incident_to_Autonomous_Fix", "n": "Stephen Cihak", "t": "Closing the Loop: From Production Incident to Autonomous Fix"}, {"k": "Teresa_Blanco__Auxten_Wang_ClickHouse_Inc_The_Request_Timed_Out_Your_Agent_Query_Is_Still_Running", "n": "Teresa Blanco \u0026 Auxten Wang", "t": "The Request Timed Out. Your Agent Query Is Still Running"}, {"k": "Teresa_Lopes_Adyen_Operational_hazards_of_managing_PostgreSQL_DBs_over_100TB", "n": "Teresa Lopes", "t": "Operational hazards of managing PostgreSQL DBs over 100TB"}, {"k": "Thijs_Feryn_Varnish_Software_Whats_new_in_Varnish_new_features_in_the_highperformance_caching_proxy", "n": "Thijs Feryn", "t": "What\u0027s new in Varnish: new features in the high-performance caching proxy"}, {"k": "Vanshika_Gupta_ViralCircle_How_to_Turn_LinkedIn_Into_Your_1_B2B_GTM_Channel", "n": "Vanshika Gupta", "t": "How to Turn LinkedIn Into Your #1 B2B GTM Channel"}]}, {"city": "NYC", "date": "November 7, 2026", "ends": "2026-11-08T00:00:00-05:00", "event_name": "SREday NYC 2026 Q4", "folder": "2026-nyc-q4", "past": false, "start": "2026-11-07T09:30:00-05:00", "talks": [{"k": "AJ_Meyers_AJ_Meyers_Always_On_SRE_CoWorker", "n": "AJ Meyers", "t": "Always On SRE CoWorker"}, {"k": "Anand_Mattah_Chenna_Kesavalu_Grainger_Navigate_RUM_Without_Limits_Cutting_80_of_Browser_Telemetry_No", "n": "Anand Mattah Chenna Kesavalu", "t": "Navigate RUM Without Limits: Cutting 80% of Browser Telemetry Noise While Improving Observability"}, {"k": "Datadog__Datadog__Keynote_Coming_soon", "n": "Datadog", "t": "Coming soon..."}, {"k": "Denys_Zhak_Imubit_What_AWS_Lambda_Was_Hiding_Runtime_Assumptions_Exposed_by_a_Migration", "n": "Denys Zhak", "t": "What AWS Lambda Was Hiding: Runtime Assumptions Exposed by a Migration"}, {"k": "Dor_Amir_Nadir_Cache_Is_King_The_Hidden_Cost_of_LLM_Optimization", "n": "Dor Amir", "t": "Cache Is King: The Hidden Cost of LLM Optimization"}, {"k": "Elliot_Gardiner_Mirror_Panel_Inc_Production_Has_Observability_Your_Coding_Agent_Doesnt", "n": "Elliot Gardiner", "t": "Production Has Observability. Your Coding Agent Doesn\u2019t"}, {"k": "Giovanni_Martinez_Tiger_Data_Agents_Can_Write_Migrations_They_Shouldnt_Ship_Them", "n": "Giovanni Martinez", "t": "Agents Can Write Migrations. They Shouldn\u2019t Ship Them."}, {"k": "Itamar_Knafo_Dalton_AI_You_Build_It__You_Run_It_Is_Dead_Reliability_When_the_Author_Is_an_Agent", "n": "Itamar Knafo", "t": "You Build It, You Run It Is Dead: Reliability When the Author Is an Agent"}, {"k": "Lesley_Cordero_The_New_York_Times_Actionable_Observability", "n": "Lesley Cordero", "t": "Actionable Observability"}, {"k": "Manan_Chawda__Nikunj_Doshi_Experian_Paying_for_the_Worst_Day_Sizing_Standby_from_RTO", "n": "Manan Chawda \u0026 Nikunj Doshi", "t": "Paying for the Worst Day: Sizing Standby from RTO"}, {"k": "Marcelo_Labre_Kidar_Agentic_Engineering_The_Agent_Writes_the_Code__Not_the_Process", "n": "Marcelo Labre", "t": "Agentic Engineering: The Agent Writes the Code, Not the Process"}, {"k": "Marcelo_Lorenzetti_Guild_Systems_Who_Stops_the_AI_Agent_at_2_AM", "n": "Marcelo Lorenzetti", "t": "Who Stops the AI Agent at 2 AM?"}, {"k": "Michael_Levan_Soloio_Sandboxed_Agents_Building_Isolated__Governed_and_Scalable_AI", "n": "Michael Levan", "t": "Sandboxed Agents: Building Isolated, Governed and Scalable AI"}, {"k": "Michael_Posso_TheRobotAge_Your_Code_Deploys_Your_Docs_Drift_Can_AI_Agents_Fix_That", "n": "Michael Posso", "t": "Your Code Deploys. Your Docs Drift: Can AI Agents Fix That?"}, {"k": "PaulHenri_Pillet_Gatling_Dont_RTFM__use_AI_instead_for_your_first_Gatling_tests", "n": "Paul-Henri Pillet", "t": "Don\u0027t RTFM, use AI instead for your first Gatling tests!"}, {"k": "PJ_Hagerty_WWT_Why_Dev_Tools_Still_Matter", "n": "PJ Hagerty", "t": "Why Dev Tools Still Matter"}, {"k": "Raymond_Carlson_Carlson_BCM_Observing_the_Enterprise__Not_Just_the_Stack", "n": "Raymond Carlson", "t": "Observing the Enterprise, Not Just the Stack"}, {"k": "Romaric_Philogene_Qovery_SRE_in_the_Era_of_AI_Lessons_Learned_from_Hundreds_of_Teams_Ive_met_Over_3_", "n": "Romaric Philogene", "t": "SRE in the Era of AI: Lessons Learned from Hundreds of Teams I\u0027ve met Over 3 Years"}, {"k": "Shaalmali_Raychaudhury_Sr_Site_Reliability_Engineer_Beyond_the_Fix__Why_Problem_and_Change_Managemen", "n": "Shaalmali Raychaudhury", "t": "Beyond the Fix \u2014 Why Problem and Change Management Decide If Incidents Repeat"}, {"k": "Tom_Elliott_Modal_Degraded_is_better_than_down", "n": "Tom Elliott", "t": "Degraded is better than down"}, {"k": "Tyler_Schade_GEICO_Observing_the_unobservable_instrumentation_for_your_legacy_workloads", "n": "Tyler Schade", "t": "Observing the un-observable: instrumentation for your legacy workloads"}, {"k": "William_McLean_Glitnir_Ticketing_Inference_on_Cloud_TPU", "n": "William McLean", "t": "Inference on Cloud TPU"}, {"k": "Yossi_Eliaz_Incredibuild_Reliability_Lessons_from_Building_Sandboxes_for_AI_Agents", "n": "Yossi Eliaz", "t": "Reliability Lessons from Building Sandboxes for AI Agents"}]}, {"city": "Campinas", "date": "December 2-3, 2026", "ends": "2026-12-04T00:00:00-03:00", "event_name": "SREday Campinas 2026 Q4", "folder": "2026-campinas-q4", "past": false, "start": "2026-12-02T09:30:00-03:00", "talks": [{"k": "Camilla_Martins_Senior_Site_Reliability_Engineer_Beyond_the_Default_Scheduler_What_PhD_Research_Taug", "n": "Camilla Martins", "t": "Beyond the Default Scheduler: What PhD Research Taught Us About k8s Reliability with ML Prediction and Heuristics on GCP"}, {"k": "Derick_Rodrigues_Ana_Gaming_Do_provisionamento_manual_aos_golden_paths_migrando_para_EKS_e_CloudFron", "n": "Derick Rodrigues", "t": "Do provisionamento manual aos golden paths: migrando para EKS e CloudFront com Backstage"}, {"k": "Emerson_Silva_4Linux_Talos_Linux_um_OS_imutvel_e_sem_SSH_para_o_Kubernetes", "n": "Emerson Silva", "t": "Talos Linux: um OS imut\u00e1vel e sem SSH para o Kubernetes"}, {"k": "Fabricio_Veronez_Veronezio_Harness_Engineering_e_Loop_Engineering_do_ticket_ao_PR", "n": "Fabricio Veronez", "t": "Harness Engineering e Loop Engineering: do ticket ao PR"}, {"k": "Felipe_Pereira_Mquina_de_Dados_Harness_Engineering_for_Real_Building_the_Environment_Where_AI_Can_Ac", "n": "Felipe Pereira", "t": "Harness Engineering for Real: Building the Environment Where AI Can Actually Deliver"}, {"k": "Flavio_Meira_Orca_Security_Assinando_tudo_Sigstore__Cosign_e_provenincia_provenance_em_pipelines_Git", "n": "Flavio Meira", "t": "Assinando tudo: Sigstore, Cosign e proveni\u00eancia (provenance) em pipelines GitOps"}, {"k": "Gabriel_Dantas_Gomes_QuintoAndar_Transformando_seu_Kubernetes_em_um_Cluster_Agntico_com_kagent", "n": "Gabriel Dantas Gomes", "t": "Transformando seu Kubernetes em um Cluster Ag\u00eantico com kagent"}, {"k": "Igor_Estevan_Jasinski_Sicredi_Observability_as_a_Service_How_Sicredi_Transformed_Monitoring_into_a_S", "n": "Igor Estevan Jasinski", "t": "Observability as a Service: How Sicredi Transformed Monitoring into a Self-Service Platform"}, {"k": "Igor_Muralhes_ZenerIM_Beyond_Software_Applying_SRE_to_Industrial_Critical_Systems", "n": "Igor Muralhes", "t": "Beyond Software: Applying SRE to Industrial Critical Systems"}, {"k": "Joao_Gabriel_Franchi_Briotto__Leonardo_Camara_Bradesco_Where_no_Postmortem_has_gone_before_The_Resil", "n": "Joao Gabriel Franchi Briotto \u0026 Leonardo Camara", "t": "Where no Postmortem has gone before: The Resilience Sprint Journey"}, {"k": "Joao_Hugo_Ferreira_ECI_Software_Solutions_Are_Seniors_Still_Necessary", "n": "Joao Hugo Ferreira", "t": "Are Seniors Still Necessary?"}, {"k": "Kyndryl__SREday_Kyndryl__SREday_Official_welcome__Kyndryl__SREday", "n": "Kyndryl \u0026 SREday", "t": "Official welcome - Kyndryl \u0026 SREday"}, {"k": "Lara_Xavier_JLCP_Quem_observa_o_observador_SRE_para_agentes_de_IA_em_produo", "n": "Lara Xavier", "t": "Quem observa o observador? SRE para agentes de IA em produ\u00e7\u00e3o"}, {"k": "Leandro_Fachinelli_IBM_From_Copilot_to_Autopilot_When_Should_an_SRE_Let_AI_Touch_Production", "n": "Leandro Fachinelli", "t": "From Copilot to Autopilot: When Should an SRE Let AI Touch Production"}, {"k": "Leonardo_Camara__Pedro_Alex_da_Costa__Henrique_Gense_Banco_Bradesco_Alm_do_RCA_Evoluindo_para_uma_cu", "n": "Leonardo Camara \u0026 Pedro Alex da Costa \u0026 Henrique Gense", "t": "Al\u00e9m do RCA: Evoluindo para uma cultura de blameless PostMortem\nBanco Bradesco"}, {"k": "Luiz_Siqueira__Maria_Luiza_de_Queiroz_Bradesco_SRE_as_a_Service__Acelerando_a_adoo_SRE", "n": "Luiz Siqueira \u0026 Maria Luiza de Queiroz", "t": "SRE as a Service - Acelerando a ado\u00e7\u00e3o SRE"}, {"k": "Marcelo_Capile_IBM_Diagnose__Approve__Remediate__Verify_A_TwoAgent_AIOps_Loop_for_Kubernetes", "n": "Marcelo Capile", "t": "Diagnose, Approve, Remediate, Verify: A Two-Agent AIOps Loop for Kubernetes"}, {"k": "Marcelo_da_Silva_Pires_Denkyem_Labs_Speed_up_Cloud_Learning_speding_no_money", "n": "Marcelo da Silva Pires", "t": "Speed up Cloud Learning speding no money"}, {"k": "Osanam_Giordane_da_Costa_Junior_Cloud_Agil_Tech_Autonomous_SRE_agents_at_observability", "n": "Osanam Giordane da Costa Junior", "t": "Autonomous SRE agents at observability"}, {"k": "Rod_Anami_3M_Can_I_hire_AI_agents_to_do_my_SRE_work", "n": "Rod Anami", "t": "Can I hire AI agents to do my SRE work?"}, {"k": "Rod_Anami_3M_Kill_It_and_Watch_It_Come_Back_Handson_with_Reliaburger", "n": "Rod Anami", "t": "Kill It and Watch It Come Back: Hands-on with Reliaburger"}, {"k": "Rodrigo_Leme_Microsoft_Melhorando_Reliability_Atravs_AIPowered_Application_Modernization_com_GitHub", "n": "Rodrigo Leme", "t": "Melhorando Reliability Atrav\u00e9s AI-Powered Application Modernization com GitHub"}, {"k": "Thiago_Rodrigues_Silva_Bosch_Digital_From_Prompt_to_Production_Speeding_Up_AI_Agents_Deployment_on_G", "n": "Thiago Rodrigues Silva", "t": "From Prompt to Production: Speeding Up AI Agents Deployment on Google Cloud with Natural Language Using Gemini CLI"}, {"k": "Willian_Bersch_Yamashita_Bradesco_A_noite_em_que_tudo_quase_parou__3_nveis_de_maturidade_no_uso_de_I", "n": "Willian Bersch Yamashita", "t": "A noite em que tudo quase parou - 3 n\u00edveis de maturidade no uso de IA"}]}, {"city": "Katowice", "date": "June 9, 2027", "ends": "2027-06-10T00:00:00+02:00", "event_name": "SREday Katowice 2027 Q2", "folder": "2027-katowice-q2", "past": false, "start": "2027-06-09T09:00:00+02:00", "talks": [{"k": "Aliaksandr_Valialkin_VictoriaMetrics_How_to_Create_a_Database_Optimized_for_Petabytes_of_Logs_and_Wi", "n": "Aliaksandr Valialkin", "t": "How to Create a Database Optimized for Petabytes of Logs and Wide Events"}, {"k": "Piotr_Migdal_Quesma_Running_local_AI_models", "n": "Piotr Migdal", "t": "Running local AI models"}, {"k": "Utibeabasi_Umanah_Unikraft_Your_Node_App_Doesnt_Need_Linux", "n": "Utibeabasi Umanah", "t": "Your Node App Doesn\u0027t Need Linux"}]}, {"city": "Dallas", "date": "October 23, 2026", "ends": "2026-10-24T00:00:00-05:00", "event_name": "SREday Dallas 2026 Q4", "folder": "2026-dallas-q4", "past": true, "start": "2026-10-23T09:00:00-05:00", "talks": [{"k": "Aaron_Hunter_AWS_The_tokenomics_of_Model_Context_Protocol_at_scale", "n": "Aaron Hunter", "t": "The tokenomics of Model Context Protocol at scale"}, {"k": "Bailey_Elaine_Laban_S7_Influence_for_Engineers_Beyond_Networking", "n": "Bailey Elaine Laban", "t": "Influence for Engineers Beyond Networking"}, {"k": "Chris_Hankla_Snowflake_Observe_on_Snowflake", "n": "Chris Hankla", "t": "Observe on Snowflake"}, {"k": "Dusan_Stanojevic_Traceway_From_Firefighting_to_Foresight_Observability_Is_Reactive_by_Default__and_I", "n": "Dusan Stanojevic", "t": "From Firefighting to Foresight: Observability Is Reactive by Default, and It Shouldn\u0027t Be"}, {"k": "Girish_Konda_Microsoft_A_Thousand_Alerts_a_Day__and_One_Real_Incident_Hiding_In_Them", "n": "Girish Konda", "t": "A Thousand Alerts a Day, and One Real Incident Hiding In Them"}, {"k": "Isaac_Rowaiye_IR_Technical_Solutions_Taking_Ownership_Cloud_Migration", "n": "Isaac Rowaiye", "t": "Taking Ownership: Cloud Migration"}, {"k": "Jason_Kallner_Thomson_Reuters_Why_Enterprise_SLO_Programs_Fail", "n": "Jason Kallner", "t": "Why Enterprise SLO Programs Fail"}, {"k": "Jeremy_Newhouse_Evolv_Consulting_AI_for_SRE_and_SRE_for_AI_Getting_AI_Out_of_the_Pilot_and_Into_Prod", "n": "Jeremy Newhouse", "t": "AI for SRE and SRE for AI: Getting AI Out of the Pilot and Into Production"}, {"k": "Jerry_Scott_Check_Point_Software_Detection__Tracking__Notification_A_ThreeLayer_Model_for_Effective_", "n": "Jerry Scott", "t": "Detection, Tracking, Notification: A Three-Layer Model for Effective Incident Management"}, {"k": "Jothsna_Praveena_Pendyala__Pramod_Begur_Nagaraj_Infosys_Independent_Researcher_Building_Reliable_Age", "n": "Jothsna Praveena Pendyala \u0026 Pramod Begur Nagaraj", "t": "Building Reliable Agentic Platforms on Kubernetes: Beyond Pod Health"}, {"k": "Kevin_Brown_Canvas_Cloud_Technologies_What_Happens_at_300_RPS_Testing_an_Infrastructure_Change_Befor", "n": "Kevin Brown", "t": "What Happens at 300 RPS? Testing an Infrastructure Change Before It Ships"}, {"k": "Kevin_Inman_CVS_Health_Two_paths__one_future_operating_with_AI_or_operating_the_AI", "n": "Kevin Inman", "t": "Two paths, one future: operating with AI or operating the AI"}, {"k": "Krishna_Reddy_HedgeServ_Secure_Context_Cache_for_Reliable_AI_Agents", "n": "Krishna Reddy", "t": "Secure Context Cache for Reliable AI Agents"}, {"k": "Mark_Pawlikowski_Reliaburger_Kill_It_and_Watch_It_Come_Back_Handson_with_Reliaburger", "n": "Mark Pawlikowski", "t": "Kill It and Watch It Come Back: Hands-on with Reliaburger"}, {"k": "Michael_Liubchenko_Kyndryl_SRE_for_MultiAgent_AI_Operating_Private_LLMs_Across_Distributed_Infrastru", "n": "Michael Liubchenko", "t": "SRE for Multi-Agent AI: Operating Private LLMs Across Distributed Infrastructure"}, {"k": "Sanjay_Kalluvilayil__Girish_Kotte_Stonehaas_Advisors__The_AI_Space_Podcast_Your_Voice_is_the_Moat_th", "n": "Sanjay Kalluvilayil \u0026 Girish Kotte", "t": "Your Voice is the Moat that Wins Trust and Sales, Not AI Slop"}]}, {"city": "Warsaw", "date": "October 22, 2026", "ends": "2026-10-23T00:00:00+02:00", "event_name": "SREday Warsaw 2026 Q4", "folder": "2026-warsaw-q4", "past": true, "start": "2026-10-22T09:30:00+02:00", "talks": [{"k": "Alex_Dainiak_Aram_Meem_Incremental_Refactoring_of_Legacy_Systems_Under_Load", "n": "Alex Dainiak", "t": "Incremental Refactoring of Legacy Systems Under Load"}, {"k": "Ali_Ogun_Hyland_Mission_AImpossible_AWS_DevOps_Agent_Meets_AFT", "n": "Ali Ogun", "t": "Mission (A)Impossible: AWS DevOps Agent Meets AFT"}, {"k": "Aliaksandr_Valialkin_VictoriaMetrics_How_to_Create_a_Database_Optimized_for_Petabytes_of_Logs_and_Wi", "n": "Aliaksandr Valialkin", "t": "How to Create a Database Optimized for Petabytes of Logs and Wide Events"}, {"k": "Anna_Andriushchenko__Petras_Bazdaras_SREday_Team_Conference_meet__greet", "n": "Anna Andriushchenko \u0026 Petras Bazdaras", "t": "Conference meet \u0026 greet"}, {"k": "Anna_Andriushchenko__Petras_Bazdaras_Reliaburger_Kill_It_and_Watch_It_Come_Back_Handson_with_Reliabu", "n": "Anna Andriushchenko \u0026 Petras Bazdaras", "t": "Kill It and Watch It Come Back: Hands-on with Reliaburger"}, {"k": "Artur_Polek_Akamai_Technologies_The_Black_Box_Strategy_Building_SRE_Infrastructure_for_Unknown_Appli", "n": "Artur Polek", "t": "The Black Box Strategy: Building SRE Infrastructure for Unknown Applications"}, {"k": "Damian_Domagala_Waymo_Server_has_wheels_SRE_when_your_incidents_happen_on_real_streets", "n": "Damian Domagala", "t": "Server has wheels: SRE when your incidents happen on real streets"}, {"k": "Felix_Masomera_Site_Reliability_Engineer_When_Reliability_Becomes_the_Problem_The_SRE_Traps_Nobody_T", "n": "Felix Masomera", "t": "When Reliability Becomes the Problem: The SRE Traps Nobody Talks About"}, {"k": "Hanna_Novikava_SREDevOps_Engineer_Your_Observability_Bill_Is_a_Design_Problem__Not_a_Vendor_Problem", "n": "Hanna Novikava", "t": "Your Observability Bill Is a Design Problem, Not a Vendor Problem"}, {"k": "Hubert_Poznanski_Senior_DevOps_Engineer_Faster__Smarter__Fragile_The_human_cost_of_AI_Boom", "n": "Hubert Poznanski", "t": "Faster, Smarter, Fragile: The human cost of AI Boom"}, {"k": "Ilia_Matytcin_Site_Reliability_Engineer__SRE_at_Scale_How_We_Standardized_Reliability_Across_20_Team", "n": "Ilia Matytcin", "t": "SRE at Scale: How We Standardized Reliability Across 20+ Teams"}, {"k": "Joshua_BorkowskiClark_Google_Incident_Management_at_Google", "n": "Joshua Borkowski-Clark", "t": "Incident Management at Google"}, {"k": "Kuba_Rachwalski_Cisco_5_Mistakes_in_Implementing_Observability_and_2_Fixes", "n": "Kuba Rachwalski", "t": "5 Mistakes in Implementing Observability (and 2 Fixes)"}, {"k": "Maciej_Kubicki_BNP_Paribas_How_architecture_affect_software_resilience", "n": "Maciej Kubicki", "t": "How architecture affect software resilience"}, {"k": "Marek_Smigielski_IN_Groupe_Is_Istio_Service_Mesh_Still_Worth_the_Money_in_the_AI_Era", "n": "Marek Smigielski", "t": "Is Istio Service Mesh Still Worth the Money in the AI Era?"}, {"k": "Mary_Adeseluka_Cloud_Engineer__Beyond_Alerts_Building_an_Observability_Strategy_That_Drives_SRE_Acti", "n": "Mary Adeseluka", "t": "Beyond Alerts: Building an Observability Strategy That Drives SRE Action"}, {"k": "Mateusz_Kulewicz_Canonical_Observing_Coding_Agents", "n": "Mateusz Kulewicz", "t": "Observing Coding Agents"}, {"k": "Michal_Gawron_Novo_Nordisk_Beyond_the_Golden_Image_Continuous_Compliance_for_a_Hybrid_Server_Fleet", "n": "Michal Gawron", "t": "Beyond the Golden Image: Continuous Compliance for a Hybrid Server Fleet"}, {"k": "Oleksandr_Zhyhalo_Beewise_Observability_for_IoT_Fleets_Without_Going_Bankrupt", "n": "Oleksandr Zhyhalo", "t": "Observability for IoT Fleets Without Going Bankrupt"}, {"k": "Piotr_Obrzut_Autodesk_Supporting_C_developers_in_the_age_of_AI", "n": "Piotr Obrzut", "t": "Supporting C++ developers in the age of AI"}, {"k": "Przemyslaw_Hejman_Quesma_The_Agent_Did_What_A_Flight_Recorder_for_AI_Agents", "n": "Przemyslaw Hejman", "t": "The Agent Did What!? A Flight Recorder for AI Agents"}, {"k": "Riccardo_Carlesso_Google_Stop_Grepping__Start_Reasoning_SkillBased_Agentic_SRE_", "n": "Riccardo Carlesso", "t": "Stop Grepping, Start Reasoning: Skill-Based Agentic SRE \ud83d\udc09"}, {"k": "Szymon_Stawski__Riccardo_Carlesso_Google_Investigate_a_GKE_outage_with_Antigravity_CLI_and_SRE_Exten", "n": "Szymon Stawski \u0026 Riccardo Carlesso", "t": "Investigate a GKE outage with Antigravity CLI and SRE Extension"}, {"k": "Wojciech_Tomasiewicz_Pegasystems_Youre_wrong__Boss__managing_up_across_the_cultures", "n": "Wojciech Tomasiewicz", "t": "\"You\u0027re wrong, Boss!\" - managing up across the cultures"}, {"k": "Yernar_Kenzhetayev_Netflix_Oncall_health_The_Human_Side_of_Reliability", "n": "Yernar Kenzhetayev", "t": "On-call health: The Human Side of Reliability"}, {"k": "Kirill_Solovei_Replika_Centralized_crossaccount_EKS_observability", "n": "\u200bKirill Solovei", "t": "Centralized cross-account EKS observability"}]}, {"city": "San Francisco", "date": "October 2, 2026", "ends": "2026-10-03T00:00:00-07:00", "event_name": "SREday San Francisco 2026 Q4", "folder": "2026-san-francisco-q4", "past": true, "start": "2026-10-02T09:00:00-07:00", "talks": [{"k": "An_Phan_Hippo_Harvest_When_the_Site_Is_Actually_a_Site_Rethinking_Site_Reliability_for_the_Physical_", "n": "An Phan", "t": "When the Site Is Actually a Site: Rethinking Site Reliability for the Physical World"}, {"k": "Ankush_Sharma_FloQast_SRE_for_LLMs_Observability_and_Chaos_Engineering_for_AI", "n": "Ankush Sharma", "t": "SRE for LLMs: Observability and Chaos Engineering for AI"}, {"k": "Arjun_Iyer_Signadot_Keynote_10x_the_PRs__Same_Error_Budget_Validating_AgentWritten_Code_Before_Prod", "n": "Arjun Iyer", "t": "10x the PRs, Same Error Budget: Validating Agent-Written Code Before Prod"}, {"k": "Aron_Eidelman_Google_Dont_Let_Your_AIs_Patch_Break_Prod_SRE_Patterns_for_Autonomous_Remediation", "n": "Aron Eidelman", "t": "Don\u0027t Let Your AI\u0027s Patch Break Prod: SRE Patterns for Autonomous Remediation"}, {"k": "Artemis_Leonardou_NOFire_AI_The_Junior_Engineer_Is_Gone_and_Your_OnCall_Has_Not_Noticed", "n": "Artemis Leonardou", "t": "The Junior Engineer Is Gone and Your On-Call Has Not Noticed"}, {"k": "Eddie_Tejeda_Hotdata_The_Agent_Data_Bus_Shared_State_for_MultiAgent_Systems", "n": "Eddie Tejeda", "t": "The Agent Data Bus: Shared State for Multi-Agent Systems"}, {"k": "Edward_Borukhov_Walmart_Global_Tech_When_the_OnCall_Engineer_Is_an_Agent_Incident_Response_for_AIDri", "n": "Edward Borukhov", "t": "When the On-Call Engineer Is an Agent: Incident Response for AI-Driven Systems"}, {"k": "Ganesh_Nathan_Autolake_Your_Bill_Is_an_SLO_Reliability_for_a_Data_Platform_With_No_Servers", "n": "Ganesh Nathan", "t": "Your Bill Is an SLO: Reliability for a Data Platform With No Servers"}, {"k": "Geoff_White_Nexsys_Systems_LLC_Open_Source_SRE_Agents_for_your_internal_Labs", "n": "Geoff White", "t": "Open Source SRE Agents for your internal Labs"}, {"k": "Girish_Konda_Microsoft_A_Thousand_Alerts_a_Day__and_One_Real_Incident_Hiding_In_Them", "n": "Girish Konda", "t": "A Thousand Alerts a Day, and One Real Incident Hiding In Them"}, {"k": "Hazel_Mahajan_Cisco_Chaos_Engineering_for_AI_Agents_What_Happens_When_Your_Tools_Fail__Time_Out__or_", "n": "Hazel Mahajan", "t": "Chaos Engineering for AI Agents: What Happens When Your Tools Fail, Time Out, or Vanish"}, {"k": "Hilliary_Lipsig_Red_Hat_Burning_the_Ships_Migrating_Our_Core_Logging_Stack_with_No_Way_Back", "n": "Hilliary Lipsig", "t": "Burning the Ships: Migrating Our Core Logging Stack with No Way Back"}, {"k": "Hubert_Chen_Fidian_Beyond_Unit_Tests_Bringing_Intelligent_Agent_Evals_into_CICD_Pipelines", "n": "Hubert Chen", "t": "Beyond Unit Tests: Bringing Intelligent Agent Evals into CI/CD Pipelines"}, {"k": "Jagan_Jagannathan_Serra_Labs_Different_Workloads__Different_Wins", "n": "Jagan Jagannathan", "t": "Different Workloads, Different Wins"}, {"k": "John_Jamie__Dharani_Vijayakumar_StackGen_Keynote_The_Reliability_Factory_What_109_000_Incidents_Say_", "n": "John Jamie \u0026 Dharani Vijayakumar", "t": "The Reliability Factory: What 109,000 Incidents Say Comes Next for SRE"}, {"k": "Jonathon_Klobucar_Socket_New_Incident__Who_Dis_Incident_Response_Beyond_Engineering", "n": "Jonathon Klobucar", "t": "New Incident, Who Dis? Incident Response Beyond Engineering"}, {"k": "Larsen_Cundric_SpaceXAI_Running_Untrusted_Agents_in_Production", "n": "Larsen Cundric", "t": "Running Untrusted Agents in Production"}, {"k": "Mark_Pawlikowski_Reliaburger_Kill_It_and_Watch_It_Come_Back_Handson_with_Reliaburger", "n": "Mark Pawlikowski", "t": "Kill It and Watch It Come Back: Hands-on with Reliaburger"}, {"k": "Matt_Schillerstrom_Harness_Keynote_Your_Customers_Are_Already_Building_Your_Roadmap", "n": "Matt Schillerstrom", "t": "Your Customers Are Already Building Your Roadmap"}, {"k": "Oleg_Sotnikov_AppMaster_One_Container__One_Database_per_Tenant_Running_Hundreds_of_Thousands_of_AIGe", "n": "Oleg Sotnikov", "t": "One Container, One Database per Tenant: Running Hundreds of Thousands of AI-Generated Apps"}, {"k": "Robbie_McKinstry_Wack_Incorporated_Overcoming_the_Trust_Deficit_with_SRE_Agents", "n": "Robbie McKinstry", "t": "Overcoming the Trust Deficit with SRE Agents"}, {"k": "Romain_Priour_LangChain_Operating_Reliable_Software_Across_Customer_Clouds", "n": "Romain Priour", "t": "Operating Reliable Software Across Customer Clouds"}, {"k": "Sameera_Jayasoma_WSO2_Beyond_MCP_and_Skills_Architecting_Agentic_Developer_Workflows", "n": "Sameera Jayasoma", "t": "Beyond MCP and Skills: Architecting Agentic Developer Workflows"}, {"k": "Smita_Pasumarthi__Chandan_Chilumula_TruffleRoot_From_Observability_to_Causality_Teaching_Machines_Ho", "n": "Smita Pasumarthi \u0026 Chandan Chilumula", "t": "From Observability to Causality: Teaching Machines How Your System Fails"}, {"k": "Vanshika_Gupta_ViralCircle_How_to_Turn_LinkedIn_Into_Your_1_B2B_GTM_Channel", "n": "Vanshika Gupta", "t": "How to Turn LinkedIn Into Your #1 B2B GTM Channel"}, {"k": "WeiChin_Call_Grafana_Labs_From_ThumbsDown_to_RCA_Closing_the_Loop_on_AI_Agents", "n": "Wei-Chin Call", "t": "From Thumbs-Down to RCA: Closing the Loop on AI Agents"}, {"k": "Yunhao_Jiao_TestSprite_Verification_After_the_Deploy_Catching_What_AIWritten_Code_Breaks_Before_Your", "n": "Yunhao Jiao", "t": "Verification After the Deploy: Catching What AI-Written Code Breaks Before Your Users Do"}]}];
+var MAX_BYTES = 200 * 1024 * 1024, MAX_FALLBACK = 35 * 1024 * 1024, MAX_TRIM = 150 * 1024 * 1024, CHUNK = 8 * 1024 * 1024;
+var TYPES = { pdf: 'application/pdf' };
+
+var $ = function(id) { return document.getElementById(id); };
+var form = $('dd-form'), sel = form.elements['event'], search = $('dd-search'), list = $('dd-list');
+var picked = null, deck = null;
+
+function esc(s) { return String(s).replace(/[&<>"]/g, function(c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+function mb(n) { return n >= 1048576 ? (n / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB'; }
+function fold(s) { return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ł/g, 'l'); }
+function currentEvent() { return DD_EVENTS.filter(function(e) { return e.folder === sel.value; })[0] || null; }
+
+// ---- conference + talk picker ---------------------------------------------------------
+(function() {
+  var want = new URLSearchParams(location.search).get('event');
+  if (want && DD_EVENTS.some(function(e) { return e.folder === want; })) sel.value = want;
+})();
+// the name box only works once a conference is picked
+function syncSearch() { var on = !!currentEvent(); search.disabled = !on; search.placeholder = on ? 'Start typing your name' : 'Pick your conference first'; }
+sel.addEventListener('change', function() { clearPick(); syncSearch(); if (currentEvent()) search.focus(); });
+syncSearch();
+
+var active = -1, shown = [];
+function render() {
+  var ev = currentEvent(), q = fold(search.value.trim());
+  if (!ev) { list.innerHTML = '<li class="none">Pick your conference first.</li>'; list.hidden = false; return; }
+  shown = ev.talks.filter(function(t) { return !q || fold(t.n).split(/[^a-z0-9]+/).some(function(w) { return w.indexOf(q) === 0; }) || fold(t.n).indexOf(q) === 0; });
+  if (q.length >= 3) shown = shown.concat(ev.talks.filter(function(t) { return shown.indexOf(t) < 0 && (fold(t.n).indexOf(q) >= 0 || fold(t.t).indexOf(q) >= 0); }));
+  active = shown.length ? 0 : -1;
+  list.innerHTML = shown.length ? shown.map(function(t, i) { return '<li role="option" data-i="' + i + '"' + (i === 0 ? ' class="on"' : '') + '><b>' + esc(t.n) + '</b><small>' + esc(t.t) + '</small></li>'; }).join('')
+                                : '<li class="none">No match in this lineup.</li>';
+  list.hidden = false; search.setAttribute('aria-expanded', 'true');
+}
+function pick(t) {
+  picked = t;
+  $('dd-picked-name').textContent = t.n; $('dd-picked-title').textContent = t.t;
+  $('dd-picked').hidden = false; search.hidden = true; list.hidden = true; search.setAttribute('aria-expanded', 'false');
+  form.querySelector('[data-field="talk"]').classList.remove('is-invalid');
+}
+function clearPick() {
+  picked = null; $('dd-picked').hidden = true; search.hidden = false; search.value = ''; list.hidden = true;
+}
+search.addEventListener('focus', render);
+search.addEventListener('input', render);
+search.addEventListener('keydown', function(e) {
+  var items = list.querySelectorAll('li[data-i]');
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    e.preventDefault(); if (!items.length) return;
+    active = (active + (e.key === 'ArrowDown' ? 1 : items.length - 1)) % items.length;
+    items.forEach(function(li, i) { li.classList.toggle('on', i === active); });
+    items[active].scrollIntoView({ block: 'nearest' });
+  } else if (e.key === 'Enter') {
+    e.preventDefault(); if (active >= 0 && shown[active]) pick(shown[active]);
+  } else if (e.key === 'Escape') { list.hidden = true; }
+});
+list.addEventListener('mousedown', function(e) { var li = e.target.closest('li[data-i]'); if (li) { e.preventDefault(); pick(shown[+li.dataset.i]); } });
+search.addEventListener('blur', function() { setTimeout(function() { list.hidden = true; }, 150); });
+$('dd-change').addEventListener('click', function() { clearPick(); search.focus(); });
+
+// ---- the deck -------------------------------------------------------------------------
+var drop = $('dd-drop'), hint = $('dd-file-hint'), dropText = $('dd-drop-text'), emptyText = dropText.innerHTML;
+function extOf(name) { var m = /\.([a-z0-9]{2,5})$/i.exec(name || ''); return m ? m[1].toLowerCase() : ''; }
+function takeFile(file) {
+  deck = null; hint.className = 'dd-hint'; hint.textContent = '';
+  var ext = extOf(file.name);
+  if (!TYPES[ext]) { hint.className = 'dd-hint warn'; hint.textContent = 'Please export your slides to PDF first: in PowerPoint, Keynote or Google Slides use File > Export (or Download) > PDF.'; dropText.innerHTML = emptyText; return; }
+  if (file.size > MAX_BYTES) { hint.className = 'dd-hint warn'; hint.textContent = 'That file is over 200 MB. Please export a smaller PDF, or email us a link.'; dropText.innerHTML = emptyText; return; }
+  deck = file;
+  dropText.innerHTML = '<b>Ready.</b> ' + esc(file.name) + ' (' + mb(file.size) + ')<br>Click or drop to replace.';
+  drop.classList.remove('is-invalid');
+}
+['dragenter', 'dragover'].forEach(function(ev) { drop.addEventListener(ev, function(e) { e.preventDefault(); drop.classList.add('over'); }); });
+['dragleave', 'drop'].forEach(function(ev) { drop.addEventListener(ev, function(e) { e.preventDefault(); drop.classList.remove('over'); }); });
+drop.addEventListener('drop', function(e) { if (e.dataTransfer.files && e.dataTransfer.files[0]) takeFile(e.dataTransfer.files[0]); });
+form.elements['file'].addEventListener('change', function() { if (this.files && this.files[0]) takeFile(this.files[0]); });
+
+// ---- lossless trim ("trim the fat, never touch quality") ----------------------------------
+async function sha(bytes) {
+  var h = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
+  return Array.prototype.map.call(h, function(b) { return ('0' + b.toString(16)).slice(-2); }).join('');
+}
+async function deflate(bytes) {                       // zlib stream = what /FlateDecode expects
+  var cs = new CompressionStream('deflate');
+  return new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(cs)).arrayBuffer());
+}
+
+async function trimPdf(file) {
+  var P = window.PDFLib, N = function(n) { return P.PDFName.of(n); };
+  var src = new Uint8Array(await file.arrayBuffer());
+  var doc = await P.PDFDocument.load(src, { updateMetadata: false });   // encrypted -> throws -> sent as is
+  var pages = doc.getPageCount(), ctx = doc.context;
+  // dead weight: page thumbnails, app-private data, XMP, attachments, document JavaScript
+  doc.getPages().forEach(function(p) { ['Thumb', 'PieceInfo', 'Metadata'].forEach(function(k) { p.node.delete(N(k)); }); });
+  var cat = doc.catalog;
+  ['Metadata', 'PieceInfo'].forEach(function(k) { cat.delete(N(k)); });
+  var names = cat.lookupMaybe(N('Names'), P.PDFDict);
+  if (names) { names.delete(N('EmbeddedFiles')); names.delete(N('JavaScript')); }
+  // identical streams (the same logo or background on every slide) stored once
+  var byKey = {}, dup = {}, objs = ctx.enumerateIndirectObjects();
+  for (var i = 0; i < objs.length; i++) {
+    var ref = objs[i][0], obj = objs[i][1];
+    if (!(obj instanceof P.PDFRawStream)) continue;
+    var k = obj.dict.toString() + '|' + await sha(obj.contents);
+    if (byKey[k]) dup[ref.tag] = byKey[k]; else byKey[k] = ref;
+  }
+  function repoint(o) {
+    if (o instanceof P.PDFDict) o.entries().forEach(function(e) { var v = e[1]; if (v instanceof P.PDFRef && dup[v.tag]) o.set(e[0], dup[v.tag]); else repoint(v); });
+    else if (o instanceof P.PDFArray) for (var j = 0; j < o.size(); j++) { var v = o.get(j); if (v instanceof P.PDFRef && dup[v.tag]) o.set(j, dup[v.tag]); else repoint(v); }
+    else if (o instanceof P.PDFStream) repoint(o.dict);
+  }
+  if (Object.keys(dup).length) ctx.enumerateIndirectObjects().forEach(function(e) { repoint(e[1]); });
+  // whatever nothing points to any more is left out
+  var seen = {}, stack = [ctx.trailerInfo.Root, ctx.trailerInfo.Info, ctx.trailerInfo.Encrypt];
+  while (stack.length) {
+    var o = stack.pop();
+    if (!o) continue;
+    if (o instanceof P.PDFRef) { if (seen[o.tag]) continue; seen[o.tag] = 1; stack.push(ctx.lookup(o)); }
+    else if (o instanceof P.PDFDict) o.entries().forEach(function(e) { stack.push(e[1]); });
+    else if (o instanceof P.PDFArray) o.asArray().forEach(function(v) { stack.push(v); });
+    else if (o instanceof P.PDFStream) stack.push(o.dict);
+  }
+  ctx.enumerateIndirectObjects().forEach(function(e) { if (!seen[e[0].tag]) ctx.delete(e[0]); });
+  // streams stored without any compression get Flate (lossless); everything already encoded is left byte for byte
+  if (window.CompressionStream) {
+    var live = ctx.enumerateIndirectObjects();
+    for (var m = 0; m < live.length; m++) {
+      var s = live[m][1];
+      if (!(s instanceof P.PDFRawStream) || s.dict.has(N('Filter')) || s.contents.length < 1024) continue;
+      var z = await deflate(s.contents);
+      if (z.length >= s.contents.length) continue;
+      s.dict.set(N('Filter'), N('FlateDecode'));
+      ctx.assign(live[m][0], P.PDFRawStream.of(s.dict, z));
+    }
+  }
+  var out = await doc.save({ useObjectStreams: true, addDefaultPage: false, updateFieldAppearances: false });
+  var check = await P.PDFDocument.load(out, { updateMetadata: false });
+  if (check.getPageCount() !== pages) throw new Error('page count changed');
+  return new File([out], file.name, { type: TYPES.pdf });
+}
+
+// anything that fails to trim goes up exactly as it is
+async function trim(file) {
+  var ext = extOf(file.name), res = { file: file, trimmed: false };
+  if (file.size > MAX_TRIM || !window.crypto || !crypto.subtle) return res;
+  try {
+    var t = ext === 'pdf' && window.PDFLib ? await trimPdf(file) : null;
+    if (t && t.size < file.size * 0.97) { res.file = t; res.trimmed = true; }
+  } catch (err) {
+    console.warn('[deckdump] trim skipped:', err);
+  }
+  return res;
+}
+
+// ---- upload ----------------------------------------------------------------------------
+function post(body) {
+  return fetch(DD_URL, { method: 'POST', body: JSON.stringify(body) })
+    .then(function(r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)); })
+    .then(function(res) { if (!res || !res.ok) { var e = new Error((res && res.error) || 'rejected'); e.res = res || {}; throw e; } return res; });
+}
+function putChunk(url, blob, start, total) {
+  return new Promise(function(resolve, reject) {
+    var x = new XMLHttpRequest(), end = start + blob.size - 1;
+    x.open('PUT', url);
+    x.setRequestHeader('Content-Range', 'bytes ' + start + '-' + end + '/' + total);
+    x.upload.onprogress = function(e) { if (e.lengthComputable) progress((start + e.loaded) / total, 'Uploading... ' + mb(start + e.loaded) + ' of ' + mb(total)); };
+    x.onload = function() {
+      if (x.status === 308) return resolve(null);
+      if (x.status >= 200 && x.status < 300) { try { return resolve(JSON.parse(x.responseText || '{}')); } catch (e) { return resolve({}); } }
+      reject(new Error('HTTP ' + x.status));
+    };
+    x.onerror = function() { var e = new Error('network'); e.cors = start === 0; reject(e); };
+    x.send(blob);
+  });
+}
+async function resumable(url, file) {
+  var done = null;
+  for (var start = 0; start < file.size; start += CHUNK) {
+    var r = await putChunk(url, file.slice(start, Math.min(start + CHUNK, file.size)), start, file.size);
+    if (r) done = r;
+  }
+  return done || {};
+}
+function b64(file) {
+  return new Promise(function(resolve, reject) {
+    var rd = new FileReader();
+    rd.onload = function() { resolve(String(rd.result).split(',')[1] || ''); };
+    rd.onerror = reject;
+    rd.readAsDataURL(file);
+  });
+}
+function progress(f, text) { $('dd-progress').hidden = false; $('dd-bar').style.width = Math.round(Math.max(0, Math.min(1, f)) * 100) + '%'; if (text) $('dd-step').textContent = text; }
+
+function showError(msg) { var el = $('dd-error'); el.textContent = msg; el.hidden = false; }
+function validate() {
+  var checks = { event: !!currentEvent(), talk: !!picked, file: !!deck,
+                 email: !form.elements['email'].value.trim() || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.elements['email'].value.trim()) };
+  var bad = Object.keys(checks).filter(function(k) { return !checks[k]; });
+  Object.keys(checks).forEach(function(k) { (k === 'file' ? drop : form.querySelector('[data-field="' + k + '"]')).classList.toggle('is-invalid', !checks[k]); });
+  return bad;
+}
+
+form.addEventListener('submit', async function(ev) {
+  ev.preventDefault();
+  $('dd-error').hidden = true;
+  var bad = validate();
+  if (bad.length) { showError(bad[0] === 'talk' ? 'Please pick your talk from the list.' : bad[0] === 'file' ? 'Please choose your slides.' : bad[0] === 'email' ? 'That email address does not look right.' : 'Please pick your conference.'); return; }
+  if (!DD_URL) { showError('This page is not connected yet. Please email us your slides instead.'); return; }
+  var btn = $('dd-send'), ev0 = currentEvent();
+  btn.disabled = true; btn.textContent = 'Working...';
+  try {
+    progress(0, 'Trimming the extra weight...');
+    var t = await trim(deck), file = t.file;
+    progress(0, t.trimmed ? 'Trimmed ' + mb(deck.size) + ' to ' + mb(file.size) + ', same quality.' : 'Uploading...');
+    var body = { brand: DD_BRAND, event: { folder: ev0.folder, event_name: ev0.event_name }, talk: { short_url: picked.k, name: picked.n, title: picked.t },
+                 file: { name: file.name, size: file.size, type: file.type || TYPES[extOf(file.name)] },
+                 email: form.elements['email'].value.trim(), trimmed: t.trimmed, original_size: deck.size,
+                 website: form.elements['website'].value || '', origin: location.origin, page: location.href };
+    var res;
+    var start = await post(Object.assign({ action: 'start' }, body));
+    if (start.honeypot) { res = {}; }
+    else {
+      try {
+        var up = await resumable(start.upload_url, file);
+        res = await post(Object.assign({ action: 'finish', file_id: up.id || '' }, body));
+      } catch (err) {
+        if (!err.cors || file.size > MAX_FALLBACK) throw err;
+        progress(.2, 'Uploading another way...');   // the browser could not reach Drive directly: through the script
+        res = await post(Object.assign({ action: 'upload', file_b64: await b64(file) }, body));
+      }
+    }
+    progress(1, 'Done.');
+    var first = picked.n.split(/\s*(?:&|,| and )\s*/)[0].split(/\s+/)[0];
+    $('dd-done').innerHTML = '<strong>Got it, thanks ' + esc(first) + '!</strong> Your slides for ' + esc(ev0.event_name) + ' are with us.' +
+      (form.elements['email'].value.trim() ? ' A receipt is on its way.' : '') +
+      ' If you change anything, upload again and the new version replaces this one.<br><br><button type="button" class="dd-linkbtn" id="dd-again">Upload another deck</button>';
+    form.hidden = true; $('dd-done').hidden = false;
+    $('dd-again').addEventListener('click', function() {
+      clearPick(); deck = null; form.elements['file'].value = ''; dropText.innerHTML = emptyText; hint.textContent = '';
+      $('dd-progress').hidden = true; $('dd-done').hidden = true; form.hidden = false;
+    });
+  } catch (err) {
+    var res2 = err.res || {}, msg;
+    switch (err.message) {
+      case 'invalid': msg = 'The server did not accept: ' + (res2.fields || []).join(', ') + '.'; break;
+      case 'too many today': msg = "We've hit today's upload limit, please try again tomorrow or email us."; break;
+      case 'pdf only': msg = 'Please export your slides to PDF first, then upload the PDF.'; break;
+      case 'too large': msg = 'That file is too large for this browser. Please export a smaller PDF, or email us a link.'; break;
+      default: msg = "Hmm, that didn't go through (" + err.message + '). Please try again or email us your slides.';
+    }
+    $('dd-progress').hidden = true;
+    showError(msg);
+  }
+  btn.disabled = false; btn.textContent = 'Upload my slides';
+});
+</script>
+
+<script>/* rewrite_assets.py: reload when a newer build is out */(function(){var m=document.querySelector('meta[name="build"]');if(!m||!window.fetch)return;var mine=m.getAttribute('content'),busy=0,bar=null;function engaged(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))return true;var f=document.querySelectorAll('input,textarea');for(var i=0;i<f.length;i++){var e=f[i];if(/^(checkbox|radio)$/.test(e.type)?e.checked!==e.defaultChecked:(e.type!=='hidden'&&e.value!==e.defaultValue))return true}return !!document.querySelector('.modal.show')}function offer(){if(bar||!document.body)return;bar=document.createElement('div');bar.setAttribute('role','status');bar.style.cssText='position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:2000;display:flex;gap:12px;align-items:center;max-width:calc(100% - 32px);background:#111;color:#fff;padding:10px 12px 10px 18px;border-radius:999px;font:600 14px/1.3 Montserrat,sans-serif;box-shadow:0 4px 18px rgba(0,0,0,.3)';var t=document.createElement('span');t.textContent='This page was just updated (schedule, speakers or sponsors)';bar.appendChild(t);var b=document.createElement('button');b.type='button';b.textContent='Refresh';b.style.cssText='border:0;border-radius:999px;padding:6px 14px;font:inherit;cursor:pointer;background:#fff;color:#111';b.onclick=function(){location.reload()};bar.appendChild(b);document.body.appendChild(bar)}function check(auto){if(busy||document.visibilityState==='hidden')return;busy=1;fetch('/build.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){busy=0;if(!j||!j.build||j.build===mine)return;var again=false;try{again=sessionStorage.getItem('fresh-reload')===j.build;sessionStorage.setItem('fresh-reload',j.build)}catch(e){}if(auto&&!again&&!engaged())location.reload();else offer()})['catch'](function(){busy=0})}check(true);document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')check(true)});addEventListener('pageshow',function(e){if(e.persisted)check(true)});setInterval(function(){check(false)},300000)})()</script>
+</body>
+</html>
