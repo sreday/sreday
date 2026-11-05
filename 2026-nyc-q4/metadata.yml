@@ -43,14 +43,18 @@ rooms:
 - meeting room
 
 breaks:
+- title: Doors open
+  duration: 60
+  comment: Main lobby
+  opening: true  # opening breaks run in this order and end at start_time: 8:30 - 9:30
 - title: Coffee break
   duration: 30
   comment: Main lobby
-  talks_before: 1
+  talks_before: 0  # straight after the keynote
 - title: "Hello NYC!!! - short Intro to SREday"
   duration: 10
   comment: Main stage
-  talks_before: 4
+  talks_before: 5
 - title: Lunch & networking
   duration: 50
   comment: Main lobby
