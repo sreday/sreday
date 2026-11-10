@@ -112,7 +112,7 @@ def list_cuts(run, data):
 
 
 def main(argv):
-    if not argv or argv[0] in ("-h", "--help"):
+    if not argv or argv[0] in ("-h", "--help") or "-h" in argv[1:2] or "--help" in argv[1:2]:
         print(__doc__)
         return
     cmd = argv[0]

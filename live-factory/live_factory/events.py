@@ -52,9 +52,14 @@ def split_id(event_id):
 
 
 def event_path(repo, folder):
-    """An event folder: at the top of its repo while upcoming, in past/ from 24 h after it ends (make archive)."""
+    """An event folder: at the top of its repo while upcoming, in past/ from 24 h after it ends (make archive).
+    The one with a metadata.yml wins: a local build can leave an ignored static/ at the old top-level path after the
+    archive (sreday 2026-dallas-q4, found 2026-11-10), and that husk is not the event."""
     path = os.path.join(repo, folder)
-    return path if os.path.isdir(path) else os.path.join(repo, "past", folder)
+    past = os.path.join(repo, "past", folder)
+    if os.path.exists(os.path.join(path, "metadata.yml")) or not os.path.exists(os.path.join(past, "metadata.yml")):
+        return path
+    return past
 
 
 def all_events(cfg):

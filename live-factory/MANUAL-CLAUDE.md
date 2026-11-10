@@ -80,6 +80,8 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-11-10** - Claude checks which room each recording shows (the Meet/Zoom tile name on the frames), because one
+  recording can switch rooms during the day (PLATFORMday San Francisco: the keynotes, then the mini room).
 - **2026-10-29** - Claude cuts every closing Q&A (you can put one back from the 60 s margin), asks before adding a
   talk that isn't in the lineup, sends talks it is unsure of to Descript when you say so, and tells you when a Zoom
   recording has stretches with the mic muted. Runs on Windows with an NVIDIA card. After every event Claude writes a postmortem

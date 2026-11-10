@@ -271,3 +271,23 @@ analysis took about 25 minutes on the M1 Max. Claude's checked cuts are in `rese
   full-length twin (Isaac Rowaiye, 0:13:41) to delete in Descript.
 - A run and the workbench once stopped together with no error in the log (something outside closed them). Starting
   `run` again picked up where it stopped; credit guard 2 skipped the edit Descript had already finished.
+
+## Learned from a real day: PLATFORMday San Francisco 2026 Q4 (2026-11-10)
+
+Two Google Meet recordings, two rooms (All Hands = main, Boardroom = mini). Postmortem:
+`postmortems/2026-11-10-platformday-2026-san-francisco-q4.md`.
+
+- **One recording can hold two rooms.** r1 showed the main room for the keynotes, then the Meet call switched to the
+  Boardroom (~2:48 in) for the rest of the day.
+  - The track given at `add` is only used by the brief and `draft`. Cuts may use any recording, so cut each talk from
+    whichever recording shows its room.
+  - To tell the rooms apart, read the tile name ("All Hands - SFO" / "Boardroom - SFO") on a contact sheet of
+    `rec/<id>/frames`.
+- **Meet stops recording at 8 h.** A call started at 07:13 lost the last two mini-room sessions. Restart before the limit.
+- When `draft` makes 80+ minute cuts or can't find a keynote, the room/recording split is wrong. Sort that out before
+  reading the brief.
+- The brief's running order can be off by an hour (opening breaks placed after the keynotes, open action). Trust the
+  transcript and the MC's handovers over the clock.
+- An archived event (`past/`) whose old top-level folder still holds an ignored build `static/` is now found by its
+  metadata.yml.
+
