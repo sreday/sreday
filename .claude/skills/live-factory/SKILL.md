@@ -43,7 +43,8 @@ you need before changing anything.
    warn that the file is the only copy).
 2. **Analyse**: `analyse <event>` (background).
 3. **Match the lineup** - your main job, see below. Result: `cuts.json` via `cuts <event> <file.json>`.
-   On Windows start `analyse`, `run` and `serve` with PowerShell `Start-Process` (or `cmd /c ... > log`) so they keep
+   On Windows start `analyse`, `run` and `serve` with PowerShell `Start-Process` (set `$env:PYTHONUTF8` in PowerShell
+   first, it is inherited; `set X=1 && ...` inside `cmd /c` leaves a trailing space and Python refuses to start) (or `cmd /c ... > log`) so they keep
    running after Claude's shell ends. If a run and the workbench both stop with no error in the log (Dallas, 03:11),
    start both again: the run carries on, and credit guard 2 skips edits Descript already finished.
 4. **Gate 1 - the person approves the cuts** in the workbench (section 2). Never tick "approved" yourself unless the
@@ -95,6 +96,9 @@ Descript composition "<talk> (redo N)" on the next run), `unpause <event>`, `pub
    - A talk you're not sure of (low/medium confidence, picture missing, start lost) still goes to Descript when the
      person says so ("you can put them in descript, I will check later", Marek 2026-10-29); name those talks again
      when they are ready to review.
+   - **One recording can switch rooms** (PLATFORMday SF 2026-11-10: the keynotes, then the mini room). Before trusting
+     `draft`, make a contact sheet of `rec/<id>/frames` and read the Meet/Zoom tile name ("All Hands", "Boardroom").
+     Cut each talk from whichever recording shows its room; the `--track` from `add` only steers the brief.
    - `draft` refuses to save when two of its guesses overlap. That is fine: it is only a first guess, and you write
      cuts.json yourself from the brief.
 3. Write cuts.json (`{"cuts":[{"key","parts":[{"rec","start","end"}],"confidence","reason","by":"claude"}],"skipped":[...]}`),

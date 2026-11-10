@@ -235,6 +235,8 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 
 ## Changelog
 
+- **2026-11-10** - Fixed: an event moved to `past/` could be missing from the Factory logs tab when a local site
+  build had left a folder behind at the old place. `<command> --help` shows the help.
 - **2026-10-29** - Works on Windows with an NVIDIA card (first day: SREday Dallas 2026 Q4 on an RTX 5090, a whole
   8.7 h day transcribed in about 15 min). Fixed: on Windows the run could stop with "Access is denied" while the
   workbench was open, and ticking Reviewed during a run could do the same. Fixed: transcribing failed with a newer PyAV (`metadata_errors`).
