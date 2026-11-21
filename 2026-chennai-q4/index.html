@@ -1,0 +1,2273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>SREday - Hexaware, Siruseri, Chennai, India, December 5, 2026</title>
+	<!-- link previews: _build/og_images.py -->
+	<meta property="og:title" content="SREday - Hexaware, Siruseri, Chennai, India - December 5, 2026">
+	<meta property="og:description" content="Conference on Site Reliability Engineering, Cloud and DevOps. Probably the most awesome SRE conference in Hexaware, Siruseri, Chennai, India!">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://sreday.com/2026-chennai-q4/">
+	<meta property="og:site_name" content="SREday">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:image" content="https://sreday.com/og/5443fe7d075d5c54.jpg">
+	<meta property="og:image:secure_url" content="https://sreday.com/og/5443fe7d075d5c54.jpg">
+	<meta property="og:image:type" content="image/jpeg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="600">
+	<meta property="og:image:alt" content="SREday - Hexaware, Siruseri, Chennai, India - December 5, 2026">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@sreday_com">
+	<meta name="twitter:creator" content="@sreday_com">
+	<meta name="twitter:title" content="SREday - Hexaware, Siruseri, Chennai, India - December 5, 2026">
+	<meta name="twitter:description" content="Conference on Site Reliability Engineering, Cloud and DevOps. Probably the most awesome SRE conference in Hexaware, Siruseri, Chennai, India!">
+	<meta name="twitter:image" content="https://sreday.com/og/5443fe7d075d5c54.jpg">
+	<meta name="twitter:image:alt" content="SREday - Hexaware, Siruseri, Chennai, India - December 5, 2026">
+
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="SREday conference">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png?v=79557738bd">
+	<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png?v=7083b3a030">
+	<link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png?v=1c6292c528">
+	<link rel="manifest" href="./assets/site.webmanifest?v=7dcecc9c23">
+
+	<!-- Google Font -->
+	<link rel="stylesheet" href="assets/css/fonts.css?v=ac4f21e544">
+
+	<!-- FontAwesome JS-->
+	<link rel="stylesheet" href="assets/css/icons.css?v=25ca3d318d">
+
+	<!-- Theme CSS -->
+	<link id="theme-style" rel="stylesheet" href="assets/css/theme.css?v=85dcb6c3ba">
+
+
+
+
+
+<script>/* analytics load after the page is shown (venue wifi) */function _later(f){addEventListener('load',function(){(window.requestIdleCallback||setTimeout)(f)})}</script>
+<!-- Twitter conversion tracking base code -->
+<script>
+	!function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+	},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',
+	a=t.getElementsByTagName(n)[0],_later(function(){a.parentNode.insertBefore(u,a)}))}(window,document,'script');
+	twq('config','ofo1h');
+	</script>
+	<!-- End Twitter conversion tracking base code -->
+	
+<meta name="build" content="2d41debeaa-20261121T121519Z">
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script>_later(function(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-CQ2KV6LK8G';document.head.appendChild(s)})</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CQ2KV6LK8G');
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17496979257');
+</script>
+
+<style>
+	.tinted {
+		box-shadow: 0 3000px rgba(0, 0, 0, 0.5) inset;
+	}
+	.retro {
+		font-family: 'Monoton', sans-serif;
+	}
+	.logo {
+		font-size: 5rem;
+		color: white;
+		font-weight: 400;
+	}
+	.theme-bg-primary {
+		background: #713660;
+	}
+	.hero-block .social-list li, footer .social-list li {
+		font-size: 1.75rem;
+	}
+	.hero-block .social-list li a, footer .social-list li a {
+		color: white;
+	}
+	html {
+		scroll-behavior: smooth;
+	}
+	section[id] {
+		scroll-margin-top: 70px;
+	}
+	#home {
+		scroll-margin-top: 70px;
+	}
+	.hero-cta a, .hero-cta a:hover { text-decoration: none; }
+	:root {
+		--brand: #713660;
+		--brand-light: color-mix(in srgb, #713660 70%, white);
+		--brand-lighter: color-mix(in srgb, #713660 45%, white);
+		--brand-lightest: color-mix(in srgb, #713660 15%, white);
+		--brand-pale: color-mix(in srgb, #713660 10%, white);
+		--brand-dark: color-mix(in srgb, #713660 100%, black 20%);
+		--brand-darker: color-mix(in srgb, #713660 100%, black 35%);
+	}
+	.header {
+		/* a heavier frost (Marek 2026-10-13): at 12px, headings scrolling under the bar showed as a dark smudge */
+		background: rgba(20, 28, 37, 0.62) !important;
+		backdrop-filter: blur(30px) saturate(140%);
+		-webkit-backdrop-filter: blur(30px) saturate(140%);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	}
+  /* speaker cards and the talk page's speaker / abstract boxes as frosted grey glass panes over a soft aurora (Marek
+     2026-10-14, option A of Desktop "speaker-glass-shards-2026-10-14"; buttons and icons keep their old design).
+     Opt-in: the section gets .spk-glass and a <div class="spk-aurora">. Phones skip the blur (dozens of blurred cards are
+     heavy there) and use a slightly more opaque grey, which reads the same over the already-blurred aurora. */
+  .spk-glass { position: relative; isolation: isolate; overflow: clip; }
+  .spk-aurora { position: absolute; inset: 0; z-index: -1; pointer-events: none; filter: blur(60px);
+    background: radial-gradient(40% 30% at 10% 12%, color-mix(in srgb, var(--brand) 40%, transparent), transparent 70%),
+      radial-gradient(35% 28% at 88% 10%, rgba(245,158,11,.30), transparent 70%),
+      radial-gradient(40% 30% at 72% 52%, rgba(20,184,166,.20), transparent 70%),
+      radial-gradient(42% 30% at 18% 62%, color-mix(in srgb, color-mix(in srgb, var(--brand) 45%, #ec4899) 30%, transparent), transparent 70%),
+      radial-gradient(40% 28% at 85% 90%, color-mix(in srgb, var(--brand) 30%, transparent), transparent 70%); }
+  .spk-glass .card { background: rgba(226,227,232,.5); border: 1px solid rgba(255,255,255,.72); border-radius: 26px; overflow: hidden;
+    -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%);
+    box-shadow: 0 18px 44px rgba(30,15,40,.14), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(255,255,255,.3); }
+  .spk-glass .card-img-top { background: transparent; padding: 12px 12px 0; }
+  .spk-glass .card-footer { background: transparent; border-top: 0; }
+  /* readability first (Marek 2026-10-14): long text sits on a near-white pane, like the speaker pop-up's reading area,
+     and the company line goes darker than Bootstrap's muted grey */
+  .spk-glass .talk-content { background: rgba(247,247,250,.86); }
+  .spk-glass .card .meta { color: #3d3a40; }
+  .spk-glass .social-list a { color: #0a66c2; }   /* LinkedIn's own blue: the lighter theme blue is 2.5:1 on the glass */
+  /* LinkedIn as a frosted bubble on the headshot's rim (Marek 2026-10-20), on the event page's speaker cards and on the
+     talk pages. The headshot disks sit low in the square (centre 50% / 60%, radius ~36.5%), so 75% / 88% is the rim at
+     about five o'clock. Two LinkedIns: side by side, both lower right. Frosted white, the "in" in the brand colour. */
+  .spk-pic { position: relative; margin: 12px 12px 0; }
+  .spk-glass .spk-pic .card-img-top { padding: 0; }
+  .spk-li { position: absolute; left: 75%; top: 88%; transform: translate(-50%, -50%); width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; color: var(--brand); font-size: 1.05rem; text-decoration: none;
+    background: rgba(255,255,255,.81); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border: 2px solid rgba(255,255,255,.95); box-shadow: 0 2px 10px rgba(0,0,0,.08); transition: background .2s; }
+  .spk-li.spk-li-left { left: 25%; }
+  .spk-li:hover, .spk-li:focus { background: rgba(255,255,255,.9); color: var(--brand); }
+  @media (max-width: 767.98px) { .spk-pic { margin: 8px 8px 0; } .spk-li { width: 34px; height: 34px; font-size: .92rem; } }
+  @media (max-width: 767.98px) {
+    .spk-glass .card { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(232,233,238,.66); border-radius: 20px;
+      box-shadow: 0 10px 26px rgba(30,15,40,.12), inset 0 1px 0 rgba(255,255,255,.9); }
+    .spk-glass .card-img-top { padding: 8px 8px 0; }
+    .spk-glass .talk-content { background: rgba(248,248,250,.92); }
+  }
+</style>
+
+
+<body>
+	<header id="header" class="header fixed-top">
+		<div class="branding">
+			<div class="container-fluid">
+				<nav class="main-nav navbar navbar-expand-lg">
+					<div class="site-logo"><a href="/">
+                        <!-- <img class="logo-icon" src="assets/images/logo-white.svg?v=318fd0dbf1" alt="logo"></a> -->
+                    </div>
+
+					<div class="navbar-btn order-lg-2"><a class="btn btn-primary" href="#tickets">Tickets</a></div>
+
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div id="navigation" class="navbar-collapse collapse  justify-content-lg-end me-lg-3">
+						
+						<ul class="nav navbar-nav">
+
+							<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+							<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+							<li class="nav-item"><a class="nav-link" href="#schedule">Schedule</a></li>
+							<li class="nav-item"><a class="nav-link" href="#speakers">Speakers</a></li>
+							<li class="nav-item"><a class="nav-link" href="#venue">Venue</a></li>
+							<li class="nav-item"><a class="nav-link" href="#sponsors">Sponsors</a></li>
+						</ul><!--//nav-->
+						
+					</div><!--//navabr-collapse-->
+
+				</nav><!--//main-nav-->
+
+			</div><!--//container-->
+		</div><!--//branding-->
+	</header><!--//header-->
+
+	
+	<div id="home" class="hero-block">
+		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+			<div class="carousel-inner">
+				
+				<div class="carousel-item tinted active" style="background:url('../photos/london-2023-0.webp?v=6f56e3ec71') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-1.webp?v=39516b3bea') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-2.webp?v=2ec69187b6') no-repeat center; background-size: cover;"></div>
+				
+				<div class="carousel-item tinted " style="background:url('../photos/london-2023-3.webp?v=16d497ef3f') no-repeat center; background-size: cover;"></div>
+				
+			</div>
+
+		</div>
+		<div class="container">
+			<div class="hero-text-block text-center" style="max-width: 100%;">
+				<h1 class="logo retro mb-4"><img src="/assets/images/sreday_sticker.webp?v=d9588af3ae" alt="SREday" style="height: 200px;"></h1>
+				
+				<h2 class="text-white mb-3">Site Reliability, DevOps and Cloud</h2>
+				<h3 class="text-white"><i class="far fa-calendar-alt me-2"></i>December 5, 2026 <i class="fas fa-map-marker-alt mx-2"></i>Hexaware, Siruseri, Chennai, India</h3>
+				<div class="hero-cta hero-cta-row">
+					
+					
+					<a class="btn btn-primary btn-lg cta-left" href="#tickets">Register</a>
+					
+					
+					<ul class="social-list list-inline" style="margin:0;">
+						<li class="list-inline-item me-3"><a target="_blank" href="https://luma.com/sre" style="text-decoration:none;">✦</a></li>
+						<li class="list-inline-item me-3"><a target="_blank" href="https://chat.whatsapp.com/KS1ce0jAHmNGAiOAoZG6zo"><i class="fab fa-whatsapp fa-fw"></i></a></li>
+						<li class="list-inline-item me-3"><a target="_blank" href="https://www.linkedin.com/company/sreday/"><i class="fab fa-linkedin fa-fw"></i></a></li>
+						<li class="list-inline-item me-3"><a href="mailto:hello@sreday.com"><i class="fas fa-envelope fa-fw"></i></a></li>
+						<li class="list-inline-item me-0"><a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/@sreday"><i class="fab fa-youtube fa-fw"></i></a></li>
+					</ul>
+					
+					<a class="btn btn-secondary btn-lg cta-right" href="#sponsors">Sponsor</a>
+					
+			    </div>
+				
+			</div><!--//hero-text-block-->
+		</div><!--//container-->
+
+	</div><!--//hero-block-->
+	
+
+	<div class="stats-block theme-bg-primary text-white py-4 text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">1</div>
+						<div class="unit">Day</div>
+					</div><!--//item-->
+				</div><!--//col-->
+				<div class="col-6 col-md-3">
+					<div class="item">
+						
+						
+						<div class="number">20+</div>
+						<div class="unit">Speakers</div>
+					</div><!--//item-->
+				</div><!--//col-->
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">2</div>
+						<div class="unit">Tracks</div>
+					</div><!--//item-->
+				</div><!--//col-->
+				<div class="col-6 col-md-3">
+					<div class="item">
+						<div class="number">300+</div>
+						<div class="unit">Attendees</div>
+					</div><!--//item-->
+				</div><!--//col-->
+			</div>
+		</div><!--//container-->
+	</div><!--//stats-block-->
+
+
+<!-- CONTENT -->
+
+
+<div class="glass-run">
+<!-- ── ABOUT THE CONFERENCE (expandable) ─────────────────────────────────── -->
+
+<section id="about" class="section pt-5 pb-0">
+  <div class="container text-center">
+    <button class="btn-about-conf" type="button" aria-expanded="false"
+            aria-controls="about-conf-panel" onclick="acToggle(this)">
+      About the conference
+      <span class="ac-chevron" aria-hidden="true">
+        <svg width="17" height="10" viewBox="0 0 14 8" fill="none"
+             stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="1,1 7,7 13,1"/>
+        </svg>
+      </span>
+    </button>
+    <div id="about-conf-panel" class="ac-panel mx-auto text-start">
+      <div class="ac-panel-inner">
+        <p class="ac-blurb"><strong>SREday</strong> is a worldwide series of community events for engineers who build, ship and run modern software systems. Across cities around the world, we bring together people working in reliability, cloud, DevOps, observability and production engineering to share real-world experience, connect with their local community and explore how these disciplines are evolving in the age of AI.</p>
+        
+        <h5 class="ac-topics-heading">Companies presenting:</h5>
+        <p class="ac-companies">AMPS Digital, Attunefy, Betty Blocks, EPAM, Ford, GE Healthcare, Kimchi.dev, StackGen, UST, VastPRO Technologies</p>
+        
+        
+        <h5 class="ac-topics-heading">Topics so far:</h5>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Site Reliability Engineering</div>
+          <ul class="ac-topic-talks">
+            <li><a href="Vivekanandan_KS_Independent_Contractor_Nix_for_SRE_The_Zerodrift_Hermetic_infrastructure_for_Determi.html#speakers-section">Nix for SRE: The Zero-drift Hermetic infrastructure for Determinism</a></li>
+            <li><a href="Neel_Shah_StackGen_The_Rise_of_Agentic_SRE_Humans__Agents__and_Reliability.html#speakers-section">The Rise of Agentic SRE: Humans, Agents, and Reliability</a></li>
+            <li><a href="Navin_Pai_StackGen_Runbooks_for_the_AI_SRE_Era.html#speakers-section">Runbooks for the AI SRE Era</a></li>
+            <li><a href="Balachandar_Natarajan_Ford_Self_Healing_Systems__The_next_wave_in_SRE_towards_Autonomous_System.html#speakers-section">Self Healing Systems - The next wave in SRE towards Autonomous System</a></li>
+            <li><a href="Vishnusekar_Chandrasekaran_UST_From_Specifications_to_Reliability_How_SDD_and_AIDLC_Are_Reshaping_SR.html#speakers-section">From Specifications to Reliability: How SDD and AI-DLC Are Reshaping SRE and DevOps</a></li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Observability & Monitoring</div>
+          <ul class="ac-topic-talks">
+            <li><a href="Manisha_Agrawal_GE_Healthcare_Implementing_CostAware_Observability_at_Scale.html#speakers-section">Implementing Cost-Aware Observability at Scale</a></li>
+            <li><a href="Rabel_Mervin_Betty_Blocks_Break_It__Then_Trace_It_Observability_for_WebAssembly_Backends_on_wasmClou.html#speakers-section">Break It, Then Trace It: Observability for WebAssembly Backends on wasmCloud</a></li>
+            <li><a href="Natarajan_Ganapathi_EPAM_Architecting_EndtoEnd_Observability_at_the_AI_Gateway.html#speakers-section">Architecting End-to-End Observability at the AI Gateway</a></li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Resilience & Chaos Engineering</div>
+          <ul class="ac-topic-talks">
+            <li><a href="Kunal_Das_Kimchidev_Stop_Paying_Frontier_Prices_for_Lookup_Work.html#speakers-section">Stop Paying Frontier Prices for Lookup Work</a></li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">Performance & Scalability</div>
+          <ul class="ac-topic-talks">
+            <li><a href="Srinivasan_Rangachary_VastPRO_Technologies_Private_Limited_The_Distributed_Cache_Paradox_When_Scalin.html#speakers-section">The Distributed Cache Paradox: When Scaling for Performance Makes Everything Slower</a></li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">AI for Operations</div>
+          <ul class="ac-topic-talks">
+            <li><a href="Razeen_Shaheed_Attunefy_Beyond_Deployment_Reliability__Security_and_Uptime_in_AIPowered_SaaS.html#speakers-section">Beyond Deployment: Reliability, Security and Uptime in AI-Powered SaaS</a></li>
+            
+          </ul>
+        </div>
+        
+        <div class="ac-topic-group">
+          <div class="ac-topic-name">...and more</div>
+          <ul class="ac-topic-talks">
+            <li><a href="Muruganandan_Jagadesan_AMPS_Digital_Private_Limited_Technology_People_Nature.html#speakers-section">Technology People Nature</a></li>
+            <li><a href="Sunil_David_Digital_Technology_Consultant_Digital_Connectivity_Infrastructure_A_key_enabler_of_Digit.html#speakers-section">Digital Connectivity Infrastructure- A key enabler of Digital Transformation</a></li>
+            
+          </ul>
+        </div>
+        
+        
+        
+        <button class="ac-close-row" type="button" onclick="acClose()" aria-label="Close About the conference">
+          <span class="ac-close-chip">Close
+            <svg width="12" height="7" viewBox="0 0 14 8" fill="none" aria-hidden="true"
+                 stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                 style="transform:rotate(180deg);">
+              <polyline points="1,1 7,7 13,1"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .kn-pill { display: inline-block; background: var(--brand); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .6em; letter-spacing: .06em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; margin-right: 8px; vertical-align: middle; line-height: 1.4; }
+  .talk-cell .kn-pill { font-size: .7em; padding: 2px 8px; margin-right: 6px; }
+  .btn-about-conf {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--brand);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 13px 34px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.14rem;
+    font-weight: 600;
+    letter-spacing: .01em;
+    cursor: pointer;
+    transition: background .2s, box-shadow .2s;
+  }
+  .btn-about-conf:hover { background: var(--brand-dark); box-shadow: 0 4px 18px rgba(0,0,0,.18); }
+  .btn-about-conf:hover, .btn-about-conf:focus, .btn-about-conf:active,
+  .btn-about-conf[aria-expanded="true"] { color: #fff; }
+  .btn-about-conf:active { transform: scale(.97); }
+  .ac-chevron { display: flex; align-items: center; transition: transform .3s ease; }
+  .btn-about-conf[aria-expanded="true"] .ac-chevron { transform: rotate(180deg); }
+  .ac-panel { max-width: 800px; overflow: hidden; max-height: 0; transition: max-height .585s cubic-bezier(.4,0,.2,1); }
+  .ac-panel-inner { padding: 18px 4px 6px; }
+  .ac-blurb { color: #555; }
+  .ac-more-soon { color: #888; font-style: italic; }
+  .ac-topics-heading { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--brand-dark); margin-top: 16px; }
+  .ac-companies { color: #555; font-size: .9rem; }
+  .ac-topic-group { margin-top: 10px; }
+  .ac-topic-name { font-weight: 700; color: var(--brand); }
+  .ac-topic-talks { margin: 4px 0 0; padding-left: 20px; color: #555; font-size: .9rem; }
+  .ac-topic-talks a { color: inherit; text-decoration: none; }
+  .ac-topic-talks a:hover { color: var(--brand); }
+  .ac-close-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 24px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .ac-close-row::before, .ac-close-row::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e0e0e0;
+  }
+  .ac-close-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 10px;
+    padding: 3px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 999px;
+    background: #fff;
+    color: #999;
+    font-size: .78rem;
+    font-weight: 600;
+    transition: color .2s, border-color .2s;
+  }
+  .ac-close-row:hover .ac-close-chip { color: #666; border-color: #bbb; }
+</style>
+<script>
+  function acToggle(btn) {
+    var panel = document.getElementById('about-conf-panel');
+    var open = btn.getAttribute('aria-expanded') !== 'true';
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0';
+  }
+  function acClose() {
+    acToggle(document.querySelector('#about .btn-about-conf'));
+    setTimeout(function() { document.getElementById('about').scrollIntoView({behavior: 'smooth'}); }, 10);
+  }
+  function acAutoExpand() {
+    var btn = document.querySelector('#about .btn-about-conf');
+    if (btn && btn.getAttribute('aria-expanded') !== 'true') acToggle(btn);
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.location.hash === '#about') acAutoExpand();
+    document.querySelectorAll('a[href$="#about"]').forEach(function(a) {
+      a.addEventListener('click', function() { setTimeout(acAutoExpand, 0); });
+    });
+  });
+  window.addEventListener('hashchange', function() {
+    if (window.location.hash === '#about') acAutoExpand();
+  });
+</script>
+
+<!-- ── END ABOUT THE CONFERENCE ────────────────────────────────────── -->
+
+<style>
+  /* About + countdown + Tickets in the schedule's liquid glass (Marek 2026-10-17): ONE soft aurora in the brand colour
+     runs behind all three (no per-section edges), strongest under the stats band and fading to white before the
+     schedule, whose own aurora now fades in from white; About opens into a big rounded glass card, the countdown is a
+     glass pill, and the tickets' tinted shard (tickets.html) floats on the wash */
+  .glass-run { position: relative; isolation: isolate; overflow: clip; }
+  .glass-run::before { content: ""; position: absolute; left: -5%; right: -5%; top: -80px; bottom: 0; z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(110deg, color-mix(in srgb, var(--brand) 62%, transparent),
+      color-mix(in srgb, color-mix(in srgb, var(--brand) 45%, #ec4899) 45%, transparent),
+      rgba(245,158,11,.42), rgba(20,184,166,.32));
+    filter: blur(40px); opacity: .6;
+    -webkit-mask-image: linear-gradient(#000, rgba(0,0,0,.8) 30%, rgba(0,0,0,.4) 65%, transparent);
+    mask-image: linear-gradient(#000, rgba(0,0,0,.8) 30%, rgba(0,0,0,.4) 65%, transparent); }
+  /* the panel clips (it animates its height), so it carries 36px of room on every side for the card's shadow; the
+     shadow stays inside that room (Marek 2026-10-19: the bigger one was cut into a hard-edged rectangle) */
+  .ac-panel { max-width: 872px; padding: 0 36px; }
+  .ac-panel-inner { margin: 22px 0 46px; padding: 26px 34px 18px; border-radius: 36px;
+    background: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.8);
+    -webkit-backdrop-filter: blur(24px) saturate(170%); backdrop-filter: blur(24px) saturate(170%);
+    box-shadow: 0 12px 30px rgba(30,20,40,.10), inset 0 1px 0 rgba(255,255,255,.9); }
+  @media (max-width: 767.98px) { .ac-panel { padding: 0 14px; } .ac-panel-inner { padding: 18px 18px 12px; border-radius: 24px;
+    box-shadow: 0 6px 14px rgba(30,20,40,.09), inset 0 1px 0 rgba(255,255,255,.9); } }
+</style>
+<section id="countdown" class="about-section section">
+
+  <div class="container">
+    <div class="event-countdown text-center mb-3">
+    
+      <h4 class="countdown-intro mb-2 text-center mb-3">Event Starts In:</h4>
+      <div id="countdown-box" class="countdown-box"></div>
+    
+    </div>
+  </div>
+  <style>
+    /* ======= Countdown pill ========= */
+    .countdown-box {                                /* a frosted glass pill on the aurora (Marek 2026-10-17), was dark #2f2f2f */
+      display: inline-flex;
+      background: rgba(255,255,255,.42);
+      border: 1px solid rgba(255,255,255,.8);
+      -webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%);
+      border-radius: 999px;
+      padding: 10px 30px;
+      box-shadow: 0 10px 30px rgba(60,20,50,.12), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(255,255,255,.25);
+    }
+    .countdown-box .number { color: var(--brand-dark); }
+    .countdown-box .unit { color: #5b5560; }
+    @media (max-width: 575px) {
+      .countdown-box { padding: 8px 14px; }
+      .countdown-box span { min-width: 56px; padding: .5rem .25rem; }  /* 4 units still fit a 320px screen */
+    }
+  </style>
+  <script>
+    /* ======= Countdown ========= */
+    // set the date we're counting down to
+    var target_date = new Date("2026-12-05T09:30:00+05:30").getTime();
+
+    // get tag element (absent on past events)
+    var countdown = document.getElementById("countdown-box");
+    if (countdown) {
+      var makeUnit = function (cls, label) {
+        var wrap = document.createElement("SPAN");
+        wrap.className = cls;
+        var num = document.createElement("SPAN");
+        num.className = "number";
+        num.textContent = "0";
+        var unit = document.createElement("SPAN");
+        unit.className = "unit";
+        unit.textContent = label;
+        wrap.appendChild(num);
+        wrap.appendChild(unit);
+        countdown.appendChild(wrap);
+        return num;
+      };
+      var days_el = makeUnit("days", "Days");
+      var hours_el = makeUnit("hours", "Hrs");
+      var minutes_el = makeUnit("minutes", "Mins");
+      var secs_el = makeUnit("secs", "Secs");
+
+      // roll a number to its new value (same countdown tween as the
+      // sponsorship page's currency switch)
+      var setNum = function (el, v) {
+        v = parseInt(v, 10);
+        var cur = parseInt(el.textContent, 10) || 0;
+        if (cur === v) return;
+        if (el._rollId) cancelAnimationFrame(el._rollId);
+        var start = performance.now();
+        var step = function (now) {
+          var t = Math.min((now - start) / 400, 1);
+          var ease = 1 - Math.pow(1 - t, 3);
+          el.textContent = String(Math.round(cur + (v - cur) * ease));
+          if (t < 1) el._rollId = requestAnimationFrame(step);
+          else el._rollId = null;
+        };
+        el._rollId = requestAnimationFrame(step);
+      };
+
+      // the event has started (Marek 2026-10-16): no "0 0 0 0" pill, the whole countdown section goes the moment it hits zero
+      var timer = null;
+      var tick = function () {
+        var seconds_left = Math.max(0, (target_date - new Date().getTime()) / 1000);
+        if (seconds_left < 1) {
+          document.getElementById("countdown").style.display = "none";
+          if (timer) clearInterval(timer);
+          return;
+        }
+        setNum(days_el, parseInt(seconds_left / 86400));
+        seconds_left = seconds_left % 86400;
+        setNum(hours_el, parseInt(seconds_left / 3600));
+        seconds_left = seconds_left % 3600;
+        setNum(minutes_el, parseInt(seconds_left / 60));
+        setNum(secs_el, parseInt(seconds_left % 60));
+      };
+      tick();
+      timer = setInterval(tick, 1000);
+    }
+    </script>
+</section>
+
+
+
+
+<section id="tickets" class="tickets-section section">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Tickets</h3>
+
+    <div class="row pricing mb-5 mt-10">
+      <div class="col-12 text-center">
+        
+
+
+
+
+
+
+<style>
+  #tickets { position: relative; overflow: hidden; }
+  .luma-col { position: relative; width: 80%; max-width: 912px; margin: 0 auto; text-align: center; }
+  .luma-glow { position: absolute; left: 50%; top: 50%; width: 110%; height: 95%; transform: translate(-50%, -50%); z-index: 0; pointer-events: none;
+    /* soft by its own stops: a filter: blur() here made a layer whose bounds showed as a grey box through the frosted
+       navbar when scrolled under it (Marek 2026-10-13) */
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--brand) 62%, transparent), color-mix(in srgb, var(--brand) 26%, transparent) 55%, transparent); }
+  .luma-shard { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 12px; padding: 12px; border-radius: 26px;
+    background: linear-gradient(160deg, color-mix(in srgb, var(--brand) 22%, rgba(255,255,255,.5)), color-mix(in srgb, var(--brand) 8%, rgba(255,255,255,.25)));
+    -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid color-mix(in srgb, var(--brand) 25%, #fff);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 24px 60px -24px color-mix(in srgb, var(--brand) 60%, transparent); }
+  .luma-shard iframe { width: 100%; border: 0; border-radius: 14px; display: block; }
+  .luma-shard a.luma-reg { align-self: center; display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px 14px; border-radius: 999px;
+    font-weight: 600; font-size: 1rem; line-height: 1.2; text-decoration: none; border: 0;
+    background: var(--brand) !important; color: #fff !important; box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 8px 22px -10px var(--brand); }
+  .luma-shard a.luma-reg span { transition: transform .2s; }
+  .luma-shard a.luma-reg:hover span { transform: translateX(3px); }
+  @media (max-width: 760px) { .luma-col { width: 100%; } }
+</style>
+<div class="luma-col">
+  <div class="luma-glow"></div>
+  <div class="luma-shard">
+    <iframe
+      id="luma-tickets-iframe"
+      src="https://lu.ma/embed/event/evt-qaCxAaz03W6wVuP/simple"
+      width="100%"
+      frameborder="0"
+      style="height: 800px;"
+      data-fit-wide="490" data-fit-narrow="800"
+      allowfullscreen=""
+      aria-hidden="false"
+      tabindex="0"
+    ></iframe>
+    <a
+      href="https://lu.ma/event/evt-qaCxAaz03W6wVuP"
+      class="luma-checkout--button luma-reg"
+      data-luma-action="checkout"
+      data-luma-event-id="evt-qaCxAaz03W6wVuP"
+    >Register on Luma <span>→</span></a>
+  </div>
+</div>
+
+<script id="luma-checkout" async src="https://embed.lu.ma/checkout-button.js"></script>
+<script>
+  (function() {
+    var params = window.location.search;
+    var iframe = document.getElementById('luma-tickets-iframe');
+
+    // fit the box to Luma's layout at this width (see the note at the top), again whenever the window is resized
+    function lumaFit() {
+      if (!iframe) return;
+      var wide = iframe.clientWidth >= 700;
+      iframe.style.height = iframe.getAttribute(wide ? 'data-fit-wide' : 'data-fit-narrow') + 'px';
+    }
+    lumaFit();
+    window.addEventListener('resize', lumaFit);
+
+    // Append query params to iframe src
+    if (iframe && params) {
+      var src = iframe.getAttribute('src');
+      var sep = src.indexOf('?') > -1 ? '&' : '?';
+      iframe.setAttribute('src', src + sep + params.substring(1));
+    }
+
+    // Append query params to button
+    if (params) {
+      var btn = document.querySelector('.luma-checkout--button');
+      if (btn) {
+        var href = btn.getAttribute('href');
+        var sep = href.indexOf('?') > -1 ? '&' : '?';
+        btn.setAttribute('href', href + sep + params.substring(1));
+      }
+    }
+
+    // Auto-resize iframe via Luma postMessage (overrides fixed height if received)
+    window.addEventListener('message', function(e) {
+      if (!iframe) return;
+      var d = e.data;
+      if (!d) return;
+      // Handle multiple possible Luma message formats
+      var h = null;
+      if (typeof d.height === 'number' && d.height > 100) h = d.height;
+      else if (typeof d.height === 'string' && parseInt(d.height) > 100) h = parseInt(d.height);
+      if (h !== null) {
+        iframe.style.height = h + 'px';
+      }
+    });
+  })();
+</script>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</div><!--//glass-run-->
+
+<style>
+  .speakers-section .card {
+    height: 100%;
+  }
+  .speakers-section .card-footer {
+    min-height: 3rem;
+  }
+  .speakers-section .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+  }
+  .speakers-section .card-title {
+    font-size: 1.1rem;
+  }
+  .event-card-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+    width: 100%;
+  }
+  .speakers-section .event-card-buttons a {
+    flex: 0 0 auto;  /* natural width: a 50% cap let "Read more" spill out of its box on narrow cards */
+    text-align: center;
+    display: block;
+  }
+  .event-read-more-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #8e4d7c;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+  }
+  .event-read-more-btn:hover,
+  .event-read-more-btn:focus {
+    background: #a86e99;
+    color: #fff;
+    text-decoration: none;
+  }
+  .event-watch-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #EC645E;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+  }
+  .event-watch-btn:hover,
+  .event-watch-btn:focus {
+    background: #F28B87;
+    color: #fff;
+    text-decoration: none;
+  }
+  .event-watch-btn-sm {
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    margin-left: 12px;
+  }
+  .schedule-abstract {
+    position: relative;
+    max-height: 3.2em;
+    line-height: 1.6;
+    overflow: hidden;
+    text-align: justify;
+  }
+  .schedule-abstract-read-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-left: 3em;
+    background: linear-gradient(to right, transparent, #e8f8f0 30%);
+    font-weight: 700;
+    color: var(--brand);
+    text-decoration: underline;
+  }
+  .schedule-section .item {
+    margin-bottom: 4.5rem;
+  }
+</style>
+
+
+<section id="schedule" class="schedule-section section theme-bg-light">
+  <div class="sched-aurora" aria-hidden="true"></div>
+  <div class="container">
+    <h2 class="section-heading text-center mb-5">Schedule</h2>
+    <h4 class="section-heading text-center mb-5">Coming soon</h4>
+  </div>
+</section>
+
+
+
+
+
+
+<style>
+  /* schedule -> speakers without an edge (Marek 2026-10-20): the schedule fades back to white at its foot and the
+     speakers' aurora fades in from white at its head, so the two washes meet on white */
+  .schedule-section.theme-bg-light { background-image: linear-gradient(#fff, #f0faf5 260px, #f0faf5 calc(100% - 320px), #fff); }
+  #speakers .spk-aurora { -webkit-mask-image: linear-gradient(transparent, #000 360px); mask-image: linear-gradient(transparent, #000 360px); }
+</style>
+<section id="speakers" class="speakers-section section spk-glass">
+  <div class="spk-aurora" aria-hidden="true"></div>
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Speakers</h3>
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5">
+
+      
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="spk-pic"><a href="#modal-speaker-4" data-bs-toggle="modal" data-bs-target="#modal-speaker-4"><img src="../speakers/Balachandar Natarajan.webp?v=aa037211c7" class="card-img-top rounded-0" alt=""></a><a class="spk-li" target="_blank" rel="noopener" href="https://www.linkedin.com/in/balachandarnatarajan" aria-label="Balachandar Natarajan on LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Balachandar Natarajan</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Ford</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Balachandar_Natarajan_Ford_Self_Healing_Systems__The_next_wave_in_SRE_towards_Autonomous_System#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="spk-pic"><a href="#modal-speaker-13" data-bs-toggle="modal" data-bs-target="#modal-speaker-13"><img src="../speakers/Kunal Das.webp?v=f6e6072844" class="card-img-top rounded-0" alt="" loading="lazy" decoding="async"></a><a class="spk-li" target="_blank" rel="noopener" href="https://www.linkedin.com/in/kunaldaskd" aria-label="Kunal Das on LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Kunal Das</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Kimchi.dev</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Kunal_Das_Kimchidev_Stop_Paying_Frontier_Prices_for_Lookup_Work#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="spk-pic"><a href="#modal-speaker-5" data-bs-toggle="modal" data-bs-target="#modal-speaker-5"><img src="../speakers/Manisha Agrawal.webp?v=e20c2c7465" class="card-img-top rounded-0" alt="" loading="lazy" decoding="async"></a><a class="spk-li" target="_blank" rel="noopener" href="https://www.linkedin.com/in/manisha-agrawal-61a39836" aria-label="Manisha Agrawal on LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Manisha Agrawal</h5>
+            <div class="card-text mb-3">
+              <div class="meta">GE Healthcare</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Manisha_Agrawal_GE_Healthcare_Implementing_CostAware_Observability_at_Scale#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="spk-pic"><a href="#modal-speaker-6" data-bs-toggle="modal" data-bs-target="#modal-speaker-6"><img src="../speakers/Muruganandan Jagadesan.webp?v=778b0a68c6" class="card-img-top rounded-0" alt="" loading="lazy" decoding="async"></a><a class="spk-li" target="_blank" rel="noopener" href="https://www.linkedin.com/in/murugaj" aria-label="Muruganandan Jagadesan on LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Muruganandan Jagadesan</h5>
+            <div class="card-text mb-3">
+              <div class="meta">AMPS Digital Private Limited</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Muruganandan_Jagadesan_AMPS_Digital_Private_Limited_Technology_People_Nature#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="spk-pic"><a href="#modal-speaker-10" data-bs-toggle="modal" data-bs-target="#modal-speaker-10"><img src="../speakers/Natarajan Ganapathi.webp?v=a9a150d803" class="card-img-top rounded-0" alt="" loading="lazy" decoding="async"></a><a class="spk-li" target="_blank" rel="noopener" href="https://www.linkedin.com/in/natarajanganapathi" aria-label="Natarajan Ganapathi on LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Natarajan Ganapathi</h5>
+            <div class="card-text mb-3">
+              <div class="meta">EPAM</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Natarajan_Ganapathi_EPAM_Architecting_EndtoEnd_Observability_at_the_AI_Gateway#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="spk-pic"><a href="#modal-speaker-3" data-bs-toggle="modal" data-bs-target="#modal-speaker-3"><img src="../speakers/Navin Pai.webp?v=cfd3b210ac" class="card-img-top rounded-0" alt="" loading="lazy" decoding="async"></a><a class="spk-li" target="_blank" rel="noopener" href="https://www.linkedin.com/in/navinpai/" aria-label="Navin Pai on LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Navin Pai</h5>
+            <div class="card-text mb-3">
+              <div class="meta">StackGen</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Navin_Pai_StackGen_Runbooks_for_the_AI_SRE_Era#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="spk-pic"><a href="#modal-speaker-2" data-bs-toggle="modal" data-bs-target="#modal-speaker-2"><img src="../speakers/Neel Shah.webp?v=a382578be1" class="card-img-top rounded-0" alt="" loading="lazy" decoding="async"></a><a class="spk-li" target="_blank" rel="noopener" href="https://www.linkedin.com/in/neelcshah/" aria-label="Neel Shah on LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Neel Shah</h5>
+            <div class="card-text mb-3">
+              <div class="meta">StackGen</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Neel_Shah_StackGen_The_Rise_of_Agentic_SRE_Humans__Agents__and_Reliability#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="spk-pic"><a href="#modal-speaker-9" data-bs-toggle="modal" data-bs-target="#modal-speaker-9"><img src="../speakers/Rabel Mervin.webp?v=979f9ba740" class="card-img-top rounded-0" alt="" loading="lazy" decoding="async"></a><a class="spk-li" target="_blank" rel="noopener" href="https://www.linkedin.com/in/rabelmervin/" aria-label="Rabel Mervin on LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Rabel Mervin</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Betty Blocks</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Rabel_Mervin_Betty_Blocks_Break_It__Then_Trace_It_Observability_for_WebAssembly_Backends_on_wasmClou#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="spk-pic"><a href="#modal-speaker-12" data-bs-toggle="modal" data-bs-target="#modal-speaker-12"><img src="../speakers/Razeen Shaheed.webp?v=2e89f7734f" class="card-img-top rounded-0" alt="" loading="lazy" decoding="async"></a><a class="spk-li" target="_blank" rel="noopener" href="https://linkedin.com/in/razeen-shaheed" aria-label="Razeen Shaheed on LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Razeen Shaheed</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Attunefy</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Razeen_Shaheed_Attunefy_Beyond_Deployment_Reliability__Security_and_Uptime_in_AIPowered_SaaS#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="spk-pic"><a href="#modal-speaker-14" data-bs-toggle="modal" data-bs-target="#modal-speaker-14"><img src="../speakers/Saravanan Gnanaguru.webp?v=29165fdc28" class="card-img-top rounded-0" alt="" loading="lazy" decoding="async"></a><a class="spk-li" target="_blank" rel="noopener" href="https://www.linkedin.com/in/saravanan-gnanaguru/" aria-label="Saravanan Gnanaguru on LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Saravanan Gnanaguru</h5>
+            <div class="card-text mb-3">
+              <div class="meta">CloudEngine Labs®</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Saravanan_Gnanaguru_CloudEngine_Labs#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="spk-pic"><a href="#modal-speaker-8" data-bs-toggle="modal" data-bs-target="#modal-speaker-8"><img src="../speakers/Srinivasan Rangachary.webp?v=618f02ee46" class="card-img-top rounded-0" alt="" loading="lazy" decoding="async"></a><a class="spk-li" target="_blank" rel="noopener" href="https://www.linkedin.com/in/srinivasan-rangachary-0351584/" aria-label="Srinivasan Rangachary on LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Srinivasan Rangachary</h5>
+            <div class="card-text mb-3">
+              <div class="meta">VastPRO Technologies Private Limited</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Srinivasan_Rangachary_VastPRO_Technologies_Private_Limited_The_Distributed_Cache_Paradox_When_Scalin#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="spk-pic"><a href="#modal-speaker-11" data-bs-toggle="modal" data-bs-target="#modal-speaker-11"><img src="../speakers/Sunil David.webp?v=1a62b30af9" class="card-img-top rounded-0" alt="" loading="lazy" decoding="async"></a><a class="spk-li" target="_blank" rel="noopener" href="https://linkedin.com/in/sunil-david-8165971" aria-label="Sunil David on LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Sunil David</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Digital Technology Consultant</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Sunil_David_Digital_Technology_Consultant_Digital_Connectivity_Infrastructure_A_key_enabler_of_Digit#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="spk-pic"><a href="#modal-speaker-7" data-bs-toggle="modal" data-bs-target="#modal-speaker-7"><img src="../speakers/Vishnusekar Chandrasekaran.webp?v=46be17a640" class="card-img-top rounded-0" alt="" loading="lazy" decoding="async"></a><a class="spk-li" target="_blank" rel="noopener" href="https://www.linkedin.com/in/vishnusekarc" aria-label="Vishnusekar Chandrasekaran on LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Vishnusekar Chandrasekaran</h5>
+            <div class="card-text mb-3">
+              <div class="meta">UST</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Vishnusekar_Chandrasekaran_UST_From_Specifications_to_Reliability_How_SDD_and_AIDLC_Are_Reshaping_SR#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="spk-pic"><a href="#modal-speaker-1" data-bs-toggle="modal" data-bs-target="#modal-speaker-1"><img src="../speakers/Vivekanandan KS.webp?v=49267b89ef" class="card-img-top rounded-0" alt="" loading="lazy" decoding="async"></a><a class="spk-li" target="_blank" rel="noopener" href="https://www.linkedin.com/in/vivekanandanks/" aria-label="Vivekanandan KS on LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
+          <div class="card-body">
+            <h5 class="card-title mb-2">Vivekanandan KS</h5>
+            <div class="card-text mb-3">
+              <div class="meta">Independent Contractor</div>
+            </div><!--//card-text-->
+            <div class="event-card-buttons">
+              <a href="./Vivekanandan_KS_Independent_Contractor_Nix_for_SRE_The_Zerodrift_Hermetic_infrastructure_for_Determi#speakers-section" class="event-read-more-btn">Read more</a>
+              
+            </div>
+          </div><!--//card-->
+          
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+      
+
+      <div class="col mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h4>More coming soon</h4>
+          </div><!--//card-->
+        </div><!--//card-->
+      </div><!--//col-->
+
+      
+
+    </div><!--//row-->
+    <div class="speakers-cta text-center py-3"><a class="btn btn-primary btn-lg" href="#tickets">Get Tickets</a></div>
+  </div><!--//container-->
+
+</section><!--//speakers-section-->
+
+
+<section id="venue" class="venue-section venue-v2 section  theme-bg-primary text-white">
+    <div class="container">
+      <h3 class="section-heading text-center mb-5 text-white">Venue</h3>
+      <div class="row gx-5 py-lg-5">
+        <div class="col-12 col-lg-7 h-100">
+          <div class="desc">
+            <h4 class="text-white mb-3">Hexaware Technologies, Siruseri</h4>
+            <p>
+              H-5, SIPCOT IT Park, Navalur, Siruseri, <br />
+              Chennai, Tamil Nadu 600119 <br />
+            </p>
+  
+            <div class="row pt-3">
+              <iframe src="https://www.google.com/maps?q=Hexaware%20Technologies%2C%20H-5%2C%20SIPCOT%20IT%20Park%2C%20Siruseri%2C%20Tamil%20Nadu%20603103&output=embed&z=12" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div><!--//row-->
+          </div><!--//desc-->
+        </div><!--//col-->
+        <div class="col-12 col-xl-3 col-lg-4 offset-lg-1 position-relative h-100 mt-5 mt-lg-0">
+          <div class="figures-holder">
+            <div class="figure figure-1"><img class="shadow" src="assets/images/venue/venue-1.webp?v=bda3eae2cc" alt="" loading="lazy" decoding="async"></div>
+            <div class="figure figure-2"><img class="shadow" src="assets/images/venue/venue-2.webp?v=9f02ac130f" alt="" loading="lazy" decoding="async"></div>
+            <div class="figure figure-3"><img class="shadow" src="assets/images/venue/venue-3.webp?v=cbeee46435" alt="" loading="lazy" decoding="async"></div>
+          </div><!--//figures-holder-->
+        </div><!--//col-->
+      </div><!--//row-->
+    </div><!--//container-->
+  </section><!--//venue-section-->
+  
+
+
+<section id="sponsors" class="sponsors-section section">
+  <div class="container">
+    <h3 class="section-heading text-center mb-3">Sponsors &amp; Partners</h3>
+    <div class="section-intro text-center single-col-max mx-auto mb-5">Want to become a sponsor? Get in touch!</div>
+    <div class="row logos justify-content-center">
+      
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://hexaware.com/" target="_blank"><img src="../sponsors/hexaware.webp?v=71ff44ab96" style="--trim:40%" alt=""></a></div>
+      
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.harness.io/" target="_blank"><img src="../sponsors/harness.webp?v=6144c22e52" style="--trim:36%" alt=""></a></div>
+      
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://reliaburger.com/" target="_blank"><img src="../sponsors/reliaburger.webp?v=6b7d053a1c" style="--trim:7%" alt=""></a></div>
+      
+      <div class="logo-item col-6 col-md-4 col-lg-2"><a href="https://www.hockeystick.show" target="_blank"><img src="../sponsors/hockeystick.webp?v=8d7e53436f" style="--trim:16%" alt=""></a></div>
+      
+    </div><!--//row-->
+    <div class="sponsors-cta text-center pt-5">
+<div class="lead-scope">
+<div class="text-center">
+  <button class="btn-lead" id="lead-toggle" type="button" onclick="leadToggle()" aria-expanded="false" aria-controls="lead-panel">
+    Become A Sponsor
+    <span class="btn-lead-icon" aria-hidden="true">
+      <svg class="btn-lead-chevron" width="17" height="10" viewBox="0 0 14 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,1 7,7 13,1"/></svg>
+    </span>
+  </button>
+</div>
+<div class="lead-panel" id="lead-panel">
+  <div class="lead-inner">
+    <form id="lead-form" novalidate>
+      <div class="lead-title">Let's talk!</div>
+      <div class="lead-sub">We'll email you and share prospectuses for relevant events.</div>
+      <div class="lead-grid">
+        <label class="lead-field"><span>Name</span><input type="text" name="name" autocomplete="name" required maxlength="80"></label>
+        <label class="lead-field"><span>Company</span><input type="text" name="company" autocomplete="organization" required maxlength="120"></label>
+        <label class="lead-field lead-field-wide"><span>Work email</span><input type="email" name="email" autocomplete="email" required maxlength="254"></label>
+      </div>
+      <div class="lead-group" data-group="interests">
+        <div class="lead-group-label">We'd like to <em>(one or more)</em></div>
+        <div class="lead-chips">
+          
+          <label class="lead-chip"><input type="checkbox" name="interests" value="Sponsor"><span>Sponsor</span></label>
+          
+          <label class="lead-chip"><input type="checkbox" name="interests" value="Host"><span>Host</span></label>
+          
+          <label class="lead-chip"><input type="checkbox" name="interests" value="Partner"><span>Partner</span></label>
+          
+        </div>
+        <div class="lead-group-hint">Pick at least one</div>
+      </div>
+      <div class="lead-group" data-group="brands">
+        <div class="lead-group-label">Conferences <em>(one or more)</em></div>
+        <div class="lead-chips">
+          
+          <label class="lead-chip lead-chip-sreday"><input type="checkbox" name="brands" value="SREday" checked><span>SREday</span></label>
+          
+          <label class="lead-chip lead-chip-llmday"><input type="checkbox" name="brands" value="LLMday"><span>LLMday</span></label>
+          
+          <label class="lead-chip lead-chip-platformday"><input type="checkbox" name="brands" value="PLATFORMday"><span>PLATFORMday</span></label>
+          
+        </div>
+        <div class="lead-group-hint">Pick at least one</div>
+      </div>
+      <div class="lead-group" data-group="regions">
+        <div class="lead-group-label">Regions <em>(one or more)</em></div><div class="lead-chips">
+          
+          <label class="lead-chip"><input type="checkbox" name="regions" value="US"><span>US</span></label>
+          
+          <label class="lead-chip"><input type="checkbox" name="regions" value="UK"><span>UK</span></label>
+          
+          <label class="lead-chip"><input type="checkbox" name="regions" value="EU"><span>EU</span></label>
+          
+          <label class="lead-chip"><input type="checkbox" name="regions" value="ASIA" checked><span>ASIA</span></label>
+          
+          <label class="lead-chip"><input type="checkbox" name="regions" value="Middle East & Africa"><span>Middle East & Africa</span></label>
+          
+          <label class="lead-chip"><input type="checkbox" name="regions" value="LATAM"><span>LATAM</span></label>
+          
+        </div>
+        <div class="lead-group-hint">Pick at least one</div>
+      </div>
+      <div class="lead-group" data-group="budget">
+        <div class="lead-group-label">Budget</div>
+        <div class="lead-chips">
+          
+          <label class="lead-chip"><input type="radio" name="budget" value="No budget"><span>No budget</span></label>
+          
+          <label class="lead-chip"><input type="radio" name="budget" value="Under $1K"><span>Under $1K</span></label>
+          
+          <label class="lead-chip"><input type="radio" name="budget" value="$1K-5K"><span>$1K-5K</span></label>
+          
+          <label class="lead-chip"><input type="radio" name="budget" value="$5K-10K"><span>$5K-10K</span></label>
+          
+          <label class="lead-chip"><input type="radio" name="budget" value="$10K-25K"><span>$10K-25K</span></label>
+          
+          <label class="lead-chip"><input type="radio" name="budget" value="$25K+"><span>$25K+</span></label>
+          
+        </div>
+        <div class="lead-group-hint">Pick one</div>
+      </div>
+      <div class="lead-group lead-consent" data-group="consent">
+        <label class="lead-consent-label"><input type="checkbox" name="consent" value="yes" required><span>I agree to share all the information above with the organizer</span></label>
+        <div class="lead-group-hint">Required</div>
+      </div>
+      
+      <div class="lead-hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <div class="lead-actions">
+        <button type="submit" class="btn btn-lead-send btn-lg" id="lead-submit">Send</button>
+        <a href="mailto:hello@sreday.com?subject=We%27d%20like%20to%20sponsor" class="lead-mailto-link" id="lead-mailto">use mailto instead</a>
+        <div class="lead-error" id="lead-error" hidden></div>
+      </div>
+    </form>
+    <div class="lead-done" id="lead-done" hidden></div>
+  </div>
+</div>
+</div>
+<style>
+.lead-scope { --lead-accent: #713660; --lead-accent-hover: #8a4175; --lead-accent-rgb: 113,54,96; --lead-pill-text: #098dcf; }
+.btn-lead {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: #EC645E; color: #fff; border: none; border-radius: 999px;
+  padding: 13px 34px; font-family: 'Montserrat', sans-serif; font-size: 1.14rem; font-weight: 600;
+  letter-spacing: .01em; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,.07);
+  transition: background .2s, transform .1s, box-shadow .2s;
+}
+.btn-lead:hover  { background: #e73830; box-shadow: 0 4px 18px rgba(236,100,94,.35); }
+.btn-lead:active { transform: scale(.97); }
+.btn-lead-icon { display: flex; align-items: center; flex-shrink: 0; }
+.btn-lead-chevron { transition: transform .3s ease; }
+.btn-lead.open .btn-lead-chevron { transform: rotate(180deg); }
+.lead-panel { overflow: hidden; max-height: 0; transition: max-height .585s cubic-bezier(.4,0,.2,1); }
+.lead-inner {
+  background: #fff; color: #111; border: 1px solid #eee; border-radius: 16px; margin: 20px auto 0; padding: 36px 40px;
+  max-width: 700px; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,.07);
+}
+.lead-title { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 700; color: #111; margin-bottom: 2px; }
+.lead-sub { font-size: .9rem; color: #555; margin-bottom: 22px; }
+.lead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; margin-bottom: 20px; }
+.lead-field { display: block; margin: 0; }
+.lead-field-wide { grid-column: 1 / -1; }
+.lead-field > span { display: block; font-size: .8rem; font-weight: 600; color: #333; margin-bottom: 5px; letter-spacing: .02em; }
+.lead-field input {
+  width: 100%; border: 1px solid #ddd; border-radius: 10px; padding: 11px 14px; font-size: 1rem; color: #111;
+  background: #fff; outline: none; transition: border-color .2s, box-shadow .2s;
+}
+.lead-field input:focus { border-color: var(--lead-accent); box-shadow: 0 0 0 3px rgba(var(--lead-accent-rgb),.15); }
+.lead-field input.is-invalid { border-color: #EC645E; }
+.lead-group { margin-bottom: 18px; }
+.lead-group-label { font-size: .8rem; font-weight: 600; color: #333; margin-bottom: 8px; letter-spacing: .02em; }
+.lead-group-label em { display: none; font-style: normal; font-weight: 400; color: #888; }
+.lead-group.is-invalid .lead-group-label em { display: inline; }
+.lead-group-hint { display: block; visibility: hidden; font-size: .8rem; line-height: 1.2; min-height: 1.2em; color: #c0392b; margin-top: 6px; }
+.lead-group.is-invalid .lead-group-hint { visibility: visible; }
+.lead-group.is-invalid .lead-chip span { border-color: #EC645E; }
+.lead-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.lead-chip { position: relative; margin: 0; cursor: pointer; }
+.lead-chip input { position: absolute; opacity: 0; width: 0; height: 0; }
+.lead-chip span {
+  display: inline-block; padding: 8px 16px; border-radius: 999px; border: 1px solid #ddd;
+  background: #f0f0f0; color: #555; font-size: .9rem; font-weight: 600; user-select: none;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.lead-chip:hover span { border-color: var(--lead-accent); }
+.lead-chip input:checked + span { background: var(--lead-accent); border-color: var(--lead-accent); color: #fff; }
+.lead-chip input:focus-visible + span { box-shadow: 0 0 0 3px rgba(var(--lead-accent-rgb),.3); }
+.lead-consent-label { display: flex; align-items: flex-start; gap: 10px; margin: 0; cursor: pointer; font-size: .9rem; color: #333; }
+.lead-consent-label input { appearance: none; -webkit-appearance: none; width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; border: 2px solid #bbb; border-radius: 4px; background: #fff; cursor: pointer; }
+.lead-consent-label input:checked { background: var(--lead-accent) url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' d='M2 6.5l2.5 2.5L10 3.5'/%3E%3C/svg%3E") center / 12px 12px no-repeat; border-color: var(--lead-accent); }
+.lead-consent-label input:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(var(--lead-accent-rgb),.3); }
+.lead-group.is-invalid .lead-consent-label { color: #c0392b; }
+/* conference chips wear their own brand colours */
+.lead-chip-sreday input:checked + span { background: #713660; border-color: #713660; color: #fff; }
+.lead-chip-sreday input:focus-visible + span { box-shadow: 0 0 0 3px rgba(113,54,96,.3); }
+.lead-chip-platformday input:checked + span { background: #E2971D; border-color: #E2971D; color: #fff; }
+.lead-chip-platformday input:focus-visible + span { box-shadow: 0 0 0 3px rgba(226,151,29,.35); }
+.lead-hp { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+.lead-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 6px; }
+.btn-lead-send { min-width: 140px; background: var(--lead-accent); color: #fff; border: none; }
+.btn-lead-send:hover, .btn-lead-send:focus { background: var(--lead-accent-hover); color: #fff; }
+.btn-lead-send[disabled] { opacity: .65; cursor: default; }
+.lead-mailto-link { font-size: .9rem; color: #888; text-decoration: none; }
+.lead-mailto-link:hover, .lead-mailto-link:focus { color: #555; text-decoration: underline; }
+.lead-error { font-size: .9rem; color: #c0392b; }
+.lead-error a { color: var(--lead-accent); font-weight: 600; }
+.lead-done { font-size: 1rem; color: #111; line-height: 1.6; }
+.lead-done strong { font-family: 'Montserrat', sans-serif; }
+@media (max-width: 575.98px) {
+  .lead-inner { padding: 26px 20px; }
+  .lead-grid { grid-template-columns: 1fr; }
+}
+/* ── dark variant for event pages (white page background) ── */
+.lead-inner { background: #1a1a1a; color: #f2f2f2; border: 1px solid #2a2a2a; box-shadow: 0 10px 30px rgba(0,0,0,.18); }
+.lead-title { color: #fff; }
+.lead-sub { color: #cfcfcf; }
+.lead-field > span, .lead-group-label { color: #e6e6e6; }
+.lead-group-label em { color: #b5b5b5; }
+.lead-field input { background: #e9e9e9; border-color: #e9e9e9; color: #111; }
+.lead-field input:focus { border-color: var(--lead-accent); box-shadow: 0 0 0 3px rgba(var(--lead-accent-rgb),.3); }
+.lead-field input.is-invalid { border-color: #EC645E; box-shadow: 0 0 0 2px rgba(236,100,94,.35); }
+.lead-chip span { background: #3a3a3a; border-color: #4d4d4d; color: #f2f2f2; }
+.lead-chip:hover span { border-color: var(--lead-accent); }
+.lead-chip input:checked + span { background: var(--lead-accent); border-color: var(--lead-accent); color: #fff; }
+.lead-chip input:focus-visible + span { box-shadow: 0 0 0 3px rgba(var(--lead-accent-rgb),.4); }
+.lead-chip-llmday input:checked + span { background: #26986A; border-color: #26986A; color: #fff; }
+.lead-chip-sreday input:checked + span { background: #713660; border-color: #713660; color: #fff; }
+.lead-chip-platformday input:checked + span { background: #E2971D; border-color: #E2971D; color: #fff; }
+.lead-group.is-invalid .lead-chip span { border-color: #ff8a80; }
+.lead-group-hint, .lead-error { color: #ffb3ad; }
+.lead-error a { color: #f0b95a; }
+.lead-consent-label { color: #f2f2f2; }
+.lead-consent-label input { border-color: #777; background: #e9e9e9; }
+.lead-consent-label input:checked { background: var(--lead-accent) url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' d='M2 6.5l2.5 2.5L10 3.5'/%3E%3C/svg%3E") center / 12px 12px no-repeat; border-color: var(--lead-accent); }
+.lead-group.is-invalid .lead-consent-label { color: #ffb3ad; }
+.lead-mailto-link { color: #cfcfcf; }
+.lead-mailto-link:hover, .lead-mailto-link:focus { color: #fff; }
+.lead-done { color: #f2f2f2; }
+</style>
+<script>
+var LEAD_FORM_URL = "https://script.google.com/macros/s/AKfycbxq_ZaBpS3C0vp9OIGZz3VboGh83sgfW9D-nTF3s_8HSmdWICh268bXqmTpsgOV8CslDw/exec";
+var LEAD_BRAND    = "sreday";
+var LEAD_MAILTO   = "mailto:hello@sreday.com";
+
+function leadFit() {
+  var btn = document.getElementById('lead-toggle'), panel = document.getElementById('lead-panel');
+  if (btn.classList.contains('open')) panel.style.maxHeight = panel.scrollHeight + 'px';
+}
+function leadToggle() {
+  var btn = document.getElementById('lead-toggle'), panel = document.getElementById('lead-panel');
+  var open = btn.classList.toggle('open');
+  panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0';
+  btn.setAttribute('aria-expanded', String(open));
+  if (open) setTimeout(function() {
+    var first = panel.querySelector('input[name="name"]');
+    if (first && !first.disabled) first.focus({ preventScroll: true });
+  }, 600);
+}
+window.addEventListener('resize', leadFit);
+// Open (never close) the panel - used when the visitor arrives via the navbar "Sponsor" link or #sponsor
+function leadOpen() {
+  if (!document.getElementById('lead-toggle').classList.contains('open')) leadToggle();
+}
+if (location.hash === '#sponsors') document.addEventListener('DOMContentLoaded', leadOpen);
+window.addEventListener('hashchange', function() { if (location.hash === '#sponsors') leadOpen(); });
+document.querySelectorAll('a[href="#sponsors"]').forEach(function(a) {
+  a.addEventListener('click', function() { setTimeout(leadOpen, 0); });
+});
+
+function leadCollect(form) {
+  var fd = new FormData(form);
+  return {
+    name:      (fd.get('name') || '').trim(),
+    email:     (fd.get('email') || '').trim(),
+    company:   (fd.get('company') || '').trim(),
+    interests: fd.getAll('interests'),
+    brands:    fd.getAll('brands'),
+    regions:   fd.getAll('regions'),
+    budget:    fd.get('budget') || '',
+    consent:   fd.get('consent') === 'yes',
+    website:   fd.get('website') || '',
+    brand:     LEAD_BRAND,
+    page:      location.href
+  };
+}
+function leadInterestPhrase(d) {
+  var map = { Sponsor: 'Sponsoring', Host: 'Hosting', Partner: 'Partnering' };
+  var parts = d.interests.map(function(i) { return map[i] || i; });
+  return parts.length ? parts.join(' and ') : 'Sponsoring';
+}
+function leadMailto(d) {
+  var subject = (d.company || 'Sponsorship inquiry') + (d.brands.length ? ' <> ' + d.brands.join(', ') : '');
+  var body = 'Hi Mark,\n\n' + d.name + ' from ' + d.company + ' would like to learn more about ' + leadInterestPhrase(d) + ':\n\n' +
+             '- Name: ' + d.name + '\n- Email: ' + d.email + '\n- Company: ' + d.company + '\n' +
+             '- Conferences: ' + d.brands.join(', ') + '\n- Regions: ' + d.regions.join(', ') + '\n- Budget: ' + d.budget + '\n\nThanks!';
+  return LEAD_MAILTO + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+}
+function leadValidate(form, d) {
+  var firstBad = null;
+  ['name', 'email', 'company'].forEach(function(k) {
+    var el = form.elements[k];
+    var bad = !d[k] || (k === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d[k]));
+    el.classList.toggle('is-invalid', bad);
+    if (bad && !firstBad) firstBad = el;
+  });
+  ['interests', 'brands', 'regions', 'budget', 'consent'].forEach(function(k) {
+    var group = form.querySelector('.lead-group[data-group="' + k + '"]');
+    var bad = Array.isArray(d[k]) ? d[k].length === 0 : !d[k];
+    group.classList.toggle('is-invalid', bad);
+    if (bad && !firstBad) firstBad = group.querySelector('input');
+  });
+  if (firstBad) firstBad.focus({ preventScroll: true });   // mark + focus, but never scroll the page
+  leadFit();
+  return !firstBad;
+}
+function leadShowError(msg, d) {
+  var err = document.getElementById('lead-error');
+  err.innerHTML = msg + ' <a href="' + leadMailto(d) + '">Email us directly</a> instead.';
+  err.hidden = false;
+  leadFit();
+}
+// Clear a group's "pick at least one" marker as soon as something is picked
+document.getElementById('lead-form').addEventListener('change', function(ev) {
+  var group = ev.target.closest('.lead-group');
+  if (group) group.classList.remove('is-invalid');
+  if (ev.target.classList) ev.target.classList.remove('is-invalid');
+  leadFit();
+});
+document.getElementById('lead-form').addEventListener('submit', function(ev) {
+  ev.preventDefault();
+  var form = this, d = leadCollect(form);
+  var err = document.getElementById('lead-error'); err.hidden = true;
+  if (!leadValidate(form, d)) return;
+  if (!LEAD_FORM_URL) { location.href = leadMailto(d); return; }   // endpoint not configured yet
+  var btn = document.getElementById('lead-submit');
+  btn.disabled = true; btn.textContent = 'Sending...';
+  var ctrl = ('AbortController' in window) ? new AbortController() : null;
+  var timer = ctrl ? setTimeout(function() { ctrl.abort(); }, 12000) : null;
+  fetch(LEAD_FORM_URL, { method: 'POST', body: JSON.stringify(d), signal: ctrl ? ctrl.signal : undefined })
+    .then(function(r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)); })
+    .then(function(res) {
+      if (!res || !res.ok) throw new Error((res && res.error) || 'rejected');
+      var first = d.name.split(/\s+/)[0].replace(/[<>&"]/g, '');
+      var done = document.getElementById('lead-done');
+      done.innerHTML = "<strong>Thanks " + first + "!</strong> Check your inbox and spam, we'll be in touch soon.";
+      form.hidden = true; done.hidden = false;
+      if (typeof gtag === 'function') gtag('event', 'lead_form_submit', { brand: LEAD_BRAND });
+      leadFit();
+    })
+    .catch(function() {
+      btn.disabled = false; btn.textContent = 'Send';
+      leadShowError("Hmm, that didn't go through.", d);
+    })
+    .then(function() { if (timer) clearTimeout(timer); });
+});
+</script></div>
+  </div><!--//container-->
+</section><!--//sponsors-section-->
+
+
+
+<style>
+  .modal-speaker .desc p,
+  .modal-speaker .desc li {
+    text-align: justify;
+    line-height: 1.75;
+    color: #444;
+    font-size: 0.95rem;
+  }
+  /* Phones: justified text in a narrow column leaves big gaps between words */
+  @media (max-width: 767.98px) {
+    .modal-speaker .desc p,
+    .modal-speaker .desc li,
+    .schedule-abstract { text-align: left; }
+  }
+  .modal-speaker .modal-close-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 1;
+    background: var(--brand);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 2.1rem;
+    line-height: 1;
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .modal-speaker .modal-close-btn:hover {
+    background: var(--brand-light);
+  }
+  .modal-speaker .modal-header {
+    display: none;
+  }
+  .modal-speaker .modal-body {
+    position: relative;
+  }
+  .modal-speaker .talk-title-bar {
+    background: var(--brand);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
+  .modal-speaker .desc {
+    padding-bottom: 0.125rem;
+  }
+  /* speaker modal, liquid glass (Marek 2026-10-05, option 01 "Frosted sheet"): one frosted pane over the blurred
+     page; the header lets the page glow through, the reading area turns more opaque; headshot shown raw */
+  body:has(.modal-speaker.show) .modal-backdrop.show { --bs-backdrop-opacity: 1; background: rgba(20,16,24,.28);
+    -webkit-backdrop-filter: blur(14px) saturate(140%); backdrop-filter: blur(14px) saturate(140%); }
+  .modal-speaker .modal-content { background: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.75); border-radius: 32px; overflow: hidden;
+    -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 0 24px 60px rgba(20,10,30,.25), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(255,255,255,.3); }
+  .modal-speaker .modal-body > .theme-bg-light { background: transparent !important; }
+  .modal-speaker .profile-image { width: 196px; border-radius: 0; border: 0; box-shadow: none; filter: none; }
+  .modal-speaker h2.name { font-size: 2rem; }
+  .modal-speaker .meta { color: #5f5a63; font-size: 1.05rem; }
+  .modal-speaker .social-list a { display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; color: var(--brand);
+    background: rgba(255,255,255,.6); border: 1px solid rgba(255,255,255,.85); box-shadow: inset 0 1px 0 #fff; font-size: 1rem; }
+  .modal-speaker .talk-title-bar { font-family: 'Montserrat', sans-serif; font-size: 1.15rem; padding: 1.1rem 2rem;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--brand) 85%, transparent), color-mix(in srgb, var(--brand) 65%, transparent));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.35); }
+  .modal-speaker .desc { background: rgba(255,255,255,.86); padding: 1.6rem 2.6rem .4rem !important; }
+  .modal-speaker .desc:last-child { padding-bottom: 2.2rem !important; }
+  .modal-speaker .desc h5 { font-family: 'Montserrat', sans-serif; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .6rem; }
+  .modal-speaker .modal-close-btn { top: 18px; right: 18px; width: 42px; height: 42px; padding: 0; border-radius: 50%; font-size: 1.7rem;
+    display: grid; place-items: center; color: #1d1b20; background: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.85);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 4px 14px rgba(0,0,0,.12), inset 0 1px 0 #fff; }
+  .modal-speaker .modal-close-btn:hover { background: rgba(255,255,255,.9); color: var(--brand); }
+  @media (max-width: 575.98px) { .modal-speaker .modal-content { border-radius: 24px; } .modal-speaker .desc { padding: 1.2rem 1.3rem .3rem !important; } }
+</style>
+
+
+<!-- Modal Speaker 1 -->
+<div class="modal modal-speaker modal-speaker-1" id="modal-speaker-1" tabindex="-1" role="dialog" aria-labelledby="speaker-1-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 mx-auto" src="../speakers/Vivekanandan KS.webp?v=49267b89ef" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Vivekanandan KS</h2>
+                          <div class="meta mb-2">Independent Contractor</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/vivekanandanks/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Nix for SRE: The Zero-drift Hermetic infrastructure for Determinism</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Nix is a crucial technology for a wide range of domains in IT world, one of the important domains is SRE. In this talk I aim to shift the audience's thinking towards SRE and how we improve the workflow. I'll explain the big loopholes in the current industry standards and explain its hidden technical debt in energy, time, cost etc. I'll quickly introduce Nix and explain how it fits in the SRE domain. I'll explain the mental model of proactive reliability vs passive reliability. I'll also explain why determinism is crucial for SRE. The talk will also give an idea of how Nix + AI + SRE is way better than just using AI + SRE.
+In short: Determinism is more important than one might ever think which traditional approaches try their best, but nothing ever came close to what Nix does in the history of tech.
+Key takeaways:</p>
+<ul>
+<li>What typical and AI first SRE lacks</li>
+<li>How Nix makes infra easy to predict and gives true determinism</li>
+<li>How Nix provides sovereignty for SRE</li>
+<li>How Nix removes the complexity of DevOps, SRE workflows</li>
+<li>Why it's better to use Nix + AI instead of using AI for SRE etc</li>
+<li>Change in mental model of how u think about the whole SDLC process
+Note: Though the topic and description may sound too technical, it actually isn't. It's just a different way of thinking. So this talk is for everyone from beginners to veterans.</li>
+</ul></p>
+              </div>
+
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>A passionate Linux and Nix/NixOS guy who thrives on learning, exploring, and implementing open-source solutions. Driven by a love for DevOps and solving complex technical problems, he is a creative at heart - and a bassist on hiatus - who loves good stories, music, and anime.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 2 -->
+<div class="modal modal-speaker modal-speaker-2" id="modal-speaker-2" tabindex="-1" role="dialog" aria-labelledby="speaker-2-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 mx-auto" src="../speakers/Neel Shah.webp?v=a382578be1" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Neel Shah</h2>
+                          <div class="meta mb-2">StackGen</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/neelcshah/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">The Rise of Agentic SRE: Humans, Agents, and Reliability</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>From Reactive to Intelligent: Site Reliability Engineering is Moving Towards Autonomy. As organisations deploy increasingly complex and distributed architectures, traditional methods of incident response based on reactive practices fall behind. The need arises for smarter automation which would allow for quicker detection of anomalies, faster context analysis, and timely interventions within defined constraints. In this sense, agentic SRE is emerging as a discipline in which AI agents learn to analyze telemetry data, establish relationships among various system components, and help SREs with triage, diagnostics, and troubleshooting while respecting certain boundaries.
+In this talk, I will discuss the principles of building a robust and dependable platform for agentic SRE, the key components that constitute the architecture, and the observability layer which provides foundational data. I will also examine the necessary safeguards required to ensure autonomy while at the same time keeping operations secure and auditable. Finally, through examples of practical use cases, such as alert triaging, incident copiloting, root cause analysis, and bounded automated remediation, we will explore how AI can be integrated into operations to improve reliability.</p></p>
+              </div>
+
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Neel Shah is a Developer Advocate at StackGen and a Google Developer Expert (GDE) for Cloud, based in India. He helps platform engineers and DevOps teams understand and adopt cloud-native infrastructure through talks, live demos, and community building having spoken at 40+ events worldwide, including KubeCon + CloudNativeCon India, PlatformCon, HashiTalks, OpenSearchCon Korea, FOSSASIA, and LinuxFest Northwest. His work centers on Kubernetes, GitOps, Infrastructure as Code (Terraform, Vault), AI-powered DevOps tooling, and observability pipelines. Neel organizes the CNCF Gandhinagar, HashiCorp User Group Gandhinagar, and Google Cloud Gandhinagar communities, and has mentored 15+ hackathons and open-source programs. He holds certifications including GCP DevOps Professional, Azure AZ-104, FinOps Certified Engineer, Terraform Associate, and Vault Associate, and has been recognized as Sessionize's Most Active Speaker in both 2024 and 2025.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 3 -->
+<div class="modal modal-speaker modal-speaker-3" id="modal-speaker-3" tabindex="-1" role="dialog" aria-labelledby="speaker-3-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 mx-auto" src="../speakers/Navin Pai.webp?v=cfd3b210ac" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Navin Pai</h2>
+                          <div class="meta mb-2">StackGen</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/navinpai/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Runbooks for the AI SRE Era</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Your runbook has two readers at 3AM now. The tired human it was written for, and the agent standing next to them. The human fills every gap with judgement. The agent fills it with action. "Restart the service if it looks unhealthy" was a fine instruction for one of them. For the other it's four unanswered questions and a production change. This talk is what we learnt putting agents in the incident channel and watching them run our runbooks exactly as written, which turned out to be the problem. Three real failure modes: a confidently hallucinated diagnosis, an unsafe action that free reasoning decided was reasonable, and "remove outdated entries" where nobody had ever defined outdated. Every adjective is a landmine. The fix isn't five hundred lines of YAML. It's making six decisions explicit that a senior engineer already makes in their head: trigger, precondition, verify, stop condition, rollback, and where a human must sit. We'll show the same runbook before and after, the existing schemas you should borrow rather than invent, how to climb from read-only to autonomous one rung at a time, and the part that finally fixes staleness: the agent proposing runbook edits as PRs after every incident, with a human still holding the merge button. The runbook isn't dying. It's being promoted from documentation to interface.</p></p>
+              </div>
+
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Navin is Director of Engineering at StackGen, where he leads the team building the future of Agentic Ops. You'll often find him on the internet stoking flamewars with his opinions about Observability, Open Source, and Dev Culture.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 4 -->
+<div class="modal modal-speaker modal-speaker-4" id="modal-speaker-4" tabindex="-1" role="dialog" aria-labelledby="speaker-4-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 mx-auto" src="../speakers/Balachandar Natarajan.webp?v=aa037211c7" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Balachandar Natarajan</h2>
+                          <div class="meta mb-2">Ford</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/balachandarnatarajan"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Self Healing Systems - The next wave in SRE towards Autonomous System</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>1) If AI could take over one part of our reliability and monitoring process, where would it deliver the greatest impact? Can it predict and prevent outages better than human expertise and intuition?
+2) How close are we to truly self-healing infrastructure, and where can Agentic AI help SRE and DevOps teams shift from reactive firefighting to proactive prevention?
+3) Where do our biggest blind spots lie today — open-source dependencies, CI/CD pipelines, or software artifacts? How has supply chain security evolved from a technical concern into a business and leadership priority?</p></p>
+              </div>
+
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Balachandar Natarajan is the Global Engineering Platform Manager for Ford's e-Commerce Marketing &amp; Sales, bringing over 20 years of IT leadership experience. Specializing in cloud platforms, MACH architecture, DevSecOps, SRE, and AI-driven solutions, Balachandar is also an active cybersecurity board member, technical trainer, and conference speaker.
+Throughout his tenure with Ford Enterprise Technology since 2007, he has successfully led large-scale hyper-scaler cloud ERP transformations, agile global product management, and enterprise-wide data governance initiatives. His leadership approach bridges deep technical execution with customer-centric business strategy.
+Beyond his enterprise role, Balachandar is passionate about community building and knowledge sharing. He serves on the Board of Directors for the ISACA Chennai Chapter Contact info and regularly speaks at technology conferences on platform engineering, autonomous systems, and agentic AI.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 5 -->
+<div class="modal modal-speaker modal-speaker-5" id="modal-speaker-5" tabindex="-1" role="dialog" aria-labelledby="speaker-5-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 mx-auto" src="../speakers/Manisha Agrawal.webp?v=e20c2c7465" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Manisha Agrawal</h2>
+                          <div class="meta mb-2">GE Healthcare</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/manisha-agrawal-61a39836"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Implementing Cost-Aware Observability at Scale</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>As observability adoption grows, telemetry grows with it. At enterprise scale,
+collecting everything “just in case” gets expensive fast, and the bill is only the
+visible symptom. Cost and signal quality are the same problem, and the cheapest
+telemetry is the telemetry you never needed.
+This session shares practical lessons from operating observability at more than 12
+TB of telemetry per day, where small decisions around labels, log verbosity,
+sampling, ingestion pipelines and retention can have a significant impact on both
+cost and signal quality. We’ll look at controlling high-cardinality metrics, filtering
+noisy logs, sampling traces, choosing appropriate retention, and applying controls
+closer to the source using OpenTelemetry and modern telemetry pipelines.
+The technical controls are only half the challenge. How do you convince application
+teams to accept limits on telemetry they believe they might need someday? We’ll
+look at the conversations, guardrails, and shared ownership model that helped move
+the discussion from “the platform is restricting us” to “what telemetry actually
+provides operational value?”
+Cost-aware observability isn’t about collecting less for the sake of saving money. It’s
+about collecting intentionally, removing noise, preserving the signals that matter,
+and continuously balancing visibility, reliability, and cost. All this matters even more
+as AI agents begin to act on this data.
+Attendees will leave with practical patterns for building observability systems where every byte has a reason to exist.</p></p>
+              </div>
+
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Manisha Agrawal is a seasoned Observability practitioner with deep experience designing and scaling enterprise observability platforms across cloud-native and distributed environments. Her work focuses on telemetry architecture, OpenTelemetry, cost-aware observability, and turning high-volume metrics, logs, and traces into meaningful signals. She is also a co-author of Implementing Enterprise Observability for Success, bringing practical lessons from implementing observability at enterprise scale.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 6 -->
+<div class="modal modal-speaker modal-speaker-6" id="modal-speaker-6" tabindex="-1" role="dialog" aria-labelledby="speaker-6-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 mx-auto" src="../speakers/Muruganandan Jagadesan.webp?v=778b0a68c6" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Muruganandan Jagadesan</h2>
+                          <div class="meta mb-2">AMPS Digital Private Limited</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/murugaj"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Technology People Nature</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Technology. People. Nature.
+Finding the Balance to Build a Meaningful Future
+Technology inspires me to build.
+People inspire me to learn.
+Nature inspires me to reflect.
+For more than two decades, I have had the privilege of building technology products, leading diverse teams, and exploring emerging technologies.
+Along this journey, I have come to realize that meaningful innovation isn't measured by the sophistication of the technology we create, but by the positive impact it brings to people's lives and the world around us.
+I've been fortunate to experience all three dimensions — building technology that creates impact, learning with and from people, and discovering the timeless wisdom that nature quietly shares.
+The more I reflect, the more parallels I discover between these three worlds.
+Technology evolves through principles.
+People grow through principles.
+Nature thrives through principles.
+Yet, in our pursuit of technological advancement, we sometimes overlook the importance of human connection and our relationship with the natural world.
+Perhaps the future isn't about choosing one over the other.
+It's about finding the right balance between Technology, People, and Nature — harnessing innovation, empowering people, and respecting the world we live in.
+Because the future we build should not just be technologically advanced; it should also be human-centered and sustainable.
+Welcome to Technology. People. Nature.</p></p>
+              </div>
+
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Muruga J. – Chief Technology Officer | AI &amp; Digital Transformation Leader
+Muruga J. is a technology leader with over 25 years of experience in product engineering, technology strategy, and digital transformation. He has architected and led the delivery of scalable, secure, and sustainable SaaS platforms serving global corporations and international institutions, including the World Bank and the International Monetary Fund (IMF).
+His expertise spans Artificial Intelligence, Machine Learning, Deep Learning, Robotic Process Automation (RPA), and emerging technologies. He has spearheaded the development of AI-powered automation solutions and intelligent agentic workflows, helping organizations, particularly in healthcare, enhance operational efficiency and accelerate digital transformation.
+An alumnus of the Indian Institute of Management Calcutta (IIM Calcutta), Muruga brings together strategic business insight, deep technology expertise, and a strong focus on innovation and execution.
+He currently serves as Chief Technology Officer at AMPS Digital Private Limited, Chennai, India, where he leads technology strategy, product innovation, and enterprise modernization initiatives, with a focus on translating emerging technologies into meaningful and measurable business outcomes.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 7 -->
+<div class="modal modal-speaker modal-speaker-7" id="modal-speaker-7" tabindex="-1" role="dialog" aria-labelledby="speaker-7-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 mx-auto" src="../speakers/Vishnusekar Chandrasekaran.webp?v=46be17a640" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Vishnusekar Chandrasekaran</h2>
+                          <div class="meta mb-2">UST</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/vishnusekarc"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">From Specifications to Reliability: How SDD and AI-DLC Are Reshaping SRE and DevOps</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>The emergence of AI-driven software development is changing how applications are designed, built, tested and operated. Approaches such as Spec-Driven Development (SDD) and Amazon's AI-Driven Development Lifecycle (AI-DLC) introduce new opportunities to bring structure, automation and intelligence into the engineering lifecycle. But what does this mean for Site Reliability Engineering and DevOps?
+This talk explores how structured specifications can help define reliability requirements, security constraints and operational expectations early in the development process. It examines how AI-assisted workflows can support infrastructure provisioning, CI/CD automation, policy enforcement, testing and operational activities. More importantly, it discusses how SRE and DevOps practices can evolve to establish the guardrails that make AI-driven delivery reliable, secure and production-ready. We will explore the changing responsibilities of engineers, from executing repetitive operational tasks to designing platforms, validating AI-generated outcomes and engineering system reliability. The session concludes with practical perspectives on preparing SRE and DevOps teams for this emerging model of software delivery.</p></p>
+              </div>
+
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Senior DevOps / Site Reliability Engineer with over 8 years of experience designing and operating highly available, cloud-native infrastructure across Azure, AWS, and GCP. Skilled in Kubernetes, OpenShift, Terraform, CI/CD, GitOps, Linux administration, observability, automation, and production operations.
+Possesses a strong background in infrastructure automation using Python and Bash, cloud modernization, incident management, platform reliability, and enterprise-scale application onboarding. Passionate about building resilient distributed systems and enhancing engineering productivity through automation and AI-assisted development tools such as Claude and GitHub Copilot.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 8 -->
+<div class="modal modal-speaker modal-speaker-8" id="modal-speaker-8" tabindex="-1" role="dialog" aria-labelledby="speaker-8-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 mx-auto" src="../speakers/Srinivasan Rangachary.webp?v=618f02ee46" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Srinivasan Rangachary</h2>
+                          <div class="meta mb-2">VastPRO Technologies Private Limited</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/srinivasan-rangachary-0351584/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">The Distributed Cache Paradox: When Scaling for Performance Makes Everything Slower</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Distributed caching is often considered a key enabler of scalability and high performance, but what happens when introducing distributed cache consistency turns a 20-second operation into a 3-minute bottleneck?
+Drawing from real-world experience building a multi-tenant Java platform, this talk explores the hidden performance costs of cache invalidation, synchronization, and inter-node communication in distributed architectures. We will examine how different caching strategies-including JVM-local caches, JMS-based invalidation, centralized Valkey/Redis, and clustered caching frameworks—balance performance, consistency, and operational complexity.
+Through a practical case study, we will discuss strategies such as batching cache invalidations, reducing messaging overhead, and optimizing bulk operations without compromising data consistency.
+Attendees will walk away with actionable insights into identifying caching bottlenecks, understanding architectural trade-offs, and designing more reliable, scalable distributed systems.</p></p>
+              </div>
+
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Srinivasan Rangachary is a serial entrepreneur, business consultant, and product specialist with over 28 years of experience in large-scale eCommerce implementations, operations management, and platform innovation. He has led engineering and consulting teams to deliver complex, high-personalization Oracle ATG Commerce solutions for Fortune 500 enterprises, alongside spearheading his own proprietary platform, VaZtCommerce. Currently focused on eCommerce product development and strategic consulting, Srinivasan helps organizations build integration roadmaps and next-generation personalized retail platforms. Previously, he founded and led multiple ventures across the automotive, software training, consulting, and development sectors. He holds an MS in Artificial Intelligence and Machine Learning from Liverpool John Moores University, a PGDBA in Finance from Symbiosis, Pune, and a BTech in Automobile Engineering from the Madras Institute of Technology, Anna University.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 9 -->
+<div class="modal modal-speaker modal-speaker-9" id="modal-speaker-9" tabindex="-1" role="dialog" aria-labelledby="speaker-9-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 mx-auto" src="../speakers/Rabel Mervin.webp?v=979f9ba740" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Rabel Mervin</h2>
+                          <div class="meta mb-2">Betty Blocks</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/rabelmervin/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Break It, Then Trace It: Observability for WebAssembly Backends on wasmCloud</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>WebAssembly moved from the browser to the backend - small, sandboxed components that start in milliseconds and run anywhere, including in Kubernetes. But a sandbox is also isolated. how do you see what happened inside, and across several workloads? We start with a request flowing through WebAssembly workloads, Then we turn on OpenTelemetry on webassembly with wasmcloud and break things on purpose. The talk covers: Introduction to WebAssembly and wasmCloud: what a WebAssembly component is, why it's coming to the backend, and how wasmCloud runs it. Why a sandbox is hard to observe: what you can and can't see by default. Turning on OpenTelemetry: what the host gives you for free, what a component reports itself, and how separate workloads connect into one trace. Breaking things on purpose: we introduce real failures, such as slow services and failing calls, and use traces to find exactly where and why they happen. Logs and metrics: log lines attached to the right request, and metrics on a dashboard. Takeaways: a checklist for making WebAssembly services observable from day one.</p></p>
+              </div>
+
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Rabel Mervin is a Software Engineering Intern at Betty Blocks and open-source contributor focused on cloud-native infrastructure, WebAssembly, and distributed systems.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 10 -->
+<div class="modal modal-speaker modal-speaker-10" id="modal-speaker-10" tabindex="-1" role="dialog" aria-labelledby="speaker-10-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 mx-auto" src="../speakers/Natarajan Ganapathi.webp?v=a9a150d803" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Natarajan Ganapathi</h2>
+                          <div class="meta mb-2">EPAM</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/natarajanganapathi"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Architecting End-to-End Observability at the AI Gateway</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>We will deep dive into the architecture of AI Gateway Observability, exploring how centralizing telemetry at the gateway layer unlocks unified visibility across multi-provider model traffic. You will learn how to capture LLM-specific latency metrics (TTFT and ITL), implement granular FinOps token attribution, stitch distributed traces across agentic tool calls using OpenTelemetry GenAI semantic conventions, and enforce real-time safety and PII guardrails without adding hot-path latency. The talk concludes with a live demo showcasing these telemetry pipelines in action on a real-world enterprise environment.</p></p>
+              </div>
+
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>With over 18 years of experience in the IT industry, I am a hands-on digital architect specializing in full-stack, cloud-native application development and advanced AI solutions. My expertise spans Microservices, DevOps, multi-cloud platforms, and agent development using Azure Foundry, enabling me to design, implement, and integrate large-scale, multi-tier, and multi-tenant cloud-native applications.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 11 -->
+<div class="modal modal-speaker modal-speaker-11" id="modal-speaker-11" tabindex="-1" role="dialog" aria-labelledby="speaker-11-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 mx-auto" src="../speakers/Sunil David.webp?v=1a62b30af9" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Sunil David</h2>
+                          <div class="meta mb-2">Digital Technology Consultant</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://linkedin.com/in/sunil-david-8165971"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Digital Connectivity Infrastructure- A key enabler of Digital Transformation</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Talk will be about the impact that connectivity technologies like 5G , LoPower WAN , Fibre and Satellite networks will have on powering Digital Transformation initiatives and also being a very enabler in the overall Digital Transformation strategy of an Enterprise!</p></p>
+              </div>
+
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Sunil David is an Independent Digital Technology Consultant with over three decades of experience across the Telecom and Technology sectors. He works with Enterprises, Innovative Tech- startups and Industry bodies to accelerate the adoption of Digital Technologies like AI, IoT, Intelligent automation, Cloud, 5G etc across Manufacturing, Automotive, BFSI, Retail and Global Capability Centres. His work focuses on high-impact areas such as Smart factories, Digital Supply chains, Energy optimisation and ESG-led transformation.
+He is a Gold Mentor at T-Hub, India's largest Startup Incubator , Programme Leader for the IoT module for the ISB Online program on AI for Working executives and is closely associated with industry bodies - CII and NASSCOM Foundation on initiatives related to AI adoption, MSME Digital transformation, Startup–Corporate collaboration and Digital skilling. Sunil has spoken at more than 400 industry forums, served on several National juries, and written extensively for leading business and technology publications. Sunil is also an active member of IACC Chennai and a member of the Indo-US Trade Relations committee. Sunil's last corporate stint - Regional Director – IoT, India and ASEAN, at AT&amp;T India, leading IoT strategy, business development and partner ecosystem initiatives across the region.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 12 -->
+<div class="modal modal-speaker modal-speaker-12" id="modal-speaker-12" tabindex="-1" role="dialog" aria-labelledby="speaker-12-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 mx-auto" src="../speakers/Razeen Shaheed.webp?v=2e89f7734f" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Razeen Shaheed</h2>
+                          <div class="meta mb-2">Attunefy</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://linkedin.com/in/razeen-shaheed"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Beyond Deployment: Reliability, Security and Uptime in AI-Powered SaaS</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>Building an AI-powered SaaS product is one challenge. Keeping it running reliably after deployment is a completely different story.
+While working on AI agents and SaaS platforms, I've realized that getting an application into production is only the beginning. Your servers might be running, your APIs might be responding, and your monitoring dashboard might show everything as healthy. But what happens when an AI agent silently fails to complete a task? Or when a third-party service goes down, a security vulnerability exposes sensitive information, or an unexpected traffic spike affects your entire application?
+In this session, I'll explore the challenges of maintaining reliability, security, and uptime in AI-powered SaaS products. We'll look at practical approaches to monitoring, observability, vulnerability management, failure handling, fallback mechanisms, and incident recovery.
+I'll also share engineering perspectives from building AI-driven products, including the architectural decisions and trade-offs involved in making these systems more dependable.
+Because deploying a product is a milestone. Keeping it secure, available, and reliable is an ongoing responsibility.</p></p>
+              </div>
+
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>I'm Razeen Shaheed, founder of Attunefy and Webverse Arena. I work on building AI agents, automation platforms, and software systems that solve real-world problems. Right now, my focus is on Attunefy, an agentic AI operating system designed to understand conversations, maintain context, and take actions across different applications. I'm particularly interested in AI architecture, system reliability, and the engineering challenges that come with taking AI agents beyond prototypes and making them dependable in the real world.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 13 -->
+<div class="modal modal-speaker modal-speaker-13" id="modal-speaker-13" tabindex="-1" role="dialog" aria-labelledby="speaker-13-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 mx-auto" src="../speakers/Kunal Das.webp?v=f6e6072844" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Kunal Das</h2>
+                          <div class="meta mb-2">Kimchi.dev</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/kunaldaskd"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar">Stop Paying Frontier Prices for Lookup Work</div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p><p>AI workloads have landed on the plates of the same teams that already manage compute, storage and network spend, and the default setup is one frontier model for every task. A file lookup costs the same as an architecture decision. The invoice grows, nothing on it says which task needed the big model, and the platform team inherits the bill.
+This talk shows the alternative as it runs in an open-source coding agent I use daily. Work is split into roles: a planner decomposes tasks, a builder writes code, a reviewer catches mistakes, and lighter models handle exploration and lookup. Each role goes to the cheapest model that clears its quality bar. Routing decisions are explicit, logged and reversible, and cost is attributed per task, per role and per model from the first day - the same discipline you already apply to every other metered resource.
+The failure modes get equal time: the task types where cheap models cost more in rework than they save in tokens, what falls back when a tier fails or a model becomes unavailable, and where the big model still wins. You leave with a way to segment your own inference workloads and the wiring to prove or disprove the savings on your own numbers. All of it is open source.</p></p>
+              </div>
+
+
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Bio</h5>
+                <p><p>Kunal Das is a Developer Advocate at kimchi.dev, the open-source autonomous coding agent from the team behind CAST AI. He works with developers across APAC on getting real work out of AI coding agents: multi-model routing, predictable token costs, and spend governance that caps bills before they balloon. Before this: 9+ years in DevOps, 30+ conference talks (KubeCon Japan, FOSSASIA, DevFest), CNCF chapters in Kolkata and Mumbai. His sessions run on live terminals, not slideware.</p></p>
+              </div>
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+<!-- Modal Speaker 14 -->
+<div class="modal modal-speaker modal-speaker-14" id="modal-speaker-14" tabindex="-1" role="dialog" aria-labelledby="speaker-14-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body p-0">
+              <button type="button" class="modal-close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+              <div class="theme-bg-light p-5">
+                  <div class="row">
+                      <div class="col-12 col-md-auto text-center">
+                          <img class="profile-image mb-3 mb-md-0 me-md-4 mx-auto" src="../speakers/Saravanan Gnanaguru.webp?v=29165fdc28" alt=""  loading="lazy" decoding="async" />
+                      </div>
+
+                      <div class="col text-center text-md-start mx-auto">
+                          <h2 class="name mb-2">Saravanan Gnanaguru</h2>
+                          <div class="meta mb-2">CloudEngine Labs®</div>
+                          <ul class="social-list list-inline mb-0">
+                            
+                            <li class="list-inline-item"><a  href="https://www.linkedin.com/in/saravanan-gnanaguru/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                            
+                            
+                          </ul><!--//social-list-->
+                      </div><!--//col-->
+                  </div><!--//row-->
+              </div>
+              <div class="talk-title-bar"></div>
+              <div class="desc p-2 p-lg-3">
+                <h5 style="color:var(--brand);font-weight:700;">Abstract</h5>
+                <p></p>
+              </div>
+
+
+          </div><!--//modal-body-->
+      </div><!--//modal-content-->
+  </div><!--//modal-dialog-->
+</div><!--//modal-->
+
+
+
+
+
+
+<footer class="footer py-5 theme-bg-primary">
+    <div class="container text-center">
+
+        <ul class="social-list list-inline mb-4">
+            <li class="list-inline-item me-3"><a target="_blank" href="https://luma.com/sre" style="text-decoration:none;">✦</a></li>
+            <li class="list-inline-item me-3"><a target="_blank" href="https://chat.whatsapp.com/KS1ce0jAHmNGAiOAoZG6zo"><i class="fab fa-whatsapp fa-fw"></i></a></li>
+            <li class="list-inline-item me-3"><a target="_blank" href="https://www.linkedin.com/company/sreday/"><i class="fab fa-linkedin fa-fw"></i></a></li>
+            <li class="list-inline-item me-3"><a href="mailto:hello@sreday.com"><i class="fas fa-envelope fa-fw"></i></a></li>
+            <li class="list-inline-item me-0"><a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/@sreday"><i class="fab fa-youtube fa-fw"></i></a></li>
+        </ul>
+
+        <!-- <ul class="footer-links list-inline mx-auto mb-4">
+            <li class="list-inline-item"><a href="#">Code of Conduct</a></li>
+            <li class="list-inline-item">|</li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item">|</li>
+            <li class="list-inline-item me-0"><a href="#">Privacy</a></li>
+        </ul> -->
+        <!--//footer-link-->
+
+        <div class="py-4 text-center">
+            <video class="lazy-loop" poster="/assets/maupa GIF.poster.webp?v=a31d6d6197" aria-label="SREday Maupa" muted loop playsinline preload="none" style="width:400px;max-width:100%;height:auto;aspect-ratio:1/1;"><source data-src="/assets/maupa GIF.mov?v=1fcff7e491" type='video/quicktime; codecs="hvc1"'><source data-src="/assets/maupa GIF.webm?v=48617e2b00" type="video/webm"></video>
+        </div>
+
+    </div><!--//container-->
+</footer>
+
+
+<!-- Javascript -->
+<script defer src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js?v=d722fa9982"></script>
+<script defer src="assets/plugins/smoothscroll.min.js?v=5d08587d4d"></script>
+<script defer src="assets/plugins/gumshoe/gumshoe.polyfills.min.js?v=c16ae2d7c9"></script>
+<script defer src="assets/js/main.js?v=368e144662"></script>
+
+<script>
+/* Speaker shards lean up to 1 degree towards the cursor - desktop mouse only, off for reduced motion */
+(function shardTilt() {
+  if (!matchMedia('(hover: hover) and (pointer: fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var SEL = '.spk-glass .card:not(.talk-speaker):not(.talk-content)', MAX = 1;   /* talk pages hold still: easier to read (Marek 2026-10-31) */
+  var active = null, st = null, raf = 0;
+  function frame() {
+    raf = 0;
+    if (!st) return;
+    st.rx += (st.tx - st.rx) * .14; st.ry += (st.ty - st.ry) * .14;
+    st.card.style.transform = 'perspective(900px) rotateX(' + st.rx.toFixed(3) + 'deg) rotateY(' + st.ry.toFixed(3) + 'deg)';
+    if (Math.abs(st.tx - st.rx) + Math.abs(st.ty - st.ry) > .005) raf = requestAnimationFrame(frame);
+    else if (!st.on) { st.card.style.transform = ''; st = null; }
+  }
+  function kick() { if (!raf) raf = requestAnimationFrame(frame); }
+  function release() { if (st) { st.on = false; st.tx = st.ty = 0; kick(); } active = null; }
+  document.addEventListener('pointermove', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var card = e.target.closest ? e.target.closest(SEL) : null;
+    if (card !== active) {
+      release();
+      active = card;
+      if (card) st = { card: card, rx: 0, ry: 0, tx: 0, ty: 0, on: true };
+    }
+    if (!st || !active) return;
+    var r = active.getBoundingClientRect();
+    var m = Math.min(3, MAX * Math.max(1, 600 / r.width));   /* narrow cards lean further, so every card reads like a 1 degree event card */
+    st.tx = -((e.clientY - r.top) / r.height - .5) * m * 2;
+    st.ty = ((e.clientX - r.left) / r.width - .5) * m * 2;
+    kick();
+  }, { passive: true });
+  document.documentElement.addEventListener('pointerleave', release);
+})();
+</script>
+<script>/* rewrite_assets.py: loops load and play only while on screen */(function(){var vs=document.querySelectorAll('video.lazy-loop');if(!vs.length)return;var c=navigator.connection;if(c&&(c.saveData||/2g|3g/.test(c.effectiveType)))return;function go(v){if(!v.dataset.on){v.dataset.on=1;if(v.dataset.src){v.src=v.dataset.src}else{v.querySelectorAll('source[data-src]').forEach(function(s){s.src=s.dataset.src});v.load()}}var p=v.play();p&&p.catch&&p.catch(function(){})}if(!('IntersectionObserver'in window)){vs.forEach(go);return}var io=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?go(e.target):e.target.pause()})},{rootMargin:'300px'});vs.forEach(function(v){io.observe(v)})})()</script>
+<script>/* rewrite_assets.py: reload when a newer build is out */(function(){var m=document.querySelector('meta[name="build"]');if(!m||!window.fetch)return;var mine=m.getAttribute('content'),busy=0,bar=null;function engaged(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))return true;var f=document.querySelectorAll('input,textarea');for(var i=0;i<f.length;i++){var e=f[i];if(/^(checkbox|radio)$/.test(e.type)?e.checked!==e.defaultChecked:(e.type!=='hidden'&&e.value!==e.defaultValue))return true}return !!document.querySelector('.modal.show')}function offer(){if(bar||!document.body)return;bar=document.createElement('div');bar.setAttribute('role','status');bar.style.cssText='position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:2000;display:flex;gap:12px;align-items:center;max-width:calc(100% - 32px);background:#111;color:#fff;padding:10px 12px 10px 18px;border-radius:999px;font:600 14px/1.3 Montserrat,sans-serif;box-shadow:0 4px 18px rgba(0,0,0,.3)';var t=document.createElement('span');t.textContent='This page was just updated (schedule, speakers or sponsors)';bar.appendChild(t);var b=document.createElement('button');b.type='button';b.textContent='Refresh';b.style.cssText='border:0;border-radius:999px;padding:6px 14px;font:inherit;cursor:pointer;background:#fff;color:#111';b.onclick=function(){location.reload()};bar.appendChild(b);document.body.appendChild(bar)}function check(auto){if(busy||document.visibilityState==='hidden')return;busy=1;fetch('/build.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){busy=0;if(!j||!j.build||j.build===mine)return;var again=false;try{again=sessionStorage.getItem('fresh-reload')===j.build;sessionStorage.setItem('fresh-reload',j.build)}catch(e){}if(auto&&!again&&!engaged())location.reload();else offer()})['catch'](function(){busy=0})}check(true);document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')check(true)});addEventListener('pageshow',function(e){if(e.persisted)check(true)});setInterval(function(){check(false)},300000)})()</script>
+</body>
+</html>
