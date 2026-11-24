@@ -305,7 +305,7 @@ def content_scores(text, talks):
     for t in talks:
         kw = keywords(t)
         total = sum(kw.values())
-        if total >= 6:                                  # too few distinctive words to judge by
+        if total >= 6 and len(kw) >= 3:                 # too few distinctive words to judge by (TLV: a two-word title matched every talk)
             out.append((round(sum(w for k, w in kw.items() if k in said) / total, 3), t["key"]))
     return sorted(out, reverse=True)
 

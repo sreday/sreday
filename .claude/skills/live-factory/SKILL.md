@@ -99,6 +99,10 @@ Descript composition "<talk> (redo N)" on the next run), `unpause <event>`, `pub
    - **One recording can switch rooms** (PLATFORMday SF 2026-11-10: the keynotes, then the mini room). Before trusting
      `draft`, make a contact sheet of `rec/<id>/frames` and read the Meet/Zoom tile name ("All Hands", "Boardroom").
      Cut each talk from whichever recording shows its room; the `--track` from `add` only steers the brief.
+   - **Files that are already one edited talk each** (a partner's Premiere export, LLMday TLV 2026-11-24): match by
+     file name and self-introduction, not `draft`, and send each whole (start 0, end = ffprobe duration, Q&A kept)
+     unless the person asks for trims ("don't trim too hard - it was already edited"). Leave out background loops
+     and Premiere cache.
    - `draft` refuses to save when two of its guesses overlap. That is fine: it is only a first guess, and you write
      cuts.json yourself from the brief.
 3. Write cuts.json (`{"cuts":[{"key","parts":[{"rec","start","end"}],"confidence","reason","by":"claude"}],"skipped":[...]}`),

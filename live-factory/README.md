@@ -291,3 +291,17 @@ Two Google Meet recordings, two rooms (All Hands = main, Boardroom = mini). Post
 - An archived event (`past/`) whose old top-level folder still holds an ignored build `static/` is now found by its
   metadata.yml.
 
+## Learned from a real day: LLMday Tel Aviv 2026 Q4 (2026-11-24)
+
+No whole-day recording: the TLV partner sent one Premiere-edited MP4 per talk (Drive download, some inside zips with
+the Premiere cache). Postmortem: `postmortems/2026-11-24-llmday-2026-tel-aviv-q4.md`.
+
+- **Edited files: one file = one talk, sent whole.** Each file opens with a ~13 s bumper. Marek: "don't trim too
+  hard - it was already edited by the TLV partner". Cuts run 0 to the file's end (ffprobe) and keep the Q&A.
+- `draft` assumes a day-long recording on the schedule, so with per-talk files it guessed wrong (Sharone on Yev's
+  file, Liran from 5:22, Yev "not found"). Match by file name + the speaker's self-introduction instead.
+- Drive downloads mix footage with Premiere junk (`Media Cache/*.pek`, `.prmf`, `.prproj`, headshots, sound
+  effects). Unzip only `*.mp4` that are talks into a new folder; `BG-*.mp4` was the silent background loop.
+- A day with a workshop room needs `--track 1` even when only main-room files arrive.
+- A two-word title with no abstract ("Talk to Your Cluster. It Talks Back!") matched every talk and raised false
+  "swapped slot" flags. `content_scores` now needs at least 3 distinct keywords.

@@ -235,6 +235,10 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 
 ## Changelog
 
+- **2026-11-24** - Talks that arrive already edited (one file per talk, from a partner) go to Descript whole: no trim,
+  their Q&A kept. Fixed: a talk with only a short title and no abstract no longer makes every other talk look like a
+  "swapped slot".
+
 - **2026-11-10** - Fixed: an event moved to `past/` could be missing from the Factory logs tab when a local site
   build had left a folder behind at the old place. `<command> --help` shows the help.
 - **2026-10-29** - Works on Windows with an NVIDIA card (first day: SREday Dallas 2026 Q4 on an RTX 5090, a whole
