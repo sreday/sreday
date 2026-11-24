@@ -305,3 +305,18 @@ the Premiere cache). Postmortem: `postmortems/2026-11-24-llmday-2026-tel-aviv-q4
 - A day with a workshop room needs `--track 1` even when only main-room files arrive.
 - A two-word title with no abstract ("Talk to Your Cluster. It Talks Back!") matched every talk and raised false
   "swapped slot" flags. `content_scores` now needs at least 3 distinct keywords.
+
+## Learned from a real day: LLMday San Francisco 2026 Q4 (2026-11-24)
+
+Two whole-day Zoom recordings (main room r1, meeting room r2, ~10 h each), from Drive. Cuts:
+`research/llmday-2026-san-francisco-q4.cuts.json` (23 cut, 3 no-shows).
+
+- **The Drive zips of a Zoom recording hold only the `.m4a`, chat `.txt` and `.cc.vtt`** - the room videos come as
+  separate `.mp4`s. Add the mp4s only. Zoom's separate m4a carries the same mute as the video: when the room mic was
+  muted in Zoom (r2 silent at -90 dB until 2:29:50, Devang's first ~6 min), the m4a is silent too - nothing to recover.
+- **A talk can move rooms because the audience moved**: the meeting room was sent to the main room at 16:30 and
+  Vaibhav spoke there (r1). After that the empty room's recording only has chatter plus faint **bleed from the main
+  room** - Whisper lines in r2 that echo r1 a few seconds apart (Sebastian's "what it takes to be a founding
+  engineer"). Compare with the other recording before calling such a stretch a talk.
+- Misheard names again: "Mel Parry" = Paari, "Vepa" = Vaibhav, "Kassu Big" = Qazybek, "I'm solo" = Saurabh,
+  "I am of niche" = Avneesh, "Sude" = Sujoy, "Fumi Lashie" = Funmilade.

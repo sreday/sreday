@@ -103,6 +103,9 @@ Descript composition "<talk> (redo N)" on the next run), `unpause <event>`, `pub
      file name and self-introduction, not `draft`, and send each whole (start 0, end = ffprobe duration, Q&A kept)
      unless the person asks for trims ("don't trim too hard - it was already edited"). Leave out background loops
      and Premiere cache.
+   - **An emptied room keeps recording bleed from the other room** (LLMday SF 2026-11-24: the meeting room moved to
+     the main room). Whisper lines that echo the other recording a few seconds apart are bleed, not a talk. Zoom's
+     separate `.m4a` in the Drive zip has the same Zoom mute as the video - it can't fill a muted stretch.
    - `draft` refuses to save when two of its guesses overlap. That is fine: it is only a first guess, and you write
      cuts.json yourself from the brief.
 3. Write cuts.json (`{"cuts":[{"key","parts":[{"rec","start","end"}],"confidence","reason","by":"claude"}],"skipped":[...]}`),
