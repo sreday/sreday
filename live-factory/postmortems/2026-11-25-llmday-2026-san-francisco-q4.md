@@ -47,8 +47,9 @@ A. Lesi) failed to upload five times until a naming bug was fixed. 6 empty lefto
 
 ## Same bug elsewhere
 
-- The Conf42 factory (`conf42/factory/`) uploads to Descript too: check how it names media before the next speaker
-  with a dot in their name ("Jr.", "A. Lesi", "Dr.").
+- **The Conf42 factory had already fixed this exact bug on 2026-11-03** ("Sumeet L. Ram", rejected six times), in its
+  own copy of `descript.py`. The fix never reached the live factory, whose descript/media/machine modules were copied
+  from Conf42's. The real gap: a fix in one factory's shared module isn't carried to the other.
 
 ## Numbers
 
@@ -74,6 +75,6 @@ Open:
 |---|---|---|
 | Venue recording checklist (Dallas action 1): never mute the room mic in Zoom; phone backup per room | Marek / event team | 2 |
 | Confirm Pujitha Paladugu was a no-show | Marek | numbers |
-| Check the Conf42 factory's Descript media names for the same dot bug | Claude, next Conf42 factory job | 1 |
+| When fixing descript.py / media.py / machine.py in one factory, diff it against the other and port the fix in the same job (add to both skills) | Claude | 1 |
 | After 2 identical Descript import failures, stop retrying the same file and say so (each retry leaves a leftover) | Claude, proposal first | 1 |
 | Pull with a visible result (no `-q`) and check `git status` before starting a factory job | Claude | 3 |
