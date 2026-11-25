@@ -123,7 +123,12 @@ class Descript:
         media_name defaults to key; a re-upload uses a fresh one so it never collides with a broken earlier file."""
         size = os.path.getsize(path)
         ctype = "video/quicktime" if path.lower().endswith(".mov") else "video/mp4"
+        ext = os.path.splitext(path)[1].lower() or ".mp4"
+        # the media name always ends in the file's real extension: Descript reads the type from the name, and a dot in
+        # a speaker's name ("Funmilade A. Lesi") made it guess ". Lesi" - "invalid or unsupported media" (LLMday SF)
         media = media_name or key
+        if not media.lower().endswith(ext):
+            media += ext
         body = {"add_media": {media: {"content_type": ctype, "file_size": size}},
                 "add_compositions": [{"name": key, "clips": [{"media": media}]}]}
         if project_id:
@@ -137,7 +142,7 @@ class Descript:
             if " 409 " not in str(ex) or "already exists" not in str(ex):
                 raise
             old = media
-            media = "%s (%s)" % (key, time.strftime("%H%M%S"))      # the earlier, failed upload keeps the old name
+            media = "%s (%s)%s" % (key, time.strftime("%H%M%S"), ext)   # the earlier, failed upload keeps the old name
             body["add_media"] = {media: body["add_media"].pop(old)}
             body["add_compositions"][0]["clips"][0]["media"] = media
             j = self.json("POST", "/jobs/import/project_media", json=body)

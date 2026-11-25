@@ -80,6 +80,10 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-11-25** - Fixed: a speaker with a dot in their name (e.g. "Funmilade A. Lesi") no longer fails at the Descript
+  upload. Claude also watches for an emptied room picking up sound from the other room, and knows the m4a in a Zoom
+  Drive zip can't fill a muted stretch.
+
 - **2026-11-24** - Talks that arrive already edited (one file per talk, from a partner) go to Descript whole: no trim,
   their Q&A kept. Fixed: a talk with only a short title and no abstract no longer makes every other talk look like a
   "swapped slot".

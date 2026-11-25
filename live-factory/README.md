@@ -320,3 +320,6 @@ Two whole-day Zoom recordings (main room r1, meeting room r2, ~10 h each), from 
   engineer"). Compare with the other recording before calling such a stretch a talk.
 - Misheard names again: "Mel Parry" = Paari, "Vepa" = Vaibhav, "Kassu Big" = Qazybek, "I'm solo" = Saurabh,
   "I am of niche" = Avneesh, "Sude" = Sujoy, "Fumi Lashie" = Funmilade.
+- **A dot in a speaker's name broke the Descript upload** ("Funmilade A. Lesi": "Uploaded file has invalid or
+  unsupported media content", 6 tries). Descript reads the media type from the media name, which had no extension.
+  `descript.import_file` now always ends the media name in the file's extension.

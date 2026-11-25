@@ -235,6 +235,9 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 
 ## Changelog
 
+- **2026-11-25** - Fixed: a talk whose speaker has a dot in their name (e.g. "Funmilade A. Lesi") was refused by
+  Descript as "invalid or unsupported media" on every try. It now uploads like any other.
+
 - **2026-11-24** - Talks that arrive already edited (one file per talk, from a partner) go to Descript whole: no trim,
   their Q&A kept. Fixed: a talk with only a short title and no abstract no longer makes every other talk look like a
   "swapped slot".
