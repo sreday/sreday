@@ -83,9 +83,16 @@ class YouTube:
 
     def call(self, method, url, **kw):
         r = None
+        headers, timeout = kw.pop("headers", None) or {}, kw.pop("timeout", 120)   # once: a retry keeps them
         for attempt in range(5):
-            h = dict(kw.pop("headers", {}) or {}, Authorization="Bearer " + self.auth())
-            r = requests.request(method, url, headers=h, timeout=kw.pop("timeout", 120), **kw)
+            h = dict(headers, Authorization="Bearer " + self.auth())
+            try:
+                r = requests.request(method, url, headers=h, timeout=timeout, **kw)
+            except requests.RequestException:
+                if attempt == 4:
+                    raise
+                time.sleep(3 * 2 ** attempt)
+                continue
             if r.status_code in (500, 502, 503, 504):
                 time.sleep(3 * 2 ** attempt)
                 continue
@@ -141,8 +148,11 @@ class YouTube:
                     return r.json()["id"]
                 if r is not None and r.status_code == 308:
                     rg = r.headers.get("Range")
-                    sent = int(rg.split("-")[1]) + 1 if rg else 0
-                    fails = 0
+                    got = int(rg.split("-")[1]) + 1 if rg else 0
+                    fails = 0 if got > sent else fails + 1     # no progress: counted as a failure, not looped on
+                    sent = got
+                    if fails > 8:
+                        raise RuntimeError("YouTube upload makes no progress")
                     if note:
                         note("youtube: %s %.0f%%" % (os.path.basename(path), 100.0 * sent / size))
                     continue
@@ -150,8 +160,11 @@ class YouTube:
                 if fails > 8:
                     raise RuntimeError("YouTube upload kept failing (%s)" % (r.text[:200] if r is not None else "network"))
                 time.sleep(min(120, 5 * 2 ** fails))
-                q = requests.put(url, timeout=60, headers={"Authorization": "Bearer " + self.auth(),
-                                                           "Content-Range": "bytes */%d" % size})
+                try:
+                    q = requests.put(url, timeout=60, headers={"Authorization": "Bearer " + self.auth(),
+                                                               "Content-Range": "bytes */%d" % size})
+                except requests.RequestException:
+                    continue
                 if q.status_code in (200, 201):
                     return q.json()["id"]
                 rg = q.headers.get("Range") if q.status_code == 308 else None
@@ -280,6 +293,8 @@ def release_at(ev, cfg):
         t = datetime.datetime.fromisoformat(str(ev["video_release"]).replace("Z", "+00:00"))
         t = t if t.tzinfo else t.replace(tzinfo=datetime.timezone.utc)
         return t.astimezone(datetime.timezone.utc), "video_release in metadata.yml"
+    if not ev.get("start_time"):
+        raise ValueError("%s has no start_time in metadata.yml" % ev.get("title"))
     start = datetime.datetime.fromisoformat(ev["start_time"])
     day = start.date() + datetime.timedelta(days=int(yt.get("release_days") or 35))
     hh, mm = [int(x) for x in str(yt.get("release_time") or "09:00").split(":")]
@@ -365,7 +380,7 @@ def pick_playlist(items, title, ev=None):
     want = _norm(title)
     exact = [p for p in items if _norm(p["snippet"]["title"]) == want]
     pool = exact
-    if not pool and ev:
+    if not pool and ev and ev.get("quarter"):
         cities = CITY_ALIASES.get(str(ev.get("city") or "").lower(), [str(ev.get("city") or "").lower()])
         need = [_norm(ev["brand_name"]), str(ev["year"]), str(ev.get("quarter") or "").lower()]
 
@@ -438,6 +453,9 @@ def readd_plan(current, wanted):
 
 # ---- one event -------------------------------------------------------------------------------------------------
 
+PLAYLIST = "_playlist"                                   # youtube.json's one entry that is not a talk
+
+
 def state_path(run):
     return os.path.join(run.dir, "youtube.json")
 
@@ -456,7 +474,40 @@ def save(run, d):
     with open(tmp, "w", encoding="utf-8", newline="\n") as f:
         json.dump(d, f, indent=1, ensure_ascii=False, sort_keys=True)
         f.write("\n")
-    os.replace(tmp, p)
+    from . import machine
+    machine.swap_in(tmp, p)                              # retried: OneDrive / a reader holding it never loses an id
+
+
+class Busy(RuntimeError):
+    pass
+
+
+class upload_lock:
+    """One upload pass per event at a time, across processes (a `run` and an `upload` both loading youtube.json
+    would upload the same talks twice). A lock older than 12 h is a crashed pass's and is taken over."""
+    def __init__(self, run):
+        self.path = os.path.join(run.dir, "youtube.lock")
+
+    def __enter__(self):
+        for _ in range(2):
+            try:
+                fd = os.open(self.path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+                os.write(fd, str(os.getpid()).encode())
+                os.close(fd)
+                return self
+            except FileExistsError:
+                if time.time() - os.path.getmtime(self.path) > 12 * 3600:
+                    os.remove(self.path)
+                    continue
+                raise Busy("another upload pass is running for this event (youtube.lock) - nothing done")
+        raise Busy("youtube.lock could not be taken")
+
+    def __exit__(self, *a):
+        try:
+            os.remove(self.path)
+        except OSError:
+            pass
+        return False
 
 
 def redone_since(t, rec):
@@ -469,6 +520,15 @@ def channel_for(cfg, brand):
 
 
 def event(run, keys=None, yt=None, now=None):
+    """event_pass under the event's upload lock (one pass at a time across processes)."""
+    try:
+        with upload_lock(run):
+            yield from event_pass(run, keys, yt, now)
+    except Busy as e:
+        yield "youtube: %s" % e
+
+
+def event_pass(run, keys=None, yt=None, now=None):
     """Upload the event's finished, checked talks that are not on YouTube yet (or were redone since), then finish
     what an earlier pass could not (thumbnail, captions, playlist) and keep the playlist in the page's order.
     Yields log lines. No sign-in for the brand: one line, nothing else."""
@@ -478,9 +538,16 @@ def event(run, keys=None, yt=None, now=None):
     except LookupError as e:
         yield "youtube: %s" % e
         return
+    if not ev.get("start_time") and not ev.get("video_release"):
+        yield "youtube: %s has no start_time in metadata.yml - no release date, nothing uploaded" % ev["title"]
+        return
     done = load(run)
     talks = {t["key"]: t for t in events.talks(ev)}
-    todo = [k for k, t in sorted(run.state["talks"].items()) if not k.startswith("_")
+    redo = run.redo_requests() if hasattr(run, "redo_requests") else {}
+    order = {k: i for i, k in enumerate(site_order(ev, list(talks.values())))}
+    todo = [k for k, t in sorted(run.state["talks"].items(), key=lambda kv: (order.get(kv[0], 10 ** 6), kv[0]))
+            if k != PLAYLIST
+            and not (redo.get(k) and t.get("redo_handled") != redo[k].get("at"))   # 7. a redo waiting: not this one
             if t.get("finished") and t.get("selfcheck_ok") and (not keys or k in keys)
             and (not (done.get(k) or {}).get("id") or redone_since(t, done[k]))]
     playlist_title = str((cfg.get("youtube") or {}).get("playlist_title") or "{event}").format(event=ev["title"])
@@ -504,22 +571,33 @@ def event(run, keys=None, yt=None, now=None):
         if body["status"].get("publishAt"):
             rec["publish_at"] = body["status"]["publishAt"]
         old = done.get(key) or {}
-        if old.get("id"):                                 # a redone talk: the new video replaces the old one
-            gone = False
-            st = yt.status(old["id"]) or {}
-            never_public = (st.get("status") or {}).get("privacyStatus") == "private" and old.get("publish_at") and \
-                old["publish_at"] > (now or datetime.datetime.now(datetime.timezone.utc)).strftime("%Y-%m-%dT%H:%M:%SZ")
-            if never_public:
-                gone = yt.delete(old["id"])[0]
-            rec["replaces"] = (old.get("replaces") or []) + [old["id"]]
-            rec["old_deleted"] = bool(gone)
-            if old.get("sheet"):
-                rec["sheet"] = old["sheet"]
         try:
             vid = yt.upload(final, body, run.note)
         except QuotaExceeded:
             yield "youtube: the day's upload limit is reached - the rest goes up on the next pass (tomorrow)"
             break
+        except Exception as e:                           # noqa: BLE001 - one talk's trouble never stops the others
+            if old.get("id"):
+                old["error"] = str(e)[:300]
+            else:
+                done[key] = {"error": str(e)[:300], "at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+            save(run, done)
+            yield "youtube: %s not uploaded (%s) - tried again on the next pass" % (key, str(e)[:200])
+            continue
+        if old.get("id"):                                 # a redone talk: the new video is up, the old one goes now
+            gone = False                                  # only when it was never public; unknown = noted, kept
+            st = yt.status(old["id"])
+            never_public = st and (st.get("status") or {}).get("privacyStatus") == "private" and old.get("publish_at") \
+                and old["publish_at"] > (now or datetime.datetime.now(datetime.timezone.utc)).strftime("%Y-%m-%dT%H:%M:%SZ")
+            if never_public:
+                gone = yt.delete(old["id"])[0]
+            rec["replaces"] = (old.get("replaces") or []) + [old["id"]]
+            rec["old_deleted"] = bool(gone)
+            if not gone:
+                rec["old_note"] = ("its status could not be read" if not st else "it has been public") + \
+                    " - delete %s in YouTube Studio" % old["id"]
+            if old.get("sheet"):
+                rec["sheet"] = old["sheet"]
         rec.update(id=vid, url="https://youtu.be/%s" % vid, uploaded_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                    studio="https://studio.youtube.com/video/%s/edit" % vid)
         if note:
@@ -562,11 +640,14 @@ def event(run, keys=None, yt=None, now=None):
             "public" if rec.get("old_deleted") else "still on YouTube: delete it in Studio")) if rec.get("replaces") else "")
     yield from repair(yt, run, done, talks, playlist_title, linked)
     yield from playlist_order(yt, run, done, playlist_title, linked)
-    if not linked and any(r.get("playlist") for r in done.values()):
+    if linked and (done.get(PLAYLIST) or {}).get("hooked") is not True:
+        done[PLAYLIST] = {"url": "https://www.youtube.com/playlist?list=%s" % linked, "hooked": True}
+        save(run, done)
+    if not linked and any(r.get("playlist") for k, r in done.items() if k != PLAYLIST):
         pid = playlist_id or yt.playlist(playlist_title, ev)[0]
         url = "https://www.youtube.com/playlist?list=%s" % pid
-        if (done.get("_playlist") or {}).get("url") != url:
-            done["_playlist"] = {"url": url, "hooked": False}
+        if (done.get(PLAYLIST) or {}).get("url") != url:
+            done[PLAYLIST] = {"url": url, "hooked": False}
             save(run, done)
         yield ("youtube: HOOK THE PLAYLIST TO THE EVENT - %s is not on the website yet: youtube_playlist: %s in %s's "
                "entry of home/metadata.yml (a lane, then land)" % (ev["title"], url, ev["folder"]))
@@ -579,7 +660,7 @@ def repair(yt, run, done, talks, playlist_title, linked=None):
     limit = lambda text: "quota" in str(text).lower()
     for key, rec in sorted(done.items()):
         talk = talks.get(key)
-        if key.startswith("_") or not rec.get("id") or not talk:
+        if key == PLAYLIST or not rec.get("id") or not talk:
             continue
         got = []
         try:
@@ -635,7 +716,7 @@ def playlist_order(yt, run, done, playlist_title, linked=None):
         return
     try:
         order = site_order(run.ev)
-        vid_of = {k: r["id"] for k, r in done.items() if not k.startswith("_") and r.get("id") and r.get("playlist")}
+        vid_of = {k: r["id"] for k, r in done.items() if k != PLAYLIST and r.get("id") and r.get("playlist")}
         wanted = [vid_of[k] for k in order if k in vid_of]
         if not wanted:
             return
@@ -697,7 +778,7 @@ def login(brand, client_file, cfg):
     print("Opening the browser. Sign in, and on Google's 'Choose an account or brand account' screen pick the %s "
           "channel itself:\n%s" % (brand, url))
     webbrowser.open(url)
-    th = threading.Thread(target=srv.handle_request)
+    th = threading.Thread(target=srv.handle_request, daemon=True)
     th.start()
     th.join(600)
     if got.get("state") != state or "code" not in got:

@@ -64,10 +64,81 @@ Claude also puts each link into the event's sheet (the website shows the video o
 Afterwards, just say what you want: *"fetch Kevin's talk from this file"*, *"redo Jay's talk"*. A talk that isn't sure
 (its start lost, its sound dying) is never guessed: it waits, and the report says why.
 
-Once per computer and channel, you sign in to YouTube yourself (the sign-in never goes through the chat): in Claude
-Code type `! cd live-factory && env\Scripts\python -m live_factory youtube-login sreday <client_secret.json>`
-(the Conf42 factory's OAuth client), and on Google's account screen pick the **SREday** channel itself. The same goes
-for `llmday`, `platformday` and `pec`.
+### Launch checklist: once per computer
+
+Do these once on every computer that ships events, Mac or Windows. Ask Claude *"Is the factory ready to ship
+<event>?"*: it runs the checks and tells you what is missing. A run that starts without them stops at the first
+missing piece.
+
+1. **The repos, side by side in one folder** (e.g. `Documents/GitHub/`), all up to date with `git pull`. The
+   factory is in the first one; each event's lineup comes from its own brand's repo.
+    ```
+    git clone https://github.com/sreday/sreday.git
+    git clone https://github.com/sreday/llmday.git
+    git clone https://github.com/sreday/platformday.git
+    git clone https://github.com/Prompt-Engineering-Conference/2026.promptengineering.rocks.git
+    ```
+2. **Python and ffmpeg.**
+    - Mac: `brew install python ffmpeg`.
+    - Windows: Python 3.12 from python.org (tick "Add to PATH"), and `winget install Gyan.FFmpeg`.
+3. **The setup, by you** (it asks for your Descript API token, which never goes through the chat):
+   `bash sreday/live-factory/setup.sh` on the Mac, or double-click `sreday\live-factory\setup.cmd` on Windows.
+    - **Run it again after every update that changes `requirements.txt`**; the 2026-11-27 update added `tzdata` and
+      `pillow`. Otherwise `doctor` says "Python packages: missing".
+4. **YouTube, once per channel, by you:**
+    - You need to be the channel's **owner or manager**: an editor can't sign the factory in (PEC, for now).
+    - You need the OAuth client file of the Google Cloud project "Conf42 factory" (a "Desktop app" client, JSON).
+      Copy it to the computer yourself, from the private folder, e.g. to `~/.claude/private-work/youtube-client.json`.
+      Never put it in a repo or a chat.
+    - Then, in Claude Code (on Windows use `env\Scripts\python` in place of `env/bin/python`):
+      ```
+      ! cd sreday/live-factory && env/bin/python -m live_factory youtube-login sreday ~/.claude/private-work/youtube-client.json
+      ```
+      On Google's "Choose an account or brand account" screen, pick the **SREday channel itself**, not your own
+      account. Past the "unverified app" warning, use *Advanced*. Then do the same for `llmday`, `platformday` and
+      `pec`.
+    - The sign-in stays on that computer only, in `~/.live-factory/youtube/`, outside every repo. A channel other than
+      the brand's is refused.
+5. **The health check:** *"run the factory doctor"*. Everything must say OK, and "YouTube sign-ins" must list the
+   brands you ship.
+6. **The first run downloads Whisper** (large-v3, about 3 GB, into `~/.live-factory/whisper`), so it needs the
+   internet and the disk space.
+7. **Disk:** 150 GB free for a full day: the copied recordings, the cuts, Descript's exports and the finals.
+8. **Power:** plugged in, with the lid open. While a job runs the factory keeps the computer from sleeping by itself,
+   but a closed laptop lid, a flat battery or an update restart still stop it. On Windows, pause Windows Update for
+   the day.
+9. **One folder per computer:** always run the factory from the same `sreday/live-factory`. Its `local/` folder keeps
+   the ledger of paid Descript edits, which stops an edit being paid for twice.
+10. **One computer per event:** the event's work folder, its state and its YouTube record all live on the computer
+   that runs it.
+
+How fast it goes:
+- **A PC with an NVIDIA card** (Elephant, RTX 5090): an 8-hour day is analysed in about 15 minutes, and the edges
+  take about 1 minute a talk.
+- **A Mac (M1/M2):** the analysis takes about 35 minutes; the edges run on large-v3 too, a few minutes a talk.
+
+The Descript part and the uploads take the same time on either.
+
+### Launch checklist: before each event
+
+1. `git pull` the brand's repo. The event's `metadata.yml` must have:
+    - `start_time` with the UTC offset, e.g. `"2026-10-23T09:00:00-05:00"` - the release date comes from it;
+    - `city_name`, whose time zone must be in the factory's `settings.yml` (`youtube.timezones`) - else the release
+      can be an hour off in summer time; Claude adds a missing city;
+    - the brand's `youtube_url`.
+2. **The thumbnails exist:** open `https://<brand>.com/<event>/teasers/` - the YouTube tab must show a picture for
+   every talk. The website draws them; a talk added late needs the site rebuilt first.
+3. **The decks** came in through the deck dump (`/deckdump`). Claude also checks this and lists the missing ones.
+4. **The recordings**, and any separate sound, are on this computer or on a disk plugged into it.
+5. Then say *"Please ship the talks from <event> through the live talk factory"* and give the paths.
+
+Things to know during a run:
+- **The YouTube limit:** about 100 uploads a day per Google project. A big event or two events in one day can hit
+  it; the run says so, and the next run (or *"upload <event>"*) carries on.
+- **Leftovers in Descript:** a failed upload can leave a composition behind. The API can't delete one, so they are
+  listed in the report for you to delete.
+- **The report and the postmortem** come at the end. Talks that are missing, problematic or held are named there,
+  each with why.
 
 ## 3. Process an event step by step - what to say
 
@@ -118,6 +189,9 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-11-27** - Launch checklist for shipping a whole conference on any Mac or Windows computer (section 2). The
+  factory now keeps the computer awake while a job runs. The upload got tougher too: a talk YouTube refuses no
+  longer stops the others, and a rerun uploads what the day's limit left.
 - **2026-11-27** - Autopilot: *"ship the talks from <event> through the live talk factory"* runs the whole way to
   the brand's YouTube channel. Claude approves the cuts, the factory checks each final video itself, and the upload
   carries the title, description, chapters, thumbnail, subtitles and playlist. Each talk goes up private and becomes

@@ -63,6 +63,7 @@ def title_for(ev, cfg, talk, written=None):
     if room < 20:                                   # many speakers: name the first one
         who = re.split(r",|&", who)[0].strip() + " et al."
         room = budget(ev, cfg, who, talk)
+    room = max(room, 12)                            # never a negative slice; clean_text keeps the 100 anyway
     t = clean_title(written or "") if written else ""
     if not t or len(t) > room:
         t = talk["title"] if len(talk["title"]) <= room else shorten_title(talk["title"], room)

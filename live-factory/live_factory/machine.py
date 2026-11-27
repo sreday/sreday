@@ -36,6 +36,38 @@ def swap_in(tmp, path):
                 raise
             time.sleep(0.1)
 
+class keep_awake:
+    """The computer doesn't fall asleep while a job runs (an autopilot run goes on for hours, unattended; Marek
+    2026-11-27: "ship the whole conference A-Z on every machine"). macOS: `caffeinate -i -s` tied to this process;
+    Windows: SetThreadExecutionState (system required, away mode). The screen may still go dark. Nothing on other
+    systems."""
+    def __init__(self):
+        self.proc = None
+
+    def __enter__(self):
+        try:
+            if sys.platform == "darwin" and shutil.which("caffeinate"):
+                import subprocess
+                self.proc = subprocess.Popen(["caffeinate", "-i", "-s", "-w", str(os.getpid())])
+            elif os.name == "nt":
+                import ctypes
+                ctypes.windll.kernel32.SetThreadExecutionState(0x80000000 | 0x00000001 | 0x00000040)
+        except Exception:                                # noqa: BLE001 - never stops a job
+            pass
+        return self
+
+    def __exit__(self, *a):
+        try:
+            if self.proc:
+                self.proc.terminate()
+            elif os.name == "nt":
+                import ctypes
+                ctypes.windll.kernel32.SetThreadExecutionState(0x80000000)
+        except Exception:                                # noqa: BLE001
+            pass
+        return False
+
+
 def desktop():
     """The user's real Desktop folder (on Windows it may live in OneDrive)."""
     if os.name == "nt":

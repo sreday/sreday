@@ -547,6 +547,22 @@ stay for the manual flow):
   whole-day pass. The rules were learned on large-v3's punctuation, and it is only a few minutes of sound per talk.
   On this PC's CPU (int8, as on a Mac) Krishna Reddy's edges took 176 s. The start came out the same as on the GPU;
   the end was punctuated a little differently and was flagged for Claude, not guessed.
+- **Toughened after a review (2026-11-27):**
+  - a retried call keeps its headers (the Conf42 uploader it came from had lost them);
+  - a network blip is retried;
+  - one talk's refused upload no longer stops the others: the error is noted and the talk is tried next pass;
+  - youtube.json is swapped in with retries (OneDrive / antivirus locks);
+  - one upload pass per event at a time (`youtube.lock`);
+  - a run with nothing new to cut still uploads and writes the report;
+  - a talk waiting for a redo is not uploaded;
+  - a redo uploads first, then deletes the never-public old video;
+  - uploads go in the website's order, so the playlist needs no re-sorting;
+  - on autopilot, a talk whose own edit paused the edits waits for a person;
+  - a failed selfcheck makes the talk problematic and never breaks the run;
+  - the computer is kept awake during jobs (machine.keep_awake: caffeinate / SetThreadExecutionState).
+
+  `tests/autopilot_smoke.py` runs a small event end to end through the real pipeline, with stand-ins for Descript
+  and YouTube. It found the night-mode filter refusing gains over 2 (now capped).
 - **The WWW sheet:** Claude writes the links through the Google Sheets connector: only empty cells, the row found by
   name.
 - **The report:** `report <event>` writes `ship report.md`, which Claude's postmortem is built on: on YouTube /

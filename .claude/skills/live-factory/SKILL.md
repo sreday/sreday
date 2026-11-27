@@ -126,8 +126,17 @@ run through descript, download and push into respective sre/llm/platform/pec you
 for permission to run this further, you'll ship it and write a post-mortem ... you'll ask for forgiveness not for
 permission. If we want to go fast, this is the only way". So on such a request nothing waits for him:
 
-1. `git pull` the brand repo, read the last postmortem's open actions, `doctor` (the brand's YouTube sign-in must be
-   there: "YouTube sign-ins"; missing -> the one thing to ask him: `! ... youtube-login <brand> <client_secret.json>`).
+1. Preflight - the launch checklist of MANUAL-CLAUDE.md ("Launch checklist"):
+    - `git pull` the brand repo, and read the last postmortem's open actions;
+    - run `doctor`: everything OK; the packages must not be missing (setup again after a requirements.txt change);
+      "YouTube sign-ins" must list the brand - if not, that is the one thing to ask for:
+      `! ... youtube-login <brand> <client file>`, by the channel's owner or manager;
+    - check the event's `metadata.yml`: `start_time` with its offset, `city_name` in settings `youtube.timezones`
+      (add a missing city in a lane), and `youtube_url`;
+    - open one talk's thumbnail at `/<event>/teasers/<speaker>.png`;
+    - check the free disk space;
+    - run from the computer's own `sreday/live-factory`, never from a worktree: the ledger of paid edits lives in its
+      `local/`.
 2. `add` the materials he gives, `analyse`, match the lineup (as below, just as carefully), `cuts <event> file.json`.
 3. `autopilot <event> on`.
 4. `ends <event>`: read the whole brief and confirm or move EVERY flagged talk yourself in cuts.json (`"ends"` with

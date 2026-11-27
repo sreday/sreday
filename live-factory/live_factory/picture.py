@@ -669,6 +669,9 @@ def colour_fix(gains):
     g = np.array(gains, np.float64)
     k = 1 / np.maximum(g, 0.3)
     k = k / k.min()
+    # ffmpeg takes -2..2 here: a stronger tint (a blue gain under 0.5) is put right as far as it goes - before
+    # 2026-11-27 such a screen stopped the cut ("Value 3.33 for parameter 'bb' out of range")
+    k = np.minimum(k, 2.0)
     return "colorchannelmixer=rr=%.4f:gg=%.4f:bb=%.4f" % tuple(k)
 
 

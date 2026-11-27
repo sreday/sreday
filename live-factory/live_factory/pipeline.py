@@ -43,7 +43,7 @@ VIDEO_EXT = (".mp4", ".mov", ".m4v", ".mkv", ".mts", ".m2ts", ".avi", ".webm", "
 MEDIA_EXT = VIDEO_EXT + audiosync.AUDIO_EXT     # a sound-only file is a separate sound recording (audiosync.py)
 PICTURE_VERSION = 2                             # bump when picture.py's plans change, so cached plans are made again
 REC_STEPS = ["copy", "levels", "transcript", "frames", "proxy"]
-STEPS = ["cut", "check", "upload", "edit", "review", "publish", "download", "srt", "chapters", "loudness", "qa"]
+STEPS = ["cut", "check", "upload", "edit", "review", "publish", "download", "srt", "chapters", "loudness", "qa", "selfcheck"]
 MIN_TALK_SECONDS = 30
 
 
@@ -136,9 +136,11 @@ class Run:
             while not stop.wait(30):
                 self.save()
         threading.Thread(target=beat, daemon=True).start()
+        awake = machine.keep_awake().__enter__()         # no sleep while a job runs (hours, unattended)
         try:
             yield
         finally:
+            awake.__exit__()
             stop.set()
             with self.lock:
                 self.state["runner"], self.state["job"] = {"pid": None, "at": now(), "finished": True}, None
@@ -1215,7 +1217,8 @@ class Run:
             # GATE 2: Marek looks at the edited talk in Descript before anything is exported - on autopilot the
             # factory's own check of the final (selfcheck, below) takes its place
             reviewed = self.reviews().get(key)
-            if not reviewed and self.autopilot():
+            paused_by_me = str(self.state.get("edits_paused") or "").split("'s edit")[0] == key
+            if not reviewed and self.autopilot() and not paused_by_me:
                 reviewed = "autopilot - checked by the factory after the export"
             if not reviewed:
                 if (t["steps"].get("review") or {}).get("status") != "waiting":
@@ -1282,9 +1285,15 @@ class Run:
                          minutes_after=round(out["duration"] / 60, 1), cut_percent=round(cut, 1), flags=flags)
             if not done("selfcheck"):
                 self.set(key, "selfcheck", "running", label="the factory looks at the final: edges, sound, picture")
-                with self.ends_lock:
-                    problems, notes = selfcheck.check(final, t, cfg, t.get("ends"),
+
+                def heard(f, rec, c):
+                    with self.ends_lock:
+                        return ends.verify(f, rec, c)
+                try:
+                    problems, notes = selfcheck.check(final, t, cfg, t.get("ends"), verify=heard,
                                                       lean=lean if os.path.exists(lean) else None)
+                except Exception as ex:                  # noqa: BLE001 - never leaves a talk unfinished
+                    problems, notes = ["the factory's own check could not run (%s)" % str(ex)[:200]], []
                 with self.lock:
                     t["selfcheck_ok"] = not problems
                     t["problems"] = problems
@@ -1473,6 +1482,9 @@ class Run:
         if keys:
             self.ensure_space("cutting and exporting %d talk(s)" % len(keys))
         if not keys:
+            if self.autopilot():                         # nothing new to cut: what the quota left goes up now
+                self.youtube_pass()
+                self.ship_report()
             self.note("nothing to do: no approved cuts waiting (approve them in the dashboard first)")
             return
         if any(not ((self.state["recordings"].get(p["rec"]) or {}).get("steps", {}).get("copy") or {}).get("status") == "done"
@@ -1510,7 +1522,10 @@ class Run:
         self.write_youtube()
         if self.autopilot():
             self.youtube_pass()
-            self.ship_report()
+            try:
+                self.ship_report()
+            except Exception as ex:                      # noqa: BLE001
+                self.note("ship report not written: %s" % ex)
         waiting = [k for k in keys if (self.state["talks"][k]["steps"].get("review") or {}).get("status") == "waiting"]
         self.note("run finished" + (" - %d talk(s) waiting for your review in Descript" % len(waiting) if waiting else ""))
 
@@ -1535,10 +1550,14 @@ class Run:
         data = self.cuts()
         cuts = {c["key"]: c for c in data["cuts"]}
         skipped = {s.get("key"): s.get("why") or s.get("reason") or "" for s in data.get("skipped") or []}
-        when, note = ytupload.release_at(self.ev, self.cfg)
+        try:
+            when, note = ytupload.release_at(self.ev, self.cfg)
+            release = "%s UTC (5 weeks after the event, 09:00 local)%s" % (when.strftime("%Y-%m-%d %H:%M"),
+                                                                         " - " + note if note else "")
+        except ValueError as ex:
+            release = "unknown: %s" % ex
         lines = ["# %s - ship report" % self.ev["title"], "",
-                 "Written %s. The videos go public %s UTC (5 weeks after the event, 09:00 local)%s." % (
-                     now()[:16].replace("T", " "), when.strftime("%Y-%m-%d %H:%M"), " - " + note if note else ""), ""]
+                 "Written %s. The videos go public %s." % (now()[:16].replace("T", " "), release), ""]
         rows = {"on YouTube": [], "problematic": [], "stopped": [], "not cut": [], "missing": []}
         for talk in events.talks(self.ev):
             k, t, rec = talk["key"], self.state["talks"].get(talk["key"]), yt.get(talk["key"]) or {}
@@ -1551,7 +1570,8 @@ class Run:
             elif t and t.get("finished") and not t.get("selfcheck_ok"):
                 rows["problematic"].append("- **%s** - %s" % (k, "; ".join(t.get("problems") or ["not checked"])))
             elif t and t.get("finished"):
-                rows["stopped"].append("- **%s** - finished, not on YouTube yet (see the log)" % k)
+                rows["stopped"].append("- **%s** - finished, not on YouTube yet%s" % (
+                    k, (": " + rec["error"][:200]) if rec.get("error") else " (see the log)"))
             elif t and t.get("error"):
                 rows["stopped"].append("- **%s** - %s" % (k, t["error"][:300]))
             elif k in cuts and not cuts[k].get("approved"):
@@ -1564,7 +1584,7 @@ class Run:
         for head, items in rows.items():
             if items:
                 lines += ["## %s (%d)" % (head[0].upper() + head[1:], len(items)), ""] + items + [""]
-        pl = yt.get("_playlist") or {}
+        pl = yt.get(ytupload.PLAYLIST) or {}
         if pl.get("url"):
             lines += ["## Playlist", "", "- %s%s" % (pl["url"], "" if pl.get("hooked") else
                       " - NOT on the website yet: youtube_playlist in the event's entry of home/metadata.yml"), ""]

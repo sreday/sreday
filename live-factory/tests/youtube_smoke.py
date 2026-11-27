@@ -224,6 +224,48 @@ def youtube_tests():
     check("redo: a new video, the never-public old one deleted", new["id"] != old and old in fake.deleted and
           new.get("old_deleted"), (new, fake.deleted))
 
+    # a retry after a 503 keeps the call's headers (captions need their multipart Content-Type)
+    seen, flaky = [], {"n": 0}
+    def req503(method, url, headers=None, **kw):
+        seen.append(dict(headers or {}))
+        flaky["n"] += 1
+        return Resp(503, {}) if flaky["n"] == 1 else fake.request(method, url, headers=headers, **kw)
+    ytupload.requests = types.SimpleNamespace(request=req503, post=fake.post, put=fake.put, get=fake.get,
+                                              RequestException=Exception)
+    ok, _ = yt.captions(ytupload.load(run)["Ann Lee"]["id"], "1\n00:00:00,000 --> 00:00:01,000\nHi\n")
+    check("a retry keeps the headers", ok and len(seen) == 2 and seen[1].get("Content-Type", "").startswith("multipart"),
+          seen)
+    ytupload.requests = types.SimpleNamespace(request=fake.request, post=fake.post, put=fake.put, get=fake.get,
+                                              RequestException=Exception)
+
+    # one talk's refused upload never stops the others; it is tried again on the next pass
+    run2 = FakeRun()
+    for k in run2.state["talks"]:
+        run2.state["talks"][k]["selfcheck_ok"] = True
+    os.remove(ytupload.state_path(run2))
+    real = fake.request
+    def refuse_ann(method, url, headers=None, json=None, **kw):
+        if url.endswith("upload/youtube/v3/videos") and "Ann Lee" in (json or {}).get("snippet", {}).get("title", ""):
+            return Resp(400, {"error": "invalidTitle"})
+        return real(method, url, headers=headers, json=json, **kw)
+    ytupload.requests = types.SimpleNamespace(request=refuse_ann, post=fake.post, put=fake.put, get=fake.get,
+                                              RequestException=Exception)
+    lines = list(ytupload.event(run2, yt=yt, now=before))
+    d2 = ytupload.load(run2)
+    check("a refused talk is noted, the next talks still go up", d2["Ann Lee"].get("error") and not d2["Ann Lee"].get("id")
+          and d2["Bob Ray"].get("id") and d2["Cy Doe"].get("id"), {k: (v.get("id"), v.get("error")) for k, v in d2.items()
+                                                                   if k != ytupload.PLAYLIST})
+    ytupload.requests = types.SimpleNamespace(request=fake.request, post=fake.post, put=fake.put, get=fake.get,
+                                              RequestException=Exception)
+    list(ytupload.event(run2, yt=yt, now=before))
+    check("... and goes up on the next pass", ytupload.load(run2)["Ann Lee"].get("id"))
+
+    # one upload pass per event at a time
+    open(os.path.join(run2.dir, "youtube.lock"), "w").close()
+    lines = list(ytupload.event(run2, yt=yt, now=before))
+    check("a second pass at the same time does nothing", any("another upload pass" in l for l in lines), lines)
+    os.remove(os.path.join(run2.dir, "youtube.lock"))
+
     # a thumbnail over 2 MB goes as JPEG
     from PIL import Image
     big = Image.frombytes("RGB", (1280, 720), os.urandom(1280 * 720 * 3))
