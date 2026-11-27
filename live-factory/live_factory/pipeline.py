@@ -21,6 +21,7 @@ import os
 import re
 import shutil
 import stat
+import subprocess
 import threading
 import time
 import traceback
@@ -29,7 +30,7 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 import yaml
 
-from . import analyse, audiosync, events, machine, media, picture, precheck, segment, stereo, youtube
+from . import analyse, audiosync, events, machine, media, picture, precheck, saturation, segment, stereo, youtube
 from .descript import Descript
 
 HERE = events.HERE
@@ -489,8 +490,16 @@ class Run:
                 sp_s, _ = audiosync.level_db(slv, s_from, s_to)
                 sp_v, _ = audiosync.level_db(vlv, a, b)
                 gain = max(-20.0, min(20.0, sp_s - sp_v)) if sp_s is not None and sp_v is not None else 0.0
-                pieces.append({"src": self.rec_path(sid), "start": s_from, "end": s_to, "scale": st["scale"],
-                               "at": a - p["start"], "af": fix.get("af"), "own_gain_db": gain})
+                for k0, k1, why2 in self.unclipped_runs(self.rec_path(sid), s_from, s_to, self.rec_path(p["rec"]), a, b,
+                                                        st["scale"], cut):
+                    if why2:
+                        notes.append("sound %s-%s of the clip: %s" % (
+                            segment.stamp(a - p["start"] + k0 * st["scale"]),
+                            segment.stamp(a - p["start"] + k1 * st["scale"]), why2))
+                        continue
+                    pieces.append({"src": self.rec_path(sid), "start": s_from + k0, "end": min(s_to, s_from + k1),
+                                   "scale": st["scale"], "at": a - p["start"] + k0 * st["scale"], "af": fix.get("af"),
+                                   "own_gain_db": gain})
             if pieces:
                 covered = sum((x["end"] - x["start"]) * x["scale"] for x in pieces)
                 notes.append("separate sound covers %d%% of the clip from %s" % (
@@ -536,6 +545,122 @@ class Run:
         notes = [n for pl in plans if pl for n in pl["notes"]]
         return plans, deck, notes
 
+    # ---- saturated sound (saturation.py) --------------------------------------------------------------------------
+    # Marek, 2026-11-27: "if there's many tracks available, pick the better one and discard the bad one; if there's
+    # NO CHOICE, sample the bad audio, run it through the tools, judge the effect, ship for the whole talk if it's
+    # good; if no good effect with each, studio sound at 100% in Descript as the last resort. A sound track saved by
+    # the open source tools gets our normal studio sound numbers."
+    def span_clipping(self, src, start, end):
+        """saturation.scan of a stretch of a recording, cached in the work folder (rec/clipping.json)."""
+        path = os.path.join(self.dir, "rec", "clipping.json")
+        k = "%s|%.1f|%.1f" % (os.path.basename(src), start, end)
+        with self.lock:
+            cache = saturation.load(path) or {}
+        if k not in cache:
+            res = saturation.scan(src, start, end)
+            res.pop("tens", None)
+            with self.lock:
+                cache = saturation.load(path) or {}
+                cache[k] = res
+                os.makedirs(os.path.dirname(path), exist_ok=True)
+                saturation.save(path, cache)
+        return cache[k]
+
+    def unclipped_runs(self, snd, s_from, s_to, cam, a, b, scale, cut):
+        """The separate sound's stretch in minutes: [(from, to (seconds into the stretch), None to use it / why not)].
+        A minute where the recorder is clipped and the camera is not goes to the camera."""
+        length = s_to - s_from
+        if not self.cfg.get("declip", True) or cut.get("declip") == "off" or length < 60:
+            return [(0.0, length, None)]
+        rs, cs = self.span_clipping(snd, s_from, s_to), self.span_clipping(cam, a, b)
+        if not rs["some"]:
+            return [(0.0, length, None)]
+        bad = [n >= saturation.CLIPPED_PER_MIN and (i >= len(cs["per_min"]) or cs["per_min"][i] < saturation.CLIPPED_PER_MIN)
+               for i, n in enumerate(rs["per_min"])]
+        runs, i = [], 0
+        while i < len(bad):
+            j = i
+            while j < len(bad) and bad[j] == bad[i]:
+                j += 1
+            runs.append((60.0 * i, min(length, 60.0 * j),
+                         "the recorder is clipped here and the camera is not: the camera's sound" if bad[i] else None))
+            i = j
+        return runs
+    def clipping_for(self, key, cut, parts, force=False):
+        """Clipping in the sound this talk will use (the separate sound where it is laid in, else the camera's), before
+        anything is cut. Cached in cuts/<key>.clipping.json while the parts stay the same."""
+        sounds, _ = self.sound_for(cut, parts)
+        spans = []
+        for p, snd in zip(parts, sounds):
+            if snd:
+                spans += [(x["src"], x["start"], x["end"]) for x in snd]
+            else:
+                spans.append((self.rec_path(p["rec"]), p["start"], p["end"]))
+        sig = json.dumps([[os.path.basename(s), round(a, 1), round(b, 1)] for s, a, b in spans])
+        path = os.path.join(self.cut_dir, key + ".clipping.json")
+        cached = saturation.load(path)
+        if cached and cached.get("sig") == sig and not force:
+            return cached["scan"]
+        per_min = []
+        for s, a, b in spans:
+            per_min += saturation.scan(s, a, b)["per_min"]
+        res = saturation.summary(per_min)
+        os.makedirs(self.cut_dir, exist_ok=True)
+        saturation.save(path, {"sig": sig, "scan": res, "at": now()})
+        return res
+
+    def declip_cut(self, key, cut, lean):
+        """The cut's sound, listened to for clipped peaks. With a choice of channels the clean one is used; with no
+        choice the tools are tried on a sample and the best one that passes repairs the whole talk (saturation.rescue);
+        a talk still SATURATED after all that gets Studio Sound at saturated_studio_sound_percent - the last resort.
+        Returns the talk's record (before, what was done, "last_resort", a note)."""
+        before = saturation.scan(lean)
+        before.pop("tens", None) if not before["some"] else None
+        rec = {"before": before, "some": before["some"], "saturated": before["saturated"], "repaired": False,
+               "last_resort": False}
+        if not before["some"]:
+            rec["note"] = "no clipping"
+            return rec
+        what, steps = saturation.describe(before), []
+        if cut.get("declip") == "off" or not self.cfg.get("declip", True):
+            steps.append("repair off")
+        else:
+            ch = saturation.pick_channel(before)
+            if ch:
+                af, clean = ch
+                tmp = lean + ".channel.mp4"
+                subprocess.run([media.tool("ffmpeg"), "-v", "error", "-y", "-i", lean, "-map", "0:v:0", "-map", "0:a:0",
+                                "-c:v", "copy", "-af", af, "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", tmp],
+                               check=True)
+                os.replace(tmp, lean)
+                now_ = saturation.scan(lean)
+                steps.append("the %s channel is clipped, the %s one is not: the clean one on both (%s)" % (
+                    "right" if clean == 0 else "left", "left" if clean == 0 else "right", saturation.describe(now_)))
+                rec["after"] = now_
+            cur = rec.get("after") or before
+            if cur["some"]:
+                self.set(key, "cut", "running", label="trying the repair tools on %d s of the clipped sound" %
+                         saturation.SAMPLE_SECONDS, percent=99)
+                folder = os.path.join(self.cut_dir, key + ".sound-trial")
+                res = saturation.rescue(lean, folder, self.cfg, before=cur, log=lambda m: self.note("%s: %s" % (key, m)))
+                rec["rescue"] = {k: v for k, v in res.items() if k != "before"}
+                steps.append(res.get("why") or "")
+                if res.get("saved"):
+                    rec["after"], rec["repaired"] = res["after"], True
+                rec["trial_folder"] = key + ".sound-trial"
+            else:
+                rec["repaired"] = True
+        final = rec.get("after") or before
+        if final["saturated"]:
+            rec["last_resort"] = True
+            steps.append("still SATURATED: Studio Sound %s%% in Descript (the last resort)" %
+                         self.cfg.get("saturated_studio_sound_percent", 100))
+        elif rec["repaired"]:
+            steps.append("saved: the normal Studio Sound %s%%" % self.cfg.get("studio_sound_percent", 80))
+        rec["note"] = what + " - " + "; ".join(x for x in steps if x)
+        self.note("%s: %s" % (key, rec["note"]))
+        return rec
+
     def look_all(self, keys=None, force=False, report=None):
         """The picture plans of these cuts (default: all), several talks at once - the machine is free while the
         factory works ("go ham"). Cached plans are reused. report(key, plans, deck, notes, sound notes) per talk."""
@@ -550,6 +675,10 @@ class Run:
                 plans, deck, notes = self.picture_for(key, c, padded, force=force,
                                                       on_progress=lambda label, pct=None: None)
                 _, snd = self.sound_for(c, padded)
+                clip = self.clipping_for(key, c, padded, force=force)
+                snd = snd + ["sound: " + saturation.describe(clip) + (
+                    " - the repair tools will be tried on a sample (Studio Sound %s%% only if none helps)" %
+                    self.cfg.get("saturated_studio_sound_percent", 100) if clip.get("some") else "")]
                 if report:
                     report(key, plans, deck, notes, snd)
             except Exception as ex:
@@ -804,6 +933,8 @@ class Run:
                         parts.append((src, p["start"], p["end"], extra))
                     media.cut(parts, lean, st.get("af"), on_progress=progress("cut"), cq=int(cfg.get("cut_crf") or 18),
                               crop=crop)
+                    self.set(key, "cut", "running", label="listening for clipped sound", percent=99)
+                    sat = self.declip_cut(key, cut_cfg, lean)
                     check = None
                     if any(x[3] for x in parts):              # deck pages or separate sound laid in: check the file
                         self.set(key, "cut", "running", label="checking the picture and the sound of the cut", percent=99)
@@ -818,6 +949,7 @@ class Run:
                                         "shown": [pl.get("shown") if pl else None for pl in plans],
                                         "night": [(pl.get("night") or {}).get("on") if pl else None for pl in plans]}
                         t["sound"] = {"notes": snd_notes, "separate": any(sounds)}
+                        t["saturation"] = sat
                     info = media.probe(lean)
                     core = sum(p["end"] - p["start"] for p in t["parts"])
                     with self.lock:
@@ -827,11 +959,12 @@ class Run:
                                         "after": round(after, 1)}
                         t["resolution"] = media.pick_resolution(info["width"], info["height"], cfg["max_resolution"])
                     shown = [x for x in t["picture"]["shown"] if x]
-                    self.set(key, "cut", "done", sig=t["cut_sig"], note="%s; the talk runs %s-%s in the clip; %s%s%s%s" % (
+                    self.set(key, "cut", "done", sig=t["cut_sig"], note="%s; the talk runs %s-%s in the clip; %s%s%s%s%s" % (
                         segment.stamp(info["duration"]), segment.stamp(before), segment.stamp(before + core), st["note"],
                         "; " + zoom_note if crop else "",
                         "; deck pages on %d%% of it" % (100 * max(shown)) if shown else "",
-                        "; separate sound" if t["sound"]["separate"] else ""))
+                        "; separate sound" if t["sound"]["separate"] else "",
+                        "; " + sat["note"] if sat.get("some") else ""))
             if not done("check"):
                 cut_cfg = next((c for c in self.cuts()["cuts"] if c["key"] == key), {})
                 chk = t.get("check")
@@ -899,7 +1032,7 @@ class Run:
                         t["current"] = "edit"                # the error belongs to the edit, not the finished upload
                     raise RuntimeError("edits paused: " + self.state["edits_paused"])
                 self.set(key, "edit", "running")
-                j = d.edit(pid, cid, cfg["edit_prompt"].format(composition=comp_name, **cfg), on_progress=progress("edit"))
+                j = d.edit(pid, cid, self.edit_prompt(key, comp_name), on_progress=progress("edit"))
                 credits = float(j["result"].get("ai_credits_used") or 0)
                 self.record_edit(cid, key, credits)
                 report = str(j["result"].get("agent_response") or "")
@@ -1026,6 +1159,14 @@ class Run:
         self.write_youtube()
 
     # ---- trim to the speech (as the Conf42 factory) ---------------------------------------------------------------
+    def edit_prompt(self, key, comp_name):
+        """The AI editor's prompt. A talk still saturated after the repair tools gets Studio Sound at
+        saturated_studio_sound_percent (the last resort); a repaired one the normal studio_sound_percent."""
+        vals = dict(self.cfg)
+        if (self.state["talks"][key].get("saturation") or {}).get("last_resort"):
+            vals["studio_sound_percent"] = self.cfg.get("saturated_studio_sound_percent", 100)
+        return self.cfg["edit_prompt"].format(composition=comp_name, **vals)
+
     def plan_trim(self, key, raw, srt_path):
         t, cfg = self.state["talks"][key], self.cfg
         if "trim" in t:

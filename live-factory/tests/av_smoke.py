@@ -11,6 +11,9 @@ Builds, with a known truth:
 then runs the factory itself on a fixture event: add (video + --sound), analyse (the sound placed on the video), the
 picture plan, the cut (deck pages laid over the video, the recorder's sound laid in) - and checks the output file
 frame by frame and sample by sample. Night mode: a warm copy of the screen share is detected and put right.
+Saturated sound: the better track (a clipped recorder minute goes to the camera; a clipped channel gives way to the
+clean one), the judge of the repair tools (stand-ins for the tools and Whisper - the real tools are tested on real
+speech, see README), Studio Sound 100% only as the last resort; a limiter is not taken for clipping.
 The temp folder is left in place for a look (its path is printed).
 """
 import json
@@ -386,6 +389,94 @@ def main():
     check("night mode: the normal screen share is left alone", not p_plain["night"]["on"], p_plain["night"])
     p_deck = picture.plan(warm, 0, LEN - 0.5, deck_pdf)
     check("night mode with the deck: the pages still found", p_deck["shown"] > 0.5, "%.0f%%" % (100 * p_deck["shown"]))
+
+    print("saturated sound")
+    from live_factory import saturation
+    sat = t.get("saturation") or {}
+    check("saturation: the clean cut is heard as not clipped", sat.get("before") and not sat.get("some"), sat.get("note"))
+    check("saturation: a clean talk keeps Studio Sound 80%", "Studio Sound at 80%" in run.edit_prompt("Alice Walker", "x"))
+    # a voice with round, vowel-like peaks (the buzzy test voice above has sawtooth peaks, which no mic clips like a
+    # voice), 150 s, as a small video; then the same driven ~12 dB into a hard ceiling
+    rng = np.random.default_rng(7)
+    vo = np.zeros(int(150 * SR), np.float32)
+    t0 = 0.0
+    while t0 < 149:
+        d = rng.uniform(0.12, 0.35)
+        a0, b0 = int(t0 * SR), min(len(vo), int((t0 + d) * SR))
+        ph = 2 * np.pi * np.cumsum(np.full(b0 - a0, rng.uniform(100, 200))) / SR
+        vo[a0:b0] = rng.uniform(0.3, 1.0) * np.hanning(b0 - a0) * sum(np.sin(h * ph + h) / h ** 1.5 for h in range(1, 7)) * 0.25
+        t0 += d + rng.uniform(0.05, 0.3)
+    vwav = os.path.join(TMP, "vowels.wav")
+    wav(vwav, vo)
+    plain = os.path.join(TMP, "vowels.mp4")
+    ff("-f", "lavfi", "-i", "color=c=gray:s=320x180:r=10:d=150", "-i", vwav, "-c:v", "libx264", "-preset", "veryfast",
+       "-c:a", "aac", "-b:a", "192k", "-shortest", plain)
+    cl = saturation.scan(plain)
+    check("saturation: a clean voice is not clipped", not cl["some"], saturation.describe(cl))
+    hot = os.path.join(TMP, "clipped.mp4")
+    ff("-i", plain, "-c:v", "copy", "-af", "volume=12dB,asoftclip=type=hard:threshold=0.6,volume=-3dB",
+       "-c:a", "aac", "-b:a", "192k", hot)
+    # 1. the better track: a recorder clipped in its 2nd minute, the camera clean -> that minute goes to the camera
+    rec_hot = os.path.join(TMP, "recorder_hot.wav")
+    ff("-i", vwav, "-af", "volume=12dB:enable='between(t,60,120)',asoftclip=type=hard:threshold=0.6:"
+       "enable='between(t,60,120)',volume=-12dB:enable='between(t,60,120)'", "-c:a", "pcm_s16le", rec_hot)
+    runs = run.unclipped_runs(rec_hot, 0.0, 150.0, plain, 0.0, 150.0, 1.0, {})
+    check("better track: the recorder's clipped minute goes to the camera, the rest stays the recorder's",
+          [(r0, r1, bool(w)) for r0, r1, w in runs] == [(0.0, 60.0, False), (60.0, 120.0, True), (120.0, 150.0, False)], runs)
+    # 2. the better channel: left clipped, right clean -> the right one on both
+    st_hot = os.path.join(TMP, "left_clipped.mp4")
+    ff("-i", plain, "-c:v", "copy", "-af", "pan=stereo|c0=c0|c1=c0,asplit[l][r];[l]pan=mono|c0=c0,volume=12dB,"
+       "asoftclip=type=hard:threshold=0.6,volume=-12dB[lc];[r]pan=mono|c0=c1[rc];[lc][rc]join=inputs=2:channel_layout=stereo",
+       "-c:a", "aac", "-b:a", "192k", st_hot)
+    rc = run.declip_cut("Alice Walker", {}, st_hot)
+    check("better channel: the clean right channel replaces the clipped left one", not (rc.get("after") or {}).get("some")
+          and "channel is clipped" in rc.get("note", ""), rc.get("note"))
+    # 3. no choice, no tool helps (here: none installed) -> Studio Sound 100%, the last resort
+    keep = run.cfg.get("declip_python"), os.environ.pop("LIVE_FACTORY_DECLIP_PYTHON", None)
+    run.cfg["declip_python"] = os.path.join(TMP, "no-such-python.exe")
+    rec = run.declip_cut("Alice Walker", {}, hot)
+    check("saturation: the clipped copy is heard as SATURATED", rec["saturated"] and rec["before"]["clipped_minutes"] >= 2,
+          rec.get("note"))
+    check("last resort: no tool -> Studio Sound 100%", rec["last_resort"] and "last resort" in rec["note"], rec.get("note"))
+    with run.lock:
+        t["saturation"] = rec
+    check("last resort: the edit prompt says Studio Sound 100%", "Studio Sound at 100%" in run.edit_prompt("Alice Walker", "x"))
+    with run.lock:
+        t["saturation"] = dict(rec, last_resort=False, repaired=True)
+    check("repaired by a tool: the normal Studio Sound 80%", "Studio Sound at 80%" in run.edit_prompt("Alice Walker", "x"))
+    with run.lock:
+        t["saturation"] = sat
+    run.cfg["declip_python"] = keep[0]
+    if keep[1]:
+        os.environ["LIVE_FACTORY_DECLIP_PYTHON"] = keep[1]
+    # 4. the judge, with stand-in tools and a stand-in Whisper: a tool that helps passes, one that garbles the words or
+    # leaves the peaks fails, and the best one wins
+    import shutil
+    real_words, real_run = saturation._words, saturation.run_tool
+    said = "so the third group of alerts is where the real incident was hiding all along and nobody saw it".split()
+    heard = {"clipped": (said, 0.68), "good": (said, 0.72), "garble": (["pokemon"] * 5 + said[5:], 0.60),
+             "same": (said, 0.69)}
+    saturation._words = lambda path, cfg=None: heard[os.path.basename(path).split("-")[-1].split(".")[0]
+                                                     if "-" in os.path.basename(path) else "clipped"]
+
+    def fake_run(tool, wi, wo, cfg=None):
+        shutil.copy(plain if tool != "x:same" else wi, wo)   # "good"/"garble": the clean sound; "same": no change
+    saturation.run_tool = fake_run
+    try:
+        sample = os.path.join(TMP, "sample-clipped.wav")
+        saturation.to_wav(hot, sample, 30, 60)
+        tr = saturation.trial(sample, os.path.join(TMP, "trial"), {}, ["x:good", "x:garble", "x:same"])
+        verdict = {r["tool"]: r["good"] for r in tr["results"]}
+        check("judge: the tool that helps passes, the garbling one and the no-op fail, the best wins",
+              verdict == {"x:good": True, "x:garble": False, "x:same": False} and tr["best"] == "x:good",
+              [(r["tool"], r["why"]) for r in tr["results"]])
+    finally:
+        saturation._words, saturation.run_tool = real_words, real_run
+    quiet = os.path.join(TMP, "limited.mp4")            # a limiter holding the peaks down is not clipping
+    ff("-i", plain, "-c:v", "copy", "-af", "volume=14dB,alimiter=limit=0.6:attack=5:release=50",
+       "-c:a", "aac", "-b:a", "192k", quiet)
+    lim = saturation.scan(quiet)
+    check("saturation: a limiter holding 14 dB of peaks is not clipping", not lim["some"], saturation.describe(lim))
 
     print("\n%s" % ("all good" if not FAILS else "%d failed: %s" % (len(FAILS), ", ".join(FAILS))))
     print("files: " + TMP)

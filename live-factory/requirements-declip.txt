@@ -1,0 +1,13 @@
+# Optional: the repair tools for saturated (clipped) sound - saturation.py. They live in their OWN environment,
+# live-factory/local/declip-env (torch is big and must not disturb Whisper in env/); the factory finds it there
+# (or set declip_python in settings.local.yml). Without it a saturated talk gets Studio Sound 100% in Descript.
+#   python -m venv local/declip-env
+#   local/declip-env/Scripts/python -m pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu128
+#   local/declip-env/Scripts/python -m pip install -r requirements-declip.txt
+# (cu128 runs the RTX 50 series; Linux/Mac: local/declip-env/bin/python.) VoiceFixer downloads its two model files
+# from its author's Zenodo record on first use (~/.cache/voicefixer).
+# BetterDeclipper (MIT, github.com/Qupci/BetterDeclipper) is pinned to the commit that was read and tested.
+scipy
+soundfile
+betterdeclipper @ https://github.com/Qupci/BetterDeclipper/archive/f9ff7f4f9a8840f5734bd6b5fbef4ebedd53cff8.zip
+voicefixer==0.1.3

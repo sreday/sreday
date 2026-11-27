@@ -215,6 +215,11 @@ def doctor(cfg, check_descript=True):
     why = picture.available()
     add("Picture pass", not why, "deck pages over the slides, night mode: ready" if not why else why,
         "env/bin/python -m pip install opencv-python-headless pypdfium2 (or run setup again)", required=False)
+    from . import saturation
+    dc = saturation.tools_available(cfg)
+    add("Repair tools for clipped sound", dc, "ready: " + ", ".join(dc) if dc else
+        "not installed - clipped talks get Studio Sound %s%% only" % cfg.get("saturated_studio_sound_percent", 100),
+        "make local/declip-env as requirements-declip.txt says", required=False)
     ff, fp = find_tool("ffmpeg"), find_tool("ffprobe")
     add("ffmpeg / ffprobe", ff and fp, ff or "not found", install_hint("ffmpeg"))
     model, device, compute = whisper_setup(cfg)

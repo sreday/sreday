@@ -165,6 +165,7 @@ reference cuts, hand-checked against the transcript, are in `research/platformda
 | `live_factory/segment.py` | the brief, the draft, and cuts.json checks |
 | `live_factory/stereo.py` | one-sided stereo detection |
 | `live_factory/audiosync.py` | separate sound: fingerprints, placing it on the videos, choosing it per talk |
+| `live_factory/saturation.py` | saturated (clipped) sound: finding it per minute, rebuilding the peaks (BetterDeclipper) |
 | `live_factory/picture.py` | the picture pass: deck pages over the slides, builds, night mode, the before/after sheet |
 | `live_factory/pipeline.py` | state, gates, the Descript steps (from the Conf42 factory, with its credit guards and ledger) |
 | `live_factory/descript.py`, `media.py`, `machine.py` | copies of the Conf42 factory's modules, adapted; fix bugs in both |
@@ -405,3 +406,58 @@ with 0.07 - the limit of what it hears. A failing talk stops with "stopped befor
 fails again); `cuts/<talk>.check.jpg` shows its frames; `"precheck": "off"` in the cut overrides after a human look.
 Talks uploaded before the check existed skip it. The picture plans of a run are made first, `look_parallel` talks at
 once (default a quarter of the CPU threads) - slow is fine (an idle laptop for hours), quality first.
+
+**Saturated sound** (`saturation.py`). Marek, 2026-11-27: "if there's many tracks available to put the audio in, then
+we want to pick the better one and discard the bad one; then, if there's NO CHOICE, sample the bad audio (10-30 s of
+speech), run through these tools, then judge the effect (understandable speech vs the transcript), and ship for the
+whole talk if it's good; if there's no good effect with each, studio sound at 100% in Descript as the last resort.
+A sound track saved by the open source tools gets our normal studio sound numbers. Descript's studio sound is the
+last resort."
+- **Hearing it**: a clipped peak is cut flat at the ceiling; after AAC the plateau is blurred but keeps its shape. Per
+  5 s (a local ceiling - an auto gain or a fader can turn a clipped stretch down), every peak above 85% of the
+  ceiling gets a parabola fitted to its 8 samples each side; a peak counts as cut when that apex is 25%+ above its
+  top AND the top is flat (12+ samples, 60%+ of them within 3% of the top). 40+ such peaks = a clipped minute, 2+
+  clipped minutes = a SATURATED talk. Kept per channel and per 10 s. On Girish Konda's speech clipped on purpose
+  (then AAC): clean 0 a minute, clipped 11/12/14/20 dB 42/105/376/~1200; limiters holding 14-20 dB of peaks 0-2;
+  tanh soft saturation 12 (not flagged - mild); 3 clipped minutes inside his real 19-minute talk found at exactly
+  5:00-8:00. All 33 real talks of SREday Dallas + PLATFORMday SF (none clipped): at most 6 in their worst minute.
+  Without the flat-top condition the buzzy synthetic voice of tests/av_smoke.py (sawtooth peaks) and limiters read
+  as clipping.
+- **1. The better track** (no tool needed): `Run.unclipped_runs` - in `sound_for`, the separate recorder's stretch is
+  cut into minutes; a minute where the recorder is clipped and the camera is not goes to the camera (a hole in the
+  recorder's pieces, which the camera fills). In the cut, a clipped channel next to a clean one that carries the talk
+  too (levels within 12 dB) gives way to it (`pick_channel`, ffmpeg `pan`). Scans of the recordings' stretches are
+  cached in `<work folder>/rec/clipping.json`.
+- **2. No choice: the trial** (`rescue`, `trial`): the worst 30 s of the cut (`worst_stretch`, by the 10 s counts) go
+  through every tool in `declip_tools`; each output is judged by the clipping check and Whisper (large-v3, beam 5,
+  word probabilities) against the clipped sample itself: at most 25% of the cut peaks left, Whisper's mean word
+  probability not lower (-0.005), at most 40% of the words changed (+ twice the rise in word probability: repaired
+  words do change), 10+ words heard. The best one that passes (highest word probability) then repairs the talk's
+  clipped stretches only (`regions`: 10 s bins at half the clipped rate, merged across 20 s, padded 5 s, in pieces of
+  at most 60 s - a declipper reads ONE ceiling per file, and run over the whole talk it found none and changed
+  nothing), spliced back with 20 ms fades, turned down to -1 dBFS peak if needed, remuxed with the picture copied.
+  Kept only when the talk then has fewer clipped minutes and is no longer saturated. The sample and every tool's
+  output stay in `cuts/<talk>.sound-trial/` (with trial.json) for a listen.
+- **3. The last resort**: a talk still SATURATED gets Studio Sound `saturated_studio_sound_percent` (100) in its edit
+  prompt; a repaired one keeps `studio_sound_percent` (80). "a little clipping" (one minute) is repaired the same way
+  but never gets 100%.
+- **The tools** run in their own environment `local/declip-env` (torch cu128 is big and must not disturb Whisper's
+  CUDA libraries in `env/`; `requirements-declip.txt`; `declip_python` or `LIVE_FACTORY_DECLIP_PYTHON` overrides), in
+  a child process (one model load for all the pieces):
+  - BetterDeclipper (github.com/Qupci/BetterDeclipper, MIT, pinned to the commit read): a consistent declipper -
+    every unclipped sample stays exactly as it is, the clipped ones are rebuilt above the ceiling (NMF plug-and-play +
+    A-SPADE); it tells digital clipping, clipping smeared by AAC/MP3 and a limiter apart. 30 s of Girish clipped
+    20 / 26 dB: SNR 12.3 -> 25.8 / 6.3 -> 17.2 dB, cut peaks 720 / 1228 -> 0 a minute, Whisper's word probability
+    0.704 -> 0.728 / 0.648 -> 0.717, word error vs the clean words 26% -> 18% / 43% -> 21% (the clean speech vs another
+    pass of itself: ~21%). His 19-minute talk with 3 clipped minutes: repaired in 71 s on the RTX 5090, no clipped
+    minute left.
+  - VoiceFixer (github.com/haoheliu/voicefixer, MIT; its model files from the author's Zenodo record on first use): a
+    speech restorer that makes the voice again through a vocoder. On our speech it changes the words (65-71% vs the
+    clipped input, 68% on CLEAN speech: "the third group of mn alerts" -> "the third group of pokemon") - tried, and
+    judged out every time so far. On Girish's clipped minutes it came to 47% changed with no gain in confidence:
+    that is why the word limit is 40%, not 50%.
+  - ffmpeg's `adeclip` was tried first and left out: it changed clean speech by -30 dB everywhere and restored nothing
+    (SNR 15.1 -> 15.0 dB at 14 dB over).
+- Settings: `declip`, `declip_tools`, `saturated_studio_sound_percent`; per cut `"declip": "off"` (keeps the sound as
+  it is and skips 1-2). `clipping <event>` / `look` list the talks before the run (the sound each talk will use,
+  cached in `cuts/<talk>.clipping.json`); the cut step listens to the cut itself again (`t["saturation"]`).

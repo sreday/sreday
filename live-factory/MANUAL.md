@@ -165,7 +165,14 @@ Press **Run**. For every approved talk the factory:
       "Download slides" PDF) or from a PDF you drop into the event folder's `decks/` named after the speaker;
     - **night mode** (a yellow, Night Shift screen share): the deck pages have the true colours anyway; what stays
       video gets its colours put back;
-    - **the separate sound** where there is one (step 1).
+    - **the separate sound** where there is one (step 1);
+    - **saturated sound** (a mic or recorder driven too hard, every loud word cracking): the factory hears which talks
+      have it and where. Where another track has the same moment clean (the camera next to a clipped recorder, the
+      other channel), it uses that one. With no choice it tries the repair tools on 30 s of the clipped speech,
+      checks the result with speech recognition, and repairs the whole talk with the best one that really helps -
+      that talk then gets the normal Studio Sound. Only when nothing helps does Descript get **Studio Sound 100%**,
+      the last resort. Ask *"which talks have saturated sound?"* before the run to see the list; the 30 s tried go
+      to `cuts/<speaker>.sound-trial/` for a listen.
 
     **Then the factory checks the cut itself before anything is uploaded** (Descript costs money): the deck pages
     really are in the picture, the separate sound really is in the cut, in sync, and the camera's own "pilot" sound
@@ -260,6 +267,10 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 ---
 
 ## Changelog
+
+- **2026-11-27** - Saturated sound: the factory hears which talks have clipped (saturated) sound and where; it takes
+  the clean track where there is one, else repairs the talk with the best open-source tool that proves itself on a
+  sample; Studio Sound 100% in Descript only when nothing helps.
 
 - **2026-11-27** - A check of every cut before it goes to Descript: deck pages in the picture, the separate sound in
   sync and the camera's sound suppressed - a cut that fails is stopped before any credits are spent.

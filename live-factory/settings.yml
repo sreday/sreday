@@ -53,8 +53,20 @@ cut_tail_seconds: 3          # ... and ends this long after the last one
 stereo_gap_db: 25
 silent_channel_db: -60       # a channel below this RMS level is empty whatever the other one does
 
+# ---- 3b. saturated sound (saturation.py) -----------------------------------------------------------------------
+# Every talk's sound is listened to for peaks cut flat (a mic or recorder driven too hard). In this order:
+#  1. the better track: a minute where the separate recorder is clipped and the camera is not gets the camera; a
+#     clipped channel next to a clean one gets the clean one;
+#  2. no choice: the worst 30 s go through every repair tool (declip_tools), Whisper and the clipping check judge
+#     each; the best one that passes repairs the whole talk - which then gets the normal studio_sound_percent;
+#  3. the last resort: a talk still SATURATED (2+ clipped minutes) gets saturated_studio_sound_percent.
+# The tools: local/declip-env (requirements-declip.txt). "declip": "off" in a cut skips 1-2.
+declip: true
+declip_tools: [betterdeclipper:normal, voicefixer:0]   # tried in this order on the sample; the best that passes wins
+
 # ---- 4. Descript ---------------------------------------------------------------------------------------------
 studio_sound_percent: 80
+saturated_studio_sound_percent: 100   # a talk whose sound is SATURATED (clipped peaks, saturation.py) gets this instead
 volume_percent: 300          # Descript gain (3x) before the limiter
 # (2026-10-16, first live run: "Remove all filler words" made Descript also mute real words its detector flagged -
 # "your", "that", repeated words - and the limiter came out at -1 dB on one talk and -6 dB on the next. Both are

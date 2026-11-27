@@ -48,6 +48,7 @@ Replace the event and paths with yours. Events are named like `sreday-2026-londo
 | Separate sound | *"The sound was recorded on the desk too: D:\ZOOM0001.wav, day 1."* | Added as separate sound. After the analysis it is placed on the videos by itself (different start, clock drift, files split in pieces - all fine); the talks it covers get its sound. |
 | Analyse | *"Analyse them."* | Sound, transcript, stills - free, on your computer. About 35 min for an 8-hour day; Claude runs it in the background and tells you when it's done. |
 | Find the talks | *"Match the lineup."* | Claude reads the whole day: greetings, "I'm …", the MC, closing lines, Q&A, pauses, titles and abstracts. It gives you a table of every talk with start, end and anything doubtful, and asks you what only someone who was there knows ("who spoke last?"). |
+| Saturated sound | *"Which talks have saturated sound?"* | The talks whose sound is clipped (cracking on loud words), with the minutes where. In the run: the clean track where there is one; else the repair tools tried on 30 s and judged, the best one repairs the talk (normal Studio Sound); Studio Sound 100% only when none helps. |
 | Slides check | *"Look at the slides."* | For every cut: which deck pages it found on screen and will show full screen, build steps, night mode, the separate sound - with a before/after picture per talk. Claude names any deck that looks like another version than the one presented: if only the fonts differ it can still use it (*"use Kevin's deck anyway"*); if the words differ, ask the speaker for the deck they presented. |
 | ✋ Approve | Open the workbench (http://localhost:8043), check the flagged cuts, tick them, **Save cuts** - or tell Claude *"approve all"* if you trust the table. | Nothing goes to Descript before this. |
 | Descript | *"Run the factory."* | Claude says how many talks and roughly how many Descript credits (8-30 per talk), then cuts, uploads and edits them. Watch it on http://localhost:8043/status or ask *"how is it going?"*. |
@@ -81,6 +82,10 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 ---
 
 ## Changelog
+
+- **2026-11-27** - Saturated sound: clipped talks are found (also before the run: *"which talks have saturated
+  sound?"*); the clean track is used where there is one, else the best repair tool that proves itself on a sample;
+  Studio Sound 100% in Descript only as the last resort.
 
 - **2026-11-27** - Every cut is checked before Descript (pages in the picture, the recorder's sound in sync, the
   camera's pilot sound gone); a failing talk stops before any credits are spent and Claude tells you why.

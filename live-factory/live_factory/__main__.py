@@ -13,6 +13,9 @@
                                                        the picture pass before the run: deck pages found on screen,
                                                        night mode, the separate sound - per talk, with a before/after
                                                        sheet cuts/<talk>.picture.jpg (all cuts, or the talks named)
+  python -m live_factory clipping <event> ["<talk>" ...] [--again]
+                                                       which talks have saturated (clipped) sound, and where - before
+                                                       the run (look does it too); those get the repair tools tried
   python -m live_factory brief <event>                 segment_brief_<track>.md for Claude's lineup match
   python -m live_factory draft <event> [--replace]     a first automatic guess at cuts.json (keeps approved cuts)
   python -m live_factory cuts <event> [file.json]      check cuts.json (or take this file as the new one) and list it
@@ -40,7 +43,7 @@ import socket
 import stat
 import sys
 
-from . import events, machine, pipeline, segment
+from . import events, machine, pipeline, saturation, segment
 
 
 def print_doctor(check_descript=True):
@@ -184,6 +187,20 @@ def dispatch(run, cmd, argv):
             print("\n".join(lines), flush=True)
         with run.job("look"):
             run.look_all([c["key"] for c in cuts], force=bool(again), report=report)
+    elif cmd == "clipping":
+        again, rest = flag(argv[2:], "--again", has_value=False)
+        cuts = [c for c in run.cuts()["cuts"] if not rest or c["key"] in rest]
+        hit = []
+        for c in cuts:
+            padded, _, _ = run.padded(c["key"], c["parts"])
+            r = run.clipping_for(c["key"], c, padded, force=bool(again))
+            print("%-45s %s%s" % (c["key"][:45], saturation.describe(r), (" at " + ", ".join(
+                segment.stamp(w) for w in r["where"][:6])) if r["where"] else ""), flush=True)
+            if r.get("saturated"):
+                hit.append(c["key"])
+        print("saturated: %s" % (", ".join(hit) if hit else "none") + (
+            "" if saturation.tools_available(run.cfg) else
+            "  (no repair tools installed: Studio Sound 100% only - requirements-declip.txt)"))
     elif cmd == "brief":
         for p in segment.brief(run):
             print(p)

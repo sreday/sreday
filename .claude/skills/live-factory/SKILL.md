@@ -62,6 +62,14 @@ you need before changing anything.
    cut and `look` again (builds then show whole - say so); different words -> ask the speaker for the deck they
    presented. To keep a talk's recording as it
    is: `"picture": "video"` in its cut; to keep the camera's sound: `"sound": "camera"`.
+   **Saturated sound** (Marek, 2026-11-27: pick the better track; with no choice try the tools on a sample, judge,
+   repair the whole talk with a good one - which then gets the normal Studio Sound; "Descript's studio sound is the
+   last resort"): `look` also says per talk whether its sound is clipped; `clipping <event>` lists only that (the
+   SATURATED talks and the minutes where). Tell the person which talks are saturated before the run. The run does
+   the rest by itself (`doctor` must show the repair tools ready: `local/declip-env`). After the run, read each such
+   talk's cut note: which track/tool saved it, or "the last resort"; the trial's samples are in
+   `cuts/<talk>.sound-trial/` - offer them for a listen. A tool that passes the judge but sounds wrong to the person:
+   `"declip": "off"` for that talk and redo it.
 4. **Gate 1 - the person approves the cuts** in the workbench (section 2). Never tick "approved" yourself unless the
    person explicitly says to approve (e.g. "approve all", "you're on point, ship them"); then approve only what they
    named.
