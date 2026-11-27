@@ -167,6 +167,11 @@ Press **Run**. For every approved talk the factory:
       video gets its colours put back;
     - **the separate sound** where there is one (step 1).
 
+    **Then the factory checks the cut itself before anything is uploaded** (Descript costs money): the deck pages
+    really are in the picture, the separate sound really is in the cut, in sync, and the camera's own "pilot" sound
+    is gone. A talk that fails stops there - no credits spent - and says what is wrong; `cuts/<speaker>.check.jpg`
+    shows frames of the cut.
+
     Before the run you can see what it will do: ask Claude *"look at the slides for PLATFORMday Austin"* - each talk
     gets a before/after picture `cuts/<speaker>.picture.jpg` in the event folder.
 2. uploads it to the event's Descript project (e.g. **PLATFORMday Austin 2026 Q4**), named after the speaker,
@@ -256,6 +261,8 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 
 ## Changelog
 
+- **2026-11-27** - A check of every cut before it goes to Descript: deck pages in the picture, the separate sound in
+  sync and the camera's sound suppressed - a cut that fails is stopped before any credits are spent.
 - **2026-11-27** - The slides, sharp and full screen: wherever a talk's recording shows a page of the speaker's deck
   (Presenter View, the taskbar or a headshot over it, a TV filmed in the room), the video shows the deck page itself;
   builds appear as they did, demos keep the recording. Night mode (a yellow screen share) is put right. Sound recorded

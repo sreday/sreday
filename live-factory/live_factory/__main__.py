@@ -175,28 +175,15 @@ def dispatch(run, cmd, argv):
             missing = set(rest) - {c["key"] for c in cuts}
             if missing:
                 raise SystemExit("no cut for: %s" % ", ".join(sorted(missing)))
+        def report(key, plans, deck, notes, snd):
+            c = next(x for x in cuts if x["key"] == key)
+            lines = ["%s%s" % (key, "" if c.get("approved") else "  (not approved yet)")] + ["  " + n for n in notes + snd]
+            sheet = os.path.join(run.cut_dir, key + ".picture.jpg")
+            if os.path.exists(sheet):
+                lines.append("  before/after: " + sheet)
+            print("\n".join(lines), flush=True)
         with run.job("look"):
-            for c in cuts:
-                key = c["key"]
-                saved = run.state["talks"].get(key)
-                run.state["talks"].setdefault(key, {"key": key, "parts": c["parts"], "steps": {}, "current": None, "error": None})
-                run.state["talks"][key]["parts"] = c["parts"]
-                try:
-                    padded, _, _ = run.padded(key)
-                finally:
-                    if saved is None:
-                        run.state["talks"].pop(key, None)
-                    else:
-                        run.state["talks"][key] = saved
-                print("%s%s" % (key, "" if c.get("approved") else "  (not approved yet)"))
-                plans, deck, notes = run.picture_for(key, c, padded, force=bool(again),
-                                                     on_progress=lambda label, pct=None: None)
-                _, snd = run.sound_for(c, padded)
-                for n in notes + snd:
-                    print("  " + n)
-                sheet = os.path.join(run.cut_dir, key + ".picture.jpg")
-                if os.path.exists(sheet):
-                    print("  before/after: " + sheet)
+            run.look_all([c["key"] for c in cuts], force=bool(again), report=report)
     elif cmd == "brief":
         for p in segment.brief(run):
             print(p)

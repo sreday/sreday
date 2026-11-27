@@ -413,15 +413,18 @@ class Matcher:
         # a filmed or soft screen: lined up to the pixel (ECC) and the sharp page blurred to the frame's sharpness
         # (different words still differ at any blur; a wrong title of the same weight only blurs alike at 160 px).
         # A clean screen capture is judged as it is too - whichever agrees best counts.
-        best = None
-        for f in (fine, _refine(fine, page)):
+        ok = lambda cf: cf["title"] >= 0.6 and cf["conflict"] <= 0.35
+        if ok(compare(fine, page, grid)):                 # a clean screen capture: no need for more
+            return fine, page
+        refined = _refine(fine, page)
+        for f in (fine, refined):
             for sigma in (0, 0.8, 1.5, 2.5):
+                if f is fine and not sigma:
+                    continue
                 pg = page if not sigma else self.cv2.GaussianBlur(page, (0, 0), sigma)
-                cf = compare(f, pg, grid)
-                if best is None or (cf["title"], cf["full"]) > (best[0]["title"], best[0]["full"]):
-                    best = (cf, f)
-        cf, fine = best
-        return (fine, page) if cf["title"] >= 0.6 and cf["conflict"] <= 0.35 else None
+                if ok(compare(f, pg, grid)):
+                    return f, page
+        return None
 
     def _features(self, gray, pages):
         """ORB match against these pages: candidate (page, H, inliers) fits, most inliers first. Two models per page:

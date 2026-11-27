@@ -391,3 +391,17 @@ and no white at all could read as night mode without its PDF - the before/after 
 
 Needs `opencv-python-headless` and `pypdfium2` (in requirements.txt; PyMuPDF is blocked by Windows Smart App Control);
 without them `doctor` says so and talks are cut as before.
+
+**The check before Descript** (`precheck.py`, step "check" between cut and upload; Marek: "double check the image and
+sound were merged correctly, that the bad pilot sound is successfully suppressed - sending it to Descript costs us real
+money"). Only cuts with deck pages or separate sound laid in are checked, on the cut FILE: three frames per deck-page
+stretch against the very image rendered for it (mean difference <= 8), video stretches against the recording; 8
+windows of 0.4 s per separate-sound piece: the cut's sound against the recorder (waveform likeness >= 0.8, lag within
+20 ms) and, by least squares, the camera's share in it (the pilot: flagged above 0.12 unless the recorder alone explains
+the window, likeness >= 0.97); holes the recorder doesn't cover must carry the camera's sound; the length must match.
+On real speech (SREday Dallas, Girish Konda): the good cut 1.00 alike, pilot 0.00; the camera mixed back in at full
+level stopped (5 of 8 windows); 60 ms late stopped; the camera at half level (about -23 dB under the recorder) passes
+with 0.07 - the limit of what it hears. A failing talk stops with "stopped before Descript" (no retries: the same cut
+fails again); `cuts/<talk>.check.jpg` shows its frames; `"precheck": "off"` in the cut overrides after a human look.
+Talks uploaded before the check existed skip it. The picture plans of a run are made first, `look_parallel` talks at
+once (default a quarter of the CPU threads) - slow is fine (an idle laptop for hours), quality first.

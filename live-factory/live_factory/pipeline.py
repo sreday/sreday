@@ -29,7 +29,7 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 import yaml
 
-from . import analyse, audiosync, events, machine, media, picture, segment, stereo, youtube
+from . import analyse, audiosync, events, machine, media, picture, precheck, segment, stereo, youtube
 from .descript import Descript
 
 HERE = events.HERE
@@ -37,7 +37,7 @@ VIDEO_EXT = (".mp4", ".mov", ".m4v", ".mkv", ".mts", ".m2ts", ".avi", ".webm", "
 MEDIA_EXT = VIDEO_EXT + audiosync.AUDIO_EXT     # a sound-only file is a separate sound recording (audiosync.py)
 PICTURE_VERSION = 2                             # bump when picture.py's plans change, so cached plans are made again
 REC_STEPS = ["copy", "levels", "transcript", "frames", "proxy"]
-STEPS = ["cut", "upload", "edit", "review", "publish", "download", "srt", "chapters", "loudness", "qa"]
+STEPS = ["cut", "check", "upload", "edit", "review", "publish", "download", "srt", "chapters", "loudness", "qa"]
 MIN_TALK_SECONDS = 30
 
 
@@ -536,6 +536,30 @@ class Run:
         notes = [n for pl in plans if pl for n in pl["notes"]]
         return plans, deck, notes
 
+    def look_all(self, keys=None, force=False, report=None):
+        """The picture plans of these cuts (default: all), several talks at once - the machine is free while the
+        factory works ("go ham"). Cached plans are reused. report(key, plans, deck, notes, sound notes) per talk."""
+        cuts = {c["key"]: c for c in self.cuts()["cuts"]}
+        keys = [k for k in (keys or list(cuts)) if k in cuts]
+        workers = int(self.cfg.get("look_parallel") or max(2, (os.cpu_count() or 4) // 4))
+
+        def one(key):
+            c = cuts[key]
+            try:
+                padded, _, _ = self.padded(key, c["parts"])
+                plans, deck, notes = self.picture_for(key, c, padded, force=force,
+                                                      on_progress=lambda label, pct=None: None)
+                _, snd = self.sound_for(c, padded)
+                if report:
+                    report(key, plans, deck, notes, snd)
+            except Exception as ex:
+                self.note("%s: the picture pass failed: %s" % (key, ex))
+                traceback.print_exc()
+        if keys:
+            self.note("looking at the slides of %d talk(s), %d at a time" % (len(keys), workers))
+        with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
+            list(pool.map(one, keys))
+
     def picture_extra(self, key, plan, part, size):
         """compose()'s slides + colour for one part from its plan, the deck pages rendered at the output size."""
         if not plan:
@@ -664,11 +688,11 @@ class Run:
         t.setdefault("redone", []).append({"at": now(), "why": why, "composition_id": kept})
         self.note("%s: %s - doing it again" % (key, why))
 
-    def padded(self, key):
-        """The talk's parts with pad_before_seconds before the first and pad_after_seconds after the last, never into
-        another talk's own cut on the same recording, nor past the recording. Returns (parts, before, after)."""
-        t = self.state["talks"][key]
-        parts = [dict(p) for p in t["parts"]]
+    def padded(self, key, parts=None):
+        """The talk's parts (or these parts of its cut) with pad_before_seconds before the first and pad_after_seconds
+        after the last, never into another talk's own cut on the same recording, nor past the recording.
+        Returns (parts, before, after)."""
+        parts = [dict(p) for p in (parts if parts is not None else self.state["talks"][key]["parts"])]
         others = [p for c in self.cuts()["cuts"] if c["key"] != key for p in c["parts"]]
         first, last = parts[0], parts[-1]
         want_b, want_a = float(self.cfg.get("pad_before_seconds", 30)), float(self.cfg.get("pad_after_seconds", 60))
@@ -780,7 +804,16 @@ class Run:
                         parts.append((src, p["start"], p["end"], extra))
                     media.cut(parts, lean, st.get("af"), on_progress=progress("cut"), cq=int(cfg.get("cut_crf") or 18),
                               crop=crop)
+                    check = None
+                    if any(x[3] for x in parts):              # deck pages or separate sound laid in: check the file
+                        self.set(key, "cut", "running", label="checking the picture and the sound of the cut", percent=99)
+                        out_info = media.probe(lean)
+                        problems, cnotes = precheck.check(lean, [x[:3] for x in parts], [x[3] for x in parts],
+                                                          (out_info["width"], out_info["height"]),
+                                                          os.path.join(self.cut_dir, key + ".check.jpg"))
+                        check = {"problems": problems, "notes": cnotes, "sheet": key + ".check.jpg", "at": now()}
                     with self.lock:
+                        t["check"] = check
                         t["picture"] = {"deck": deck, "notes": pic_notes,
                                         "shown": [pl.get("shown") if pl else None for pl in plans],
                                         "night": [(pl.get("night") or {}).get("on") if pl else None for pl in plans]}
@@ -799,6 +832,21 @@ class Run:
                         "; " + zoom_note if crop else "",
                         "; deck pages on %d%% of it" % (100 * max(shown)) if shown else "",
                         "; separate sound" if t["sound"]["separate"] else ""))
+            if not done("check"):
+                cut_cfg = next((c for c in self.cuts()["cuts"] if c["key"] == key), {})
+                chk = t.get("check")
+                if done("upload"):
+                    self.set(key, "check", "done", note="uploaded before the check existed")
+                elif cut_cfg.get("precheck") == "off":
+                    self.set(key, "check", "done", note="check turned off for this talk (\"precheck\": \"off\")")
+                elif chk and chk.get("problems"):
+                    self.set(key, "check", "failed", error="; ".join(chk["problems"][:4]))
+                    raise RuntimeError("stopped before Descript - the cut is not right: %s (look at cuts/%s; fix the "
+                                       "cut or the plan and redo it, or set \"precheck\": \"off\")" % (
+                                           "; ".join(chk["problems"][:3]), chk.get("sheet")))
+                else:
+                    self.set(key, "check", "done", note="; ".join((chk or {}).get("notes") or []) or
+                             "nothing laid in - the recording as it is")
             d = Descript()
             pname = cfg["project_name"].format(event=self.ev["title"])
             redos = len(t.get("redone") or [])
@@ -1088,7 +1136,8 @@ class Run:
         for n in range(1, attempts + 1):
             self.process(key)
             err = t.get("error") or ""
-            if not err or n == attempts or "402" in err or "edits paused" in err or "free (keeping" in err:
+            if (not err or n == attempts or "402" in err or "edits paused" in err or "free (keeping" in err
+                    or "stopped before Descript" in err):     # the same cut fails the same check again
                 return
             with self.lock:
                 t["retry"] = "failed (%s) - trying again in %d min, attempt %d of %d" % (err[:120], pause // 60, n + 1, attempts)
@@ -1135,6 +1184,10 @@ class Run:
                     self.note("cancelled %d Descript upload(s) left over from a stopped run" % len(gone))
             except Exception as ex:
                 self.note("could not check for leftover Descript uploads: %s" % ex)
+        # the picture plans first, many talks at once (the cut step then finds them made)
+        uncut = [k for k in keys if (self.state["talks"][k]["steps"].get("cut") or {}).get("status") != "done"]
+        if uncut and picture.available() is None:
+            self.look_all(uncut)
         with ThreadPoolExecutor(max_workers=max(1, int(self.cfg.get("parallel_talks") or 2))) as pool:
             list(pool.map(self.process_with_retries, keys))
         self.find_leftovers()

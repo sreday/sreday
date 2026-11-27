@@ -139,20 +139,22 @@ def frame_at(t, deck):
 
 
 def speechlike(seconds, seed=1):
-    """Syllable-like bursts of shaped noise: something a loudness fingerprint can lock onto."""
+    """Voiced, syllable-like sound: a gliding pitch (110-220 Hz) with its harmonics under formant-ish weights, in
+    bursts - like speech, most of its energy below 3 kHz, something a loudness fingerprint can lock onto."""
     rng = np.random.default_rng(seed)
     n = int(seconds * SR)
-    env = np.zeros(n, np.float32)
+    out = np.zeros(n, np.float32)
     t = 0.0
     while t < seconds:
         d = rng.uniform(0.08, 0.3)
-        a = int(t * SR)
-        b = min(n, int((t + d) * SR))
-        env[a:b] = rng.uniform(0.2, 1.0) * np.hanning(b - a)
+        a, b = int(t * SR), min(n, int((t + d) * SR))
+        k = np.arange(b - a) / SR
+        f0 = rng.uniform(110, 220) * (1 + 0.15 * k / max(d, 1e-3))
+        phase = 2 * np.pi * np.cumsum(f0) / SR
+        x = sum(np.sin(h * phase) / h * (1.6 if 400 < h * f0.mean() < 1200 else 1.0) for h in range(1, 18))
+        out[a:b] = rng.uniform(0.2, 1.0) * np.hanning(b - a) * x * 0.12
         t += d + rng.uniform(0.02, 0.4) + (rng.uniform(0.5, 1.5) if rng.random() < 0.08 else 0)
-    noise = rng.standard_normal(n).astype(np.float32)
-    k = np.ones(6, np.float32) / 6                                       # a little low-pass: voice-ish
-    return (np.convolve(noise, k, "same") * env * 0.3).astype(np.float32)
+    return out
 
 
 def wav(path, x):
@@ -175,7 +177,7 @@ def build_media(deck, folder):
     truth = []
     p = subprocess.Popen(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24",
                           "-s", "%dx%d" % (W, H), "-r", str(FPS), "-i", "-", "-i", cam,
-                          "-af", "lowpass=f=2000,aecho=0.8:0.6:50|120:0.4|0.25,volume=0.6",
+                          "-af", "lowpass=f=2000,aecho=0.8:0.7:40|95|170:0.5|0.35|0.2,volume=0.8",
                           "-c:v", "libx264", "-preset", "veryfast", "-crf", "23", "-pix_fmt", "yuv420p",
                           "-c:a", "aac", "-shortest", video], stdin=subprocess.PIPE)
     for k in range(int(LEN * FPS)):
@@ -343,6 +345,36 @@ def main():
         out = pcm(lean, 3, 6)
         check("cut: before the recorder starts, the camera's sound fills in", np.abs(out).mean() > 0.002,
               "level %.4f" % np.abs(out).mean())
+
+    # the check before Descript: the good cut passes, broken ones are stopped
+    chk = (t["steps"].get("check") or {})
+    check("check before Descript: the good cut passes", chk.get("status") == "done" and not (t.get("check") or {}).get("problems"),
+          (t.get("check") or {}).get("problems") or chk.get("note"))
+    check("check before Descript: a sheet of the cut itself", os.path.exists(os.path.join(run.cut_dir, "Alice Walker.check.jpg")))
+    if os.path.exists(lean):
+        from live_factory import media, precheck
+        part = run.cuts()["cuts"][0]["parts"]
+        padded, _, _ = run.padded("Alice Walker", part)
+        plans2, _, _ = run.picture_for("Alice Walker", run.cuts()["cuts"][0], padded)
+        sounds2, _ = run.sound_for(run.cuts()["cuts"][0], padded)
+        size = (media.probe(lean)["width"], media.probe(lean)["height"])
+        extra = run.picture_extra("Alice Walker", plans2[0], padded[0], size)
+        extra["sound"] = sounds2[0]
+        parts = [(run.rec_path("r1"), padded[0]["start"], padded[0]["end"])]
+        leak = os.path.join(TMP, "leak.mp4")
+        ff("-i", lean, "-i", run.rec_path("r1"), "-filter_complex", "[0:a][1:a]amix=inputs=2:normalize=0[a]", "-map", "0:v",
+           "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-t", "%.2f" % (LEN - 0.5), leak)
+        probs, _ = precheck.check(leak, parts, [extra], size)
+        check("check before Descript: the camera's pilot sound mixed in is caught", any("not the separate" in x for x in probs), probs)
+        late = os.path.join(TMP, "late.mp4")
+        ff("-i", lean, "-af", "adelay=150:all=1", "-c:v", "copy", "-c:a", "aac", "-t", "%.2f" % (LEN - 0.5), late)
+        probs, _ = precheck.check(late, parts, [extra], size)
+        check("check before Descript: sound 150 ms late is caught", any("sync" in x or "not the separate" in x for x in probs), probs)
+        nopages = os.path.join(TMP, "nopages.mp4")
+        ff("-i", run.rec_path("r1"), "-t", "%.2f" % (LEN - 0.5), "-c", "copy", nopages)
+        probs, _ = precheck.check(nopages, parts, [{"slides": extra["slides"]}], size)
+        check("check before Descript: deck pages missing from the picture are caught", any("deck page" in x for x in probs),
+              probs[:2])
 
     # night mode
     p_warm = picture.plan(warm, 0, LEN - 0.5, None)

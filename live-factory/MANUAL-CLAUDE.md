@@ -82,6 +82,8 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-11-27** - Every cut is checked before Descript (pages in the picture, the recorder's sound in sync, the
+  camera's pilot sound gone); a failing talk stops before any credits are spent and Claude tells you why.
 - **2026-11-27** - Best slides and best sound: deck pages replace the slides on screen (Presenter View, taskbar,
   headshot, a TV in the room), builds kept, demos stay video; night mode put right; sound recorded on its own device
   is placed on the videos and used. Ask *"look at the slides"* before a run to see it per talk.

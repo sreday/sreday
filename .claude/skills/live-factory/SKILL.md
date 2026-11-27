@@ -65,7 +65,12 @@ you need before changing anything.
 4. **Gate 1 - the person approves the cuts** in the workbench (section 2). Never tick "approved" yourself unless the
    person explicitly says to approve (e.g. "approve all", "you're on point, ship them"); then approve only what they
    named.
-5. **Run**: `run <event>` - cut (stereo fix, black-bar zoom, 30 s before / 60 s after for hand-trimming) → Descript
+5. **Run**: `run <event>` (it first makes every talk's picture plan, several at once; then each cut is CHECKED before
+   its upload - deck pages in the picture, the recorder's sound in sync, the camera's pilot sound gone. A talk that
+   fails stops with "stopped before Descript": read the problems and `cuts/<talk>.check.jpg`, fix (the cut, the deck,
+   `"sound": "camera"`, `"picture": "video"`) and redo it - never set `"precheck": "off"` without the person's OK).
+   Marek 2026-11-27: slow is fine, quality first - it runs on an idle laptop for hours; use the machine fully.
+   Per talk: cut (stereo fix, black-bar zoom, 30 s before / 60 s after for hand-trimming) → Descript
    upload → AI edit (Studio Sound 80 %, um/uh only, limiter, gaps). Before the first run of an event, tell them the
    count and the cost: ~8-30 Descript AI credits per talk (Dallas 2026 Q4: 7.7-15.5, about 120 for 12 talks).
 6. **Gate 2 - the person reviews each talk in Descript**, trims the extra footage, ticks Reviewed. Not you, unless
