@@ -365,7 +365,18 @@ plain background). Stretches under 2 s are dropped, holes up to 3 s bridged. The
 track and an `enable` expression in one encode. `look <event>` makes the plans before a run, with
 `cuts/<speaker>.picture.jpg` (recording left, result right); plans are cached in `cuts/<speaker>.picture.json`
 (`PICTURE_VERSION` in pipeline.py invalidates them).
-Learned on SREday Dallas 2026 Q4: Girish Konda's talk (Windows taskbar, builds on most slides) gets deck pages on 94%
+A page can be on screen several times (Presenter View: the current slide, the next-slide preview, the thumbnail strip,
+the projected screen beside it): up to 3 copies per page are tried and the biggest one fully in the frame that passes
+wins - never the preview of the next slide. A filmed or soft screen is lined up to the pixel (ECC) and the page blurred
+to its sharpness before the closer look, which runs at the page's real on-screen size (at most 480 px). While nothing
+matches (a demo), the feature search runs every 2 s instead of every frame.
+`"deck_match": "loose"` in a cut picks the page by its layout alone (features; one page clearly ahead) - for a deck
+whose PDF has other fonts or line breaks than the presented file (the deck dump converts PowerPoint through Google,
+which changes fonts). Builds then show whole. The sheet always shows such layout-only matches, darkened and labelled
+"NOT used", so the decision is made by looking.
+Learned on SREday Dallas 2026 Q4: Kevin Brown's talk is a Zoom capture of PowerPoint's Presenter View with the
+projected screen cut off beside it; his PDF has the same slides with other fonts and line breaks - strict refuses it,
+loose finds every page in the console's current-slide box. Girish Konda's talk (Windows taskbar, builds on most slides) gets deck pages on 94%
 (19 min in ~2.5 min on the 5090 PC); a sparse page matched a half-built frame of another slide until only content
 cells counted; the brightness fit has to be robust (a taskbar or an unbuilt diagram pulled it flat) and bounded
 (0.4-2.5); a single hidden line ("Nothing downstream can tell these apart") needs the 480 px look. Bailey Elaine

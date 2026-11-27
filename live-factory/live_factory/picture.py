@@ -173,7 +173,10 @@ def compare(frame_t, page_t, grid=GRID):
     fit = (A @ coef).reshape(page_t.shape)              # the page in the frame's brightness
     ink_p = cells(fit).std(axis=(1, 3)).ravel() > 4.0
     ink_f = cells(frame_t).std(axis=(1, 3)).ravel() > 4.0
-    good = res_c < 9.0
+    # the picture's own noise (camera grain, compression), measured where neither has content, sets the tolerance
+    plain = ~ink_p                                      # blank in the page (the median shrugs off a headshot)
+    noise = float(np.median(res_c[plain])) if plain.sum() >= 4 else 0.0
+    good = res_c < max(9.0, 2.5 * noise + 4.0)
     n = int(ink_p.sum())
     if n < 4:
         return none
@@ -216,19 +219,37 @@ def compare(frame_t, page_t, grid=GRID):
 
 
 # ---- looking at one frame ------------------------------------------------------------------------------------------
+def _refine(frame_f, page_f):
+    """Line the frame's page picture up with the page to the pixel (ECC, a small affine correction): features
+    place a filmed or blurred screen a pixel or two off, and at 10 px cells that is enough to make text clash."""
+    import cv2
+    try:
+        warp = np.eye(2, 3, dtype=np.float32)
+        crit = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 40, 1e-4)
+        _, warp = cv2.findTransformECC(page_f.astype(np.float32), frame_f.astype(np.float32), warp,
+                                       cv2.MOTION_AFFINE, crit, None, 3)
+        if np.abs(warp[:, :2] - np.eye(2)).max() > 0.05 or np.abs(warp[:, 2]).max() > 0.05 * page_f.shape[1]:
+            return frame_f                              # a big jump is no refinement - keep the original
+        h, w = page_f.shape
+        return cv2.warpAffine(frame_f, warp, (w, h), flags=cv2.INTER_LINEAR + cv2.WARP_INVERSE_MAP,
+                              borderMode=cv2.BORDER_REPLICATE)
+    except cv2.error:
+        return frame_f
+
+
 def unshown(frame_f, page_f):
-    """The page's content not on screen yet, on the fine grid: cells where the page has ink and the screen is plain,
-    in blocks of 3+ cells (a line of text, a box) - a lone cell is blur or noise and is never painted out."""
+    """The page's content not on screen yet: cells (10 px at this size) where the page has ink and the screen is
+    plain, in blocks of 3+ cells (a line of text, a box) - a lone cell is blur or noise and is never painted out;
+    grown into plain neighbours to catch the edges. Returned as cells of FINE_GRID (what paint() uses)."""
     import cv2
     a, b = frame_f.ravel(), page_f.ravel()
     A = np.stack([b, np.ones_like(b)], 1)
     coef = _robust_fit(A, a)
     if coef is None:
         return []
-    gx, gy = FINE_GRID
     h, w = page_f.shape
-    ch, cw = h // gy, w // gx
-    cells = lambda x: x[:ch * gy, :cw * gx].reshape(gy, ch, gx, cw)
+    gx, gy = w // 10, h // 10
+    cells = lambda x: x[:10 * gy, :10 * gx].reshape(gy, 10, gx, 10)
     fit = (A @ coef).reshape(page_f.shape)
     res = cells(np.abs(frame_f - fit)).mean(axis=(1, 3))
     ink_p = cells(fit).std(axis=(1, 3)) > 6.0
@@ -242,6 +263,8 @@ def unshown(frame_f, page_f):
     if keep.any():                                      # its edges: grow into neighbours the screen shows as plain
         grown = cv2.dilate(keep.astype(np.uint8), np.ones((3, 3), np.uint8)).astype(bool)
         keep |= grown & plain_f & (cells(fit).std(axis=(1, 3)) > 1.0)
+    if (gx, gy) != FINE_GRID and keep.any():            # onto the painting grid
+        keep = cv2.resize(keep.astype(np.uint8), FINE_GRID, interpolation=cv2.INTER_NEAREST).astype(bool)
     return [int(i) for i in np.flatnonzero(keep.ravel())]
 
 
@@ -297,14 +320,16 @@ class Matcher:
     """Finds the deck page in a frame. Keeps the last page outline: a steady screen share is checked with a cheap
     warp + compare; features (ORB + RANSAC homography) only when that fails."""
 
-    def __init__(self, deck, fw, fh):
+    def __init__(self, deck, fw, fh, loose=False):
         import cv2
+        self.loose = loose                               # "deck_match": "loose" - the page by its layout alone
         self.cv2, self.deck, self.fw, self.fh = cv2, deck, fw, fh
         self.orb = cv2.ORB_create(2500)
         self.bf = cv2.BFMatcher(cv2.NORM_HAMMING)
         self.H = None                              # page -> frame homography last seen
         self.last = None
         self.near_miss = 0                               # frames whose layout matched a page but the pixels did not
+        self._fine_cache = {}
 
     def _verify(self, gray, H, candidates):
         """Warp the frame back into page space with H and score the candidate pages; those that pass, best first:
@@ -328,15 +353,75 @@ class Matcher:
         ok_list.sort(key=lambda x: x[0], reverse=True)
         return [x[1:] for x in ok_list]
 
+    def _layout_page(self, fits):
+        """The page the frame shows by its layout alone (features, no pixel check): (page, H) of its biggest copy
+        fully in the frame, when one page clearly leads (30+ matching features, twice the next page's) - else None.
+        Used for "deck_match": "loose" (a deck exported with other fonts) and to show the near match on the sheet."""
+        by = {}
+        for p, H, inl in fits:
+            by.setdefault(p, []).append((inl, H))
+        ranked = sorted(((max(i for i, _ in v), p) for p, v in by.items()), reverse=True)
+        if not ranked or ranked[0][0] < 30 or (len(ranked) > 1 and ranked[0][0] < 2 * ranked[1][0]):
+            return None
+        p = ranked[0][1]
+        whole = [(self._area(H, p), H) for _, H in by[p] if abs(self._area(H, p) - self._area_raw(H, p)) < 0.01]
+        whole = [x for x in whole if x[0] >= 0.04]
+        if not whole:
+            return None
+        return p, max(whole, key=lambda x: x[0])[1]
+
+    def _area_raw(self, H, p):
+        ph, pw = self.deck.gray[p].shape
+        c = self.cv2.perspectiveTransform(np.float32([[0, 0], [pw, 0], [pw, ph], [0, ph]]).reshape(-1, 1, 2), H)
+        return float(self.cv2.contourArea(c.reshape(4, 2))) / (self.fw * self.fh)
+
+    def _area(self, H, p):
+        """How much of the frame the page covers there (a share; parts outside the frame don't count)."""
+        cv2 = self.cv2
+        ph, pw = self.deck.gray[p].shape
+        c = cv2.perspectiveTransform(np.float32([[0, 0], [pw, 0], [pw, ph], [0, ph]]).reshape(-1, 1, 2), H).reshape(4, 2)
+        c[:, 0] = np.clip(c[:, 0], 0, self.fw)
+        c[:, 1] = np.clip(c[:, 1], 0, self.fh)
+        return float(cv2.contourArea(c.astype(np.float32))) / (self.fw * self.fh)
+
+    def _fine_size(self, H, p):
+        """The closer look's size: the page as big as it really is on screen, at most FINE (a small TV filmed in
+        the room is judged at the detail it has, not blown up into blur)."""
+        ph, pw = self.deck.gray[p].shape
+        c = self.cv2.perspectiveTransform(np.float32([[0, 0], [pw, 0], [pw, ph], [0, ph]]).reshape(-1, 1, 2), H).reshape(4, 2)
+        w = 0.5 * (np.linalg.norm(c[1] - c[0]) + np.linalg.norm(c[2] - c[3]))
+        fw = int(max(160, min(FINE[0], w)) // 10 * 10)
+        fh = int(round(fw * FINE[1] / FINE[0] / 10) * 10)
+        return fw, fh
+
+    def _fine_page(self, p, size):
+        key = (p, size)
+        if key not in self._fine_cache:
+            self._fine_cache[key] = self.deck.fine[p] if size == FINE else _thumb(self.deck.gray[p], size)
+        return self._fine_cache[key]
+
     def _fine_ok(self, gray, H, p):
-        """The closer look (480 px): the page's title text has to agree - at 160 px two bold titles blur alike.
-        Returns the fine picture (for the build check) or None."""
+        """The closer look (the page's on-screen size, up to 480 px): the page's title text has to agree - at 160 px
+        two bold titles blur alike. Returns (the frame's page picture at that size, the page's) or None."""
         cv2 = self.cv2
         sh = self.deck.gray[p].shape
+        size = self._fine_size(H, p)
         fine = _thumb(cv2.warpPerspective(gray, np.linalg.inv(H), (sh[1], sh[0]), flags=cv2.INTER_AREA,
-                                          borderValue=0), FINE)
-        cf = compare(fine, self.deck.fine[p], FINE_GRID)
-        return fine if cf["title"] >= 0.6 and cf["conflict"] <= 0.35 else None
+                                          borderValue=0), size)
+        page = self._fine_page(p, size)
+        grid = (size[0] // 10, size[1] // 10)
+        # a filmed or soft screen: lined up to the pixel (ECC) and the sharp page blurred to the frame's sharpness
+        # (different words still differ at any blur; a wrong title of the same weight only blurs alike at 160 px).
+        # A clean screen capture is judged as it is too - whichever agrees best counts.
+        best = None
+        for f in (fine, _refine(fine, page)):
+            for sigma in (0, 0.8, 1.5, 2.5):
+                pg = page if not sigma else self.cv2.GaussianBlur(page, (0, 0), sigma)
+                cf = compare(f, pg, grid)
+                if best is None or (cf["title"], cf["full"]) > (best[0]["title"], best[0]["full"]):
+                    best = (cf, f)
+        cf, fine = best
+        return (fine, page) if cf["title"] >= 0.6 and cf["conflict"] <= 0.35 else None
 
     def _features(self, gray, pages):
         """ORB match against these pages: candidate (page, H, inliers) fits, most inliers first. Two models per page:
@@ -359,18 +444,29 @@ class Matcher:
             dst = np.float32([kp[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
             ph, pw = self.deck.gray[p].shape
             box = np.float32([[0, 0], [pw, 0], [pw, ph], [0, ph]]).reshape(-1, 1, 2)
-            A, mask = cv2.estimateAffinePartial2D(src, dst, method=cv2.RANSAC, ransacReprojThreshold=4.0)
-            if A is not None and int(mask.sum()) >= 12 and abs(A[0, 1]) < 0.02 * abs(A[0, 0]):
-                H = np.vstack([A, [0, 0, 1]])
-                if _quad_ok(cv2.perspectiveTransform(box, H), self.fw, self.fh):
-                    out.append((p, H, int(mask.sum())))
+            # a page can be on screen more than once (Presenter View: the current slide, the projected screen beside
+            # it, the next-slide preview, the thumbnail strip) - each copy is a candidate, the pixel check decides
+            left_s, left_d = src, dst
+            for _ in range(3):
+                if len(left_s) < 12:
+                    break
+                A, mask = cv2.estimateAffinePartial2D(left_s, left_d, method=cv2.RANSAC, ransacReprojThreshold=4.0)
+                if A is None or int(mask.sum()) < 12:
+                    break
+                if abs(A[0, 1]) < 0.02 * abs(A[0, 0]):
+                    H = np.vstack([A, [0, 0, 1]])
+                    if _quad_ok(cv2.perspectiveTransform(box, H), self.fw, self.fh):
+                        out.append((p, H, int(mask.sum())))
+                keep = mask.ravel() == 0
+                left_s, left_d = left_s[keep], left_d[keep]
             Hp, maskp = cv2.findHomography(src, dst, cv2.RANSAC, 5.0)
             if Hp is not None and int(maskp.sum()) >= 20 and _quad_ok(cv2.perspectiveTransform(box, Hp), self.fw, self.fh):
                 out.append((p, Hp, int(maskp.sum())))
         return sorted(out, key=lambda c: -c[2])
 
-    def look(self, rgb):
-        """What one frame shows: {"page": n or None, "cells", "diff", "cover", "gains"}."""
+    def look(self, rgb, search=True):
+        """What one frame shows: {"page": n or None, "hidden": build cells, "cover", "gains"} or {"page": None, "why",
+        "near": the page by layout alone}. search=False: only the cheap same-place check."""
         cv2 = self.cv2
         gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
         if gray.std() < 4:                                   # a black / blank frame
@@ -383,6 +479,8 @@ class Matcher:
                 if fine is not None:
                     hit = (p, c, kind, self.H, fine)
                     break
+        if hit is None and not search:
+            return {"page": None, "why": "not searched (nothing found in the last frames)"}
         if hit is None:
             order = list(range(n))
             if self.last is not None:                        # neighbours of the last page first
@@ -391,29 +489,37 @@ class Matcher:
             if not fits and n > 5:
                 fits = self._features(gray, order[5:])
             best = None
-            for p0, H, inl in fits[:4]:
+            for p0, H, inl in fits[:8]:
+                area = self._area(H, p0)
+                if best is not None and area <= best[0]:     # the biggest copy that passes is the slide being shown
+                    continue                                 # (not the next-slide preview or a thumbnail)
                 near = sorted(set(range(max(0, p0 - 2), min(n, p0 + 3))))     # builds: the next pages look alike
                 for p, c, kind in self._verify(gray, H, near)[:3]:
-                    key = (kind == "page", c["build"], c["good"])
-                    if best is not None and key <= best[0]:
-                        continue
                     fine = self._fine_ok(gray, H, p)
                     if fine is not None:
-                        best = (key, (p, c, kind, H, fine))
+                        best = (area, (p, c, kind, H, fine))
                         break
             hit = best[1] if best else None
+        near = self._layout_page(fits) if hit is None and fits else None
+        if hit is None and near is not None and self.loose:
+            p, H = near
+            hit = (p, {}, "page", H, None)
         if hit is None:
-            return {"page": None, "why": "laid out like a deck page, content differs" if fits else "no deck page"}
-        p, c, kind, H, fine = hit
-        hidden = unshown(fine, self.deck.fine[p])
+            out = {"page": None, "why": "laid out like a deck page, content differs" if fits else "no deck page"}
+            if near is not None:
+                out["near"] = near[0]
+            return out
+        p, c, kind, H, fine_pair = hit
+        hidden = unshown(*fine_pair) if fine_pair else []
         if hidden and not self.deck.flat_bg[p]:
             return {"page": None, "why": "a build step on a busy background - the video stays"}
         self.H, self.last = H, p
         ph, pw = self.deck.gray[p].shape
         corners = cv2.perspectiveTransform(np.float32([[0, 0], [pw, 0], [pw, ph], [0, ph]]).reshape(-1, 1, 2), H)
         cover = float(cv2.contourArea(corners.reshape(4, 2))) / (self.fw * self.fh)
-        return {"page": p, "hidden": hidden, "cells": round(c["full"], 2),
-                "diff": round(c["diff"], 1), "cover": round(min(cover, 1.0), 3), "gains": self._gains(rgb, H, p)}
+        return {"page": p, "hidden": hidden, "cells": round(c.get("full", 0), 2),
+                "diff": round(c.get("diff", 0), 1), "loose": fine_pair is None, "cover": round(min(cover, 1.0), 3),
+                "gains": self._gains(rgb, H, p)}
 
     def _gains(self, rgb, H, p):
         """Screen colour vs deck colour, per channel (r, g, b): night mode shows as blue (and some green) well
@@ -455,18 +561,22 @@ def frames(src, start, end, every=SAMPLE_EVERY, width=ANALYSIS_WIDTH):
 
 
 # ---- the plan for one stretch of a recording ------------------------------------------------------------------------
-def scan(src, start, end, deck=None, on_progress=None, every=SAMPLE_EVERY):
+def scan(src, start, end, deck=None, on_progress=None, every=SAMPLE_EVERY, loose=False):
     """Look at [start, end] of src: per sample the page shown (with a deck), how screen-like the picture is, and its
     white point. Returns the samples."""
     info = media.probe(src)
     W, H = info["width"], info["height"]
     fw, fh = ANALYSIS_WIDTH, int(round(ANALYSIS_WIDTH * H / W / 2) * 2) if W else 0
-    m = Matcher(deck, fw, fh) if deck is not None and len(deck) else None
+    m = Matcher(deck, fw, fh, loose) if deck is not None and len(deck) else None
     import cv2
-    out, total = [], max(1, int((end - start) / every))
+    out, total, misses = [], max(1, int((end - start) / every)), 0
     for i, (t, rgb) in enumerate(frames(src, start, end, every)):
         gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
-        s = m.look(rgb) if m else {"page": None, "why": "no deck"}
+        # a long stretch with no deck page (a demo, the speaker, another deck): the full feature search only every
+        # 2 s - a page coming back is caught by then; the cheap same-place check still runs on every frame
+        search = misses < 4 or misses % 4 == 0
+        s = m.look(rgb, search) if m else {"page": None, "why": "no deck"}
+        misses = 0 if s.get("page") is not None else misses + 1
         s["t"] = round(t, 2)
         s["screen"] = round(screen_like(gray), 2)
         s["white"] = white_point(rgb)
@@ -559,7 +669,7 @@ def colour_fix(gains):
     return "colorchannelmixer=rr=%.4f:gg=%.4f:bb=%.4f" % tuple(k)
 
 
-def plan(src, start, end, deck_path=None, cfg=None, on_progress=None):
+def plan(src, start, end, deck_path=None, cfg=None, on_progress=None, loose=False):
     """The picture plan for [start, end] of src: deck pages to put over the video, and a colour fix for the rest.
     {"deck", "pages": [{"t0","t1","page"}] (recording seconds), "night": {...}, "colour": filter or None,
      "shown": share of the stretch replaced, "notes": [...]}"""
@@ -574,7 +684,9 @@ def plan(src, start, end, deck_path=None, cfg=None, on_progress=None):
             notes.append("deck unreadable: %s" % str(ex)[:120])
     else:
         notes.append("no deck for this talk")
-    samples = scan(src, start, end, deck, on_progress)
+    samples = scan(src, start, end, deck, on_progress, loose=loose)
+    if loose and deck is not None:
+        notes.append("deck matched by layout alone (\"deck_match\": \"loose\"): builds show whole")
     segs = segments(samples) if cfg.get("slides_replace", True) else []
     shown = sum(s["t1"] - s["t0"] for s in segs) / max(1.0, end - start)
     night = night_mode(samples) if cfg.get("night_mode_fix", True) else {"on": False}
@@ -595,11 +707,15 @@ def plan(src, start, end, deck_path=None, cfg=None, on_progress=None):
     elif deck is not None:
         notes.append("no deck page recognised on screen - the video stays")
     differs = sum(1 for s in samples if s.get("why") == "laid out like a deck page, content differs")
-    if deck is not None and differs > 0.2 * len(samples):
-        notes.append("the deck looks like ANOTHER VERSION of the one presented (%d%% of the frames show a page laid out "
-                     "like the deck's, with different content or fonts) - those stretches keep the video; ask the "
-                     "speaker for the deck they presented" % (100 * differs / max(1, len(samples))))
-    return {"deck": deck_path, "pages": segs, "night": night, "colour": colour, "shown": round(shown, 3),
+    looked = sum(1 for s in samples if not str(s.get("why") or "").startswith("not searched"))
+    near = segments([{"t": s["t"], "page": s.get("near")} for s in samples])
+    if deck is not None and differs > 0.2 * max(1, looked):
+        notes.append("the deck looks like ANOTHER VERSION of the one presented (%d%% of the frames looked at show a page "
+                     "laid out like the deck's, with different content or fonts) - those stretches keep the video. "
+                     "Look at the sheet: if only the fonts or line breaks differ, set \"deck_match\": \"loose\" in "
+                     "this talk's cut; if the words differ, ask the speaker for the deck they presented"
+                     % (100 * differs / max(1, looked)))
+    return {"deck": deck_path, "pages": segs, "near": near, "night": night, "colour": colour, "shown": round(shown, 3),
             "screen": round(screen, 2), "samples": len(samples), "notes": notes,
             "sample_log": [{k: s.get(k) for k in ("t", "page", "cells", "diff", "cover", "hidden")} for s in samples]}
 
@@ -700,7 +816,7 @@ def contact_sheet(src, plan_, start, end, dst, deck_path=None, n=12):
     import cv2
     media.safe_target(dst)
     imgs = {}
-    if deck_path and plan_.get("pages"):
+    if deck_path and (plan_.get("pages") or plan_.get("near")):
         pages = render_pdf(deck_path, 480)
         imgs = {i: p for i, p in enumerate(pages)}
     rows = []
@@ -711,7 +827,16 @@ def contact_sheet(src, plan_, start, end, dst, deck_path=None, n=12):
             continue
         rgb = got[0][1]
         seg = next((s for s in plan_.get("pages") or [] if s["t0"] <= t < s["t1"]), None)
-        if seg is not None and seg["page"] in imgs:
+        nseg = None if seg else next((s for s in plan_.get("near") or [] if s["t0"] <= t < s["t1"]), None)
+        if seg is None and nseg is not None and nseg["page"] in imgs:
+            pg = imgs[nseg["page"]]
+            canvas = np.zeros_like(rgb)
+            sc = min(rgb.shape[1] / pg.shape[1], rgb.shape[0] / pg.shape[0])
+            r = cv2.resize(pg, (int(pg.shape[1] * sc), int(pg.shape[0] * sc)), interpolation=cv2.INTER_AREA)
+            y, x = (rgb.shape[0] - r.shape[0]) // 2, (rgb.shape[1] - r.shape[1]) // 2
+            canvas[y:y + r.shape[0], x:x + r.shape[1]] = (r * 0.55).astype(np.uint8)
+            after, label = canvas, "deck p%d by layout only - NOT used" % (nseg["page"] + 1)
+        elif seg is not None and seg["page"] in imgs:
             pg = imgs[seg["page"]].copy()
             if seg.get("hidden"):
                 ring = np.concatenate([pg[0], pg[-1], pg[:, 0], pg[:, -1]])

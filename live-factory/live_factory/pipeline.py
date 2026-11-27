@@ -35,7 +35,7 @@ from .descript import Descript
 HERE = events.HERE
 VIDEO_EXT = (".mp4", ".mov", ".m4v", ".mkv", ".mts", ".m2ts", ".avi", ".webm", ".mxf")
 MEDIA_EXT = VIDEO_EXT + audiosync.AUDIO_EXT     # a sound-only file is a separate sound recording (audiosync.py)
-PICTURE_VERSION = 1                             # bump when picture.py's plans change, so cached plans are made again
+PICTURE_VERSION = 2                             # bump when picture.py's plans change, so cached plans are made again
 REC_STEPS = ["copy", "levels", "transcript", "frames", "proxy"]
 STEPS = ["cut", "upload", "edit", "review", "publish", "download", "srt", "chapters", "loudness", "qa"]
 MIN_TALK_SECONDS = 30
@@ -510,7 +510,7 @@ class Run:
             return [None] * len(parts), None, [why]
         deck = picture.find_deck(self, key, cut)
         sig = json.dumps([[p["rec"], round(p["start"], 2), round(p["end"], 2)] for p in parts] +
-                         [deck, os.path.getmtime(deck) if deck else 0, PICTURE_VERSION,
+                         [deck, os.path.getmtime(deck) if deck else 0, PICTURE_VERSION, cut.get("deck_match"),
                           bool(self.cfg.get("slides_replace", True)), bool(self.cfg.get("night_mode_fix", True))])
         path = os.path.join(self.cut_dir, key + ".picture.json")
         cached = picture.load(path)
@@ -521,7 +521,8 @@ class Run:
             for i, p in enumerate(parts):
                 prog = (lambda label, pct=None, i=i: on_progress and on_progress(
                     ("part %d: %s" % (i + 1, label)) if len(parts) > 1 else label, pct))
-                plans.append(picture.plan(self.rec_path(p["rec"]), p["start"], p["end"], deck, self.cfg, prog))
+                plans.append(picture.plan(self.rec_path(p["rec"]), p["start"], p["end"], deck, self.cfg, prog,
+                                          loose=cut.get("deck_match") == "loose"))
             os.makedirs(self.cut_dir, exist_ok=True)
             picture.save(path, {"sig": sig, "deck": deck, "plans": plans, "at": now()})
             for i, (p, pl) in enumerate(zip(parts, plans)):

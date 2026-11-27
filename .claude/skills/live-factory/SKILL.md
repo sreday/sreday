@@ -57,7 +57,10 @@ you need before changing anything.
    `cuts/<speaker>.picture.jpg` (recording left, result right). LOOK at every sheet (Read the jpg) before the run:
    a wrong page is worse than none. Talks with no deck: check the deck dump (`/deckdump`) and the Drive "Deck Dump"
    folder; download a missing deck to `<work folder>/decks/<speaker>.pdf` and run `look` again. A note "another
-   version of the one presented" means ask the speaker for the deck they presented. To keep a talk's recording as it
+   version of the one presented": look at the sheet - the layout-only match is shown darkened, "NOT used". Same
+   words, other fonts/line breaks (a PDF converted by Google from PowerPoint) -> set `"deck_match": "loose"` in that
+   cut and `look` again (builds then show whole - say so); different words -> ask the speaker for the deck they
+   presented. To keep a talk's recording as it
    is: `"picture": "video"` in its cut; to keep the camera's sound: `"sound": "camera"`.
 4. **Gate 1 - the person approves the cuts** in the workbench (section 2). Never tick "approved" yourself unless the
    person explicitly says to approve (e.g. "approve all", "you're on point, ship them"); then approve only what they
