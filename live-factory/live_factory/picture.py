@@ -96,8 +96,11 @@ class Deck:
         self.orb = cv2.ORB_create(2000)
         self.gray, self.kp, self.des, self.thumb, self.flat_bg, self.fine = [], [], [], [], [], []
         for img in self.pages:
-            ring = np.concatenate([img[:4].reshape(-1, 3), img[-4:].reshape(-1, 3)])
-            self.flat_bg.append(bool(ring.std(axis=0).max() < 6))
+            # a plain background: most of the page's edge is one colour (an accent bar or a logo is fine)
+            ring = np.concatenate([img[:4].reshape(-1, 3), img[-4:].reshape(-1, 3),
+                                   img[:, :4].reshape(-1, 3), img[:, -4:].reshape(-1, 3)]).astype(np.int16)
+            bg = np.median(ring, axis=0)
+            self.flat_bg.append(bool((np.abs(ring - bg).max(axis=1) < 12).mean() >= 0.75))
             g = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
             kp, des = self.orb.detectAndCompute(g, None)
             self.gray.append(g)

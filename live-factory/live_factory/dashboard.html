@@ -212,7 +212,7 @@ function drawTimelines(headOnly) {
   const ids = (recTracks()[TRACK] || []).sort((a, b) => +a.slice(1) - +b.slice(1));
   const box = $('timelines');
   if (!headOnly || box.children.length !== ids.length) {
-    box.innerHTML = ids.map(id => `<div class="tl"><div class="lbl"><span>${id} - ${esc(P.state.recordings[id].file)}</span><span>${P.state.recordings[id].probe ? st(P.state.recordings[id].probe.duration) : ''}</span></div><canvas id="tl-${id}"></canvas></div>`).join('');
+    box.innerHTML = ids.map(id => `<div class="tl"><div class="lbl"><span>${id} - ${esc(P.state.recordings[id].file)}${P.state.recordings[id].kind === 'sound' ? ' (separate sound - laid into the cuts by itself)' : ''}</span><span>${P.state.recordings[id].probe ? st(P.state.recordings[id].probe.duration) : ''}</span></div><canvas id="tl-${id}"></canvas></div>`).join('');
     ids.forEach(id => { const c = $('tl-' + id); c.onclick = ev => { const d = (P.state.recordings[id].probe || {}).duration || 0;
       const r = c.getBoundingClientRect(); seek(id, d * (ev.clientX - r.left) / r.width, false); }; getLevels(id); });
   }

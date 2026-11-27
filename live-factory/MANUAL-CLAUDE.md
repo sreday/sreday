@@ -45,8 +45,10 @@ Replace the event and paths with yours. Events are named like `sreday-2026-londo
 |---|---|---|
 | Launch | *"Launch the factory."* | Claude starts the app if needed and opens the workbench (http://localhost:8043) in your browser. |
 | Add | *"Add the recordings from /Volumes/CARD/DCIM for PLATFORMday Austin 2026 Q4, day 1."* (more rooms: *"…room 2 is track 2"*) | The files are copied in as a checked, read-only backup. Your originals are never touched. |
+| Separate sound | *"The sound was recorded on the desk too: D:\ZOOM0001.wav, day 1."* | Added as separate sound. After the analysis it is placed on the videos by itself (different start, clock drift, files split in pieces - all fine); the talks it covers get its sound. |
 | Analyse | *"Analyse them."* | Sound, transcript, stills - free, on your computer. About 35 min for an 8-hour day; Claude runs it in the background and tells you when it's done. |
 | Find the talks | *"Match the lineup."* | Claude reads the whole day: greetings, "I'm …", the MC, closing lines, Q&A, pauses, titles and abstracts. It gives you a table of every talk with start, end and anything doubtful, and asks you what only someone who was there knows ("who spoke last?"). |
+| Slides check | *"Look at the slides."* | For every cut: which deck pages it found on screen and will show full screen, build steps, night mode, the separate sound - with a before/after picture per talk. Claude names any deck that looks like another version than the one presented. |
 | ✋ Approve | Open the workbench (http://localhost:8043), check the flagged cuts, tick them, **Save cuts** - or tell Claude *"approve all"* if you trust the table. | Nothing goes to Descript before this. |
 | Descript | *"Run the factory."* | Claude says how many talks and roughly how many Descript credits (8-30 per talk), then cuts, uploads and edits them. Watch it on http://localhost:8043/status or ask *"how is it going?"*. |
 | ✋ Review | Watch each talk in Descript, trim the extra footage (30 s before, 60 s after), tick **Reviewed** in the workbench - or tell Claude *"Thomas, Jay and MJ are reviewed"*. | Only reviewed talks are exported. |
@@ -79,6 +81,10 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 ---
 
 ## Changelog
+
+- **2026-11-27** - Best slides and best sound: deck pages replace the slides on screen (Presenter View, taskbar,
+  headshot, a TV in the room), builds kept, demos stay video; night mode put right; sound recorded on its own device
+  is placed on the videos and used. Ask *"look at the slides"* before a run to see it per talk.
 
 - **2026-11-25** - Fixed: a speaker with a dot in their name (e.g. "Funmilade A. Lesi") no longer fails at the Descript
   upload. Claude also watches for an emptied room picking up sound from the other room, and knows the m4a in a Zoom

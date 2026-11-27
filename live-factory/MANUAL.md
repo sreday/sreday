@@ -85,6 +85,14 @@ In the workbench, open **1. Recordings → Add recordings**:
 
 4. Press **Add**.
 
+**Sound recorded on its own device** (a recorder on the mixing desk, the AV team's laptop - common with a wired set-up,
+where the camera only has its built-in mic): add those files too, the same way, for the same day. Sound files (.wav,
+.mp3, .m4a, .flac...) are taken as *separate sound* by themselves; a video file that should only give its sound goes in
+with Claude's *"…it's sound only"* (`--sound`). After the analysis the factory finds where each piece of sound belongs
+on the videos by itself - however the files start and stop, whatever their clocks say, even when one device drifts
+against the other - and every talk it covers gets that sound instead of the camera's. Where the recorder has a hole,
+was muted or is clearly worse, the camera's own sound stays.
+
 The factory never changes, moves or deletes your original files. If the disk doesn't have room for the whole job
 (about 2× the recordings), it refuses to start and tells you how much to free - with a red banner and a desktop
 notification.
@@ -96,7 +104,8 @@ Press **Analyse recordings**. On your computer, for free, it:
 - copies the recording in and checks the copy,
 - measures the sound per second (and finds a recording that has sound on one side only),
 - writes a transcript with Whisper,
-- takes stills.
+- takes stills,
+- places every separate sound recording on the videos (an 8-hour day takes about a minute).
 
 An 8-hour day takes about **35 minutes** on an M1/M2 Mac (faster on a PC with an NVIDIA card). You can watch it on
 the Status page and close the browser - it keeps running.
@@ -148,6 +157,18 @@ you can trim it exactly in Descript. A cut must not *miss* part of the talk, tho
 Press **Run**. For every approved talk the factory:
 
 1. cuts it out of the recording (fixing sound that is on one side only, and zooming in slides that sit in black bars),
+    and makes the picture and the sound the best they can be:
+    - **the slides, sharp and full screen**: wherever the recording shows a page of the speaker's deck - inside
+      PowerPoint's Presenter View, with the taskbar or a headshot over it, or filmed on a small TV in the room - that
+      stretch shows the deck page itself instead. Bullets that appear one by one appear one by one. A live demo, a
+      browser, code or the speaker on stage keep the recording. The deck comes from the deck dump (the talk page's
+      "Download slides" PDF) or from a PDF you drop into the event folder's `decks/` named after the speaker;
+    - **night mode** (a yellow, Night Shift screen share): the deck pages have the true colours anyway; what stays
+      video gets its colours put back;
+    - **the separate sound** where there is one (step 1).
+
+    Before the run you can see what it will do: ask Claude *"look at the slides for PLATFORMday Austin"* - each talk
+    gets a before/after picture `cuts/<speaker>.picture.jpg` in the event folder.
 2. uploads it to the event's Descript project (e.g. **PLATFORMday Austin 2026 Q4**), named after the speaker,
 3. has Descript's AI editor apply **Studio Sound 80%**, a limiter, the volume, remove the **um / uh** sounds (only
     those - real words are kept) and shorten pauses longer than 2 s to 1 s.
@@ -234,6 +255,12 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 ---
 
 ## Changelog
+
+- **2026-11-27** - The slides, sharp and full screen: wherever a talk's recording shows a page of the speaker's deck
+  (Presenter View, the taskbar or a headshot over it, a TV filmed in the room), the video shows the deck page itself;
+  builds appear as they did, demos keep the recording. Night mode (a yellow screen share) is put right. Sound recorded
+  on its own device is placed on the videos by itself and used for the talks it covers. A deck that is a different
+  version from the one presented is left alone (the recording stays) and named in the notes.
 
 - **2026-11-25** - Fixed: a talk whose speaker has a dot in their name (e.g. "Funmilade A. Lesi") was refused by
   Descript as "invalid or unsupported media" on every try. It now uploads like any other.

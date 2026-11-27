@@ -109,7 +109,9 @@ def _peak(c, i):
 def windows(sound, targets, on_progress=None, min_corr=0.25, min_z=9.0):
     """Every window of the sound fingerprint matched against the targets: [{"a" (window start, s), "rec", "lag"
     (where it starts in that video, s), "corr", "z"}] - only the windows that fit somewhere."""
-    m, step = WINDOW * RATE, STEP * RATE
+    # a short recording (a recorder file of a minute or two) gets shorter windows, never under 30 s
+    m = int(min(WINDOW * RATE, max(30 * RATE, len(sound) // 2)))
+    step = max(RATE, int(m * STEP / WINDOW))
     starts = list(range(0, max(1, len(sound) - m + 1), step))
     if len(sound) > m and starts[-1] + m < len(sound):
         starts.append(len(sound) - m)
@@ -141,7 +143,7 @@ def windows(sound, targets, on_progress=None, min_corr=0.25, min_z=9.0):
                 t, cv, z, pk = best
                 hit = {"rec": t.rid, "lag": pk / RATE, "corr": cv, "z": round(z, 1)}
         if hit:
-            hit["a"] = s0 / RATE
+            hit["a"], hit["len"] = s0 / RATE, m / RATE
             out.append(hit)
             last, last_s0 = (next(t for t in targets if t.rid == hit["rec"]), int(round(hit["lag"] * RATE))), s0
         else:
@@ -166,10 +168,10 @@ def stretches(wins, length, max_jump=0.15, min_windows=2):
     out = []
     for g in groups:
         ws = g["w"]
-        if len(ws) < min_windows and not (len(ws) == 1 and ws[0]["corr"] >= 0.6):
+        if len(ws) < min_windows and not (len(ws) == 1 and ws[0]["corr"] >= 0.6 and (ws[0].get("z") or 0) >= 12):
             continue
-        a = np.array([w["a"] + WINDOW / 2 for w in ws])
-        v = np.array([w["lag"] + WINDOW / 2 for w in ws])
+        a = np.array([w["a"] + w["len"] / 2 for w in ws])
+        v = np.array([w["lag"] + w["len"] / 2 for w in ws])
         if len(ws) >= 3:
             scale, shift = np.polyfit(a, v, 1)
             if abs(scale - 1) > 0.002:                      # no real clock is that far off: a bad fit
@@ -178,7 +180,7 @@ def stretches(wins, length, max_jump=0.15, min_windows=2):
             scale, shift = 1.0, float(np.median(v - a))
         err = float(np.abs(v - (scale * a + shift)).max()) * 1000
         a0 = max(0.0, ws[0]["a"])
-        a1 = min(length, ws[-1]["a"] + WINDOW)
+        a1 = min(length, ws[-1]["a"] + ws[-1]["len"])
         out.append({"rec": g["rec"], "a0": round(a0, 2), "a1": round(a1, 2),
                     "v0": round(scale * a0 + shift, 3), "v1": round(scale * a1 + shift, 3),
                     "scale": float(scale), "shift": float(shift), "windows": len(ws),

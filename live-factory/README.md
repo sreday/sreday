@@ -164,10 +164,13 @@ reference cuts, hand-checked against the transcript, are in `research/platformda
 | `live_factory/analyse.py` | the Whisper pass |
 | `live_factory/segment.py` | the brief, the draft, and cuts.json checks |
 | `live_factory/stereo.py` | one-sided stereo detection |
+| `live_factory/audiosync.py` | separate sound: fingerprints, placing it on the videos, choosing it per talk |
+| `live_factory/picture.py` | the picture pass: deck pages over the slides, builds, night mode, the before/after sheet |
 | `live_factory/pipeline.py` | state, gates, the Descript steps (from the Conf42 factory, with its credit guards and ledger) |
 | `live_factory/descript.py`, `media.py`, `machine.py` | copies of the Conf42 factory's modules, adapted; fix bugs in both |
 | `live_factory/app.py`, `dashboard.html` | the local app |
 | `tests/smoke.py` | offline test on a synthetic day (`--no-whisper` works anywhere) |
+| `tests/av_smoke.py` | offline test of the picture and sound passes on a synthetic screen share, deck and recorder |
 
 Work files live in one folder per event, named after the conference so several can run side by side:
 `<Desktop>/video factory - LLMday Austin 2026 Q4/` (`event_folder` in settings.yml; `work_root` in settings.local.yml
@@ -323,3 +326,57 @@ Two whole-day Zoom recordings (main room r1, meeting room r2, ~10 h each), from 
 - **A dot in a speaker's name broke the Descript upload** ("Funmilade A. Lesi": "Uploaded file has invalid or
   unsupported media content", 6 tries). Descript reads the media type from the media name, which had no extension.
   `descript.import_file` now always ends the media name in the file's extension.
+
+## Best slides, best sound (Marek, 2026-11-27)
+
+"The standard is always to have the best quality sound and the best quality slides full screen - period. If there's a
+demo, then we switch to the inferior recording." And: "always pick the easier path - it's easier to put in slides into
+the video than modify the colors."
+
+**Separate sound** (`audiosync.py`). With a wired set-up the room sound is often recorded on its own device while the
+camera keeps its built-in mic. Add the sound files with the day (`add <event> ZOOM0001.wav --day 1`; sound extensions
+are taken as sound, `--sound` marks any other file; a folder gives only its videos unless `--sound`). After `analyse`
+(or `sync <event>`), each sound recording is placed on every video of its day:
+- a loudness fingerprint per recording: 100 values a second of the speech band (150-3800 Hz), log, minus its 1 s
+  moving mean, digital silence zeroed; cached as `rec/<id>/fingerprint.npy`;
+- windows of the sound (120 s, step 60; shorter for a short file, never under 30 s) are slid along each video's
+  fingerprint by FFT cross-correlation (normalised); a window counts when it correlates >= 0.25 and stands out
+  (peak 9+ standard deviations above the median); once a stretch is found the next window is checked nearby only;
+- agreeing windows form stretches with a fitted line `video_t = scale * sound_t + shift` (the drift; a slope further
+  than 0.2% from 1 is no clock, so the median shift is used). `rec/<sound id>/sync.json`.
+In the cut, the sound covering the clip is laid in with `asetrate` (the drift) and `adelay`, the camera's sound muted
+under it and kept where the recorder has a hole; the camera is levelled to the recorder. `audiosync.choose()` keeps
+the camera where the recorder is silent (< -55 dB) or its speech stands out of its noise 6 dB less than the camera's.
+Per talk, `"sound": "camera"` in cuts.json keeps the camera's own.
+Tested: real speech from SREday Dallas placed within 5 ms (a +80 ppm chunk read as +84), also inside the whole 8.7 h
+day in 47 s (fingerprints cached afterwards); the synthetic recorder in `tests/av_smoke.py` within 12 ms.
+
+**Deck pages** (`picture.py`). Every talk is looked at every 0.5 s against its deck (`<work folder>/decks/<speaker>.pdf`,
+else the event's `slides/<talk page>.pdf` from the deck dump, else a cut's `"deck"`; `"picture": "video"` turns it off).
+Per frame: the page's place is found with ORB features (first a scale + move fit - a screen capture - then a full
+perspective fit - a camera on a screen), or the last place is reused when the screen is steady. Then a pixel check
+on a 16x9 grid of the page at 160x90 decides: cells with content in the page must agree. Things over the page's blank
+areas (a taskbar, a headshot in an empty corner) and strips along the sides/bottom are tolerated; a clash anywhere
+else is other content. A closer look at 480x270 checks the title text (two bold titles blur alike at 160 px).
+Builds: cells (10 px, at 480x270) where the page has content and the screen is still plain, in blocks of 3+, are
+painted out in the page's background - the slide appears as the speaker revealed it, never ahead of them (only on a
+plain background). Stretches under 2 s are dropped, holes up to 3 s bridged. The pages are rendered at the output size
+(written by ffmpeg itself: ffmpeg 9 failed to read some of OpenCV's PNGs) and laid over the video with an ffconcat
+track and an `enable` expression in one encode. `look <event>` makes the plans before a run, with
+`cuts/<speaker>.picture.jpg` (recording left, result right); plans are cached in `cuts/<speaker>.picture.json`
+(`PICTURE_VERSION` in pipeline.py invalidates them).
+Learned on SREday Dallas 2026 Q4: Girish Konda's talk (Windows taskbar, builds on most slides) gets deck pages on 94%
+(19 min in ~2.5 min on the 5090 PC); a sparse page matched a half-built frame of another slide until only content
+cells counted; the brightness fit has to be robust (a taskbar or an unbuilt diagram pulled it flat) and bounded
+(0.4-2.5); a single hidden line ("Nothing downstream can tell these apart") needs the 480 px look. Bailey Elaine
+Laban's deck-dump PDF is another version than the one presented (other wording and fonts): it is refused everywhere
+and the notes say so - ask the speaker for the presented deck.
+
+**Night mode.** From the deck pages (per-channel gain screen/deck) or, without a deck, the white point of the screen's
+brightest 3% when the picture is screen-like (flat 8x8 blocks). On when blue is under 85% of red. The deck pages need
+nothing; the stretches that stay video get `colorchannelmixer` gains when 70%+ of the talk is screen-like (a camera
+picture of a warm room is left alone). Cream/beige decks (Bailey's) stay off. Limit: a deck with an orange/sepia theme
+and no white at all could read as night mode without its PDF - the before/after sheet shows "video, colours fixed".
+
+Needs `opencv-python-headless` and `pypdfium2` (in requirements.txt; PyMuPDF is blocked by Windows Smart App Control);
+without them `doctor` says so and talks are cut as before.

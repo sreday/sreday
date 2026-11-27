@@ -41,12 +41,24 @@ you need before changing anything.
 1. **Add**: `add <event> <file-or-folder ...> --day N [--track T]` (T = track number or room name; a one-room day
    needs only the day). Default copies the file in as a verified read-only backup; `--in-place` only if they ask (then
    warn that the file is the only copy).
-2. **Analyse**: `analyse <event>` (background).
+   Sound recorded on its own device (wired set-ups): add those files for the same day too - sound extensions are
+   taken as separate sound, `--sound` marks any other file; a folder gives only its videos unless `--sound`.
+2. **Analyse**: `analyse <event>` (background). It ends by placing each separate sound recording on the videos
+   (`sync <event> [--again]` does only that); read its notes - a recorder placed nowhere is probably another room.
 3. **Match the lineup** - your main job, see below. Result: `cuts.json` via `cuts <event> <file.json>`.
    On Windows start `analyse`, `run` and `serve` with PowerShell `Start-Process` (set `$env:PYTHONUTF8` in PowerShell
    first, it is inherited; `set X=1 && ...` inside `cmd /c` leaves a trailing space and Python refuses to start) (or `cmd /c ... > log`) so they keep
    running after Claude's shell ends. If a run and the workbench both stop with no error in the log (Dallas, 03:11),
    start both again: the run carries on, and credit guard 2 skips edits Descript already finished.
+   **Then the picture pass** (Marek, 2026-11-27: "the best quality sound and the best quality slides full screen -
+   period. If there's a demo, then we switch to the inferior recording"; "it's easier to put in slides into the video
+   than modify the colors"): `look <event> ["<talk>" ...]` (background for a full day). Per talk it finds the deck
+   (`<work folder>/decks/<speaker>.pdf`, else the event's `slides/<talk page>.pdf` from the deck dump) and writes
+   `cuts/<speaker>.picture.jpg` (recording left, result right). LOOK at every sheet (Read the jpg) before the run:
+   a wrong page is worse than none. Talks with no deck: check the deck dump (`/deckdump`) and the Drive "Deck Dump"
+   folder; download a missing deck to `<work folder>/decks/<speaker>.pdf` and run `look` again. A note "another
+   version of the one presented" means ask the speaker for the deck they presented. To keep a talk's recording as it
+   is: `"picture": "video"` in its cut; to keep the camera's sound: `"sound": "camera"`.
 4. **Gate 1 - the person approves the cuts** in the workbench (section 2). Never tick "approved" yourself unless the
    person explicitly says to approve (e.g. "approve all", "you're on point, ship them"); then approve only what they
    named.
@@ -144,4 +156,5 @@ Descript composition "<talk> (redo N)" on the next run), `unpause <event>`, `pub
 - One computer per event.
 - After the person's runs, `publish` keeps the website's Factory logs tab current (runs also publish by themselves).
 - If you change the factory's code or behaviour: update `live-factory/MANUAL.md` (and `MANUAL-CLAUDE.md`) plus the
-  Changelog in the same commit, run `env/bin/python tests/smoke.py --no-whisper`, and commit only your files.
+  Changelog in the same commit, run `env/bin/python tests/smoke.py --no-whisper` and `env/bin/python tests/av_smoke.py`,
+  and commit only your files.
