@@ -1313,7 +1313,7 @@ class Run:
         talk = next((x for x in events.talks(self.ev) if x["key"] == key), None)
         self.set(key, "chapters", "running", label="Descript is writing chapters")
         who = youtube.speakers_of(talk) if talk else key
-        room = youtube.budget(self.ev, self.cfg, who)
+        room = youtube.budget(self.ev, self.cfg, who, talk)
         text, res = d.chapters(self.state["project_id"], t["composition_id"], t.get("composition_name") or key,
                                on_progress=lambda label, percent=None: self.set(key, "chapters", "running",
                                                                                 label=label, percent=percent),
@@ -1564,6 +1564,10 @@ class Run:
         for head, items in rows.items():
             if items:
                 lines += ["## %s (%d)" % (head[0].upper() + head[1:], len(items)), ""] + items + [""]
+        pl = yt.get("_playlist") or {}
+        if pl.get("url"):
+            lines += ["## Playlist", "", "- %s%s" % (pl["url"], "" if pl.get("hooked") else
+                      " - NOT on the website yet: youtube_playlist in the event's entry of home/metadata.yml"), ""]
         credits = sum(float((t["steps"].get("edit") or {}).get("credits") or 0) for t in self.state["talks"].values())
         lines += ["## Descript", "", "- AI credits used: %.1f" % credits]
         for c in self.state.get("leftover_compositions") or []:

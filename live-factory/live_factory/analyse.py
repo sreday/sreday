@@ -27,11 +27,14 @@ def _cuda_dlls():
             os.environ["PATH"] = d + os.pathsep + os.environ.get("PATH", "")
 
 
-def model(cfg, cpu=False):
-    """The Whisper model, loaded once per process (the first use downloads it to ~/.live-factory/whisper)."""
-    name, device, compute = machine.whisper_setup(cfg)
+def model(cfg, cpu=False, name=None):
+    """The Whisper model, loaded once per process (the first use downloads it to ~/.live-factory/whisper). name: a
+    model to use instead of the machine's choice (the sharp ends: large-v3 on every machine)."""
+    auto_name, device, compute = machine.whisper_setup(cfg)
+    name = name or auto_name
     if cpu and device != "cpu":
-        name, device, compute = ("small" if str(cfg.get("whisper_model") or "auto") == "auto" else name), "cpu", "int8"
+        name, device, compute = (name if name != auto_name else "small" if str(cfg.get("whisper_model") or "auto")
+                                 == "auto" else name), "cpu", "int8"
     if device == "cuda":
         _cuda_dlls()
     key = (name, device, compute)
@@ -44,7 +47,7 @@ def model(cfg, cpu=False):
             if device != "cuda":
                 raise
             _MODEL["cpu_only"] = True               # CUDA libraries missing: the CPU still works, just slower
-            return model(cfg, cpu=True)
+            return model(cfg, cpu=True, name=None if name == auto_name else name)
     return _MODEL[key], key
 
 

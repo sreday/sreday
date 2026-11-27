@@ -123,7 +123,7 @@ EV = {"id": "sreday-2026-dallas-q4", "brand": "sreday", "brand_name": "SREday", 
       "date_string": "October 23, 2026", "domain": "sreday.com", "folder": "2026-dallas-q4",
       "site_url": "https://sreday.com/", "www_url": "https://www.sreday.com", "event_url": "https://sreday.com/2026-dallas-q4/",
       "cfp_url": "", "channel_url": "https://www.youtube.com/@sreday", "video_release": ""}
-CFG = {"youtube": {"channels": {"sreday": "UCsreday"}, "release_days": 35, "release_time": "09:00",
+CFG = {"youtube": {"channels": {"sreday": "UCsreday"}, "tags": {"sreday": ["sre", "observability"]}, "release_days": 35, "release_time": "09:00",
                    "timezones": {"Dallas": "America/Chicago"}, "playlist_title": "{event}", "title_max": 100,
                    "description": ["{event} - {date}", "Grab your ticket for the next {brand}: {www_url}"]}}
 TALKS = [{"key": "Ann Lee", "name": "Ann Lee", "title": "Budgets Beat Alerts", "page": "Ann_Lee", "thumb": "Ann Lee.png"},
@@ -180,7 +180,10 @@ def youtube_tests():
     yt = ytupload.YouTube({"client_id": "c", "client_secret": "s", "refresh_token": "r", "channel_id": "UCsreday"})
     lines = list(ytupload.event(run, yt=yt, now=before))
     done = ytupload.load(run)
-    check("uploads the checked talks only (a problematic one never)", sorted(done) == ["Ann Lee", "Bob Ray"], sorted(done))
+    talks_up = sorted(k for k in done if not k.startswith("_"))
+    check("uploads the checked talks only (a problematic one never)", talks_up == ["Ann Lee", "Bob Ray"], talks_up)
+    check("a new playlist is noted for hooking to the event's website", (done.get("_playlist") or {}).get("url", "").endswith("PL0002"),
+          done.get("_playlist"))
     v = fake.videos.get(done.get("Ann Lee", {}).get("id"), {})
     body = v.get("body") or {}
     check("private, publishAt = the release", body.get("status", {}).get("privacyStatus") == "private" and
@@ -190,8 +193,8 @@ def youtube_tests():
     desc = body.get("snippet", {}).get("description", "")
     check("description: event line, ticket link, chapters", desc.startswith("SREday Dallas 2026 Q4 - October 23, 2026") and
           "www.sreday.com" in desc and "02:00 Budgets" in desc, desc[:200])
-    check("tags: brand, event, city", {"SREday", "SREday Dallas 2026 Q4", "Dallas"} <= set(body["snippet"]["tags"]),
-          body["snippet"].get("tags"))
+    check("tags: the channel's own set, then the event and city", body["snippet"]["tags"] ==
+          ["sre", "observability", "SREday Dallas 2026 Q4", "SREday Dallas"], body["snippet"].get("tags"))
     check("not for kids, Science & Technology", body["status"]["selfDeclaredMadeForKids"] is False and
           body["snippet"]["categoryId"] == "28")
     check("thumbnail + captions set on both", len(fake.thumbs) == 2 and len(fake.caps) == 2, (fake.thumbs, fake.caps))
@@ -243,6 +246,39 @@ def youtube_tests():
         check("wrong channel refused", not wrong.videos, str(e)[:120])
 
 
+def house_tests():
+    print("house style")
+    from live_factory import youtube
+    key = dict(TALKS[0], kind="keynote", title="O11y: The math you miss")
+    t = youtube.title_for(EV, CFG, key)
+    check("a keynote's title starts with \"Keynote: \"", t == "Keynote: O11y: The math you miss | Ann Lee | SREday Dallas 2026 Q4", t)
+    long = dict(TALKS[0], kind="keynote", title="A very long keynote title about reliability, budgets and on-call in large "
+                                                "organisations for the people who run them")
+    t = youtube.title_for(EV, CFG, long)
+    check("... and the whole title stays within 100 characters", len(t) <= 100 and t.startswith("Keynote: "), (len(t), t))
+    pl = lambda title, priv="public", n=10, i=None: {"id": i or title, "snippet": {"title": title},
+                                                    "status": {"privacyStatus": priv}, "contentDetails": {"itemCount": n}}
+    items = [pl("SREday London Q1 2026", i="LON"), pl("SREday Munich 2026 Q2", "unlisted", 2, "MUC2"),
+             pl("SREday Munich 2026 Q2", "public", 17, "MUC"), pl("SREday New York City 2025 Q1", i="NY25"),
+             pl("SREday NYC 2026 Q2", i="NY26")]
+    lon = dict(EV, city="London", year="2026", quarter="Q1")
+    check("playlist: a hand-named one is found (\"SREday London Q1 2026\")",
+          ytupload.pick_playlist(items, "SREday London 2026 Q1", lon) == "LON")
+    check("playlist: of two, the public one with the most videos",
+          ytupload.pick_playlist(items, "SREday Munich 2026 Q2", dict(EV, city="Munich", quarter="Q2")) == "MUC")
+    check("playlist: NYC = New York City, the right year",
+          ytupload.pick_playlist(items, "SREday NYC 2025 Q1", dict(EV, city="NYC", year="2025", quarter="Q1")) == "NY25")
+    check("playlist: none fits -> None (made)", ytupload.pick_playlist(items, "SREday Dallas 2026 Q4", EV) is None)
+    check("playlist link from the website", ytupload.playlist_id_from(
+        "https://www.youtube.com/playlist?list=PL2CAJ_jforK5D2pFxAjp-H1U728dXI8Kb") == "PL2CAJ_jforK5D2pFxAjp-H1U728dXI8Kb")
+    sch = {"1": {"items": [{"key": "Bob Ray"}, {"key": ""}, {"key": "Ann Lee"}]}, "2": {"items": [{"key": "Cy Doe"}]}}
+    old = ytupload.events
+    ytupload.events = types.SimpleNamespace(talks=lambda ev: TALKS, schedule=lambda ev: sch)
+    check("playlist order = the website's schedule, track by track", ytupload.site_order(EV) == ["Bob Ray", "Ann Lee", "Cy Doe"],
+          ytupload.site_order(EV))
+    ytupload.events = old
+
+
 def ff(*args):
     r = subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y"] + list(args), capture_output=True)
     if r.returncode != 0:
@@ -276,6 +312,7 @@ def selfcheck_tests():
 
 if __name__ == "__main__":
     youtube_tests()
+    house_tests()
     selfcheck_tests()
     print("\nfiles: " + TMP)
     print("FAILED: " + ", ".join(FAILS) if FAILS else "all good")

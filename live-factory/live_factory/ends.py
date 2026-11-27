@@ -138,6 +138,14 @@ def envelope(x, step=0.05):
     return 20 * np.log10(np.sqrt((x[:k * n].reshape(k, n).astype(np.float64) ** 2).mean(1)) + 1e-7)
 
 
+def ends_model(cfg):
+    """The Whisper model for the close listening at the edges: large-v3 on every machine (settings
+    ends_whisper_model) - the rules were learned on its punctuation, and `small` (the Mac's model for the whole day)
+    punctuates too little. It is a few minutes of sound per talk, so a Mac's CPU manages (Marek 2026-11-27: "make sure
+    the factory works on mac and windows natively"; "slow is fine, quality first")."""
+    return str(cfg.get("ends_whisper_model") or "large-v3")
+
+
 def listen(src, a, b, cfg, cache=None, opts=None):
     """Words in [a, b] of src: [(start, end, word, probability)] in the recording's time, and the 50 ms level (dB).
     A word Whisper finds where the level is down at the room's noise, unsure, is dropped (no "Thank you." heard in
@@ -147,7 +155,9 @@ def listen(src, a, b, cfg, cache=None, opts=None):
     if cache:
         import hashlib
         st = os.stat(src)
-        k = hashlib.sha1(("%s|%d|%.2f|%.2f|%s" % (os.path.abspath(src), st.st_size, a, b, PROMPT)).encode()).hexdigest()[:16]
+        which = ends_model(cfg)
+        k = hashlib.sha1(("%s|%d|%.2f|%.2f|%s%s" % (os.path.abspath(src), st.st_size, a, b, PROMPT,
+                                                    "" if which == "large-v3" else "|" + which)).encode()).hexdigest()[:16]
         path = os.path.join(cache, k + ".json")
         hit = load(path)
         if hit:
@@ -159,7 +169,7 @@ def listen(src, a, b, cfg, cache=None, opts=None):
         x = np.concatenate([x, np.zeros(RATE, np.float32)])
     if len(x) < RATE:
         return [], {"t0": a, "env": env.tolist()}
-    model = analyse.model(cfg)[0]
+    model = analyse.model(cfg, name=ends_model(cfg))[0]
     segs, _ = model.transcribe(x, language=cfg.get("language") or "en", **dict(WHISPER, **(opts or {})))
     floor = float(np.percentile(env, 10)) if len(env) else -90.0
     words = []

@@ -146,8 +146,24 @@ permission. If we want to go fast, this is the only way". So on such a request n
    Sheets connector), the row found by the speaker's name right before writing (rows move), only empty cells, never
    over a typed link. The website shows the player only from the release (`_videos_out` in generate.py), so filling
    it now is safe.
-10. `report <event>` -> `ship report.md`, then the postmortem (`postmortem` skill): on YouTube + when public, missing
+10. The playlist: the upload uses the one the event's website links (`youtube_playlist` in its entry of the brand's
+    `home/metadata.yml`), else finds the channel's playlist for the event (brand, city, year and quarter in any order:
+    the team named some by hand, "SREday London Q1 2026"), else makes one. When the website doesn't link it yet, the
+    run says "HOOK THE PLAYLIST TO THE EVENT": put the link into `youtube_playlist:` of that event's entry in the
+    brand repo's `home/metadata.yml`, in a lane of its own, and land it. The videos are added in the website's order
+    (the schedule, track by track).
+11. `report <event>` -> `ship report.md`, then the postmortem (`postmortem` skill): on YouTube + when public, missing
     and why, problematic and what would fix it, credits, Descript leftovers to delete by hand. Give him the summary.
+
+What goes up is in the channels' own style (read from them 2026-11-27):
+- the title is "<title> | <speakers> | SREday Dallas 2026 Q4", within 100 characters, with Descript's short title
+  when the real one doesn't fit, and "Keynote: " in front of a keynote's;
+- the description has the event line, the ticket and CFP links, and the chapters;
+- the tags are the channel's own set plus the event and the city;
+- the thumbnail is the website's YouTube picture (`/<event>/teasers/<speaker>.png`, 1280x720).
+
+DevOps Not Dead is dead (Marek, 2026-11-27: "don't touch devops not dead it's a dead thing"): no work there, no
+sign-in.
 
 Hard stops even on autopilot: no Descript token, no YouTube sign-in for the brand, the disk, EDITS PAUSED, a channel
 that isn't the brand's. Follow-ups: "fetch talk X" = `add` the new file, match, the same path; "redo Y" = `redo`, then

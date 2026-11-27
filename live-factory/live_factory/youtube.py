@@ -25,9 +25,14 @@ def suffix(ev, speakers):
     return " | %s | %s" % (speakers, ev["title"])
 
 
-def budget(ev, cfg, speakers):
+def prefix_for(talk):
+    """As the channels title keynotes (SREday Bangalore 2026 Q2, published 2026-11-18): "Keynote: <title> | ..."."""
+    return "Keynote: " if (talk or {}).get("kind") == "keynote" else ""
+
+
+def budget(ev, cfg, speakers, talk=None):
     limit = int((cfg.get("youtube") or {}).get("title_max") or 100)
-    return limit - len(suffix(ev, speakers))
+    return limit - len(suffix(ev, speakers)) - len(prefix_for(talk))
 
 
 def speakers_of(talk):
@@ -54,14 +59,14 @@ def shorten_title(title, room):
 
 def title_for(ev, cfg, talk, written=None):
     who = speakers_of(talk)
-    room = budget(ev, cfg, who)
+    room = budget(ev, cfg, who, talk)
     if room < 20:                                   # many speakers: name the first one
         who = re.split(r",|&", who)[0].strip() + " et al."
-        room = budget(ev, cfg, who)
+        room = budget(ev, cfg, who, talk)
     t = clean_title(written or "") if written else ""
     if not t or len(t) > room:
         t = talk["title"] if len(talk["title"]) <= room else shorten_title(talk["title"], room)
-    return t + suffix(ev, who)
+    return prefix_for(talk) + t + suffix(ev, who)
 
 
 def thumbnail_url(ev, talk):

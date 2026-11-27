@@ -524,6 +524,29 @@ stay for the manual flow):
   release (`_videos_out`, the same rule at the event's UTC offset), so the sheet can get the link at upload time. The
   daily build at 04:05 UTC shows them the morning after. A video the team publishes earlier by hand shows from the
   release too; set `video_release` to show it sooner.
+- **House style** (read from the three channels 2026-11-27):
+  - the title is youtube.title_for(), with "Keynote: " in front of a keynote's (as the channel titles them),
+    within title_max;
+  - the tags are the channel's own fixed set (settings `youtube.tags`), plus the event and the city;
+  - the thumbnail is the website's YouTube picture from the teasers page (`/<event>/teasers/<speaker>.png`,
+    1280x720, checked on Dallas, SF and NYC);
+  - the team's first description lines vary ("SREday Bangalore Q2 - June 20 2026", "LLMday NYC 2026 Q4 - October
+    29"; PLATFORMday Austin's even say "SREday Austin"), so the factory keeps its one form: "SREday Dallas 2026 Q4 -
+    October 23, 2026".
+- **The playlist:**
+  - it is the one the website links (`youtube_playlist` in the event's metadata.yml or in its entry of the brand's
+    home/metadata.yml);
+  - else the channel's playlist with the event's title, or with its brand, city (NYC = New York City), year and
+    quarter in any order (the team named some by hand: "SREday London Q1 2026"; Munich 2026 Q2 has an unlisted
+    2-video twin, so of several the public one with the most videos wins);
+  - else one is made public;
+  - when the website doesn't link it yet, the run says HOOK THE PLAYLIST TO THE EVENT, and so does the report;
+    Claude puts the link into home/metadata.yml in a lane;
+  - the order is the website's: the schedule, track by track (keynotes at the top of their day).
+- **On a Mac** the close listening at the edges uses large-v3 too (`ends_whisper_model`), not the `small` of the
+  whole-day pass. The rules were learned on large-v3's punctuation, and it is only a few minutes of sound per talk.
+  On this PC's CPU (int8, as on a Mac) Krishna Reddy's edges took 176 s. The start came out the same as on the GPU;
+  the end was punctuated a little differently and was flagged for Claude, not guessed.
 - **The WWW sheet:** Claude writes the links through the Google Sheets connector: only empty cells, the row found by
   name.
 - **The report:** `report <event>` writes `ship report.md`, which Claude's postmortem is built on: on YouTube /

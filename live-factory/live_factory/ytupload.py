@@ -172,24 +172,28 @@ class YouTube:
                       headers={"Content-Type": "multipart/related; boundary=" + boundary})
         return r.status_code == 200, r.text[:200]
 
-    def playlist(self, title):
-        """The channel's playlist with this exact title (case, punctuation and spaces ignored), else made public.
-        Returns (id, made)."""
-        want, page = _norm(title), None
+    def playlists(self):
+        out, page = [], None
         while True:
-            params = {"part": "id,snippet", "mine": "true", "maxResults": 50}
+            params = {"part": "id,snippet,status,contentDetails", "mine": "true", "maxResults": 50}
             if page:
                 params["pageToken"] = page
             r = self.call("GET", API + "/playlists", params=params)
             if r.status_code != 200:
                 raise RuntimeError("playlists: %s" % r.text[:200])
             d = r.json()
-            for p in d.get("items", []):
-                if _norm(p["snippet"]["title"]) == want:
-                    return p["id"], False
+            out += d.get("items", [])
             page = d.get("nextPageToken")
             if not page:
-                break
+                return out
+
+    def playlist(self, title, ev=None):
+        """The event's playlist (pick_playlist: the exact title, else the one with the event's brand, city, year and
+        quarter in its title - the team names some by hand, "SREday London Q1 2026"), else made public.
+        Returns (id, made)."""
+        hit = pick_playlist(self.playlists(), title, ev)
+        if hit:
+            return hit, False
         r = self.call("POST", API + "/playlists", params={"part": "snippet,status"},
                       json={"snippet": {"title": title}, "status": {"privacyStatus": "public"}})
         if r.status_code != 200:
@@ -300,11 +304,10 @@ def release_plan(ev, cfg, now=None):
     return "public", None, note
 
 
-def tags_for(ev, talk):
-    tags = [ev["brand_name"], ev["title"], "%s %s" % (ev["brand_name"], ev["city"]), ev["city"]]
-    tags += {"sreday": ["SRE", "site reliability engineering"], "llmday": ["LLM", "AI engineering"],
-             "platformday": ["platform engineering"], "pec": ["prompt engineering", "LLM"],
-             "devopsnotdead": ["DevOps"]}.get(ev["brand"], [])
+def tags_for(ev, talk, cfg=None):
+    """The channel's own tag set (settings youtube.tags, as the team tags every video), then the event and city."""
+    house = (((cfg or {}).get("youtube") or {}).get("tags") or {}).get(ev["brand"]) or []
+    tags = list(house) + [ev["title"], "%s %s" % (ev["brand_name"], ev["city"])]
     out = []
     for t in tags:
         if t and t not in out:
@@ -321,7 +324,7 @@ def video_body(ev, cfg, talk, chapters, written=None, now=None):
     yt = cfg.get("youtube") or {}
     privacy, when, note = release_plan(ev, cfg, now)
     body = {"snippet": {"title": clean_text(title, 100), "description": clean_text(desc, 4900),
-                        "tags": tags_for(ev, talk), "categoryId": str(yt.get("category_id") or 28),
+                        "tags": tags_for(ev, talk, cfg), "categoryId": str(yt.get("category_id") or 28),
                         "defaultLanguage": "en", "defaultAudioLanguage": "en"},
             "status": {"privacyStatus": privacy, "selfDeclaredMadeForKids": False, "embeddable": True,
                        "license": "youtube"}}
@@ -349,6 +352,77 @@ def thumbnail_for(ev, talk, get=None):
     out = io.BytesIO()
     im.save(out, "JPEG", quality=90, optimize=True)
     return (out.getvalue(), "image/jpeg"), ""
+
+
+CITY_ALIASES = {"nyc": ["new york", "new york city", "nyc"], "new york": ["new york", "new york city", "nyc"],
+                "san francisco": ["san francisco", "sf"]}
+
+
+def pick_playlist(items, title, ev=None):
+    """The id of the event's playlist among the channel's: the exact title (case, punctuation and spaces ignored),
+    else the ones whose title has the brand, the city, the year and the quarter in any order; of several, the public
+    one with the most videos (SREday Munich 2026 Q2 has an unlisted 2-video twin). None when nothing fits."""
+    want = _norm(title)
+    exact = [p for p in items if _norm(p["snippet"]["title"]) == want]
+    pool = exact
+    if not pool and ev:
+        cities = CITY_ALIASES.get(str(ev.get("city") or "").lower(), [str(ev.get("city") or "").lower()])
+        need = [_norm(ev["brand_name"]), str(ev["year"]), str(ev.get("quarter") or "").lower()]
+
+        def fits(t):
+            words = " %s " % _norm(t)
+            return all((" %s " % w) in words for w in need if w) and any((" %s " % _norm(c)) in words for c in cities)
+        pool = [p for p in items if fits(p["snippet"]["title"])]
+    if not pool:
+        return None
+    pool.sort(key=lambda p: ((p.get("status") or {}).get("privacyStatus") == "public",
+                             (p.get("contentDetails") or {}).get("itemCount") or 0), reverse=True)
+    return pool[0]["id"]
+
+
+def playlist_id_from(url):
+    """The list= id of a YouTube playlist link (home/metadata.yml youtube_playlist), or None."""
+    q = urllib.parse.parse_qs(urllib.parse.urlparse(str(url or "")).query)
+    pid = (q.get("list") or [""])[0]
+    return pid if re.fullmatch(r"[\w-]{10,64}", pid) else None
+
+
+def site_playlist(ev):
+    """The playlist the event's website links: youtube_playlist in the event's metadata.yml, else its entry in the
+    brand's home/metadata.yml (what the event page's Playlist button uses). '' when none."""
+    import yaml
+    try:
+        with open(os.path.join(ev["path"], "metadata.yml"), encoding="utf-8") as f:
+            v = (yaml.safe_load(f) or {}).get("youtube_playlist")
+        if v:
+            return str(v)
+        repo = os.path.dirname(ev["path"]) if os.path.basename(os.path.dirname(ev["path"])) != "past" else \
+            os.path.dirname(os.path.dirname(ev["path"]))
+        with open(os.path.join(repo, "home", "metadata.yml"), encoding="utf-8") as f:
+            home = yaml.safe_load(f) or {}
+        for e in (home.get("events") or []) + (home.get("events_past") or []):
+            if str(e.get("url") or "").strip("./").rstrip("/") == ev["folder"] and e.get("youtube_playlist"):
+                return str(e["youtube_playlist"])
+    except (OSError, KeyError, ValueError):
+        pass
+    return ""
+
+
+def site_order(ev, talks=None):
+    """Talk keys in the order the event's website lists them: the schedule, track by track (each day's keynotes at
+    the top of its first track), then any talk the schedule doesn't place."""
+    out = []
+    try:
+        for tr in events.schedule(ev).values():
+            for it in tr["items"]:
+                if it.get("key") and it["key"] not in out:
+                    out.append(it["key"])
+    except Exception:                                    # noqa: BLE001 - no schedule: the sheet's order
+        pass
+    for t in talks if talks is not None else events.talks(ev):
+        if t["key"] not in out:
+            out.append(t["key"])
+    return out
 
 
 def readd_plan(current, wanted):
@@ -406,13 +480,14 @@ def event(run, keys=None, yt=None, now=None):
         return
     done = load(run)
     talks = {t["key"]: t for t in events.talks(ev)}
-    todo = [k for k, t in sorted(run.state["talks"].items())
+    todo = [k for k, t in sorted(run.state["talks"].items()) if not k.startswith("_")
             if t.get("finished") and t.get("selfcheck_ok") and (not keys or k in keys)
             and (not (done.get(k) or {}).get("id") or redone_since(t, done[k]))]
     playlist_title = str((cfg.get("youtube") or {}).get("playlist_title") or "{event}").format(event=ev["title"])
+    linked = playlist_id_from(site_playlist(ev))
     want_id = channel_for(cfg, ev["brand"]) or yt.c.get("channel_id")
     yt.check_channel(want_id, handle_of(ev.get("channel_url")))
-    playlist_id = None
+    playlist_id = linked
     for key in todo:
         t, talk = run.state["talks"][key], talks.get(key)
         final = run.final_path(key)
@@ -465,7 +540,7 @@ def event(run, keys=None, yt=None, now=None):
                 rec["captions_note"] = msg
         try:
             if playlist_id is None:
-                playlist_id, made = yt.playlist(playlist_title)
+                playlist_id, made = yt.playlist(playlist_title, ev)
                 if made:
                     yield "youtube: made the playlist %s (public; the videos show as they go public)" % playlist_title
             rec["playlist"], msg = yt.add_to_playlist(playlist_id, vid)
@@ -485,18 +560,26 @@ def event(run, keys=None, yt=None, now=None):
             if rec.get("publish_at") else "", "" if rec.get("thumbnail") else " - no thumbnail: " +
             rec.get("thumbnail_note", "refused"), (" - replaces %s (%s)" % (rec["replaces"][-1], "deleted, it was never "
             "public" if rec.get("old_deleted") else "still on YouTube: delete it in Studio")) if rec.get("replaces") else "")
-    yield from repair(yt, run, done, talks, playlist_title)
-    yield from playlist_order(yt, run, done, playlist_title)
+    yield from repair(yt, run, done, talks, playlist_title, linked)
+    yield from playlist_order(yt, run, done, playlist_title, linked)
+    if not linked and any(r.get("playlist") for r in done.values()):
+        pid = playlist_id or yt.playlist(playlist_title, ev)[0]
+        url = "https://www.youtube.com/playlist?list=%s" % pid
+        if (done.get("_playlist") or {}).get("url") != url:
+            done["_playlist"] = {"url": url, "hooked": False}
+            save(run, done)
+        yield ("youtube: HOOK THE PLAYLIST TO THE EVENT - %s is not on the website yet: youtube_playlist: %s in %s's "
+               "entry of home/metadata.yml (a lane, then land)" % (ev["title"], url, ev["folder"]))
 
 
-def repair(yt, run, done, talks, playlist_title):
+def repair(yt, run, done, talks, playlist_title, linked=None):
     """What an upload could not finish is tried again every pass: the thumbnail, the captions, the playlist. Stops at
     the first refusal for the day's quota."""
-    playlist_id, changed = None, False
+    playlist_id, changed = linked, False
     limit = lambda text: "quota" in str(text).lower()
     for key, rec in sorted(done.items()):
         talk = talks.get(key)
-        if not rec.get("id") or not talk:
+        if key.startswith("_") or not rec.get("id") or not talk:
             continue
         got = []
         try:
@@ -523,7 +606,7 @@ def repair(yt, run, done, talks, playlist_title):
             if rec.get("playlist") is not True:
                 try:
                     if playlist_id is None:
-                        playlist_id = yt.playlist(playlist_title)[0]
+                        playlist_id = yt.playlist(playlist_title, run.ev)[0]
                     ok, msg = yt.add_to_playlist(playlist_id, rec["id"])
                 except RuntimeError as e:
                     ok, msg = False, str(e)
@@ -544,18 +627,19 @@ def repair(yt, run, done, talks, playlist_title):
 PAUSE = time.sleep                                       # tests swap it out
 
 
-def playlist_order(yt, run, done, playlist_title):
-    """The event's playlist in the order of the event page (talks.csv), by adding the talks in that order. Taking
-    out and adding are 50 units each; a playlist already in order costs one list call. Never fails the pass."""
+def playlist_order(yt, run, done, playlist_title, linked=None):
+    """The event's playlist in the order of the event's website (site_order: the schedule), by adding the talks in
+    that order. Taking out and adding are 50 units each; a playlist already in order costs one list call. Never
+    fails the pass."""
     if (run.cfg.get("youtube") or {}).get("playlist_sort") is False:
         return
     try:
-        order = [t["key"] for t in events.talks(run.ev)]
-        vid_of = {k: r["id"] for k, r in done.items() if r.get("id") and r.get("playlist")}
+        order = site_order(run.ev)
+        vid_of = {k: r["id"] for k, r in done.items() if not k.startswith("_") and r.get("id") and r.get("playlist")}
         wanted = [vid_of[k] for k in order if k in vid_of]
         if not wanted:
             return
-        pid = yt.playlist(playlist_title)[0]
+        pid = linked or yt.playlist(playlist_title, run.ev)[0]
         items = [(i, v) for i, v, _ in sorted(yt.playlist_items(pid), key=lambda x: x[2])]
         keep, readd = readd_plan([v for _, v in items], wanted)
         if not readd:

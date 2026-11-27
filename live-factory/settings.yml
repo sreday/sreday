@@ -53,6 +53,8 @@ autopilot: false
 # after their last finished sentence before the Q&A - ideally the closing "thank you". A talk whose edges are not sure
 # stops before cutting until Claude confirms them (ends_brief.md -> "ends" in cuts.json). "ends": "off" in a cut skips it.
 sharp_ends: true
+ends_whisper_model: large-v3 # the close listening at the edges, on every machine (a Mac's CPU too: a few minutes of
+                             # sound per talk); the rules were learned on its punctuation
 end_lead_seconds: 0.4        # the cut starts this long before the first word (in the quietest moment there) ...
 end_tail_seconds: 0.8        # ... and ends this long after the last one
 # Extra footage around every cut sent to Descript, for trimming by hand. With the sharp ends: none ("full auto"); a
@@ -145,9 +147,9 @@ youtube:
   # (the Conf42 factory's OAuth client); the token stays in ~/.live-factory/youtube/<brand>.json on this computer.
   # channels: the ONE channel per brand an upload may go to (filled from the sign-in); handles: the @name a sign-in
   # must have when no channel id is set yet. A metadata.yml video_release (ISO time) overrides the release.
-  channels: {sreday: UCrdFcj7vBTOVyCpGhLNdCvQ, llmday: UCNqgrBft20Icfgwcxwu1iLw, platformday: UCTBbnEako2_9a1oLfgTeoCQ, pec: "", devopsnotdead: ""}
-  handles: {sreday: sreday, llmday: llmday, platformday: platformday, pec: PromptEngineeringConf,
-            devopsnotdead: devopsnotdead}
+  channels: {sreday: UCrdFcj7vBTOVyCpGhLNdCvQ, llmday: UCNqgrBft20Icfgwcxwu1iLw, platformday: UCTBbnEako2_9a1oLfgTeoCQ,
+             pec: ""}
+  handles: {sreday: sreday, llmday: llmday, platformday: platformday, pec: PromptEngineeringConf}
   release_days: 35
   release_time: "09:00"
   timezones:
@@ -174,6 +176,15 @@ youtube:
     Seattle: America/Los_Angeles
     Tel Aviv: Asia/Jerusalem
     Warsaw: Europe/Warsaw
+  # each channel's own tag set, as the team tags every video (read from the channels 2026-11-27); the event and the
+  # city are added per talk
+  tags:
+    sreday: [sre, incident response, observability, feature flags, simulations, autoscale, real-time, stream,
+             processing, cloud]
+    llmday: [llmday, large language models, LLM conference 2026, AI conference, artificial intelligence event,
+             generative AI, GPT models, foundation models, enterprise AI, AI for developers]
+    platformday: [platform, platform engineering, cloud native, DevOps, cloud computing, Kubernetes,
+                  digital transformation, software engineering, IT conference, software architecture]
   playlist_title: "{event}"          # "SREday Dallas 2026 Q4", as the channels name them
   category_id: 28                    # Science & Technology
   title_max: 100
