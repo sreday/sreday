@@ -31,15 +31,34 @@ min_gap_seconds: 20          # a pause in speech at least this long is a possibl
 # Talks run 10-30 minutes (workshops longer): a cut far outside that is flagged.
 talk_min_minutes: 10
 talk_max_minutes: 30
-# The closing Q&A ("any questions?" ... someone at the back without a microphone) is cut off when it clearly is one: in
-# the last 40% of the talk, at most max_qa_minutes long, the speaker not carrying on after it. Doubt keeps it in.
+# The closing Q&A ("any questions?" ... someone at the back without a microphone) in the first draft of the cuts: cut
+# off when it clearly is one (the last 40% of the talk, at most max_qa_minutes long). The sharp ends below then take
+# every Q&A out.
 cut_qa: true
 max_qa_minutes: 10
-# Extra footage around every cut sent to Descript (Marek 2026-10-16: the automatic ends are right ~80% of the time and
-# cut off the other 20%), so the talk can be trimmed by hand in Descript. Never reaches into the next talk's own cut.
-# The workbench shows where the talk sits inside the clip.
-pad_before_seconds: 30
-pad_after_seconds: 60
+
+# ---- 2a. autopilot -------------------------------------------------------------------------------------------------
+# Marek, 2026-11-27: "please ship talks from SREday London through live talk factory ... instead of asking for
+# permission to run this further, you'll ship it and write a post-mortem ... ask for forgiveness not for permission".
+# On autopilot Claude approves the cuts itself (approve), the factory checks every final itself (selfcheck.py) in
+# place of the review in Descript, and the checked talks go to YouTube (youtube: below). Per event: "autopilot": true
+# in cuts.json (python -m live_factory autopilot <event> on), which Claude sets when asked to ship an event.
+autopilot: false
+
+# ---- 2b. sharp starts and ends (ends.py) ---------------------------------------------------------------------------
+# Marek, 2026-11-27: "the beginnings and the ends of talks super sharp and production-ready ... Q&A need to always be
+# outed ... end sharply at the moment when the person finishes, but letting him finish the sentence" - "full auto, so
+# sharp cuts with guardrails". Every talk's edges are listened to again, closely (Whisper with word timestamps): it
+# starts on the speaker's first words to the room (not the MC, the mic check, "are we good to go?"), and ends right
+# after their last finished sentence before the Q&A - ideally the closing "thank you". A talk whose edges are not sure
+# stops before cutting until Claude confirms them (ends_brief.md -> "ends" in cuts.json). "ends": "off" in a cut skips it.
+sharp_ends: true
+end_lead_seconds: 0.4        # the cut starts this long before the first word (in the quietest moment there) ...
+end_tail_seconds: 0.8        # ... and ends this long after the last one
+# Extra footage around every cut sent to Descript, for trimming by hand. With the sharp ends: none ("full auto"); a
+# talk that needs other edges is cut again from the recording (redo). Never reaches into the next talk's own cut.
+pad_before_seconds: 0
+pad_after_seconds: 0
 # Slides shown smaller than the frame, in black bars: zoom them to FIT the full frame (they grow until they touch its
 # edges - nothing is cut off, whatever their shape). Only when the box is steady through the talk (a camera/slides mix
 # or dark slides that fool the detection are left alone) and the zoom gains at least zoom_min_percent.
@@ -120,6 +139,43 @@ qa_max_cut_percent: 25
 # the channels' house style (read off 89 published SREday / LLMday talks, 2026-10-16). Values: {event} {date} {brand}
 # {brand_key} {www_url} {talk_url} {event_url} {site_url} {cfp_url} {channel_url}; a line with an empty value is left out.
 youtube:
+  # ---- the upload (ytupload.py, Marek 2026-11-27): private, public "exactly 5 weeks after the conference" at 09:00
+  # in the event city's own time zone; the event's playlist (made public when missing - its videos show as they go
+  # public). Sign-in once per channel: python -m live_factory youtube-login <brand> <client_secret.json>
+  # (the Conf42 factory's OAuth client); the token stays in ~/.live-factory/youtube/<brand>.json on this computer.
+  # channels: the ONE channel per brand an upload may go to (filled from the sign-in); handles: the @name a sign-in
+  # must have when no channel id is set yet. A metadata.yml video_release (ISO time) overrides the release.
+  channels: {sreday: UCrdFcj7vBTOVyCpGhLNdCvQ, llmday: UCNqgrBft20Icfgwcxwu1iLw, platformday: UCTBbnEako2_9a1oLfgTeoCQ, pec: "", devopsnotdead: ""}
+  handles: {sreday: sreday, llmday: llmday, platformday: platformday, pec: PromptEngineeringConf,
+            devopsnotdead: devopsnotdead}
+  release_days: 35
+  release_time: "09:00"
+  timezones:
+    Amsterdam: Europe/Amsterdam
+    Austin: America/Chicago
+    Bangalore: Asia/Kolkata
+    Barcelona: Europe/Madrid
+    Campinas: America/Sao_Paulo
+    Chennai: Asia/Kolkata
+    Cologne: Europe/Berlin
+    Dallas: America/Chicago
+    Hamburg: Europe/Berlin
+    Hyderabad: Asia/Kolkata
+    Katowice: Europe/Warsaw
+    Lisbon: Europe/Lisbon
+    London: Europe/London
+    Montevideo: America/Montevideo
+    Munich: Europe/Berlin
+    NYC: America/New_York
+    New York: America/New_York
+    Paris: Europe/Paris
+    Redmond: America/Los_Angeles
+    San Francisco: America/Los_Angeles
+    Seattle: America/Los_Angeles
+    Tel Aviv: Asia/Jerusalem
+    Warsaw: Europe/Warsaw
+  playlist_title: "{event}"          # "SREday Dallas 2026 Q4", as the channels name them
+  category_id: 28                    # Science & Technology
   title_max: 100
   description:
     - "{event} - {date}"

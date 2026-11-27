@@ -54,7 +54,8 @@ ANNOUNCE = re.compile(r"\b(take questions now|take some questions now|open it up
                       r"let s do (a |some )?(q and a|q a|questions)|time for (some )?questions|move (on )?to (q and a|questions))\b")
 # "hit me up if you got any questions", "use my QR code if you have questions": an invitation for later, not the Q&A
 INVITE = re.compile(r"\b(hit me up|reach out|feel free to (reach|connect|ping|email|add)|connect with me|linkedin|find me|"
-                    r"after the talk|later on|qr code|email me|ping me|grab me|come (find|talk to) me)\b")
+                    r"after the talk|later on|qr code|email me|ping me|grab me|come (find|talk to) me|email|contact me|"
+                    r"in the break|afterwards)\b")
 # a greeting to the room: where a talk really starts, often before the name ("Hey, thanks for being here today ... I'm Jay")
 # a greeting to the room: where a talk really starts, often before the name ("Hey, thanks for being here today ... I'm Jay").
 # GREETING_STRONG is said to a room and nowhere else; the weaker openers ("so today", "my talk") need a pause before them

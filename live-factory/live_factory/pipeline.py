@@ -6,8 +6,12 @@
   GATE 1    Marek checks and approves the cuts in the dashboard - nothing reaches Descript before that
   per talk: cut (ffmpeg, one-sided stereo filled) -> upload -> edit (Studio Sound, fillers, gaps)
   GATE 2    Marek reviews each talk in Descript and ticks it Reviewed
-  per talk: publish -> download -> srt -> chapters -> loudness (+ trim to the speech) -> qa
+  per talk: publish -> download -> srt -> chapters -> loudness (+ trim to the speech) -> qa -> selfcheck
   then      YouTube items.txt: titles, descriptions, chapters, thumbnail links
+  AUTOPILOT ("autopilot": true in cuts.json, Marek 2026-11-27: "ask for forgiveness not for permission"): Claude
+            approves the cuts itself, gate 2 is the factory's own check of the final (selfcheck.py), and the checked
+            talks go to the brand's YouTube channel - private, public 5 weeks after the event (ytupload.py) - and
+            into "ship report.md".
 
 One state file per event (<work root>/<event>/state.json) records every step of every recording and talk, so a run
 can be stopped and restarted any time: finished steps are skipped. The Descript part follows the Conf42 factory
@@ -30,7 +34,8 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 import yaml
 
-from . import analyse, audiosync, events, machine, media, picture, precheck, saturation, segment, stereo, youtube
+from . import (analyse, audiosync, ends, events, machine, media, picture, precheck, saturation, segment, selfcheck,
+               stereo, youtube, ytupload)
 from .descript import Descript
 
 HERE = events.HERE
@@ -81,6 +86,7 @@ class Run:
                                                                      # so a run never overwrites a tick)
         self.lock = threading.RLock()
         self.plock = threading.Lock()                 # only one talk creates the Descript project
+        self.ends_lock = threading.Lock()                    # one close listening at a time (the GPU)
         self.render_sem = threading.Semaphore(max(1, int(self.cfg.get("render_parallel") or 2)))
         self._saved = 0
         self.state = self._load()
@@ -671,7 +677,7 @@ class Run:
         def one(key):
             c = cuts[key]
             try:
-                padded, _, _ = self.padded(key, c["parts"])
+                padded, _, _ = self.padded(key, self.talk_parts(key, c))
                 plans, deck, notes = self.picture_for(key, c, padded, force=force,
                                                       on_progress=lambda label, pct=None: None)
                 _, snd = self.sound_for(c, padded)
@@ -783,6 +789,8 @@ class Run:
         with self.lock:
             for c in approved:
                 sig, t = signature(c["parts"]), self.state["talks"].get(c["key"])
+                if isinstance(c.get("ends"), (dict, str)):
+                    sig += "+" + hashlib.sha1(json.dumps(c["ends"], sort_keys=True).encode()).hexdigest()[:6]
                 if t and t.get("cut_sig") != sig and t["steps"]:
                     self.redo(c["key"], "the cut changed after it was made")
                     t = self.state["talks"][c["key"]]
@@ -809,7 +817,7 @@ class Run:
         if kept:
             t.setdefault("broken_compositions", []).append(kept)
         for k in ("composition_id", "composition_name", "finished", "trim", "error", "current", "stereo", "resolution",
-                  "zoom", "in_clip"):
+                  "zoom", "in_clip", "selfcheck_ok", "problems"):
             t.pop(k, None)
         if key in self.reviews():
             self.set_reviewed(key, False)               # a new cut is a new video: reviewed again
@@ -817,11 +825,109 @@ class Run:
         t.setdefault("redone", []).append({"at": now(), "why": why, "composition_id": kept})
         self.note("%s: %s - doing it again" % (key, why))
 
+    # ---- sharp starts and ends (ends.py) ----------------------------------------------------------------------------
+    # Marek, 2026-11-27: "I would like you to work extensively now to ensure the beginnings and the ends of talks are
+    # super sharp and production-ready ... Q&A need to always be outed ... I just don't want someone to finish mid
+    # sentence" - "full auto, so sharp cuts with guardrails".
+    def transcript_segments(self, rid):
+        return (analyse.load(self.rec_dir(rid), "transcript.json") or {}).get("segments") or []
+
+    def ends_for(self, key, cut=None, force=False):
+        """The talk's sharp edges: the ones confirmed in cuts.json ("ends": {"start", "end", "by", "why"}) or else the
+        rules' (ends.refine, cached in <work folder>/ends.json by the cut's coarse parts). None when turned off."""
+        cut = cut or next((c for c in self.cuts()["cuts"] if c["key"] == key), None)
+        if not cut or not self.cfg.get("sharp_ends", True) or cut.get("ends") == "off":
+            return None
+        path = os.path.join(self.dir, "ends.json")
+        sig = signature(cut["parts"])
+        with self.lock:
+            cache = ends.load(path) or {}
+        r = cache.get(key)
+        if not r or r.get("sig") != sig or force:
+            talk = next((x for x in events.talks(self.ev) if x["key"] == key), None)
+            names = segment._names(talk["name"]) if talk else []
+            with self.ends_lock:
+                r = ends.refine(self, key, cut, names, log=self.note)
+            r.update(sig=sig, at=now())
+            with self.lock:
+                cache = ends.load(path) or {}
+                cache[key] = r
+                ends.save(path, cache)
+        conf = cut.get("ends")
+        if isinstance(conf, dict) and conf.get("start") is not None and conf.get("end") is not None:
+            r = dict(r, start=segment.parse_stamp(conf["start"]), end=segment.parse_stamp(conf["end"]),
+                     by=conf.get("by") or "claude", why=conf.get("why") or "", sure=True, flags=[],
+                     first=conf.get("first") or r.get("first"), last=conf.get("last") or r.get("last"))
+        elif conf == "rules":
+            r = dict(r, sure=True, flags=[], by="rules (taken as they are)")
+        return r
+
+    def talk_parts(self, key, cut=None):
+        """The parts the talk is cut from: the coarse ones with the sharp edges (ends_for) on the first and last."""
+        cut = cut or next((c for c in self.cuts()["cuts"] if c["key"] == key), None)
+        if cut is None:
+            return [dict(p) for p in self.state["talks"][key]["parts"]]
+        r = self.ends_for(key, cut)
+        if not r:
+            return [dict(p) for p in cut["parts"]]
+        p0, p1 = cut["parts"][0], cut["parts"][-1]
+        if not (r["start"] < p0["end"] and r["end"] > p1["start"] and (len(cut["parts"]) > 1 or r["end"] - r["start"] > 60)):
+            return [dict(p) for p in cut["parts"]]
+        return ends.apply(cut, r)
+
+    def ends_all(self, keys):
+        """Close listening at the edges of these talks (one at a time: the GPU), before anything is cut."""
+        out = {}
+        cuts = {c["key"]: c for c in self.cuts()["cuts"]}
+        for k in keys:
+            if k in cuts:
+                try:
+                    out[k] = self.ends_for(k, cuts[k])
+                except Exception as ex:
+                    self.note("%s: listening at the edges failed: %s" % (k, ex))
+                    traceback.print_exc()
+        return out
+
+    def ends_brief(self, keys=None):
+        """ends_brief.md: per talk the edges found, why, the sentences around them - for Claude to confirm or move
+        ("ends" in cuts.json) before the run. Returns its path."""
+        cuts = {c["key"]: c for c in self.cuts()["cuts"]}
+        keys = [k for k in (keys or list(cuts)) if k in cuts]
+        lines = ["# Sharp starts and ends - %s" % self.ev["title"], "",
+                 "Per talk: where it starts and ends now, why, and the sentences around both edges (recording time; "
+                 ">> marks the chosen sentence). Confirm or move each in cuts.json: \"ends\": {\"start\": \"0:31:12.4\", "
+                 "\"end\": \"0:52:40.1\", \"by\": \"claude\", \"why\": \"...\"} - the start on the speaker's first words "
+                 "to the room (not the MC, not the mic check), the end right after their last sentence before the Q&A, "
+                 "finished, ideally the closing thank-you. A FLAGGED talk stops before cutting until its edges are "
+                 "confirmed.", ""]
+        for k in keys:
+            r = self.ends_for(k, cuts[k])
+            if not r:
+                continue
+            p0, p1 = cuts[k]["parts"][0], cuts[k]["parts"][-1]
+            lines += ["## %s%s" % (k, "  - FLAGGED: " + "; ".join(r["flags"]) if r.get("flags") else ""), "",
+                      "- start %s (%s, coarse %s, %+.1f s): \"%s\" - %s" % (
+                          "%s.%d" % (segment.stamp(int(r["start"])), int(r["start"] * 10) % 10), p0["rec"], segment.stamp(p0["start"]), r["start"] - p0["start"],
+                          r.get("first", "")[:90], r.get("why_start", "")),
+                      "- end %s (%s, coarse %s, %+.1f s): \"%s\" - %s" % (
+                          "%s.%d" % (segment.stamp(int(r["end"])), int(r["end"] * 10) % 10), p1["rec"], segment.stamp(p1["end"]), r["end"] - p1["end"],
+                          r.get("last", "")[-90:], r.get("why_end", ""))] + \
+                ["- note: " + n for n in r.get("notes") or []] + [""]
+            for what, ctx in (("around the start", r.get("around_start") or []), ("around the end", r.get("around_end") or [])):
+                lines.append("%s:" % what)
+                lines += ["    %s %s.%d %s" % (">>" if c[2] else "  ", segment.stamp(int(c[0])), int(c[0] * 10) % 10, c[1])
+                          for c in ctx]
+                lines.append("")
+        path = os.path.join(self.dir, "ends_brief.md")
+        with open(path, "w", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+        return path
+
     def padded(self, key, parts=None):
         """The talk's parts (or these parts of its cut) with pad_before_seconds before the first and pad_after_seconds
         after the last, never into another talk's own cut on the same recording, nor past the recording.
         Returns (parts, before, after)."""
-        parts = [dict(p) for p in (parts if parts is not None else self.state["talks"][key]["parts"])]
+        parts = [dict(p) for p in (parts if parts is not None else self.talk_parts(key))]
         others = [p for c in self.cuts()["cuts"] if c["key"] != key for p in c["parts"]]
         first, last = parts[0], parts[-1]
         want_b, want_a = float(self.cfg.get("pad_before_seconds", 30)), float(self.cfg.get("pad_after_seconds", 60))
@@ -888,6 +994,37 @@ class Run:
             json.dump(r, f, indent=1, ensure_ascii=False)
         machine.swap_in(tmp, self.reviews_path)
 
+    def srt_path(self, key):
+        return os.path.join(self.srt_dir, re.sub(r"[^\w.-]+", "_", "%s_%s.srt" % (self.ev["id"], key)))
+
+    def autopilot(self):
+        """The event runs on its own to YouTube: cuts.json "autopilot": true (Claude sets it when asked to ship an
+        event), or settings autopilot: true."""
+        v = self.cuts().get("autopilot")
+        return bool(self.cfg.get("autopilot")) if v is None else bool(v)
+
+    def approve(self, keys=None, by="claude"):
+        """Gate 1 by Claude on autopilot: the named cuts (all when none named) approved, with who and when. A cut
+        whose sharp ends are still flagged (not confirmed in "ends") is not approved - it is named, never guessed.
+        Returns (approved, held: {key: why})."""
+        data = self.cuts()
+        ok, held = [], {}
+        for c in data["cuts"]:
+            if keys and c["key"] not in keys:
+                continue
+            if c.get("approved"):
+                ok.append(c["key"])
+                continue
+            confirmed = isinstance(c.get("ends"), dict) or c.get("ends") in ("rules", "off")
+            rec = None if confirmed or not self.cfg.get("sharp_ends", True) else self.ends_for(c["key"], c)
+            if rec and rec.get("flags"):
+                held[c["key"]] = "; ".join(rec["flags"])
+                continue
+            c["approved"], c["approved_by"], c["approved_at"] = True, by, now()
+            ok.append(c["key"])
+        self.save_cuts(data)
+        return ok, held
+
     def final_path(self, key):
         safe = re.sub(r'[\\/:*?"<>|]+', "", key)
         return os.path.join(self.final_dir, "%s - %s.mp4" % (safe, self.ev["title"]))
@@ -899,7 +1036,7 @@ class Run:
         lean = os.path.join(self.cut_dir, key + ".mp4")
         raw = os.path.join(self.out, "_descript", key + ".mp4")
         final = self.final_path(key)
-        srt_path = os.path.join(self.srt_dir, re.sub(r"[^\w.-]+", "_", "%s_%s.srt" % (self.ev["id"], key)))
+        srt_path = self.srt_path(key)
         progress = lambda step: (lambda label, percent=None: self.set(key, step, "running", label=label, percent=percent))
         try:
             with self.lock:
@@ -909,14 +1046,24 @@ class Run:
                     self.set(key, "cut", "running", label="checking disk space", percent=0)
                     self.ensure_room(key, "cut")
                     st = self.stereo_for({"parts": t["parts"]})
-                    padded, before, after = self.padded(key)
+                    cut_cfg = next((c for c in self.cuts()["cuts"] if c["key"] == key), {})
+                    self.set(key, "cut", "running", label="listening closely at the start and the end", percent=0)
+                    edges = self.ends_for(key, cut_cfg) if cut_cfg else None
+                    if edges and edges.get("flags"):
+                        msg = ("stopped before Descript - the start/end is not sure: %s. Read ends_brief.md "
+                               "(python -m live_factory ends <event>) and confirm the edges in cuts.json (\"ends\": "
+                               "{\"start\": .., \"end\": .., \"by\": \"claude\", \"why\": ..}), or \"ends\": \"rules\" to take "
+                               "them as they are" % "; ".join(edges["flags"]))
+                        self.set(key, "cut", "failed", error=msg)
+                        raise RuntimeError(msg)
+                    use = self.talk_parts(key, cut_cfg) if cut_cfg else [dict(p) for p in t["parts"]]
+                    padded, before, after = self.padded(key, use)
                     crop, zoom_note = None, None
                     if cfg.get("zoom_black_bars", True):
                         self.set(key, "cut", "running", label="looking for black bars around the slides", percent=0)
                         p0 = t["parts"][0]
                         crop, zoom_note = media.black_bars(self.rec_path(p0["rec"]), p0["start"], p0["end"],
                                                            min_zoom_percent=float(cfg.get("zoom_min_percent", 5)))
-                    cut_cfg = next((c for c in self.cuts()["cuts"] if c["key"] == key), {})
                     plans, deck, pic_notes = self.picture_for(key, cut_cfg, padded, on_progress=progress("cut"))
                     sounds, snd_notes = self.sound_for(cut_cfg, padded)
                     if any(pl and pl.get("shown", 0) >= 0.9 for pl in plans):
@@ -936,13 +1083,20 @@ class Run:
                     self.set(key, "cut", "running", label="listening for clipped sound", percent=99)
                     sat = self.declip_cut(key, cut_cfg, lean)
                     check = None
+                    edge_problems, edge_notes = [], []
+                    if edges:                                 # the cut's own first and last words, heard again
+                        self.set(key, "cut", "running", label="hearing the cut's first and last words", percent=99)
+                        with self.ends_lock:
+                            edge_problems, edge_notes = ends.verify(lean, edges, cfg)
+                        check = {"problems": edge_problems, "notes": edge_notes, "at": now()}
                     if any(x[3] for x in parts):              # deck pages or separate sound laid in: check the file
                         self.set(key, "cut", "running", label="checking the picture and the sound of the cut", percent=99)
                         out_info = media.probe(lean)
                         problems, cnotes = precheck.check(lean, [x[:3] for x in parts], [x[3] for x in parts],
                                                           (out_info["width"], out_info["height"]),
                                                           os.path.join(self.cut_dir, key + ".check.jpg"))
-                        check = {"problems": problems, "notes": cnotes, "sheet": key + ".check.jpg", "at": now()}
+                        check = {"problems": edge_problems + problems, "notes": edge_notes + cnotes,
+                                 "sheet": key + ".check.jpg", "at": now()}
                     with self.lock:
                         t["check"] = check
                         t["picture"] = {"deck": deck, "notes": pic_notes,
@@ -950,8 +1104,9 @@ class Run:
                                         "night": [(pl.get("night") or {}).get("on") if pl else None for pl in plans]}
                         t["sound"] = {"notes": snd_notes, "separate": any(sounds)}
                         t["saturation"] = sat
+                        t["ends"] = edges
                     info = media.probe(lean)
-                    core = sum(p["end"] - p["start"] for p in t["parts"])
+                    core = sum(p["end"] - p["start"] for p in use)
                     with self.lock:
                         t["stereo"], t["probe"], t["zoom"] = st, info, {"crop": crop, "note": zoom_note}
                         # where the judged talk sits in the clip, for trimming the extra footage by hand in Descript
@@ -964,7 +1119,9 @@ class Run:
                         "; " + zoom_note if crop else "",
                         "; deck pages on %d%% of it" % (100 * max(shown)) if shown else "",
                         "; separate sound" if t["sound"]["separate"] else "",
-                        "; " + sat["note"] if sat.get("some") else ""))
+                        "; " + sat["note"] if sat.get("some") else "") + (
+                        "; starts \"%s\", ends \"%s\"" % (edges.get("first", "")[:40], edges.get("last", "")[-40:])
+                        if edges else ""))
             if not done("check"):
                 cut_cfg = next((c for c in self.cuts()["cuts"] if c["key"] == key), {})
                 chk = t.get("check")
@@ -1055,8 +1212,11 @@ class Run:
                         self.state["edits_paused"] = ("%s's edit cost %.1f AI credits (limit %g) - check it in Descript, "
                                                       "then clear edits_paused in state.json" % (key, credits, cap))
                     self.note("EDITS PAUSED: " + self.state["edits_paused"])
-            # GATE 2: Marek looks at the edited talk in Descript before anything is exported
+            # GATE 2: Marek looks at the edited talk in Descript before anything is exported - on autopilot the
+            # factory's own check of the final (selfcheck, below) takes its place
             reviewed = self.reviews().get(key)
+            if not reviewed and self.autopilot():
+                reviewed = "autopilot - checked by the factory after the export"
             if not reviewed:
                 if (t["steps"].get("review") or {}).get("status") != "waiting":
                     self.set(key, "review", "waiting", label="check it in Descript, then tick Reviewed")
@@ -1120,6 +1280,17 @@ class Run:
                     flags.append("low resolution")
                 self.set(key, "qa", "done", lufs=lufs, peak=peak, minutes_before=round(before / 60, 1),
                          minutes_after=round(out["duration"] / 60, 1), cut_percent=round(cut, 1), flags=flags)
+            if not done("selfcheck"):
+                self.set(key, "selfcheck", "running", label="the factory looks at the final: edges, sound, picture")
+                with self.ends_lock:
+                    problems, notes = selfcheck.check(final, t, cfg, t.get("ends"),
+                                                      lean=lean if os.path.exists(lean) else None)
+                with self.lock:
+                    t["selfcheck_ok"] = not problems
+                    t["problems"] = problems
+                self.set(key, "selfcheck", "done", problems=problems, notes=notes,
+                         note=("PROBLEMATIC - not for YouTube: " + "; ".join(problems)) if problems else
+                         "; ".join(notes[:3]) or "all good")
             with self.lock:
                 t["current"] = None
                 t["finished"] = now()
@@ -1327,14 +1498,81 @@ class Run:
                 self.note("could not check for leftover Descript uploads: %s" % ex)
         # the picture plans first, many talks at once (the cut step then finds them made)
         uncut = [k for k in keys if (self.state["talks"][k]["steps"].get("cut") or {}).get("status") != "done"]
+        if uncut and self.cfg.get("sharp_ends", True):
+            self.note("listening closely at the start and the end of %d talk(s)" % len(uncut))
+            self.ends_all(uncut)
+            self.ends_brief(uncut)
         if uncut and picture.available() is None:
             self.look_all(uncut)
         with ThreadPoolExecutor(max_workers=max(1, int(self.cfg.get("parallel_talks") or 2))) as pool:
             list(pool.map(self.process_with_retries, keys))
         self.find_leftovers()
         self.write_youtube()
+        if self.autopilot():
+            self.youtube_pass()
+            self.ship_report()
         waiting = [k for k in keys if (self.state["talks"][k]["steps"].get("review") or {}).get("status") == "waiting"]
         self.note("run finished" + (" - %d talk(s) waiting for your review in Descript" % len(waiting) if waiting else ""))
+
+
+    def youtube_pass(self, keys=None):
+        """The checked talks to the brand's YouTube channel (ytupload.event); each line to the log. Never fails the
+        run: what is not up yet goes up on the next pass."""
+        lines = []
+        try:
+            for line in ytupload.event(self, keys):
+                self.note(line)
+                lines.append(line)
+        except Exception as ex:                          # noqa: BLE001
+            self.note("youtube: stopped - %s" % ex)
+            lines.append("youtube: stopped - %s" % ex)
+        return lines
+
+    def ship_report(self):
+        """<work folder>/ship report.md: what is on YouTube and when it goes public, what is missing and why, what is
+        problematic - the base of Claude's postmortem (Marek 2026-11-27)."""
+        yt = ytupload.load(self)
+        data = self.cuts()
+        cuts = {c["key"]: c for c in data["cuts"]}
+        skipped = {s.get("key"): s.get("why") or s.get("reason") or "" for s in data.get("skipped") or []}
+        when, note = ytupload.release_at(self.ev, self.cfg)
+        lines = ["# %s - ship report" % self.ev["title"], "",
+                 "Written %s. The videos go public %s UTC (5 weeks after the event, 09:00 local)%s." % (
+                     now()[:16].replace("T", " "), when.strftime("%Y-%m-%d %H:%M"), " - " + note if note else ""), ""]
+        rows = {"on YouTube": [], "problematic": [], "stopped": [], "not cut": [], "missing": []}
+        for talk in events.talks(self.ev):
+            k, t, rec = talk["key"], self.state["talks"].get(talk["key"]), yt.get(talk["key"]) or {}
+            if rec.get("id"):
+                extras = [x for x in ("thumbnail", "captions", "playlist") if rec.get(x) is not True]
+                rows["on YouTube"].append("- **%s** - %s - %s%s%s" % (
+                    k, rec.get("url"), rec.get("privacy"),
+                    (", public %s UTC" % rec["publish_at"][:16].replace("T", " ")) if rec.get("publish_at") else "",
+                    (" - still to add: " + ", ".join(extras)) if extras else ""))
+            elif t and t.get("finished") and not t.get("selfcheck_ok"):
+                rows["problematic"].append("- **%s** - %s" % (k, "; ".join(t.get("problems") or ["not checked"])))
+            elif t and t.get("finished"):
+                rows["stopped"].append("- **%s** - finished, not on YouTube yet (see the log)" % k)
+            elif t and t.get("error"):
+                rows["stopped"].append("- **%s** - %s" % (k, t["error"][:300]))
+            elif k in cuts and not cuts[k].get("approved"):
+                rows["not cut"].append("- **%s** - cut not approved%s" % (
+                    k, (" (" + cuts[k]["reason"][:120] + ")") if cuts[k].get("reason") else ""))
+            elif k in cuts:
+                rows["stopped"].append("- **%s** - not through the factory yet" % k)
+            else:
+                rows["missing"].append("- **%s** - %s" % (k, skipped.get(k) or "not found in the recordings"))
+        for head, items in rows.items():
+            if items:
+                lines += ["## %s (%d)" % (head[0].upper() + head[1:], len(items)), ""] + items + [""]
+        credits = sum(float((t["steps"].get("edit") or {}).get("credits") or 0) for t in self.state["talks"].values())
+        lines += ["## Descript", "", "- AI credits used: %.1f" % credits]
+        for c in self.state.get("leftover_compositions") or []:
+            lines.append("- delete by hand in Descript: %s - the %s one (%s)" % (c["name"], c["kind"],
+                                                                                segment.stamp(c["seconds"])))
+        path = os.path.join(self.dir, "ship report.md")
+        with open(path, "w", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+        return path
 
 
 # ---- SRT and chapters (the Conf42 factory's) --------------------------------------------------------------------------
@@ -1411,4 +1649,5 @@ def summary(state):
             "talks": len(talks), "finished": [k for k, t in talks.items() if t.get("finished")],
             "failed": [k for k, t in talks.items() if t.get("error")],
             "review": [k for k, t in talks.items() if (t["steps"].get("review") or {}).get("status") == "waiting"],
+            "problematic": {k: t.get("problems") for k, t in talks.items() if t.get("finished") and t.get("problems")},
             "flagged": {k: t["steps"]["qa"]["flags"] for k, t in talks.items() if (t["steps"].get("qa") or {}).get("flags")}}

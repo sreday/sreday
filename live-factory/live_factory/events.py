@@ -103,6 +103,7 @@ def event(cfg, event_id):
             "date_string": str(meta.get("date_string") or start[:10]),
             "event_url": ("https://%s/%s/" % (domain, folder)) if domain else "",
             "cfp_url": str(meta.get("cfp_url") or ""), "channel_url": str(meta.get("youtube_url") or ""),
+            "video_release": str(meta.get("video_release") or ""),
             "csv": os.path.join(path, "_db", "talks.csv")}
 
 

@@ -149,8 +149,11 @@ Section **2. Cuts** in the workbench, one tab per track:
 
 - Press **Save cuts**.
 
-You don't need to be precise to the second: every clip gets **30 seconds of extra footage before and 60 after**, so
-you can trim it exactly in Descript. A cut must not *miss* part of the talk, though.
+You don't need to be precise to the second: before cutting, the factory **listens closely at both ends of every talk**
+and sets the exact words itself - the speaker's first words to the room (not the MC, not "can you hear me?"), and
+their last finished sentence before the Q&A, ideally the closing "thank you". The Q&A is always left out. Claude reads
+each talk's first and last sentence (`ends_brief.md` in the event's folder) and tells you; a talk whose ends are not
+sure waits until they are. A cut must not *miss* part of the talk, though: it should hold the whole talk.
 
 ### Step 5 - Cut and edit in Descript
 
@@ -192,8 +195,9 @@ Then it stops and waits for you. Two talks go at a time; a day of 15 talks takes
 
 Open the event's project in Descript (link on the Status page). For every talk:
 
-1. **Trim the extra footage**: the workbench shows where the talk is inside the clip - *"talk runs 0:30 → 25:12 in the
-    clip"*. Remove what is before the talk and after it (the MC, the Q&A, the next set-up).
+1. **The start and the end are final already** - no trimming. Check them: the talk should open on the speaker's first
+    words and end right after their last sentence, with no Q&A. If one is wrong, flag the talk for redo (below) and
+    say what is wrong ("starts on the MC", "ends mid-sentence").
 
 2. Watch / skim it: the sound, the start and the end, the cuts around removed filler sounds.
 3. Back in the workbench, section **3. Talks in Descript**, tick **Reviewed**.
@@ -221,6 +225,11 @@ For each talk, `YouTube items.txt` has, ready to paste:
 
 Upload to the brand's channel as usual. Then put the YouTube link in the event's sheet (the **YouTube** column) - in
 the Google Sheet, never in the repo's CSV.
+
+With Claude, the factory can do all of this itself on **autopilot** (the "With Claude" tab, "Ship an event in one
+go"). Each talk is uploaded private and YouTube makes it public exactly 5 weeks after the event at 09:00 local, with
+its thumbnail, subtitles and the event's playlist. The website shows a talk's video only from that day, so the link
+can go into the sheet straight away.
 
 ---
 
@@ -268,6 +277,13 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 
 ## Changelog
 
+- **2026-11-27** - Autopilot (with Claude): one request ships an event to the brand's YouTube channel. The factory
+  checks each finished video itself, uploads it private with its title, description, thumbnail, subtitles and
+  playlist, and it goes public exactly 5 weeks after the event, at 09:00 local. The website's talk pages show the
+  video only from then.
+- **2026-11-27** - Sharp starts and ends: every talk now starts on the speaker's first words to the room and ends right
+  after their last finished sentence - never mid-sentence - with the Q&A always out. There is no extra footage to
+  trim in Descript any more. A close that trails off into mumbling ends on the firm sentence before it.
 - **2026-11-27** - Saturated sound: the factory hears which talks have clipped (saturated) sound and where; it takes
   the clean track where there is one, else repairs the talk with the best open-source tool that proves itself on a
   sample; Studio Sound 100% in Descript only when nothing helps.

@@ -36,7 +36,40 @@ works the same way.
 
 ---
 
-## 2. Process an event - what to say
+## 2. Ship an event in one go (autopilot)
+
+Say *"Please ship the talks from SREday London 2026 Q1 through the live talk factory"* and give Claude the
+recordings (and the separate sound, if any). Claude does everything else without asking:
+- it finds the talks and their sharp starts and ends;
+- it checks the slides and the sound;
+- it approves the cuts itself;
+- it runs Descript;
+- after the export it checks every finished video itself, in place of your review in Descript: its first and last
+  words heard again, no silent stretch, no black picture, loudness, length;
+- it uploads each checked talk to the brand's YouTube channel.
+
+On YouTube, each talk gets:
+- its title, description and chapters;
+- the website's thumbnail and the subtitles;
+- a place in the event's playlist, in the order of the schedule;
+- a schedule: **private, public exactly 5 weeks after the event at 09:00 local time**.
+
+Claude also puts each link into the event's sheet (the website shows the video only from that day). Then it writes
+`ship report.md` and a postmortem:
+- what is on YouTube and when it goes public;
+- which talks are missing and why;
+- which are problematic and what would fix them;
+- the Descript credits, and the leftover compositions for you to delete.
+
+Afterwards, just say what you want: *"fetch Kevin's talk from this file"*, *"redo Jay's talk"*. A talk that isn't sure
+(its start lost, its sound dying) is never guessed: it waits, and the report says why.
+
+Once per computer and channel, you sign in to YouTube yourself (the sign-in never goes through the chat): in Claude
+Code type `! cd live-factory && env\Scripts\python -m live_factory youtube-login sreday <client_secret.json>`
+(the Conf42 factory's OAuth client), and on Google's account screen pick the **SREday** channel itself. The same goes
+for `llmday`, `platformday` and `pec`.
+
+## 3. Process an event step by step - what to say
 
 Replace the event and paths with yours. Events are named like `sreday-2026-london-q1` or
 `platformday-2026-austin-q4`; Claude can find the right one if you just say "PLATFORMday Austin Q4".
@@ -48,15 +81,16 @@ Replace the event and paths with yours. Events are named like `sreday-2026-londo
 | Separate sound | *"The sound was recorded on the desk too: D:\ZOOM0001.wav, day 1."* | Added as separate sound. After the analysis it is placed on the videos by itself (different start, clock drift, files split in pieces - all fine); the talks it covers get its sound. |
 | Analyse | *"Analyse them."* | Sound, transcript, stills - free, on your computer. About 35 min for an 8-hour day; Claude runs it in the background and tells you when it's done. |
 | Find the talks | *"Match the lineup."* | Claude reads the whole day: greetings, "I'm …", the MC, closing lines, Q&A, pauses, titles and abstracts. It gives you a table of every talk with start, end and anything doubtful, and asks you what only someone who was there knows ("who spoke last?"). |
+| Sharp ends | *"Check the starts and ends."* (Claude does it anyway before the run) | The factory listens closely at both ends of every talk; Claude reads each one and gives you its first and last sentence: the speaker's first words to the room, their last finished sentence before the Q&A (ideally the closing "thank you"). The Q&A is always out; a talk never stops mid-sentence. Anything unsure, Claude asks you. |
 | Saturated sound | *"Which talks have saturated sound?"* | The talks whose sound is clipped (cracking on loud words), with the minutes where. In the run: the clean track where there is one; else the repair tools tried on 30 s and judged, the best one repairs the talk (normal Studio Sound); Studio Sound 100% only when none helps. |
 | Slides check | *"Look at the slides."* | For every cut: which deck pages it found on screen and will show full screen, build steps, night mode, the separate sound - with a before/after picture per talk. Claude names any deck that looks like another version than the one presented: if only the fonts differ it can still use it (*"use Kevin's deck anyway"*); if the words differ, ask the speaker for the deck they presented. |
 | ✋ Approve | Open the workbench (http://localhost:8043), check the flagged cuts, tick them, **Save cuts** - or tell Claude *"approve all"* if you trust the table. | Nothing goes to Descript before this. |
 | Descript | *"Run the factory."* | Claude says how many talks and roughly how many Descript credits (8-30 per talk), then cuts, uploads and edits them. Watch it on http://localhost:8043/status or ask *"how is it going?"*. |
-| ✋ Review | Watch each talk in Descript, trim the extra footage (30 s before, 60 s after), tick **Reviewed** in the workbench - or tell Claude *"Thomas, Jay and MJ are reviewed"*. | Only reviewed talks are exported. |
+| ✋ Review | Watch each talk in Descript (the start and the end are final - nothing to trim), tick **Reviewed** in the workbench - or tell Claude *"Thomas, Jay and MJ are reviewed"*. | Only reviewed talks are exported. |
 | Export | *"Export the reviewed talks."* | Final light MP4s, subtitles, chapters, YouTube loudness. |
 | YouTube | *"Write the YouTube items."* | Titles, descriptions and thumbnail links, ready to paste. You upload. |
 
-## 3. Handy things to ask
+## 4. Handy things to ask
 
 - *"What's the status of PLATFORMday Austin?"* / *"Which talks are waiting for my review?"*
 - *"Why is Daniel flagged?"* - Claude reads the flags and the transcript and explains.
@@ -69,13 +103,14 @@ Replace the event and paths with yours. Events are named like `sreday-2026-londo
 - *"Which compositions do I delete in Descript?"* - Claude lists the leftovers failed uploads left behind (same name
   as the talk, so it gives the length of the one to delete).
 
-## 4. What Claude won't do on its own
+## 5. What Claude won't do on its own
 
-- Approve cuts or mark talks reviewed - unless you tell it to.
+- Approve cuts or mark talks reviewed - unless you tell it to, or you ask it to ship an event (autopilot, above).
 - Touch, move or delete your recordings, or free disk space by deleting things on its own. When your disk is low it offers to clean up junk and cache
   files: it shows you what they are and how big, and deletes only what you pick.
 - Handle your Descript token or any password.
-- Upload to YouTube.
+- Upload to YouTube - except when you ask it to ship an event, and then only to the brand's own channel, private
+  until the release.
 
 If something looks off, just describe it - *"the sound on Raul's talk is only on the left"* - and Claude finds out why.
 
@@ -83,6 +118,13 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-11-27** - Autopilot: *"ship the talks from <event> through the live talk factory"* runs the whole way to
+  the brand's YouTube channel. Claude approves the cuts, the factory checks each final video itself, and the upload
+  carries the title, description, chapters, thumbnail, subtitles and playlist. Each talk goes up private and becomes
+  public 5 weeks after the event at 09:00 local. Then come the sheet links, a ship report and the postmortem.
+- **2026-11-27** - Sharp starts and ends: the factory sets every talk's first and last words itself (Q&A always out,
+  never mid-sentence, a close that trails off ends on the firm sentence before it); no extra footage to trim in
+  Descript.
 - **2026-11-27** - Saturated sound: clipped talks are found (also before the run: *"which talks have saturated
   sound?"*); the clean track is used where there is one, else the best repair tool that proves itself on a sample;
   Studio Sound 100% in Descript only as the last resort.

@@ -16,6 +16,10 @@
   python -m live_factory clipping <event> ["<talk>" ...] [--again]
                                                        which talks have saturated (clipped) sound, and where - before
                                                        the run (look does it too); those get the repair tools tried
+  python -m live_factory ends <event> ["<talk>" ...] [--again]
+                                                       every talk's sharp start and end (the speaker's first words,
+                                                       the last sentence before the Q&A), heard closely; writes
+                                                       ends_brief.md for Claude to confirm (run does it too)
   python -m live_factory brief <event>                 segment_brief_<track>.md for Claude's lineup match
   python -m live_factory draft <event> [--replace]     a first automatic guess at cuts.json (keeps approved cuts)
   python -m live_factory cuts <event> [file.json]      check cuts.json (or take this file as the new one) and list it
@@ -27,7 +31,24 @@
                                                        composition "<talk> (redo N)") on the next run
   python -m live_factory unpause <event>               clear "edits paused" after checking the talk in Descript
   python -m live_factory publish                       update the Factory tab of sreday.com/factory now
-  python -m live_factory youtube <event>               <event>/YouTube items.txt again
+  python -m live_factory youtube <event>               <event>/YouTube items.txt again (+ each talk's video link)
+  python -m live_factory autopilot <event> on|off      the event runs on its own to YouTube: Claude approves the
+                                                       cuts, the factory checks each final itself (no review in
+                                                       Descript), the checked talks go to the brand's channel
+  python -m live_factory approve <event> ["<talk>"...] [--by NAME]
+                                                       gate 1 by Claude on autopilot (all cuts when none named; a
+                                                       talk with flagged sharp ends is held, never guessed)
+  python -m live_factory selfcheck <event> ["<talk>"...] [--again]
+                                                       the factory's own look at the finished videos (edges heard
+                                                       again, silences, black picture, loudness, length)
+  python -m live_factory upload <event> ["<talk>"...]  the checked talks to the brand's YouTube channel: private,
+                                                       public 5 weeks after the event at 09:00 local, thumbnail,
+                                                       captions, the event's playlist
+  python -m live_factory report <event>                <work folder>/ship report.md: on YouTube / problematic /
+                                                       stopped / missing, credits, Descript leftovers
+  python -m live_factory youtube-login <brand> <client_secret.json>
+                                                       one-time per channel (the person, in the browser): pick the
+                                                       brand's channel; the token stays on this computer
   python -m live_factory leftovers <event>             list the Descript compositions failed uploads left behind
                                                        (empty or unedited twins of a talk) for deleting by hand
   python -m live_factory status <event>
@@ -139,6 +160,12 @@ def main(argv):
         from . import publish
         print(publish.publish())
         return
+    if cmd == "youtube-login":
+        from . import ytupload
+        if len(argv) < 3:
+            raise SystemExit("youtube-login <brand> <client_secret.json>")
+        ytupload.login(argv[1], argv[2], pipeline.settings())
+        return
     if len(argv) < 2:
         raise SystemExit(__doc__)
     run = pipeline.Run(argv[1])
@@ -201,6 +228,21 @@ def dispatch(run, cmd, argv):
         print("saturated: %s" % (", ".join(hit) if hit else "none") + (
             "" if saturation.tools_available(run.cfg) else
             "  (no repair tools installed: Studio Sound 100% only - requirements-declip.txt)"))
+    elif cmd == "ends":
+        again, rest = flag(argv[2:], "--again", has_value=False)
+        cuts = [c for c in run.cuts()["cuts"] if not rest or c["key"] in rest]
+        with run.job("ends"):
+            for c in cuts:
+                r = run.ends_for(c["key"], c, force=bool(again))
+                if not r:
+                    print("%-40s sharp ends off" % c["key"][:40])
+                    continue
+                print("%s%s\n  starts %s (%+.1f s): \"%s\"\n  ends   %s (%+.1f s): \"%s\"\n  %s | %s" % (
+                    c["key"], "  FLAGGED: " + "; ".join(r["flags"]) if r.get("flags") else "",
+                    segment.stamp(r["start"]), r["start"] - c["parts"][0]["start"], r.get("first", "")[:70],
+                    segment.stamp(r["end"]), r["end"] - c["parts"][-1]["end"], r.get("last", "")[-70:],
+                    r.get("why_start", ""), r.get("why_end", "")), flush=True)
+            print("brief: " + run.ends_brief([c["key"] for c in cuts]))
     elif cmd == "brief":
         for p in segment.brief(run):
             print(p)
@@ -263,8 +305,52 @@ def dispatch(run, cmd, argv):
         with run.job("retry"):
             run.run(only=[argv[2]])
     elif cmd == "youtube":
+        from . import ytupload
         run.write_youtube()
         print(open(os.path.join(run.dir, "YouTube items.txt"), encoding="utf-8").read())
+        when, note = ytupload.release_at(run.ev, run.cfg)
+        print("release: %s UTC%s" % (when.strftime("%Y-%m-%d %H:%M"), " (" + note + ")" if note else ""))
+        for k, rec in sorted(ytupload.load(run).items()):
+            print("  %-32s %s %s %s" % (k[:32], rec.get("url", "-"), rec.get("privacy", ""), rec.get("publish_at", "")))
+    elif cmd == "autopilot":
+        data = run.cuts()
+        if len(argv) > 2:
+            data["autopilot"] = argv[2].lower() in ("on", "true", "yes", "1")
+            run.save_cuts(data)
+        print("autopilot %s for %s" % ("ON" if run.autopilot() else "off", run.ev["title"]))
+    elif cmd == "approve":
+        by, rest = flag(argv[2:], "--by")
+        ok, held = run.approve(rest or None, by or "claude")
+        print("approved: %s" % (", ".join(ok) or "none"))
+        for k, why in held.items():
+            print("HELD %s - %s" % (k, why))
+    elif cmd == "selfcheck":
+        from . import selfcheck
+        again, rest = flag(argv[2:], "--again", has_value=False)
+        with run.job("selfcheck"):
+            for k, t in sorted(run.state["talks"].items()):
+                if rest and k not in rest or not t.get("finished"):
+                    continue
+                if (t["steps"].get("selfcheck") or {}).get("status") == "done" and not again:
+                    st = t["steps"]["selfcheck"]
+                else:
+                    final = run.final_path(k)
+                    lean = os.path.join(run.cut_dir, k + ".mp4")
+                    problems, notes = selfcheck.check(final, t, run.cfg, t.get("ends"),
+                                                      lean=lean if os.path.exists(lean) else None)
+                    t["selfcheck_ok"], t["problems"] = not problems, problems
+                    run.set(k, "selfcheck", "done", problems=problems, notes=notes,
+                            note=("PROBLEMATIC - not for YouTube: " + "; ".join(problems)) if problems else
+                            "; ".join(notes[:3]) or "all good")
+                    st = t["steps"]["selfcheck"]
+                print("%s %s\n    %s" % ("PROBLEMATIC" if st.get("problems") else "ok         ", k,
+                                         "; ".join(st.get("problems") or st.get("notes") or [])[:400]), flush=True)
+    elif cmd == "upload":
+        with run.job("upload"):
+            run.youtube_pass(argv[2:] or None)
+            print("report: " + run.ship_report())
+    elif cmd == "report":
+        print(open(run.ship_report(), encoding="utf-8").read())
     elif cmd == "leftovers":
         left = run.find_leftovers()
         for c in left:

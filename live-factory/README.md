@@ -92,11 +92,9 @@ before didn't know about `past/` and opened on DevOps Not Dead London instead of
 
 ## Trimming, zoom and redo (Marek, 2026-10-16)
 
-- **Extra footage for trimming by hand.** The automatic start and end are right on about 80% of talks, and on the
-  rest a fixed rule cuts too much. So every clip sent to Descript gets `pad_before_seconds: 30` before the judged
-  start and `pad_after_seconds: 60` after the judged end, never reaching into the next talk's own cut. The workbench
-  shows where the talk sits in the clip ("talk runs 0:30 → 25:12"); trim the rest in Descript before ticking
-  Reviewed.
+- **Extra footage for trimming by hand** (until 2026-11-27). The automatic start and end were right on about 80% of
+  talks, so every clip got 30 s before and 60 s after for trimming in Descript. Since the sharp ends (below) the
+  factory sets the exact words itself and `pad_before_seconds` / `pad_after_seconds` are 0.
 - **Black bars.** When the slides sit in a steady box smaller than the frame, they are zoomed to *fit*: they grow
   until they touch the frame's edges, so nothing is cut off whatever their shape. On PLATFORMday Austin, Thomas
   Cameron's 1600×810 slides became a 1.2× zoom. A talk where the picture changes (camera and slides, or dark slides
@@ -105,6 +103,158 @@ before didn't know about `past/` and opened on DevOps Not Dead London instead of
   `redo <event> "<talk>" "why"`). Fix the talk's cut in gate 1 first if needed. The next Run cuts it again with the
   cut, extra footage and zoom as they are now, and uploads it as a fresh composition "<talk> (redo 2)". The old
   composition stays in Descript untouched.
+
+## Sharp starts and ends (Marek, 2026-11-27)
+
+"I would like you to work extensively now to ensure the beginnings and the ends of talks are super sharp and
+production-ready ... Q&A need to always be outed as they don't prove consistency (some questions are bad, mics are not
+passed in time, etc.) - so we want to end sharply at the moment when the person finishes, but letting him finish the
+sentence. So strip the last sentence if the sense allows it ... I just don't want someone to finish mid sentence." Then:
+"full auto, so sharp cuts with guardrails".
+
+`ends.py` runs between the lineup match and the cut (`ends <event>`, and by itself at the start of `run`). The coarse
+edges in cuts.json come from the whole-day transcript, to the second; this step sets the exact words.
+
+**Listening closely.** Whisper large-v3 (beam 5, word timestamps) listens to a window at each edge:
+- 75 s before to 90 s after the coarse start;
+- 180 s before to 60 s after the coarse end.
+
+The words are cached in `rec/ends-words/`, so a change of rules costs nothing. Each setting came from what went wrong
+on SREday Dallas:
+- **The voice detector keeps its default 2 s of silence**, as the whole-day pass (`analyse.py`) does. At 400 ms it
+  chopped the speech into scraps, dropping quieter greetings and the punctuation with them.
+- **No carried context.** With it, Whisper looped through quiet minutes, writing one sentence nine times.
+- **No prompt.** A punctuated prompt came back as words in the quiet: "So, today I'm going to talk about
+  reliability."
+- **No `hallucination_silence_threshold`.** It dropped Girish Konda's real "Hey, good afternoon, I'm Girish".
+
+Whatever the close listening misses, the whole-day transcript fills in (`fill`): on some windows it went silent for
+the last 100-160 s.
+
+Whisper's own inventions are dropped:
+- the "Thank you for watching" echo;
+- a third repeat in a row;
+- zero-length words;
+- a lone "you";
+- unsure words at the room's quiet level;
+- unsure lines the whole-day pass has no trace of (Girish's start had an invented "Hello, everyone.").
+
+A long run without punctuation, typical of a far room mic, is cut at its own pauses and wherever a greeting, a
+thank-you or a Q&A phrase begins.
+
+**The start.** It comes after the MC's last words: "please welcome", "I'll turn it over to my good friend Kevin", or
+the speaker named in the third person. It skips what comes before the talk proper:
+- mic checks ("can you guys hear me?");
+- the laptop and the tech desk ("let me share my screen", "look at the power button", "is someone connected to the
+  Meet?");
+- "are we good to go?", "I think we can start", "I think I'm ready";
+- bare words: "Okay." / "All right." / "Thank you, thank you." (to the MC);
+- short scraps.
+
+It starts on the speaker's own greeting or name ("Thanks, everyone, for joining.", "Hi, I'm Kevin."). A later greeting
+wins over chatter: "Good morning. / Can y'all hear me? / ... / Thank you for coming, this is Krishna" starts on the
+second. A greeting inside a run of set-up ("toss it ... no thank you yeah well first off") starts on its word. A cold
+open after a pause ("So my talk is about ...", "Who here ...?") is a sure start; one with no pause that opens on "and"
+/ "but" is mid-sentence and flagged.
+
+**The end.** First, where the talk proper is over:
+- the Q&A opening ("any questions?", "but uh questions?", "I'll stop there and answer any kind of questions", "we
+  have a couple minutes for questions", "that concludes"), taking the last opener of a cluster;
+- the room ("great question", "thank you for the presentation");
+- the MC ("give it up for Jerry", the speaker thanked by name).
+
+Then the closing thank-you in the last lines is the end, even inside a run ("... thanks for listening and | I guess we
+have time for questions"). Of "Thank you. / Thank you." in the applause, the first one counts.
+
+Without a thank-you, it steps back to the last sentence that may end a talk:
+- finished (. ! ?), or cut where the Q&A begins;
+- at least 3 words;
+- not hanging on "and" / "so" / "the" / "any" ...;
+- not a question to the room;
+- not "so yeah" / "any questions?" / "happy to take questions";
+- trailing filler goes ("... that should be all yeah um" → "... that should be all").
+
+A close that trails off ends on the firm sentence before it. Marek, on Krishna Reddy's sample: "I'd prefer to always end
+on the firm sentence, if it's followed by some mumbling and stuff". A trailing-off close is one of these:
+- Whisper heard no end to it: a run with no punctuation, or one cut only where the Q&A begins;
+- filler was trimmed off it;
+- 8%+ of its words are "um" / "uh";
+- its words are unsure.
+
+The firm sentence is the last one within 30 s that Whisper ended with . or !, of 5+ words, few ums and sure words, with
+a pause after it. Krishna's "... implement that inside the company." now ends his talk instead of "... that's security
+concern um that should be all". A closing thank-you is never stepped back from.
+
+It steps back at most 60 s. Where nothing passes, the end is proposed on the last piece before a 1.2 s pause and
+flagged, never guessed.
+
+**Placing the cut on the sound.** Whisper's word times can be a second early: Kevin Brown's cut lost "slash teams".
+So the end goes into the first real pause (200 ms of quiet) after the last word, 0.8 s in and never into the next
+word. The start goes just after the last pause before the first word, 0.4 s ahead of it, and never further back than
+the word before it. When there is no gap at all, that's a note in the brief; the check after the cut decides.
+
+**Guardrails.**
+- **Flags.** A talk is flagged, and stops before cutting, when its edges are not sure:
+  - no greeting or name at a start that isn't after the MC;
+  - a lowercase start, or someone else introducing themselves;
+  - set-up talk left in the first line;
+  - an end that is not the closing words before the Q&A;
+  - 20 s+ and 40+ words of speech dropped before the agreed end;
+  - a question in the whole-day transcript minutes before the end (a mid-talk pause, or a Q&A left in: PLATFORMday
+    SF, Wassim Melakhessou's "great question" came 8 min before his real end).
+
+  Claude reads `ends_brief.md` (per talk: both edges, why, and the sentences around them) and confirms or moves them
+  in cuts.json: `"ends": {"start", "end", "by": "claude", "why"}`. A change there is a changed cut.
+- **The check after the cut** (`verify`, before any Descript credit). The cut's first and last 20 s are heard again,
+  without the voice detector and with a second of silence after (Whisper drops a file's last words). The cut must:
+  - start on 2 of the planned first 3 words and end on 2 of the planned last 3 (a quiet last "thank you" heard as
+    sound only is fine);
+  - have no Q&A in its last seconds;
+  - not start or end in the middle of a sound where the word there isn't the planned one.
+
+  Otherwise the talk stops before Descript.
+
+**On the two days at hand** (the factory's own cuts, rules only, before Claude):
+- **SREday Dallas 2026 Q4 (14 talks, one far Zoom room mic):** 8 sure and right, 6 flagged. The flags:
+  - Chris Hankla's opening lost (sound from mid-sentence);
+  - the workshop's sound coming back mid-sentence;
+  - Jeremy Newhouse's room mic dying;
+  - two ends with no punctuation heard;
+  - 42 s dropped after Kevin Brown's QR code: the MC's question.
+- **PLATFORMday SF 2026 Q4 (19 talks):** 10 sure, 9 flagged.
+- **The check after the cut, on stand-ins** (each cut's first and last 25 s) of 17 talks: it caught every mistimed
+  edge on the way. It stops only cuts with a real problem; on Dallas that left the two starts that run straight on
+  from "thank you" / "okay", which the rules had already marked.
+
+**What the team's published finals showed** (the SREday / LLMday / PLATFORMday channels, 2026 talks; Whisper on each
+video's first 80 s and last 150 s; `research/published-ends.json`):
+
+- **The sample:** 112 talks. Of the 315 published 2026 talks on the channels, the first 112 were transcribed before
+  the GPU was needed elsewhere.
+- **Starts:**
+  - a greeting: 47% ("Hello everyone, my name is AJ.");
+  - the name, a thank-you or "so today": 19%;
+  - a cold open straight into the topic: 17% ("So I've just returned from Braga ...", "Who out here feels like ...?");
+  - set-up still in: 15% ("All right." / "Good." / "Okay, so I assume we can start", "Okay, thank you. I think we
+    can start", "Okay, let me just adjust this ...", "I hope you can hear me").
+
+  The factory now cuts that set-up off. A cold open stays a start.
+- **Ends:**
+  - the closing thank-you: 41%;
+  - the last point with no closing words: 26% ("That was my point.", "So, yeah, that's us.");
+  - a closing line: 5% ("That's it.", "That's all for me.");
+  - with no punctuation in Whisper's reading, or cut mid-sentence: 18% ("... we choose Azure or AWS first, if we can,
+    or");
+  - on opening the Q&A: 4% ("If you have any questions, we will answer them here");
+  - with the room or the MC still in: 2% ("Thank you for the presentation.", "Thank you very much, Greg.").
+
+  Reading the 70 transcribed first, a few more had a Q&A answer still in ("So yeah, I don't know about Vault, but could
+  look into that. Thanks, everyone."). Marek's rule wins over those: the Q&A is always out, never mid-sentence.
+- **Around the words:**
+  - before the first word: a median 0.0 s (often cut right on it; 90% under 0.6 s) - the factory leaves 0.4 s;
+  - after the last word: a median 1.1 s (10% under 0.1 s, i.e. clipped) - the factory leaves 0.8 s, inside the pause.
+- **Whisper's echo:** "Thank you for watching." over and over in a final silence is Whisper, not the talk. The
+  factory drops it.
 
 ## Learned from the published talks (2026-10-16)
 
@@ -165,6 +315,9 @@ reference cuts, hand-checked against the transcript, are in `research/platformda
 | `live_factory/segment.py` | the brief, the draft, and cuts.json checks |
 | `live_factory/stereo.py` | one-sided stereo detection |
 | `live_factory/audiosync.py` | separate sound: fingerprints, placing it on the videos, choosing it per talk |
+| `live_factory/ends.py` | sharp starts and ends: the speaker's first words, the last sentence before the Q&A (word-level Whisper at each edge) |
+| `live_factory/selfcheck.py` | autopilot's gate 2: the factory's own look at each final (edges, silences, black picture, loudness, length) |
+| `live_factory/ytupload.py` | autopilot's upload: the brand's channel, private until 5 weeks after the event, thumbnail, captions, playlist |
 | `live_factory/saturation.py` | saturated (clipped) sound: finding it per minute, rebuilding the peaks (BetterDeclipper) |
 | `live_factory/picture.py` | the picture pass: deck pages over the slides, builds, night mode, the before/after sheet |
 | `live_factory/pipeline.py` | state, gates, the Descript steps (from the Conf42 factory, with its credit guards and ledger) |
@@ -327,6 +480,56 @@ Two whole-day Zoom recordings (main room r1, meeting room r2, ~10 h each), from 
 - **A dot in a speaker's name broke the Descript upload** ("Funmilade A. Lesi": "Uploaded file has invalid or
   unsupported media content", 6 tries). Descript reads the media type from the media name, which had no extension.
   `descript.import_file` now always ends the media name in the file's extension.
+
+## Autopilot and YouTube (Marek, 2026-11-27)
+
+"We need to automate the rest of the process, up to the video upload, changing all info, putting thumbnail, adding
+to the playlist, and scheduling (private to public) exactly 5 weeks after the conference ... instead of asking for
+permission to run this further, you'll ship it and write a post-mortem ... ask for forgiveness not for permission".
+His choices: the sign-in reuses the Conf42 factory's OAuth app, with one token per channel; the release is at 09:00
+local; the links go into the WWW sheet.
+
+**`autopilot <event> on`** (cuts.json `"autopilot": true`; settings `autopilot: false` by default, so the two gates
+stay for the manual flow):
+- **Gate 1:** `approve <event>` - Claude approves; a cut whose sharp ends are still flagged is held, never guessed.
+- **Gate 2:** the review in Descript is skipped. After `qa`, the new `selfcheck` step (selfcheck.py) looks at the
+  final MP4:
+  - its first and last words heard again (ends.verify on the final, after Descript's edits);
+  - its length: 75-102% of the cut - Descript only shortens gaps and fillers;
+  - silence: 8 s+ at under -50 dB is a problem (Descript has shortened every real pause), 4 s+ a note;
+  - black picture for 10 s+, unless the recording itself was black;
+  - qa's loudness and the true peak;
+  - the edit report and the chapters, as notes.
+
+  A failing talk is PROBLEMATIC: finished, but never uploaded, with its reasons in `ship report.md`.
+- **Upload** (ytupload.py, ported from the Conf42 cloud factory's, which has run since 2026-11-13): at the end of
+  `run`, and with `upload <event>`. Per checked talk, once, the video id saved first in `<work folder>/youtube.json`:
+  - a resumable `videos.insert`, with youtube.block()'s title and description and tags for the brand, event and city
+    (Science & Technology, not for kids);
+  - private, with `publishAt` = the event's first day + 35 days at 09:00 in the city's IANA zone (`youtube.timezones`,
+    so summer time is right; without an entry the event's UTC offset, noted); `video_release` in metadata.yml
+    overrides it; past the release it goes up public;
+  - the website's thumbnail (/teasers/<speaker>.png, JPEG above 2 MB) and the Descript SRT as captions;
+  - the event's playlist ("SREday Dallas 2026 Q4", made public when missing: its videos stay private until the
+    release), kept in talks.csv order.
+- **Quota:** 100 uploads a day; thumbnails, playlist items and status reads come from 10,000 units. Hitting the day's
+  limit stops the pass with a line; the next pass goes on, and also adds any refused thumbnail, captions or playlist
+  item.
+- **A redo:** the new video goes up. The old one is deleted only when it was never public; otherwise it stays, and
+  the log says so.
+- **Channels:** `youtube-login <brand> <client_secret.json>`, by the person in the browser, writes
+  `~/.live-factory/youtube/<brand>.json` (outside every repo, never printed). Every pass checks the signed-in channel against
+  `youtube.channels` (the id) and the @handle of the event's `youtube_url`, and refuses anything else.
+- **The websites (all five site repos):** `generate.py` shows a talk's player and its Watch button only from the
+  release (`_videos_out`, the same rule at the event's UTC offset), so the sheet can get the link at upload time. The
+  daily build at 04:05 UTC shows them the morning after. A video the team publishes earlier by hand shows from the
+  release too; set `video_release` to show it sooner.
+- **The WWW sheet:** Claude writes the links through the Google Sheets connector: only empty cells, the row found by
+  name.
+- **The report:** `report <event>` writes `ship report.md`, which Claude's postmortem is built on: on YouTube /
+  problematic / stopped / not cut / missing, the credits, and the Descript leftovers.
+
+Tested by `tests/youtube_smoke.py`: a fake YouTube, the release-time rules, and selfcheck on generated finals.
 
 ## Best slides, best sound (Marek, 2026-11-27)
 

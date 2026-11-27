@@ -156,6 +156,91 @@ def fake_transcript(run, rid, pieces):
     run.rset(rid, "transcript", "done", note="fake (--no-whisper)")
 
 
+def _said(*lines, t=0.0, gap=0.6, pause=None):
+    """Words as Whisper gives them for these lines: (start, end, word, probability), ~0.3 s a word, gap s between
+    lines ({"pause": s} items put a longer silence in)."""
+    words = []
+    for line in lines:
+        if isinstance(line, dict):
+            t += line["pause"]
+            continue
+        for w in line.split():
+            words.append((round(t, 2), round(t + 0.25, 2), " " + w, 0.9))
+            t += 0.3
+        t += gap
+    return words
+
+
+def sharp_ends_rules():
+    """ends.py on what speakers really say (phrasings from the published talks, 2026-11-27)."""
+    from live_factory import ends
+    S = ends.sentences
+    # the start: after the MC, past the mic check, on the greeting
+    w = _said("Please welcome our next speaker, Kevin.", {"pause": 4}, "Can you hear me?", "Okay.",
+              "Hi everyone, I'm Kevin, founder of Canvas Cloud.", "Today I want to talk about simulation.", t=100)
+    t, s, why, sure = ends.find_start(S(w), 104, names=["Kevin Brown"])
+    check("ends: start after the MC and the mic check, on the greeting", s and s["text"].startswith("Hi everyone") and sure,
+          (s and s["text"], why))
+    w = _said("Okay, thank you.", "I think we can start.", "So, my name is Jakub, I'm building Paradigm.", t=50)
+    t, s, why, sure = ends.find_start(S(w), 50)
+    check("ends: \"Okay, thank you. I think we can start.\" stripped", s and s["text"].startswith("So, my name is Jakub"),
+          (s and s["text"], why))
+    w = _said("Okay, let me just adjust this, it feels too tall, hello everyone, how are you all doing so far?",
+              "Tired, I know.", t=10)
+    t, s, why, sure = ends.find_start(S(w), 10)
+    check("ends: the greeting inside a set-up line", s and s["text"].lower().startswith("hello everyone"), (s and s["text"], why))
+    w = _said("Who out here feels like the frontier models are too expensive these days?", "Yeah.", t=200)
+    t, s, why, sure = ends.find_start(S(w), 200)
+    check("ends: a cold open after a pause is a sure start", s and s["text"].startswith("Who out here") and sure, why)
+    w = _said("and the people in the organizations that I worked with.", "So that's the first part.", t=300)
+    t, s, why, sure = ends.find_start(S(w), 300)
+    check("ends: caught mid-sentence -> not sure (flagged)", not sure, (s and s["text"], why))
+    # the end: the Q&A out, on the closing thank-you
+    w = _said("And that is how we fixed our paging.", "Thank you.", "Any questions?", {"pause": 2},
+              "Yes, at the back.", "So how do you handle the on-call rotation?", t=1000)
+    t, s, why, sure = ends.find_end(S(w), 1010)
+    check("ends: \"Thank you. Any questions?\" -> ends on \"Thank you.\"", s and s["text"] == "Thank you." and sure, (s and s["text"], why))
+    w = _said("So I think that's all I have.", "Thank you, any questions?", "Great question, so we use Kafka.", t=1000)
+    t, s, why, sure = ends.find_end(S(w), 1010)
+    check("ends: the thank-you part of \"Thank you, any questions?\" (one line)", s and s.get("cut_in_line") and s["norm"] == "thank you",
+          (s and s["text"], why))
+    w = _said("Give it an owner, SLOs and a budget.", "And then you repeat and", {"pause": 0.1}, "so", t=500)
+    t, s, why, sure = ends.find_end(S(w), 506)
+    check("ends: a line hanging on \"and\" is stepped back from", s and s["text"] == "Give it an owner, SLOs and a budget.",
+          (s and s["text"], why))
+    w = _said("So that's the talk.", "Thank you.", "Thank you.", "Thank you very much, Greg.", "You're welcome.", t=700)
+    t, s, why, sure = ends.find_end(S(w), 706, names=["Grzegorz Warzecha", "Greg"])
+    check("ends: the MC thanking the speaker by name is the end of the talk", s and s["text"] == "Thank you." and
+          s["start"] < 702, (s and s["text"], s and s["start"], why))
+    w = _said("We open-sourced it last week.", "So yeah, I'm happy to take any questions.", {"pause": 3},
+              "How does it scale?", t=900)
+    t, s, why, sure = ends.find_end(S(w), 910)
+    check("ends: \"I'm happy to take any questions\" is stripped", s and s["text"] == "We open-sourced it last week.",
+          (s and s["text"], why))
+    w = _said("So now let's look at the second part.", "Any questions so far?", "No?", "Okay, moving on.",
+              "The next slide shows the architecture.", "That's all I have.", "Thank you.", t=400)
+    t, s, why, sure = ends.find_end(S(w), w[-1][1] + 0.5)
+    check("ends: a question mid-talk followed by more slides is not the end", s and s["text"] == "Thank you.", (s and s["text"], why))
+    # Marek on Krishna Reddy (Dallas): "always end on the firm sentence, if it's followed by some mumbling and stuff"
+    w = _said("So this is one of the questions we are trying to answer inside the company.",
+              "what is uh important is the person getting the right data he should be looking at um that should be all "
+              "any questions yes yeah", "How do you index it?", t=600)
+    t, s, why, sure = ends.find_end(S(w), 640)
+    check("ends: a mumbled close after a firm sentence goes, the firm sentence ends the talk",
+          s and s["text"].endswith("inside the company.") and "firm" in why and sure, (s and s["text"], why))
+    w = _said("And that is how we fixed our paging.", "So we went with the bigger cluster in the end.",
+              {"pause": 2}, "Any questions?", t=700)
+    t, s, why, sure = ends.find_end(S(w), 715)
+    check("ends: a firm last sentence stays (nothing stepped back)", s and s["text"].startswith("So we went with"),
+          (s and s["text"], why))
+    w = _said("And we choose Azure or AWS first, if we can, or", t=50)
+    t, s, why, sure = ends.find_end(S(w), 52)
+    check("ends: no sentence that may end the talk -> flagged, never guessed", t is None and not sure, why)
+    w = _said("And that's it.", "Thank you for watching.", "Thank you for watching.", "Thank you for watching.", t=10)
+    check("ends: Whisper's \"Thank you for watching\" echo is dropped",
+          [x["text"] for x in S(w)] == ["And that's it."], [x["text"] for x in S(w)])
+
+
 def main():
     print("LIVE talk factory smoke test in %s (%s)" % (TMP, "tones, fake transcript" if NO_WHISPER else "say + Whisper"))
     os.environ["LIVE_FACTORY_SETTINGS"] = fixture_repo(TMP)
@@ -182,6 +267,7 @@ def main():
     check("just opening an event makes no folder", not os.path.exists(run.dir))
 
     # disk space: a job that does not fit never starts
+    run.cfg["sharp_ends"] = False          # tones, not speech: the sharp ends are tested on their own below
     run.cfg["disk_reserve_gb"] = 10 ** 6
     try:
         run.add([rec_dir], day=1)
@@ -300,6 +386,7 @@ def main():
 
     # extra footage around a cut: 30 s before, 60 s after, never into a neighbour's own cut
     talk_keys = run.sync_talks()
+    run.cfg.update(pad_before_seconds=30, pad_after_seconds=60)
     pad_parts, before, after = run.padded("Bob Martinez & Carol Chen")
     bob, alice_c, david_c = (found[k]["parts"][0] for k in ("Bob Martinez & Carol Chen", "Alice Walker", "David Okafor"))
     check("extra footage before stops at the previous talk's cut", abs(pad_parts[0]["start"] - max(alice_c["end"], bob["start"] - 30)) < 0.2,
@@ -344,6 +431,8 @@ def main():
     check("redo request applied", run.apply_redo_requests() == ["David Okafor"] and t["steps"] == {}
           and "old-composition" in t.get("broken_compositions", []) and len(t.get("redone") or []) == 1)
     check("redo request applied only once", run.apply_redo_requests() == [])
+
+    sharp_ends_rules()
 
     briefs = segment.brief(run)
     text = open(briefs[0], encoding="utf-8").read()

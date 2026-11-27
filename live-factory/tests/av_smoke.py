@@ -212,7 +212,7 @@ def fixture(root):
     settings = os.path.join(root, "settings.av.yml")
     with open(settings, "w") as f:
         f.write("github_root: %s\nbrands:\n  testbrand: {repo: testbrand}\nwork_root: %s\npublish_status: false\n"
-                "pad_before_seconds: 0\npad_after_seconds: 0\nzoom_black_bars: false\ntalk_min_minutes: 0.2\n"
+                "pad_before_seconds: 0\npad_after_seconds: 0\nzoom_black_bars: false\ntalk_min_minutes: 0.2\nsharp_ends: false\n"
                 % (json.dumps(root), json.dumps(os.path.join(root, "work"))))
     return settings, ev, row
 
@@ -477,6 +477,43 @@ def main():
        "-c:a", "aac", "-b:a", "192k", quiet)
     lim = saturation.scan(quiet)
     check("saturation: a limiter holding 14 dB of peaks is not clipping", not lim["some"], saturation.describe(lim))
+
+    # sharp ends in the run: a talk whose edges the rules are not sure of stops before cutting; edges Claude confirmed
+    # in cuts.json are cut exactly; the cut's own edges are heard again (stand-ins for Whisper here)
+    print("sharp ends")
+    from live_factory import ends
+    real_refine, real_verify = ends.refine, ends.verify
+    c0 = next(c for c in run.cuts()["cuts"] if c["key"] == "Alice Walker")
+    s0, e0 = c0["parts"][0]["start"], c0["parts"][-1]["end"]
+    try:
+        run.cfg["sharp_ends"] = True
+        ends.refine = lambda run_, key, cut, names=(), log=None: {
+            "start": s0 + 5, "end": e0 - 5, "first": "Hi everyone", "last": "Thank you.", "why_start": "test",
+            "why_end": "test", "sure": False, "flags": ["start: no greeting or name heard (test)"], "notes": [],
+            "by": "rules", "around_start": [], "around_end": []}
+        heard = []
+        ends.verify = lambda lean, rec, cfg: (heard.append(rec) or ([], ["heard again (stand-in)"]))
+        run.redo("Alice Walker", "sharp ends test")
+        run.process("Alice Walker")
+        t = run.state["talks"]["Alice Walker"]
+        check("sharp ends: unsure edges stop the talk before cutting", "start/end is not sure" in (t.get("error") or "")
+              and (t["steps"].get("cut") or {}).get("status") == "failed", t.get("error"))
+        data = run.cuts()
+        for c in data["cuts"]:
+            if c["key"] == "Alice Walker":
+                c["ends"] = {"start": s0 + 3, "end": e0 - 3, "by": "claude", "why": "test: confirmed"}
+        run.save_cuts(data)
+        run.sync_talks()
+        run.process("Alice Walker")
+        t = run.state["talks"]["Alice Walker"]
+        got = media.probe(lean)["duration"] if os.path.exists(lean) else 0
+        check("sharp ends: the edges confirmed in cuts.json are cut exactly", (t["steps"].get("cut") or {}).get("status")
+              == "done" and abs(got - (e0 - s0 - 6)) < 0.5, "%.1f s, want %.1f" % (got, e0 - s0 - 6))
+        check("sharp ends: the cut's edges are heard again before Descript", heard and heard[-1].get("by") == "claude" and
+              "heard again (stand-in)" in " ".join((t.get("check") or {}).get("notes") or []), t.get("check"))
+    finally:
+        ends.refine, ends.verify = real_refine, real_verify
+        run.cfg["sharp_ends"] = False
 
     print("\n%s" % ("all good" if not FAILS else "%d failed: %s" % (len(FAILS), ", ".join(FAILS))))
     print("files: " + TMP)

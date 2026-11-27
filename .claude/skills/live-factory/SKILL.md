@@ -70,6 +70,26 @@ you need before changing anything.
    talk's cut note: which track/tool saved it, or "the last resort"; the trial's samples are in
    `cuts/<talk>.sound-trial/` - offer them for a listen. A tool that passes the judge but sounds wrong to the person:
    `"declip": "off"` for that talk and redo it.
+   **Sharp ends** (Marek, 2026-11-27: "the beginnings and the ends of talks super sharp and production-ready ... Q&A
+   need to always be outed ... end sharply at the moment when the person finishes, but letting him finish the
+   sentence" - "full auto, so sharp cuts with guardrails"): after cuts.json, run `ends <event>` (background; ~1-2 min
+   a talk on the GPU). It listens closely (Whisper, word timestamps) at every talk's edges and writes
+   `ends_brief.md` in the work folder. **Read the whole brief** - your job, as for the lineup:
+   - Start: the speaker's first words to the room. Not the MC, not "can you hear me?", "are we good to go?",
+     "Okay, thank you. I think we can start", "let me adjust this". A greeting, the name, "thanks for having me", or a
+     cold open after a pause ("So my talk is about ...", "Who here ...?") are fine.
+   - End: the speaker's last finished sentence before the Q&A - ideally the closing "thank you". Always without the
+     Q&A, the MC ("Thank you very much, Greg"), the room ("thank you for the presentation", a question), "any
+     questions?" / "happy to take questions" / "so yeah". Never mid-sentence or on "and" / "so"; when the last
+     sentence can't stand as an end, the one before it. When the close trails off (mumbling, ums, a run with no
+     punctuation) after a firm sentence, end on the firm sentence (Marek: "always end on the firm sentence, if it's
+     followed by some mumbling and stuff").
+   - For each talk, confirm or move the edges in cuts.json:
+     `"ends": {"start": "0:31:12.4", "end": "0:52:40.1", "by": "claude", "why": "..."}` (recording time). A FLAGGED
+     talk stops before cutting until you do. `"ends": "rules"` takes the rules' edges as they are; `"ends": "off"`
+     cuts the coarse parts, with no sharp ends.
+   - When the start is lost (the sound only comes back mid-sentence), say so: start on the first full sentence.
+   Then give the person each talk's first and last sentence at gate 1.
 4. **Gate 1 - the person approves the cuts** in the workbench (section 2). Never tick "approved" yourself unless the
    person explicitly says to approve (e.g. "approve all", "you're on point, ship them"); then approve only what they
    named.
@@ -78,17 +98,19 @@ you need before changing anything.
    fails stops with "stopped before Descript": read the problems and `cuts/<talk>.check.jpg`, fix (the cut, the deck,
    `"sound": "camera"`, `"picture": "video"`) and redo it - never set `"precheck": "off"` without the person's OK).
    Marek 2026-11-27: slow is fine, quality first - it runs on an idle laptop for hours; use the machine fully.
-   Per talk: cut (stereo fix, black-bar zoom, 30 s before / 60 s after for hand-trimming) → Descript
+   Per talk: cut (stereo fix, black-bar zoom, the sharp ends - no extra footage; the cut's own first and last words
+   heard again before the upload) → Descript
    upload → AI edit (Studio Sound 80 %, um/uh only, limiter, gaps). Before the first run of an event, tell them the
    count and the cost: ~8-30 Descript AI credits per talk (Dallas 2026 Q4: 7.7-15.5, about 120 for 12 talks).
-6. **Gate 2 - the person reviews each talk in Descript**, trims the extra footage, ticks Reviewed. Not you, unless
+6. **Gate 2 - the person reviews each talk in Descript** (the edges are final already - no trimming), ticks Reviewed. Not you, unless
    they explicitly tell you a talk is reviewed (`review <event> "<talk>"`).
    When telling them the talks are ready, give the leftovers from `leftovers <event>` (the run also writes them to
    the log and the workbench banner): failed uploads leave compositions with the talk's own name - empty 6 s ones or
    an unedited full-length twin - and Descript's API can't delete them, so they delete the one with the length you
    name. Never count leftovers from your own memory of the night's errors (Austin: you said 3, there were 6).
 7. **Run again** → publish, download, SRT, chapters, loudness, light MP4 → `<Desktop>/video factory - <event>/final videos for YouTube/`.
-8. **YouTube items**: `youtube <event>` → `<Desktop>/video factory - <event>/YouTube items.txt`. Uploading to YouTube is the person's.
+8. **YouTube**: `youtube <event>` → `<Desktop>/video factory - <event>/YouTube items.txt`. Without autopilot the
+   upload is the person's; on autopilot (below) the factory uploads (`upload <event>`).
 9. **Postmortem** (Marek, 2026-10-29): when a run ends (talks in Descript, and again after the export if more broke),
    follow the `postmortem` skill and write `live-factory/postmortems/YYYY-MM-DD-<event>.md`. Before the first step of
    the next event, read the last postmortem's open actions.
@@ -96,6 +118,40 @@ you need before changing anything.
 Other commands: `status <event>`, `retry <event> "<talk>"`, `redo <event> "<talk>" "why"` (cut again + fresh
 Descript composition "<talk> (redo N)" on the next run), `unpause <event>`, `publish` (Factory logs tab of the website),
 `frame <event> r1 h:mm:ss` (one still - look at it with Read), `draft`, `brief`.
+
+## Ship an event (autopilot) - "please ship talks from <event> through live talk factory"
+
+Marek, 2026-11-27: "you use these polished processes to ensure maximum quality, run them locally through our tooling,
+run through descript, download and push into respective sre/llm/platform/pec youtube channels. Then instead of asking
+for permission to run this further, you'll ship it and write a post-mortem ... you'll ask for forgiveness not for
+permission. If we want to go fast, this is the only way". So on such a request nothing waits for him:
+
+1. `git pull` the brand repo, read the last postmortem's open actions, `doctor` (the brand's YouTube sign-in must be
+   there: "YouTube sign-ins"; missing -> the one thing to ask him: `! ... youtube-login <brand> <client_secret.json>`).
+2. `add` the materials he gives, `analyse`, match the lineup (as below, just as carefully), `cuts <event> file.json`.
+3. `autopilot <event> on`.
+4. `ends <event>`: read the whole brief and confirm or move EVERY flagged talk yourself in cuts.json (`"ends"` with
+   `"by": "claude"`). A talk you can't make sure (the start lost, the sound dies) stays flagged: it is left out and named
+   in the report - never guessed.
+5. `look <event>`: read every sheet; fix decks, `"picture": "video"`, `"sound": "camera"` yourself.
+6. `approve <event>` (gate 1 by you; it holds talks whose ends are still flagged). Put the Descript cost in the report,
+   not in a question.
+7. `run <event>` (background). On autopilot there is no review in Descript: after the export the factory checks each
+   final itself (`selfcheck`: first and last words heard again, silences, black picture, loudness, length). A
+   PROBLEMATIC talk does not go to YouTube. The checked talks go to the brand's channel: private, public 5 weeks after
+   the event at 09:00 local, thumbnail from the website, captions, the event's playlist in page order. A talk that
+   fails a step is retried by the run; a stopped one: fix it (redo, the cut, the deck) and run again - your call.
+8. `upload <event>` again the next day when the day's YouTube quota stopped it (the run says so).
+9. The WWW sheet: each uploaded talk's `https://youtu.be/<id>` into the YouTube column of the event's tab (Google
+   Sheets connector), the row found by the speaker's name right before writing (rows move), only empty cells, never
+   over a typed link. The website shows the player only from the release (`_videos_out` in generate.py), so filling
+   it now is safe.
+10. `report <event>` -> `ship report.md`, then the postmortem (`postmortem` skill): on YouTube + when public, missing
+    and why, problematic and what would fix it, credits, Descript leftovers to delete by hand. Give him the summary.
+
+Hard stops even on autopilot: no Descript token, no YouTube sign-in for the brand, the disk, EDITS PAUSED, a channel
+that isn't the brand's. Follow-ups: "fetch talk X" = `add` the new file, match, the same path; "redo Y" = `redo`, then
+`run` - a never-public old video is deleted and replaced, a public one stays (say so) and the new one goes up.
 
 ## Matching the lineup (step 3) - be careful, a wrong cut is worse than none
 
@@ -107,9 +163,9 @@ Descript composition "<talk> (redo N)" on the next run), `unpause <event>`, `pub
      being here today ... So I'm Jay") - never on a mic check ("can you hear me", "test") or set-up chat.
    - It ends at their closing ("that's my time / that's it from me / thank you"). Cut the closing Q&A when it clearly
      is one ("any questions?", "let's do Q&A", "I'm gonna take questions now", then someone asking from the back).
-     Questions in the middle (during a demo) stay. "Hit me up with questions" is not a Q&A. Cut every closing Q&A:
-     the 60 s margin after the cut lets the person keep it in Descript if they want (Marek, 2026-10-29: "cut Q&As,
-     leave margin in descript").
+     Questions in the middle (during a demo) stay. "Hit me up with questions" is not a Q&A. Cut every closing Q&A
+     (Marek, 2026-11-27: "Q&A need to always be outed as they don't prove consistency"); `ends` then sets the exact
+     words.
    - Someone thanking the speaker by name, or "thank you for the presentation", is the MC / audience: the talk ended.
    - Names are misheard (Laya = Leila, Mailo = Mykhailo); some speakers never say their name - confirm by the topic
      (title + abstract against what is said).
