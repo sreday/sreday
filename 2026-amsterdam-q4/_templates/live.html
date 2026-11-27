@@ -38,11 +38,16 @@
   #fs { font: inherit; font-weight: 700; font-size: clamp(12px, 1.05vw, 20px); color: #fff; background: var(--brand); border: 0; border-radius: 999px; padding: 1.1vh 1.6vw; cursor: pointer;
     box-shadow: 0 6px 16px -8px var(--brand); }
   #fs:hover { filter: brightness(1.1); }
-  :fullscreen #fs { display: none; }
+  :fullscreen #fs, #fs[hidden] { display: none; }
   main { flex: 1; display: flex; flex-direction: column; gap: 2vh; min-height: 0; }
+  /* Too much for the screen (a long title on one big card, a break with four rooms "right after"): fit() scales the
+     panes down a step at a time instead of letting the flexbox squash the title and the pill to nothing (x100 dry
+     run 2026-11-11: Amsterdam 12:00 coffee break, Dallas 10:00 title cut through its second line). */
+  main > * { zoom: var(--fit, 1); }
   h2 { margin: 0; font-size: clamp(14px, 1.4vw, 28px); text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-weight: 800; padding-left: .4vw; }
   .grid { flex: 1; display: grid; gap: 1.4vw; grid-template-columns: repeat(var(--cols, 1), minmax(0, 1fr)); grid-template-rows: minmax(0, 1fr); min-height: 0; }
   .card { border-radius: 26px; padding: 2.4vh 1.6vw; display: flex; flex-direction: column; gap: 1.6vh; min-width: 0; min-height: 0; overflow: hidden; }
+  .card > * { flex-shrink: 0; }                           /* never squash a line; only the spacer gives (see fit()) */
   .room { font-weight: 800; font-size: clamp(14px, 1.35vw, 28px); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
   .pill { align-self: flex-start; padding: .5vh .9vw; border-radius: 999px; font-weight: 800; font-size: clamp(11px, 1vw, 20px); text-transform: uppercase; letter-spacing: .08em;
     color: #fff; background: var(--brand); }
@@ -86,7 +91,9 @@
   .row .hm { font-weight: 800; font-size: clamp(18px, 2.3vw, 50px); font-variant-numeric: tabular-nums; color: var(--brand); }
   .row .rt { font-weight: 800; font-size: clamp(16px, 1.9vw, 42px); line-height: 1.2; }
   .row .rw { color: var(--muted); font-size: clamp(13px, 1.35vw, 29px); font-weight: 600; margin-top: .4vh; }
-  .row .rr { color: var(--muted); font-size: clamp(12px, 1.15vw, 25px); font-weight: 700; text-align: right; }
+  .row .rr { color: var(--muted); font-size: clamp(12px, 1.15vw, 25px); font-weight: 700; text-align: right; text-transform: uppercase; letter-spacing: .06em; }  /* room as on the cards */
+  .row.hello { background: #e0f2fe; border-radius: 10px; }
+  .row.hello .rt { color: #0369a1; font-weight: 700; }
   .row.brk .rt { color: var(--muted); }
   footer { display: flex; justify-content: space-between; gap: 2vw; color: var(--muted); font-weight: 600; font-size: clamp(13px, 1.35vw, 29px); padding: 0 .6vw; }
   footer b { color: var(--ink); font-weight: 800; }
@@ -105,7 +112,8 @@
     .card > * { flex-shrink: 0; }
     .who img, .grid[style*="--cols"] .who img, .idle .who img { width: 88px; height: 88px; }
     header { border-radius: 20px; flex-wrap: wrap; gap: 8px 10px; padding: 10px 14px; }
-    .event { order: 3; flex-basis: 100%; }
+    .event { order: 3; flex-basis: 100%; white-space: normal; }
+    .event small { display: block; margin-left: 0; }     /* the date on its own line, not cut to "Nov..." */
     .clock { margin-left: auto; }
     footer { flex-wrap: wrap; gap: 4px 12px; }
   }
@@ -176,7 +184,7 @@
       (it.kind !== 'break' ? '<div class="nt">' + esc(it.title) + '</div>' + (it.who ? esc(it.who) : '') : '') + '</div>';
   }
   function rowHTML(it, room) {
-    return '<div class="row' + (it.kind === 'break' ? ' brk' : '') + '"><div class="hm">' + esc(it.hm) + '</div><div><div class="rt">' + esc(it.title) + '</div>' +
+    return '<div class="row' + (it.kind === 'break' ? ' brk' : '') + (it.hello ? ' hello' : '') + '"><div class="hm">' + esc(it.hm) + '</div><div><div class="rt">' + esc(it.title) + '</div>' +
       (it.who ? '<div class="rw">' + esc(it.who) + (it.org ? ' · ' + esc(it.org) : '') + '</div>' : it.where ? '<div class="rw">' + esc(it.where) + '</div>' : '') +
       '</div><div class="rr">' + (it.kind === 'break' ? '' : esc(room || '')) + '</div></div>';
   }
@@ -217,7 +225,7 @@
       const allBreak = curs.length > 0 && curs.every((c) => c.kind === 'break' && c.title === curs[0].title);
       if (allBreak) {
         const b = curs[0];
-        html = '<div class="card glass hero' + (soon(b, t) ? ' soon' : '') + '"><span class="pill break">Break</span><div class="title">' + esc(b.title) + '</div>' +
+        html = '<div class="card glass hero' + (soon(b, t) ? ' soon' : '') + '"><span class="pill break">' + (b.hello ? 'Welcome' : 'Break') + '</span><div class="title">' + esc(b.title) + '</div>' +
           (b.where ? '<div class="where">' + esc(b.where) + '</div>' : '') + progress(b, t, true) + '</div>';
         const after = rooms.filter((r) => r.next && r.next.kind !== 'break');
         if (after.length) {
@@ -243,15 +251,26 @@
         const later = on.length ? rooms.filter((r) => !r.cur && r.next && r.next.kind !== 'break' && T(r.next.start) - t < 60 * 60000) : [];
         if (later.length) html += '<h2>Coming up in the other rooms</h2><div class="list glass">' + later.map((r) => rowHTML(r.next, r.room)).join('') + '</div>';
       }
-      // The next break everyone shares, for the footer.
-      const nb = merged(day).find((it) => it.kind === 'break' && !it.wrap && T(it.start) > t);
+      // The next break everyone shares, for the footer (the Hello intro is not a break).
+      const nb = merged(day).find((it) => it.kind === 'break' && !it.wrap && !it.hello && T(it.start) > t);
       if (nb) foot = '<span>Next break: <b>' + esc(nb.title) + '</b> at <b>' + esc(nb.hm) + '</b> (in ' + span(T(nb.start) - t) + ')</span>';
-      const wrap = merged(day).find((it) => it.wrap);
+      // Rooms can wrap at different times (PLATFORMday SF: mini room 17:30, main 18:00): the last one is the day's end.
+      const wrap = merged(day).filter((it) => it.wrap).sort((a, b) => T(b.start) - T(a.start))[0];
       if (wrap) foot += '<span>Wrap up at <b>' + esc(wrap.hm) + '</b></span>';
     }
     if (shift) foot += '<span class="try">Trying it at ' + hm(t) + ' (?at=)</span>';
     $('main').innerHTML = html;
     $('foot').innerHTML = foot;
+    fit();
+  }
+  // The venue screen never scrolls: when the panes don't fit, scale them down 5% at a time (all in one go, before
+  // the browser paints, so nothing flickers). A phone scrolls instead.
+  function fit() {
+    const m = $('main');
+    m.style.setProperty('--fit', 1);
+    if (matchMedia('(max-width: 800px)').matches) return;
+    const over = () => m.scrollHeight > m.clientHeight + 1 || [...m.querySelectorAll('.card')].some((c) => c.scrollHeight > c.clientHeight + 1);
+    for (let z = 1; z > 0.5 && over();) { z = Math.round((z - 0.05) * 100) / 100; m.style.setProperty('--fit', z); }
   }
   function clock() { $('clock').textContent = hm(now()); }
 
@@ -265,12 +284,18 @@
     } catch (e) {}
   }
 
+  // iPhone Safari has no full screen for a page: no button there (it threw a TypeError).
+  const goFull = document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen;
+  if (!goFull) $('fs').hidden = true;
   $('fs').addEventListener('click', () => {
     const d = document, el = d.documentElement;
-    if (d.fullscreenElement) d.exitFullscreen();
-    else (el.requestFullscreen || el.webkitRequestFullscreen).call(el);
+    if (d.fullscreenElement || d.webkitFullscreenElement) (d.exitFullscreen || d.webkitExitFullscreen).call(d);
+    else if (goFull) goFull.call(el);
   });
-  document.addEventListener('keydown', (e) => { if (e.key === 'f' || e.key === 'F') $('fs').click(); });
+  document.addEventListener('keydown', (e) => { if ((e.key === 'f' || e.key === 'F') && goFull) $('fs').click(); });
+  // Going full screen (or the font arriving) changes the room there is: fit again right away, not 5 s later.
+  addEventListener('resize', render);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
   render();
   clock();
   setInterval(clock, 1000);
