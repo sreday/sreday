@@ -278,8 +278,10 @@ def tighten(lv, a, b, thr=None):
 
 
 def track_recordings(state, track):
-    """The recordings of one track in playing order (their clock if they have one, else the file name)."""
-    recs = [(rid, r) for rid, r in state.get("recordings", {}).items() if str(r.get("track")) == str(track)]
+    """The video recordings of one track in playing order (their clock if they have one, else the file name).
+    Separate sound recordings are left out: talks are cut from the videos, their sound is laid in at the cut."""
+    recs = [(rid, r) for rid, r in state.get("recordings", {}).items() if str(r.get("track")) == str(track)
+            and r.get("kind") != "sound"]
     return sorted(recs, key=lambda x: (x[1].get("probe", {}).get("creation_time") or "~", x[1]["file"].lower()))
 
 
@@ -510,7 +512,7 @@ def brief(run):
     """Write segment_brief_<track>.md per track that has analysed recordings; returns the paths."""
     sch, paths = events.schedule(run.ev), []
     talks = {t["key"]: t for t in events.talks(run.ev)}
-    tracks = sorted({str(r.get("track")) for r in run.state.get("recordings", {}).values()})
+    tracks = sorted({str(r.get("track")) for r in run.state.get("recordings", {}).values() if r.get("kind") != "sound"})
     min_gap = float(run.cfg.get("min_gap_seconds", 20))
     for tr in tracks:
         if tr not in sch:
@@ -598,7 +600,7 @@ def draft(run):
     cfg = run.cfg
     min_gap = float(cfg.get("min_gap_seconds", 20))
     lead, tail = float(cfg.get("cut_lead_seconds", 2)), float(cfg.get("cut_tail_seconds", 3))
-    tracks = sorted({str(r.get("track")) for r in run.state.get("recordings", {}).values()})
+    tracks = sorted({str(r.get("track")) for r in run.state.get("recordings", {}).values() if r.get("kind") != "sound"})
     for tr in tracks:
         if tr not in sch:
             continue
@@ -773,6 +775,10 @@ def validate(run, data):
             r = recs.get(p.get("rec"))
             if not r:
                 probs.append("ERROR %s: no recording %r" % (k, p.get("rec")))
+                continue
+            if r.get("kind") == "sound":
+                probs.append("ERROR %s: %s is a separate sound recording - cut from the video; its sound is laid in "
+                             "by itself" % (k, p.get("rec")))
                 continue
             a, b = parse_stamp(p.get("start", 0)), parse_stamp(p.get("end", 0))
             dur = r.get("probe", {}).get("duration") or 0

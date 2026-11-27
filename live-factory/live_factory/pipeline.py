@@ -29,11 +29,13 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 import yaml
 
-from . import analyse, events, machine, media, segment, stereo, youtube
+from . import analyse, audiosync, events, machine, media, picture, segment, stereo, youtube
 from .descript import Descript
 
 HERE = events.HERE
 VIDEO_EXT = (".mp4", ".mov", ".m4v", ".mkv", ".mts", ".m2ts", ".avi", ".webm", ".mxf")
+MEDIA_EXT = VIDEO_EXT + audiosync.AUDIO_EXT     # a sound-only file is a separate sound recording (audiosync.py)
+PICTURE_VERSION = 1                             # bump when picture.py's plans change, so cached plans are made again
 REC_STEPS = ["copy", "levels", "transcript", "frames", "proxy"]
 STEPS = ["cut", "upload", "edit", "review", "publish", "download", "srt", "chapters", "loudness", "qa"]
 MIN_TALK_SECONDS = 30
@@ -208,19 +210,21 @@ class Run:
                 json.dump(led, f, indent=1, ensure_ascii=False)
 
     # ---- 1. add: recordings in, each tied to a day + track ------------------------------------------------------
-    def add(self, paths, day=None, track=None, in_place=False):
+    def add(self, paths, day=None, track=None, in_place=False, sound=False):
         """Register recordings (files, or folders of them). Copied into <event>/in/ unless in_place (then read where
-        they are - an external SSD that stays plugged in). The source is never changed or deleted. Returns the ids."""
+        they are - an external SSD that stays plugged in). The source is never changed or deleted. Sound-only files
+        (.wav, .mp3, ...) - and any file with sound=True - are separate sound recordings: never cut from, their
+        sound replaces the camera's where they cover a talk (audiosync.py). Returns the ids."""
         files = []
         for p in paths:
             p = os.path.abspath(os.path.expanduser(p))
             if os.path.isdir(p):
-                files += sorted(os.path.join(p, f) for f in os.listdir(p) if f.lower().endswith(VIDEO_EXT)
+                files += sorted(os.path.join(p, f) for f in os.listdir(p) if f.lower().endswith(audiosync.AUDIO_EXT if sound else VIDEO_EXT)
                                 and not f.startswith("."))
-            elif p.lower().endswith(VIDEO_EXT):
+            elif p.lower().endswith(MEDIA_EXT):
                 files.append(p)
             else:
-                raise ValueError("%s is not a video (%s)" % (p, ", ".join(VIDEO_EXT)))
+                raise ValueError("%s is not a video or a sound file (%s)" % (p, ", ".join(MEDIA_EXT)))
         if not files:
             raise ValueError("no videos in %s" % ", ".join(paths))
         tr = events.track_for(self.ev, track, day)
@@ -255,12 +259,18 @@ class Run:
                                                  "track": tr, "day": sch["day"], "room": sch["room"],
                                                  "in_place": bool(in_place), "path": src if in_place else None,
                                                  "steps": {}, "added": now()}
+                if sound or src.lower().endswith(audiosync.AUDIO_EXT):
+                    self.state["recordings"][rid]["kind"] = "sound"
                 self.save()
             added.append(rid)
-            self.note("%s: %s - day %d, track %s (%s)%s" % (
+            self.note("%s: %s - day %d, track %s (%s)%s%s" % (
                 rid, os.path.basename(src), sch["day"], tr, sch["room"],
+                " - separate SOUND: placed on the videos after the analysis" if self.is_sound(rid) else "",
                 " - read in place: that file is the ONLY copy, back it up" if in_place else ""))
         return added
+
+    def is_sound(self, rid):
+        return (self.state["recordings"].get(rid) or {}).get("kind") == "sound"
 
     def rec_path(self, rid):
         r = self.state["recordings"][rid]
@@ -411,6 +421,135 @@ class Run:
                 self.rset(rid, cur, "failed", error=str(ex)[:400])
                 self.note("FAILED %s at %s: %s" % (rid, cur, ex))
                 traceback.print_exc()
+        self.sync_sound()
+
+    # ---- separate sound: where each sound recording sits on the videos (audiosync.py) ---------------------------
+    def sync_sound(self, force=False):
+        """Place every separate sound recording on the videos of its day. Done again when videos were added since."""
+        if not self.cfg.get("separate_sound", True):
+            return
+        recs = self.state["recordings"]
+        for sid in sorted((r for r in recs if self.is_sound(r)), key=lambda k: int(k[1:])):
+            s = recs[sid]
+            if (s["steps"].get("levels") or {}).get("status") != "done":
+                continue
+            vids = sorted(rid for rid, r in recs.items() if not self.is_sound(rid) and r.get("day") == s.get("day")
+                          and (r["steps"].get("levels") or {}).get("status") == "done")
+            step = s["steps"].get("sync") or {}
+            if not force and step.get("status") == "done" and step.get("videos") == vids:
+                continue
+            if not vids:
+                self.rset(sid, "sync", "done", videos=[], note="no video of day %s to place it on yet" % s.get("day"))
+                continue
+            try:
+                self.rset(sid, "sync", "running", label="placing the sound on the videos", percent=0)
+                data = audiosync.sync(sid, self.rec_path(sid), os.path.join(self.rec_dir(sid), "fingerprint.npy"),
+                                      [(v, self.rec_path(v), os.path.join(self.rec_dir(v), "fingerprint.npy")) for v in vids],
+                                      lambda label, pct=None: self.rset(sid, "sync", "running", label=label, percent=pct))
+                audiosync.save(os.path.join(self.rec_dir(sid), "sync.json"), data)
+                self.rset(sid, "sync", "done", videos=vids, stretches=len(data["stretches"]),
+                          note="; ".join(data["notes"][:3]))
+                for n in data["notes"]:
+                    self.note(n)
+            except Exception as ex:
+                self.rset(sid, "sync", "failed", error=str(ex)[:400])
+                self.note("FAILED placing %s on the videos: %s" % (sid, ex))
+                traceback.print_exc()
+
+    def syncs(self):
+        """{sound rid: sync.json} of every placed sound recording."""
+        out = {}
+        for rid in self.state["recordings"]:
+            if self.is_sound(rid):
+                d = audiosync.load(os.path.join(self.rec_dir(rid), "sync.json"))
+                if d:
+                    out[rid] = d
+        return out
+
+    def sound_for(self, cut, parts):
+        """The separate sound for each (padded) part: ([compose() sound pieces or None per part], notes)."""
+        if cut.get("sound") == "camera":
+            return [None] * len(parts), ["sound: the camera's own (separate sound off for this talk)"]
+        syncs = self.syncs() if self.cfg.get("separate_sound", True) else {}
+        if not syncs:
+            return [None] * len(parts), []
+        out, notes = [], []
+        for p in parts:
+            vlv = self.levels(p["rec"])
+            pieces = []
+            for sid, st, a, b in audiosync.pieces(syncs, p["rec"], p["start"], p["end"]):
+                slv = self.levels(sid)
+                use, why = audiosync.choose(vlv, slv, a, b, st)
+                notes.append("sound %s-%s of the clip: %s (%s)" % (segment.stamp(a - p["start"]), segment.stamp(b - p["start"]),
+                                                                    why, sid))
+                if not use:
+                    continue
+                s_from, s_to = (a - st["shift"]) / st["scale"], (b - st["shift"]) / st["scale"]
+                fix = stereo.check(slv, s_from, s_to, self.cfg) if slv else {"af": None}
+                sp_s, _ = audiosync.level_db(slv, s_from, s_to)
+                sp_v, _ = audiosync.level_db(vlv, a, b)
+                gain = max(-20.0, min(20.0, sp_s - sp_v)) if sp_s is not None and sp_v is not None else 0.0
+                pieces.append({"src": self.rec_path(sid), "start": s_from, "end": s_to, "scale": st["scale"],
+                               "at": a - p["start"], "af": fix.get("af"), "own_gain_db": gain})
+            if pieces:
+                covered = sum((x["end"] - x["start"]) * x["scale"] for x in pieces)
+                notes.append("separate sound covers %d%% of the clip from %s" % (
+                    100 * covered / max(1.0, p["end"] - p["start"]), p["rec"]))
+            out.append(pieces or None)
+        return out, notes
+
+    # ---- the picture pass: deck pages over the slides, night mode put right (picture.py) -------------------------
+    def picture_for(self, key, cut, parts, on_progress=None, force=False):
+        """The picture plan of each (padded) part, cached in cuts/<key>.picture.json while the parts and the deck stay
+        the same. Returns ([plan or None per part], deck path, notes)."""
+        if cut.get("picture") == "video" or not (self.cfg.get("slides_replace", True) or self.cfg.get("night_mode_fix", True)):
+            return [None] * len(parts), None, ["picture: the recording as it is (picture pass off%s)" % (
+                " for this talk" if cut.get("picture") == "video" else "")]
+        why = picture.available()
+        if why:
+            return [None] * len(parts), None, [why]
+        deck = picture.find_deck(self, key, cut)
+        sig = json.dumps([[p["rec"], round(p["start"], 2), round(p["end"], 2)] for p in parts] +
+                         [deck, os.path.getmtime(deck) if deck else 0, PICTURE_VERSION,
+                          bool(self.cfg.get("slides_replace", True)), bool(self.cfg.get("night_mode_fix", True))])
+        path = os.path.join(self.cut_dir, key + ".picture.json")
+        cached = picture.load(path)
+        if cached and cached.get("sig") == sig and not force:
+            plans = cached["plans"]
+        else:
+            plans = []
+            for i, p in enumerate(parts):
+                prog = (lambda label, pct=None, i=i: on_progress and on_progress(
+                    ("part %d: %s" % (i + 1, label)) if len(parts) > 1 else label, pct))
+                plans.append(picture.plan(self.rec_path(p["rec"]), p["start"], p["end"], deck, self.cfg, prog))
+            os.makedirs(self.cut_dir, exist_ok=True)
+            picture.save(path, {"sig": sig, "deck": deck, "plans": plans, "at": now()})
+            for i, (p, pl) in enumerate(zip(parts, plans)):
+                try:
+                    if pl:
+                        picture.contact_sheet(self.rec_path(p["rec"]), pl, p["start"], p["end"],
+                                              os.path.join(self.cut_dir, "%s.picture%s.jpg" % (key, "" if i == 0 else "-%d" % (i + 1))),
+                                              deck)
+                except Exception as ex:
+                    self.note("%s: the before/after sheet failed: %s" % (key, ex))
+        notes = [n for pl in plans if pl for n in pl["notes"]]
+        return plans, deck, notes
+
+    def picture_extra(self, key, plan, part, size):
+        """compose()'s slides + colour for one part from its plan, the deck pages rendered at the output size."""
+        if not plan:
+            return {}
+        extra = {}
+        if plan.get("colour"):
+            extra["colour"] = plan["colour"]
+        segs = [s for s in plan.get("pages") or [] if s["t1"] > part["start"] and s["t0"] < part["end"]]
+        if segs and plan.get("deck"):
+            folder = os.path.join(self.cut_dir, "_deck", re.sub(r"[^\w.-]+", "_", key), "%s_%d" % (part["rec"], int(part["start"])))
+            imgs = picture.page_images(plan["deck"], [picture.variant(s) for s in segs], size[0], size[1], folder)
+            lst, expr = picture.slide_track(plan, part["start"], part["end"], imgs, folder)
+            if lst:
+                extra["slides"] = (lst, expr)
+        return extra
 
     def analyse_one(self, rid):
         r, cfg = self.state["recordings"][rid], self.cfg
@@ -435,6 +574,10 @@ class Run:
             words = sum(len(s["text"].split()) for s in segs)
             self.rset(rid, "transcript", "done", note="%d segments, %d words, model %s" % (
                 len(segs), words, "/".join(machine.whisper_setup(cfg)[:2])))
+        if self.is_sound(rid):
+            for step in ("frames", "proxy"):
+                if not done(step):
+                    self.rset(rid, step, "done", note="sound only")
         if not done("frames"):
             self.rset(rid, "frames", "running", label="taking stills")
             got = media.stills(src, os.path.join(folder, "frames"), int(cfg.get("frame_every_seconds") or 120))
@@ -619,10 +762,28 @@ class Run:
                         p0 = t["parts"][0]
                         crop, zoom_note = media.black_bars(self.rec_path(p0["rec"]), p0["start"], p0["end"],
                                                            min_zoom_percent=float(cfg.get("zoom_min_percent", 5)))
+                    cut_cfg = next((c for c in self.cuts()["cuts"] if c["key"] == key), {})
+                    plans, deck, pic_notes = self.picture_for(key, cut_cfg, padded, on_progress=progress("cut"))
+                    sounds, snd_notes = self.sound_for(cut_cfg, padded)
+                    if any(pl and pl.get("shown", 0) >= 0.9 for pl in plans):
+                        crop, zoom_note = None, None          # the deck pages fill the frame: no zoom wanted
                     self.set(key, "cut", "running", label="cutting", percent=0)
-                    parts = [(self.rec_path(p["rec"]), p["start"], p["end"]) for p in padded]
+                    parts = []
+                    for p, pl, snd in zip(padded, plans, sounds):
+                        src = self.rec_path(p["rec"])
+                        pi = (self.state["recordings"][p["rec"]].get("probe") or {})
+                        size = media.out_size(pi.get("width") or 0, pi.get("height") or 0, 1080, crop)
+                        extra = self.picture_extra(key, pl, p, size)
+                        if snd:
+                            extra["sound"] = snd
+                        parts.append((src, p["start"], p["end"], extra))
                     media.cut(parts, lean, st.get("af"), on_progress=progress("cut"), cq=int(cfg.get("cut_crf") or 18),
                               crop=crop)
+                    with self.lock:
+                        t["picture"] = {"deck": deck, "notes": pic_notes,
+                                        "shown": [pl.get("shown") if pl else None for pl in plans],
+                                        "night": [(pl.get("night") or {}).get("on") if pl else None for pl in plans]}
+                        t["sound"] = {"notes": snd_notes, "separate": any(sounds)}
                     info = media.probe(lean)
                     core = sum(p["end"] - p["start"] for p in t["parts"])
                     with self.lock:
@@ -631,9 +792,12 @@ class Run:
                         t["in_clip"] = {"start": round(before, 1), "end": round(before + core, 1), "before": round(before, 1),
                                         "after": round(after, 1)}
                         t["resolution"] = media.pick_resolution(info["width"], info["height"], cfg["max_resolution"])
-                    self.set(key, "cut", "done", sig=t["cut_sig"], note="%s; the talk runs %s-%s in the clip; %s%s" % (
+                    shown = [x for x in t["picture"]["shown"] if x]
+                    self.set(key, "cut", "done", sig=t["cut_sig"], note="%s; the talk runs %s-%s in the clip; %s%s%s%s" % (
                         segment.stamp(info["duration"]), segment.stamp(before), segment.stamp(before + core), st["note"],
-                        "; " + zoom_note if crop else ""))
+                        "; " + zoom_note if crop else "",
+                        "; deck pages on %d%% of it" % (100 * max(shown)) if shown else "",
+                        "; separate sound" if t["sound"]["separate"] else ""))
             d = Descript()
             pname = cfg["project_name"].format(event=self.ev["title"])
             redos = len(t.get("redone") or [])

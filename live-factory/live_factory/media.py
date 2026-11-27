@@ -127,20 +127,119 @@ def encode(src, dst, start=None, end=None, af=None, max_short_side=1080, cq=21, 
     return dst
 
 
-def cut(parts, dst, af=None, max_short_side=1080, on_progress=None, cq=18, crop=None):
-    """One talk out of the recordings: parts = [(src, start, end)] in order (a talk split across two files has two).
-    Each part is encoded with the same settings, then joined without another encode. The cut goes to Descript, which
-    encodes it again, so it is kept close to the source (cq 18); the light file is the final one (normalize)."""
+def out_size(w, h, max_short_side=1080, crop=None):
+    """The frame size encode() writes for a w x h source (the deck pages are rendered at exactly this size)."""
+    big = w and h and min(w, h) > max_short_side
+    if crop or big:
+        if not big:
+            return w, h
+        return ((round(w * max_short_side / h / 2) * 2, max_short_side) if h <= w
+                else (max_short_side, round(h * max_short_side / w / 2) * 2))
+    return w - w % 2, h - h % 2
+
+
+def _fps(src):
+    r = run([tool("ffprobe"), "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=avg_frame_rate",
+             "-of", "csv=p=0", src]).stdout.strip()
+    try:
+        a, b = r.split("/")
+        f = float(a) / float(b)
+        return f if 5 <= f <= 120 else 30.0
+    except (ValueError, ZeroDivisionError):
+        return 30.0
+
+
+def compose(src, dst, start, end, af=None, max_short_side=1080, cq=18, crop=None, slides=None, colour=None,
+            sound=None, on_progress=None, what="cutting"):
+    """encode() with the picture and sound passes: [start, end] of src, plus
+      slides = (ffconcat list, enable expression) - the deck pages laid over the video at their times (clip seconds);
+      colour  = an ffmpeg filter for the video that stays (night mode put right);
+      sound   = [{"src", "start", "end" (its own seconds), "scale", "at" (clip seconds), "af", "gain_db"}] - pieces of
+                a separate sound recording, drift-corrected and placed at their moment; the camera's own sound is
+                muted under them and fills the rest ("own_gain_db" in the first piece levels it to them).
+    Falls back to the plain encode() when there is nothing to add."""
+    if not (slides or colour or sound):
+        return encode(src, dst, start, end, af, max_short_side, cq=cq, on_progress=on_progress, what=what, crop=crop)
     safe_target(dst)
-    if len(parts) == 1:
-        src, a, b = parts[0]
-        return encode(src, dst, a, b, af, max_short_side, cq=cq, on_progress=on_progress, what="cutting", crop=crop)
+    info = probe(src)
+    length = end - start
+    W, H = out_size(info["width"], info["height"], max_short_side, crop)
+    head = ["-hide_banner", "-loglevel", "error", "-y"]
+    part = "%s.%d.part.mp4" % (dst, os.getpid())
+    err = ""
+    for how, hw, vf, venc in _encoders(cq, max_short_side, info["width"], info["height"], crop):
+        inputs = hw + ["-ss", "%.3f" % start, "-to", "%.3f" % end, "-i", src]
+        n = 1
+        chain = list(vf) + ([colour] if colour else []) + ["scale=%d:%d" % (W, H), "setsar=1"]
+        graph = ["[0:v]%s[base]" % ",".join(chain)]
+        vout = "[base]"
+        if slides:
+            inputs += ["-f", "concat", "-safe", "0", "-i", slides[0]]
+            graph.append("[%d:v]fps=%.3f,scale=%d:%d,setsar=1,format=yuv420p[deck]" % (n, _fps(src), W, H))
+            graph.append("[base][deck]overlay=0:0:eof_action=pass:enable='%s'[vid]" % slides[1])
+            vout, n = "[vid]", n + 1
+        graph.append("%sformat=yuv420p[v]" % vout)
+        if sound:
+            own = ["aresample=48000"] + ([af] if af else [])
+            g0 = sound[0].get("own_gain_db") or 0
+            if g0:
+                own.append("volume=%.2fdB" % g0)
+            own.append("volume=0:enable='%s'" % "+".join("between(t,%.3f,%.3f)" % (p["at"], p["at"] + (p["end"] - p["start"]) * p["scale"])
+                                                         for p in sound))
+            graph.append("[0:a]%s[own]" % ",".join(own))
+            mix = ["[own]"]
+            for k, p in enumerate(sound):
+                inputs += ["-ss", "%.3f" % p["start"], "-to", "%.3f" % p["end"], "-i", p["src"]]
+                f = ["aresample=48000", "asetrate=%.6f" % (48000 / p["scale"]), "aresample=48000"]
+                f += ([p["af"]] if p.get("af") else []) + ["aformat=channel_layouts=stereo"]
+                if p.get("gain_db"):
+                    f.append("volume=%.2fdB" % p["gain_db"])
+                ms = int(round(p["at"] * 1000))
+                f.append("adelay=%d:all=1" % ms)
+                graph.append("[%d:a]%s[s%d]" % (n, ",".join(f), k))
+                mix.append("[s%d]" % k)
+                n += 1
+            graph.append("%samix=inputs=%d:normalize=0:duration=first,aformat=channel_layouts=stereo[a]" % ("".join(mix), len(mix)))
+            amap = ["-map", "[a]"]
+        else:
+            if af:
+                graph.append("[0:a]%s[a]" % af)
+                amap = ["-map", "[a]"]
+            else:
+                amap = ["-map", "0:a:0?"]
+        args = (head + inputs + ["-filter_complex", ";".join(graph), "-map", "[v]"] + amap + venc +
+                ["-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2", "-movflags", "+faststart", "-t", "%.3f" % length])
+        rc, err = _ffmpeg_progress([tool("ffmpeg")] + args + ["-progress", "pipe:1", "-nostats", part], length,
+                                   lambda pct: on_progress and on_progress("%s on the %s - %d%%" % (what, how, pct), pct))
+        if rc == 0 and verify(part, length) is None:
+            break
+        if rc == 0:
+            err = "file failed the check: " + str(verify(part, length))
+        if os.path.exists(part):
+            os.remove(part)
+    else:
+        raise RuntimeError("%s failed: %s" % (what, err[-400:]))
+    os.replace(part, dst)
+    return dst
+
+
+def cut(parts, dst, af=None, max_short_side=1080, on_progress=None, cq=18, crop=None):
+    """One talk out of the recordings: parts = [(src, start, end)] or [(src, start, end, extra)] in order (a talk
+    split across two files has two); extra = compose()'s slides / colour / sound for that part. Each part is encoded
+    with the same settings, then joined without another encode. The cut goes to Descript, which encodes it again,
+    so it is kept close to the source (cq 18); the light file is the final one (normalize)."""
+    safe_target(dst)
+    norm = [(p[0], p[1], p[2], (p[3] if len(p) > 3 else None) or {}) for p in parts]
+    if len(norm) == 1:
+        src, a, b, extra = norm[0]
+        return compose(src, dst, a, b, af, max_short_side, cq=cq, on_progress=on_progress, what="cutting", crop=crop,
+                       **extra)
     pieces = []
     try:
-        for i, (src, a, b) in enumerate(parts):
+        for i, (src, a, b, extra) in enumerate(norm):
             p = "%s.piece%d.mp4" % (dst, i)
-            encode(src, p, a, b, af, max_short_side, cq=cq, what="cutting part %d of %d" % (i + 1, len(parts)),
-                   on_progress=on_progress, crop=crop)
+            compose(src, p, a, b, af, max_short_side, cq=cq, what="cutting part %d of %d" % (i + 1, len(norm)),
+                    on_progress=on_progress, crop=crop, **extra)
             pieces.append(p)
         listing = dst + ".concat.txt"
         with open(listing, "w", encoding="utf-8") as f:

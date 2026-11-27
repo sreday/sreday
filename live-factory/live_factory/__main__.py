@@ -4,7 +4,15 @@
                                        register recordings (copied in from the card; --in-place reads them where they
                                        are). --track is the schedule track (1, 2 ...) or the room ("screen 2"); a day
                                        with one track needs only --day
-  python -m live_factory analyse <event> [r1 r2 ...]   levels, Whisper transcript, stills, review copy (local, free)
+                                       --sound: the files are a separate sound recording (a recorder on the
+                                       desk); .wav/.mp3/.m4a/... files are taken as sound by themselves
+  python -m live_factory analyse <event> [r1 r2 ...]   levels, Whisper transcript, stills, review copy (local, free);
+                                                       then places every separate sound recording on the videos
+  python -m live_factory sync <event> [--again]        place the separate sound recordings on the videos (again)
+  python -m live_factory look <event> ["<talk>" ...] [--again]
+                                                       the picture pass before the run: deck pages found on screen,
+                                                       night mode, the separate sound - per talk, with a before/after
+                                                       sheet cuts/<talk>.picture.jpg (all cuts, or the talks named)
   python -m live_factory brief <event>                 segment_brief_<track>.md for Claude's lineup match
   python -m live_factory draft <event> [--replace]     a first automatic guess at cuts.json (keeps approved cuts)
   python -m live_factory cuts <event> [file.json]      check cuts.json (or take this file as the new one) and list it
@@ -142,12 +150,53 @@ def dispatch(run, cmd, argv):
         day, rest = flag(argv[2:], "--day")
         track, rest = flag(rest, "--track")
         in_place, rest = flag(rest, "--in-place", has_value=False)
-        ids = run.add(rest, day=day, track=track, in_place=bool(in_place))
+        sound, rest = flag(rest, "--sound", has_value=False)
+        ids = run.add(rest, day=day, track=track, in_place=bool(in_place), sound=bool(sound))
         print("added: %s - next: python -m live_factory analyse %s" % (", ".join(ids) or "nothing new", run.ev["id"]))
     elif cmd == "analyse":
         with run.job("analyse"):
             run.analyse(argv[2:] or None)
         print(json.dumps(pipeline.summary(run.state), indent=1))
+    elif cmd == "sync":
+        again, _ = flag(argv[2:], "--again", has_value=False)
+        with run.job("sync"):
+            run.sync_sound(force=bool(again))
+        for sid, d in run.syncs().items():
+            print("%s (%s):" % (sid, run.state["recordings"][sid]["file"]))
+            for n in d.get("notes") or []:
+                print("  " + n)
+        if not run.syncs():
+            print("no separate sound recordings placed (add them with: add <event> <file> --day N --sound)")
+    elif cmd == "look":
+        again, rest = flag(argv[2:], "--again", has_value=False)
+        cuts = run.cuts()["cuts"]
+        if rest:
+            cuts = [c for c in cuts if c["key"] in rest]
+            missing = set(rest) - {c["key"] for c in cuts}
+            if missing:
+                raise SystemExit("no cut for: %s" % ", ".join(sorted(missing)))
+        with run.job("look"):
+            for c in cuts:
+                key = c["key"]
+                saved = run.state["talks"].get(key)
+                run.state["talks"].setdefault(key, {"key": key, "parts": c["parts"], "steps": {}, "current": None, "error": None})
+                run.state["talks"][key]["parts"] = c["parts"]
+                try:
+                    padded, _, _ = run.padded(key)
+                finally:
+                    if saved is None:
+                        run.state["talks"].pop(key, None)
+                    else:
+                        run.state["talks"][key] = saved
+                print("%s%s" % (key, "" if c.get("approved") else "  (not approved yet)"))
+                plans, deck, notes = run.picture_for(key, c, padded, force=bool(again),
+                                                     on_progress=lambda label, pct=None: None)
+                _, snd = run.sound_for(c, padded)
+                for n in notes + snd:
+                    print("  " + n)
+                sheet = os.path.join(run.cut_dir, key + ".picture.jpg")
+                if os.path.exists(sheet):
+                    print("  before/after: " + sheet)
     elif cmd == "brief":
         for p in segment.brief(run):
             print(p)

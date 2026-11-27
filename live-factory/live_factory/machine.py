@@ -211,6 +211,10 @@ def doctor(cfg, check_descript=True):
             missing.append(mod)
     add("Python packages", not missing, "all there" if not missing else "missing: " + ", ".join(missing),
         install_hint("whisper"))
+    from . import picture
+    why = picture.available()
+    add("Picture pass", not why, "deck pages over the slides, night mode: ready" if not why else why,
+        "env/bin/python -m pip install opencv-python-headless pypdfium2 (or run setup again)", required=False)
     ff, fp = find_tool("ffmpeg"), find_tool("ffprobe")
     add("ffmpeg / ffprobe", ff and fp, ff or "not found", install_hint("ffmpeg"))
     model, device, compute = whisper_setup(cfg)

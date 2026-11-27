@@ -127,3 +127,19 @@ event_folder: "video factory - {event}"
 final_folder: final videos for YouTube   # inside the event's folder
 render_parallel: 2                  # cuts rendered at once
 parallel_talks: 2                   # talks going through Descript at once
+
+# ---- 5. the picture and the sound (Marek, 2026-11-27: "the best quality sound and the best quality slides full
+# screen - period. If there's a demo, then we switch to the inferior recording") -----------------------------------
+# Deck pages: wherever the recording shows a page of the speaker's deck (Presenter View, a screen share with the
+# taskbar, a headshot in the corner, a camera on a small TV), that stretch shows the page itself, sharp and full
+# frame; build steps (bullets appearing one by one) are shown as they appeared. Demos, browsers, code and the speaker
+# keep the recording. The deck: <work folder>/decks/<talk>.pdf, else the event's slides/<talk page>.pdf (deck dump).
+# Per talk in cuts.json: "picture": "video" turns it off, "deck": "<path>" names the PDF.
+slides_replace: true
+# Night mode (a yellow, Night Shift screen share): the deck pages fix it by themselves; the stretches that stay video
+# get their colours put back (white point of the screen) when the picture is a screen recording.
+night_mode_fix: true
+# Separate sound: a sound-only file added to the event (a recorder on the desk) is placed on the videos by itself and
+# its sound replaces the camera's wherever it covers a talk (the camera fills any hole). Per talk in cuts.json:
+# "sound": "camera" keeps the camera's own.
+separate_sound: true
