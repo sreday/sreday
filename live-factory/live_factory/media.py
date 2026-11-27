@@ -53,13 +53,22 @@ def probe(path):
     """width, height, duration, the audio channel count, the codecs and the recording's own clock (creation_time,
     from the camera or recorder - a hint for where in the schedule the file starts)."""
     out = run([tool("ffprobe"), "-v", "error", "-show_entries",
-               "stream=codec_type,codec_name,width,height,channels:format=duration,format_name:format_tags=creation_time",
+               "stream=codec_type,codec_name,width,height,channels:stream_tags=rotate:stream_side_data=rotation:"
+               "format=duration,format_name:format_tags=creation_time",
                "-of", "json", path]).stdout
     d = json.loads(out or "{}")
     streams = d.get("streams", [])
     v = next((s for s in streams if s.get("codec_type") == "video"), {})
     a = next((s for s in streams if s.get("codec_type") == "audio"), {})
     fmt = d.get("format") or {}
+    rot = 0
+    try:
+        rot = int(float((v.get("tags") or {}).get("rotate") or
+                        next((x.get("rotation") for x in v.get("side_data_list") or [] if "rotation" in x), 0) or 0))
+    except (TypeError, ValueError):
+        pass
+    if abs(rot) % 180 == 90:                            # ffmpeg turns the picture upright: its size is the turned one
+        v = dict(v, width=v.get("height"), height=v.get("width"))
     return {"width": v.get("width") or 0, "height": v.get("height") or 0,
             "duration": float(fmt.get("duration") or 0), "channels": a.get("channels") or 0,
             "vcodec": v.get("codec_name") or "", "acodec": a.get("codec_name") or "",
@@ -190,7 +199,7 @@ def compose(src, dst, start, end, af=None, max_short_side=1080, cq=18, crop=None
             mix = ["[own]"]
             for k, p in enumerate(sound):
                 inputs += ["-ss", "%.3f" % p["start"], "-to", "%.3f" % p["end"], "-i", p["src"]]
-                f = ["aresample=48000", "asetrate=%.6f" % (48000 / p["scale"]), "aresample=48000"]
+                f = ["aresample=384000", "asetrate=%d" % round(384000 / p["scale"]), "aresample=48000"]   # 2.6 ppm
                 f += ([p["af"]] if p.get("af") else []) + ["aformat=channel_layouts=stereo"]
                 if p.get("gain_db"):
                     f.append("volume=%.2fdB" % p["gain_db"])
@@ -241,15 +250,40 @@ def cut(parts, dst, af=None, max_short_side=1080, on_progress=None, cq=18, crop=
             compose(src, p, a, b, af, max_short_side, cq=cq, what="cutting part %d of %d" % (i + 1, len(norm)),
                     on_progress=on_progress, crop=crop, **extra)
             pieces.append(p)
-        listing = dst + ".concat.txt"
-        with open(listing, "w", encoding="utf-8") as f:
-            f.write("".join("file '%s'\n" % os.path.abspath(p).replace("'", r"'\''") for p in pieces))
         part = "%s.%d.part.mp4" % (dst, os.getpid())
-        r = run([tool("ffmpeg"), "-hide_banner", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", listing,
-                 "-c", "copy", "-movflags", "+faststart", part])
-        os.remove(listing)
+        infos = [probe(p) for p in pieces]
+        total = sum(i["duration"] for i in infos)
+        same = all((i["width"], i["height"], bool(i["channels"])) == (infos[0]["width"], infos[0]["height"], True)
+                   for i in infos)
+        if same:
+            listing = dst + ".concat.txt"
+            with open(listing, "w", encoding="utf-8") as f:
+                f.write("".join("file '%s'\n" % os.path.abspath(p).replace("'", r"'\''") for p in pieces))
+            r = run([tool("ffmpeg"), "-hide_banner", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i",
+                     listing, "-c", "copy", "-movflags", "+faststart", part])
+            os.remove(listing)
+        else:                                           # other sizes (a backup camera) or no sound: one size, re-encoded
+            W, H = infos[0]["width"], infos[0]["height"]
+            args, graph = [], []
+            for k, (p, i) in enumerate(zip(pieces, infos)):
+                args += ["-i", p]
+                graph.append("[%d:v]scale=%d:%d:force_original_aspect_ratio=decrease,pad=%d:%d:(ow-iw)/2:(oh-ih)/2,"
+                             "setsar=1,fps=%.3f,format=yuv420p[v%d]" % (k, W, H, W, H, _fps(pieces[0]), k))
+                if i["channels"]:
+                    graph.append("[%d:a]aresample=48000,aformat=channel_layouts=stereo[a%d]" % (k, k))
+                else:
+                    graph.append("anullsrc=r=48000:cl=stereo,atrim=0:%.3f[a%d]" % (i["duration"], k))
+            graph.append("%sconcat=n=%d:v=1:a=1[v][a]" % ("".join("[v%d][a%d]" % (k, k) for k in range(len(pieces))),
+                                                          len(pieces)))
+            r = run([tool("ffmpeg"), "-hide_banner", "-loglevel", "error", "-y"] + args +
+                    ["-filter_complex", ";".join(graph), "-map", "[v]", "-map", "[a]", "-c:v", "libx264", "-crf",
+                     str(cq), "-preset", "medium", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", part])
         if r.returncode != 0:
             raise RuntimeError("joining the parts failed: " + r.stderr[-300:])
+        bad = verify(part, total)
+        if bad:
+            os.remove(part)
+            raise RuntimeError("the joined talk failed the check: " + bad)
         os.replace(part, dst)
         return dst
     finally:
@@ -401,21 +435,45 @@ def gpu_status():
     return {"name": v[0], "gpu": num(v[1]), "encoder": num(v[2]), "temp": num(v[3])}
 
 
-def _ffmpeg_progress(args, duration, cb):
-    """Run ffmpeg with -progress pipe:1 and report the percentage done every couple of seconds."""
-    p = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding="utf-8", errors="replace")
-    last = 0
+def _ffmpeg_progress(args, duration, cb, stall=1200):
+    """Run ffmpeg with -progress pipe:1 and report the percentage done every couple of seconds. Its error output goes
+    to a temporary file, never a pipe: a damaged recording writes megabytes of errors, and a full pipe hung the cut
+    forever (review 2026-11-27). A run whose position doesn't move for `stall` seconds is stopped."""
+    import tempfile
+    import threading
+    errf = tempfile.TemporaryFile(mode="w+", encoding="utf-8", errors="replace")
+    p = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=errf, text=True, encoding="utf-8", errors="replace")
+    last, moved = 0, [time.time(), None]
+
+    def watch():
+        while p.poll() is None:
+            if time.time() - moved[0] > stall:
+                p.kill()
+                return
+            time.sleep(5)
+    threading.Thread(target=watch, daemon=True).start()
     for line in p.stdout:
-        if line.startswith("out_time_us=") and duration:
+        if line.startswith("out_time_us="):
+            v = line.split("=")[1].strip()
+            if v != moved[1]:
+                moved[0], moved[1] = time.time(), v
+            if not duration:
+                continue
             try:
-                pct = min(99, int(int(line.split("=")[1]) / 1e6 / duration * 100))
+                pct = min(99, int(int(v) / 1e6 / duration * 100))
             except ValueError:
                 continue
             if time.time() - last > 2:
                 last = time.time()
                 cb(pct)
-    err = p.stderr.read()
-    return p.wait(), err
+    rc = p.wait()
+    errf.seek(0, os.SEEK_END)
+    errf.seek(max(0, errf.tell() - 20000))
+    err = errf.read()
+    errf.close()
+    if time.time() - moved[0] > stall:
+        err += "\nstopped: no progress for %d min" % (stall // 60)
+    return rc, err
 
 
 def pick_resolution(width, height, cap):
@@ -452,10 +510,17 @@ def normalize(src, dst, lufs, tp, start=None, end=None, crf=None, preset="medium
     a still stage and slides, so this is a fraction of Descript's export at the same look; should the result come
     out bigger than the export after all, the export's picture is kept as it is."""
     safe_target(dst)
+    if not probe(src)["channels"]:
+        raise RuntimeError("the exported video has no sound")
     cut_args = (["-ss", "%.3f" % start] if start else []) + (["-to", "%.3f" % end] if end else [])
     first = run([tool("ffmpeg"), "-hide_banner", "-nostats"] + cut_args + ["-i", src, "-af",
                  "loudnorm=I=%s:TP=%s:LRA=11:print_format=json" % (lufs, tp), "-f", "null", "-"]).stderr
-    m = json.loads(first[first.rfind("{"):first.rfind("}") + 1])
+    try:
+        m = json.loads(first[first.rfind("{"):first.rfind("}") + 1])
+    except ValueError:
+        raise RuntimeError("the loudness of the export can't be measured: " + first[-300:])
+    if str(m.get("input_i")) in ("-inf", "inf", "nan"):
+        raise RuntimeError("the exported video is silent")
     af = ("loudnorm=I={I}:TP={TP}:LRA=11:measured_I={mi}:measured_TP={mtp}:measured_LRA={mlra}:"
           "measured_thresh={mth}:offset={off}:linear=true").format(
         I=lufs, TP=tp, mi=m["input_i"], mtp=m["input_tp"], mlra=m["input_lra"], mth=m["input_thresh"], off=m["target_offset"])
@@ -470,7 +535,9 @@ def normalize(src, dst, lufs, tp, start=None, end=None, crf=None, preset="medium
         if r.returncode == 0 and os.path.exists(tmp) and os.path.getsize(tmp) > os.path.getsize(src) * share:
             os.remove(tmp)                              # bigger than the export: keep its picture instead
             crf = None
-    if not crf:
+    if not crf and start:                               # a trim: copying would start at the keyframe before it
+        r = run(head + ["-c:v", "libx264", "-crf", "20", "-preset", preset, "-pix_fmt", "yuv420p"] + audio + [tmp])
+    elif not crf:
         r = run(head + ["-c:v", "copy"] + audio + [tmp])
     if r.returncode != 0 or not os.path.exists(tmp):
         raise RuntimeError("ffmpeg loudness step failed: " + r.stderr[-400:])

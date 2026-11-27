@@ -45,6 +45,15 @@ max_qa_minutes: 10
 # in cuts.json (python -m live_factory autopilot <event> on), which Claude sets when asked to ship an event.
 autopilot: false
 
+# ---- 2c. the transcript proofread (proofread.py) -------------------------------------------------------------------
+# Marek, 2026-11-27: "download the descript transcript, proofread it in the context of the talk to catch and fix
+# obvious problems, and upload to youtube videos as captions". glossary.yml first, then Claude (the Claude Code CLI on
+# this computer, the person's own subscription - no API key) with the talk's title, abstract, speakers and company.
+# Only misheard words change, never the timings; the Descript original stays in srt/descript/.
+proofread_claude: true
+proofread_model: opus        # the most careful reader (on Conf42's back catalogue it found far more than sonnet)
+proofread_timeout_seconds: 900
+
 # ---- 2b. sharp starts and ends (ends.py) ---------------------------------------------------------------------------
 # Marek, 2026-11-27: "the beginnings and the ends of talks super sharp and production-ready ... Q&A need to always be
 # outed ... end sharply at the moment when the person finishes, but letting him finish the sentence" - "full auto, so

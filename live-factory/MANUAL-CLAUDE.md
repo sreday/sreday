@@ -99,17 +99,19 @@ missing piece.
       `pec`.
     - The sign-in stays on that computer only, in `~/.live-factory/youtube/`, outside every repo. A channel other than
       the brand's is refused.
-5. **The health check:** *"run the factory doctor"*. Everything must say OK, and "YouTube sign-ins" must list the
+5. **Claude Code on this computer, signed in** - it proofreads the subtitles before they go to YouTube (on your
+   subscription, no API key). `doctor` shows "Claude Code (transcript proofread)".
+6. **The health check:** *"run the factory doctor"*. Everything must say OK, and "YouTube sign-ins" must list the
    brands you ship.
-6. **The first run downloads Whisper** (large-v3, about 3 GB, into `~/.live-factory/whisper`), so it needs the
+7. **The first run downloads Whisper** (large-v3, about 3 GB, into `~/.live-factory/whisper`), so it needs the
    internet and the disk space.
-7. **Disk:** 150 GB free for a full day: the copied recordings, the cuts, Descript's exports and the finals.
-8. **Power:** plugged in, with the lid open. While a job runs the factory keeps the computer from sleeping by itself,
+8. **Disk:** 150 GB free for a full day: the copied recordings, the cuts, Descript's exports and the finals.
+9. **Power:** plugged in, with the lid open. While a job runs the factory keeps the computer from sleeping by itself,
    but a closed laptop lid, a flat battery or an update restart still stop it. On Windows, pause Windows Update for
    the day.
-9. **One folder per computer:** always run the factory from the same `sreday/live-factory`. Its `local/` folder keeps
+10. **One folder per computer:** always run the factory from the same `sreday/live-factory`. Its `local/` folder keeps
    the ledger of paid Descript edits, which stops an edit being paid for twice.
-10. **One computer per event:** the event's work folder, its state and its YouTube record all live on the computer
+11. **One computer per event:** the event's work folder, its state and its YouTube record all live on the computer
    that runs it.
 
 How fast it goes:
@@ -147,7 +149,7 @@ Replace the event and paths with yours. Events are named like `sreday-2026-londo
 
 | Step | Say to Claude | What happens |
 |---|---|---|
-| Launch | *"Launch the factory."* | Claude starts the app if needed and opens the workbench (http://localhost:8043) in your browser. |
+| Launch | *"Launch the factory."* | Claude starts the app if needed and opens the progress page (http://localhost:8043) in your browser: bars per stage and per talk, then only what needs you. The detailed workbench is http://localhost:8043/workbench. |
 | Add | *"Add the recordings from /Volumes/CARD/DCIM for PLATFORMday Austin 2026 Q4, day 1."* (more rooms: *"…room 2 is track 2"*) | The files are copied in as a checked, read-only backup. Your originals are never touched. |
 | Separate sound | *"The sound was recorded on the desk too: D:\ZOOM0001.wav, day 1."* | Added as separate sound. After the analysis it is placed on the videos by itself (different start, clock drift, files split in pieces - all fine); the talks it covers get its sound. |
 | Analyse | *"Analyse them."* | Sound, transcript, stills - free, on your computer. About 35 min for an 8-hour day; Claude runs it in the background and tells you when it's done. |
@@ -155,7 +157,7 @@ Replace the event and paths with yours. Events are named like `sreday-2026-londo
 | Sharp ends | *"Check the starts and ends."* (Claude does it anyway before the run) | The factory listens closely at both ends of every talk; Claude reads each one and gives you its first and last sentence: the speaker's first words to the room, their last finished sentence before the Q&A (ideally the closing "thank you"). The Q&A is always out; a talk never stops mid-sentence. Anything unsure, Claude asks you. |
 | Saturated sound | *"Which talks have saturated sound?"* | The talks whose sound is clipped (cracking on loud words), with the minutes where. In the run: the clean track where there is one; else the repair tools tried on 30 s and judged, the best one repairs the talk (normal Studio Sound); Studio Sound 100% only when none helps. |
 | Slides check | *"Look at the slides."* | For every cut: which deck pages it found on screen and will show full screen, build steps, night mode, the separate sound - with a before/after picture per talk. Claude names any deck that looks like another version than the one presented: if only the fonts differ it can still use it (*"use Kevin's deck anyway"*); if the words differ, ask the speaker for the deck they presented. |
-| ✋ Approve | Open the workbench (http://localhost:8043), check the flagged cuts, tick them, **Save cuts** - or tell Claude *"approve all"* if you trust the table. | Nothing goes to Descript before this. |
+| ✋ Approve | Open the workbench (http://localhost:8043/workbench), check the flagged cuts, tick them, **Save cuts** - or tell Claude *"approve all"* if you trust the table. | Nothing goes to Descript before this. |
 | Descript | *"Run the factory."* | Claude says how many talks and roughly how many Descript credits (8-30 per talk), then cuts, uploads and edits them. Watch it on http://localhost:8043/status or ask *"how is it going?"*. |
 | ✋ Review | Watch each talk in Descript (the start and the end are final - nothing to trim), tick **Reviewed** in the workbench - or tell Claude *"Thomas, Jay and MJ are reviewed"*. | Only reviewed talks are exported. |
 | Export | *"Export the reviewed talks."* | Final light MP4s, subtitles, chapters, YouTube loudness. |
@@ -189,6 +191,17 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-11-27** - The app opens on a plain progress page (bars, then only the real issues); the workbench is at
+  /workbench. The subtitles are proofread by Claude in the talk's context before they go to YouTube. After a full
+  review of the factory with Claude Fable, about 40 problems were fixed, among them:
+  - no Descript edit paid for twice after a network blip;
+  - a damaged recording no longer hangs the cut;
+  - portrait phone videos are no longer squashed;
+  - a talk from two cameras of different sizes is joined properly;
+  - a talk with no sound stops before Descript;
+  - the Windows crash after about 100 Whisper uses is gone;
+  - the speaker's own "on stage" / "next up" is no longer taken for the MC;
+  - one job per event at a time.
 - **2026-11-27** - Launch checklist for shipping a whole conference on any Mac or Windows computer (section 2). The
   factory now keeps the computer awake while a job runs. The upload got tougher too: a talk YouTube refuses no
   longer stops the others, and a rerun uploads what the day's limit left.

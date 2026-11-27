@@ -133,7 +133,7 @@ def title_display(row, kind):
 def talk_url(row):
     """generate.py generate_talk_url: the talk page's file name (without .html)."""
     url = "{name1}{name2}{company}{title}".format(
-        name1=row.get("name", "").replace(" ", "_"),
+        name1=(row.get("name") or "").replace(" ", "_"),
         name2=("_" + row.get("co-speaker", "").replace(" ", "_")) if row.get("co-speaker") else "",
         company=("_" + row.get("organization", "").replace(" ", "_")) if row.get("organization") else "",
         title=("_" + row.get("title", "").replace(",", "_").replace(" ", "_")) if row.get("title") else "")
@@ -145,6 +145,12 @@ def talk_url(row):
 def rows(ev):
     with open(ev["csv"], encoding="utf-8-sig", newline="") as f:
         return list(csv.DictReader(f))
+
+
+def minutes_of(v):
+    """A talk's minutes from the sheet: 30, "30.0", "45 min" - anything else the default."""
+    m = re.search(r"\d+(?:\.\d+)?", str(v or ""))
+    return int(round(float(m.group(0)))) if m and float(m.group(0)) > 0 else DEFAULT_TALK_DURATION
 
 
 def _tracks(ev, all_rows):
@@ -164,7 +170,7 @@ def _tracks(ev, all_rows):
         if tr not in tracks:
             tracks[tr] = []
             order.append(tr)
-        minutes = int(r.get("duration")) if str(r.get("duration") or "").strip() else DEFAULT_TALK_DURATION
+        minutes = minutes_of(r.get("duration"))
         tracks[tr].append({"row": i, "kind": kind, "name": (r.get("name") or "").strip(),
                            "title_raw": (r.get("title") or "").strip(), "minutes": minutes})
     for tr in order:
@@ -233,7 +239,7 @@ def schedule(ev):
         head = []
         for i, r in keynotes:
             if str(r.get("day") or "").strip() == str(day):
-                m = int(r.get("duration")) if str(r.get("duration") or "").strip() else DEFAULT_TALK_DURATION
+                m = minutes_of(r.get("duration"))
                 if ti % len(rooms) == 0:
                     head.append({"row": i, "kind": "keynote", "name": (r.get("name") or "").strip(),
                                  "title_raw": (r.get("title") or "").strip(), "minutes": m})

@@ -19,8 +19,9 @@ you need before changing anything.
 - Events are `<brand>-<folder>`: `sreday-2026-london-q1`, `llmday-2026-london-q4`, `platformday-2026-austin-q4`.
   `git pull` the brand repos first so the lineup is current (the lineup is the event's `_db/talks.csv`; never edit it -
   it is a Drive export).
-- Long jobs (`analyse`, `run`) go in the background; tell the person the workbench (http://localhost:8043) and the
-  status page (http://localhost:8043/status) show progress. An 8 h day analyses in ~35 min on an M1/M2 Mac.
+- Long jobs (`analyse`, `run`) go in the background; tell the person the progress page (http://localhost:8043:
+  plain progress bars, then only the real issues - Marek 2026-11-27) shows how far it is. The detailed workbench is
+  http://localhost:8043/workbench (cuts, recordings, review, redo), the status page http://localhost:8043/status. An 8 h day analyses in ~35 min on an M1/M2 Mac.
 - **"Launch / activate the factory" always opens the workbench on the event being worked on**: run
   `... -m live_factory serve <event>` in the background - it opens http://localhost:8043/?event=<event> in their
   browser, reuses an app that's current and replaces one running older code. Every time, even when it's already
@@ -163,6 +164,12 @@ permission. If we want to go fast, this is the only way". So on such a request n
     (the schedule, track by track).
 11. `report <event>` -> `ship report.md`, then the postmortem (`postmortem` skill): on YouTube + when public, missing
     and why, problematic and what would fix it, credits, Descript leftovers to delete by hand. Give him the summary.
+
+The captions are the Descript transcript proofread in the talk's context (step `proofread`, right after the
+download): glossary.yml, then Claude through the Claude Code CLI on this computer (proofread_model: opus) - only
+misheard words change, never timings; the Descript original stays in srt/descript/, the fixes in srt/proofread/. A
+partial proofread (Claude not reachable) is tried again before the upload. `doctor` must show "Claude Code
+(transcript proofread)" OK.
 
 What goes up is in the channels' own style (read from them 2026-11-27):
 - the title is "<title> | <speakers> | SREday Dallas 2026 Q4", within 100 characters, with Descript's short title

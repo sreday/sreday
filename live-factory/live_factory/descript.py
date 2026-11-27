@@ -48,11 +48,22 @@ class Descript:
         self.on_wait = None                          # set per request: shows "Descript busy" waits in the app
 
     def call(self, method, path, **kw):
-        waited = 0
+        waited, blips = 0, 0
         for attempt in range(1000):
-            r = self.s.request(method, BASE + path, timeout=120, **kw)
+            try:
+                r = self.s.request(method, BASE + path, timeout=120, **kw)
+            except requests.RequestException as ex:
+                # a network blip: a read (GET) is asked again; a POST is not - it may have started a paid job
+                if method != "GET" or blips >= 8:
+                    raise RuntimeError("Descript %s %s: no answer (%s)" % (method, path, ex))
+                blips += 1
+                time.sleep(min(120, 10 * blips))
+                continue
             if r.status_code == 429 and waited < 3600:                   # too many jobs at once: queue politely
-                pause = max(int(float(r.headers.get("Retry-After", 0) or 0)), 30)
+                try:
+                    pause = max(int(float(r.headers.get("Retry-After", 0) or 0)), 30)
+                except ValueError:                                       # an HTTP date instead of seconds
+                    pause = 60
                 if waited == 0:
                     print("Descript 429 on %s %s: %s" % (method, path, r.text[:200]), flush=True)
                 if self.on_wait:
@@ -68,7 +79,8 @@ class Descript:
                 time.sleep(pause)
                 waited += pause
                 continue
-            if r.status_code >= 500 and attempt < 6:                     # hiccup on Descript's side
+            if r.status_code >= 500 and attempt < 6 and not (method == "POST" and path == "/jobs/agent"):
+                # hiccup on Descript's side - asked again, except the paid AI edit: a 5xx may have started it
                 time.sleep(10 * (attempt + 1))
                 continue
             if r.status_code == 402:
@@ -81,8 +93,12 @@ class Descript:
     def json(self, method, path, **kw):
         return self.call(method, path, **kw).json()
 
-    def wait(self, job_id, every=15, on_progress=None):
+    def wait(self, job_id, every=15, on_progress=None, hours=8):
+        """Until the job ends; a job still running after `hours` is given up on (it never hangs a run forever)."""
+        until = time.time() + hours * 3600
         while True:
+            if time.time() > until:
+                raise RuntimeError("Descript job %s still running after %d h - given up on" % (job_id, hours))
             j = self.json("GET", "/jobs/" + job_id)
             if j.get("job_state") != "running":
                 res = j.get("result") or {}
@@ -158,12 +174,18 @@ class Descript:
             LIVE_UPLOADS.discard(j["job_id"])
         done = self.wait(j["job_id"], 10, on_progress)
         comps = done["result"].get("created_compositions") or []
+        if not comps:
+            raise RuntimeError("Descript imported %s but made no composition" % key)
         return done["project_id"], comps[0]["id"], done
 
-    def edit(self, project_id, composition_id, prompt, on_progress=None):
+    def start_edit(self, project_id, composition_id, prompt, on_progress=None):
+        """The AI edit started (it is paid from here on); returns its job id - wait() on it, now or after a restart."""
         self.on_wait = on_progress
         j = self.json("POST", "/jobs/agent", json={"project_id": project_id, "composition_id": composition_id, "prompt": prompt})
-        return self.wait(j["job_id"], 20, on_progress)
+        return j["job_id"]
+
+    def edit(self, project_id, composition_id, prompt, on_progress=None):
+        return self.wait(self.start_edit(project_id, composition_id, prompt, on_progress), 20, on_progress)
 
     def publish(self, project_id, composition_id, resolution, access, on_progress=None):
         self.on_wait = on_progress

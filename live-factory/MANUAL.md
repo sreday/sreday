@@ -53,7 +53,9 @@ You need: a Mac or a Windows PC with **150 GB free** for a full day of recording
 **Start the app:** double-click **LIVE talk factory** on your Desktop (or `./run.sh` / `run.cmd` in `live-factory`).
 It opens two pages in your browser:
 
-- **Workbench** - http://localhost:8043 - where you do everything.
+- **Progress** - http://localhost:8043 - a plain page: a bar per stage of the day, then a bar per talk, then only
+  what needs you ("Missing recording for X", "X: not uploaded - needs a look"). Leave it open in a tab.
+- **Workbench** - http://localhost:8043/workbench - where you do everything by hand (cuts, review, redo).
 - **Status** - http://localhost:8043/status - read-only progress of the whole day; leave it open in a tab.
 
 The workbench opens on the event you worked on last (the events you've started are marked ● at the top of the list),
@@ -277,6 +279,10 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 
 ## Changelog
 
+- **2026-11-27** - The app opens on a plain progress page: one bar per stage, then a bar per talk, then a short
+  final report with only the real issues. The detailed workbench moved to /workbench. The YouTube subtitles are now
+  Descript's transcript proofread by Claude in the talk's context: misheard names and terms are fixed, the timings
+  never change.
 - **2026-11-27** - Autopilot (with Claude): one request ships an event to the brand's YouTube channel. The factory
   checks each finished video itself, uploads it private with its title, description, thumbnail, subtitles and
   playlist, and it goes public exactly 5 weeks after the event, at 09:00 local. The website's talk pages show the

@@ -35,7 +35,8 @@ def code_stamp():
 
 
 STARTED_STAMP = code_stamp()
-STATUS_FILE = os.path.join(os.path.dirname(__file__), "status.html")   # /status: the read-only overview
+STATUS_FILE = os.path.join(os.path.dirname(__file__), "status.html")
+PROGRESS_FILE = os.path.join(os.path.dirname(__file__), "progress.html")   # /: the simple progress page (2026-11-27)   # /status: the read-only overview
 
 
 def work_root():
@@ -62,7 +63,7 @@ def event_list():
     """Events with a work folder first, then every brand's events from a year ago on (newest first)."""
     cfg = pipeline.settings()
     dirs = machine.event_dirs(cfg)                    # started events: {id: "video factory - <event>" folder}
-    year_ago = str(datetime.date.today().replace(year=datetime.date.today().year - 1))
+    year_ago = str(datetime.date.today().year - 1)       # (a date's .replace(year=) fails on Feb 29)
     out = []
     for eid, path in events.all_events(cfg):
         started = eid in dirs
@@ -124,7 +125,10 @@ def levels_of(run, rid):
 
 def credits_of(run):
     """Descript AI credits this event's edits have cost so far (the ledger of paid edits)."""
-    led = run.ledger()
+    try:
+        led = run.ledger()
+    except RuntimeError:
+        return {"edits": 0, "credits": 0, "error": "the ledger can't be read"}
     mine = [v for v in led.values() if v.get("event") == run.ev["id"]]
     return {"edits": len(mine), "credits": round(sum(float(v.get("credits") or 0) for v in mine), 1)}
 
@@ -214,9 +218,18 @@ class Handler(BaseHTTPRequestHandler):
         q = {k: v[0] for k, v in parse_qs(u.query).items()}
         e = q.get("e", "")
         try:
-            if u.path == "/":
+            if u.path == "/":                          # the plain progress page: bars, then only the real issues
+                with open(PROGRESS_FILE, encoding="utf-8") as f:
+                    return self.send(200, f.read(), "text/html")
+            if u.path == "/workbench":                 # the detailed workbench: cuts, recordings, review, redo
                 with open(PAGE_FILE, encoding="utf-8") as f:
                     return self.send(200, f.read(), "text/html")
+            if u.path == "/api/progress":
+                from . import progress
+                try:
+                    return self.send(200, progress.payload(e, runner=runner(e)))
+                except (KeyError, ValueError) as ex:
+                    return self.send(200, {"error": "no such event: %s" % ex})
             if u.path == "/status":
                 with open(STATUS_FILE, encoding="utf-8") as f:
                     return self.send(200, f.read(), "text/html")
@@ -229,6 +242,9 @@ class Handler(BaseHTTPRequestHandler):
             if u.path == "/api/doctor":
                 return self.send(200, {"machine": machine.machine_name(pipeline.settings()),
                                        "checks": machine.doctor(pipeline.settings(), check_descript=False)})
+            if u.path in ("/api/levels", "/api/transcript", "/media", "/frame") and \
+                    q.get("r") not in (pipeline.Run(e).state.get("recordings") or {}):
+                return self.send(404, {"error": "no such recording"})
             if u.path == "/api/levels":
                 run = pipeline.Run(e)
                 return self.send(200, levels_of(run, q["r"]) or {})
@@ -259,7 +275,15 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(500, {"msg": "error: %s" % ex})
         self.send(404, {"msg": "not found"})
 
+    def _own_page(self):
+        """A POST from this app's own page (or a tool without an Origin): never from another site open in the browser
+        (it could rewrite settings.yml or start a paid run)."""
+        origin = self.headers.get("Origin") or self.headers.get("Referer") or ""
+        return not origin or re.match(r"^https?://(localhost|127\.0\.0\.1)(:%d)?(/|$)" % PORT, origin)
+
     def do_POST(self):
+        if not self._own_page():
+            return self.send(403, {"error": "not from the factory's own page"})
         n = int(self.headers.get("Content-Length") or 0)
         body = json.loads(self.rfile.read(n) or b"{}")
         e = body.get("e", "")

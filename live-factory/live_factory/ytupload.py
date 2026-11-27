@@ -478,6 +478,22 @@ def save(run, d):
     machine.swap_in(tmp, p)                              # retried: OneDrive / a reader holding it never loses an id
 
 
+def _alive(lock):
+    """The process that took the lock is still running (its pid is in the file)."""
+    try:
+        with open(lock, encoding="utf-8") as f:
+            pid = int(f.read().split()[0])
+    except (OSError, ValueError, IndexError):
+        return True                                      # unreadable: assume busy, the 12 h rule frees it
+    try:
+        os.kill(pid, 0)
+        return True
+    except OSError:
+        return False
+    except Exception:                                    # noqa: BLE001
+        return True
+
+
 class Busy(RuntimeError):
     pass
 
@@ -496,7 +512,7 @@ class upload_lock:
                 os.close(fd)
                 return self
             except FileExistsError:
-                if time.time() - os.path.getmtime(self.path) > 12 * 3600:
+                if time.time() - os.path.getmtime(self.path) > 12 * 3600 or not _alive(self.path):
                     os.remove(self.path)
                     continue
                 raise Busy("another upload pass is running for this event (youtube.lock) - nothing done")
@@ -544,9 +560,10 @@ def event_pass(run, keys=None, yt=None, now=None):
     done = load(run)
     talks = {t["key"]: t for t in events.talks(ev)}
     redo = run.redo_requests() if hasattr(run, "redo_requests") else {}
+    approved = {c["key"] for c in run.cuts()["cuts"] if c.get("approved")} if hasattr(run, "cuts") else None
     order = {k: i for i, k in enumerate(site_order(ev, list(talks.values())))}
     todo = [k for k, t in sorted(run.state["talks"].items(), key=lambda kv: (order.get(kv[0], 10 ** 6), kv[0]))
-            if k != PLAYLIST
+            if k != PLAYLIST and (approved is None or k in approved)   # a withdrawn cut: never uploaded
             and not (redo.get(k) and t.get("redo_handled") != redo[k].get("at"))   # 7. a redo waiting: not this one
             if t.get("finished") and t.get("selfcheck_ok") and (not keys or k in keys)
             and (not (done.get(k) or {}).get("id") or redone_since(t, done[k]))]

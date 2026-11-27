@@ -90,6 +90,13 @@ class FakeDescript:
         FakeDescript.files[cid] = (key, path)
         return FakeDescript.pid, cid, None
 
+    def start_edit(self, pid, cid, prompt, on_progress=None):
+        FakeDescript.edits = getattr(FakeDescript, "edits", 0) + 1
+        return "EDIT-" + cid
+
+    def wait(self, job_id, every=15, on_progress=None, hours=8):
+        return {"job_id": job_id, "result": {"ai_credits_used": 9.5, "agent_response": "Studio Sound on, fillers removed."}}
+
     def edit(self, pid, cid, prompt, on_progress=None):
         return {"job_id": "J", "result": {"ai_credits_used": 9.5, "agent_response": "Studio Sound on, fillers removed."}}
 
@@ -109,6 +116,8 @@ class FakeDescript:
 
 class FakeGet:
     """requests.get for Descript's download link: the uploaded file itself."""
+    status_code = 200
+
     def __init__(self, url, stream=False, timeout=None):
         self.path = FakeDescript.files[url.split("://")[1]][1]
 
@@ -130,25 +139,33 @@ class FakeGet:
                 yield b
 
 
-def main():
-    settings, card = fixture()
-    os.environ["LIVE_FACTORY_SETTINGS"] = settings
-    from live_factory import machine, media, pipeline, segment, ytupload
-    shared = os.path.join(TMP, "local")
+def install_fakes(tmp, channel="UCtest", handle="@testday"):
+    """Descript, the download and YouTube replaced by stand-ins; the ledger in tmp. Returns the fake YouTube."""
+    from live_factory import machine, media, pipeline, ytupload
+    import youtube_smoke as ys
+    shared = os.path.join(tmp, "local")
     os.makedirs(shared, exist_ok=True)
     machine.shared_dir = lambda cfg: shared            # the test's own ledger of paid edits, not the checkout's
-    import youtube_smoke as ys
     media.notify = lambda *a: None
     pipeline.Descript = FakeDescript
     pipeline.requests = types.SimpleNamespace(get=FakeGet)
     pipeline.Run.publish = lambda self, force=False: None
-    fake = ys.FakeYouTube(channel="UCtest", handle="@testday")
+    fake = ys.FakeYouTube(channel=channel, handle=handle)
     ytupload.requests = types.SimpleNamespace(request=fake.request, post=fake.post, put=fake.put, get=fake.get,
                                               RequestException=Exception)
     ytupload.time.sleep = lambda s: None
     ytupload.PAUSE = lambda s: None
     ytupload.YouTube.for_brand = classmethod(lambda cls, brand: cls({"client_id": "c", "client_secret": "s",
-                                                                     "refresh_token": "r", "channel_id": "UCtest"}))
+                                                                     "refresh_token": "r", "channel_id": channel}))
+    ytupload.has_token = lambda brand: True
+    return fake
+
+
+def main():
+    settings, card = fixture()
+    os.environ["LIVE_FACTORY_SETTINGS"] = settings
+    from live_factory import media, pipeline, segment, ytupload
+    fake = install_fakes(TMP)
     print("autopilot end to end in " + TMP)
     run = pipeline.Run("testbrand-2026-testcity-q4")
     run.cfg.setdefault("youtube", {}).setdefault("channels", {})["testbrand"] = "UCtest"

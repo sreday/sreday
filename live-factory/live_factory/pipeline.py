@@ -34,8 +34,8 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 import yaml
 
-from . import (analyse, audiosync, ends, events, machine, media, picture, precheck, saturation, segment, selfcheck,
-               stereo, youtube, ytupload)
+from . import (analyse, audiosync, ends, events, machine, media, picture, precheck, proofread, saturation, segment,
+               selfcheck, stereo, youtube, ytupload)
 from .descript import Descript
 
 HERE = events.HERE
@@ -43,7 +43,8 @@ VIDEO_EXT = (".mp4", ".mov", ".m4v", ".mkv", ".mts", ".m2ts", ".avi", ".webm", "
 MEDIA_EXT = VIDEO_EXT + audiosync.AUDIO_EXT     # a sound-only file is a separate sound recording (audiosync.py)
 PICTURE_VERSION = 2                             # bump when picture.py's plans change, so cached plans are made again
 REC_STEPS = ["copy", "levels", "transcript", "frames", "proxy"]
-STEPS = ["cut", "check", "upload", "edit", "review", "publish", "download", "srt", "chapters", "loudness", "qa", "selfcheck"]
+STEPS = ["cut", "check", "upload", "edit", "review", "publish", "download", "srt", "proofread", "chapters", "loudness",
+         "qa", "selfcheck"]
 MIN_TALK_SECONDS = 30
 
 
@@ -128,13 +129,32 @@ class Run:
     def job(self, name):
         """A background job owns state.json while it runs: its name and a heartbeat every 30 s tell the dashboard
         (which then starts no second job on this event)."""
+        lock = os.path.join(self.dir, "job.lock")
+        self.ensure_dirs()
+        for _ in range(2):
+            try:
+                fd = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+                os.write(fd, ("%d %s" % (os.getpid(), name)).encode())
+                os.close(fd)
+                break
+            except FileExistsError:
+                if time.time() - os.path.getmtime(lock) > 180:   # its heartbeat stopped: a crashed job's
+                    os.remove(lock)
+                    continue
+                with open(lock, encoding="utf-8", errors="replace") as f:
+                    who = f.read().strip()
+                raise SystemExit("another job is running on this event (%s) - wait for it, or stop it first" % who)
         with self.lock:
             self.state["job"], self.state["run_started"] = name, now()
             self.save()
         stop = threading.Event()
         def beat():
             while not stop.wait(30):
-                self.save()
+                try:
+                    self.save()
+                    os.utime(lock, None)
+                except Exception as ex:                  # noqa: BLE001 - the heartbeat never dies
+                    print("heartbeat: %s" % ex, flush=True)
         threading.Thread(target=beat, daemon=True).start()
         awake = machine.keep_awake().__enter__()         # no sleep while a job runs (hours, unattended)
         try:
@@ -142,6 +162,10 @@ class Run:
         finally:
             awake.__exit__()
             stop.set()
+            try:
+                os.remove(lock)
+            except OSError:
+                pass
             with self.lock:
                 self.state["runner"], self.state["job"] = {"pid": None, "at": now(), "finished": True}, None
                 tmp = self.state_path + ".tmp"
@@ -149,6 +173,17 @@ class Run:
                     json.dump(self.state, f, indent=1, ensure_ascii=False)
                 machine.swap_in(tmp, self.state_path)
             self.publish(force=True)
+
+    def busy(self):
+        """The job running on this event right now (its job.lock, kept fresh by the heartbeat), or None."""
+        lock = os.path.join(self.dir, "job.lock")
+        try:
+            if time.time() - os.path.getmtime(lock) > 180:
+                return None
+            with open(lock, encoding="utf-8", errors="replace") as f:
+                return f.read().strip() or "a job"
+        except OSError:
+            return None
 
     def publish(self, force=False):
         """Push this computer's progress to the Factory tab of sreday.com/factory (publish.py): at the end of every
@@ -205,18 +240,54 @@ class Run:
         return os.path.join(machine.shared_dir(self.cfg), "ledger.json")
 
     def ledger(self):
+        """The paid Descript edits of every event on this computer. A missing ledger is empty; a damaged one stops the
+        edits (read as empty it would let an edit be paid for again)."""
         try:
             with open(self.ledger_path(), encoding="utf-8") as f:
                 return json.load(f)
-        except (OSError, ValueError):
+        except FileNotFoundError:
             return {}
+        except (OSError, ValueError) as ex:
+            raise RuntimeError("the ledger of paid Descript edits (%s) can't be read (%s) - fix or restore it before "
+                               "any edit" % (self.ledger_path(), ex))
+
+    def _ledger_write(self, composition_id, entry):
+        """One entry into the ledger: under a lock file (several events can run on one computer), written whole and
+        swapped in."""
+        lock = self.ledger_path() + ".lock"
+        for _ in range(600):
+            try:
+                fd = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+                os.close(fd)
+                break
+            except FileExistsError:
+                if time.time() - os.path.getmtime(lock) > 120:
+                    os.remove(lock)                      # a crashed writer's
+                    continue
+                time.sleep(0.1)
+        try:
+            with self.lock:
+                led = self.ledger()
+                led[composition_id] = dict(led.get(composition_id) or {}, **entry)
+                tmp = self.ledger_path() + ".tmp"
+                with open(tmp, "w", encoding="utf-8") as f:
+                    json.dump(led, f, indent=1, ensure_ascii=False)
+                machine.swap_in(tmp, self.ledger_path())
+        finally:
+            try:
+                os.remove(lock)
+            except OSError:
+                pass
+
+    def record_edit_start(self, composition_id, key, job_id):
+        """Written BEFORE waiting on the edit: a crash or a network blip after this resumes the same job, never pays
+        for a second one."""
+        self._ledger_write(composition_id, {"event": self.ev["id"], "talk": key, "job_id": job_id, "started": now(),
+                                            "done": False})
 
     def record_edit(self, composition_id, key, credits):
-        with self.lock:
-            led = self.ledger()
-            led[composition_id] = {"event": self.ev["id"], "talk": key, "credits": credits, "at": now()}
-            with open(self.ledger_path(), "w", encoding="utf-8") as f:
-                json.dump(led, f, indent=1, ensure_ascii=False)
+        self._ledger_write(composition_id, {"event": self.ev["id"], "talk": key, "credits": credits, "at": now(),
+                                            "done": True})
 
     # ---- 1. add: recordings in, each tied to a day + track ------------------------------------------------------
     def add(self, paths, day=None, track=None, in_place=False, sound=False):
@@ -529,7 +600,7 @@ class Run:
         sig = json.dumps([[p["rec"], round(p["start"], 2), round(p["end"], 2)] for p in parts] +
                          [deck, os.path.getmtime(deck) if deck else 0, PICTURE_VERSION, cut.get("deck_match"),
                           bool(self.cfg.get("slides_replace", True)), bool(self.cfg.get("night_mode_fix", True))])
-        path = os.path.join(self.cut_dir, key + ".picture.json")
+        path = os.path.join(self.cut_dir, self.fname(key) + ".picture.json")
         cached = picture.load(path)
         if cached and cached.get("sig") == sig and not force:
             plans = cached["plans"]
@@ -546,7 +617,7 @@ class Run:
                 try:
                     if pl:
                         picture.contact_sheet(self.rec_path(p["rec"]), pl, p["start"], p["end"],
-                                              os.path.join(self.cut_dir, "%s.picture%s.jpg" % (key, "" if i == 0 else "-%d" % (i + 1))),
+                                              os.path.join(self.cut_dir, "%s.picture%s.jpg" % (self.fname(key), "" if i == 0 else "-%d" % (i + 1))),
                                               deck)
                 except Exception as ex:
                     self.note("%s: the before/after sheet failed: %s" % (key, ex))
@@ -605,7 +676,7 @@ class Run:
             else:
                 spans.append((self.rec_path(p["rec"]), p["start"], p["end"]))
         sig = json.dumps([[os.path.basename(s), round(a, 1), round(b, 1)] for s, a, b in spans])
-        path = os.path.join(self.cut_dir, key + ".clipping.json")
+        path = os.path.join(self.cut_dir, self.fname(key) + ".clipping.json")
         cached = saturation.load(path)
         if cached and cached.get("sig") == sig and not force:
             return cached["scan"]
@@ -649,13 +720,13 @@ class Run:
             if cur["some"]:
                 self.set(key, "cut", "running", label="trying the repair tools on %d s of the clipped sound" %
                          saturation.SAMPLE_SECONDS, percent=99)
-                folder = os.path.join(self.cut_dir, key + ".sound-trial")
+                folder = os.path.join(self.cut_dir, self.fname(key) + ".sound-trial")
                 res = saturation.rescue(lean, folder, self.cfg, before=cur, log=lambda m: self.note("%s: %s" % (key, m)))
                 rec["rescue"] = {k: v for k, v in res.items() if k != "before"}
                 steps.append(res.get("why") or "")
                 if res.get("saved"):
                     rec["after"], rec["repaired"] = res["after"], True
-                rec["trial_folder"] = key + ".sound-trial"
+                rec["trial_folder"] = self.fname(key) + ".sound-trial"
             else:
                 rec["repaired"] = True
         final = rec.get("after") or before
@@ -812,7 +883,7 @@ class Run:
         if os.path.exists(old_final):
             os.makedirs(os.path.join(self.out, "replaced"), exist_ok=True)
             shutil.move(old_final, os.path.join(self.out, "replaced", "%s %s" % (now().replace(":", "-"), os.path.basename(old_final))))
-        for leftover in (os.path.join(self.cut_dir, key + ".mp4"), os.path.join(self.out, "_descript", key + ".mp4")):
+        for leftover in (os.path.join(self.cut_dir, self.fname(key) + ".mp4"), os.path.join(self.out, "_descript", self.fname(key) + ".mp4")):
             if os.path.exists(leftover):
                 os.remove(media.safe_target(leftover))
         kept = t.get("composition_id")
@@ -996,6 +1067,20 @@ class Run:
             json.dump(r, f, indent=1, ensure_ascii=False)
         machine.swap_in(tmp, self.reviews_path)
 
+    def sound_problem(self, lean):
+        """Why the cut can't be a talk on YouTube by its sound (none at all, or silent for over half of it), or None."""
+        info = media.probe(lean)
+        if not info["channels"]:
+            return "the cut has no sound (the recording has none here)"
+        quiet = sum(n for _, n in selfcheck.silences(lean, least=10.0))
+        if info["duration"] and quiet > 0.5 * info["duration"]:
+            return "the cut is silent for %.0f of its %.0f s (a muted mic?)" % (quiet, info["duration"])
+        return None
+
+    def fname(self, key):
+        """The talk key as a file name on Windows and macOS: no / \\ : * ? " < > | (a name like "Q&A: Ann / Bob")."""
+        return re.sub(r'[\\/:*?"<>|]+', "", key).strip() or "talk"
+
     def srt_path(self, key):
         return os.path.join(self.srt_dir, re.sub(r"[^\w.-]+", "_", "%s_%s.srt" % (self.ev["id"], key)))
 
@@ -1009,21 +1094,28 @@ class Run:
         """Gate 1 by Claude on autopilot: the named cuts (all when none named) approved, with who and when. A cut
         whose sharp ends are still flagged (not confirmed in "ends") is not approved - it is named, never guessed.
         Returns (approved, held: {key: why})."""
-        data = self.cuts()
-        ok, held = [], {}
+        data = segment.annotate(self, self.cuts())       # with the lineup checks' flags (a swapped slot ...)
+        ok, held, go = [], {}, []
         for c in data["cuts"]:
             if keys and c["key"] not in keys:
                 continue
             if c.get("approved"):
                 ok.append(c["key"])
                 continue
+            if not keys and (c.get("flags") or c.get("confidence") == "low"):
+                held[c["key"]] = "; ".join(c.get("flags") or []) or "low confidence - not sure it is this talk"
+                continue
             confirmed = isinstance(c.get("ends"), dict) or c.get("ends") in ("rules", "off")
             rec = None if confirmed or not self.cfg.get("sharp_ends", True) else self.ends_for(c["key"], c)
             if rec and rec.get("flags"):
                 held[c["key"]] = "; ".join(rec["flags"])
                 continue
-            c["approved"], c["approved_by"], c["approved_at"] = True, by, now()
-            ok.append(c["key"])
+            go.append(c["key"])
+        data = self.cuts()                               # read again: the listening took minutes, edits since stay
+        for c in data["cuts"]:
+            if c["key"] in go and not c.get("approved"):
+                c["approved"], c["approved_by"], c["approved_at"] = True, by, now()
+                ok.append(c["key"])
         self.save_cuts(data)
         return ok, held
 
@@ -1035,8 +1127,8 @@ class Run:
     def process(self, key):
         t, cfg = self.state["talks"][key], self.cfg
         done = lambda s: (t["steps"].get(s) or {}).get("status") == "done"
-        lean = os.path.join(self.cut_dir, key + ".mp4")
-        raw = os.path.join(self.out, "_descript", key + ".mp4")
+        lean = os.path.join(self.cut_dir, self.fname(key) + ".mp4")
+        raw = os.path.join(self.out, "_descript", self.fname(key) + ".mp4")
         final = self.final_path(key)
         srt_path = self.srt_path(key)
         progress = lambda step: (lambda label, percent=None: self.set(key, step, "running", label=label, percent=percent))
@@ -1096,9 +1188,9 @@ class Run:
                         out_info = media.probe(lean)
                         problems, cnotes = precheck.check(lean, [x[:3] for x in parts], [x[3] for x in parts],
                                                           (out_info["width"], out_info["height"]),
-                                                          os.path.join(self.cut_dir, key + ".check.jpg"))
+                                                          os.path.join(self.cut_dir, self.fname(key) + ".check.jpg"), crop=crop)
                         check = {"problems": edge_problems + problems, "notes": edge_notes + cnotes,
-                                 "sheet": key + ".check.jpg", "at": now()}
+                                 "sheet": self.fname(key) + ".check.jpg", "at": now()}
                     with self.lock:
                         t["check"] = check
                         t["picture"] = {"deck": deck, "notes": pic_notes,
@@ -1127,6 +1219,11 @@ class Run:
             if not done("check"):
                 cut_cfg = next((c for c in self.cuts()["cuts"] if c["key"] == key), {})
                 chk = t.get("check")
+                if not done("upload"):                   # no sound to speak of: never paid for in Descript
+                    mute = self.sound_problem(lean)
+                    if mute:
+                        self.set(key, "check", "failed", error=mute)
+                        raise RuntimeError("stopped before Descript - " + mute)
                 if done("upload"):
                     self.set(key, "check", "done", note="uploaded before the check existed")
                 elif cut_cfg.get("precheck") == "off":
@@ -1153,8 +1250,14 @@ class Run:
                     existing = {c["name"]: c for c in d.project(self.state["project_id"]).get("compositions", [])
                                 if c["id"] not in bad and (c.get("duration") or 0) >= MIN_TALK_SECONDS}
                     if comp_name in existing:
-                        t["composition_id"], t["composition_name"] = existing[comp_name]["id"], comp_name
+                        with self.lock:
+                            t["composition_id"], t["composition_name"] = existing[comp_name]["id"], comp_name
                         self.set(key, "upload", "done", note="already in Descript, reused")
+            if not done("upload") and not os.path.exists(lean):    # the cut was cleaned away: cut it again
+                with self.lock:
+                    t["steps"].pop("cut", None)
+                    t["steps"].pop("check", None)
+                raise RuntimeError("the cut file is gone - it is cut again on the retry")
             if not done("upload"):
                 self.set(key, "upload", "running", label="uploading %.0f MB" % (os.path.getsize(lean) / 1e6), percent=0)
                 with self.plock:
@@ -1169,18 +1272,26 @@ class Run:
                                                 media_name=comp_name if not again else "%s (upload %d)" % (comp_name, again + 1))
                 comp = next((c for c in d.project(self.state["project_id"]).get("compositions", []) if c["id"] == cid), {})
                 if (comp.get("duration") or 0) < MIN_TALK_SECONDS:
-                    t.setdefault("broken_compositions", []).append(cid)
+                    with self.lock:
+                        t.setdefault("broken_compositions", []).append(cid)
                     raise RuntimeError("Descript got no usable video from the upload (%.0f s)" % (comp.get("duration") or 0))
-                t["composition_id"], t["composition_name"] = cid, comp_name
+                with self.lock:
+                    t["composition_id"], t["composition_name"] = cid, comp_name
                 self.set(key, "upload", "done", note=comp_name if comp_name != key else None)
             pid, cid = self.state["project_id"], t["composition_id"]
             # credit guard 2: never pay for the same edit twice (the ledger, or a composition already shorter)
+            resume_job = None
             if not done("edit"):
                 paid = self.ledger().get(cid)
-                if not paid:
+                if paid and paid.get("done") is False and paid.get("job_id"):
+                    resume_job, paid = paid["job_id"], None   # started before a crash: wait on that job, pay nothing new
+                if not paid and not resume_job:
                     pr = d.project(pid)
                     comp = next((c for c in pr.get("compositions", []) if c["id"] == cid), {})
-                    media_len = ((pr.get("media_files") or {}).get(key) or {}).get("duration") or 0
+                    mf = pr.get("media_files") or {}
+                    mine = [v for n, v in mf.items() if n == key or os.path.splitext(n)[0] == comp_name or
+                            n.startswith(comp_name + ".") or n.startswith(comp_name + " (")]
+                    media_len = max([(v or {}).get("duration") or 0 for v in mine] or [0])
                     if comp and media_len and comp.get("duration", media_len) < media_len * 0.99:
                         paid = {"note": "composition already shorter than its media"}
                 if paid:
@@ -1191,7 +1302,10 @@ class Run:
                         t["current"] = "edit"                # the error belongs to the edit, not the finished upload
                     raise RuntimeError("edits paused: " + self.state["edits_paused"])
                 self.set(key, "edit", "running")
-                j = d.edit(pid, cid, self.edit_prompt(key, comp_name), on_progress=progress("edit"))
+                if not resume_job:
+                    resume_job = d.start_edit(pid, cid, self.edit_prompt(key, comp_name), on_progress=progress("edit"))
+                    self.record_edit_start(cid, key, resume_job)
+                j = d.wait(resume_job, 20, progress("edit"))
                 credits = float(j["result"].get("ai_credits_used") or 0)
                 self.record_edit(cid, key, credits)
                 report = str(j["result"].get("agent_response") or "")
@@ -1241,6 +1355,11 @@ class Run:
                 self.set(key, "download", "running")
                 os.makedirs(os.path.dirname(raw), exist_ok=True)
                 with requests.get(t["steps"]["publish"]["download_url"], stream=True, timeout=600) as r:
+                    if 400 <= r.status_code < 500:              # the link expired: publish again (free) on the retry
+                        with self.lock:
+                            t["steps"].pop("publish", None)
+                        raise RuntimeError("Descript's download link answered %d - published again on the retry"
+                                           % r.status_code)
                     r.raise_for_status()
                     with open(raw + ".part", "wb") as f:
                         for chunk in r.iter_content(16 << 20):
@@ -1252,6 +1371,8 @@ class Run:
                 with open(srt_path, "wb") as f:
                     f.write(d.srt(pid, cid))
                 self.set(key, "srt", "done", file=os.path.basename(srt_path))
+            if not done("proofread"):
+                self.proofread_step(key, srt_path)
             if not done("chapters"):
                 self.chapters_step(key, d)
             if not done("loudness"):
@@ -1396,7 +1517,11 @@ class Run:
 
     def write_youtube(self):
         """<event>/YouTube items.txt: per talk, in schedule (sheet) order, the YouTube title, the description, and
-        the link to its thumbnail - ready to paste."""
+        the link to its thumbnail - ready to paste. One writer at a time (both talk threads call it)."""
+        with self.plock:
+            return self._write_youtube()
+
+    def _write_youtube(self):
         lines = ["%s - YouTube items" % self.ev["title"],
                  "Per talk: TITLE goes in the YouTube title, everything under DESCRIPTION into the description, and "
                  "THUMBNAIL is the picture to upload (drawn by the website).", ""]
@@ -1458,7 +1583,7 @@ class Run:
             self.process(key)
             err = t.get("error") or ""
             if (not err or n == attempts or "402" in err or "edits paused" in err or "free (keeping" in err
-                    or "stopped before Descript" in err):     # the same cut fails the same check again
+                    or "stopped before Descript" in err or "has no sound" in err or "is silent" in err):     # the same cut fails the same check again
                 return
             with self.lock:
                 t["retry"] = "failed (%s) - trying again in %d min, attempt %d of %d" % (err[:120], pause // 60, n + 1, attempts)
@@ -1472,11 +1597,19 @@ class Run:
         """Every approved cut through cut -> Descript -> (review) -> finished. Talks waiting for review stop there;
         run again after ticking Reviewed and they carry on."""
         bad = [p for p in segment.validate(self, self.cuts()) if p.startswith("ERROR")]
-        if bad:
+        held = {c["key"] for c in self.cuts()["cuts"] if any(c["key"] in p for p in bad)}
+        if bad and not held:
             raise SystemExit("cuts.json has errors - fix them first: " + "; ".join(bad))
+        if bad:                                          # the talks with a wrong cut wait; the others go on
+            self.note("left out until their cut is fixed: %s" % "; ".join(bad))
+            with self.lock:
+                self.state["cut_errors"] = {k: "; ".join(p for p in bad if k in p)[:300] for k in held}
+        else:
+            self.state.pop("cut_errors", None)
         self.sync_talks()
         redone = self.apply_redo_requests()
-        keys = [k for k in self.sync_talks() if not self.state["talks"][k].get("finished") and (not only or k in only)]
+        keys = [k for k in self.sync_talks() if not self.state["talks"][k].get("finished") and (not only or k in only)
+                and k not in held]
         if redone:
             self.note("redo: %s - cut again and uploaded as a fresh composition" % ", ".join(redone))
         if keys:
@@ -1530,10 +1663,51 @@ class Run:
         self.note("run finished" + (" - %d talk(s) waiting for your review in Descript" % len(waiting) if waiting else ""))
 
 
+    # ---- the transcript proofread before it goes up as captions (proofread.py, Marek 2026-11-27) ------------------
+    def proofread_step(self, key, srt_path):
+        """Glossary + Claude fix the misheard words of the talk's Descript transcript, in the talk's context. The
+        Descript original stays in srt/descript/, the fixes go to srt/proofread/<file>.json. Never fails the talk:
+        without Claude the glossary fixes stand and the step is "partial" - tried again before the upload."""
+        self.set(key, "proofread", "running", label="Claude reads the transcript")
+        keep = os.path.join(self.srt_dir, "descript", os.path.basename(srt_path))
+        if not os.path.exists(keep):
+            os.makedirs(os.path.dirname(keep), exist_ok=True)
+            shutil.copy2(srt_path, keep)
+        talk = next((x for x in events.talks(self.ev) if x["key"] == key), None)
+        try:
+            rep = proofread.proofread_file(srt_path, proofread.talk_context(self.ev, talk), self.cfg)
+        except Exception as ex:                          # noqa: BLE001 - the transcript as Descript wrote it stands
+            rep = {"fixes": [], "glossary": 0, "claude": 0, "partial": True, "error": str(ex)[:300]}
+        os.makedirs(os.path.join(self.srt_dir, "proofread"), exist_ok=True)
+        with open(os.path.join(self.srt_dir, "proofread", os.path.basename(srt_path) + ".json"), "w",
+                  encoding="utf-8") as f:
+            json.dump(rep, f, indent=1, ensure_ascii=False)
+        note = "%d fixes (%d glossary, %d Claude)" % (len(rep["fixes"]), rep["glossary"], rep["claude"])
+        if rep["partial"]:
+            note += " - glossary only: %s" % (rep["error"] or "Claude off in settings")
+        self.set(key, "proofread", "done", fixes=len(rep["fixes"]), partial=rep["partial"], note=note)
+        return rep
+
+    def proofread_pending(self):
+        """Finished talks whose proofread was only partial (Claude not reachable then): Claude again, before the
+        captions go up."""
+        for k, t in sorted(self.state["talks"].items()):
+            st = t["steps"].get("proofread") or {}
+            if t.get("finished") and st.get("partial") and os.path.exists(self.srt_path(k)):
+                talk = next((x for x in events.talks(self.ev) if x["key"] == k), None)
+                try:
+                    rep = proofread.proofread_file(self.srt_path(k), proofread.talk_context(self.ev, talk), self.cfg)
+                except Exception as ex:                  # noqa: BLE001
+                    rep = {"fixes": [], "claude": 0, "partial": True, "error": str(ex)[:300]}
+                if not rep["partial"]:
+                    self.set(k, "proofread", "done", fixes=st.get("fixes", 0) + len(rep["fixes"]), partial=False,
+                             note="%s; Claude later: %d fixes" % (st.get("note", ""), rep["claude"]))
+
     def youtube_pass(self, keys=None):
         """The checked talks to the brand's YouTube channel (ytupload.event); each line to the log. Never fails the
         run: what is not up yet goes up on the next pass."""
         lines = []
+        self.proofread_pending()                         # no caption goes up unproofread when Claude can be reached
         try:
             for line in ytupload.event(self, keys):
                 self.note(line)

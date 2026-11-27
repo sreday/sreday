@@ -1,0 +1,26 @@
+# Transcript glossary of the LIVE factory: sure-fire fixes the proofread step (proofread.py) makes before Claude
+# reads a talk's transcript (Marek 2026-11-27: "download the descript transcript, proofread it in the context of the
+# talk to catch and fix obvious problems, and upload to youtube videos as captions").
+# Each entry: a regex (case-insensitive) and what it becomes. `brands` limits an entry to events of those brands
+# (a regex on the brand key: sreday / llmday / platformday / pec). Add a line whenever a mistake shows up twice;
+# Claude catches the rest from the talk's context.
+fixes:
+  - from: '\b(?:s\s?r\s?e|sorry|siri)[\s-]?day\b'
+    to: SREday
+    brands: 'sreday'
+  - from: '\bl\s?l\s?m[\s-]day\b'
+    to: LLMday
+    brands: 'llmday'
+  - from: '\bplatform[\s-]day\b'
+    to: PLATFORMday
+    brands: 'platformday'
+  - from: '\bL\s+LMs\b'
+    to: LLMs
+  - from: '\bL\s+LM\b'
+    to: LLM
+  - from: '\bchat\s?gpt\b'
+    to: ChatGPT
+  - from: '\bcooper\s?net(?:t)?ies\b'
+    to: Kubernetes
+  - from: '\bget[\s-]ops\b'
+    to: GitOps

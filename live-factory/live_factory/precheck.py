@@ -51,7 +51,7 @@ def _alike(out, ref, reach_ms=100):
     return (m - i) * 1000.0 / SR, float(c[i] / den) if den > 0 else 0.0
 
 
-def check(lean, parts, extras, size, sheet=None):
+def check(lean, parts, extras, size, sheet=None, crop=None):
     """Check the cut file `lean` made from parts [(src, start, end)] with extras [compose() extra per part].
     size = (W, H) of the cut. Returns (problems [str], notes [str])."""
     problems, notes = [], []
@@ -108,7 +108,7 @@ def check(lean, parts, extras, size, sheet=None):
             for g0, g1 in gaps[:3]:
                 tm = (g0 + g1) / 2
                 fr, src_fr = _frame(lean, offset + tm, w, h), _frame(src, a + tm, w, h)
-                if fr is not None and src_fr is not None and not extra.get("colour"):
+                if fr is not None and src_fr is not None and not extra.get("colour") and not crop:
                     d = float(np.abs(fr - src_fr).mean())
                     if d > 25:
                         problems.append("picture: at %s the cut should show the recording, it differs (%.0f)" % (

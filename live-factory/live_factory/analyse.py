@@ -17,14 +17,21 @@ from . import machine, media
 _MODEL = {}
 
 
+_CUDA_DONE = []
+
+
 def _cuda_dlls():
-    """Windows: the CUDA libraries pip put in site-packages/nvidia/*/bin (setup.cmd) are not on the DLL path."""
-    if os.name != "nt":
+    """Windows: the CUDA libraries pip put in site-packages/nvidia/*/bin (setup.cmd) are not on the DLL path. Once
+    per process: added on every model() call, PATH grew past Windows' 32767 characters after ~100 calls (2026-11-27)."""
+    if os.name != "nt" or _CUDA_DONE:
         return
+    _CUDA_DONE.append(True)
+    have = os.environ.get("PATH", "").split(os.pathsep)
     for sp in site.getsitepackages():
         for d in glob.glob(os.path.join(sp, "nvidia", "*", "bin")):
             os.add_dll_directory(d)
-            os.environ["PATH"] = d + os.pathsep + os.environ.get("PATH", "")
+            if d not in have:
+                os.environ["PATH"] = d + os.pathsep + os.environ.get("PATH", "")
 
 
 def model(cfg, cpu=False, name=None):

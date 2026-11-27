@@ -386,6 +386,9 @@ def rescue(lean, folder, cfg=None, before=None, log=None):
             rec["why"] = "%s: now %s" % (what, describe(after))
         else:
             rec["why"] = "%s left it %s - the cut is kept as it was" % (what, describe(after))
+    except Exception as ex:                              # noqa: BLE001 - a tool error / out of memory: the cut as it was
+        rec["saved"] = False
+        rec["why"] = "the repair failed (%s) - the cut is kept as it was, Studio Sound does what it can" % str(ex)[:200]
     finally:
         if os.path.exists(tmp):
             os.remove(tmp)

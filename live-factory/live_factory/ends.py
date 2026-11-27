@@ -49,6 +49,10 @@ MC = re.compile(r"\b(please welcome|welcome (him|her|them)|give it up|round of a
                 r"thank you so much for (the|that|your) (talk|presentation|session)|let s thank|"
                 r"another round|big round|thanks again to|(turn|turning|hand|handing|pass|passing) it (over )?to|"
                 r"over to my (good )?friend|coming up next|without further)\b")
+# the phrases a speaker says too ("great to be on stage", "next up I'll show", "let me introduce the problem"): the MC
+# only when nobody has started the talk yet, or with the speaker thanked / named (review 2026-11-27: a start moved 20 s
+# late and an end 24 s early, both marked sure)
+MC_WEAK = re.compile(r"\b(next up|up next|on stage|introduce (our|the)|over to you|next speaker|coming up next)\b")
 # slide set-up and the laptop: "let me share my screen", "one second", "can you see my slides?"
 SETUP = re.compile(r"\b(let me (share|get|pull|bring|switch|put|open|find|plug|mirror)|one (sec|second|moment)|"
                    r"give me (a|one) (sec|second)|can (you|everyone|everybody) see (my|the|this) (screen|slides)|"
@@ -124,6 +128,8 @@ WHISPER = dict(beam_size=5, word_timestamps=True, condition_on_previous_text=Fal
 
 # ---- listening --------------------------------------------------------------------------------------------------------
 def pcm(src, a, b):
+    if b - max(0.0, a) <= 0.05:                          # an empty window (a part at the very end of a file)
+        return np.zeros(0, np.float32)
     raw = subprocess.run([media.tool("ffmpeg"), "-v", "error", "-ss", "%.3f" % max(0.0, a), "-t", "%.3f" % (b - max(0.0, a)),
                           "-i", src, "-vn", "-ac", "1", "-ar", str(RATE), "-f", "f32le", "-"],
                          capture_output=True, check=True).stdout
@@ -169,8 +175,19 @@ def listen(src, a, b, cfg, cache=None, opts=None):
         x = np.concatenate([x, np.zeros(RATE, np.float32)])
     if len(x) < RATE:
         return [], {"t0": a, "env": env.tolist()}
-    model = analyse.model(cfg, name=ends_model(cfg))[0]
-    segs, _ = model.transcribe(x, language=cfg.get("language") or "en", **dict(WHISPER, **(opts or {})))
+    model, mkey = analyse.model(cfg, name=ends_model(cfg))
+    lang = cfg.get("whisper_language") or cfg.get("language") or "en"
+    try:
+        segs, _ = model.transcribe(x, language=lang, **dict(WHISPER, **(opts or {})))
+        segs = list(segs)
+    except RuntimeError as ex:                           # the card fails at run time (CUDA): the CPU, slower
+        if mkey[1] != "cuda":
+            raise
+        model, mkey = analyse.model(cfg, cpu=True, name=ends_model(cfg))
+        segs, _ = model.transcribe(x, language=lang, **dict(WHISPER, **(opts or {})))
+        segs = list(segs)
+    if mkey[0] != ends_model(cfg):
+        path = None                                      # another model's words never go in this model's cache
     floor = float(np.percentile(env, 10)) if len(env) else -90.0
     words = []
     for s in segs:
@@ -333,15 +350,26 @@ def _other_name(norm, names):
     return not any(segment._name_like(m.group(2), t) for t in own)
 
 
+def _mc_strong(norm):
+    """An MC phrase no speaker says about their own talk ("please welcome", "give it up for")."""
+    return any(not MC_WEAK.fullmatch(m.group(0)) for m in MC.finditer(norm))
+
+
 def _speaker_named(norm, names):
-    """The MC talking about the speaker: their first name heard without "I'm" / "my name is" in front of it."""
+    """The MC talking about the speaker: their first name heard without "I'm" / "my name is" in front of it. A first
+    name that is an everyday word ("Will", "Mark", "Grace") doesn't count - "we will look at" is not the MC."""
     for n in names:
         first = segment._norm(n).split()[:1]
+        if first and (first[0] in NOT_NAME or first[0] in COMMON_NAMES_AS_WORDS):
+            continue
         if first and len(first[0]) >= 3 and re.search(r"\b%s\b" % re.escape(first[0]), norm) and not re.search(
                 r"\b(i m|im|i am|my name is|my name s|myself|this is)\s+%s\b" % re.escape(first[0]), norm):
             return True
     return False
 
+
+COMMON_NAMES_AS_WORDS = set("""will mark may grace bill rob sue pat art bob ray dawn hope joy faith chance chase cliff
+drew gene glen jack jean jet lane lee max miles nick page penny rich rose ruby sky summer win""".split())
 
 NOT_NAME = set("""a an the so going gonna here very really just also currently from with working at in on not sure
 happy glad excited part one of now still actually originally trying kind sort like done back""".split()) | segment.COMMON
@@ -395,12 +423,18 @@ def find_start(sents, anchor, names=(), floor=0.0):
     if not sents:
         return None, None, "no words heard around the start", False
     # the MC's last words before the talk: introduction / applause call / the speaker named in the third person
+    # once the speaker has opened the talk (a greeting, "I'm Kevin"), their own "on stage" / "next up" is not the MC
+    opened = next((k for k, s in enumerate(sents) if s["start"] >= anchor - 30 and
+                   (_self_intro(s["norm"]) or (HELLO.search(" ".join(s["norm"].split()[:10])) and
+                                               not MC.search(s["norm"])))), None)
     mc = [i for i, s in enumerate(sents) if s["start"] <= anchor + 30 and
-          (MC.search(s["norm"]) or (_speaker_named(s["norm"], names) and not _opens(s["norm"])))]
+          (_mc_strong(s["norm"]) or (opened is None or i < opened) and
+           (MC.search(s["norm"]) or (_speaker_named(s["norm"], names) and not _opens(s["norm"]))))]
+    mc_sure = bool(mc) and (_mc_strong(sents[mc[-1]]["norm"]) or _speaker_named(sents[mc[-1]]["norm"], names))
     if mc and mc[-1] + 1 < len(sents):
         i, why = mc[-1] + 1, "after the MC (\"%s\")" % sents[mc[-1]]["text"][:50]
     else:
-        mc = []
+        mc, mc_sure = [], False
         i = next((k for k, s in enumerate(sents) if s["end"] >= anchor - 1), len(sents) - 1)
         why = "at the coarse start"
         # the greeting can sit just before the coarse start ("Hey, thanks for being here ... I'm Jay")
@@ -480,7 +514,7 @@ def find_start(sents, anchor, names=(), floor=0.0):
     k_s = next((k for k, x in enumerate(sents) if x["start"] >= s["start"] - 0.01), None)
     if mc and k_s and not sents[k_s - 1]["done"] and s["start"] - sents[k_s - 1]["end"] < 1.0 and not _opens(s["norm"]):
         lower = True                                  # the MC's run flows straight into it: who said the first words?
-    sure = bool((_opens(s["norm"]) or mc or (pause >= 1.5 and first_word not in JOINING)) and not lower and
+    sure = bool((_opens(s["norm"]) or mc_sure or (pause >= 1.5 and first_word not in JOINING)) and not lower and
                 not _other_name(s["norm"], names) and not setup_in)
     return s["start"], s, why, sure
 
@@ -509,7 +543,8 @@ def over_at(sents, after, names=()):
             return s, "the Q&A is announced (\"%s\")" % s["text"][:50]
         if ROOM.search(n) and not resumed:
             return s, "the room has the floor (\"%s\")" % s["text"][:50]
-        if MC.search(n) or (THANKS.search(n) and _speaker_named(n, names)):
+        if _mc_strong(n) or (THANKS.search(n) and _speaker_named(n, names)) or \
+                (MC_WEAK.search(n) and (THANKS.search(n) or _speaker_named(n, names))):
             return s, "the MC is back (\"%s\")" % s["text"][:50]
     return None
 
@@ -977,7 +1012,9 @@ def verify(lean, rec, cfg, window=20.0):
     head, lh = listen(lean, 0.0, min(window, dur), cfg, opts={"vad_filter": False})
     tail, lt = listen(lean, max(0.0, dur - window), dur, cfg, opts={"vad_filter": False, "pad_end": True})
     tail = [w for w in tail if w[0] < dur - 0.05]
-    want_first, want_last = _tokens(rec.get("first", ""))[:3], _tokens(rec.get("last", ""))[-3:]
+    fill = TRAIL | {"um", "uh", "er", "ah", "erm", "hmm", "mm"}   # Descript takes these out of the final
+    want_first = [w for w in _tokens(rec.get("first", "")) if w not in fill][:3]
+    want_last = [w for w in _tokens(rec.get("last", "")) if w not in fill][-3:]
     got_first = _tokens(" ".join(w[2] for w in head[:8]))
     got_last = _tokens(" ".join(w[2] for w in tail[-10:]))
     hit = lambda want, got: sum(1 for w in want if w in got) >= min(2, len(want))   # Whisper spells a word differently

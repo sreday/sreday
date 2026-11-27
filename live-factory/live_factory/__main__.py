@@ -144,6 +144,11 @@ def list_cuts(run, data):
 
 
 def main(argv):
+    for stream in (sys.stdout, sys.stderr):              # "Łukasz", "✓" on a Windows console without PYTHONUTF8
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError):
+            pass
     if not argv or argv[0] in ("-h", "--help") or "-h" in argv[1:2] or "--help" in argv[1:2]:
         print(__doc__)
         return
@@ -176,6 +181,8 @@ def main(argv):
 
 
 def dispatch(run, cmd, argv):
+    if cmd in ("add", "unpause", "redo", "retry", "run", "analyse", "approve", "autopilot") and run.busy():
+        raise SystemExit("a job is running on this event (%s) - wait for it to finish first" % run.busy())
     if cmd == "add":
         day, rest = flag(argv[2:], "--day")
         track, rest = flag(rest, "--track")
@@ -250,8 +257,9 @@ def dispatch(run, cmd, argv):
         replace, _ = flag(argv[2:], "--replace", has_value=False)
         old, new = run.cuts(), segment.draft(run)
         keep = {c["key"]: c for c in old["cuts"] if c.get("approved") or (c.get("by") != "draft" and not replace)}
-        data = {"cuts": list(keep.values()) + [c for c in new["cuts"] if c["key"] not in keep],
-                "skipped": [s for s in new["skipped"] if s["key"] not in keep]}
+        hand = {s["key"]: s for s in old.get("skipped") or [] if s.get("by") != "draft"}
+        data = dict(old, cuts=list(keep.values()) + [c for c in new["cuts"] if c["key"] not in keep and c["key"] not in hand],
+                    skipped=list(hand.values()) + [s for s in new["skipped"] if s["key"] not in keep and s["key"] not in hand])
         for p in run.save_cuts(data):
             print("  note: " + p)
         list_cuts(run, segment.annotate(run, run.cuts()))

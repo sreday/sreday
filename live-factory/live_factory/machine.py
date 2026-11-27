@@ -123,8 +123,8 @@ def event_dirs(cfg):
                         ev = json.load(f)["event"]
                     if "short_url" not in ev:         # not the Conf42 factory's folder (same "video factory - " names)
                         out.setdefault(ev["id"], os.path.join(root, name))
-                except (OSError, ValueError, KeyError):
-                    pass
+                except (OSError, ValueError, KeyError, TypeError, AttributeError):
+                    pass                                 # not a factory's state.json
     return out
 
 
@@ -283,6 +283,10 @@ def doctor(cfg, check_descript=True):
             add("Descript token", False, "no answer: %s" % ex, "check the internet connection")
     else:
         add("Descript token", True, "set")
+    from . import proofread
+    cl = proofread.claude_cli()
+    add("Claude Code (transcript proofread)", bool(cl), cl or "not found - the captions get the glossary fixes only",
+        "install Claude Code and sign in (claude.com/claude-code)", required=False)
     from . import ytupload
     signed = [b for b in sorted(cfg.get("brands") or {}) if ytupload.has_token(b)]
     missing = [b for b in sorted((cfg.get("youtube") or {}).get("channels") or {}) if b not in signed]

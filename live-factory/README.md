@@ -570,6 +570,98 @@ stay for the manual flow):
 
 Tested by `tests/youtube_smoke.py`: a fake YouTube, the release-time rules, and selfcheck on generated finals.
 
+## Proofread captions, the plain progress page, and a full review (Marek, 2026-11-27)
+
+"Proofread the whole live talk factory for bugs and fixes with fable. Do as many end-to-end tests as needed to
+return zero problems with different test videos ... download the descript transcript, proofread it in the context of
+the talk ... and upload to youtube videos as captions ... a dirty simple, noob friendly dashboard ... just progress
+bars and then final report talking only about real issues".
+
+**Captions proofread** (`proofread.py`, ported from the Conf42 factory, which has proofread ~1,600 transcripts):
+- the step `proofread` comes right after `srt`: first glossary.yml, then Claude via the Claude Code CLI on this
+  computer (`claude -p`, no tools, a JSON schema; `proofread_model: opus`), given the title, abstract, speakers,
+  company and brand;
+- only cue text changes, never the timings or the number of cues;
+- a fix whose "from" isn't in its cue is dropped;
+- Descript's original is kept in `srt/descript/`, every fix is listed in `srt/proofread/<file>.json`;
+- a partial run (no CLI, a failed call) keeps the glossary fixes, and `proofread_pending()` tries Claude again
+  before the upload;
+- the upload sends the proofread file as the captions.
+
+On Krishna Reddy's talk (Dallas) Claude made 14 fixes in 17 s, about $0.10 of subscription usage: "telephone file"
+→ "Terraform file", "im policies" → "IAM policies", "cloud board" → "Claude Code", "HSO" → "HedgeServ".
+
+**The progress page** (`progress.py` + `progress.html`; the home page at localhost:8043; the old workbench is at
+`/workbench`):
+- one bar per stage: copying, cutting up the conference video, finding the talks, making the cuts, fixing the
+  audio and video, finishing, uploading to YouTube;
+- then one row per talk: its mission in plain words ("fixing the audio and video", "on YouTube - public on
+  2026-12-10") and a bar, going by the furthest step done;
+- then "what needs you", only real issues: "Missing speaker: X" (a no-show said plainly), "Missing recording for
+  X", "X: not uploaded - needs a look", "X: stopped - needs a look", "YouTube isn't connected", Descript leftovers
+  to delete, paused edits. Never about sound quality.
+
+**The review** (three Fable reviewers over all of live_factory, 2026-11-27, plus one on the autopilot code):
+- **Descript:**
+  - an edit is written to the ledger as started, with its job id, BEFORE the wait, and a restart waits on that job
+    instead of paying for a new one;
+  - reads are retried on network errors; a paid edit is never re-posted after a 5xx;
+  - jobs time out after 8 h;
+  - the ledger is written atomically under a lock file, and a damaged ledger stops the edits instead of reading as
+    empty;
+  - media is looked up by its real name.
+- **Jobs:**
+  - `job.lock` per event (one job at a time, also from the command line);
+  - the heartbeat never dies;
+  - add / unpause / run refuse while a job runs;
+  - state changes are made under the lock;
+  - one bad cut is left out instead of stopping the event;
+  - `draft` keeps "autopilot" and the hand-written skipped reasons;
+  - `approve` holds flagged and low-confidence cuts;
+  - a withdrawn cut is never uploaded;
+  - an expired download link means publish again;
+  - a cut file that was cleaned away is cut again;
+  - talk keys are made safe for file names (`fname`);
+  - console output is UTF-8;
+  - talks.csv durations like "45 min" are read.
+- **A/V:**
+  - ffmpeg's errors go to a temp file, not a pipe (a damaged recording hung the cut forever), with a 20-minute
+    no-progress watchdog;
+  - a rotated phone video gets its displayed size;
+  - parts of different sizes, or a part without sound, are joined by re-encoding to one size, and the joined file is
+    verified;
+  - no sound or a silent export is said plainly, and such a cut stops BEFORE Descript;
+  - a trim never copies from the keyframe before it;
+  - precheck doesn't compare a zoomed cut with the unzoomed recording;
+  - a failed clipped-sound repair keeps the cut;
+  - drift correction works in 2.6 ppm steps (it was 20.8).
+- **Edges:**
+  - the speaker's own "on stage" / "next up" / "introduce the" isn't the MC once they've opened the talk, and is
+    never enough to make an edge sure;
+  - a first name that is a word (Will, Mark, Grace) doesn't count as the speaker named;
+  - fillers are left out of the final's first and last words check;
+  - the CUDA folders are added to PATH once: they were added on every Whisper load, and PATH passed Windows' 32767
+    characters after about 100 loads, a crash mid-event;
+  - a card failing at run time falls back to the CPU, and another model's words never go in the cache.
+- **Publish and app:**
+  - status.json goes onto origin/main with git's plumbing, a temporary index and commit-tree: the checkout's
+    files, branch and index are never touched, so no half-rebased checkout and no stash of another session's work;
+  - the app accepts a POST only from its own page;
+  - a recording id must belong to the event.
+
+**End to end:**
+- `tests/autopilot_smoke.py`: a clean talk, a talk with a dead stretch, and a missing one.
+- `tests/scenarios_smoke.py`:
+  - a talk across a 720p 25 fps stereo recording and a 1080p 30 fps mono 44.1 kHz one;
+  - a Polish name;
+  - a portrait phone video with a rotation flag;
+  - a recording with a damaged stretch;
+  - a recording with no sound;
+  - "Ann O'Neil: Q/A?";
+  - a talk not recorded.
+
+  Every talk ends either on YouTube or named in the report.
+
 ## Best slides, best sound (Marek, 2026-11-27)
 
 "The standard is always to have the best quality sound and the best quality slides full screen - period. If there's a
