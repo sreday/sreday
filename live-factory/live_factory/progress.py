@@ -169,7 +169,9 @@ def payload(event_id, run=None, runner=None):
     running = bool(runner)
     all_done = bool(rows) and all(r["state"] == "done" for r in rows)
     shelf = ytupload.shelved(run.cfg, ev["brand"])
+    from . import machine
     return {"event": event_id, "title": ev["title"], "stages": stages, "talks": rows, "issues": issues,
+            "battery": machine.battery_line(),
             "no_upload": shelf or "",
             "running": running, "job": (runner or {}).get("job") or "", "finished": all_done and not running,
             "report_ready": bool(rows) and not running and all(r["state"] in ("done", "problem") for r in rows)}

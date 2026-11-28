@@ -36,6 +36,30 @@ def swap_in(tmp, path):
                 raise
             time.sleep(0.1)
 
+def on_battery():
+    """None on mains power (or a desktop with no battery); else {"percent", "minutes" (left, or None)} - the laptop is
+    running from its battery (Marek 2026-11-28: "point out that the laptop is running from battery, suggest to keep
+    it plugged"). Works on Windows and macOS (psutil)."""
+    try:
+        import psutil
+        b = psutil.sensors_battery()
+    except Exception:                                    # noqa: BLE001 - no battery API: say nothing
+        return None
+    if b is None or b.power_plugged in (True, None):
+        return None
+    left = b.secsleft if isinstance(b.secsleft, (int, float)) and b.secsleft > 0 else None
+    return {"percent": int(round(b.percent)), "minutes": int(left // 60) if left else None}
+
+
+def battery_line():
+    """The plain sentence for a person, or "" on mains power."""
+    b = on_battery()
+    if not b:
+        return ""
+    return ("This laptop is running on its battery (%d%%%s) - plug it in, or the night's work stops when the battery "
+            "runs out." % (b["percent"], ", about %d min left" % b["minutes"] if b["minutes"] else ""))
+
+
 class keep_awake:
     """The computer doesn't fall asleep while a job runs (an autopilot run goes on for hours, unattended; Marek
     2026-11-27: "ship the whole conference A-Z on every machine"). macOS: `caffeinate -i -s` tied to this process;
@@ -283,6 +307,8 @@ def doctor(cfg, check_descript=True):
             add("Descript token", False, "no answer: %s" % ex, "check the internet connection")
     else:
         add("Descript token", True, "set")
+    bl = battery_line()
+    add("Power", not bl, bl or "on mains power (or no battery)", "plug the laptop in", required=False)
     from . import proofread
     cl = proofread.claude_cli()
     add("Claude Code (transcript proofread)", bool(cl), cl or "not found - the captions get the glossary fixes only",

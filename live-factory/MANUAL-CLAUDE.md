@@ -230,6 +230,8 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-11-28** - On a laptop running from its battery, the factory says so: a yellow banner on the progress page,
+  a line in the log and in the health check, and Claude mentions it when it starts the night job.
 - **2026-11-28** - "Survival of the fittest": good talks ship; very likely good ones ship too, listed under "Please
   check" (private until the release); unshippable ones are left out and asked about at launch.
 - **2026-11-28** - Overnight shipping: Claude makes all decisions first, then one job runs the whole night (retries,

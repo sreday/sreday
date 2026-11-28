@@ -155,6 +155,13 @@ def main():
           [(r["name"], r["mission"]) for r in pg["talks"]])
     check("benefit of the doubt: Bo shipped AND on the progress page to watch", "Bo Chen" in up and
           any("Please watch Bo Chen" in i for i in pg["issues"]), pg["issues"])
+    import psutil
+    import types
+    real_bat = psutil.sensors_battery
+    psutil.sensors_battery = lambda: types.SimpleNamespace(percent=40, secsleft=3600, power_plugged=False)
+    pb = progress.payload(run.ev["id"], run=run)
+    psutil.sensors_battery = real_bat
+    check("on battery: the progress page says plug it in", "plug it in" in (pb.get("battery") or ""), pb.get("battery"))
     rep = open(os.path.join(run.dir, "ship report.md"), encoding="utf-8").read()
     check("ship report: Bo under 'Please check' with the why", "## Please check (1)" in rep and
           "the name was not heard" in rep, rep[rep.find("## Please"):][:300])

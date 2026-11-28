@@ -151,11 +151,21 @@ class Run:
             self.state["job"], self.state["run_started"] = name, now()
             self.save()
         stop = threading.Event()
+        warned = [None]
+
+        def power():                                     # once when it starts, and each time it goes on battery
+            line = machine.battery_line()
+            if line and not warned[0]:
+                self.note(line)
+            warned[0] = bool(line)
+        power()
+
         def beat():
             while not stop.wait(30):
                 try:
                     self.save()
                     os.utime(lock, None)
+                    power()
                 except Exception as ex:                  # noqa: BLE001 - the heartbeat never dies
                     print("heartbeat: %s" % ex, flush=True)
         threading.Thread(target=beat, daemon=True).start()

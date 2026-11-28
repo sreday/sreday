@@ -194,6 +194,9 @@ able to put the laptop down for the night and make sure it's not going to stop m
   - YouTube's day full: it waits for the next quota day and goes on, up to 3 days;
   - the ship report, ending with "To ask for now".
 
+  Before saying "put the laptop down", look at `doctor`'s "Power" line (machine.battery_line): on battery, say so
+  plainly in the launch message - "this laptop is on its battery - plug it in before you leave it". The job notes it
+  too, and the progress page shows a yellow banner while it lasts (Marek 2026-11-28).
   Marek, 2026-11-28: "it's ok to ask straight away when launching, but I don't want it to stop later on". So in the
   SAME message that says the job is running, ask the materials list in one go: "Do you have the recording of X /
   another recording with sound of Y / the slides Z presented?". It is the only question of the whole ship, and it
