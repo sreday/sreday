@@ -37,7 +37,7 @@ def _stage(name, done, total, running=False, partial=0.0):
     return {"name": name, "percent": 100 if state == "done" else pct, "state": state}
 
 
-def talk_row(key, title, t, yt_rec, held, cut, steps_total):
+def talk_row(key, title, t, yt_rec, held, cut, steps_total, shelf=None):
     """One talk's line: its mission in plain words and how far it is."""
     if yt_rec and yt_rec.get("id"):
         when = (yt_rec.get("publish_at") or "")[:10]
@@ -51,6 +51,8 @@ def talk_row(key, title, t, yt_rec, held, cut, steps_total):
     if t.get("finished"):
         if t.get("selfcheck_ok") is False:
             return {"mission": "not uploaded - needs a look", "percent": 100, "state": "problem"}
+        if shelf:
+            return {"mission": "finished - in the final videos folder", "percent": 100, "state": "done"}
         return {"mission": "uploading to YouTube", "percent": 95, "state": "running"}
     if t.get("error"):
         return {"mission": "stopped - needs a look", "percent": _pct(sum(1 for s, _ in MISSIONS if
@@ -124,7 +126,8 @@ def payload(event_id, run=None, runner=None):
     ok = [k for k in approved if (talks_state.get(k) or {}).get("finished") and
           (talks_state.get(k) or {}).get("selfcheck_ok") is not False]
     up = sum(1 for k in ok if (yt.get(k) or {}).get("id"))
-    stages.append(_stage("Uploading to YouTube", up, len(ok) or total))
+    if not ytupload.shelved(run.cfg, ev["brand"]):            # PEC: no upload stage at all
+        stages.append(_stage("Uploading to YouTube", up, len(ok) or total))
 
     rows = []
     for t in lineup:
@@ -134,7 +137,8 @@ def payload(event_id, run=None, runner=None):
         if k not in cuts:
             continue
         held = k in ends_flags and not cuts[k].get("approved") and not isinstance(cuts[k].get("ends"), (dict, str))
-        r = talk_row(k, t["title"], talks_state.get(k), yt.get(k), held, cuts.get(k), len(MISSIONS))
+        r = talk_row(k, t["title"], talks_state.get(k), yt.get(k), held, cuts.get(k), len(MISSIONS),
+                     ytupload.shelved(run.cfg, ev["brand"]))
         rows.append(dict(r, name=k, title=t["title"]))
 
     issues = []
@@ -149,7 +153,7 @@ def payload(event_id, run=None, runner=None):
     for r in rows:
         if r["state"] == "problem":
             issues.append("%s: %s" % (r["name"], r["mission"]))
-    if cuts and not ytupload.has_token(ev["brand"]):
+    if cuts and not ytupload.has_token(ev["brand"]) and not ytupload.shelved(run.cfg, ev["brand"]):
         issues.append("YouTube isn't connected for %s on this computer" % ev["brand_name"])
     left = st.get("leftover_compositions") or []
     if left:
@@ -159,6 +163,8 @@ def payload(event_id, run=None, runner=None):
         issues.append("Descript edits are paused - a talk needs a look in Descript")
     running = bool(runner)
     all_done = bool(rows) and all(r["state"] == "done" for r in rows)
+    shelf = ytupload.shelved(run.cfg, ev["brand"])
     return {"event": event_id, "title": ev["title"], "stages": stages, "talks": rows, "issues": issues,
+            "no_upload": shelf or "",
             "running": running, "job": (runner or {}).get("job") or "", "finished": all_done and not running,
             "report_ready": bool(rows) and not running and all(r["state"] in ("done", "problem") for r in rows)}

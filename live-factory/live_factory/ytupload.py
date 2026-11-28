@@ -535,8 +535,17 @@ def channel_for(cfg, brand):
     return str(((cfg.get("youtube") or {}).get("channels") or {}).get(brand) or "")
 
 
+def shelved(cfg, brand):
+    """Why this brand's videos are not uploaded by the factory (settings youtube.no_upload), or None."""
+    return ((cfg.get("youtube") or {}).get("no_upload") or {}).get(brand)
+
+
 def event(run, keys=None, yt=None, now=None):
     """event_pass under the event's upload lock (one pass at a time across processes)."""
+    why = shelved(run.cfg, run.ev["brand"])
+    if why:
+        yield "youtube: no upload for %s - %s" % (run.ev["brand_name"], why)
+        return
     try:
         with upload_lock(run):
             yield from event_pass(run, keys, yt, now)

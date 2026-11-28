@@ -1743,6 +1743,9 @@ class Run:
                     (" - still to add: " + ", ".join(extras)) if extras else ""))
             elif t and t.get("finished") and not t.get("selfcheck_ok"):
                 rows["problematic"].append("- **%s** - %s" % (k, "; ".join(t.get("problems") or ["not checked"])))
+            elif t and t.get("finished") and ytupload.shelved(self.cfg, self.ev["brand"]):
+                rows["on YouTube"].append("- **%s** - finished, in the final videos folder (no upload: %s)" % (
+                    k, ytupload.shelved(self.cfg, self.ev["brand"])))
             elif t and t.get("finished"):
                 rows["stopped"].append("- **%s** - finished, not on YouTube yet%s" % (
                     k, (": " + rec["error"][:200]) if rec.get("error") else " (see the log)"))

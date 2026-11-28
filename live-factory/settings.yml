@@ -156,9 +156,11 @@ youtube:
   # (the Conf42 factory's OAuth client); the token stays in ~/.live-factory/youtube/<brand>.json on this computer.
   # channels: the ONE channel per brand an upload may go to (filled from the sign-in); handles: the @name a sign-in
   # must have when no channel id is set yet. A metadata.yml video_release (ISO time) overrides the release.
-  channels: {sreday: UCrdFcj7vBTOVyCpGhLNdCvQ, llmday: UCNqgrBft20Icfgwcxwu1iLw, platformday: UCTBbnEako2_9a1oLfgTeoCQ,
-             pec: ""}
+  channels: {sreday: UCrdFcj7vBTOVyCpGhLNdCvQ, llmday: UCNqgrBft20Icfgwcxwu1iLw, platformday: UCTBbnEako2_9a1oLfgTeoCQ}
   handles: {sreday: sreday, llmday: llmday, platformday: platformday, pec: PromptEngineeringConf}
+  # brands whose videos are NOT uploaded by the factory - finished in the final folder, handed over by hand (Marek
+  # 2026-11-28: "put PEC to the wardrobe for now, it's a friend's channel and I don't have full permissions")
+  no_upload: {pec: "a friend's channel - the finished videos stay in the final folder, to hand over"}
   release_days: 35
   release_time: "09:00"
   timezones:

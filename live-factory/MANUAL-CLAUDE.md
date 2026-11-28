@@ -212,6 +212,8 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-11-28** - PEC is on the shelf: it's a friend's channel, so the factory makes PEC's finished videos and leaves
+  them in the final videos folder to hand over, with no upload and no sign-in.
 - **2026-11-28** - A new computer in one sentence: *"set up the factory on this computer"*. Claude installs
   everything with no questions and brings the YouTube sign-ins and the Descript token from your private Drive vault,
   so no per-computer keys or sign-ins.

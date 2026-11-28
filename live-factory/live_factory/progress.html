@@ -42,7 +42,7 @@
 <main>
   <h1 id="title">Talk factory</h1>
   <p class="sub" id="sub">Loading...</p>
-  <div class="card" id="done" hidden><div class="big ok">Finished - every talk is on YouTube.</div></div>
+  <div class="card" id="done" hidden><div class="big ok" id="doneText">Finished - every talk is on YouTube.</div></div>
   <div class="card"><h2>The conference</h2><div id="stages"></div></div>
   <div class="card" id="talksCard" hidden><h2>The talks</h2><div id="talks"></div></div>
   <div class="card" id="issuesCard" hidden><h2 id="issuesHead">To look at</h2><ul class="issues" id="issues"></ul></div>
@@ -82,6 +82,7 @@ async function tick() {
   $('talksCard').hidden = !p.talks.length;
   $('talks').innerHTML = p.talks.map(t => row(t.name, t.mission, t.percent, t.state)).join('');
   $('done').hidden = !p.finished;
+  $('doneText').textContent = p.no_upload ? 'Finished - every talk is in the final videos folder.' : 'Finished - every talk is on YouTube.';
   $('issuesCard').hidden = !p.issues.length;
   $('issuesHead').textContent = p.report_ready || p.finished ? 'Final report - what needs you' : 'So far - what needs you';
   $('issues').innerHTML = p.issues.map(i => `<li>${esc(i)}</li>`).join('');

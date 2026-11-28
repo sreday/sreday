@@ -289,7 +289,8 @@ def doctor(cfg, check_descript=True):
         "install Claude Code and sign in (claude.com/claude-code)", required=False)
     from . import ytupload
     signed = [b for b in sorted(cfg.get("brands") or {}) if ytupload.has_token(b)]
-    missing = [b for b in sorted((cfg.get("youtube") or {}).get("channels") or {}) if b not in signed]
+    missing = [b for b in sorted((cfg.get("youtube") or {}).get("channels") or {}) if b not in signed and
+               b not in ((cfg.get("youtube") or {}).get("no_upload") or {})]
     add("YouTube sign-ins", bool(signed), (", ".join(signed) or "none") + (" (missing: %s)" % ", ".join(missing) if missing else ""),
         "python -m live_factory youtube-login <brand> <client_secret.json> - once per channel, for the autopilot's upload",
         required=False)

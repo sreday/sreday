@@ -209,6 +209,11 @@ What goes up is in the channels' own style (read from them 2026-11-27):
 DevOps Not Dead is dead (Marek, 2026-11-27: "don't touch devops not dead it's a dead thing"): no work there, no
 sign-in.
 
+PEC is on the shelf (Marek 2026-11-28: "put PEC to the wardrobe for now, it's a friend's channel and I don't have
+full permissions"): settings `youtube.no_upload` - a PEC event is shipped up to the finished videos in the final
+folder, no upload, no sign-in asked for; the report says where the videos are. Don't raise PEC's channel again
+unless he does.
+
 Hard stops even on autopilot: no Descript token, no YouTube sign-in for the brand, the disk, EDITS PAUSED, a channel
 that isn't the brand's. Follow-ups: "fetch talk X" = `add` the new file, match, the same path; "redo Y" = `redo`, then
 `run` - a never-public old video is deleted and replaced, a public one stays (say so) and the new one goes up.
