@@ -230,6 +230,9 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-11-28** - Each uploaded video and the event's playlist go onto the website at once. Until the release the
+  talk page says the video is ready, with a countdown to its premiere and the next event to attend; the player
+  appears by itself at the release.
 - **2026-11-28** - Every bar on the progress page shows the estimated time left ("about 25 min left"), from its own pace, or from how long this event's talks usually take.
 - **2026-11-28** - On a laptop running from its battery, the factory says so: a yellow banner on the progress page,
   a line in the log and in the health check, and Claude mentions it when it starts the night job.

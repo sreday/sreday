@@ -208,7 +208,7 @@ able to put the laptop down for the night and make sure it's not going to stop m
   in, lid open) - I'll have the report in the morning."
 - Whatever he sends later goes in as a follow-up (`add`, match, then `ship` again, which only does the new talks);
   nothing waits for it.
-- When the job ends: the sheet links (step 9), the playlist hook (step 10), the postmortem, and in the summary what
+- When the job ends: the sheet links (step 9), a look at the site push lines (step 10), the postmortem, and in the summary what
   is still missing - as a statement, not a new question.
 
 1. Preflight - the launch checklist of MANUAL-CLAUDE.md ("Launch checklist"):
@@ -239,14 +239,18 @@ able to put the laptop down for the night and make sure it's not going to stop m
 8. `upload <event>` again the next day when the day's YouTube quota stopped it (the run says so).
 9. The WWW sheet: each uploaded talk's `https://youtu.be/<id>` into the YouTube column of the event's tab (Google
    Sheets connector), the row found by the speaker's name right before writing (rows move), only empty cells, never
-   over a typed link. The website shows the player only from the release (`_videos_out` in generate.py), so filling
-   it now is safe.
+   over a typed link. The website already has them (step 10); the sheet keeps them for the next lineup ship.
 10. The playlist: the upload uses the one the event's website links (`youtube_playlist` in its entry of the brand's
     `home/metadata.yml`), else finds the channel's playlist for the event (brand, city, year and quarter in any order:
-    the team named some by hand, "SREday London Q1 2026"), else makes one. When the website doesn't link it yet, the
-    run says "HOOK THE PLAYLIST TO THE EVENT": put the link into `youtube_playlist:` of that event's entry in the
-    brand repo's `home/metadata.yml`, in a lane of its own, and land it. The videos are added in the website's order
+    the team named some by hand, "SREday London Q1 2026"), else makes one. The videos are added in the website's order
     (the schedule, track by track).
+    The website gets everything straight away, by itself (Marek 2026-11-28: "every time a playlist or a video is
+    added, push straight"): after each upload the run pushes the talk's link (talks.csv), the playlist
+    (`youtube_playlist` in the event's metadata.yml and its home card) and `video_release` (the exact publishAt) to
+    the brand repo's main - `site: pushed ...` in the log. Until the release the pages show "Video ready - premieres
+    in 14d 3h" with a countdown and the next event to attend; the player appears by itself at the release. Only a
+    `site: not pushed ...` line needs you: fix the cause (GitHub sign-in, internet); the next pass pushes it. "HOOK
+    THE PLAYLIST TO THE EVENT" now shows only when that push failed - then do it by hand in a lane.
 11. `report <event>` -> `ship report.md`, then the postmortem (`postmortem` skill): on YouTube + when public, missing
     and why, problematic and what would fix it, credits, Descript leftovers to delete by hand. Give him the summary.
 

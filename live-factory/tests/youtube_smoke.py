@@ -21,7 +21,8 @@ import types
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, HERE)
-from live_factory import selfcheck, ytupload  # noqa: E402
+from live_factory import selfcheck, sitepush, ytupload  # noqa: E402
+sitepush.ENABLED = False                       # never a push to a real site from a test (site_tests: a local origin)
 
 TMP = tempfile.mkdtemp(prefix="live-factory-yt-")
 FAILS = []
@@ -397,7 +398,87 @@ def vault_tests():
         ytupload.token_path, machine.read_token, machine.store_token = real_tp, real_read, real_store
 
 
+def site_tests():
+    """sitepush: talk links, the playlist and the release go straight onto the event's site repo (a local 'origin')."""
+    print("Website push")
+    root = os.path.join(TMP, "site")
+    origin, work = os.path.join(root, "origin.git"), os.path.join(root, "work")
+    os.makedirs(root, exist_ok=True)
+    g = lambda cwd, *a: subprocess.run(["git", "-C", cwd] + list(a), capture_output=True)
+    subprocess.run(["git", "init", "-q", "--bare", "-b", "main", origin], capture_output=True)
+    subprocess.run(["git", "clone", "-q", origin, work], capture_output=True)
+    ev_dir = os.path.join(work, "2026-testcity-q4")
+    os.makedirs(os.path.join(ev_dir, "_db"))
+    os.makedirs(os.path.join(work, "home"))
+    csv_bytes = (b',status,name,track,title,abstract\r\n'
+                 b',confirmed,Ann Lee,1,Budgets Beat Alerts,"Line one\nline, two with ""quotes"""\r\n'
+                 b'https://youtu.be/typedByHand,confirmed,Bob Ray,1,On-call,short\r\n'
+                 b',confirmed,Cy Doe,2,Kafka,"x"\r\n'
+                 b',confirmed,Ann Lee,2,Second talk,y')
+    meta = b'start_time: "2026-10-23T09:00:00-05:00"\r\nyoutube_url: https://www.youtube.com/@sreday\r\n'
+    home = (b"events:\n  - name: SREday Testcity 2026 Q4\n    url: ./2026-testcity-q4/\n    youtube_playlist:\n"
+            b"  - name: Other\n    url: ./2026-other-q4/\n    youtube_playlist:\n")
+    for rel, data in (("2026-testcity-q4/_db/talks.csv", csv_bytes), ("2026-testcity-q4/metadata.yml", meta),
+                      ("home/metadata.yml", home)):
+        with open(os.path.join(work, rel), "wb") as f:
+            f.write(data)
+    g(work, "-c", "core.autocrlf=false", "add", "-A")
+    g(work, "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "init")
+    g(work, "push", "-q", "origin", "HEAD:main")
+    ev = {"path": ev_dir, "folder": "2026-testcity-q4", "title": "SREday Testcity 2026 Q4"}
+    show = lambda rel: subprocess.run(["git", "-C", origin, "show", "main:" + rel], capture_output=True).stdout
+    sitepush.ENABLED = True
+    try:
+        line = sitepush.push(ev, {"Ann Lee": ("https://youtu.be/AAA111", []), "Bob Ray": ("https://youtu.be/BBB222", []),
+                                  "Ann Lee (2)": ("https://youtu.be/AAA222", [])},
+                             "https://www.youtube.com/playlist?list=PLtest1234", "2026-11-27T15:00:00Z")
+        c = show("2026-testcity-q4/_db/talks.csv")
+        check("site: pushed", line.startswith("site: pushed"), line)
+        check("site: blank header -> YouTube, the link in Ann Lee's row, multi-line cell intact",
+              c.startswith(b"YouTube,status") and b'https://youtu.be/AAA111,confirmed,Ann Lee,1,Budgets Beat Alerts,"Line one\nline, two with ""quotes"""\r\n' in c, c[:200])
+        check("site: a link typed by hand is kept", b"https://youtu.be/typedByHand,confirmed,Bob Ray" in c and "kept" in line, line)
+        check("site: a second talk by the same speaker gets its own link", b"https://youtu.be/AAA222,confirmed,Ann Lee,2" in c)
+        check("site: every other byte as it was", c.replace(b"YouTube", b"", 1).replace(b"https://youtu.be/AAA111", b"").replace(
+            b"https://youtu.be/AAA222", b"") == csv_bytes, c)
+        m = show("2026-testcity-q4/metadata.yml")
+        check("site: video_release and the playlist in the event's metadata, CRLF kept",
+              b'video_release: "2026-11-27T15:00:00Z"\r\n' in m and b"youtube_playlist: https://www.youtube.com/playlist?list=PLtest1234\r\n" in m
+              and m.startswith(meta), m)
+        h = show("home/metadata.yml")
+        check("site: the home card's playlist, only this event's entry",
+              b"url: ./2026-testcity-q4/\n    youtube_playlist: https://www.youtube.com/playlist?list=PLtest1234\n" in h
+              and h.endswith(b"url: ./2026-other-q4/\n    youtube_playlist:\n"), h)
+        again = sitepush.push(ev, {"Ann Lee": ("https://youtu.be/AAA111", [])}, "https://www.youtube.com/playlist?list=PLtest1234",
+                              "2026-11-27T15:00:00Z")
+        check("site: nothing new -> no commit", again.startswith("site: up to date"), again)
+        redo = sitepush.push(ev, {"Ann Lee": ("https://youtu.be/NEW999", ["AAA111"])})
+        check("site: a redo replaces its own old link", b"https://youtu.be/NEW999,confirmed,Ann Lee,1" in show(
+            "2026-testcity-q4/_db/talks.csv") and redo.startswith("site: pushed"), redo)
+        g(work, "pull", "-q", "origin", "main")
+        os.makedirs(os.path.join(work, "past"))
+        g(work, "mv", "2026-testcity-q4", "past/2026-testcity-q4")
+        g(work, "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "archive")
+        g(work, "push", "-q", "origin", "HEAD:main")
+        moved = sitepush.push(dict(ev, path=os.path.join(work, "past", "2026-testcity-q4")),
+                              {"Cy Doe": ("https://youtu.be/CCC333", [])})
+        check("site: an event moved to past/ is found there", b"https://youtu.be/CCC333,confirmed,Cy Doe" in show(
+            "past/2026-testcity-q4/_db/talks.csv"), moved)
+        check("site: the work tree was never touched", not g(work, "status", "--porcelain").stdout.strip(),
+              g(work, "status", "--porcelain").stdout)
+
+        # the pass's bookkeeping: pushed once, never again
+        R = types.SimpleNamespace(dir=root, ev=dict(ev, path=os.path.join(work, "past", "2026-testcity-q4")))
+        done = {"Cy Doe": {"id": "CCC333", "url": "https://youtu.be/CCC333", "publish_at": "2026-11-27T15:00:00Z"},
+                ytupload.PLAYLIST: {"url": "https://www.youtube.com/playlist?list=PLtest1234"}}
+        lines = list(ytupload.site_sync(R, done, "PLtest1234"))
+        check("site_sync: marks what the site has", done["Cy Doe"].get("site") == "CCC333" and done[ytupload.PLAYLIST].get("site"), lines)
+        check("site_sync: nothing to push -> silent", list(ytupload.site_sync(R, done, "PLtest1234")) == [])
+    finally:
+        sitepush.ENABLED = False
+
+
 if __name__ == "__main__":
+    site_tests()
     vault_tests()
     youtube_tests()
     house_tests()

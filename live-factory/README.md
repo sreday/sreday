@@ -524,9 +524,21 @@ stay for the manual flow):
   `~/.live-factory/youtube/<brand>.json` (outside every repo, never printed). Every pass checks the signed-in channel against
   `youtube.channels` (the id) and the @handle of the event's `youtube_url`, and refuses anything else.
 - **The websites (all five site repos):** `generate.py` shows a talk's player and its Watch button only from the
-  release (`_videos_out`, the same rule at the event's UTC offset), so the sheet can get the link at upload time. The
-  daily build at 04:05 UTC shows them the morning after. A video the team publishes earlier by hand shows from the
-  release too; set `video_release` to show it sooner.
+  release (`_videos_out`, the same rule at the event's UTC offset). Before it (PREMIERE COUNTDOWN, 2026-11-28 - "a
+  timer like in conf42 ... so they do it on purpose and we can watch 5 weeks later, OR WE SHOULD ATTEND") the talk
+  page shows "Video ready - premieres <date, the visitor's time>" with a live countdown and "We publish every talk
+  five weeks after the event. Can't wait? Catch the next one live: <next event, same city first>"; the event page
+  has the same strip under its hero; the Watch and Playlist buttons wait. All of it is in the page, so at the release
+  the visitor's browser swaps the countdown for the player, no rebuild. The home card's Playlist button waits too
+  (home/_build/generate.py). A video the team publishes earlier by hand shows from the release too; set
+  `video_release` to show it sooner.
+- **Straight onto the website (sitepush.py, 2026-11-28 - "every time a playlist or a video is added, push
+  straight"):** after each upload, and at the end of every pass for anything missed, one commit on the brand repo's
+  origin/main (git plumbing, the checkout never touched): the talk's `https://youtu.be/<id>` in `_db/talks.csv`
+  (only an empty cell or one holding the video its redo replaced; a blank first header becomes "YouTube"; every other
+  byte stays), `video_release` (the exact publishAt, so the countdown and YouTube agree) and `youtube_playlist` in
+  the event's metadata.yml, and the playlist on its home card. youtube.json marks what the site has (`site`).
+  Tested against a local origin in `tests/youtube_smoke.py` (site_tests).
 - **House style** (read from the three channels 2026-11-27):
   - the title is youtube.title_for(), with "Keynote: " in front of a keynote's (as the channel titles them),
     within title_max;
@@ -543,8 +555,8 @@ stay for the manual flow):
     quarter in any order (the team named some by hand: "SREday London Q1 2026"; Munich 2026 Q2 has an unlisted
     2-video twin, so of several the public one with the most videos wins);
   - else one is made public;
-  - when the website doesn't link it yet, the run says HOOK THE PLAYLIST TO THE EVENT, and so does the report;
-    Claude puts the link into home/metadata.yml in a lane;
+  - sitepush puts it on the website at once; only when that push fails does the run say HOOK THE PLAYLIST TO THE
+    EVENT (then Claude puts it into home/metadata.yml in a lane);
   - the order is the website's: the schedule, track by track (keynotes at the top of their day).
 - **On a Mac** the close listening at the edges uses large-v3 too (`ends_whisper_model`), not the `small` of the
   whole-day pass. The rules were learned on large-v3's punctuation, and it is only a few minutes of sound per talk.

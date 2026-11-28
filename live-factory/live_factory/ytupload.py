@@ -659,6 +659,7 @@ def event_pass(run, keys=None, yt=None, now=None):
             rec["problem"] = s.get("rejectionReason") or s.get("failureReason")
         done[key] = rec
         save(run, done)
+        yield from site_sync(run, done, playlist_id)      # the link on the website at once (it waits for the release)
         yield "youtube: %s -> %s (%s%s)%s%s" % (
             key, rec["url"], rec["privacy"], ", public at %s UTC" % rec["publish_at"][:16].replace("T", " ")
             if rec.get("publish_at") else "", "" if rec.get("thumbnail") else " - no thumbnail: " +
@@ -666,17 +667,46 @@ def event_pass(run, keys=None, yt=None, now=None):
             "public" if rec.get("old_deleted") else "still on YouTube: delete it in Studio")) if rec.get("replaces") else "")
     yield from repair(yt, run, done, talks, playlist_title, linked)
     yield from playlist_order(yt, run, done, playlist_title, linked)
+    yield from site_sync(run, done, playlist_id or linked or playlist_id_from((done.get(PLAYLIST) or {}).get("url")))
     if linked and (done.get(PLAYLIST) or {}).get("hooked") is not True:
         done[PLAYLIST] = {"url": "https://www.youtube.com/playlist?list=%s" % linked, "hooked": True}
         save(run, done)
     if not linked and any(r.get("playlist") for k, r in done.items() if k != PLAYLIST):
         pid = playlist_id or yt.playlist(playlist_title, ev)[0]
         url = "https://www.youtube.com/playlist?list=%s" % pid
+        if (done.get(PLAYLIST) or {}).get("site"):           # sitepush linked it on the website
+            return
         if (done.get(PLAYLIST) or {}).get("url") != url:
             done[PLAYLIST] = {"url": url, "hooked": False}
             save(run, done)
+        yield from site_sync(run, done, pid)
+        if (done.get(PLAYLIST) or {}).get("site"):
+            return
         yield ("youtube: HOOK THE PLAYLIST TO THE EVENT - %s is not on the website yet: youtube_playlist: %s in %s's "
                "entry of home/metadata.yml (a lane, then land)" % (ev["title"], url, ev["folder"]))
+
+
+def site_sync(run, done, playlist_id):
+    """What the website doesn't have yet - talk links, the playlist, the release moment - pushed to the event's site repo
+    straight away (sitepush; Marek 2026-11-28: "every time a playlist or a video is added, push straight"). A push
+    that fails is tried again at the end of the pass, and on every pass after."""
+    from . import sitepush
+    links = {k: (r["url"], r.get("replaces") or []) for k, r in done.items()
+             if k != PLAYLIST and r.get("id") and r.get("url") and r.get("site") != r["id"]}
+    pl = done.get(PLAYLIST) or {}
+    pl_url = "https://www.youtube.com/playlist?list=%s" % playlist_id if playlist_id and not pl.get("site") else ""
+    release = next((r["publish_at"] for k, r in sorted(done.items()) if k != PLAYLIST and r.get("publish_at")
+                    and r.get("site") != r.get("id")), "")
+    if not links and not pl_url:
+        return
+    line = sitepush.push(run.ev, links, pl_url, release)
+    if line.startswith(("site: pushed", "site: up to date")):
+        for k in links:
+            done[k]["site"] = done[k]["id"]
+        if pl_url:
+            done[PLAYLIST] = dict(pl, url=pl_url, site=True, hooked=True)
+        save(run, done)
+    yield "youtube: " + line
 
 
 def repair(yt, run, done, talks, playlist_title, linked=None):
