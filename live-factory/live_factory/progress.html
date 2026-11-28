@@ -55,8 +55,9 @@ const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let event = new URLSearchParams(location.search).get('event') || '';
 
-function row(name, what, pct, state) {
-  return `<div class="row ${state}"><div><div class="name">${esc(name)}</div>${what ? `<div class="what">${esc(what)}</div>` : ''}</div>
+function row(name, what, pct, state, eta) {
+  const sub = [what, eta].filter(Boolean).join(' \u00b7 ');
+  return `<div class="row ${state}"><div><div class="name">${esc(name)}</div>${sub ? `<div class="what">${esc(sub)}</div>` : ''}</div>
     <div class="bar"><i style="width:${pct}%"></i></div><div class="pct">${state === 'done' ? '&#10003;' : pct + '%'}</div></div>`;
 }
 
@@ -80,9 +81,9 @@ async function tick() {
   $('title').textContent = p.title;
   $('sub').innerHTML = p.running ? '<span class="live"></span>Working on it - this page updates by itself.'
     : p.finished ? 'All done.' : p.report_ready ? 'Done, apart from what is listed below.' : 'Not running right now.';
-  $('stages').innerHTML = p.stages.map(s => row(s.name, '', s.percent, s.state)).join('');
+  $('stages').innerHTML = p.stages.map(s => row(s.name, '', s.percent, s.state, s.eta)).join('');
   $('talksCard').hidden = !p.talks.length;
-  $('talks').innerHTML = p.talks.map(t => row(t.name, t.mission, t.percent, t.state)).join('');
+  $('talks').innerHTML = p.talks.map(t => row(t.name, t.mission, t.percent, t.state, t.eta)).join('');
   $('battery').hidden = !p.battery;
   $('batteryText').textContent = p.battery || '';
   $('done').hidden = !p.finished;

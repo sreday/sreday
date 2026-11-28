@@ -27,6 +27,68 @@ REC_GONE = re.compile(r"not found|not recorded|no sound|muted|silence|recording 
                       r"no recording|wasn'?t recorded|was not recorded|\?", re.I)
 
 
+# ---- estimated time remaining (Marek 2026-11-28: "to each progress bar, let's add 'estimated time remaining' just so
+# we see something moving"). Each bar's own pace, measured while the page is open: where it was when it started to
+# move, where it is now. No movement yet: "estimating...". The app keeps the samples in memory (a restart measures
+# afresh).
+_SEEN = {}
+
+
+def eta(key, pct, state, now=None):
+    """'about 12 min left' / 'about 1 h 20 min left' / 'estimating...' / '' (done or not started)."""
+    import time
+    now = now or time.time()
+    if state == "done":
+        _SEEN.pop(key, None)
+        return ""
+    if state not in ("running",) or pct <= 0:
+        return ""
+    first = _SEEN.get(key)
+    if not first or pct < first[1]:                      # the first look at it moving (or it started again)
+        _SEEN[key] = (now, pct)
+        return "estimating..."
+    t0, p0 = first
+    if pct <= p0 or now - t0 < 20:
+        return "estimating..."
+    left = (100.0 - pct) * (now - t0) / (pct - p0)
+    return "about %s left" % _span(left)
+
+
+def _span(secs):
+    m = max(1, int(round(secs / 60.0)))
+    if m < 60:
+        return "%d min" % m
+    h, m = divmod(m, 60)
+    if h >= 48:
+        return "%d days" % round(h / 24.0)
+    return "%d h %d min" % (h, m) if m else "%d h" % h
+
+
+def _ts(v):
+    import datetime
+    try:
+        return datetime.datetime.fromisoformat(str(v)[:19]).timestamp()
+    except ValueError:
+        return None
+
+
+def _began(t):
+    """When the talk's first step finished (state.json keeps a time per step), as a timestamp."""
+    stamps = [_ts((s or {}).get("at")) for s in (t.get("steps") or {}).values()]
+    stamps = [x for x in stamps if x]
+    return min(stamps) if stamps else None
+
+
+def _typical(talks_state):
+    """The usual time from a talk's first step to finished, in this event (seconds), or None."""
+    spans = []
+    for t in talks_state.values():
+        b, f = _began(t), _ts(t.get("finished")) if t.get("finished") else None
+        if b and f and f > b:
+            spans.append(f - b)
+    return sorted(spans)[len(spans) // 2] if spans else None
+
+
 def _pct(done, total):
     return int(round(100.0 * done / total)) if total else 0
 
@@ -170,6 +232,16 @@ def payload(event_id, run=None, runner=None):
     all_done = bool(rows) and all(r["state"] == "done" for r in rows)
     shelf = ytupload.shelved(run.cfg, ev["brand"])
     from . import machine
+    for s in stages:
+        s["eta"] = eta((event_id, "stage", s["name"]), s["percent"], s["state"])
+    typical = _typical(talks_state)
+    for r in rows:
+        r["eta"] = eta((event_id, "talk", r["name"]), r["percent"], r["state"])
+        if r["eta"] == "estimating..." and typical:      # no movement yet: how long this event's talks take
+            began = _began(talks_state.get(r["name"]) or {})
+            if began:
+                import time
+                r["eta"] = "about %s left" % _span(max(60, typical - (time.time() - began)))
     return {"event": event_id, "title": ev["title"], "stages": stages, "talks": rows, "issues": issues,
             "battery": machine.battery_line(),
             "no_upload": shelf or "",

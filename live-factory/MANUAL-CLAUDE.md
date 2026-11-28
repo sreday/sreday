@@ -230,6 +230,7 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-11-28** - Every bar on the progress page shows the estimated time left ("about 25 min left"), from its own pace, or from how long this event's talks usually take.
 - **2026-11-28** - On a laptop running from its battery, the factory says so: a yellow banner on the progress page,
   a line in the log and in the health check, and Claude mentions it when it starts the night job.
 - **2026-11-28** - "Survival of the fittest": good talks ship; very likely good ones ship too, listed under "Please
