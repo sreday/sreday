@@ -46,6 +46,9 @@
                                                        captions, the event's playlist
   python -m live_factory report <event>                <work folder>/ship report.md: on YouTube / problematic /
                                                        stopped / missing, credits, Descript leftovers
+  python -m live_factory vault pack <file>              this computer's sign-ins (YouTube channels + Descript token)
+                                                       into one file - for the person's private Drive vault
+  python -m live_factory vault install <file> [--keep] a vault file's sign-ins onto this computer (then deleted)
   python -m live_factory youtube-login <brand> <client_secret.json>
                                                        one-time per channel (the person, in the browser): pick the
                                                        brand's channel; the token stays on this computer
@@ -164,6 +167,18 @@ def main(argv):
     if cmd == "publish":
         from . import publish
         print(publish.publish())
+        return
+    if cmd == "vault":                                   # the sign-ins follow the person (vault.py)
+        from . import vault
+        if len(argv) < 3 or argv[1] not in ("pack", "install"):
+            raise SystemExit("vault pack <file> | vault install <file> [--keep]")
+        if argv[1] == "pack":
+            brands, desc = vault.pack(argv[2])
+            print("packed: YouTube %s, Descript token %s -> %s" % (", ".join(brands) or "none", "yes" if desc else "no",
+                                                                   argv[2]))
+        else:
+            for line in vault.install(argv[2], keep="--keep" in argv):
+                print(line)
         return
     if cmd == "youtube-login":
         from . import ytupload

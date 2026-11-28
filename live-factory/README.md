@@ -570,6 +570,20 @@ stay for the manual flow):
 
 Tested by `tests/youtube_smoke.py`: a fake YouTube, the release-time rules, and selfcheck on generated finals.
 
+## A new computer: bootstrap.py and the vault (Marek, 2026-11-28)
+
+"copy repo, install plugins, run this puppy - as long as my claude is used"; "the youtube sign in ... automatic when
+signed with my claude"; "same for descript, no individual api keys".
+- `bootstrap.py` (standard library only, no prompts, so Claude can run it): env, requirements, the CUDA libraries on an
+  NVIDIA PC, ffmpeg (winget / Homebrew), settings.local.yml, doctor. Tested on Elephant against the existing env.
+- `vault.py`: `vault pack <file>` puts this computer's sign-ins (`~/.live-factory/youtube/*.json` and the Descript
+  token) into one JSON. `vault install <file>` (JSON or the Drive connector's base64) puts them back: it never
+  overwrites a sign-in to a different channel, skips incomplete entries, and deletes the file.
+- The vault lives as `live-factory vault.json` in Marek's owner-only Drive folder "Claude (private)". Uploads go by
+  file reference, so the content never passes through Claude. On a new computer it is downloaded through the Drive
+  connector, so it passes through Claude's context once - his choice.
+- The skill's "A new computer" section is the flow.
+
 ## Proofread captions, the plain progress page, and a full review (Marek, 2026-11-27)
 
 "Proofread the whole live talk factory for bugs and fixes with fable. Do as many end-to-end tests as needed to

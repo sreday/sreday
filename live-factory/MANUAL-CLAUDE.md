@@ -64,7 +64,19 @@ Claude also puts each link into the event's sheet (the website shows the video o
 Afterwards, just say what you want: *"fetch Kevin's talk from this file"*, *"redo Jay's talk"*. A talk that isn't sure
 (its start lost, its sound dying) is never guessed: it waits, and the report says why.
 
-### Launch checklist: once per computer
+### A new computer in one sentence
+
+Clone the sreday repo, start Claude Code in that folder, and say *"set up the factory on this computer"*. Claude
+clones the other brand repos, installs everything (`live-factory/bootstrap.py` - no questions), fetches your
+sign-ins from your private Drive vault through your Claude account's Drive connector (the YouTube channels and the
+Descript token - no API key to type), and runs the health check. Needed on the computer: Git, Python 3.9+, Claude Code
+signed in with your account (with the Google Drive connector on).
+
+The vault is one file, `live-factory vault.json`, in your owner-only Drive folder "Claude (private)". Claude keeps it
+current whenever a sign-in changes. To revoke everything at once: Google account > Security > third-party access
+("Conf42 factory"), and Descript > Settings > API tokens.
+
+### Launch checklist: once per computer (by hand, or what Claude checks)
 
 Do these once on every computer that ships events, Mac or Windows. Ask Claude *"Is the factory ready to ship
 <event>?"*: it runs the checks and tells you what is missing. A run that starts without them stops at the first
@@ -191,6 +203,9 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-11-28** - A new computer in one sentence: *"set up the factory on this computer"*. Claude installs
+  everything with no questions and brings the YouTube sign-ins and the Descript token from your private Drive vault,
+  so no per-computer keys or sign-ins.
 - **2026-11-27** - The app opens on a plain progress page (bars, then only the real issues); the workbench is at
   /workbench. The subtitles are proofread by Claude in the talk's context before they go to YouTube. After a full
   review of the factory with Claude Fable, about 40 problems were fixed, among them:

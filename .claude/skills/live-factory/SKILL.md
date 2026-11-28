@@ -37,6 +37,31 @@ you need before changing anything.
   how you run things, and `MANUAL.md` / `MANUAL-CLAUDE.md` plus their Changelog when the team would notice - in the
   same job, not later (Marek, 2026-10-17).
 
+## A new computer - "set up the factory on this computer"
+
+Marek, 2026-11-28: "I really need this flow: copy repo, install plugins, run this puppy - as long as my claude is
+used"; "I want the youtube sign in to be automatic when signed with my claude"; "same for descript, no individual api
+keys". So on a computer with nothing, Claude does it all, without asking him for any token:
+
+1. The repos side by side (`git clone` what is missing: sreday, llmday, platformday,
+   Prompt-Engineering-Conference/2026.promptengineering.rocks - not devopsnotdead), `git pull` the rest.
+2. Python 3.9+ and Git must be there (Mac: `brew install python`; Windows: `winget install -e --id
+   Python.Python.3.12`). Then `python3 live-factory/bootstrap.py` (Windows: `py -3 live-factory\bootstrap.py`). With
+   no questions it does the env, the packages, the CUDA libraries on an NVIDIA PC, ffmpeg, settings.local.yml and the
+   health check.
+3. The sign-ins from the vault: in his Drive folder "Claude (private)" (owner-only; search `title = 'live-factory
+   vault.json'`) with the Google Drive connector, `download_file_content` it, Write the base64 it returns as it is
+   into `~/.live-factory/vault.b64`, then `env/bin/python -m live_factory vault install ~/.live-factory/vault.b64`
+   (Windows: `env\Scripts\python`). That deletes the file. The tokens pass through your context here: never echo,
+   quote or summarise them, and never write them anywhere else.
+4. `doctor`: everything OK, "YouTube sign-ins" lists the brands, the Descript token works. Done - tell him "ready".
+
+Keep the vault current: after any `youtube-login` or a new Descript token, `vault pack ~/.live-factory/vault.json`,
+then `update_file` the Drive vault (or create it in "Claude (private)" if missing) with
+base64Content = the file reference `sha256:<hex>:<path with />` - the content never passes through you - then delete
+the local pack. The OAuth client file (`youtube-client.json`) is only needed for a NEW channel sign-in; the vault's
+tokens refresh by themselves.
+
 ## The steps
 
 1. **Add**: `add <event> <file-or-folder ...> --day N [--track T]` (T = track number or room name; a one-room day

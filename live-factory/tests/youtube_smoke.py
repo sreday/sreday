@@ -352,7 +352,42 @@ def selfcheck_tests():
     check("an edge heard wrong -> problematic", any(p.startswith("edges:") for p in probs), probs)
 
 
+def vault_tests():
+    print("vault")
+    import base64
+    from live_factory import machine, vault
+    home = os.path.join(TMP, "home")
+    real_tp, real_read, real_store = ytupload.token_path, machine.read_token, machine.store_token
+    ytupload.token_path = lambda brand: os.path.join(home, "youtube", "%s.json" % brand)
+    stored = {}
+    machine.read_token = lambda: stored.get("t")
+    machine.store_token = lambda t: stored.update(t=t) or "test"
+    try:
+        creds = {"client_id": "c", "client_secret": "s", "refresh_token": "r", "channel_id": "UCsreday"}
+        data = {"youtube": {"sreday": creds, "llmday": {"client_id": "c"}}, "descript": "dtok"}
+        f = os.path.join(TMP, "vault.b64")
+        with open(f, "w") as fh:                         # as the Drive connector hands it over: base64
+            fh.write(base64.b64encode(json.dumps(data).encode()).decode())
+        done = vault.install(f)
+        check("vault: a channel and the Descript token installed, an incomplete one skipped, the file gone",
+              os.path.exists(ytupload.token_path("sreday")) and stored.get("t") == "dtok" and
+              not os.path.exists(ytupload.token_path("llmday")) and not os.path.exists(f), done)
+        with open(ytupload.token_path("sreday"), "w") as fh:
+            json.dump(dict(creds, channel_id="UCother"), fh)
+        with open(f, "w") as fh:
+            json.dump(data, fh)
+        done = vault.install(f)
+        check("vault: a computer signed in to another channel is left as it is",
+              json.load(open(ytupload.token_path("sreday")))["channel_id"] == "UCother", done)
+        out = os.path.join(TMP, "packed.json")
+        brands, desc = vault.pack(out)
+        check("vault: pack takes this computer's sign-ins", brands == ["sreday"] and desc, (brands, desc))
+    finally:
+        ytupload.token_path, machine.read_token, machine.store_token = real_tp, real_read, real_store
+
+
 if __name__ == "__main__":
+    vault_tests()
     youtube_tests()
     house_tests()
     selfcheck_tests()
