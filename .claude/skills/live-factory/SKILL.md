@@ -182,11 +182,15 @@ able to put the laptop down for the night and make sure it's not going to stop m
   - YouTube's day full: it waits for the next quota day and goes on, up to 3 days;
   - the ship report, ending with "To ask for now".
 
-  Tell him in one line: "All decisions are made - you can put the laptop down (plugged in, lid open); I'll have the
-  report in the morning."
-- When it ends: the sheet links (step 9), the playlist hook (step 10), the postmortem. THEN ask him the one list from
-  "To ask for now": "Do you have the recording of X / another recording with sound of Y / the slides Z presented?" -
-  that is the only question of the whole ship.
+  Marek, 2026-11-28: "it's ok to ask straight away when launching, but I don't want it to stop later on". So in the
+  SAME message that says the job is running, ask the materials list in one go: "Do you have the recording of X /
+  another recording with sound of Y / the slides Z presented?". It is the only question of the whole ship, and it
+  never blocks: the job is already running and ships everything else. Then: "You can put the laptop down (plugged
+  in, lid open) - I'll have the report in the morning."
+- Whatever he sends later goes in as a follow-up (`add`, match, then `ship` again, which only does the new talks);
+  nothing waits for it.
+- When the job ends: the sheet links (step 9), the playlist hook (step 10), the postmortem, and in the summary what
+  is still missing - as a statement, not a new question.
 
 1. Preflight - the launch checklist of MANUAL-CLAUDE.md ("Launch checklist"):
     - `git pull` the brand repo, and read the last postmortem's open actions;

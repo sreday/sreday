@@ -69,8 +69,10 @@ a closed lid or an update restart still stops it. Through the night the job:
 - tries again whatever failed for a passing reason;
 - waits for YouTube's next day if its daily limit is reached.
 
-Talks that can't be shipped (not recorded, sound lost) are left out, not shipped broken. Only at the very end, when
-everything else is done, Claude asks the one question: whether you have the missing material.
+Talks that can't be shipped (not recorded, sound lost) are left out, not shipped broken. When Claude starts the night
+job, it asks its one question in the same message: whether you have the missing material. It doesn't wait for the
+answer - everything else is already shipping - and whatever you send later goes in as a follow-up. After that it
+never stops to ask.
 
 Claude asks you nothing while it runs: every judgment call (an unsure talk, a missing source, a deck from another
 version) is made by the rules and written into the report. Afterwards, just say what you want: *"fetch Kevin's talk
