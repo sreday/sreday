@@ -130,6 +130,10 @@ tokens refresh by themselves.
    its upload - deck pages in the picture, the recorder's sound in sync, the camera's pilot sound gone. A talk that
    fails stops with "stopped before Descript": read the problems and `cuts/<talk>.check.jpg`, fix (the cut, the deck,
    `"sound": "camera"`, `"picture": "video"`) and redo it - never set `"precheck": "off"` without the person's OK).
+   A talk the selfcheck calls PROBLEMATIC because "Descript took out more than gaps and fillers" (its transcript
+   dropped real speech and the gap/filler edit cut it: London Q3 2026, Michael Cade, 53% gone): check the whole-day
+   transcript has speech there, then `"edit": "sound only"` in its cuts.json entry + `redo <event> "<talk>"` - the
+   new composition gets the sound settings only, nothing cut.
    Marek 2026-11-27: slow is fine, quality first - it runs on an idle laptop for hours; use the machine fully.
    Per talk: cut (stereo fix, black-bar zoom, the sharp ends - no extra footage; the cut's own first and last words
    heard again before the upload) → Descript

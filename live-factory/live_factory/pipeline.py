@@ -1492,6 +1492,9 @@ class Run:
         vals = dict(self.cfg)
         if (self.state["talks"][key].get("saturation") or {}).get("last_resort"):
             vals["studio_sound_percent"] = self.cfg.get("saturated_studio_sound_percent", 100)
+        cut = next((c for c in self.cuts()["cuts"] if c["key"] == key), {})
+        if cut.get("edit") == "sound only" and self.cfg.get("edit_prompt_sound_only"):
+            return self.cfg["edit_prompt_sound_only"].format(composition=comp_name, **vals)
         return self.cfg["edit_prompt"].format(composition=comp_name, **vals)
 
     def plan_trim(self, key, raw, srt_path):

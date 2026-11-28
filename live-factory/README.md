@@ -783,7 +783,9 @@ the window, likeness >= 0.97); holes the recorder doesn't cover must carry the c
 On real speech (SREday Dallas, Girish Konda): the good cut 1.00 alike, pilot 0.00; the camera mixed back in at full
 level stopped (5 of 8 windows); 60 ms late stopped; the camera at half level (about -23 dB under the recorder) passes
 with 0.07 - the limit of what it hears. A failing talk stops with "stopped before Descript" (no retries: the same cut
-fails again); `cuts/<talk>.check.jpg` shows its frames; `"precheck": "off"` in the cut overrides after a human look.
+fails again); `cuts/<talk>.check.jpg` shows its frames; `"precheck": "off"` in the cut overrides after a human look. `"edit": "sound only"` in a cut gives Descript the
+sound settings only (settings `edit_prompt_sound_only`: no fillers, no gap shortening) - for a talk whose Descript
+transcript drops real speech, so the normal edit would cut it out.
 Talks uploaded before the check existed skip it. The picture plans of a run are made first, `look_parallel` talks at
 once (default a quarter of the CPU threads) - slow is fine (an idle laptop for hours), quality first.
 

@@ -117,6 +117,18 @@ edit_prompt: >-
   Shorten every word gap longer than {gap_over_seconds} seconds to {gap_to_seconds} second.
   Do not change anything else.
   When done, list exactly which settings you applied and their values, and how many filler sounds you removed.
+# a talk Descript transcribes badly (London Q3 2026, Michael Cade: speech heard as 101 "gaps" and a 12 s "um", the
+# edit took out 53% of the talk) gets "edit": "sound only" in its cuts.json entry: the sound settings, nothing cut
+edit_prompt_sound_only: >-
+  Work ONLY on the composition "{composition}" (the one this request is for).
+  Do not open, edit or apply settings to any other composition or clip in the project.
+  In "{composition}": apply Studio Sound at {studio_sound_percent}% intensity.
+  Set the track gain to {volume_percent}%.
+  Add a limiter: Descript has no dedicated limiter, so use the compressor with threshold -1 dB, ratio 20:1,
+  attack 0 s, release 0.1 s, knee 0 dB.
+  Do not remove, mute or shorten anything: no filler words, no word gaps, no other edits to the script.
+  Do not change anything else.
+  When done, list exactly which settings you applied and their values.
 max_resolution: 1080p
 publish_access: unlisted
 
