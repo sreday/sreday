@@ -43,7 +43,8 @@ you need before changing anything.
 
 Marek, 2026-11-28: "I really need this flow: copy repo, install plugins, run this puppy - as long as my claude is
 used"; "I want the youtube sign in to be automatic when signed with my claude"; "same for descript, no individual api
-keys". So on a computer with nothing, Claude does it all, without asking him for any token:
+keys". So on a computer with nothing, Claude does it all, without asking him for any token. The full, plain recipe
+(missing Git / Python, the Drive connector off, the hand-over) is `live-factory/SETUP.md` - follow it; in short:
 
 1. The repos side by side (`git clone` what is missing: sreday, llmday, platformday,
    Prompt-Engineering-Conference/2026.promptengineering.rocks - not devopsnotdead), `git pull` the rest.

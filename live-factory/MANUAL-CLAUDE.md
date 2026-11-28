@@ -66,7 +66,16 @@ Afterwards, just say what you want: *"fetch Kevin's talk from this file"*, *"red
 
 ### A new computer in one sentence
 
-Clone the sreday repo, start Claude Code in that folder, and say *"set up the factory on this computer"*. Claude
+Install Claude Code (claude.com/claude-code) and sign in with your account. Open it anywhere and paste this, word for
+word:
+
+> Set up the LIVE talk factory on this computer: clone https://github.com/sreday/sreday into Documents/GitHub and
+> follow live-factory/SETUP.md
+
+That's all. Claude installs whatever is missing (Git, Python, ffmpeg), clones the brand repos, installs the factory,
+signs it in from your Drive, checks it and opens the progress page. The only thing it may ask: to turn on the Google
+Drive connector (claude.ai > Settings > Connectors). Later, on a computer that already has the repo, you can also
+start Claude Code in the sreday folder and say *"set up the factory on this computer"*. Claude
 clones the other brand repos, installs everything (`live-factory/bootstrap.py` - no questions), fetches your
 sign-ins from your private Drive vault through your Claude account's Drive connector (the YouTube channels and the
 Descript token - no API key to type), and runs the health check. Needed on the computer: Git, Python 3.9+, Claude Code

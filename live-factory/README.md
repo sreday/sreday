@@ -582,7 +582,9 @@ signed with my claude"; "same for descript, no individual api keys".
 - The vault lives as `live-factory vault.json` in Marek's owner-only Drive folder "Claude (private)". Uploads go by
   file reference, so the content never passes through Claude. On a new computer it is downloaded through the Drive
   connector, so it passes through Claude's context once - his choice.
-- The skill's "A new computer" section is the flow.
+- The flow is `live-factory/SETUP.md`, written for a Claude that knows nothing yet. The one prompt on a bare computer:
+  "Set up the LIVE talk factory on this computer: clone https://github.com/sreday/sreday into Documents/GitHub and
+  follow live-factory/SETUP.md". The skill's "A new computer" section points to it.
 
 ## Proofread captions, the plain progress page, and a full review (Marek, 2026-11-27)
 
