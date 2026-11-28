@@ -1502,7 +1502,12 @@ class Run:
         if "trim" in t:
             return t["trim"]
         trim = {}
-        cues = srt_cues(srt_path) if cfg.get("trim_to_speech", True) and os.path.exists(srt_path) else []
+        cut = next((c for c in self.cuts()["cuts"] if c["key"] == key), {})
+        # a "sound only" talk has a transcript Descript got wrong (its first/last cue is not the first/last word:
+        # London Q3 2026, Michael Cade lost his opening and his last 24 s to this trim); its sharp ends already sit
+        # on the words, so nothing is trimmed. "trim": "off" does the same for any talk.
+        off = cut.get("edit") == "sound only" or cut.get("trim") == "off"
+        cues = srt_cues(srt_path) if cfg.get("trim_to_speech", True) and not off and os.path.exists(srt_path) else []
         if cues:
             lead, tail = float(cfg.get("trim_lead_seconds", 0.3)), float(cfg.get("trim_tail_seconds", 1.0))
             start = cues[0][0] - lead

@@ -785,7 +785,8 @@ level stopped (5 of 8 windows); 60 ms late stopped; the camera at half level (ab
 with 0.07 - the limit of what it hears. A failing talk stops with "stopped before Descript" (no retries: the same cut
 fails again); `cuts/<talk>.check.jpg` shows its frames; `"precheck": "off"` in the cut overrides after a human look. `"edit": "sound only"` in a cut gives Descript the
 sound settings only (settings `edit_prompt_sound_only`: no fillers, no gap shortening) - for a talk whose Descript
-transcript drops real speech, so the normal edit would cut it out.
+transcript drops real speech, so the normal edit would cut it out. Such a talk is not trimmed to its first/last subtitle cue either (its
+cues are off; the sharp ends already sit on the words); `"trim": "off"` skips that trim for any talk.
 Talks uploaded before the check existed skip it. The picture plans of a run are made first, `look_parallel` talks at
 once (default a quarter of the CPU threads) - slow is fine (an idle laptop for hours), quality first.
 
