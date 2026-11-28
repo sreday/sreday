@@ -61,7 +61,9 @@ Claude also puts each link into the event's sheet (the website shows the video o
 - which are problematic and what would fix them;
 - the Descript credits, and the leftover compositions for you to delete.
 
-Afterwards, just say what you want: *"fetch Kevin's talk from this file"*, *"redo Jay's talk"*. A talk that isn't sure
+Claude asks you nothing while it runs: every judgment call (an unsure talk, a missing source, a deck from another
+version) is made by the rules and written into the report. Afterwards, just say what you want: *"fetch Kevin's talk
+from this file"*, *"redo Jay's talk"*. A talk that isn't sure
 (its start lost, its sound dying) is never guessed: it waits, and the report says why.
 
 ### A new computer in one sentence
@@ -212,6 +214,9 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-11-28** - Shipping an event asks no questions mid-run. Claude decides with the factory's rules (an unsure
+  talk is cut when the evidence is clear, otherwise skipped) and writes every call into the report. You say "fetch X"
+  or "redo Y" afterwards.
 - **2026-11-28** - PEC is on the shelf: it's a friend's channel, so the factory makes PEC's finished videos and leaves
   them in the final videos folder to hand over, with no upload and no sign-in.
 - **2026-11-28** - A new computer in one sentence: *"set up the factory on this computer"*. Claude installs

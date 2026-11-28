@@ -153,13 +153,27 @@ Descript composition "<talk> (redo N)" on the next run), `unpause <event>`, `pub
 Marek, 2026-11-27: "you use these polished processes to ensure maximum quality, run them locally through our tooling,
 run through descript, download and push into respective sre/llm/platform/pec youtube channels. Then instead of asking
 for permission to run this further, you'll ship it and write a post-mortem ... you'll ask for forgiveness not for
-permission. If we want to go fast, this is the only way". So on such a request nothing waits for him:
+permission. If we want to go fast, this is the only way". So on such a request nothing waits for him.
+
+**No questions mid-run** (Marek, 2026-11-28: "the factory doesn't ask any questions mid-run. Just ship it, ask for
+forgiveness not permission"). From his request to the summary at the end you never ask him anything and never stop
+to wait - not for a cost, an unsure talk, a deck, an extra talk or a missing source. Decide with the rules here and
+write each call into the report, so he can say "fetch X" / "redo Y" afterwards:
+- an unsure lineup match: cut it when the evidence points one way (name, topic, slot) and say so in the report; when
+  it doesn't, skip it as "not sure which talk this is" - never wait for an answer;
+- a talk in the recording that is not in talks.csv: not cut; named in the report with its time, to add if he wants;
+- a lost stretch (muted mic, a camera off): cut what is audible, or skip; the report asks for another source;
+- a deck that is another version: the recording's own picture (`"picture": "video"`), noted in the report;
+- unsure sharp ends: confirm or move them yourself; if you can't make sure, the talk is held and named in the report;
+- the Descript cost: a line in the report.
+The only things that stop a run are the hard stops below. Even then: finish everything that can be finished, then
+report what is blocked in one plain sentence each - don't ask in the middle.
 
 1. Preflight - the launch checklist of MANUAL-CLAUDE.md ("Launch checklist"):
     - `git pull` the brand repo, and read the last postmortem's open actions;
-    - run `doctor`: everything OK; the packages must not be missing (setup again after a requirements.txt change);
-      "YouTube sign-ins" must list the brand - if not, that is the one thing to ask for:
-      `! ... youtube-login <brand> <client file>`, by the channel's owner or manager;
+    - run `doctor`: everything OK; the packages must not be missing (run bootstrap.py again after a requirements.txt
+      change); "YouTube sign-ins" must list the brand - if not, install them from the vault ("A new computer"); if the
+      vault has no sign-in for it either, ship everything else and say so in the report (never ask mid-run);
     - check the event's `metadata.yml`: `start_time` with its offset, `city_name` in settings `youtube.timezones`
       (add a missing city in a lane), and `youtube_url`;
     - open one talk's thumbnail at `/<event>/teasers/<speaker>.png`;
@@ -236,7 +250,8 @@ that isn't the brand's. Follow-ups: "fetch talk X" = `add` the new file, match, 
      (title + abstract against what is said).
    - Slots get swapped and speakers don't show; the camera may run through lunch. A talk not found → `skipped` with why.
    - Talks run 10-30 min (workshops longer).
-   - A talk in the recording that is not in talks.csv (Dallas: the host's own talk) is not "not found": ask. If the
+   - A talk in the recording that is not in talks.csv (Dallas: the host's own talk) is not "not found": ask (on
+     autopilot: don't ask - leave it uncut and name it in the report, with its time). If the
      person says add it, add the speaker to `<event>/_db/talks.csv` (and the schedule in metadata.yml if a slot has to
      move), cut it, and give them the row in the WWW sheet layout (16 tab-separated columns) for the Drive sheet.
    - Whole-day Zoom recordings have silent stretches when the room mic was muted in Zoom: `rec/<id>/levels.json`
@@ -259,7 +274,8 @@ that isn't the brand's. Follow-ups: "fetch talk X" = `add` the new file, match, 
      cuts.json yourself from the brief.
 3. Write cuts.json (`{"cuts":[{"key","parts":[{"rec","start","end"}],"confidence","reason","by":"claude"}],"skipped":[...]}`),
    load it with `cuts <event> file.json` (validates + flags), and give the person a table of every cut with anything
-   flagged or uncertain called out. Ask them about talks you're unsure of (e.g. who spoke last).
+   flagged or uncertain called out. Ask them about talks you're unsure of (e.g. who spoke last) - in the step-by-step
+   flow only; on autopilot decide by the rules in "No questions mid-run" and put it in the report.
 
 ## Hard rules
 
