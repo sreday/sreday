@@ -169,6 +169,25 @@ write each call into the report, so he can say "fetch X" / "redo Y" afterwards:
 The only things that stop a run are the hard stops below. Even then: finish everything that can be finished, then
 report what is blocked in one plain sentence each - don't ask in the middle.
 
+**Unshippable talks wait; the questions come last; the night is one job** (Marek, 2026-11-28: "let's not ship the
+talks that are unshippable, and ask if we have these materials AFTER all others are done. Basically, I want to be
+able to put the laptop down for the night and make sure it's not going to stop mid run"):
+- A talk with no usable material (not recorded, sound lost, start lost) is NOT shipped: skipped or held, never
+  shipped half-broken.
+- Do every judgment call FIRST, while he is around: steps 1-6 below (the lineup, the ends, the decks, approve).
+- Then start ONE background job, `ship <event>` (Windows: PowerShell Start-Process, as for `run`). It runs the whole
+  night with nothing waiting for anyone:
+  - the run;
+  - talks that failed for a passing reason, again 30 min later, twice;
+  - YouTube's day full: it waits for the next quota day and goes on, up to 3 days;
+  - the ship report, ending with "To ask for now".
+
+  Tell him in one line: "All decisions are made - you can put the laptop down (plugged in, lid open); I'll have the
+  report in the morning."
+- When it ends: the sheet links (step 9), the playlist hook (step 10), the postmortem. THEN ask him the one list from
+  "To ask for now": "Do you have the recording of X / another recording with sound of Y / the slides Z presented?" -
+  that is the only question of the whole ship.
+
 1. Preflight - the launch checklist of MANUAL-CLAUDE.md ("Launch checklist"):
     - `git pull` the brand repo, and read the last postmortem's open actions;
     - run `doctor`: everything OK; the packages must not be missing (run bootstrap.py again after a requirements.txt
@@ -188,7 +207,8 @@ report what is blocked in one plain sentence each - don't ask in the middle.
 5. `look <event>`: read every sheet; fix decks, `"picture": "video"`, `"sound": "camera"` yourself.
 6. `approve <event>` (gate 1 by you; it holds talks whose ends are still flagged). Put the Descript cost in the report,
    not in a question.
-7. `run <event>` (background). On autopilot there is no review in Descript: after the export the factory checks each
+7. `ship <event>` (background - the night job above; `run <event>` does the same without the later rounds and the
+   wait for YouTube's next day). On autopilot there is no review in Descript: after the export the factory checks each
    final itself (`selfcheck`: first and last words heard again, silences, black picture, loudness, length). A
    PROBLEMATIC talk does not go to YouTube. The checked talks go to the brand's channel: private, public 5 weeks after
    the event at 09:00 local, thumbnail from the website, captions, the event's playlist in page order. A talk that

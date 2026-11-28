@@ -224,6 +224,20 @@ def main():
     ytupload.save(run, done)
     run.run()
     check("a rerun with nothing to cut uploads what was left", (ytupload.load(run).get("Ann Lee") or {}).get("id"))
+    # the night in one job: YouTube's day is full -> it waits for the next day and uploads the rest
+    done = ytupload.load(run)
+    fake.videos.pop(done["Ann Lee"]["id"], None)
+    done.pop("Ann Lee")
+    ytupload.save(run, done)
+    fake.quota_uploads = 0
+    waited = []
+    pipeline.WAIT = lambda secs: (waited.append(secs), setattr(fake, "quota_uploads", 5))
+    path = run.ship()
+    check("ship: the day's limit -> waits for the next YouTube day, then uploads",
+          (ytupload.load(run).get("Ann Lee") or {}).get("id") and waited and 0 < waited[-1] <= 24 * 3600, waited)
+    rep = open(path, encoding="utf-8").read()
+    check("ship: the report asks for the missing materials at the end", "## To ask for now" in rep and
+          "the recording of **Cy Doe**" in rep, rep[rep.find("## To ask"):][:300])
     print("\nfiles: " + TMP)
     print("FAILED: " + ", ".join(FAILS) if FAILS else "all good")
     sys.exit(1 if FAILS else 0)

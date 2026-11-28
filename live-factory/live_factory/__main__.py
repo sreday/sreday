@@ -44,6 +44,9 @@
   python -m live_factory upload <event> ["<talk>"...]  the checked talks to the brand's YouTube channel: private,
                                                        public 5 weeks after the event at 09:00 local, thumbnail,
                                                        captions, the event's playlist
+  python -m live_factory ship <event>                  the whole night in one job, after the judgment calls: run,
+                                                       failed talks again later, YouTube's next day when its limit is
+                                                       hit, the ship report - nothing waits for a person
   python -m live_factory report <event>                <work folder>/ship report.md: on YouTube / problematic /
                                                        stopped / missing, credits, Descript leftovers
   python -m live_factory vault pack <file>              this computer's sign-ins (YouTube channels + Descript token)
@@ -196,7 +199,7 @@ def main(argv):
 
 
 def dispatch(run, cmd, argv):
-    if cmd in ("add", "unpause", "redo", "retry", "run", "analyse", "approve", "autopilot") and run.busy():
+    if cmd in ("add", "unpause", "redo", "retry", "run", "ship", "analyse", "approve", "autopilot") and run.busy():
         raise SystemExit("a job is running on this event (%s) - wait for it to finish first" % run.busy())
     if cmd == "add":
         day, rest = flag(argv[2:], "--day")
@@ -368,6 +371,11 @@ def dispatch(run, cmd, argv):
                     st = t["steps"]["selfcheck"]
                 print("%s %s\n    %s" % ("PROBLEMATIC" if st.get("problems") else "ok         ", k,
                                          "; ".join(st.get("problems") or st.get("notes") or [])[:400]), flush=True)
+    elif cmd == "ship":                              # the whole night in one job (Pipeline.ship)
+        with run.job("ship"):
+            path = run.ship()
+        print("report: %s" % path)
+        print(json.dumps(pipeline.summary(run.state), indent=1))
     elif cmd == "upload":
         with run.job("upload"):
             run.youtube_pass(argv[2:] or None)

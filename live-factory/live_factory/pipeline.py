@@ -68,6 +68,9 @@ def now():
     return datetime.datetime.now().isoformat(timespec="seconds")
 
 
+WAIT = time.sleep                                        # tests swap it out
+
+
 def signature(parts):
     return hashlib.sha1(json.dumps([[p["rec"], round(p["start"], 2), round(p["end"], 2)] for p in parts]).encode()).hexdigest()[:12]
 
@@ -1577,13 +1580,19 @@ class Run:
                       "; ".join("%s - the %s one (%s)" % (c["name"], c["kind"], segment.stamp(c["seconds"])) for c in left))
         return left
 
+    @staticmethod
+    def lasting(err):
+        """An error that trying again won't fix (the same cut fails the same check; no credits; paused edits)."""
+        err = err or ""
+        return ("402" in err or "edits paused" in err or "free (keeping" in err or "stopped before Descript" in err
+                or "has no sound" in err or "is silent" in err or "left out until their cut is fixed" in err)
+
     def process_with_retries(self, key, attempts=3, pause=120):
         t = self.state["talks"][key]
         for n in range(1, attempts + 1):
             self.process(key)
             err = t.get("error") or ""
-            if (not err or n == attempts or "402" in err or "edits paused" in err or "free (keeping" in err
-                    or "stopped before Descript" in err or "has no sound" in err or "is silent" in err):     # the same cut fails the same check again
+            if not err or n == attempts or self.lasting(err):    # the same cut fails the same check again
                 return
             with self.lock:
                 t["retry"] = "failed (%s) - trying again in %d min, attempt %d of %d" % (err[:120], pause // 60, n + 1, attempts)
@@ -1715,7 +1724,57 @@ class Run:
         except Exception as ex:                          # noqa: BLE001
             self.note("youtube: stopped - %s" % ex)
             lines.append("youtube: stopped - %s" % ex)
+        self.last_youtube = lines
         return lines
+
+    def ship(self, again_after=1800, rounds=2, quota_days=3):
+        """The whole night in one job (Marek 2026-11-28: "I want to be able to put the laptop down for the night and
+        make sure it's not going to stop mid run"), after Claude made the judgment calls (cuts, ends, decks):
+        run() - cut, Descript, export, proofread, selfcheck, upload - then
+          - talks that failed for a passing reason (the network, Descript busy) again after `again_after` s, `rounds`
+            times;
+          - the YouTube day's limit: wait for the next quota day (08:05 UTC) and go on, up to `quota_days` days;
+          - the ship report with the materials to ask for at the end ("missing.md" lines in it).
+        Nothing in it waits for a person."""
+        self.cuts_data_autopilot_check()
+        self.run()
+        for n in range(rounds):
+            again = [k for k, t in self.state["talks"].items() if t.get("error") and not self.lasting(t["error"])
+                     and not t.get("finished")]
+            if not again:
+                break
+            self.note("trying %d talk(s) again in %d min: %s" % (len(again), again_after // 60, ", ".join(again)))
+            WAIT(again_after)
+            with self.lock:
+                for k in again:
+                    t = self.state["talks"][k]
+                    for step in list(t["steps"]):
+                        if (t["steps"][step] or {}).get("status") in ("running", "failed"):
+                            del t["steps"][step]
+                    t.update(error=None, retry=None, current=None)
+                self.save()
+            self.run(only=again)
+        for day in range(quota_days):
+            if not any("upload limit" in l for l in getattr(self, "last_youtube", None) or []):
+                break
+            wake = datetime.datetime.now(datetime.timezone.utc).replace(hour=8, minute=5, second=0, microsecond=0)
+            if wake <= datetime.datetime.now(datetime.timezone.utc):
+                wake += datetime.timedelta(days=1)
+            secs = (wake - datetime.datetime.now(datetime.timezone.utc)).total_seconds()
+            self.note("YouTube's day is full - waiting %.1f h for the next one, then uploading the rest" % (secs / 3600))
+            WAIT(secs)
+            self.youtube_pass()
+        try:
+            return self.ship_report()
+        except Exception as ex:                          # noqa: BLE001
+            self.note("ship report not written: %s" % ex)
+
+    def cuts_data_autopilot_check(self):
+        """ship is the autopilot's own job: it turns autopilot on for the event if it isn't."""
+        if not self.autopilot():
+            data = self.cuts()
+            data["autopilot"] = True
+            self.save_cuts(data)
 
     def ship_report(self):
         """<work folder>/ship report.md: what is on YouTube and when it goes public, what is missing and why, what is
@@ -1761,6 +1820,18 @@ class Run:
         for head, items in rows.items():
             if items:
                 lines += ["## %s (%d)" % (head[0].upper() + head[1:], len(items)), ""] + items + [""]
+        ask = []                                         # the materials to ask for, once everything else is done
+        for line in rows["missing"]:
+            ask.append(line.replace("- **", "- the recording of **", 1))
+        for line in rows["problematic"] + rows["stopped"]:
+            if "no sound" in line or "silent" in line or "muted" in line:
+                ask.append(line.replace("- **", "- another recording (with sound) of **", 1))
+        for t in self.state["talks"].values():
+            for n in (t.get("picture") or {}).get("notes") or []:
+                if "another version" in n or "no deck" in n.lower():
+                    ask.append("- the slides **%s** presented (%s)" % (t["key"], n[:80]))
+        if ask:
+            lines += ["## To ask for now (everything else is done)", ""] + ask + [""]
         pl = yt.get(ytupload.PLAYLIST) or {}
         if pl.get("url"):
             lines += ["## Playlist", "", "- %s%s" % (pl["url"], "" if pl.get("hooked") else

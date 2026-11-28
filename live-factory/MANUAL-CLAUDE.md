@@ -61,6 +61,17 @@ Claude also puts each link into the event's sheet (the website shows the video o
 - which are problematic and what would fix them;
 - the Descript credits, and the leftover compositions for you to delete.
 
+It goes in two parts. First, while you're there (about an hour after the recordings are in), Claude makes every
+decision: which talk is which, the exact start and end of each, the slides. Then it starts one long job and says *"you
+can put the laptop down"*. Leave it plugged in with the lid open: the factory keeps the computer awake by itself, but
+a closed lid or an update restart still stops it. Through the night the job:
+- cuts, edits, exports, proofreads, checks and uploads every talk;
+- tries again whatever failed for a passing reason;
+- waits for YouTube's next day if its daily limit is reached.
+
+Talks that can't be shipped (not recorded, sound lost) are left out, not shipped broken. Only at the very end, when
+everything else is done, Claude asks the one question: whether you have the missing material.
+
 Claude asks you nothing while it runs: every judgment call (an unsure talk, a missing source, a deck from another
 version) is made by the rules and written into the report. Afterwards, just say what you want: *"fetch Kevin's talk
 from this file"*, *"redo Jay's talk"*. A talk that isn't sure
@@ -214,6 +225,9 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-11-28** - Overnight shipping: Claude makes all decisions first, then one job runs the whole night (retries,
+  and a wait for YouTube's next day when its limit is hit). Unshippable talks are left out, and the question about
+  missing material comes only at the end.
 - **2026-11-28** - Shipping an event asks no questions mid-run. Claude decides with the factory's rules (an unsure
   talk is cut when the evidence is clear, otherwise skipped) and writes every call into the report. You say "fetch X"
   or "redo Y" afterwards.

@@ -570,6 +570,21 @@ stay for the manual flow):
 
 Tested by `tests/youtube_smoke.py`: a fake YouTube, the release-time rules, and selfcheck on generated finals.
 
+## The night in one job: `ship <event>` (Marek, 2026-11-28)
+
+"I want to be able to put the laptop down for the night and make sure it's not going to stop mid run". After the
+judgment calls (cuts, ends, decks, approve), `Run.ship()` is the rest, with nothing waiting for a person:
+- `run()`;
+- the talks that failed for a passing reason (`lasting()` says which errors won't pass) again after 30 min, twice;
+- when YouTube's day is full (`last_youtube` holds "upload limit"), `WAIT` until 08:05 UTC, then `youtube_pass()`
+  again, up to 3 days;
+- `ship_report()`, now ending with "To ask for now (everything else is done)": the recordings of the missing talks,
+  another recording with sound, the slides presented.
+
+The job keeps the computer awake (machine.keep_awake). A closed lid or a restart still stops it, and a new
+`ship` / `run` picks up where it stopped. Tested in `tests/autopilot_smoke.py`: a full day waits about 7 h, then
+uploads.
+
 ## A new computer: bootstrap.py and the vault (Marek, 2026-11-28)
 
 "copy repo, install plugins, run this puppy - as long as my claude is used"; "the youtube sign in ... automatic when
