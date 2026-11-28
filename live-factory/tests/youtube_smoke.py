@@ -336,20 +336,31 @@ def selfcheck_tests():
     t = {"probe": {"duration": 62.0}, "steps": {"qa": {"flags": [], "peak": -1.5}, "chapters": {"chapters": []}}}
     probs, notes = selfcheck.check(clean, t, {"true_peak_db": -1})
     check("a clean final passes", not probs, (probs, notes))
+    from live_factory.selfcheck import doubts_of
     silent = os.path.join(TMP, "silent.mp4")
     ff("-i", clean, "-af", "volume=enable='between(t,20,32)':volume=0", "-c:v", "copy", "-c:a", "aac", silent)
     probs, _ = selfcheck.check(silent, t, {"true_peak_db": -1})
-    check("12 s of silence -> problematic", any("silence" in p for p in probs), probs)
+    check("12 s of silence in a 1-min talk (20%) -> not shipped", any("silence" in p for p in probs), probs)
+    long_ = os.path.join(TMP, "long.mp4")
+    ff("-f", "lavfi", "-i", "testsrc2=size=640x360:rate=10:duration=200", "-f", "lavfi", "-i",
+       "anoisesrc=color=pink:amplitude=0.3:duration=200", "-shortest", "-af",
+       "volume=enable='between(t,100,110)':volume=0", "-c:v", "libx264", "-preset", "ultrafast", "-c:a", "aac", long_)
+    probs, notes = selfcheck.check(long_, {"probe": {"duration": 205.0}, "steps": t["steps"]}, {"true_peak_db": -1})
+    check("one 10 s pause in a longer talk -> shipped, please check", not probs and
+          any("silence" in d for d in doubts_of(notes)), (probs, doubts_of(notes)))
     black = os.path.join(TMP, "black.mp4")
     ff("-i", clean, "-vf", "drawbox=enable='between(t,30,45)':x=0:y=0:w=iw:h=ih:color=black:t=fill",
        "-c:v", "libx264", "-preset", "ultrafast", "-c:a", "copy", black)
-    probs, _ = selfcheck.check(black, t, {"true_peak_db": -1})
-    check("15 s of black picture -> problematic", any("black" in p for p in probs), probs)
+    probs, notes = selfcheck.check(black, t, {"true_peak_db": -1})
+    check("15 s of black picture -> shipped, please check", not probs and any("black" in d for d in doubts_of(notes)),
+          (probs, doubts_of(notes)))
     probs, _ = selfcheck.check(clean, dict(t, probe={"duration": 120.0}), {"true_peak_db": -1})
-    check("half the cut gone -> problematic", any("of the cut" in p for p in probs), probs)
+    check("half the cut gone -> not shipped", any("of the cut" in p for p in probs), probs)
     fake_verify = lambda f, rec, cfg: (["the cut ends on \"and so\", not on \"thank you\""], [])
-    probs, _ = selfcheck.check(clean, t, {"true_peak_db": -1}, {"first": "Hi all", "last": "Thank you."}, verify=fake_verify)
-    check("an edge heard wrong -> problematic", any(p.startswith("edges:") for p in probs), probs)
+    probs, notes = selfcheck.check(clean, t, {"true_peak_db": -1}, {"first": "Hi all", "last": "Thank you."},
+                                   verify=fake_verify)
+    check("an edge heard differently -> shipped, please check", not probs and
+          any(d.startswith("edges:") for d in doubts_of(notes)), (probs, doubts_of(notes)))
 
 
 def vault_tests():

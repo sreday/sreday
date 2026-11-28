@@ -16,11 +16,18 @@ import re
 from . import ends, media
 
 SILENCE_DB = -50          # under this the final is silent (its loudness is normalised to -14 LUFS)
-SILENCE_PROBLEM = 8.0     # seconds of silence that are a problem; Descript shortens real pauses to about 1 s
+# "Survival of the fittest" (Marek 2026-11-28): "all good talks get shipped ... the bad / unshippable ones are stopped
+# ... If unsure whether it's shippable but it's very likely, give benefit of the doubt and ship to have me check the
+# final video". So two kinds: a PROBLEM keeps the talk off YouTube; a DOUBT ships it, flagged "please check" (it is
+# private until the release, weeks later).
+SILENCE_DOUBT = 8.0       # one silence this long ships with a doubt (a demo? a long pause?) ...
+SILENCE_PROBLEM = 30.0    # ... this long, or silences over 10% of the talk, don't ship (a mic lost)
 SILENCE_NOTE = 4.0
-BLACK_PROBLEM = 10.0      # seconds of black picture
-MIN_KEEP = 0.75           # the final keeps at least this share of the cut
-MAX_KEEP = 1.02           # ... and is never longer than it
+BLACK_PROBLEM = 10.0      # seconds of black picture: a doubt from here ...
+BLACK_HARD = 30.0         # ... not shipped from here
+MIN_KEEP = 0.75           # the final keeps at least this share of the cut (below: a doubt) ...
+MIN_HARD = 0.60           # ... below this it's not shipped (a piece lost)
+MAX_KEEP = 1.02           # ... and is not longer than it (a doubt)
 
 
 def silences(path, noise_db=SILENCE_DB, least=SILENCE_NOTE):
@@ -47,8 +54,13 @@ def stamp(s):
     return "%d:%02d:%02d" % (s // 3600, s // 60 % 60, s % 60)
 
 
+def doubts_of(notes):
+    """The doubts among check()'s notes: shipped, but for Marek to check."""
+    return [n[len("doubt: "):] for n in notes if n.startswith("doubt: ")]
+
+
 def check(final, t, cfg, ends_rec=None, verify=None, lean=None):
-    """(problems, notes) - problems keep the talk off YouTube."""
+    """(problems, notes) - problems keep the talk off YouTube; notes starting "doubt: " ship it with a "please check"."""
     problems, notes = [], []
     info = media.probe(final)
     dur = info["duration"]
@@ -59,29 +71,41 @@ def check(final, t, cfg, ends_rec=None, verify=None, lean=None):
     if cut_len:
         share = dur / cut_len
         if share < MIN_KEEP:
-            problems.append("the final is %.0f%% of the cut (%s of %s) - Descript took out more than gaps and fillers"
-                            % (100 * share, stamp(dur), stamp(cut_len)))
+            (problems if share < MIN_HARD else notes).append(
+                ("" if share < MIN_HARD else "doubt: ") +
+                "the final is %.0f%% of the cut (%s of %s) - Descript took out more than gaps and fillers"
+                % (100 * share, stamp(dur), stamp(cut_len)))
         elif share > MAX_KEEP:
-            problems.append("the final is longer than the cut (%s, the cut %s)" % (stamp(dur), stamp(cut_len)))
+            notes.append("doubt: the final is longer than the cut (%s, the cut %s)" % (stamp(dur), stamp(cut_len)))
         else:
             notes.append("%s (the cut %s, %.0f%% kept)" % (stamp(dur), stamp(cut_len), 100 * share))
-    for a, n in silences(final):
-        (problems if n >= SILENCE_PROBLEM else notes).append("%.0f s of silence at %s" % (n, stamp(a)))
+    sil = silences(final)
+    total = sum(n for _, n in sil)
+    for a, n in sil:
+        what = "%.0f s of silence at %s" % (n, stamp(a))
+        if n >= SILENCE_PROBLEM or (dur and total > 0.1 * dur and n >= SILENCE_DOUBT):
+            problems.append(what)
+        elif n >= SILENCE_DOUBT:
+            notes.append("doubt: " + what)
+        else:
+            notes.append(what)
     bl = blacks(final)
     if bl and lean:
         lean_black = sum(n for _, n in blacks(lean))     # the recording itself was black there: not Descript's doing
         if lean_black >= sum(n for _, n in bl) * 0.8:
             notes += ["%.0f s of black picture at %s (in the recording itself)" % (n, stamp(a)) for a, n in bl]
             bl = []
-    problems += ["%.0f s of black picture at %s" % (n, stamp(a)) for a, n in bl]
+    for a, n in bl:
+        what = "%.0f s of black picture at %s" % (n, stamp(a))
+        (problems if n >= BLACK_HARD else notes).append(what if n >= BLACK_HARD else "doubt: " + what)
     qa = (t.get("steps") or {}).get("qa") or {}
-    problems += ["qa: %s" % f for f in qa.get("flags") or [] if not f.startswith("edit removed")]
+    notes += ["doubt: %s" % f for f in qa.get("flags") or [] if not f.startswith("edit removed")]
     if qa.get("peak") is not None and qa["peak"] > float(cfg.get("true_peak_db") or -1) + 0.5:
-        problems.append("the peak is %.1f dBTP" % qa["peak"])
+        notes.append("doubt: the peak is %.1f dBTP" % qa["peak"])
     if ends_rec and ends_rec.get("first") and ends_rec.get("last"):
         p, n = (verify or ends.verify)(final, ends_rec, cfg)
-        problems += ["edges: %s" % x for x in p]
-        notes += n
+        notes += ["doubt: edges: %s" % x for x in p]       # Whisper hears a word differently far more often than a
+        notes += n                                          # cut really goes wrong: shipped, for a look
     report = str(((t.get("steps") or {}).get("edit") or {}).get("report") or "")
     if re.search(r"\b(could not|couldn'?t|unable to|failed to|error)\b", report, re.I):
         notes.append("the Descript edit report says: %s" % re.sub(r"\s+", " ", report)[:200])

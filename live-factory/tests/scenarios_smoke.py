@@ -119,7 +119,8 @@ def main():
                                      {"rec": rid("r2_backup"), "start": 1, "end": 38}], "by": "claude", "reason": "t"},
         {"key": "Łukasz Żółć", "parts": [{"rec": rid("r2_backup"), "start": 40, "end": 98}], "by": "claude", "reason": "t"},
         {"key": "Ann O'Neil: Q/A?", "parts": [{"rec": rid("r3_phone"), "start": 1, "end": 44}], "by": "claude", "reason": "t"},
-        {"key": "Bo Chen", "parts": [{"rec": rid("r4_damaged"), "start": 1, "end": 49}], "by": "claude", "reason": "t"},
+        {"key": "Bo Chen", "parts": [{"rec": rid("r4_damaged"), "start": 1, "end": 49}], "by": "claude", "reason": "t",
+         "check": "very likely Bo's talk, but the name was not heard"},
         {"key": "Dee Silent", "parts": [{"rec": rid("r5_nosound"), "start": 1, "end": 39}], "by": "claude", "reason": "t"}],
         "skipped": [{"key": "Zed Missing", "why": "not recorded - the room's camera was off"}]}
     run.save_cuts(cuts)
@@ -152,7 +153,11 @@ def main():
           pg["issues"])
     check("the progress page: four talks done", sum(1 for r in pg["talks"] if r["state"] == "done") == 4,
           [(r["name"], r["mission"]) for r in pg["talks"]])
+    check("benefit of the doubt: Bo shipped AND on the progress page to watch", "Bo Chen" in up and
+          any("Please watch Bo Chen" in i for i in pg["issues"]), pg["issues"])
     rep = open(os.path.join(run.dir, "ship report.md"), encoding="utf-8").read()
+    check("ship report: Bo under 'Please check' with the why", "## Please check (1)" in rep and
+          "the name was not heard" in rep, rep[rep.find("## Please"):][:300])
     check("ship report: 4 on YouTube, Dee, Zed", "## On YouTube (4)" in rep and "Dee Silent" in rep and
           "Zed Missing" in rep, rep[:600])
     print("\nfiles: " + TMP)

@@ -893,7 +893,7 @@ class Run:
         if kept:
             t.setdefault("broken_compositions", []).append(kept)
         for k in ("composition_id", "composition_name", "finished", "trim", "error", "current", "stereo", "resolution",
-                  "zoom", "in_clip", "selfcheck_ok", "problems"):
+                  "zoom", "in_clip", "selfcheck_ok", "problems", "doubts"):
             t.pop(k, None)
         if key in self.reviews():
             self.set_reviewed(key, False)               # a new cut is a new video: reviewed again
@@ -1418,11 +1418,15 @@ class Run:
                                                       lean=lean if os.path.exists(lean) else None)
                 except Exception as ex:                  # noqa: BLE001 - never leaves a talk unfinished
                     problems, notes = ["the factory's own check could not run (%s)" % str(ex)[:200]], []
+                cut_doubt = (next((c for c in self.cuts()["cuts"] if c["key"] == key), {}) or {}).get("check")
+                doubts = ([cut_doubt] if cut_doubt else []) + selfcheck.doubts_of(notes)
                 with self.lock:
                     t["selfcheck_ok"] = not problems
                     t["problems"] = problems
-                self.set(key, "selfcheck", "done", problems=problems, notes=notes,
+                    t["doubts"] = doubts
+                self.set(key, "selfcheck", "done", problems=problems, notes=notes, doubts=doubts,
                          note=("PROBLEMATIC - not for YouTube: " + "; ".join(problems)) if problems else
+                         ("shipped, please check: " + "; ".join(doubts)) if doubts else
                          "; ".join(notes[:3]) or "all good")
             with self.lock:
                 t["current"] = None
@@ -1791,9 +1795,12 @@ class Run:
             release = "unknown: %s" % ex
         lines = ["# %s - ship report" % self.ev["title"], "",
                  "Written %s. The videos go public %s." % (now()[:16].replace("T", " "), release), ""]
-        rows = {"on YouTube": [], "problematic": [], "stopped": [], "not cut": [], "missing": []}
+        rows = {"on YouTube": [], "please check": [], "problematic": [], "stopped": [], "not cut": [], "missing": []}
         for talk in events.talks(self.ev):
             k, t, rec = talk["key"], self.state["talks"].get(talk["key"]), yt.get(talk["key"]) or {}
+            if rec.get("id") and t and t.get("doubts"):
+                rows["please check"].append("- **%s** - %s - shipped on the benefit of the doubt: %s" % (
+                    k, rec.get("url"), "; ".join(t["doubts"])[:300]))
             if rec.get("id"):
                 extras = [x for x in ("thumbnail", "captions", "playlist") if rec.get(x) is not True]
                 rows["on YouTube"].append("- **%s** - %s - %s%s%s" % (

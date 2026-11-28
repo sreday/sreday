@@ -169,6 +169,18 @@ write each call into the report, so he can say "fetch X" / "redo Y" afterwards:
 The only things that stop a run are the hard stops below. Even then: finish everything that can be finished, then
 report what is blocked in one plain sentence each - don't ask in the middle.
 
+**Survival of the fittest** (Marek, 2026-11-28: "all good talks get shipped without inference, the bad /
+unshippable ones are stopped and questions are asked. If unsure whether it's shippable but it's very likely, give
+benefit of the doubt and ship to have me check the final video"). Three buckets:
+- **good** - shipped, nothing said;
+- **very likely fine** - shipped on the benefit of the doubt, and named under "Please check" (the video is private
+  until its release, weeks later, so he has time). For an unsure match or unsure ends you decide in: approve it by
+  name (`approve <event> "<talk>"` - a named talk is not held) and put the why in its cut: `"check": "very likely
+  Bo's talk, but the name was not heard"`. The factory's own check does the same for its doubts: one pause of 8-30 s,
+  10-30 s of black, a final 60-75% of the cut, first/last words heard differently, the loudness;
+- **unshippable** - not shipped: not recorded, the sound lost (no sound, silences over 10% or one of 30 s+), the start
+  lost, black for 30 s+, a final under 60% of the cut. They go into the one question at launch.
+
 **Unshippable talks wait; the questions come last; the night is one job** (Marek, 2026-11-28: "let's not ship the
 talks that are unshippable, and ask if we have these materials AFTER all others are done. Basically, I want to be
 able to put the laptop down for the night and make sure it's not going to stop mid run"):

@@ -365,6 +365,7 @@ def dispatch(run, cmd, argv):
                     problems, notes = selfcheck.check(final, t, run.cfg, t.get("ends"),
                                                       lean=lean if os.path.exists(lean) else None)
                     t["selfcheck_ok"], t["problems"] = not problems, problems
+                    t["doubts"] = selfcheck.doubts_of(notes)
                     run.set(k, "selfcheck", "done", problems=problems, notes=notes,
                             note=("PROBLEMATIC - not for YouTube: " + "; ".join(problems)) if problems else
                             "; ".join(notes[:3]) or "all good")

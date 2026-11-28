@@ -69,7 +69,10 @@ a closed lid or an update restart still stops it. Through the night the job:
 - tries again whatever failed for a passing reason;
 - waits for YouTube's next day if its daily limit is reached.
 
-Talks that can't be shipped (not recorded, sound lost) are left out, not shipped broken. When Claude starts the night
+Talks that are fine are shipped. Talks that are very likely fine but have something to look at (an unsure match, a
+long pause, a short blackout) are shipped too, and listed under "Please check" - they stay private until the release
+date, so there is time to watch them. Talks that can't be shipped (not recorded, sound lost) are left out, not
+shipped broken. When Claude starts the night
 job, it asks its one question in the same message: whether you have the missing material. It doesn't wait for the
 answer - everything else is already shipping - and whatever you send later goes in as a follow-up. After that it
 never stops to ask.
@@ -227,6 +230,8 @@ If something looks off, just describe it - *"the sound on Raul's talk is only on
 
 ## Changelog
 
+- **2026-11-28** - "Survival of the fittest": good talks ship; very likely good ones ship too, listed under "Please
+  check" (private until the release); unshippable ones are left out and asked about at launch.
 - **2026-11-28** - Overnight shipping: Claude makes all decisions first, then one job runs the whole night (retries,
   and a wait for YouTube's next day when its limit is hit). Unshippable talks are left out, and the question about
   missing material comes only at the end.

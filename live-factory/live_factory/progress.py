@@ -153,6 +153,11 @@ def payload(event_id, run=None, runner=None):
     for r in rows:
         if r["state"] == "problem":
             issues.append("%s: %s" % (r["name"], r["mission"]))
+    for t in lineup:
+        ts = talks_state.get(t["key"]) or {}
+        if ts.get("doubts") and (yt.get(t["key"]) or {}).get("id"):
+            issues.append("Please watch %s's video - shipped on the benefit of the doubt (private until its release)"
+                          % t["key"])
     if cuts and not ytupload.has_token(ev["brand"]) and not ytupload.shelved(run.cfg, ev["brand"]):
         issues.append("YouTube isn't connected for %s on this computer" % ev["brand_name"])
     left = st.get("leftover_compositions") or []
