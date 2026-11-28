@@ -876,7 +876,11 @@ class Run:
             for c in approved:
                 sig, t = signature(c["parts"]), self.state["talks"].get(c["key"])
                 if isinstance(c.get("ends"), (dict, str)):
-                    sig += "+" + hashlib.sha1(json.dumps(c["ends"], sort_keys=True).encode()).hexdigest()[:6]
+                    # only the edges change the cut: words written for the check ("first"/"last") or a longer "why"
+                    # never redo a talk (London Q3 2026: adding them redid 4 talks already on YouTube)
+                    e = c["ends"]
+                    e = {k: e.get(k) for k in ("start", "end")} if isinstance(e, dict) else e
+                    sig += "+" + hashlib.sha1(json.dumps(e, sort_keys=True).encode()).hexdigest()[:6]
                 if t and t.get("cut_sig") != sig and t["steps"]:
                     self.redo(c["key"], "the cut changed after it was made")
                     t = self.state["talks"][c["key"]]
