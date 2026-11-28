@@ -240,7 +240,9 @@ able to put the laptop down for the night and make sure it's not going to stop m
    PROBLEMATIC talk does not go to YouTube. The checked talks go to the brand's channel: private, public 5 weeks after
    the event at 09:00 local, thumbnail from the website, captions, the event's playlist in page order. A talk that
    fails a step is retried by the run; a stopped one: fix it (redo, the cut, the deck) and run again - your call.
-8. `upload <event>` again the next day when the day's YouTube quota stopped it (the run says so).
+8. `upload <event>` again the next day when the day's YouTube quota stopped it (the run says so). The scheduled
+   catch-up does this by itself (`catchup`, at login + every 3 h; SETUP.md section 5): check `local/catchup.log`
+   that it is installed and ran, rather than asking the person to keep a window open.
 9. The WWW sheet: each uploaded talk's `https://youtu.be/<id>` into the YouTube column of the event's tab (Google
    Sheets connector), the row found by the speaker's name right before writing (rows move), only empty cells, never
    over a typed link. The website already has them (step 10); the sheet keeps them for the next lineup ship.

@@ -47,6 +47,9 @@
   python -m live_factory ship <event>                  the whole night in one job, after the judgment calls: run,
                                                        failed talks again later, YouTube's next day when its limit is
                                                        hit, the ship report - nothing waits for a person
+  python -m live_factory catchup                       every autopilot event on this computer with a checked talk not
+                                                       on YouTube yet, or a thumbnail/captions/playlist still to add:
+                                                       its upload pass (run by the scheduled job, see SETUP.md)
   python -m live_factory report <event>                <work folder>/ship report.md: on YouTube / problematic /
                                                        stopped / missing, credits, Descript leftovers
   python -m live_factory vault pack <file>              this computer's sign-ins (YouTube channels + Descript token)
@@ -149,6 +152,50 @@ def list_cuts(run, data):
         print("  (no recordings yet)")
 
 
+def catchup():
+    """The scheduled job (SETUP.md): every autopilot event on this computer whose upload is not finished - a checked
+    talk not on YouTube, or a thumbnail/captions/playlist still to add (the day's YouTube quota ran out, the machine
+    was off) - gets its upload pass. An event with a job running is left for the next round. Marek 2026-11-28: "so
+    if a machine resets no talks are left strayed"."""
+    import datetime
+    from live_factory import machine, ytupload
+    cfg = pipeline.settings()
+    stamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    for event_id in sorted(machine.event_dirs(cfg)):
+        try:
+            run = pipeline.Run(event_id)
+        except Exception as ex:                          # noqa: BLE001 - an event no longer in the brand repo
+            print("%s %s: skipped - %s" % (stamp, event_id, ex))
+            continue
+        if not run.autopilot() or ytupload.shelved(run.cfg, run.ev["brand"]):
+            continue
+        try:
+            with open(ytupload.state_path(run), encoding="utf-8") as f:
+                yt = json.load(f)
+        except (OSError, ValueError):
+            yt = {}
+        todo = []
+        for key, t in run.state["talks"].items():
+            rec = yt.get(key) or {}
+            if rec.get("id"):
+                extras = [x for x in ("thumbnail", "captions", "playlist") if rec.get(x) is not True]
+                if extras:
+                    todo.append("%s (%s)" % (key, ", ".join(extras)))
+            elif t.get("finished") and t.get("selfcheck_ok"):
+                todo.append("%s (not on YouTube)" % key)
+        if not todo:
+            continue
+        if run.busy():
+            print("%s %s: %d to finish, a job is running (%s) - next round" % (stamp, event_id, len(todo), run.busy()))
+            continue
+        print("%s %s: %d to finish - %s" % (stamp, event_id, len(todo), "; ".join(todo)))
+        with run.job("upload"):
+            for line in run.youtube_pass():
+                print("  " + line)
+            print("  report: " + run.ship_report())
+    return 0
+
+
 def main(argv):
     for stream in (sys.stdout, sys.stderr):              # "Łukasz", "✓" on a Windows console without PYTHONUTF8
         try:
@@ -161,6 +208,8 @@ def main(argv):
     cmd = argv[0]
     if cmd == "doctor":
         sys.exit(1 if print_doctor() else 0)
+    if cmd == "catchup":
+        sys.exit(catchup())
     if cmd == "setup":
         sys.exit(1 if setup() else 0)
     if cmd == "serve":

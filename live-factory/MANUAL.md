@@ -279,6 +279,9 @@ or deleted to free space - ask first, the `in/` copy may be the only backup of t
 
 ## Changelog
 
+- **2026-11-28** - Nothing waits for an open window any more: a scheduled catch-up (at login and every 3 hours)
+  finishes any event's YouTube uploads the day's limit or a restart left behind - videos, thumbnails, captions,
+  playlist.
 - **2026-11-27** - The app opens on a plain progress page: one bar per stage, then a bar per talk, then a short
   final report with only the real issues. The detailed workbench moved to /workbench. The YouTube subtitles are now
   Descript's transcript proofread by Claude in the talk's context: misheard names and terms are fixed, the timings

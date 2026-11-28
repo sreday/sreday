@@ -56,7 +56,19 @@ It takes 5-15 minutes. Run it in the background and wait for it to finish.
 - The tokens pass through your context here. Never echo, quote or summarise them, and never write them anywhere
   else.
 
-## 5. Check and hand over
+## 5. The scheduled catch-up (nothing left behind after a restart)
+
+`python -m live_factory catchup` gives every autopilot event on the computer its YouTube pass when a checked talk is
+not up yet, or its thumbnail, captions or playlist are still to add (the day's quota ran out, the machine was off). It
+runs by itself at every login and every 3 hours; log `local/catchup.log`.
+
+- **Mac:** `./schedule-catchup.sh` (a LaunchAgent, `com.sreday.live-factory.catchup`). Undo: the line at the top of the
+  script.
+- **Windows:** two scheduled tasks, from `sreday\live-factory` (the path is this computer's):
+  `schtasks /Create /TN "live-factory catchup" /SC HOURLY /MO 3 /TR "cmd /c cd /d %CD% && set PYTHONUTF8=1 && env\Scripts\python -m live_factory catchup >> local\catchup.log 2>&1"`
+  and the same with `/TN "live-factory catchup at logon" /SC ONLOGON`. Undo: `schtasks /Delete /TN "<name>" /F`.
+
+## 6. Check and hand over
 
 - `env/bin/python -m live_factory doctor` (Windows: `env\Scripts\python`). Everything required must say OK:
   - the Descript token "works";
