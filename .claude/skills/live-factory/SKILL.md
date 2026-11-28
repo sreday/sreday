@@ -1,6 +1,6 @@
 ---
 name: live-factory
-description: Operate the LIVE talk factory (live-factory/ in this repo) - turn the long recordings of a live SREday / LLMday / PLATFORMday / PEC / DevOps Not Dead event into one cleaned video per talk via Descript. Use when someone asks to add or analyse recordings, match the lineup / find the talks, cut talks, run Descript, check the factory status, redo a talk, export, write YouTube items, or set the factory up on a computer.
+description: Operate the LIVE talk factory (live-factory/ in this repo) - and set it up on a new computer by itself (bootstrap.py + the sign-in vault on Drive) - turn the long recordings of a live SREday / LLMday / PLATFORMday / PEC / DevOps Not Dead event into one cleaned video per talk via Descript. Use when someone asks to add or analyse recordings, match the lineup / find the talks, cut talks, run Descript, check the factory status, redo a talk, export, write YouTube items, or set the factory up on a computer.
 ---
 
 # LIVE talk factory - how Claude runs it
@@ -14,8 +14,10 @@ you need before changing anything.
 - Run everything from `live-factory/` with its venv and UTF-8:
   - Mac/Linux: `cd live-factory && PYTHONUTF8=1 env/bin/python -m live_factory <command> ...`
   - Windows: `cd live-factory; $env:PYTHONUTF8=1; env\Scripts\python -m live_factory <command> ...`
-- No `env/` yet: the person runs `bash live-factory/setup.sh` (Mac) or `live-factory\setup.cmd` (Windows) themselves -
-  it asks for their Descript API token, which never goes through you. Then `... -m live_factory doctor`.
+- **First thing on any factory request: is this computer set up?** No `live-factory/env/`, or `doctor` shows a
+  missing Descript token / YouTube sign-in: do "A new computer" (below) yourself, right away, without asking - the
+  bootstrap and the sign-ins from Marek's Drive vault - then carry on with what he asked. Never ask him for a token or
+  send him to setup.sh (that stays only for someone who sets up by hand, without Claude).
 - Events are `<brand>-<folder>`: `sreday-2026-london-q1`, `llmday-2026-london-q4`, `platformday-2026-austin-q4`.
   `git pull` the brand repos first so the lineup is current (the lineup is the event's `_db/talks.csv`; never edit it -
   it is a Drive export).
