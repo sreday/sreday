@@ -1041,8 +1041,13 @@ def verify(lean, rec, cfg, window=20.0):
             edge = env[:2] if what == "starts" else env[-3:]
             # a sound at the edge is a problem only when the word heard there is not the planned one (a talk can
             # start right on its first word)
-            wrong = (got_first[:1] and got_first[0] not in want_first[:2]) if what == "starts" else \
-                (got_last[-1:] and got_last[-1] not in want_last[-2:])
+            want = want_first if what == "starts" else want_last
+            if not want:                                  # no words written for this edge: the level alone can't say
+                continue
+            # fillers ("so", "you", "yeah") are left out of the planned words, so out of the heard ones too
+            gf, gl = [w for w in got_first if w not in fill], [w for w in got_last if w not in fill]
+            wrong = (gf[:1] and gf[0] not in want_first[:2]) if what == "starts" else \
+                (gl[-1:] and gl[-1] not in want_last[-2:])
             if float(edge.min()) >= thr and wrong:
                 problems.append("the cut %s in the middle of a sound (a word cut into?)" % what)
     for what, lv, t in (("start", lh, 0.0), ("end", lt, dur)):
@@ -1052,6 +1057,10 @@ def verify(lean, rec, cfg, window=20.0):
             edge = float(env[:2].max()) if what == "start" else float(env[-2:].max())
             if edge > floor + 20:
                 notes.append("the %s edge is %.0f dB over the room's quiet (a word or applause there?)" % (what, edge - floor))
+    for what, want in (("start", want_first), ("end", want_last)):
+        if not want:
+            notes.append("the %s's words not checked - no \"%s\" written with the edge set by hand" % (
+                what, "first" if what == "start" else "last"))
     notes.append("first heard: \"%s\"; last heard: \"%s\"" % (" ".join(got_first[:6]), " ".join(got_last[-6:])))
     return problems, notes
 

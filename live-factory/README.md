@@ -204,7 +204,10 @@ the word before it. When there is no gap at all, that's a note in the brief; the
     SF, Wassim Melakhessou's "great question" came 8 min before his real end).
 
   Claude reads `ends_brief.md` (per talk: both edges, why, and the sentences around them) and confirms or moves them
-  in cuts.json: `"ends": {"start", "end", "by": "claude", "why"}`. A change there is a changed cut.
+  in cuts.json: `"ends": {"start", "end", "by": "claude", "why", "first", "last"}`. A change there is a changed cut.
+  "first"/"last" are a few of the words each edge falls on; the check after the cut hears the cut against them. An
+  edge moved more than 2 s with no words written is heard but not checked (the found sentence belongs to the old
+  edge: London Q3 2026 stopped 12 talks on it).
 - **The check after the cut** (`verify`, before any Descript credit). The cut's first and last 20 s are heard again,
   without the voice detector and with a second of silence after (Whisper drops a file's last words). The cut must:
   - start on 2 of the planned first 3 words and end on 2 of the planned last 3 (a quiet last "thank you" heard as

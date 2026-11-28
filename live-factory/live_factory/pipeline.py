@@ -941,9 +941,14 @@ class Run:
                 ends.save(path, cache)
         conf = cut.get("ends")
         if isinstance(conf, dict) and conf.get("start") is not None and conf.get("end") is not None:
-            r = dict(r, start=segment.parse_stamp(conf["start"]), end=segment.parse_stamp(conf["end"]),
-                     by=conf.get("by") or "claude", why=conf.get("why") or "", sure=True, flags=[],
-                     first=conf.get("first") or r.get("first"), last=conf.get("last") or r.get("last"))
+            s0, e0 = segment.parse_stamp(conf["start"]), segment.parse_stamp(conf["end"])
+            # the found sentence belongs to the found edge: an edge moved by hand (London Q3: 23 of 27) is heard
+            # against the words written with it ("first"/"last" in cuts.json), or not at all - never against the
+            # sentence at the old place (11 talks stopped on that)
+            moved = lambda a, b: r.get(a) is None or abs(b - r[a]) > 2.0
+            r = dict(r, start=s0, end=e0, by=conf.get("by") or "claude", why=conf.get("why") or "", sure=True, flags=[],
+                     first=conf.get("first") or ("" if moved("start", s0) else r.get("first")),
+                     last=conf.get("last") or ("" if moved("end", e0) else r.get("last")))
         elif conf == "rules":
             r = dict(r, sure=True, flags=[], by="rules (taken as they are)")
         return r

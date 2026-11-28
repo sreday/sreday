@@ -114,7 +114,11 @@ tokens refresh by themselves.
      punctuation) after a firm sentence, end on the firm sentence (Marek: "always end on the firm sentence, if it's
      followed by some mumbling and stuff").
    - For each talk, confirm or move the edges in cuts.json:
-     `"ends": {"start": "0:31:12.4", "end": "0:52:40.1", "by": "claude", "why": "..."}` (recording time). A FLAGGED
+     `"ends": {"start": "0:31:12.4", "end": "0:52:40.1", "by": "claude", "why": "...", "first": "Good morning everyone,
+     I'm ...", "last": "... that's it, thank you."}` (recording time). Write "first"/"last" (a few of the words the
+     edge falls on) whenever you move an edge: the check after the cut hears the cut against them, and without them
+     the moved edge goes unchecked (London Q3 2026: 12 talks stopped before Descript, checked against the sentence
+     at the old edge). A FLAGGED
      talk stops before cutting until you do. `"ends": "rules"` takes the rules' edges as they are; `"ends": "off"`
      cuts the coarse parts, with no sharp ends.
    - When the start is lost (the sound only comes back mid-sentence), say so: start on the first full sentence.
